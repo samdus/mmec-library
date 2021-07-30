@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'antlr'
+    id 'application'
+}
+
+group 'ca.griis'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    antlr "org.antlr:antlr4:4.5"
+}
+
+generateGrammarSource {
+    arguments += ["-visitor",
+                  "-listener",
+                  "-lib", "src/main/antlr/ca/griis/mMec/"
+                  ,"-package", "ca.griis.mMec"
+    ]
+    outputDirectory = file("src/gen/java")
+}
+
+test {
+    useJUnitPlatform()
+}

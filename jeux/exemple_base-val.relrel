@@ -1,0 +1,18 @@
+OntoRel PARS3-P4:v2.1 PARS3:v1.1
+Source JeDIS
+Dialect PostgreSQL:13.3
+
+/* scalar laboratory result */
+Signature T01ed { "ID_LABORATOIRE_EXT" }
+   FROM "EXP"."LABORATOIRE" WHERE 'IS_NUMERIC("VALEUR")'
+;
+
+/* frequency unit */
+Signature T01f8 { "ID_PRESCRIPTION_EXT" }
+  FROM EXPRESSION 'SELECT "ID_PRESCRIPTION_EXT"
+                   FROM "EXP"."PRESCRIPTION"
+                   WHERE "TEXT_DOSAGE" IS NOT NULL'
+;
+
+/* Superficial temporal artery */
+Signature T01f6 NA: 'La clinique ne gère pas ces données là.'

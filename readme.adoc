@@ -1,0 +1,11 @@
+// Settings
+:idprefix:
+:idseparator: -
+:component-name: mMEC
+//la valeur de component-name représente la valeur de l'attribut title assigné dans le fichier
+//antora.yml
+= {component-name}
+
+[#summary]
+== Sommaire
+Modèle permettant de définir une mise en correspondance.
