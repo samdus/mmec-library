@@ -1,4 +1,4 @@
-// Generated from /Users/duss2503/Documents/Projets/arot/hephaistos/RelRelLang/src/main/antlr/ca/griis/relrellang/RelRelLang_LEX.g4 by ANTLR 4.9.1
+// Generated from /Users/duss2503/Documents/Projets/arot/hephaistos/RelRelLang/src/main/antlr/ca/griis/relrellang/mRel_LEX.g4 by ANTLR 4.9.1
 
 //package ca.griis.lex;
 /**
@@ -104,7 +104,7 @@ public class RelRelLang_LEX extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "RelRelLang_LEX.g4"; }
+	public String getGrammarFileName() { return "mRel_LEX.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

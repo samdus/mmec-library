@@ -1,11 +1,11 @@
 /*
 -- =========================================================================== A
 Produit : RelRel
-Segment : RelRelLang
-Composant : RelRelLang_LEX.g4
+Segment : mRel
+Composant : mRel_LEX.g4
 Encodage : UTF8 sans BOM, fin de ligne Unix (LF)
 Responsable : Samuel.Dussault@USherbrooke.ca
-Description : Mots réservés et conventions lexicales spécifiques RelRelLang (v0).
+Description : Mots réservés et conventions lexicales spécifiques mRel (v0).
 Statut : en cours d'élaboration.
 
 *Présentation* (à venir)
@@ -27,7 +27,7 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 
 *Tâches réalisées*
 2013-04-09 (0.1.0) [SD] Définition initiale.
-  * Développement de la première version élaborée pour RelRelLang.
+  * Développement de la première version élaborée pour mRel.
 
 *Références*
   S.O.
@@ -39,35 +39,31 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 -- =========================================================================== A
 */
 
-lexer grammar RelRelLang_LEX;
-import LEX;
+lexer grammar mRel_LEX;
+import LEX, IRI_LEX;
 
-/* Constructions */
-VERSION: (V)? INTEGER ('.'INTEGER)*;
+/* Mots réservés */
+ONTOREL: O N T O R E L ;
+SOURCE: S O U R C E ;
+DIALECT: D I A L E C T ;
+ONTOREL_EXP: E X P ;
+SOURCE_EXP: E X P ;
+MAPPING_DEF: D E F;
 
-/* Éléments d'entête */
-ONTOREL: O N T O R E L;
-SOURCE: S O U R C E;
-DIALECT: D I A L E C T;
+/* Éléments d'entêtes */
+ONTOREL_REF: IRI ;
+DICT_SOURCE_REF: IRI ;
+VERSION: (V)? INTEGER ('.'INTEGER)* ;
 
-/* Constructions */
-SIGNATURE: S I G N A T U R E;
-OBJECTPROPERTIES: O B J E C T P R O P E R T I E S ;
-DATAPROPERTIES: D A T A P R O P E R T I E S;
-
-/* Signatures */
-SELECT: S E L E C T;
-FROM: F R O M;
-FROM_EXP: F R O M ' ' E X P R E S S I O N;
-WHERE: W H E R E;
-NA: N A;
-
-/* Object properties */
-
-/* Data properties */
+/* Éléments de constructions */
+ONTOREL_ELEM_REF: IDENT ; // TODO: Définir la structure de l'identifiant dans l'OntoRel
+SOURCE_ELEM_REF: IDENT ;  // TODO: Définir la structure de l'identifiant dans le dictionnaire de la source
+NA: N A ; // not available
+NY: N Y ; // not yet mapped
+DEF_ID: IDENT ;
 
 /*
 -- =========================================================================== Z
--- fin de RelRel/RelRelLang_LEX.g4
+-- fin de RelRel/mRel_LEX.g4
 -- =========================================================================== Z
 */

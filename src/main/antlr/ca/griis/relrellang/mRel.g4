@@ -1,11 +1,11 @@
 /*
 -- =========================================================================== A
 Produit : RelRel
-Segment : RelRelLang
-Composant : RelRelLang.g4
+Segment : mRel
+Composant : mRel.g4
 Encodage : UTF8 sans BOM, fin de ligne Unix (LF)
 Responsable : Samuel.Dussault@USherbrooke.ca
-Description : Grammaire de RelRelLang (v0).
+Description : Grammaire de mRel (v0).
 Statut : en cours d'élaboration.
 
 *Présentation* (à venir)
@@ -27,7 +27,7 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 
 *Tâches réalisées*
 2013-04-09 (0.1.0) [SD] Définition initiale.
-  * Développement de la première version élaborée pour RelRelLang.
+  * Développement de la première version élaborée pour mRel.
 
 *Références*
   S.O.
@@ -38,41 +38,40 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 @author [LL] Luc.Lavoie@USherbrooke.ca
 -- =========================================================================== A
 */
-grammar RelRelLang;
-import RelRelLang_LEX, LEX;
+grammar mRel;
+import mRel_LEX, LEX, mDiscipulus;
 
 /* Base */
-mapping: ontorel source dialect signature+
-;
+base: header ontorel_subset source_subset mapping ;
 
 /* Entête */
-ontorel: ONTOREL ontology rel;
-source: SOURCE IDENT ;
+header: ontorel source dialect ;
+ontorel: ONTOREL ONTOREL_REF ;
+source: SOURCE DICT_SOURCE_REF ;
 dialect: DIALECT IDENT ':' VERSION ;
 
-ontology: IDENT ':' VERSION ;
-rel: IDENT ':' VERSION ;
+/* Définitions d'arrimage */
+mapping: mapping_def+ ;
 
-/* Signatures */
-signature: SIGNATURE IDENT (((signature_id)? '{' components '}' (from | from_expr) ';') | (NA ':' reason));
-signature_id: IDENT;
+ontorel_subset: ontorel_exp* ;
+source_subset: source_exp* ;
+
+ontorel_exp: ONTOREL_EXP ONTOREL_ELEM_REF exp_semantic exp_message ;
+source_exp: SOURCE_EXP SOURCE_ELEM_REF ;
+
+exp_semantic: NA | NY ; // not available or not yet mapped
+exp_message: STRING ;
+
+mapping_def: MAPPING_DEF ONTOREL_ELEM_REF DEF_ID signature expression ';' ;
+expression: STRING | rel_expression ;
+
+// TODO: Retirer les charactères et unifier Classes, OP et DP.
+//        --> Donc, véfifier si tout les types de mapping sont intéressant à définir avec juste une expression
+signature: '{' components '}' ;
 components: attribute_name  (',' attribute_name)* ;
-from: FROM rel_query;
-from_expr: FROM_EXP expression ;
-
-reason: STRING;
-expression: STRING ;
-
-// TODO: Définir le sous-ensemble discipulus disponible
-rel_query: rel_var_name WHERE boolean_expression ;
-boolean_expression: STRING ;
-
-schema_name: IDENT;
-rel_var_name: (schema_name '.')? IDENT;
-attribute_name: (rel_var_name '.')? IDENT;
 
 /*
 -- =========================================================================== Z
--- fin de RelRel/RelRelLang.g4
+-- fin de RelRel/mRel.g4
 -- =========================================================================== Z
 */
