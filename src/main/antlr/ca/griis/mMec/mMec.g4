@@ -38,7 +38,7 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 -- =========================================================================== A
 */
 grammar mMec;
-import mMec_LEX, Discipulus, mRel;
+import Discipulus_LEX, IRI_LEX, LEX, Discipulus, mRel;
 
 /* Base */
 base: header exclusions mapping ;
@@ -83,6 +83,25 @@ mRel_relation_identifier: entity_identifier ;
 discipulus_expression: rel_query ;
 discipulus_attribute_list: attribute_list ;
 discipulus_qualified_attribute_list: qualified_attribute_list ;
+
+/* Mots réservés */
+ONTOREL: O N T O R E L ;
+SOURCE: S O U R C E ;
+EXCLUSION: E X C L U S I O N ;
+MAPPING_DEFINITION: D E F I N E ;
+SET: S E T ;
+FOR: F O R ;
+
+/* Éléments de constructions */
+DEFINITION_DELIMITER: ';' ;
+NOT_AVAILABLE: N O T '_' A V A I L A B L E ;
+UNDEFINED: U N D E F I N E D ;
+FROM: F R O M ;
+FROM_EXPRESSION: F R O M ' ' E X P R E S S I O N;
+SELECT: S E L E C T ;
+FUNCTION_ARGUMENT_START: '(' ;
+FUNCTION_ARGUMENT_END: ')' ;
+FUNCTION_ARGUMENT_DELIM: ',' ;
 
 /*
 -- =========================================================================== Z
