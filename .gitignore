@@ -270,3 +270,5 @@ src/main/java/\.idea/
 .idea/
 
 gen/
+
+*.tokens
