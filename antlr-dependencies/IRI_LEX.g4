@@ -1,12 +1,43 @@
+/*
+-- =========================================================================== A
+Produit : RFC 3987
+Composant : IRI_LEX.g4
+Encodage : UTF8 sans BOM, fin de ligne Unix (LF)
+Responsable : Samuel.Dussault@USherbrooke.ca
+Description : Il s'agit d'une approximation de la grammaire définie par la https://datatracker.ietf.org/doc/html/rfc3987[RFC 3987 (IRI)].
+
+*Présentation*
+  ...
+
+*Références*
+  ...
+
+*Copyright* 2016-...., GRIIS (http://griis.ca/)
+GRIIS (Groupe de recherche interdisciplinaire en informatique de la santé)
+Faculté des sciences et Faculté de médecine et des sciences de la santé
+Université de Sherbrooke
+Sherbrooke (Québec)  J1K 2R1  CANADA
+[CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0)]
+
+*Tâches projetées et questions*
+FIXME 2021-08-06 [SD] Cette version ne semble pas fonctionnelle, à corriger.
+TODO 2021-08-04 [SD] Intégrer la définition des éléments bornés comme IPV6ADDRESS et IPATH_EMPTY
+
+@version 0.1.0
+@author [SD] Samuel.Dussault@USherbrooke.ca
+@author [LL] Luc.Lavoie@USherbrooke.ca
+
+-- =========================================================================== A
+*/
 lexer grammar IRI_LEX;
 
-import LEX;
+//import LEX;
 
 IRI            : SCHEME ':' IHIER_PART ( '?' IQUERY )?
                          ( '#' IFRAGMENT )?
 ;
 fragment
-   IHIER_PART     : '||' IAUTHORITY IPATH_ABEMPTY
+   IHIER_PART     : '//' IAUTHORITY IPATH_ABEMPTY
                   | IPATH_ABSOLUTE
                   | IPATH_ROOTLESS
 //                  | IPATH_EMPTY
@@ -21,7 +52,7 @@ fragment
    IRELATIVE_REF  : IRELATIVE_PART ( '?' IQUERY )? ( '#' IFRAGMENT )?
 ;
 fragment
-   IRELATIVE_PART : '||' IAUTHORITY IPATH_ABEMPTY
+   IRELATIVE_PART : '//' IAUTHORITY IPATH_ABEMPTY
                        | IPATH_ABSOLUTE
                   | IPATH_NOSCHEME
 //                  | IPATH_EMPTY
@@ -39,23 +70,23 @@ fragment
    IREG_NAME      : ( IUNRESERVED | PCT_ENCODED | SUB_DELIMS )*
 ;
 fragment
-   IPATH          : IPATH_ABEMPTY   // BEGINS WITH '|' OR IS EMPTY
-                  | IPATH_ABSOLUTE  // BEGINS WITH '|' BUT NOT '||'
+   IPATH          : IPATH_ABEMPTY   // BEGINS WITH '/' OR IS EMPTY
+                  | IPATH_ABSOLUTE  // BEGINS WITH '/' BUT NOT '//'
                   | IPATH_NOSCHEME  // BEGINS WITH A NON_COLON SEGMENT
                   | IPATH_ROOTLESS  // BEGINS WITH A SEGMENT
 //                  | IPATH_EMPTY     // ZERO CHARACTERS
 ;
 fragment
-   IPATH_ABEMPTY  : ( '|' ISEGMENT )*
+   IPATH_ABEMPTY  : ( '/' ISEGMENT )*
 ;
 fragment
-   IPATH_ABSOLUTE : '|' ( ISEGMENT_NZ ( '|' ISEGMENT )* )?
+   IPATH_ABSOLUTE : '/' ( ISEGMENT_NZ ( '/' ISEGMENT )* )?
 ;
 fragment
-   IPATH_NOSCHEME : ISEGMENT_NZ_NC ( '|' ISEGMENT )*
+   IPATH_NOSCHEME : ISEGMENT_NZ_NC ( '/' ISEGMENT )*
 ;
 fragment
-   IPATH_ROOTLESS : ISEGMENT_NZ ( '|' ISEGMENT )*
+   IPATH_ROOTLESS : ISEGMENT_NZ ( '/' ISEGMENT )*
 ;
 //   IPATH_EMPTY    : 0<IPCHAR>
 //;
@@ -75,13 +106,13 @@ fragment
                   | '@'
 ;
 fragment
-   IQUERY         : ( IPCHAR | IPRIVATE | '|' | '?' )*
+   IQUERY         : ( IPCHAR | IPRIVATE | '/' | '?' )*
 ;
 fragment
-   IFRAGMENT      : ( IPCHAR | '|' | '?' )*
+   IFRAGMENT      : ( IPCHAR | '/' | '?' )*
 ;
 fragment
-   IUNRESERVED    : ALPHA | DEC_DIGIT | '-' | '.' | '_' | '~' | UCSCHAR
+   IUNRESERVED    : (ALPHA | DEC_DIGIT | '-' | '.' | '_' | '~' | UCSCHAR)+
 ;
 fragment
    UCSCHAR        : '%XA0-D7FF' | '%XF900-FDCF' | '%XFDF0-FFEF'
@@ -138,9 +169,24 @@ fragment
    RESERVED       : GEN_DELIMS | SUB_DELIMS
 ;
 fragment
-   GEN_DELIMS     : ':' | '|' | '?' | '#' | '(' | ')?' | '@'
+   GEN_DELIMS     : ':' | '/' | '?' | '#' | '(' | ')?' | '@'
 ;
 fragment
    SUB_DELIMS     : '!' | '$' | '&' | '\'' | '(' | ')'
                   | '*' | '+' | ',' | ';' | ':'
 ;
+fragment
+  ALPHA : '\u00A0'..'\u00FF' | '\u0100'..'\u086F' | '\u08A0'..'\uFFFF'
+;
+fragment
+  DEC_DIGIT: ('0'..'9')
+;
+fragment
+  HEX_DIGIT: ('0'..'9' | 'a'..'f' | 'A'..'F')
+;
+
+/*
+-- =========================================================================== Z
+-- fin de IRI_LEX.g4
+-- =========================================================================== Z
+*/

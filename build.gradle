@@ -21,7 +21,8 @@ dependencies {
 generateGrammarSource {
     arguments += ["-visitor",
                   "-listener",
-                  "-lib", "src/main/antlr/ca/griis/mMec/"
+                  "-lib", "src/main/antlr/ca/griis/mMec/",
+                  "-lib", "src/main/antlr/ca/griis/mOnto/"
                   ,"-package", "ca.griis.mMec"
     ]
     outputDirectory = file("src/gen/java")

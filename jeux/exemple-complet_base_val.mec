@@ -1,0 +1,62 @@
+OntoRel 'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1';
+Source 'https://griis.ca/JeDIS';
+
+/* exclusions de l'OntoRel */
+exclusion T01f6 NOT_AVAILABLE 'La clinique ne gère pas ces données là.';
+exclusion T01f6 UNDEFINED 'À faire en 2022';
+
+/* exclusions de la source */
+exclusion "EXP"."LABORATOIRE"."COLUMN" 'Colonne non utilisée';
+
+/* scalar laboratory result */
+define T01ed_def for T01ed
+  from "EXP"."LABORATOIRE"
+  select "ID_LABORATOIRE_EXT"
+  where "ID_LABORATOIRE_EXT" is not null
+;
+
+/* frequency unit */
+define T01f8_def for T01f8
+  from expression «
+    SELECT "ID_PRESCRIPTION_EXT"
+    FROM "EXP"."PRESCRIPTION"
+    WHERE "TEXT_DOSAGE" IS NOT NULL
+  »
+  SELECT "ID_PRESCRIPTION_EXT"
+;
+
+/* fully specified range value specification */
+define T01b4_value for T01b4
+  from "EXP"."LABORATOIRE"
+  select "ID_LABORATOIRE_EXT"
+  where "ID_LABORATOIRE_EXT" IS NOT NULL
+  /* AND "PARS3"."V_fullySpecifiedRange"("EXP"."LABORATOIRE"."VALEUR") = 1 */
+;
+
+/* fully specified range value specification */
+define T01b4_normal for T01b4
+  from "EXP"."LABORATOIRE"
+  select "ID_LABORATOIRE_EXT"
+    /* where "PARS3"."V_fullySpecifiedRange"("EXP"."LABORATOIRE"."REF_LABO") = 1 */
+;
+
+/* closed range value specification */
+define T0209_value for T0209
+  from "EXP"."LABORATOIRE"
+  select "ID_LABORATOIRE_EXT"
+  /*  where "PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."VALEUR") = 1
+    AND "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."VALEUR") = 1 */
+;
+
+/* closed range value specification */
+define T0209_normal for T0209
+  from "EXP"."LABORATOIRE"
+  select "ID_LABORATOIRE_EXT"
+  /* where "PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."REF_LABO") = 1
+  AND "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."REF_LABO") = 1 */
+;
+
+set joint(T01b4_value, T0209_value);
+set joint(T01b4_normal, T0209_normal);
+
+set shadow(xx, yy);

@@ -2,7 +2,7 @@
 -- =========================================================================== A
 Produit : RelRel
 Segment : mRel
-Composant : mRel_LEX.g4
+Composant : mMec_LEX.g4
 Encodage : UTF8 sans BOM, fin de ligne Unix (LF)
 Responsable : Samuel.Dussault@USherbrooke.ca
 Description : Mots réservés et conventions lexicales spécifiques mRel (v0).
@@ -39,31 +39,30 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 -- =========================================================================== A
 */
 
-lexer grammar mRel_LEX;
-import LEX, IRI_LEX;
+lexer grammar mMec_LEX;
+import Discipulus_LEX, IRI_LEX, LEX;
 
 /* Mots réservés */
 ONTOREL: O N T O R E L ;
 SOURCE: S O U R C E ;
-DIALECT: D I A L E C T ;
-ONTOREL_EXP: E X P ;
-SOURCE_EXP: E X P ;
-MAPPING_DEF: D E F;
-
-/* Éléments d'entêtes */
-ONTOREL_REF: IRI ;
-DICT_SOURCE_REF: IRI ;
-VERSION: (V)? INTEGER ('.'INTEGER)* ;
+EXCLUSION: E X C L U S I O N ;
+MAPPING_DEFINITION: D E F I N E ;
+SET: S E T ;
+FOR: F O R ;
 
 /* Éléments de constructions */
-ONTOREL_ELEM_REF: IDENT ; // TODO: Définir la structure de l'identifiant dans l'OntoRel
-SOURCE_ELEM_REF: IDENT ;  // TODO: Définir la structure de l'identifiant dans le dictionnaire de la source
-NA: N A ; // not available
-NY: N Y ; // not yet mapped
-DEF_ID: IDENT ;
+NOT_AVAILABLE: N O T '_' A V A I L A B L E ;
+UNDEFINED: U N D E F I N E D ;
+DEFINITION_DELIMITER: ';' ;
+FROM: F R O M ;
+FROM_EXPRESSION: F R O M ' ' E X P R E S S I O N;
+SELECT: S E L E C T ;
+FUNCTION_ARGUMENT_START: '(' ;
+FUNCTION_ARGUMENT_END: ')' ;
+FUNCTION_ARGUMENT_DELIM: ',' ;
 
 /*
 -- =========================================================================== Z
--- fin de RelRel/mRel_LEX.g4
+-- fin de RelRel/mMec_LEX.g4
 -- =========================================================================== Z
 */
