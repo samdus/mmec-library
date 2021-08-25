@@ -1,0 +1,17 @@
+
+======================================================= 
+Rapport d'analyse de entete_header_val.mec
+======================================================= 
+Emplacement : /Users/duss2503/Documents/Projets/arot/hephaistos/mMEC/jeux/entete_header_val.mec
+Taille : 86 octets
+Début de l'analyse : 2021-08-25T16:35:15.651934
+Analyseur : 'DadaGem Parser'
+
+Représentation interne
+header(
+ ontorel_ref(
+   OntoRel ontorel_ref_id(
+     'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1') ;) source_ref(
+   Source source_ref_id(
+     'https://griis.ca/JeDIS') ;))
+Fin de l'analyse : 2021-08-25T16:35:15.652391 (durée PT0.000457S).
