@@ -44,21 +44,6 @@ TODO 2017-08-14 [LL] Ajouter un langage de définition de types.
 
 grammar MicroOnto;
 import MOnto_LEX, LEX;
-@header {
-//package ca.griis.monto.microonto;
-/**
- * Syntaxe du langage MicroOnto.
- *
- * @version 0.1.0 2018-04-08 
- * @author [CK] Christina.Khnaisser@USherbrooke.ca
- * @author [LL] Luc.Lavoie@USherbrooke.ca
- */
-}
-@parser::members
-{
-  // public AnalyseurDLUS mru = new AnalyseurDLUS();
-  // public Descripteur trace = mru.getTrace();
-}
 
 // ===========================================================================
 // Catégorie initiale : ontologie_def
