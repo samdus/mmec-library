@@ -1,0 +1,20 @@
+
+======================================================= 
+Rapport d'analyse de exclusion-ontorel_exclusions_val.mec
+======================================================= 
+Emplacement : /Users/duss2503/Documents/Projets/arot/hephaistos/mMEC/jeux/exclusion-ontorel_exclusions_val.mec
+Taille : 46 octets
+Début de l'analyse : 2021-08-25T16:50:22.452061
+Analyseur : 'DadaGem Parser'
+
+Représentation interne
+exclusions(
+ exclusion_expression(
+   exclusion exclusion_element(
+     exclusion_ontorel(
+       mRel_relation_identifier(
+         entity_identifier(
+           T01f6)) exclusion_semantic(
+         UNDEFINED))) exclusion_message(
+     'À faire en 2022') ;))
+Fin de l'analyse : 2021-08-25T16:50:22.452535 (durée PT0.000474S).

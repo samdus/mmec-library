@@ -1,0 +1,37 @@
+
+======================================================= 
+Rapport d'analyse de exclusion-multiple_exclusions_val.mec
+======================================================= 
+Emplacement : /Users/duss2503/Documents/Projets/arot/hephaistos/mMEC/jeux/exclusion-multiple_exclusions_val.mec
+Taille : 247 octets
+Début de l'analyse : 2021-08-25T16:52:26.161851
+Analyseur : 'DadaGem Parser'
+
+Représentation interne
+exclusions(
+ exclusion_expression(
+   exclusion exclusion_element(
+     exclusion_ontorel(
+       mRel_relation_identifier(
+         entity_identifier(
+           T01f6)) exclusion_semantic(
+         NOT_AVAILABLE))) exclusion_message(
+     'La clinique ne gère pas ces données là.') ;) exclusion_expression(
+   exclusion exclusion_element(
+     exclusion_ontorel(
+       mRel_relation_identifier(
+         entity_identifier(
+           T01f6)) exclusion_semantic(
+         UNDEFINED))) exclusion_message(
+     'À faire en 2022') ;) exclusion_expression(
+   exclusion exclusion_element(
+     exclusion_source(
+       discipulus_qualified_attribute_list(
+         qualified_attribute_list(
+           qualified_attribute(
+             relation_name(
+               schema_name(
+                 "EXP") . "LABORATOIRE") . attribute_name(
+               "COLUMN")))))) exclusion_message(
+     'Colonne non utilisée') ;))
+Fin de l'analyse : 2021-08-25T16:52:26.163224 (durée PT0.001373S).

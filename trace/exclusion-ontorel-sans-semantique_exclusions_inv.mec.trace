@@ -1,0 +1,18 @@
+[31m Règle :[exclusions, exclusion_expression, exclusion_element]  [0m
+[31m Ligne 1 col 16 [@2,16:32=''À faire en 2022'',<43>,1:16] : no viable alternative at input 'T01f6'À faire en 2022'' [0m
+
+======================================================= 
+Rapport d'analyse de exclusion-ontorel-sans-semantique_exclusions_inv.mec
+======================================================= 
+Emplacement : /Users/duss2503/Documents/Projets/arot/hephaistos/mMEC/jeux/exclusion-ontorel-sans-semantique_exclusions_inv.mec
+Taille : 36 octets
+Début de l'analyse : 2021-08-25T16:52:26.189385
+Analyseur : 'DadaGem Parser'
+
+Représentation interne
+exclusions(
+ exclusion_expression(
+   exclusion exclusion_element(
+     T01f6) exclusion_message(
+     'À faire en 2022') ;))
+Fin de l'analyse : 2021-08-25T16:52:26.190003 (durée PT0.000618S).
