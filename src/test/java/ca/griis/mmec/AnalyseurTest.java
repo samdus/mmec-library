@@ -126,6 +126,7 @@ public class AnalyseurTest {
             Method methode = analyseur.getAnalyseurSyntaxique().getClass().getMethod(fichierDivise[1]);
             contexte = (ParserRuleContext) methode.invoke(analyseur.getAnalyseurSyntaxique());
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | ArrayIndexOutOfBoundsException ignored) {
+            System.err.println("Impossible de déterminer le contexte initial en fonction du nom du fichier. La règle de base sera utilisée.");
             contexte = analyseur.getAnalyseurSyntaxique().base();
         }
 
