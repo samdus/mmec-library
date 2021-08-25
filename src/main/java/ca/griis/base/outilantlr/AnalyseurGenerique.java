@@ -1,21 +1,16 @@
 package ca.griis.base.outilantlr;
 
 import ca.griis.base.Descripteur;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.ConsoleErrorListener;
-import org.antlr.v4.runtime.Lexer;
-import org.antlr.v4.runtime.Parser;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeListener;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 /**
  * Analyseur générique de langage.
@@ -42,7 +37,11 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  * 2016-10-16 (0.1.1) [LL] <i>Harmonisation des commentaires.</i> <br>
  * 2016-10-13 (0.1.0) [CK] <i>Création.</i> <br>
  * <p>
- * 
+ *
+ * @author [CK] Christina.Khnaisser@USherbrooke.ca
+ * @author [LL] Luc.Lavoie@USherbrooke.ca
+ * @author [SD] Samuel.Dussault@USherbrooke.ca
+ * @version 0.4.1
  * @copyright 2017-2020, GRIIS (http://griis.ca/) <br>
  * <p>
  * GRIIS (Groupe de recherche interdisciplinaire en informatique de la santé) <br>
@@ -51,139 +50,127 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  * Sherbrooke (Québec) J1K 2R1 CANADA <br>
  * [CC-BY-NC-3.0 (http://creativecommons.org/licenses/by-nc/3.0)]
  * <p>
- * 
  * @since 2017-07-19
- * @version 0.4.1
- * @author [CK] Christina.Khnaisser@USherbrooke.ca
- * @author [LL] Luc.Lavoie@USherbrooke.ca
- * @author [SD] Samuel.Dussault@USherbrooke.ca
  */
 public abstract class AnalyseurGenerique<ParserT
-    extends Parser, ParseTreeListenerT
-    extends ParseTreeListener> {
+        extends Parser, ParseTreeListenerT
+        extends ParseTreeListener> {
 
-  protected Descripteur rapport;
-  protected Descripteur trace;
-  protected ParserT analyseurSyntaxique;
-  protected ErreurSyntaxique erreurs;
-  protected ParseTree arbreSyntaxique;
-  protected ParseTreeListenerT auditeur;
+    protected Boolean initialized = false;
+    protected Descripteur rapport;
+    protected Descripteur trace;
+    protected ParserT analyseurSyntaxique;
+    protected ErreurSyntaxique erreurs;
+    protected ParseTreeListenerT auditeur;
 
-  protected abstract Lexer nouveauLexer(CharStream charStream);
+    protected abstract Lexer nouveauLexer(CharStream charStream);
 
-  protected abstract ParserT nouveauParser(CommonTokenStream input);
+    protected abstract ParserT nouveauParser(CommonTokenStream input);
 
-  protected abstract ParseTreeListenerT nouveauAuditeur();
+    protected abstract ParseTreeListenerT nouvelAuditeur();
 
-  protected abstract ParseTree regleDepart(Parser analyseur) throws RecognitionException;
+    protected abstract ParseTree regleDepart() throws RecognitionException;
 
-  public abstract String getAnalyseurAppellation();
+    public abstract String getAnalyseurAppellation();
 
-  public abstract List<String> getExtensions();
+    public abstract String getRepresentationInterne();
 
-  public abstract String getRepresentationInterne();
+    public AnalyseurGenerique(File fichier){
+        trace = new Descripteur();
+        rapport = new Descripteur();
+        erreurs = new ErreurSyntaxique(rapport);
 
-  /**
-   * @fn analyserNouveauFichier
-   *
-   * @brief @~english «Description of the function»
-   * @param «parameter name» «Parameter description»
-   * @exception «exception name» «Exception description»
-   * @return «Return description»
-   *
-   * @brief @~french Analyse le fichier à l'aide d'un analyseur syntaxique paramétrisé par la classe
-   *        spécifique
-   * @param fichier Fichier à analyser
-   * @return String La trace d'analyse, incluant l'arbre syntaxique analysée ou les erreurs
-   *         d'analyse
-   *
-   * @par Tâches
-   */
-  public String analyserNouveauFichier(File fichier) {
-    final LocalDateTime debut = LocalDateTime.now();
-    trace = new Descripteur();
-    rapport = new Descripteur();
-    erreurs = new ErreurSyntaxique(rapport);
+        try {
+            Lexer lexer = nouveauLexer(CharStreams.fromFileName(fichier.getAbsolutePath()));
+            lexer.removeErrorListener(ConsoleErrorListener.INSTANCE);
 
-    rapport.titre(String.format("Rapport d'analyse de %s", fichier.getName()));
-    rapport.ajouter(String.format("Emplacement : %s", fichier.getAbsolutePath()));
-    rapport.ajouter(String.format("Taille : %d octets", fichier.length()));
-    rapport.ajouter(String.format("Début de l'analyse : %s", debut));
+            CommonTokenStream symboles = new CommonTokenStream(lexer);
 
-    try {
-      rapport.ajouter(String.format("Analyseur : '%s'", getAnalyseurAppellation()));
-      // rapport.ajouter("    > " + fichier.getAbsolutePath() + "\n");
+            analyseurSyntaxique = nouveauParser(symboles);
+            analyseurSyntaxique.removeErrorListeners();
+            analyseurSyntaxique.addErrorListener(erreurs);
 
-      Lexer lexer = nouveauLexer(CharStreams.fromFileName(fichier.getAbsolutePath()));
-      lexer.removeErrorListener(ConsoleErrorListener.INSTANCE);
-
-      CommonTokenStream symboles = new CommonTokenStream(lexer);
-
-      analyseurSyntaxique = nouveauParser(symboles);
-      analyseurSyntaxique.removeErrorListeners();
-      analyseurSyntaxique.addErrorListener(erreurs);
-
-      arbreSyntaxique = regleDepart(analyseurSyntaxique);
-      auditeur = nouveauAuditeur();
-
-      new ParseTreeWalker().walk(auditeur, arbreSyntaxique);
-      trace.ajouter(rapport.toString());
-      trace.ajouter("Représentation interne");
-      trace.ajouter(getRepresentationInterne());
-
-    } catch (IOException e) {
-      rapport.ajouterErreur("Le fichier est introuvable !");
-      trace.ajouterErreur("Le fichier est introuvable !");
+            auditeur = nouvelAuditeur();
+        } catch (IOException e) {
+            String erreur = String.format("Le fichier '%s' est introuvable !", fichier.getName());
+            rapport.ajouterErreur(erreur);
+            trace.ajouterErreur(erreur);
+        }
     }
 
-    final LocalDateTime fin = LocalDateTime.now();
-    Duration duration = Duration.between(debut, fin);
+    public String analyserNouveauFichier(File fichier) {
+        return analyserNouveauFichier(fichier, regleDepart());
+    }
 
-    rapport.ajouter(String.format("Fin de l'analyse : %s (durée %s).", fin, duration));
-    trace.ajouter(String.format("Fin de l'analyse : %s (durée %s).", fin, duration));
+    /**
+     * @param «parameter name» «Parameter description»
+     * @param fichier    Fichier à analyser
+     * @return «Return description»
+     * @return String La trace d'analyse, incluant l'arbre syntaxique analysée ou les erreurs
+     * d'analyse
+     * @throws «exception name» «Exception description»
+     * @fn analyserNouveauFichier
+     * @brief @~english «Description of the function»
+     * @brief @~french Analyse le fichier à l'aide d'un analyseur syntaxique paramétrisé par la classe
+     * spécifique
+     * @par Tâches
+     */
+    public String analyserNouveauFichier(File fichier, ParseTree arbreSyntaxique) {
+        final LocalDateTime debut = LocalDateTime.now();
 
-    return rapport.toString();
-  }
+        rapport.titre(String.format("Rapport d'analyse de %s", fichier.getName()));
+        rapport.ajouter(String.format("Emplacement : %s", fichier.getAbsolutePath()));
+        rapport.ajouter(String.format("Taille : %d octets", fichier.length()));
+        rapport.ajouter(String.format("Début de l'analyse : %s", debut));
 
-  /**
-   * @return the rapport
-   */
-  public Descripteur getRapport() {
-    return rapport;
-  }
+        rapport.ajouter(String.format("Analyseur : '%s'", getAnalyseurAppellation()));
 
-  /**
-   * @return the trace
-   */
-  public Descripteur getTrace() {
-    return trace;
-  }
+        new ParseTreeWalker().walk(auditeur, arbreSyntaxique);
+        trace.ajouter(rapport.toString());
+        trace.ajouter("Représentation interne");
+        trace.ajouter(getRepresentationInterne());
 
-  /**
-   * @return the analyseurSyntaxique
-   */
-  public ParserT getAnalyseurSyntaxique() {
-    return analyseurSyntaxique;
-  }
+        final LocalDateTime fin = LocalDateTime.now();
+        Duration duration = Duration.between(debut, fin);
 
-  /**
-   * @return the erreurs
-   */
-  public ErreurSyntaxique getErreurs() {
-    return erreurs;
-  }
+        rapport.ajouter(String.format("Fin de l'analyse : %s (durée %s).", fin, duration));
+        trace.ajouter(String.format("Fin de l'analyse : %s (durée %s).", fin, duration));
 
-  /**
-   * @return the arbreSyntaxique
-   */
-  public ParseTree getArbreSyntaxique() {
-    return arbreSyntaxique;
-  }
+        return rapport.toString();
+    }
 
-  /**
-   * @return the auditeur
-   */
-  public ParseTreeListenerT getAuditeur() {
-    return auditeur;
-  }
+    /**
+     * @return the rapport
+     */
+    public Descripteur getRapport() {
+        return rapport;
+    }
+
+    /**
+     * @return the trace
+     */
+    public Descripteur getTrace() {
+        return trace;
+    }
+
+    /**
+     * @return the analyseurSyntaxique
+     */
+    public ParserT getAnalyseurSyntaxique() {
+        return analyseurSyntaxique;
+    }
+
+    /**
+     * @return the erreurs
+     */
+    public ErreurSyntaxique getErreurs() {
+        return erreurs;
+    }
+
+    /**
+     * @return the auditeur
+     */
+    public ParseTreeListenerT getAuditeur() {
+        return auditeur;
+    }
 }
