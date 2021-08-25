@@ -12,10 +12,12 @@ repositories {
 }
 
 dependencies {
+    implementation "org.antlr:antlr4-runtime:4.9.2"
+    antlr "org.antlr:antlr4:4.9.2"
+
+    testCompile 'org.junit.jupiter:junit-jupiter-params:5.7.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-
-    antlr "org.antlr:antlr4:4.5"
 }
 
 generateGrammarSource {
@@ -25,6 +27,14 @@ generateGrammarSource {
                   "-package", "ca.griis.mMec"
     ]
     outputDirectory = file("src/gen/java")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'src/gen/java']
+        }
+    }
 }
 
 test {
