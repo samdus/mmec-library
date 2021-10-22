@@ -23,9 +23,21 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 [CC-BY-NC-3.0 (http://creativecommons.org/licenses/by-nc/3.0)]
 
 *Tâches projetées et questions*
+  [SD 2021-10-22]
+  TODO: Inclure les grammaires réelles de discipulus et mrel
+  QUESTIONS
+    - Comment intégrer les idenfiticateurs de définitions dans Discipulus ?
+      - D'ailleur, je crois qu'on devrait permettre de spécifier un nom de schéma plur le mapping et forcer d'utiliser l'identifiant qualifié pour référer aux signatures
+    - Est-ce que "using" et "depending on" est fonctionnenet bien pour définir les dépendances de l'expressions textuelles ?
+        --> depending on: Utile pour l'ordre de définition
+        --> using: Uitle pour déterminer les attributs non utilisés dans la source
+    - Est-ce qu'on devrait éviter d'avoir un mot clé à deux mot ("from expression", "depending on") ?
+    - Est-ce que c'est grave d'avoir directemment le lexeur dans le présent fichier ? C'est la seule façon de pouvoir avoir les imports dans un autre dossier...
+    - Pourquoi ne puis-je pas remplacer PROJECT par SELECT ? (ça fonctionne, mais ça devient sensible à la casse...)
+    - Je n'aime pas l'idée d'introduire un attribut "sign" aux définitions qui réfères à des tables de classes. À discuter.
 
 *Tâches réalisées*
-2013-04-09 (0.1.0) [SD] Définition initiale.
+2021-10-22 (0.1.0) [SD] Définition initiale.
   * Développement de la première version élaborée pour mRel.
 
 *Références*
@@ -41,7 +53,7 @@ grammar mMec;
 import Discipulus_LEX, IRI_LEX, LEX, Discipulus, mRel;
 
 /* Base */
-base: header exclusions mapping ;
+base: header exclusions mapping modifiers;
 
 /* Entête */
 header: ontorel_ref source_ref ;
@@ -61,19 +73,28 @@ exclusion_semantic: NOT_AVAILABLE | UNDEFINED ;
 exclusion_message: STRING ;
 
 /* Définitions d'arrimage */
-mapping: mapping_def+ mapping_modifier* ;
+mapping: mapping_def+ ;
 mapping_def: MAPPING_DEFINITION definition_id FOR mRel_relation_identifier expression DEFINITION_DELIMITER ;
 definition_id: IDENT ;
 expression: discipulus_expression | string_expression ;
+definition_id_list: definition_id (LIST_DELIM definition_id)*;
 
-string_expression: FROM_EXPRESSION STRING SELECT discipulus_attribute_list ;
+string_expression: FROM_EXPRESSION STRING PROJECT string_expression_selection_list USING string_expression_used_symbol_list (DEPENDING_ON string_expression_dependency_symbol_list)? ;
+string_expression_selection_list: discipulus_attribute_list ;
+string_expression_used_symbol_list: discipulus_qualified_attribute_list ;
+string_expression_dependency_symbol_list: definition_id_list ;
 
 /* Définitions des modificateurs */
+modifiers: mapping_modifier* ;
 mapping_modifier: SET modifier_function DEFINITION_DELIMITER ;
-modifier_function: modifier_function_id FUNCTION_ARGUMENT_START modifier_function_argument_list FUNCTION_ARGUMENT_END ;
-modifier_function_argument_list: modifier_function_argument (FUNCTION_ARGUMENT_DELIM modifier_function_argument)* ;
-modifier_function_argument: definition_id ;
-modifier_function_id: IDENT ;
+modifier_function: shared | shadow ;
+
+shared: SHARED FUNCTION_ARGUMENT_START shared_definition_id_list FUNCTION_ARGUMENT_END;
+shared_definition_id_list: definition_id_list  ;
+
+shadow: SHADOW FUNCTION_ARGUMENT_START shadower_definition_id LIST_DELIM shadowed_definition_id FUNCTION_ARGUMENT_END ;
+shadower_definition_id:  definition_id ;
+shadowed_definition_id: definition_id ;
 
 /* Définitions importée d'autres grammaires */
 // - mRel
@@ -89,19 +110,27 @@ ONTOREL: O N T O R E L ;
 SOURCE: S O U R C E ;
 EXCLUSION: E X C L U S I O N ;
 MAPPING_DEFINITION: D E F I N E ;
-SET: S E T ;
+
+UNDEFINED: U N D E F I N E D ;
+NOT_AVAILABLE: N O T '_' A V A I L A B L E ;
+
 FOR: F O R ;
+FROM: F R O M ;
+FROM_EXPRESSION: F R O M ' ' E X P R E S S I O N;
+
+PROJECT: P R O J E C T ;
+USING: U S I N G ;
+DEPENDING_ON: D E P E N D I N G ' ' O N ;
+
+SET: S E T ;
+SHARED: S H A R E D;
+SHADOW: S H A D O W;
 
 /* Éléments de constructions */
 DEFINITION_DELIMITER: ';' ;
-NOT_AVAILABLE: N O T '_' A V A I L A B L E ;
-UNDEFINED: U N D E F I N E D ;
-FROM: F R O M ;
-FROM_EXPRESSION: F R O M ' ' E X P R E S S I O N;
-SELECT: S E L E C T ;
 FUNCTION_ARGUMENT_START: '(' ;
 FUNCTION_ARGUMENT_END: ')' ;
-FUNCTION_ARGUMENT_DELIM: ',' ;
+LIST_DELIM: ',' ;
 
 /*
 -- =========================================================================== Z

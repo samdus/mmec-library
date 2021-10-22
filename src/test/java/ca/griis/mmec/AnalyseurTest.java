@@ -100,10 +100,10 @@ public class AnalyseurTest {
             descripteur.ajouter(analyseur.analyserNouveauFichier(fichier, regleInitiale));
             ErreurSyntaxique erreurs = analyseur.getErreurs();
 
-            if (fichier.getName().contains("_val.")) {
+            if (fichier.getName().contains("-val.")) {
                 Assertions.assertEquals(0, erreurs.nbErreur, String.format("Le fichier %s contient %d erreurs.", fichier.getName(),
                         erreurs.nbErreur));
-            } else if (fichier.getName().contains("_inv.")) {
+            } else if (fichier.getName().contains("-inv.")) {
                 Assertions.assertNotEquals(0, erreurs.nbErreur, String.format("Le fichier %s contient %d erreurs.", fichier.getName(),
                         erreurs.nbErreur));
             } else {
@@ -119,7 +119,7 @@ public class AnalyseurTest {
     }
 
     private ParserRuleContext getRegleInitiale(AnalyseurSpecifique analyseur, String fileName) {
-        String[] fichierDivise = fileName.split("_");
+        String[] fichierDivise = fileName.split("-");
         ParserRuleContext contexte;
 
         try {

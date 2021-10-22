@@ -1,0 +1,11 @@
+/* A dp string */
+define A_def for A
+  from a
+  select x
+;
+
+define A for a_string
+  from A_def
+  natural join x
+  select A_def.sign, x.val
+;

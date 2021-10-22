@@ -12,7 +12,29 @@ exclusion "EXP"."LABORATOIRE"."COLUMN" 'Colonne non utilisée';
 define T01ed_def for T01ed
   from "EXP"."LABORATOIRE"
   select "ID_LABORATOIRE_EXT"
-  where "ID_LABORATOIRE_EXT" is not null
+;
+
+/* scalar value specification */
+define T00ce_def for T00ce
+  from "EXP"."LABORATOIRE"
+  select "ID_LABORATOIRE_EXT"
+  /* where "PARS3"."V_upperRange"("EXP"."LABORATOIRE"."VALEUR") = 0
+    and "PARS3"."V_lowerRange"("EXP"."LABORATOIRE"."VALEUR") = 0 */
+;
+
+/* scalar laboratory result has value specification [1..*] scalar value specification */
+define T049d_def for T049d
+  from T01ed_def
+  natural join T00ce_def
+  select T01ed_def.sign, T00ce_def.sign
+;
+
+/* scalar value specification has measurement value [1..*] double */
+define T02c9_labo for T02c9
+  from T00ce_def
+  natural join "EXP"."LABORATOIRE"
+  select T00ce_def.sign, /*"PARS3"."C_VARCHAR_NUMERIC_extract"(*/ "EXP"."LABORATOIRE"."VALEUR" /*)*/
+  /*where "PARS3"."V_VARCHAR_NUMERIC_extract"("EXP"."LABORATOIRE"."VALEUR") = 1*/
 ;
 
 /* frequency unit */
@@ -20,9 +42,21 @@ define T01f8_def for T01f8
   from expression «
     SELECT "ID_PRESCRIPTION_EXT"
     FROM "EXP"."PRESCRIPTION"
+    JOIN "T01ed_def" USING ("ID_PATIENT_EXT") -- Inutile, mais intéressant à fin d'exemple. C'est ici que j'obligerais à qualifier avec un nom de schéma associé au mapping
     WHERE "TEXT_DOSAGE" IS NOT NULL
   »
-  SELECT "ID_PRESCRIPTION_EXT"
+  project ID_PRESCRIPTION_EXT
+  using "EXP"."PRESCRIPTION"."ID_PRESCRIPTION_EXT"
+  depending on "T01ed_def"
+;
+
+/* range value specification */
+define T01ef_value for T01ef
+  from "EXP"."LABORATOIRE"
+  select "EXP"."LABORATOIRE"."ID_LABORATOIRE_EXT"
+  where "ID_LABORATOIRE_EXT" IS NOT NULL
+  /* and ("PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."VALEUR") = 1
+    or "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."VALEUR") = 1) */
 ;
 
 /* fully specified range value specification */
@@ -56,7 +90,7 @@ define T0209_normal for T0209
   AND "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."REF_LABO") = 1 */
 ;
 
-set joint(T01b4_value, T0209_value);
-set joint(T01b4_normal, T0209_normal);
+set shared(T01ef_value, T01b4_value, T0209_value);
+set shared(T01b4_normal, T0209_normal);
 
 set shadow(xx, yy);

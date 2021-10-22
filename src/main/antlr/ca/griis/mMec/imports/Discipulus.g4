@@ -25,7 +25,7 @@ rel_query :
 	// présents, soit tous absents (et alors l'association est positionnelle).
 	;
 rel_list :
-	(rel_item (',' rel_item)*)?
+	(rel_item ('natural join' rel_item)*)? //FIXME: ici, il s'agissait d'une virgule..?
 	;
 rel_item :
 	rel_simple_item | '(' rel_query ')' 'as' relation_name
