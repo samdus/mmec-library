@@ -272,3 +272,5 @@ src/main/java/\.idea/
 gen/
 
 *.tokens
+
+trace/
