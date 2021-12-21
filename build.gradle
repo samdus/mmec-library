@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+configurations.all {
+    exclude group: 'org.apache.logging.log4j', module: ''
+}
+
 dependencies {
     implementation "org.antlr:antlr4-runtime:4.9.2"
     antlr "org.antlr:antlr4:4.9.2"
