@@ -23,6 +23,8 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 [CC-BY-NC-3.0 (http://creativecommons.org/licenses/by-nc/3.0)]
 
 *Tâches projetées et questions*
+  [SD 2022-08-26]
+  TODO: Ajouter une instruction define variable/view pour pouvoir réutiliser des expressions
   [SD 2021-10-22]
   TODO: Inclure les grammaires réelles de discipulus et mrel
   QUESTIONS
@@ -34,7 +36,7 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
     - Est-ce qu'on devrait éviter d'avoir un mot clé à deux mot ("from expression", "depending on") ?
     - Est-ce que c'est grave d'avoir directemment le lexeur dans le présent fichier ? C'est la seule façon de pouvoir avoir les imports dans un autre dossier...
     - Pourquoi ne puis-je pas remplacer PROJECT par SELECT ? (ça fonctionne, mais ça devient sensible à la casse...)
-    - Je n'aime pas l'idée d'introduire un attribut "sign" aux définitions qui réfères à des tables de classes. À discuter.
+    - Je n'aime pas trop l'idée d'introduire un attribut "sign" aux définitions qui réfères à des tables de classes. À discuter. En même temps, on pourrait aussi accéder aux autres composants au besoin ?
 
 *Tâches réalisées*
 2021-10-22 (0.1.0) [SD] Définition initiale.
