@@ -5,4 +5,9 @@ generateGrammarSource {
                 "-package", "ca.griis.mmec.antlr.gen"
   ]
   outputDirectory = file("src/gen/java/ca/griis/mmec/antlr/gen")
+  dependsOn clean
+}
+
+clean {
+  delete generateGrammarSource.property("outputDirectory")
 }
