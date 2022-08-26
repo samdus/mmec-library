@@ -1,16 +1,16 @@
 /* A op B */
-define A_def for A
+define A_sign for A
   from a
   select x
 ;
 
-define B_def for B
+define B_sign for B
   from b
   select x
 ;
 
 define A_B for AB_op
-  from A_def
-  natural join B_def
-  select A_def.sign, B_def.sign
+  from A_sign
+  natural join B_sign
+  select A_sign.sign, B_sign.sign
 ;
