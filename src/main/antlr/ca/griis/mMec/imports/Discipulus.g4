@@ -8,10 +8,10 @@ rel_query :
   ;
 
 from_term:
-  FROM relation_specification join_list
+  FROM relation_specification join_list?
   ;
 join_list:
-  join_term*
+  join_term+
   ;
 join_term:
   inner_join_term | natural_join_term | left_join_term | right_join_term
