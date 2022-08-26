@@ -230,9 +230,9 @@ STRING_CAR :
 fragment
 STRING_MULTI :
   (' ' | '\t')*             // QST 2021-01-29 [LL01] faut-il inclure ce préfixe ?
-  '«' (' ' | '\t')* '\n'
+  ('«'|'$$') (' ' | '\t')* '\n'
   (' '..'~' | UNICODE_H0 | '\n')*? '\n'
-  (' ' | '\t')* '»'
+  (' ' | '\t')* ('»' | '$$')
   (' ' | '\t')* '\n'        // QST 2021-01-29 [LL01] faut-il inclure ce suffixe ?
   ;
 fragment
