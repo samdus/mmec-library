@@ -1,0 +1,7 @@
+application {
+  mainClass = 'ca.griis.mmec.ConsoleAnalyzer'
+}
+
+run {
+  standardInput = System.in
+}

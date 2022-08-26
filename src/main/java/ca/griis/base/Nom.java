@@ -36,11 +36,11 @@ public interface Nom {
   // TODO 2016-05-06 [3:LL] Revoir la documentation de cette classe.
   // La compléter et la rendre conforme au standard.
   //
-  public String getNom();
+  String getNom();
 
-  public void setNom(String nouveauNom);
+  void setNom(String nouveauNom);
 
-  public void setAnonyme();
+  void setAnonyme();
 
-  public boolean anonyme();
+  boolean anonyme();
 }

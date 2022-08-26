@@ -1,0 +1,29 @@
+{
+  "testSuite1": {
+    "000-exemple_complet": {
+      "mMec_document": "success",
+      "base": "success"
+    },
+    "010-entete": {
+      "header": "success"
+    },
+    "020-exclusion-multiples": {
+      "exclusions": "success"
+    },
+    "030-exclusion-sans-semantiques": {
+      "exclusions": "failure"
+    },
+    "040-data-property": {
+      "mapping": "success"
+    },
+    "050-object-property": {
+      "mapping": "success"
+    },
+    "060-exemple-RAMQ": {
+      "base": "success"
+    },
+    "070-string-expression": {
+      "expression": "success"
+    }
+  }
+}

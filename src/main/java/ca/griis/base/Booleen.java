@@ -42,7 +42,7 @@ public class Booleen {
    * implies - logical implication; implication logique.
    */
   public static boolean implies(boolean a, boolean b) {
-    return (!a) || b;
+    return !a || b;
   }
 
   /**
@@ -56,7 +56,7 @@ public class Booleen {
    * xor - exclusive or; ou exclusif.
    */
   public static boolean xor(boolean a, boolean b) {
-    return (a && !b) || (b && !a);
+    return a && !b || b && !a;
   }
 
 }

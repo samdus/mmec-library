@@ -1,17 +1,15 @@
-package ca.griis.base.outilantlr;
+package ca.griis.base.antlr.tool;
 
 import ca.griis.base.Descripteur;
-import java.awt.Color;
-import java.awt.Container;
-import java.util.Collections;
-import java.util.List;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.WindowConstants;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Définition des messages d'erreurs.

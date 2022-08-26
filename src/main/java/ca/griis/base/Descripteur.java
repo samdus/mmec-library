@@ -1,13 +1,7 @@
 package ca.griis.base;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
 import java.nio.charset.Charset;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -24,8 +18,8 @@ import java.util.stream.Stream;
  * <b>Tâches projetées</b>
  * <p>
  * <i>TODO 2019012017 [LL] Paraméter l'usage des codes de couleurs. </i> <br>
- * Les codes de coulent sont le plus souvent ininterprtables.
- * Il faut pouvoir paramétrer le description afin de les inclure ou non selon le cas.
+ * Les codes découlent sont le plus souvent ininterprétables.
+ * Il faut pouvoir paramétrer la description afin de les inclure ou non selon le cas.
  * <p>
  * <i>TODO 2017-01-24 [LL] Changer le nom de la classe. </i> <br>
  * Le nom de la classe n'est pas assez spécifique. Prendre en considération d'autres
@@ -34,8 +28,10 @@ import java.util.stream.Stream;
  * <i>TODO 2016-08-03 [CK] Traduire en anglais. </i> <br>
  * LL : que traduire exactement ?
  * <p>
- * 
+ *
  * <b>Tâches réalisées</b>
+ * <p>
+ * <i>2020-09-18 (1.0.1) [CK] Migration de MOnto à Base. </i> <br>
  * <p>
  * <i>2017-01-24 (1.0.1) [CK] Migration de MOnto à Base. </i> <br>
  * <p>
@@ -61,6 +57,7 @@ import java.util.stream.Stream;
  *
  * @since 2016-04-08
  * @version 1.0.1
+ * @author [BF] Benoit.Fraikin@USherbrooke.ca
  * @author [CK] Christina.Khnaisser@USherbrooke.ca
  * @author [LL] Luc.Lavoie@USherbrooke.ca
  */
@@ -97,28 +94,69 @@ public class Descripteur {
   // ***********************************************************************************************
   // Fonctions
   //
+
+  /**
+   * Construit une chaîne à partir d'un seul caractères
+   */
+  public String repete(char c, int n) {
+    return n < 1 ? "" : String.valueOf(c) + repete(c, n - 1);
+  }
+
+  /**
+   * Enrobe une chaîne de caractère avec un caractère spécifique
+   */
+  public String enrobe(String s, char c) {
+    final String d = String.valueOf(c);
+    return d + s + d;
+  }
+
+  /**
+   * Crée une entête à partir d'un texte et d'une chaîne qui enrobe le texte avant et après.
+   */
+  public String creeEntete(String texte, String enrobage) {
+    return enrobage + texte + enrobage;
+  }
+
+  /**
+   * Crée une ligne, précédée et suivie d'un retour à ligne,
+   * à partir d'un caractère motif et de la longueur désirée de la chaîne.
+   * Si la longueur est inférieur ou égale à 2, la chaîne produite se résume à "\n\n",
+   * sinon la chaîne produite est "\n" suivi de longueur-2 caractères motif finie par "\n".
+   */
+  public String creeLigne(char motif, int longueur) {
+    return enrobe(repete(motif, longueur - 2), '\n');
+  }
+
   /**
    * Ajouter un titre
-   * 
+   *
    * @param titre
    */
   public void titre(String titre) {
+    final int taille = 55;
+    final char motif = '=';
+    final String ligne = creeLigne(motif, taille);
+    final String entete = creeEntete(titre, ligne);
+
     // TODO [3:LL] Utiliser un constructeur de chaine qui répète le caractère "=" autant de fois que
     // requis de part et d'autre du titre de façon à garantir une largeur constante convenue.
     // En conséquence, il serait opportun de prévoir un set+get pour ficher cette largeur.
-    description.write("\n======================================================= \n" + titre + "\n"
-        + "======================================================= \n");
+    description.write(entete);
   }
 
   /**
    * Ajouter un sous titre
-   * 
+   *
    * @param soustitre
    */
   public void soustitre(String soustitre) {
+    final int taille = 40;
+    final char motif = '-';
+    final String ligne = creeLigne(motif, taille);
+    final String entete = creeEntete(soustitre, ligne);
+
     // TODO [3:LL] Factoriser avec la fonction titre.
-    description.append("\n--------------------------------------- \n" + soustitre + "\n"
-        + "--------------------------------------- \n");
+    description.append(entete);
   }
 
   /**
@@ -131,7 +169,7 @@ public class Descripteur {
   /**
    * Ajouter une information.
    * Le texte se termine par un saut de ligne de ligne.
-   * 
+   *
    * @param info - chaine de caractère à ajouter.
    */
   public void ajouter(String info) {
@@ -150,7 +188,7 @@ public class Descripteur {
   /**
    * Ajouter une information sur une erreur.
    * Le texte est affiché en rouge.
-   * 
+   *
    * @param info - chaine de caractère de l'erreur en rouge.
    */
   public void ajouterErreur(String info) {
@@ -160,19 +198,24 @@ public class Descripteur {
 
   /**
    * Ajouter les informations des composants d'une liste.
-   * 
+   *
    * @param liste
    */
   public void ajouterListe(Stream<?> liste) {
+    /*
     Iterator<?> i = liste.iterator();
     while (i.hasNext()) {
       ajouter("  " + i.next().toString());
     }
+    */
+    liste.forEach((i) -> {
+      ajouter("  " + i.toString());
+    });
   }
 
   /**
    * Ajouter les informations des composants d'une liste avec un titre.
-   * 
+   *
    * @param titre
    * @param liste
    */
@@ -183,20 +226,25 @@ public class Descripteur {
 
   /**
    * Ajouter les informations des composants d'un "map".
-   * 
+   *
    * @param map
    */
   public void ajouterMap(Map<?, ?> map) {
+    /*
     Iterator<? extends Map.Entry<?, ?>> i = map.entrySet().iterator();
     while (i.hasNext()) {
       Map.Entry<?, ?> e = i.next();
       ajouter("  " + e.getKey() + "=" + e.getValue());
     }
+    */
+    map.entrySet().forEach((e) -> {
+      ajouter("  " + e.getKey() + "=" + e.getValue());
+    });
   }
 
   /**
    * Ajouter les informations des composants d'un "map" avec un titre.
-   * 
+   *
    * @param titre
    * @param map
    */
@@ -207,16 +255,17 @@ public class Descripteur {
 
   /**
    * Créer un fichier texte avec le contenu du descripteur.
-   * 
+   *
    * @param nomFichier - le nom du fichier, sans suffixe, mais pouvant être précédé d'un chemin
    */
   public void creerFichier(String nomFichier) {
-    creerFichier(nomFichier, ".txt");
+    final String extension = ".txt";
+    creerFichier(nomFichier, extension);
   }
 
   /**
    * Créer un fichier avec le contenu du descripteur.
-   * 
+   *
    * @param nomFichier - Idéalement le chemin où générer le fichier
    */
   public void creerFichier(String nomFichier, String extension) {
@@ -226,7 +275,7 @@ public class Descripteur {
     } catch (IOException e) {
       e.printStackTrace();
       System.err.println(
-          " Création du fichier a échouée " + nomFichier + extension + " " + e.getMessage());
+          " La création du fichier " + nomFichier + extension + "a échouée : " + e.getMessage());
     }
   }
 
