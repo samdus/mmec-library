@@ -8,10 +8,14 @@ Description : Conventions lexicales communes à l'ensemble des langages du GRIIS
 Statut : en cours d'élaboration sur la base de SQL, Eiffel et Discipulus.
 Projets concernés (liste non fermée) : Discipulus, SSQL, mOnto, DadaGem.
 
-*Présentation*
-  ...
+*Présentation* (à développer)
+1. Description plus élaborée du composant.
+2. Modèle (type abstrait, automate, etc.) retenu.
+3. Critères de conception et contraintes applicables.
+4. Description de la conception.
+5. Limites.
 
-*Références*
+*Références* (à développer)
   ...
 
 *Copyright* 2014-2016, Μῆτις (http://info.usherbrooke.ca/llavoie/)
@@ -74,7 +78,7 @@ TODO 2017-08-14 [LL] Changement des conventions relativement à SQL.
     et les chaines de caractères est celle de SQL.
   * Est-ce une bonne idée ?
 
-CANCEL 2017-08-14 [LL] 2019-12-09 [LL] Forme des identificateurs.
+DONE 2017-08-14 [LL] 2019-12-09 [LL] Forme des identificateurs.
   * Je suis très tenté d'imposer la forme STRING2 aux identificateurs
     définis par le programmeur et d'imposer la forme IDENT0 aux
     identificateurs réservés par le langage.
@@ -113,10 +117,9 @@ CANCEL 2017-08-14 [LL] 2019-12-09 [LL] Forme des identificateurs.
 2013-10-21 (0.1.0) [LL] Mise en oeuvre initiale.
   * Développé pour la première version de Discipulus et pour SSQL.
   * La forme ('.' DEC_DIGITS  EXPONENT?) pour les FLOAT a été exclue
-    dans les langages du GRIIS même si elle se rencontre dans de nombreux
-    langages laxistes.
+    même si elle se rencontre dans de nombreux langages laxistes.
 
-@version 0.5.4
+@version 0.5.5
 @author [CK] Christina.Khnaisser@USherbrooke.ca
 @author [LL] Luc.Lavoie@USherbrooke.ca
 -- =========================================================================== A
@@ -124,6 +127,8 @@ CANCEL 2017-08-14 [LL] 2019-12-09 [LL] Forme des identificateurs.
 
 lexer grammar LEX;
 
+// ====================
+// Ajuster au besoin l'entête du module java, par exemple :
 // @lexer::header { package ca.griis.odmv2 ; }
 
 // ====================
@@ -224,9 +229,11 @@ STRING_CAR :
   ;
 fragment
 STRING_MULTI :
-  (' ' | '\t')* '«' (' ' | '\t')* '\n'
+  (' ' | '\t')*             // QST 2021-01-29 [LL01] faut-il inclure ce préfixe ?
+  '«' (' ' | '\t')* '\n'
   (' '..'~' | UNICODE_H0 | '\n')*? '\n'
-  (' ' | '\t')* '»' (' ' | '\t')* '\n'
+  (' ' | '\t')* '»'
+  (' ' | '\t')* '\n'        // QST 2021-01-29 [LL01] faut-il inclure ce suffixe ?
   ;
 fragment
 UNICODE_H0 :
