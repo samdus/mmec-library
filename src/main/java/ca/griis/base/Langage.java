@@ -41,7 +41,7 @@ public enum Langage {
 
   private String id = "";
 
-  private Langage(String id) {
+  Langage(String id) {
     this.id = id;
   }
 

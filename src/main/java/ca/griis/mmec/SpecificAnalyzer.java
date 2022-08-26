@@ -1,26 +1,32 @@
+/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe SpecificAnalyzer.
+ * @brief @~english SpecificAnalyzer class implementation.
+ */
+
 package ca.griis.mmec;
 
-import ca.griis.base.outilantlr.AfficheurArbreSyntaxique;
-import ca.griis.base.outilantlr.AnalyseurGenerique;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-
-import ca.griis.mMec.mMecLexer;
-import ca.griis.mMec.mMecParser;
+import ca.griis.base.antlr.tool.GenericAnalyzer;
+import ca.griis.base.antlr.tool.ParseTreeVisualizer;
+import ca.griis.mmec.antlr.gen.mMecLexer;
+import ca.griis.mmec.antlr.gen.mMecParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
-import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
- * @class AnalyseurSpecifique
- *
  * @brief @~english «Brief component description (class, interface, ...)»
  * @par Details
  *      «Detailed description of the component (optional)»
@@ -31,15 +37,14 @@ import org.antlr.v4.runtime.tree.ParseTree;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Classe permettant l'analyse d'un programme selon un analyseur
- *        syntaxique spécifique
- * @par Details
+ * @brief @~french Permet l'analyse d'un programme selon un analyseur syntaxique spécifique.
+ * @par Détails
  *      Cette classe permet d'analyser un programme à l'aide d'un analyseur spécifique.
- * 
+ *
  *      La classe permet de paramétrer l'ensemble du projet de sorte qu'en modifiant
  *      cette classe et le build.gradle, on obtient un programme d'analyse et des tests
  *      utilisant le répertoire "jeux".
- * 
+ *
  *      Notes:
  *      ----------------------------------------------------------------------------------
  *      - L'appellation est utilisée pour l'affichage
@@ -53,61 +58,57 @@ import org.antlr.v4.runtime.tree.ParseTree;
  *      - Le Parser est la classe générée par Antlr pour l'analyse syntaxique du langage désiré
  *      - L'auditeur est la classe permettant de définir la structure interne du fichier
  *        analysé tout au long du parcours de l'arbre syntaxique
- *      - La règle de départ est la méthode qui débute l'analyse du langage. Il s'agit de 
+ *      - La règle de départ est la méthode qui débute l'analyse du langage. Il s'agit de
  *        la catégorie syntaxique initiale de la grammaire du langage.
- * 
  * @par Modèle
- *      «Modèle (type abstrait, automate, etc.) (optionnel)»
+ *      S.O.
  * @par Conception
- *      «Description de la conception (critères contraintes) (optionnel)»
+ *      S.O.
  * @par Limites
- *      «Description des limites (optionnel)»
+ *      S.O.
  *
  * @par Historique
- *      2021-08-24 [SD] Implémentation initiale<br>
- *        * Adaptation de la classe ODMv2
+ *      - 2021-02-10 [BF] Correction mineures
+ *      - 2019-12-18 [LL] Revue des commentires
+ *        * Corrections mineures.
+ *        * Respect de la limite de 100 car./ligne imposée par le standard de programmation.
+ *      - 2019-12-16 [SD] Implémentation initiale
+ *        * Généralisation de l'analyseur de ODMv2_HL développé par CK
  *
  * @par Tâches
- *      «Liste des annotations»
+ *      S.O.
  */
-public class AnalyseurSpecifique
-    extends AnalyseurGenerique<mMecParser, AfficheurArbreSyntaxique> {
+public class SpecificAnalyzer
+    extends GenericAnalyzer<mMecParser, ParseTreeVisualizer> {
 
-  public AnalyseurSpecifique(File fichier) {
-    super(fichier);
-  }
-
-  public static List<String> getExtensions() {
-    return Collections.singletonList(".mec");
+  @Override
+  public String getAnalyzerDesignation() {
+    return "MMec Parser";
   }
 
   @Override
-  public String getAnalyseurAppellation() {
-    return "DadaGem Parser";
+  public List<String> getExtensions() {
+    return Arrays.asList(".mec");
   }
 
   @Override
-  public String getRepresentationInterne() {
-    return auditeur.toString();
-  }
-
-  @Override
-  protected Lexer nouveauLexer(CharStream input) {
+  protected Lexer newLexer(CharStream input) {
     return new mMecLexer(input);
   }
 
   @Override
-  protected mMecParser nouveauParser(CommonTokenStream input) {
+  protected mMecParser newParser(CommonTokenStream input) {
     return new mMecParser(input);
   }
 
   @Override
-  protected AfficheurArbreSyntaxique nouvelAuditeur() {
-    return new AfficheurArbreSyntaxique(analyseurSyntaxique);
+  protected ParseTreeVisualizer newListener() {
+    return new ParseTreeVisualizer(getSyntacticAnalyzer());
   }
 
   @Override
-  protected ParseTree regleDepart() throws RecognitionException {
-    return analyseurSyntaxique.base();
+  protected ParseTree startRule(mMecParser analyzer) throws RecognitionException {
+    return analyzer.mMec_document();
   }
+
 }

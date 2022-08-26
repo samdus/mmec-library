@@ -38,40 +38,40 @@ public interface EnsembleB<T extends CopieDeleguee & CopieImmediate> extends Str
   // ce qui garantit l'utilisation d'Ensemble partout où Set peut être utilisé.
   // ===
   // Transformateurs
-  public void vider(); // this := {}
+  void vider(); // this := {}
 
-  public <B extends T> void ajouter(B a); // this := this ∪ {a}
+  <B extends T> void ajouter(B a); // this := this ∪ {a}
 
-  public <B extends T, S extends EnsembleB<B>> S ajout(B a); // return (this ∪ {a})
+  <B extends T, S extends EnsembleB<B>> S ajout(B a); // return (this ∪ {a})
 
-  public <B extends T> void retirer(B a); // this := this - {a}
+  <B extends T> void retirer(B a); // this := this - {a}
 
-  public <B extends T, S extends EnsembleB<B>> S retrait(B a); // return (this - {a})
+  <B extends T, S extends EnsembleB<B>> S retrait(B a); // return (this - {a})
 
-  public <B extends T, S extends EnsembleB<B>> void unir(S e); // this := this ∪ e
+  <B extends T, S extends EnsembleB<B>> void unir(S e); // this := this ∪ e
 
-  public <B extends T, S extends EnsembleB<B>> S union(S e); // return (this ∪ e)
+  <B extends T, S extends EnsembleB<B>> S union(S e); // return (this ∪ e)
 
-  public <B extends T, S extends EnsembleB<B>> void soustraire(S e); // this := this - e
+  <B extends T, S extends EnsembleB<B>> void soustraire(S e); // this := this - e
 
-  public <B extends T, S extends EnsembleB<B>> S soustraction(S e); // return (this - e)
+  <B extends T, S extends EnsembleB<B>> S soustraction(S e); // return (this - e)
 
-  public <B extends T, S extends EnsembleB<B>> void intersecter(S e); // this := this ∩ e
+  <B extends T, S extends EnsembleB<B>> void intersecter(S e); // this := this ∩ e
 
-  public <B extends T, S extends EnsembleB<B>> S intersection(S e); // return (this ∩ e)
+  <B extends T, S extends EnsembleB<B>> S intersection(S e); // return (this ∩ e)
 
-  public <B extends T, S extends EnsembleB<B>> S filtrer(Class<B> idClass);
+  <B extends T, S extends EnsembleB<B>> S filtrer(Class<B> idClass);
 
-  public <B extends T, S extends EnsembleB<B>> S filtrerD(Class<B> idClass);
+  <B extends T, S extends EnsembleB<B>> S filtrerD(Class<B> idClass);
 
   // Observateurs
-  public boolean vide(); // return (this = {})
+  boolean vide(); // return (this = {})
 
-  public int card(); // return (#this)
+  int card(); // return (#this)
 
-  public <B extends T> boolean contient(B a); // return (a ∈ this)
+  <B extends T> boolean contient(B a); // return (a ∈ this)
 
-  public <B extends T, S extends EnsembleB<B>> boolean egal(S e); // return (this = e)
+  <B extends T, S extends EnsembleB<B>> boolean egal(S e); // return (this = e)
 
-  public <B extends T, S extends EnsembleB<B>> boolean sousEnsemble(S e); // return (this ⊆ e)
+  <B extends T, S extends EnsembleB<B>> boolean sousEnsemble(S e); // return (this ⊆ e)
 }

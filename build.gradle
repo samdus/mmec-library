@@ -1,55 +1,73 @@
+buildscript {
+    def nexusUsername = project.getProperties().getOrDefault("nexusUsername", "novalue")
+    def nexusPassword = project.getProperties().getOrDefault("nexusPassword", "novalue")
+    def nexusAddress = project.getProperties().getOrDefault("nexusAddress", "https://novalue")
+    repositories {
+        mavenLocal()
+        maven {
+            credentials {
+                username nexusUsername
+                password nexusPassword
+            }
+            url nexusAddress
+        }
+        maven {url "https://plugins.gradle.org/m2/"}
+        mavenCentral()
+    }
+    dependencies {
+        classpath "ca.griis:gradle-plugin-griis:0.11.5-SNAPSHOT"
+    }
+}
+
+
 plugins {
-    id 'java'
-    id 'antlr'
     id 'application'
 }
 
-group 'ca.griis'
-version '0.0.1'
-
-repositories {
-    mavenCentral()
+ext {
+    hasJooqing = false
+    isSpringBoot = false
+    minCoverageUnit = 0
+    minCoverageUnitItgr = 0
+    minMutationUnit = 0
 }
 
-configurations.all {
-    exclude group: 'org.apache.logging.log4j', module: ''
+group = "ca.griis.mmec"
+version = "0.1.0"
+
+apply plugin: ca.griis.gradle.plugin.GriisPlugin
+apply plugin: "antlr"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+        vendor = JvmVendorSpec.ADOPTIUM
+        implementation = JvmImplementation.VENDOR_SPECIFIC // Hotspot
+    }
 }
 
 dependencies {
-    implementation "org.antlr:antlr4-runtime:4.9.2"
-    antlr "org.antlr:antlr4:4.9.2"
+    annotationProcessor "org.projectlombok:lombok"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    constraints {
-        implementation("org.apache.logging.log4j:log4j-core") {
-            version {
-                strictly("[2.16, 3[")
-                prefer("2.16.0")
-            }
-            because("CVE-2021-44228: Log4j vulnerable to remote code execution")
-        }
+    antlr "org.antlr:antlr4:4.7.2"
+
+    compileOnly "com.github.spotbugs:spotbugs-annotations"
+
+    implementation "com.google.guava:guava"
+    implementation "org.antlr:antlr4:4.7.2"
+    implementation "org.projectlombok:lombok"
+
+    testImplementation "org.json:json:20220320"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.junit.jupiter:junit-jupiter-params"
+}
+
+apply from: "script/antlr.gradle"
+apply from: "script/application.gradle"
+
+if (hasProperty('buildScan')) {
+    buildScan {
+        termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+        termsOfServiceAgree = 'yes'
     }
-}
-
-generateGrammarSource {
-    arguments += ["-visitor",
-                  "-listener",
-                  "-lib", "src/main/antlr/ca/griis/mMec/imports",
-                  "-package", "ca.griis.mMec"
-    ]
-    outputDirectory = file("src/gen/java")
-}
-
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src/main/java', 'src/gen/java']
-        }
-    }
-}
-
-test {
-    useJUnitPlatform()
 }

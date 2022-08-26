@@ -52,6 +52,8 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 grammar mMec;
 import Discipulus_LEX, IRI_LEX, LEX, Discipulus, mRel;
 
+mMec_document: base EOF;
+
 /* Base */
 base: header exclusions mapping modifiers;
 
@@ -79,7 +81,10 @@ definition_id: IDENT ;
 expression: discipulus_expression | string_expression ;
 definition_id_list: definition_id (LIST_DELIM definition_id)*;
 
-string_expression: FROM_EXPRESSION STRING PROJECT string_expression_selection_list USING string_expression_used_symbol_list (DEPENDING_ON string_expression_dependency_symbol_list)? ;
+// L'expression est une chaîne générique et une projection.
+//  On peut définir les symboles de la sources qui ont été utilisés (afin de pouvoir valider l'ensemble des exclusions)
+//  On peut définir les dépendances, pour permettre de générer l'arbre de dépendance et contrôler l'ordre d'initialisation
+string_expression: FROM_EXPRESSION STRING PROJECT string_expression_selection_list (USING string_expression_used_symbol_list)? (DEPENDING_ON string_expression_dependency_symbol_list)? ;
 string_expression_selection_list: discipulus_attribute_list ;
 string_expression_used_symbol_list: discipulus_qualified_attribute_list ;
 string_expression_dependency_symbol_list: definition_id_list ;

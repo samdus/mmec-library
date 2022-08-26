@@ -1,7 +1,5 @@
-package ca.griis.base.outilantlr;
+package ca.griis.base.antlr.tool;
 
-import java.util.Arrays;
-import java.util.List;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.Utils;
@@ -9,6 +7,9 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.Trees;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Affichage d'un arbre d dérivation syntaxique produit par ANTLR4.
@@ -54,19 +55,19 @@ import org.antlr.v4.runtime.tree.Trees;
  * @author [SD] Samuel.Dussault@USherbrooke.ca
  */
 
-public class AfficheurArbreSyntaxique implements ParseTreeListener {
+public class ParseTreeVisualizer implements ParseTreeListener {
   private final List<String> ruleNames;
 
   private final StringBuilder builder = new StringBuilder();
   
   private int level = 0;
-  private int pas = 2;
+  private int step = 2;
 
-  public AfficheurArbreSyntaxique(Parser parser) {
+  public ParseTreeVisualizer(Parser parser) {
     this.ruleNames = Arrays.asList(parser.getRuleNames());
   }
 
-  public AfficheurArbreSyntaxique(List<String> ruleNames) {
+  public ParseTreeVisualizer(List<String> ruleNames) {
     this.ruleNames = ruleNames;
   }
 
@@ -103,9 +104,10 @@ public class AfficheurArbreSyntaxique implements ParseTreeListener {
     if (ctx.getChildCount() > 0) {
       builder.append('(');
       builder.append('\n');
-      // TODO 2019-12-17 [LL] Écrire pas*level espaces
+      // TODO 2019-12-17 [LL] Écrire pas
+      //   *level espaces
       //   * quelque chose comme :  bulder.append(repeatString(pas*level,' '));
-      for (int i = 0; i < level * pas; i++) {
+      for (int i = 0; i < level * step; i++) {
         builder.append(' ');
       }
       level++;
@@ -146,17 +148,4 @@ public class AfficheurArbreSyntaxique implements ParseTreeListener {
     return builder.toString();
   }
 
-  /**
-   * @return pas
-   */
-  public int getPas() {
-    return pas;
-  }
-
-  /**
-   * @param pas --> pas
-   */
-  public void setPas(int pas) {
-    this.pas = pas;
-  }
 }
