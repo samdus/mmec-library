@@ -68,17 +68,11 @@ boolean_expression :
   argument | unary_boolean_expression | nary_boolean_expression
   ;
 unary_boolean_expression :
-  argument unary_boolean_operator ;
+  argument unary_boolean_operator
+  ;
 nary_boolean_expression:
   argument boolean_operator argument
   ;
-
-//predicate_expression:
-//  predicate (boolean_op predicate)*
-//  ;
-//predicate:
-//  argument (unary_op | (op predicate_expression))?
-//  ;
 
 composition_operator:
   AND | OR
@@ -91,7 +85,7 @@ unary_boolean_operator:
   ;
 
 function_call:
-  function_name '('  argument_list ')'
+  function_name '('  argument_list? ')'
 ;
 function_name:
   (schema_name '.')? IDENT
