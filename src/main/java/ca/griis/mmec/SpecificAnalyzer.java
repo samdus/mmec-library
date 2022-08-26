@@ -15,8 +15,8 @@ package ca.griis.mmec;
 
 import ca.griis.base.antlr.tool.GenericAnalyzer;
 import ca.griis.base.antlr.tool.ParseTreeVisualizer;
-import ca.griis.mMec.antlr.gen.mMecLexer;
-import ca.griis.mMec.antlr.gen.mMecParser;
+import ca.griis.mmec.antlr.gen.mMecLexer;
+import ca.griis.mmec.antlr.gen.mMecParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;

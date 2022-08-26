@@ -9,8 +9,8 @@
 
 package ca.griis.mmec.listener.partial;
 
-import ca.griis.mMec.antlr.gen.mMecListener;
-import ca.griis.mMec.antlr.gen.mMecParser;
+import ca.griis.mmec.antlr.gen.mMecListener;
+import ca.griis.mmec.antlr.gen.mMecParser;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.antlr.v4.runtime.ParserRuleContext;

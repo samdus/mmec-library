@@ -2,7 +2,7 @@ generateGrammarSource {
   arguments += ["-visitor",
                 "-lib", "src/main/antlr/ca/griis/mMec/imports",
                 "-Xexact-output-dir",
-                "-package", "ca.griis.mMec.antlr.gen"
+                "-package", "ca.griis.mmec.antlr.gen"
   ]
-  outputDirectory = file("src/gen/java/ca/griis/mMec/antlr/gen")
+  outputDirectory = file("src/gen/java/ca/griis/mmec/antlr/gen")
 }

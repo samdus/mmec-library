@@ -1,7 +1,7 @@
 package ca.griis.mmec.util;
 
-import ca.griis.mMec.antlr.gen.mMecLexer;
-import ca.griis.mMec.antlr.gen.mMecParser;
+import ca.griis.mmec.antlr.gen.mMecLexer;
+import ca.griis.mmec.antlr.gen.mMecParser;
 import org.antlr.v4.runtime.*;
 
 import java.io.File;

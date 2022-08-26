@@ -13,8 +13,7 @@
 
 package ca.griis.mmec.listener;
 
-import ca.griis.mMec.antlr.gen.mMecListener;
-import ca.griis.mMec.antlr.gen.mMecParser;
+import ca.griis.mmec.antlr.gen.mMecListener;
 import ca.griis.mmec.listener.partial.BasePartialmMecListener;
 
 /**
