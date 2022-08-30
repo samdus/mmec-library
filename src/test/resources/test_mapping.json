@@ -36,6 +36,9 @@
       "expression": "success",
       "string_expression": "failure",
       "discipulus_expression": "success"
+    },
+    "100-prelude": {
+      "mapping_def": "success"
     }
   }
 }

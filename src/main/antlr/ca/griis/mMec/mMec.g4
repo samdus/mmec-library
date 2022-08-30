@@ -77,9 +77,10 @@ exclusion_semantic: NOT_AVAILABLE | UNDEFINED ;
 exclusion_message: STRING ;
 
 /* Définitions d'arrimage */
-mapping: mapping_def+ ;
-mapping_def: MAPPING_DEFINITION definition_id FOR mRel_relation_identifier expression DEFINITION_DELIMITER ;
+mapping: mapping_def* ;
+mapping_def: MAPPING_DEFINITION definition_id FOR mRel_relation_identifier prelude? expression DEFINITION_DELIMITER ;
 definition_id: IDENT ;
+prelude: PRELUDE STRING ; //Prelude is any SQL expression that must be executed before the definition of the mapping construct.
 expression: discipulus_expression | string_expression ;
 definition_id_list: definition_id (LIST_DELIM definition_id)*;
 
@@ -124,6 +125,7 @@ NOT_AVAILABLE: N O T '_' A V A I L A B L E ;
 FOR: F O R ;
 FROM: F R O M ;
 FROM_EXPRESSION: F R O M ' ' E X P R E S S I O N;
+PRELUDE: P R E L U D E ;
 
 PROJECT: P R O J E C T ;
 USING: U S I N G ;
