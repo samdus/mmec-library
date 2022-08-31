@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "nu.studer:gradle-jooq-plugin:7.1.1"
+    }
+}
+
+// TODO: Ajouter une configuration comme geca-mld pour créer la base de données
+
+import nu.studer.gradle.jooq.JooqEdition
+import org.jooq.meta.jaxb.Logging
+
+def db_configuration = [
+        host: project.getProperties().getOrDefault('mmec_host', 'localhost'),
+        port: project.getProperties().getOrDefault('mmec_port', '5432'),
+        db  : project.getProperties().getOrDefault('mmec_db', project.name),
+        user: project.getProperties().getOrDefault('mmec_user', 'postgres'),
+        pwd : project.getProperties().getOrDefault('mmec_pwd', 'postgres')
+]
+
+dependencies {
+    jooqGenerator 'org.postgresql:postgresql:42.4.2'
+}
+
+jooq {
+    version = '3.16.4'
+    edition = JooqEdition.OSS
+
+    configurations {
+        main {
+            generateSchemaSourceOnCompilation = true
+
+            generationTool {
+                logging = Logging.WARN
+                jdbc {
+                    driver = 'org.postgresql.Driver'
+                    url = String.format("jdbc:postgresql://%s:%s/%s", db_configuration.host, db_configuration.port, db_configuration.db)
+                    user = db_configuration.user
+                    password = db_configuration.pwd
+                }
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+                    database {
+                        name = 'org.jooq.meta.postgres.PostgresDatabase'
+                        schemata {
+                            schema {
+                                inputSchema = 'mmec'
+                            }
+                        }
+                    }
+                    generate {
+                        deprecated = false
+                        records = true
+                        immutablePojos = true
+                        fluentSetters = true
+                    }
+                    target {
+                        packageName = 'ca.griis.mmec.jooq.gen'
+                        directory = 'src/gen/java-jooq'
+                    }
+                    strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                }
+            }
+        }
+    }
+}
+
+task wait_pg {
+    group "jooq"
+    doFirst {
+        println ">> Attente de connexion à postgres"
+        ant.waitfor(
+                maxwait: "20", maxwaitunit: "second",
+                checkevery: "500", checkeveryunit: "millisecond",
+                timeoutproperty: "wait.timeout"
+        ) {
+            socket(server: db_configuration.host, port: db_configuration.port)
+        }
+        ant.fail(if: "wait.timeout", message: "Postgres n'était pas disponible après 20s.");
+    }
+}
+generateJooq.dependsOn("wait_pg")
