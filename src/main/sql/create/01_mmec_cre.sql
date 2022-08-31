@@ -1,0 +1,1 @@
+create table mmec.test(pk int primary key);
