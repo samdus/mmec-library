@@ -239,6 +239,16 @@ public abstract class BasePartialmMecListener implements mMecListener {
     }
 
     @Override
+    public void enterPrelude(mMecParser.PreludeContext ctx) {
+
+    }
+
+    @Override
+    public void exitPrelude(mMecParser.PreludeContext ctx) {
+
+    }
+
+    @Override
     public void enterExpression(mMecParser.ExpressionContext ctx) {
 
     }
