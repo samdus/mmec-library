@@ -22,7 +22,7 @@ import static ca.griis.mmec.util.AntlrTestUtil.hasBeenParsedCompletely;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AnalyzerTest {
+public class ParseTreeAnalyzerTest {
 
   private static final String datasetPath = "src/test/resources/dataset/";
   private static final String tracePath = "build/generated/traces/";
@@ -31,7 +31,7 @@ public class AnalyzerTest {
 
   private static final String testSuiteDirectory = "testSuite1";
 
-  private static SpecificAnalyzer analyzer = new SpecificAnalyzer();
+  private static ParseTreeAnalyzer analyzer = new ParseTreeAnalyzer();
 
   @SuppressWarnings("PMD.UnusedPrivateMethod")
   private static Stream<Arguments> testFileProvider() throws IOException, URISyntaxException {
@@ -59,7 +59,7 @@ public class AnalyzerTest {
 
   private static JSONObject loadTestMapping() throws IOException, URISyntaxException {
     byte[] bytes = Files.readAllBytes(
-        Paths.get(AnalyzerTest.class.getClassLoader().getResource(testMappingFile).toURI()));
+        Paths.get(ParseTreeAnalyzerTest.class.getClassLoader().getResource(testMappingFile).toURI()));
     return new JSONObject(new String(bytes, StandardCharsets.UTF_8)).getJSONObject(
         testSuiteDirectory);
   }

@@ -78,7 +78,7 @@ import java.util.List;
  * @par Tâches
  *      S.O.
  */
-public class SpecificAnalyzer
+public class ParseTreeAnalyzer
     extends GenericAnalyzer<mMecParser, ParseTreeVisualizer> {
 
   @Override
