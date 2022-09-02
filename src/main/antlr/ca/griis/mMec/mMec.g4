@@ -52,7 +52,7 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 -- =========================================================================== A
 */
 grammar mMec;
-import Discipulus_LEX, IRI_LEX, LEX, Discipulus, mRel;
+import Discipulus_LEX, LEX, Discipulus;
 
 mMec_document: base EOF;
 
@@ -106,7 +106,7 @@ shadowed_definition_id: definition_id ;
 
 /* Définitions importée d'autres grammaires */
 // - mRel
-mRel_relation_identifier: entity_identifier ;
+mRel_relation_identifier: IDENT ;
 
 // - Discipulus
 discipulus_expression: rel_query ;
