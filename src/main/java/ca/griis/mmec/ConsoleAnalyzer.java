@@ -73,7 +73,7 @@ public class ConsoleAnalyzer {
         file = new File(args[1]);
         break;
     }
-    SimpleAnalyzer simpleAnalyzer = new SimpleAnalyzer();
+    MMecAnalyzer simpleAnalyzer = new MMecAnalyzer();
 
     simpleAnalyzer.analyzeNewFile(file, startingRule);
 

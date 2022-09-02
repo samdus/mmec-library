@@ -16,6 +16,7 @@ package ca.griis.mmec;
 import ca.griis.base.antlr.tool.GenericAnalyzer;
 import ca.griis.mmec.antlr.gen.mMecLexer;
 import ca.griis.mmec.antlr.gen.mMecParser;
+import ca.griis.mmec.jooq.gen.tables.pojos.Mmec;
 import ca.griis.mmec.listener.SimpleMMecListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -25,6 +26,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -53,16 +55,16 @@ import java.util.List;
  * @par Tâches
  *      S.O.
  */
-public class SimpleAnalyzer extends GenericAnalyzer<mMecParser, SimpleMMecListener> {
+public class MMecAnalyzer extends GenericAnalyzer<mMecParser, SimpleMMecListener> {
 
-  private SimpleMMecListener simpleMMecListener;
+  private final SimpleMMecListener simpleMMecListener;
 
-  public SimpleAnalyzer() {
+  public MMecAnalyzer() {
     this.simpleMMecListener = new SimpleMMecListener();
   }
 
   @Override public String getAnalyzerDesignation() {
-    return "DadaGem Parser";
+    return "MMmec Parser";
   }
 
   @Override public List<String> getExtensions() {
@@ -85,7 +87,7 @@ public class SimpleAnalyzer extends GenericAnalyzer<mMecParser, SimpleMMecListen
     return analyzer.mMec_document();
   }
 
-//  public DadagemDocument getDadagemDocument() {
-//    return simpleMMecListener.getDadagemDocument();
-//  }
+  public Mmec getMMecDocument() {
+    return simpleMMecListener.getMMec().orElseThrow(() -> new NoSuchElementException("The analysed MMec did not correspond to a valid and complete document."));
+  }
 }

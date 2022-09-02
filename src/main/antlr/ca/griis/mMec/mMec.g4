@@ -78,8 +78,9 @@ exclusion_message: STRING ;
 
 /* Définitions d'arrimage */
 mapping: mapping_def* ;
-mapping_def: MAPPING_DEFINITION definition_id FOR mRel_relation_identifier prelude? expression DEFINITION_DELIMITER ;
+mapping_def: MAPPING_DEFINITION definition_id definition_for? prelude? expression DEFINITION_DELIMITER ;
 definition_id: IDENT ;
+definition_for: FOR mRel_relation_identifier ;
 prelude: PRELUDE STRING ; //Prelude is any SQL expression that must be executed before the definition of the mapping construct.
 expression: discipulus_expression | string_expression ;
 definition_id_list: definition_id (LIST_DELIM definition_id)*;
@@ -87,10 +88,11 @@ definition_id_list: definition_id (LIST_DELIM definition_id)*;
 // L'expression est une chaîne générique et une projection.
 //  On peut définir les symboles de la sources qui ont été utilisés (afin de pouvoir valider l'ensemble des exclusions)
 //  On peut définir les dépendances, pour permettre de générer l'arbre de dépendance et contrôler l'ordre d'initialisation
-string_expression: FROM_EXPRESSION STRING PROJECT string_expression_selection_list (USING string_expression_used_symbol_list)? (DEPENDING_ON string_expression_dependency_symbol_list)? ;
-string_expression_selection_list: discipulus_attribute_list ;
-string_expression_used_symbol_list: discipulus_qualified_attribute_list ;
-string_expression_dependency_symbol_list: definition_id_list ;
+string_expression: FROM_EXPRESSION string_expression_definition string_expression_projected_attributes string_expression_used_symbols? string_expression_dependency_symbols? ;
+string_expression_definition: STRING ;
+string_expression_projected_attributes: PROJECT discipulus_attribute_list ;
+string_expression_used_symbols: USING discipulus_qualified_attribute_list ;
+string_expression_dependency_symbols: DEPENDING_ON definition_id_list ;
 
 /* Définitions des modificateurs */
 modifiers: mapping_modifier* ;

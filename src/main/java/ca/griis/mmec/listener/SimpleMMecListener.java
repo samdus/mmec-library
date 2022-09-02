@@ -14,7 +14,8 @@
 package ca.griis.mmec.listener;
 
 import ca.griis.mmec.antlr.gen.mMecListener;
-import ca.griis.mmec.listener.partial.BasePartialmMecListener;
+import ca.griis.mmec.jooq.gen.tables.pojos.Mmec;
+import ca.griis.mmec.listener.partial.DiscipulusPartialMMecListener;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -38,12 +39,12 @@ import ca.griis.mmec.listener.partial.BasePartialmMecListener;
  *      S.O.
  *
  * @par Historique
- *      2022-07-11 [CB] - Implémentation initiale<br>
+ *      2022-08-31 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
  *      S.O.
  */
-public class SimpleMMecListener extends BasePartialmMecListener
+public class SimpleMMecListener extends DiscipulusPartialMMecListener
     implements mMecListener {
 
 }
