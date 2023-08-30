@@ -23,6 +23,11 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 [CC-BY-NC-3.0 (http://creativecommons.org/licenses/by-nc/3.0)]
 
 *Tâches projetées et questions*
+  [SD 2022-09-07]
+  TODO: Ajouter une instruction pour associer une documentation à une définition
+  QUESTION: Quelles méta-données concerver dans le modèle VS dans l'application
+  [SD 2022-08-26]
+  TODO: Ajouter une instruction define variable/view pour pouvoir réutiliser des expressions
   [SD 2021-10-22]
   TODO: Inclure les grammaires réelles de discipulus et mrel
   QUESTIONS
@@ -34,7 +39,7 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
     - Est-ce qu'on devrait éviter d'avoir un mot clé à deux mot ("from expression", "depending on") ?
     - Est-ce que c'est grave d'avoir directemment le lexeur dans le présent fichier ? C'est la seule façon de pouvoir avoir les imports dans un autre dossier...
     - Pourquoi ne puis-je pas remplacer PROJECT par SELECT ? (ça fonctionne, mais ça devient sensible à la casse...)
-    - Je n'aime pas l'idée d'introduire un attribut "sign" aux définitions qui réfères à des tables de classes. À discuter.
+    - Je n'aime pas trop l'idée d'introduire un attribut "sign" aux définitions qui réfères à des tables de classes. À discuter. En même temps, on pourrait aussi accéder aux autres composants au besoin ?
 
 *Tâches réalisées*
 2021-10-22 (0.1.0) [SD] Définition initiale.
@@ -50,7 +55,9 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 -- =========================================================================== A
 */
 grammar mMec;
-import Discipulus_LEX, IRI_LEX, LEX, Discipulus, mRel;
+import Discipulus_LEX, LEX, Discipulus;
+
+mMec_document: base EOF;
 
 /* Base */
 base: header exclusions mapping modifiers;
@@ -73,16 +80,22 @@ exclusion_semantic: NOT_AVAILABLE | UNDEFINED ;
 exclusion_message: STRING ;
 
 /* Définitions d'arrimage */
-mapping: mapping_def+ ;
-mapping_def: MAPPING_DEFINITION definition_id FOR mRel_relation_identifier expression DEFINITION_DELIMITER ;
+mapping: mapping_def* ;
+mapping_def: MAPPING_DEFINITION definition_id definition_for? prelude? expression DEFINITION_DELIMITER ;
 definition_id: IDENT ;
+definition_for: FOR mRel_relation_identifier ;
+prelude: PRELUDE STRING ; //Prelude is any SQL expression that must be executed before the definition of the mapping construct.
 expression: discipulus_expression | string_expression ;
 definition_id_list: definition_id (LIST_DELIM definition_id)*;
 
-string_expression: FROM_EXPRESSION STRING PROJECT string_expression_selection_list USING string_expression_used_symbol_list (DEPENDING_ON string_expression_dependency_symbol_list)? ;
-string_expression_selection_list: discipulus_attribute_list ;
-string_expression_used_symbol_list: discipulus_qualified_attribute_list ;
-string_expression_dependency_symbol_list: definition_id_list ;
+// L'expression est une chaîne générique et une projection.
+//  On peut définir les symboles de la sources qui ont été utilisés (afin de pouvoir valider l'ensemble des exclusions)
+//  On peut définir les dépendances, pour permettre de générer l'arbre de dépendance et contrôler l'ordre d'initialisation
+string_expression: FROM_EXPRESSION string_expression_definition string_expression_projected_attributes string_expression_used_symbols? string_expression_dependency_symbols? ;
+string_expression_definition: STRING ;
+string_expression_projected_attributes: PROJECT discipulus_attribute_list ;
+string_expression_used_symbols: USING discipulus_qualified_attribute_list ;
+string_expression_dependency_symbols: DEPENDING_ON definition_id_list ;
 
 /* Définitions des modificateurs */
 modifiers: mapping_modifier* ;
@@ -98,7 +111,7 @@ shadowed_definition_id: definition_id ;
 
 /* Définitions importée d'autres grammaires */
 // - mRel
-mRel_relation_identifier: entity_identifier ;
+mRel_relation_identifier: IDENT ;
 
 // - Discipulus
 discipulus_expression: rel_query ;
@@ -117,6 +130,7 @@ NOT_AVAILABLE: N O T '_' A V A I L A B L E ;
 FOR: F O R ;
 FROM: F R O M ;
 FROM_EXPRESSION: F R O M ' ' E X P R E S S I O N;
+PRELUDE: P R E L U D E ;
 
 PROJECT: P R O J E C T ;
 USING: U S I N G ;

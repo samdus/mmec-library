@@ -22,7 +22,7 @@ public class Glossaire {
     private int val;
 
     @SuppressWarnings("synthetic-access")
-    private Langue() {
+    Langue() {
       this.val = nLangue;
       nLangue++;
     }

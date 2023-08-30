@@ -1,10 +1,11 @@
-package ca.griis.base.outilantlr;
+package ca.griis.base.antlr.tool;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Décrire la classe ici.

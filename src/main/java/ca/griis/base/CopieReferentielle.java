@@ -50,7 +50,7 @@ public interface CopieReferentielle {
    * 
    * @return la copie
    */
-  public Object rCopie();
+  Object refCopie();
 
   /**
    * Égalité référentielle entre deux objets
@@ -58,12 +58,12 @@ public interface CopieReferentielle {
    * @param x : l'objet comparé
    * @return égalité entre this et x
    */
-  public boolean rEgal(Object x);
+  boolean refEgal(Object x);
 
   /**
    * Empreinte d'un objet, cohérente avec la copie et l'égalité
    * 
    * @return l'empreinte de l'objet
    */
-  public int rEmpreinte();
+  int refEmpreinte();
 }

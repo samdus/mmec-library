@@ -1,17 +1,12 @@
 package ca.griis.base.ensemble;
 
-import static ca.griis.base.ConstantesGenerales.EmpNum_facteur;
+import ca.griis.base.*;
 
-import ca.griis.base.Booleen;
-import ca.griis.base.CopieDeleguee;
-import ca.griis.base.CopieImmediate;
-import ca.griis.base.CopieReferentielle;
-import ca.griis.base.DescriptionTextuelle;
-import ca.griis.base.Nom;
-import ca.griis.base.Texte;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+
+import static ca.griis.base.ConstantesGenerales.EmpNum_facteur;
 
 /**
  * <b>Description</b>
@@ -69,13 +64,13 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public void ajouter(T a) { // this := this U {a}
-    assert (a != null);
+    assert a != null;
     this.add(a);
   }
 
   @Override
   public EnsembleH<T> ajout(T a) { // return (this U {a})
-    assert (a != null);
+    assert a != null;
     EnsembleH<T> e = new EnsembleH<>();
     e.addAll(this);
     e.add(a);
@@ -84,13 +79,13 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public void retirer(T a) { // this := this - {a}
-    assert (a != null);
+    assert a != null;
     this.remove(a);
   }
 
   @Override
   public EnsembleH<T> retrait(T a) { // return (this - {a})
-    assert (a != null);
+    assert a != null;
     EnsembleH<T> e = new EnsembleH<>();
     e.addAll(this);
     e.remove(a);
@@ -99,7 +94,7 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public void unir(Ensemble<T> e) { // this := this U e
-    assert (e != null);
+    assert e != null;
     if (this != e) {
       this.addAll(e);
     }
@@ -107,7 +102,7 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public EnsembleH<T> union(Ensemble<T> e) { // return (this U e)
-    assert (e != null);
+    assert e != null;
     EnsembleH<T> u = new EnsembleH<>();
     u.addAll(this);
     if (this != e) {
@@ -118,7 +113,7 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public void soustraire(Ensemble<T> e) { // this := this - e
-    assert (e != null);
+    assert e != null;
     if (this != e) {
       this.removeAll(e);
     } else {
@@ -128,7 +123,7 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public EnsembleH<T> soustraction(Ensemble<T> e) { // return (this - e)
-    assert (e != null);
+    assert e != null;
     EnsembleH<T> d = new EnsembleH<>();
     if (this != e) {
       d.addAll(this);
@@ -139,7 +134,7 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public void intersecter(Ensemble<T> e) { // this := this ∩ e
-    assert (e != null);
+    assert e != null;
     if (this != e) {
       this.retainAll(e);
     }
@@ -147,7 +142,7 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public EnsembleH<T> intersection(Ensemble<T> e) { // return (this ∩ e)
-    assert (e != null);
+    assert e != null;
     EnsembleH<T> i = new EnsembleH<>();
     i.addAll(this);
     if (this != e) {
@@ -169,22 +164,22 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
 
   @Override
   public boolean contient(T e) { // a dans this
-    assert (e != null);
+    assert e != null;
     return this.contains(e);
   }
 
   @Override
   public boolean egal(Ensemble<T> e) { // this = e
-    assert (e != null);
+    assert e != null;
     boolean b = this.equals(e);
     // XXXX [LL] 2014-07-04 : test temporaire de cohérence égalité-sous-ensemble
-    assert (b == (this.sousEnsemble(e) && e.sousEnsemble(this)));
+    assert b == this.sousEnsemble(e) && e.sousEnsemble(this);
     return b;
   }
 
   @Override
   public boolean sousEnsemble(Ensemble<T> e) { // this <= e
-    assert (e != null);
+    assert e != null;
     boolean r = true;
     for (Iterator<T> i = this.iterator(); i.hasNext() && r;) {
       T a = i.next();
@@ -280,10 +275,10 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
    * Recherche d'un objet dans un ensemble
    */
   public T chercher(T source) {
-    assert (source != null);
+    assert source != null;
     for (Iterator<T> i = this.iterator(); i.hasNext();) {
       T a = i.next();
-      if (a.iEgal(source)) {
+      if (a.immEgal(source)) {
         return a;
       }
     }
@@ -294,55 +289,55 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
   // Opérations de copie référentielle, immédiate et déléguée.
   //
   @Override
-  public EnsembleH<T> rCopie() {
+  public EnsembleH<T> refCopie() {
     return this;
   }
 
   @Override
-  public boolean rEgal(Object x) {
+  public boolean refEgal(Object x) {
     return this == x;
   }
 
   @Override
-  public int rEmpreinte() {
+  public int refEmpreinte() {
     return System.identityHashCode(this);
   }
 
   @Override
-  public EnsembleH<T> iCopie() {
+  public EnsembleH<T> immCopie() {
     EnsembleH<T> copie = new EnsembleH<>();
     copie.addAll(this);
     return copie;
   }
 
   @Override
-  public boolean iEgal(Object x) {
+  public boolean immEgal(Object x) {
     if (this == x) {
       return true;
     }
     if (x == null) {
       return false;
     }
-    assert (x instanceof EnsembleH<?>);
+    assert x instanceof EnsembleH<?>;
     return this.equals(x);
   }
 
   @Override
-  public int iEmpreinte() {
+  public int immEmpreinte() {
     return this.hashCode();
   }
 
   @Override
-  public EnsembleH<T> dCopie() {
+  public EnsembleH<T> delCopie() {
     EnsembleH<T> copie = new EnsembleH<>();
     for (T e : this) {
       // XXXX [LL] 2014-07-20 : comment peut-il y avoir des nuls dans un ensemble ???
-      if (e == null) {
+      if (e == null) { //NOPMD
         // FIXME [LL] 2014-08-04 : Pourquoi y a t-il des nuls et que faire dans ce cas ?
         // assert (false);
       } else {
         @SuppressWarnings("unchecked")
-        T f = (T) e.dCopie();
+        T f = (T) e.delCopie();
         copie.add(f);
       }
     }
@@ -353,14 +348,14 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
   }
 
   @Override
-  public boolean dEgal(Object x) {
+  public boolean delEgal(Object x) {
     if (this == x) {
       return true;
     }
     if (x == null) {
       return false;
     }
-    assert (x instanceof EnsembleH<?>);
+    assert x instanceof EnsembleH<?>;
     @SuppressWarnings("unchecked")
     EnsembleH<T> autre = (EnsembleH<T>) x;
     if (this.card() != autre.card()) {
@@ -378,15 +373,15 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
     //
     // OPT [LL] 2014-07-09 : Optimiser EnsembleH.dEgal()
     //
-    EnsembleH<T> copie = autre.iCopie();
+    EnsembleH<T> copie = autre.immCopie();
     boolean result = true;
     for (T e : this) {
       result = false;
       for (T c : copie) {
-        assert (e != null) && (c != null);
-        assert (e.getClass() == c.getClass()) : "e : " + e.getClass().getName() + "; c : "
+        assert e != null && c != null;
+        assert e.getClass() == c.getClass() : "e : " + e.getClass().getName() + "; c : "
             + e.getClass().getName();
-        if (e.dEgal(c)) {
+        if (e.delEgal(c)) {
           copie.remove(c);
           result = true;
           break;
@@ -396,16 +391,16 @@ public class EnsembleH<T extends CopieDeleguee & CopieImmediate> extends LinkedH
         break;
       }
     }
-    assert (Booleen.implies(result, copie.vide())); // puisque les cardinalités étaient égales au
+    assert Booleen.implies(result, copie.vide()); // puisque les cardinalités étaient égales au
     // départ
     return result;
   }
 
   @Override
-  public int dEmpreinte() {
+  public int delEmpreinte() {
     int result = 0;
     for (T e : this) {
-      result = result * EmpNum_facteur + e.dEmpreinte();
+      result = result * EmpNum_facteur + e.delEmpreinte();
     }
     return result;
   }

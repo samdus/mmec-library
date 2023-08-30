@@ -1,0 +1,127 @@
+/*
+Exemple d'arrimage incluant une signature partagée.
+
+Correspond au mapping omnimed suivant :
+-- T0063_RAMQ vulnerability code
+CREATE OR REPLACE TYPE "PARS3"."T0063_Sign_KEY"
+AS OBJECT
+(
+    "sid"           varchar2(20),
+    "NO_PATIENT_OM" number(11),
+    "NUMADM"        number(10)
+)
+/
+
+-- Signature view
+CREATE OR REPLACE VIEW "PARS3"."T0063_Sign_NUMADM" OF "PARS3"."T0063_Sign_KEY"
+    WITH OBJECT ID ("sid", "NO_PATIENT_OM", "NUMADM") AS
+    SELECT 'T0063', "NO_PATIENT_OM", "NUMADM"
+    FROM "PARS3"."PATIENT_GMF_1"
+         JOIN "MARTINOMNICADSC"."IDENTIFICATION_MD_GMF"
+              ON "IDENTIFICATION_MD_GMF"."NOPATIENTOM" = "PATIENT_GMF_1"."NO_PATIENT_OM"
+    WHERE "IDENTIFICATION_MD_GMF"."NOPATIENTOM" IS NOT NULL
+      AND "IDENTIFICATION_MD_GMF"."NUMADM" IS NOT NULL
+/
+
+CREATE OR REPLACE VIEW "PARS3"."T0063_Sign_NUMADM2" OF "PARS3"."T0063_Sign_KEY"
+    WITH OBJECT ID ("sid", "NO_PATIENT_OM", "NUMADM") AS
+    SELECT 'T0063', "NO_PATIENT_OM", "NUMADM2"
+    FROM "PARS3"."PATIENT_GMF_1"
+         JOIN "MARTINOMNICADSC"."IDENTIFICATION_MD_GMF"
+              ON "IDENTIFICATION_MD_GMF"."NOPATIENTOM" = "PATIENT_GMF_1"."NO_PATIENT_OM"
+    WHERE "IDENTIFICATION_MD_GMF"."NOPATIENTOM" IS NOT NULL
+      AND "IDENTIFICATION_MD_GMF"."NUMADM" IS NOT NULL
+/
+
+CREATE OR REPLACE VIEW "PARS3"."T0063_Sign_NUMADM3" OF "PARS3"."T0063_Sign_KEY"
+    WITH OBJECT ID ("sid", "NO_PATIENT_OM", "NUMADM") AS
+    SELECT 'T0063', "NO_PATIENT_OM", "NUMADM2"
+    FROM "PARS3"."PATIENT_GMF_1"
+         JOIN "MARTINOMNICADSC"."IDENTIFICATION_MD_GMF"
+              ON "IDENTIFICATION_MD_GMF"."NOPATIENTOM" = "PATIENT_GMF_1"."NO_PATIENT_OM"
+    WHERE "IDENTIFICATION_MD_GMF"."NOPATIENTOM" IS NOT NULL
+      AND "IDENTIFICATION_MD_GMF"."NUMADM" IS NOT NULL
+/
+
+-- T009a_RAMQ vulnerability code has value [1..1] string
+-- Signature view(s)
+CREATE OR REPLACE VIEW "PARS3"."T009a_T0063_Sign_NUMADM" AS
+    SELECT "PARS3"."T0063_Sign_NUMADM"."OBJECT_ID"                                AS "T0063_uid",
+           "PARS3"."C_NUMBER_VARCHAR2(4000)"("NUMADM")                            AS "value"
+    FROM "PARS3"."T0063_Sign_NUMADM"
+    WHERE "PARS3"."V_NUMBER_VARCHAR2(4000)"("NUMADM") = 1
+/
+CREATE OR REPLACE VIEW "PARS3"."T009a_T0063_Sign_NUMADM2" AS
+    SELECT "PARS3"."T0063_Sign_NUMADM2"."OBJECT_ID"                               AS "T0063_uid",
+           "PARS3"."C_NUMBER_VARCHAR2(4000)"("NUMADM")                            AS "value"
+    FROM "PARS3"."T0063_Sign_NUMADM2"
+    WHERE "PARS3"."V_NUMBER_VARCHAR2(4000)"("NUMADM") = 1
+/
+CREATE OR REPLACE VIEW "PARS3"."T009a_T0063_Sign_NUMADM3" AS
+    SELECT "PARS3"."T0063_Sign_NUMADM3"."OBJECT_ID"                               AS "T0063_uid",
+           "PARS3"."C_NUMBER_VARCHAR2(4000)"("NUMADM")                            AS "value"
+    FROM "PARS3"."T0063_Sign_NUMADM3"
+    WHERE "PARS3"."V_NUMBER_VARCHAR2(4000)"("NUMADM") = 1
+/
+
+-- Data property view
+CREATE OR REPLACE VIEW "PARS3"."T009a" AS
+    SELECT "T0063_uid", "value"
+    FROM "PARS3"."T009a_T0063_Sign_NUMADM"
+  UNION ALL
+    SELECT "T0063_uid", "value"
+    FROM "PARS3"."T009a_T0063_Sign_NUMADM2"
+  UNION ALL
+    SELECT "T0063_uid", "value"
+    FROM "PARS3"."T009a_T0063_Sign_NUMADM3"
+/
+*/
+
+OntoRel 'https://griis.ca/PARS3:v1.0';
+Source 'https://www.omnimed.com/Oracle';
+
+/* exclusions de l'OntoRel */
+/* exclusions de la source */
+
+/* RAMQ vulnerability code */
+define T0063_Sign_NUMADM for T0063
+  from "PARS3"."PATIENT_GMF_1"
+  join "MARTINOMNICADSC"."IDENTIFICATION_MD_GMF"
+    on "IDENTIFICATION_MD_GMF"."NOPATIENTOM" = "PATIENT_GMF_1"."NO_PATIENT_OM"
+  select "NO_PATIENT_OM", "NUMADM"
+;
+
+define T0063_Sign_NUMADM2 for T0063
+  from "PARS3"."PATIENT_GMF_1"
+  join "MARTINOMNICADSC"."IDENTIFICATION_MD_GMF"
+    on "IDENTIFICATION_MD_GMF"."NOPATIENTOM" = "PATIENT_GMF_1"."NO_PATIENT_OM"
+  select "NO_PATIENT_OM", "NUMADM2"
+;
+
+define T0063_Sign_NUMADM3 for T0063
+  from "PARS3"."PATIENT_GMF_1"
+  join "MARTINOMNICADSC"."IDENTIFICATION_MD_GMF"
+    on "IDENTIFICATION_MD_GMF"."NOPATIENTOM" = "PATIENT_GMF_1"."NO_PATIENT_OM"
+  select "NO_PATIENT_OM", "NUMADM3"
+;
+
+/* T009a_RAMQ vulnerability code has value [1..1] string
+   Note: Conversion (C_NUMBER_VARCHAR2) and Validation (V_NUMBER_VARCHAR2) functions are automatically added in the mapping
+         when the types don't match.
+ */
+define T009a_NUMADM for T009a
+  from T0063_Sign_NUMADM
+  select sign, "NUMADM"
+;
+
+define T009a_NUMADM2 for T009a
+  from T0063_Sign_NUMADM2
+  select sign, "NUMADM2"
+;
+
+define T009a_NUMADM3 for T009a
+  from T0063_Sign_NUMADM3
+  select sign, "NUMADM"
+;
+
+set shared(T0063_Sign_NUMADM, T0063_Sign_NUMADM2, T0063_Sign_NUMADM3);

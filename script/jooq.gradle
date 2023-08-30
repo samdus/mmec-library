@@ -1,0 +1,120 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "nu.studer:gradle-jooq-plugin:7.1.1"
+    }
+}
+
+// TODO: Ajouter une configuration comme geca-mld pour créer la base de données
+
+import nu.studer.gradle.jooq.JooqEdition
+import org.jooq.meta.jaxb.Logging
+
+import static groovy.io.FileType.*
+
+def db_configuration = [
+        host: project.getProperties().getOrDefault('mmec_host', 'localhost'),
+        port: project.getProperties().getOrDefault('mmec_port', '5432'),
+        db  : project.getProperties().getOrDefault('mmec_db', project.name),
+        user: project.getProperties().getOrDefault('mmec_user', 'postgres'),
+        pwd : project.getProperties().getOrDefault('mmec_pwd', 'postgres')
+]
+
+dependencies {
+    jooqGenerator 'org.postgresql:postgresql:42.4.2'
+}
+
+jooq {
+    version = '3.16.4'
+    edition = JooqEdition.OSS
+
+    configurations {
+        main {
+            generateSchemaSourceOnCompilation = true
+
+            generationTool {
+                logging = Logging.WARN
+                jdbc {
+                    driver = 'org.postgresql.Driver'
+                    url = String.format("jdbc:postgresql://%s:%s/%s", db_configuration.host, db_configuration.port, db_configuration.db)
+                    user = db_configuration.user
+                    password = db_configuration.pwd
+                }
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+                    database {
+                        name = 'org.jooq.meta.postgres.PostgresDatabase'
+                        schemata {
+                            schema {
+                                inputSchema = 'mmec'
+                            }
+                        }
+                    }
+                    generate {
+                        deprecated = false
+                        records = true
+                        immutablePojos = true
+                        fluentSetters = true
+                        generatedAnnotation = true
+                        generatedAnnotationType = 'DETECT_FROM_JDK'
+                        generatedAnnotationDate = true
+                        nullableAnnotation = true
+                        nullableAnnotationType = 'javax.annotation.Nullable'
+                        nonnullAnnotation = true
+                        nonnullAnnotationType = 'javax.annotation.Nonnull'
+                    }
+                    target {
+                        packageName = 'ca.griis.mmec.jooq.gen'
+                        directory = 'src/gen/java-jooq'
+                    }
+                    strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                }
+            }
+        }
+    }
+}
+
+task wait_pg {
+    group "jooq"
+    doFirst {
+        println ">> Attente de connexion à postgres"
+        ant.waitfor(
+                maxwait: "20", maxwaitunit: "second",
+                checkevery: "500", checkeveryunit: "millisecond",
+                timeoutproperty: "wait.timeout"
+        ) {
+            socket(server: db_configuration.host, port: db_configuration.port)
+        }
+        ant.fail(if: "wait.timeout", message: "Postgres n'était pas disponible après 20s.");
+    }
+}
+
+task addBuilderAnnotation {
+    group "jooq"
+    doFirst {
+        def javaJooqDir = project.file('src/gen/java-jooq')
+        def pojoDirectoryNameFilter = ~/^pojos$/
+
+        javaJooqDir.traverse(type: DIRECTORIES, nameFilter: pojoDirectoryNameFilter) { directory ->
+            directory.traverse(type: FILES) { file ->
+                ant.replace(file: file.getAbsolutePath(),
+                        token: "import java.io.Serializable;",
+                        value: "import java.io.Serializable;\n" +
+                                "import lombok.Builder;\n" +
+                                "import lombok.Value;")
+                ant.replace(file: file.getAbsolutePath(),
+                        token: "public class",
+                        value: "@Value\n" +
+                                "@Builder\n" +
+                                "public class")
+            }
+        }
+    }
+}
+
+generateJooq.dependsOn("wait_pg")
+generateJooq.finalizedBy("addBuilderAnnotation")

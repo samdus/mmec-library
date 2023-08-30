@@ -1,0 +1,44 @@
+{
+  "testSuite1": {
+    "000-exemple_complet": {
+      "mMec_document": "success",
+      "base": "success"
+    },
+    "010-entete": {
+      "header": "success"
+    },
+    "020-exclusion-multiples": {
+      "exclusions": "success"
+    },
+    "030-exclusion-sans-semantiques": {
+      "exclusions": "failure"
+    },
+    "040-data-property": {
+      "mapping": "success"
+    },
+    "050-object-property": {
+      "mapping": "success"
+    },
+    "060-exemple-RAMQ": {
+      "base": "success"
+    },
+    "070-string-expression": {
+      "expression": "success",
+      "string_expression": "success",
+      "discipulus_expression": "failure"
+    },
+    "080-string-expression-dollars": {
+      "expression": "success",
+      "string_expression": "success",
+      "discipulus_expression": "failure"
+    },
+    "090-discipulus-expression": {
+      "expression": "success",
+      "string_expression": "failure",
+      "discipulus_expression": "success"
+    },
+    "100-prelude": {
+      "mapping_def": "success"
+    }
+  }
+}

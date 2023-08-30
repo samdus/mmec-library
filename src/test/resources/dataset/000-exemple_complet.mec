@@ -3,7 +3,7 @@ Source 'https://griis.ca/JeDIS';
 
 /* exclusions de l'OntoRel */
 exclusion T01f6 NOT_AVAILABLE 'La clinique ne gère pas ces données là.';
-exclusion T01f6 UNDEFINED 'À faire en 2022';
+exclusion T01f8 UNDEFINED 'À faire en 2022';
 
 /* exclusions de la source */
 exclusion "EXP"."LABORATOIRE"."COLUMN" 'Colonne non utilisée';
@@ -18,8 +18,8 @@ define T01ed_def for T01ed
 define T00ce_def for T00ce
   from "EXP"."LABORATOIRE"
   select "ID_LABORATOIRE_EXT"
-  /* where "PARS3"."V_upperRange"("EXP"."LABORATOIRE"."VALEUR") = 0
-    and "PARS3"."V_lowerRange"("EXP"."LABORATOIRE"."VALEUR") = 0 */
+  where "PARS3"."V_upperRange"("EXP"."LABORATOIRE"."VALEUR") = 0
+    and "PARS3"."V_lowerRange"("EXP"."LABORATOIRE"."VALEUR") = 0
 ;
 
 /* scalar laboratory result has value specification [1..*] scalar value specification */
@@ -33,8 +33,8 @@ define T049d_def for T049d
 define T02c9_labo for T02c9
   from T00ce_def
   natural join "EXP"."LABORATOIRE"
-  select T00ce_def.sign, /*"PARS3"."C_VARCHAR_NUMERIC_extract"(*/ "EXP"."LABORATOIRE"."VALEUR" /*)*/
-  /*where "PARS3"."V_VARCHAR_NUMERIC_extract"("EXP"."LABORATOIRE"."VALEUR") = 1*/
+  select T00ce_def.sign, "PARS3"."C_VARCHAR_NUMERIC_extract"( "EXP"."LABORATOIRE"."VALEUR")
+  where "PARS3"."V_VARCHAR_NUMERIC_extract"("EXP"."LABORATOIRE"."VALEUR") = 1
 ;
 
 /* frequency unit */
@@ -55,8 +55,8 @@ define T01ef_value for T01ef
   from "EXP"."LABORATOIRE"
   select "EXP"."LABORATOIRE"."ID_LABORATOIRE_EXT"
   where "ID_LABORATOIRE_EXT" IS NOT NULL
-  /* and ("PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."VALEUR") = 1
-    or "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."VALEUR") = 1) */
+  and ("PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."VALEUR") = 1
+    or "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."VALEUR") = 1)
 ;
 
 /* fully specified range value specification */
@@ -64,30 +64,44 @@ define T01b4_value for T01b4
   from "EXP"."LABORATOIRE"
   select "ID_LABORATOIRE_EXT"
   where "ID_LABORATOIRE_EXT" IS NOT NULL
-  /* AND "PARS3"."V_fullySpecifiedRange"("EXP"."LABORATOIRE"."VALEUR") = 1 */
+    AND "PARS3"."V_fullySpecifiedRange"("EXP"."LABORATOIRE"."VALEUR") = 1
 ;
 
 /* fully specified range value specification */
 define T01b4_normal for T01b4
   from "EXP"."LABORATOIRE"
   select "ID_LABORATOIRE_EXT"
-    /* where "PARS3"."V_fullySpecifiedRange"("EXP"."LABORATOIRE"."REF_LABO") = 1 */
+  where "PARS3"."V_fullySpecifiedRange"("EXP"."LABORATOIRE"."REF_LABO") = 1
 ;
 
 /* closed range value specification */
 define T0209_value for T0209
   from "EXP"."LABORATOIRE"
   select "ID_LABORATOIRE_EXT"
-  /*  where "PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."VALEUR") = 1
-    AND "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."VALEUR") = 1 */
+  where "PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."VALEUR") = 1
+    AND "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."VALEUR") = 1
 ;
 
 /* closed range value specification */
 define T0209_normal for T0209
   from "EXP"."LABORATOIRE"
   select "ID_LABORATOIRE_EXT"
-  /* where "PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."REF_LABO") = 1
-  AND "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."REF_LABO") = 1 */
+  where "PARS3"."V_includedLowerRange"("EXP"."LABORATOIRE"."REF_LABO") = 1
+  AND "PARS3"."V_includedUpperRange"("EXP"."LABORATOIRE"."REF_LABO") = 1
+;
+
+/* drug prescription starting validity temporal specification */
+define T01e9 for T01e9
+  from "EXP"."PRESCRIPTION"
+  select "ID_PRESCRIPTION_EXT"
+  where "DEBUT" IS NOT NULL
+;
+
+/* drug prescription ending validity temporal specification */
+define T016d for T016d
+  from "EXP"."PRESCRIPTION"
+  select "ID_PRESCRIPTION_EXT"
+  where "FIN" IS NOT NULL
 ;
 
 set shared(T01ef_value, T01b4_value, T0209_value);

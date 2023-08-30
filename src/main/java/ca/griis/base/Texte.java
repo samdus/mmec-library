@@ -42,7 +42,7 @@ public class Texte {
   // TODO 2016-05-06 [3:LL] Revoir la documentation de cette classe.
   // La compléter et la rendre conforme au standard.
   //
-  private StringBuilder t;
+  private StringBuilder stringBuilder;
 
   private int nbLignes;
   private int noCar;
@@ -54,7 +54,7 @@ public class Texte {
 
   public Texte(String s) {
     super();
-    this.t = new StringBuilder(s);
+    this.stringBuilder = new StringBuilder(s);
   }
 
   public Texte() {
@@ -62,7 +62,7 @@ public class Texte {
   }
 
   public Texte(Texte t) {
-    this(t.t.toString());
+    this(t.stringBuilder.toString());
     this.nbLignes = t.nbLignes;
     this.noCar = t.noCar;
     this.niveau = t.niveau;
@@ -113,7 +113,7 @@ public class Texte {
   }
 
   public void fdl() {
-    this.t.append("\n");
+    this.stringBuilder.append("\n");
     this.nbLignes++;
     this.noCar = 0;
   }
@@ -125,21 +125,21 @@ public class Texte {
     if (this.noCar == 0) {
       this.noCar = Math.min(this.niveau * this.decalage, this.marge / 2);
       for (int i = 0; i < this.noCar; i++) {
-        this.t.append(" ");
+        this.stringBuilder.append(" ");
       }
     }
-    this.t.append(s);
+    this.stringBuilder.append(s);
     this.noCar += s.length();
   }
 
   public void concat(Texte t) {
     if (t.getNbLignes() == 0) {
-      this.ajouter(t.t.toString());
+      this.ajouter(t.stringBuilder.toString());
     } else {
       if (this.noCar != 0) {
         this.fdl();
       }
-      this.t.append(t.t);
+      this.stringBuilder.append(t.stringBuilder);
       this.nbLignes += t.nbLignes;
       this.noCar = t.noCar;
     }
@@ -147,6 +147,6 @@ public class Texte {
 
   @Override
   public String toString() {
-    return this.t.toString();
+    return this.stringBuilder.toString();
   }
 }

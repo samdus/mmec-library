@@ -149,7 +149,7 @@ import java.util.HashMap;
  * @author [CK] Christina.Khnaisser@USherbrooke.ca
  * @author [LL] Luc.Lavoie@USherbrooke.ca
  */
-public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee {
+public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee, Cloneable {
   // ************************************************************************
   // Constructeur générique
   //
@@ -169,16 +169,16 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
    * @return la copie
    */
   @Override
-  public final Noeud dCopie() {
+  public final Noeud delCopie() {
     Noeud x;
     if (this.poursuivreCopie()) {
       x = this.chercherCopie(this);
       if (x == null) {
-        x = this.dClone(); // creation d'un objet du descendant
+        x = this.delClone(); // creation d'un objet du descendant
       }
     } else {
       this.amorcerCopie();
-      x = this.dClone(); // creation d'un objet du descendant
+      x = this.delClone(); // creation d'un objet du descendant
       this.cloreCopie();
     }
     return x;
@@ -193,8 +193,8 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
    * @return égalité entre this et x
    */
   @Override
-  public final boolean dEgal(Object autre) {
-    assert (autre instanceof Noeud);
+  public final boolean delEgal(Object autre) {
+    assert autre instanceof Noeud;
     Noeud n = (Noeud) autre;
     boolean b;
     if (this.poursuivreEquivalence()) {
@@ -207,13 +207,13 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
           this.enregistrerEquivalence(n, b);
         }
       } else {
-        b = this.dEquals(n);
+        b = this.delEquals(n);
         this.enregistrerEquivalence(n, b);
       }
     } else {
       this.amorcerEquivalence();
-      b = this.dEquals(n);
-      assert (this.getClass() == n.getClass()) : "this : " + this.getClass().getName() + "; n : "
+      b = this.delEquals(n);
+      assert this.getClass() == n.getClass() : "this : " + this.getClass().getName() + "; n : "
           + n.getClass().getName();
       this.enregistrerEquivalence(n, b); // pour la forme :-)
       this.cloreEquivalence();
@@ -229,19 +229,19 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
    * @return l'empreinte de l'objet
    */
   @Override
-  public final int dEmpreinte() {
+  public final int delEmpreinte() {
     Integer x;
     if (this.poursuivreParcours()) {
       x = (Integer) this.chercherParcours();
       if (x == null) {
         this.enregistrerParcours(1);
-        x = this.dHashCode();
+        x = this.delHashCode();
         this.enregistrerParcours(x);
       }
     } else {
       this.amorcerParcours();
       this.enregistrerParcours(1);
-      x = this.dHashCode();
+      x = this.delHashCode();
       this.enregistrerParcours(x);
       this.cloreParcours();
     }
@@ -264,14 +264,14 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
     //
     // Exceptionnellement, l'appel à un (autre) constructeur DEVANT être la première instruction
     // d'un constructeur, les tests d'assertions DOIVENT être placés après!
-    assert (mode != null);
-    assert (mode != CopieSorte.referentielle);
+    assert mode != null;
+    assert mode != CopieSorte.referentielle;
     //
     // Traitement des attributs locaux immuables
     // this.attributTypeBase = source.attributTypeBase;
     //
     // Traitement des pointeurs selon le mode de copie
-    if (mode == CopieSorte.immediate) {
+    if (mode == CopieSorte.immediate) { //NOPMD
       // Exemple de sémantique immédiate de niveau 1 :
       //   this.attributPointeur = source.attributPointeur;
       // On pourra également utiliser des sémantiques immédiates de niveau 2, 3, ...
@@ -289,18 +289,18 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
   }
 
   @Override
-  public final Noeud rCopie() {
+  public final Noeud refCopie() {
     return this;
   }
 
   @Override
-  public final boolean rEgal(Object x) {
-    assert (x instanceof Noeud);
+  public final boolean refEgal(Object x) {
+    assert x instanceof Noeud;
     return this == x;
   }
 
   @Override
-  public final int rEmpreinte() {
+  public final int refEmpreinte() {
     return System.identityHashCode(this);
   }
 
@@ -317,10 +317,10 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
    *
    * @return la copie intégrale d l'objet.
    */
-  protected /* interne */ Noeud dClone() {
+  protected /* interne */ Noeud delClone() {
     Noeud x = new Noeud(CopieSorte.deleguee, this);
     // System.out.println("this> " + this + "; autre> " + x);
-    assert (this.dEgal(x)) : "this> " + this + "; autre> " + x;
+    assert this.delEgal(x) : "this> " + this + "; autre> " + x;
     return x;
   }
 
@@ -328,10 +328,10 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
    * Égalité par délégation entre deux objets, fonction STRICTEMENT RÉSERVÉE
    * membres (descendants) de la structure racine mettant en oeuvre CopieNouvelle.
    *
-   * @param x : l'objet comparé
+   * @param autre : l'objet comparé
    * @return vrai ssi l'objet est identique à x
    */
-  protected /* interne */ boolean dEquals(Object autre) {
+  protected /* interne */ boolean delEquals(Object autre) {
     this.enregistrerEquivalence(autre, null);
     // System.out.println("this> " + this + "; autre> " + autre);
     return true;
@@ -343,38 +343,38 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
    *
    * @return l'empreinte de l'objet
    */
-  protected /* interne */ int dHashCode() {
+  protected /* interne */ int delHashCode() {
     return 1;
   }
 
   @Override
-  public final Noeud iCopie() {
-    return this.iClone();
+  public final Noeud immCopie() {
+    return this.immClone();
   }
 
   @Override
-  public final boolean iEgal(Object x) {
-    return this.iEquals(x);
+  public final boolean immEgal(Object x) {
+    return this.immEquals(x);
   }
 
   @Override
-  public final int iEmpreinte() {
-    return this.iHashCode();
+  public final int immEmpreinte() {
+    return this.immHashCode();
   }
 
-  protected /* interne */ Noeud iClone() {
+  protected /* interne */ Noeud immClone() {
     Noeud x = new Noeud(CopieSorte.immediate, this);
     // System.out.println("this> " + this + "; autre> " + x);
-    assert (this.iEgal(x)) : "this> " + this + "; autre> " + x;
+    assert this.immEgal(x) : "this> " + this + "; autre> " + x;
     return x;
   }
 
-  protected /* interne */ boolean iEquals(Object x) {
-    assert (x instanceof Noeud);
+  protected /* interne */ boolean immEquals(Object x) {
+    assert x instanceof Noeud;
     return true;
   }
 
-  protected /* interne */ int iHashCode() {
+  protected /* interne */ int immHashCode() {
     return 1;
   }
 
@@ -384,7 +384,7 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
    *
    * @return l'empreinte de l'objet
    */
-  protected /* interne */ boolean dOk(Noeud proprio) {
+  protected /* interne */ boolean delOk(Noeud proprio) {
     return true;
   }
 
@@ -401,57 +401,57 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
     return xMode;
   }
 
-  public final Noeud xCopie() {
+  public final Noeud croixCopie() {
     if (xMode == null) {
       try {
-        return this.clone();
+        return (Noeud) this.clone();
       } catch (CloneNotSupportedException e) {
-        assert (false);
+        assert false;
       }
     }
     switch (xMode) {
       case deleguee:
-        return this.dCopie();
+        return this.delCopie();
       case immediate:
-        return this.iCopie();
+        return this.immCopie();
       case referentielle:
-        return this.rCopie();
+        return this.refCopie();
       default:
-        assert (false);
+        assert false;
     }
     return null; // bidon
   }
 
-  public final boolean xEgal(Object x) {
+  public final boolean croixEgal(Object x) {
     if (xMode == null) {
       return this.equals(x);
     }
     switch (xMode) {
       case deleguee:
-        return this.dEgal(x);
+        return this.delEgal(x);
       case immediate:
-        return this.iEgal(x);
+        return this.immEgal(x);
       case referentielle:
-        return this.rEgal(x);
+        return this.refEgal(x);
       default:
-        assert (false);
+        assert false;
     }
     return false; // bidon
   }
 
-  public final int xEmpreinte() {
+  public final int croixEmpreinte() {
     if (xMode == null) {
       return this.hashCode();
     }
     switch (xMode) {
       case deleguee:
-        return this.dEmpreinte();
+        return this.delEmpreinte();
       case immediate:
-        return this.iEmpreinte();
+        return this.immEmpreinte();
       case referentielle:
-        return this.rEmpreinte();
+        return this.refEmpreinte();
       default:
-        assert (false);
+        assert false;
     }
     return 0; // bidon
   }
@@ -463,7 +463,7 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
   private static boolean copieEnCours = false;
 
   private void amorcerCopie() {
-    assert (!copieEnCours);
+    assert !copieEnCours;
     copieEnCours = true;
     copies = new HashMap<>();
   }
@@ -482,7 +482,7 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
 
   private void cloreCopie() {
     boolean ok = copieEnCours;
-    assert (ok);
+    assert ok;
     copies.clear();
     copieEnCours = false;
   }
@@ -494,7 +494,7 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
   private static boolean equivalenceEnCours = false;
 
   private void amorcerEquivalence() {
-    assert (!equivalenceEnCours);
+    assert !equivalenceEnCours;
     equivalenceEnCours = true;
     equivalences = new HashMap<>();
   }
@@ -512,14 +512,14 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
   }
 
   private void enregistrerEquivalence(Object autre, Boolean b) {
-    assert (this.getClass() == autre.getClass()) : "this : " + this.getClass().getName()
+    assert this.getClass() == autre.getClass() : "this : " + this.getClass().getName()
         + "; autre : " + autre.getClass().getName();
     equivalences.put(new SimpleEntry<Object, Object>(autre, this), b);
   }
 
   private void cloreEquivalence() {
     boolean ok = equivalenceEnCours;
-    assert (ok);
+    assert ok;
     equivalences.clear();
     equivalenceEnCours = false;
   }
@@ -532,7 +532,7 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
   private static boolean parcoursEnCours = false;
 
   private void amorcerParcours() {
-    assert (!parcoursEnCours);
+    assert !parcoursEnCours;
     parcoursEnCours = true;
     parcours = new HashMap<>();
   }
@@ -550,7 +550,7 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
   }
 
   private void cloreParcours() {
-    assert (parcoursEnCours);
+    assert parcoursEnCours;
     parcours.clear();
     parcoursEnCours = false;
   }
@@ -559,7 +559,7 @@ public class Noeud implements CopieReferentielle, CopieImmediate, CopieDeleguee 
   // Opérations clone(), equals() et hashCode.
   //
   @Override
-  public Noeud clone() throws CloneNotSupportedException {
-    return this;
+  public Object clone() throws CloneNotSupportedException {
+    return super.clone();
   }
 }

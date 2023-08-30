@@ -1,46 +1,59 @@
 plugins {
     id 'java'
-    id 'antlr'
+    id 'idea'
     id 'application'
+    id 'antlr'
+    id 'nu.studer.jooq' version '7.1.1'
 }
 
-group 'ca.griis'
-version '0.0.1'
+group = "ca.griis.mmec"
+version = "0.1.0"
 
-repositories {
-    mavenCentral()
-}
-
-configurations.all {
-    exclude group: 'org.apache.logging.log4j', module: ''
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(14)
+        vendor = JvmVendorSpec.ADOPTIUM
+        implementation = JvmImplementation.VENDOR_SPECIFIC
+    }
 }
 
 dependencies {
-    implementation "org.antlr:antlr4-runtime:4.9.2"
-    antlr "org.antlr:antlr4:4.9.2"
+    annotationProcessor "org.projectlombok:lombok:1.18.24"
 
-    testCompile 'org.junit.jupiter:junit-jupiter-params:5.7.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
+    antlr 'org.antlr:antlr4:4.10.1'
 
-generateGrammarSource {
-    arguments += ["-visitor",
-                  "-listener",
-                  "-lib", "src/main/antlr/ca/griis/mMec/imports",
-                  "-package", "ca.griis.mMec"
-    ]
-    outputDirectory = file("src/gen/java")
+    implementation "com.google.guava:guava:31.1-jre"
+    implementation 'org.antlr:antlr4:4.10.1'
+    implementation "org.projectlombok:lombok:1.18.24"
+
+    implementation 'org.jooq:jooq:3.17.3'
+    implementation "org.postgresql:postgresql:42.5.0"
+
+    testImplementation "org.json:json:20220320"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.9.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.9.0"
 }
 
 sourceSets {
     main {
-        java {
-            srcDirs = ['src/main/java', 'src/gen/java']
-        }
+        java.srcDirs += file("src/gen/java-antlr")
+        java.srcDirs += file("src/gen/java-jooq")
     }
 }
 
 test {
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+apply from: "script/antlr.gradle"
+apply from: "script/application.gradle"
+apply from: "script/jooq.gradle"

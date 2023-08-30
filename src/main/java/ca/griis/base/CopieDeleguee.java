@@ -52,7 +52,7 @@ public interface CopieDeleguee {
    * 
    * @return la copie
    */
-  public Object dCopie();
+  Object delCopie();
 
   /**
    * Égalité par délégation entre deux objets
@@ -60,12 +60,12 @@ public interface CopieDeleguee {
    * @param x : l'objet comparé
    * @return égalité entre this et x
    */
-  public boolean dEgal(Object x);
+  boolean delEgal(Object x);
 
   /**
    * Empreinte d'un objet cohérente avec la copie et l'égalité
    * 
    * @return l'empreinte de l'objet
    */
-  public int dEmpreinte();
+  int delEmpreinte();
 }

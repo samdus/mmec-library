@@ -46,7 +46,7 @@ public interface CopieImmediate {
    * 
    * @return la copie
    */
-  public Object iCopie();
+  Object immCopie();
 
   /**
    * Égalité immédiate entre deux objets
@@ -54,12 +54,12 @@ public interface CopieImmediate {
    * @param x : l'objet comparé
    * @return égalité entre this et x
    */
-  public boolean iEgal(Object x);
+  boolean immEgal(Object x);
 
   /**
    * Empreinte d'un objet cohérente avec la copie et l'égalité
    * 
    * @return l'empreinte de l'objet
    */
-  public int iEmpreinte();
+  int immEmpreinte();
 }
