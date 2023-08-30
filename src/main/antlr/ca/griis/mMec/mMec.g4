@@ -23,6 +23,9 @@ Sherbrooke(Québec)  J1K 2R1  CANADA
 [CC-BY-NC-3.0 (http://creativecommons.org/licenses/by-nc/3.0)]
 
 *Tâches projetées et questions*
+  [SD 2022-09-07]
+  TODO: Ajouter une instruction pour associer une documentation à une définition
+  QUESTION: Quelles méta-données concerver dans le modèle VS dans l'application
   [SD 2022-08-26]
   TODO: Ajouter une instruction define variable/view pour pouvoir réutiliser des expressions
   [SD 2021-10-22]
