@@ -1,0 +1,143 @@
+@prefix isc: <http://resource.geosciml.org/classifier/ics/ischart/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rr:  <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rrl: <http://www.griis.ca/projects/relrel#> .
+@prefix tst: <http://www.griis.ca/projects/> .
+
+# TODO: Modifier l'exemple pour qu'il utilise une ontologie et une source plus réalistes.
+#       Ex: Patient(id, NAM, nom, prenom, dateNaissance, sexe, genre)
+#           Homo Sapiens, Sexe biologique, Sexe féminin..., Genre, Genre féminin..., Nom, Prénom
+#           Dossier Patient (ICE)
+#               has part (ICE and (is about exactly 1 Nom) and (as value exactly 1 xsd:String)
+#               has part (ICE and (is about exactly 1 Prénom) and (as value exactly 1 xsd:String)
+#               has part (ICE and (is about some (Sexe or Genre)))
+#           S'inspirer de la requête suivante pour la gestion des différentes possibilités pour le sexe et le genre.
+#           (Aussi, ne pas oublier de montrer l'équivalent SQL sur l'OntoRel de la requête)
+#                PREFIX : <http://www.griis.ca/projects/>
+#                PREFIX owl: <http://www.w3.org/2002/07/owl#>
+#                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+#                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+#
+#                SELECT ?tst ?type
+#                WHERE {
+#                   ?tst rdf:type :tst .
+#
+#                   ?tst :rel [ :rel ?tst2_or_tst3 ] .
+#
+#                   OPTIONAL {
+#                       ?tst2_or_tst3 rdf:type :tst2 .
+#                       BIND(:tst2 as ?type) .
+#                   }
+#                   OPTIONAL {
+#                       ?tst2_or_tst3 rdf:type :tst3 .
+#                       BIND(:tst3 as ?type) .
+#                   }
+#
+#                   FILTER(bound(?type))
+#                }
+
+# ****************************************************************************************
+# Classes mappings
+# ****************************************************************************************
+<MappingDefinition>
+    a rrl:MappingDefinition ;
+    rrl:OntoRel 'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1';
+    rrl:Source 'https://griis.ca/JeDIS'.
+
+<exclude:T01f6>
+    a rrl:OntoRelExclusions ;
+    rrl:excludedRelation "T01f6";
+    rrl:exclusionType rrl:NOT_AVAILABLE;
+    rrl:explanation "La clinique ne gère pas ces données là.".
+
+<exclude:Laboratoirecolumn>
+    a rrl:SourceExclusions ;
+    rrl:sourceObject [ rr:tableName "\"EXP\".\"LABORATOIRE\"";
+                       rr:column "\"COLUMN\"" ] ;
+    rrl:explanation "La clinique ne gère pas ces données là." .
+
+<Mapping:SharedSignature1>
+    a rrl:SignatureSuperSet.
+
+<Mapping:tst>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"TABLE1\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    tst:tst ;
+                      rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
+                      rr:termType rr:IRI ]
+#        ;
+#    rrl:subsets <Mapping:SharedSignature1>
+.
+
+<Mapping:tst:secondsignature>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"TABLE3\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    tst:tst ;
+                      rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
+                      rr:termType rr:IRI ]
+#        ;
+#    rrl:subsets <Mapping:SharedSignature1>
+.
+
+<Mapping:tst1>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"TABLE2\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    tst:tst1 ;
+                      rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
+                      rr:termType rr:IRI ] ;
+    rr:predicateObjectMap <Mapping:tst1:rel:tst1C0004X> ;
+    rrl:subsets     <Mapping:tst> .
+
+<Mapping:tst2>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\" where \"o\" < 5" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    tst:tst2 ;
+                      rr:template "http://www.griis.ca/projects/tst1C0004XUnionOf/{n}" ;
+                      rr:termType rr:IRI ] .
+
+<Mapping:tst3>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\" where \"o\" >= 5" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    tst:tst3 ;
+                      rr:template "http://www.griis.ca/projects/tst1C0004XUnionOf/{n}" ;
+                      rr:termType rr:IRI ] .
+
+<Mapping:tst1C0004X>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    tst:ONTORELA_C0004X ;
+                      rr:template "http://www.griis.ca/projects/tst1C0004X/{\"m\"}" ;
+                      rr:termType rr:IRI ] ;
+    rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst2)>;
+    rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst3)> .
+
+# ****************************************************************************************
+# Object Properties mappings
+# ****************************************************************************************
+<Mapping:tst1:rel:tst1C0004X>
+    rr:predicate tst:rel ;
+    rr:objectMap [ rr:parentTriplesMap <Mapping:tst1C0004X> ;
+                   rr:joinCondition    [ rr:child  "m" ;
+                                         rr:parent "m" ] ] .
+
+<Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst2)>
+    rr:predicate tst:rel ;
+    rr:objectMap [ rr:parentTriplesMap <Mapping:tst2> ;
+                   rr:joinCondition    [ rr:child  "m" ;
+                                         rr:parent "m" ] ] .
+
+<Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst3)>
+    rr:predicate tst:rel ;
+    rr:objectMap [ rr:parentTriplesMap <Mapping:tst3> ;
+                   rr:joinCondition    [ rr:child  "m" ;
+                                         rr:parent "m" ] ] .

@@ -1,0 +1,20 @@
+
+--------------------------------------- 
+ START MOnto  
+--------------------------------------- 
+Building ontology...
+  Ontology graph generated: 
+    /Users/samueldussault/Documents/Projets/duss2503/testsOntopQueryOptim/src/main/resources/ontoRelAConfig/20230818-1406/InitialOntoGraph.dot
+  Filtered ontology graph generated: 
+    /Users/samueldussault/Documents/Projets/duss2503/testsOntopQueryOptim/src/main/resources/ontoRelAConfig/20230818-1406/OntoGraph.dot
+  Normalized ontology generated: 
+    /Users/samueldussault/Documents/Projets/duss2503/testsOntopQueryOptim/src/main/resources/ontoRelAConfig/20230818-1406/onto_tst_normalized.txt
+  Filtered ontology reports generated: 
+    /Users/samueldussault/Documents/Projets/duss2503/testsOntopQueryOptim/src/main/resources/ontoRelAConfig/20230818-1406/OntologyAnnotationDiagnostics.txt
+    /Users/samueldussault/Documents/Projets/duss2503/testsOntopQueryOptim/src/main/resources/ontoRelAConfig/20230818-1406/OntologySummary.txt
+    /Users/samueldussault/Documents/Projets/duss2503/testsOntopQueryOptim/src/main/resources/ontoRelAConfig/20230818-1406/OntologyAnomalies.txt
+Building ontology ended.
+
+--------------------------------------- 
+ END MOnto 1 sec
+--------------------------------------- 

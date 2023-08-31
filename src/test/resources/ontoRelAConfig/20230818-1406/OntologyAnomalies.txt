@@ -1,0 +1,18 @@
+
+======================================================= 
+Classes without data association axiom
+======================================================= 
+http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3
+http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst1
+http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2
+http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst
+
+======================================================= 
+Leaf classes without data association axiom
+======================================================= 
+http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3
+http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2
+
+======================================================= 
+Isolated classes
+======================================================= 

@@ -1,6 +1,0 @@
-from expression «
-select a * b AS d, c from t
-»
-project c,d
-using t.a, t.b, t.c
-depending on A,B,C

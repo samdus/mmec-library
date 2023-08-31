@@ -1,0 +1,26 @@
+
+======================================================= 
+Ontology Annotation Diagnostics
+======================================================= 
+
+--------------------------------------- 
+Data properties annotations diagnostics
+--------------------------------------- 
+
+--------------------------------------- 
+Object properties annotations diagnostics
+--------------------------------------- 
+rel : without label [fr, en]
+rel : without definition [fr, en]
+
+--------------------------------------- 
+Classes annotations diagnostics
+--------------------------------------- 
+tst3 : without label [fr, en]
+tst3 : without definition [fr, en]
+tst1 : without label [fr, en]
+tst1 : without definition [fr, en]
+tst2 : without label [fr, en]
+tst2 : without definition [fr, en]
+tst : without label [fr, en]
+tst : without definition [fr, en]

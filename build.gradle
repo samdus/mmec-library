@@ -1,59 +1,94 @@
-plugins {
-    id 'java'
-    id 'idea'
-    id 'application'
-    id 'antlr'
-    id 'nu.studer.jooq' version '7.1.1'
+buildscript {
+    def nexusUsername = project.getProperties().getOrDefault("nexusUsername", "novalue")
+    def nexusPassword = project.getProperties().getOrDefault("nexusPassword", "novalue")
+    def nexusAddress = project.getProperties().getOrDefault("nexusAddress", "https://novalue")
+    repositories {
+        mavenLocal()
+        maven {
+            credentials {
+                username nexusUsername
+                password nexusPassword
+            }
+            url nexusAddress
+        }
+        maven { url "https://plugins.gradle.org/m2/" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "ca.griis:compliance-application:2.+"
+    }
+}
+
+ext {
+    hasJooqing = false
+    isSpringBoot = false
+    minCoverageUnit = 0
+    minCoverageUnitItgr = 0
+    minMutationUnit = 0
 }
 
 group = "ca.griis.mmec"
-version = "0.1.0"
+version = "1.0.0"
+ext.product = "Library"
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(14)
-        vendor = JvmVendorSpec.ADOPTIUM
-        implementation = JvmImplementation.VENDOR_SPECIFIC
-    }
-}
+apply plugin: ca.griis.compliance.GriisPlugin
 
 dependencies {
-    annotationProcessor "org.projectlombok:lombok:1.18.24"
+    implementation 'it.unibz.inf.ontop:ontop:5.1.0'
+    implementation 'it.unibz.inf.ontop:ontop-binding:5.1.0'
+    implementation 'it.unibz.inf.ontop:ontop-core:5.1.0'
+    implementation 'it.unibz.inf.ontop:ontop-model:5.1.0'
+    implementation 'it.unibz.inf.ontop:ontop-rdb:5.1.0'
+    implementation 'it.unibz.inf.ontop:ontop-system-sql-core:5.1.0'
+    implementation 'it.unibz.inf.ontop:ontop-system-sql-owlapi:5.1.0'
 
-    antlr 'org.antlr:antlr4:4.10.1'
+    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.mockito:mockito-core"
+    testImplementation "org.mockito:mockito-inline"
+    testImplementation "net.jqwik:jqwik"
+    testImplementation "org.testcontainers:postgresql"
+    testImplementation 'org.postgresql:postgresql:42.6.0'
+    testImplementation 'com.h2database:h2:2.2.220'
 
-    implementation "com.google.guava:guava:31.1-jre"
-    implementation 'org.antlr:antlr4:4.10.1'
-    implementation "org.projectlombok:lombok:1.18.24"
-
-    implementation 'org.jooq:jooq:3.17.3'
-    implementation "org.postgresql:postgresql:42.5.0"
-
-    testImplementation "org.json:json:20220320"
-    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.9.0"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:5.9.0"
+    // Other possible dependencies from the Ontop project
+//    implementation 'it.unibz.inf.ontop:ontop-build:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-cli:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-client:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-db:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-distribution:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-docker-tests:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-endpoint:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-engine:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-kg-query:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-lightweight-tests:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-core:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-native:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-owlapi:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-r2rml:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql-all:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql-core:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql-owlapi:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-obda-core:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-ontology:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-ontology-owlapi:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-optimization:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-owlapi:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-protege:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-protege-dependencies:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-protege-distribution:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-protege-plugin:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-rdb2rdf-compliance:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-rdf4j:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-reformulation:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-reformulation-core:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-reformulation-sql:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-semantic-index:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-sparql-compliance:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-system:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-system-core:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-system-owlapi:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-system-sql:5.1.0'
+//    implementation 'it.unibz.inf.ontop:ontop-test:5.1.0'
 }
-
-sourceSets {
-    main {
-        java.srcDirs += file("src/gen/java-antlr")
-        java.srcDirs += file("src/gen/java-jooq")
-    }
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-}
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
-
-
-apply from: "script/antlr.gradle"
-apply from: "script/application.gradle"
-apply from: "script/jooq.gradle"

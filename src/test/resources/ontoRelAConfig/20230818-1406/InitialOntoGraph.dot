@@ -1,0 +1,25 @@
+digraph G {
+  splines=polyline;
+  rankdir=LR;
+  "tst3" [ label="\"tst3\"@
+tst3" shape="ellipse" ];
+  "tst1" [ label="\"tst1\"@
+tst1" shape="ellipse" ];
+  "tst2" [ label="\"tst2\"@
+tst2" shape="ellipse" ];
+  "tst" [ label="\"tst\"@
+tst" shape="ellipse" ];
+  "ONTORELA_C0004X" [ label="\"ONTORELA_C0004X\"@
+tst1 C0004Xtst3 | rel | tst2" shape="ellipse" ];
+  "ONTORELA_C0006X" [ label="\"ONTORELA_C0006X\"@
+tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3" shape="ellipse" ];
+  "tst1" -> "tst" [ label="\"isa\"" style="solid" ];
+  "tst2" -> "tst" [ label="\"isa\"" style="solid" ];
+  "tst3" -> "tst" [ label="\"isa\"" style="solid" ];
+  "tst2" -> "ONTORELA_C0006X" [ label="\"isa\"" style="solid" ];
+  "tst3" -> "ONTORELA_C0006X" [ label="\"isa\"" style="solid" ];
+  "tst1" -> "ONTORELA_C0004X" [ label="[1..*]
+\"rel@rel\"" style="solid" ];
+  "ONTORELA_C0004X" -> "ONTORELA_C0006X" [ label="[1..*]
+\"rel@rel\"" style="solid" ];
+}

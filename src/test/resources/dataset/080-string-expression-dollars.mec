@@ -1,4 +1,0 @@
-from expression $$
-  select a * b AS d, c from t
-$$
-project c,d

@@ -1,0 +1,99 @@
+
+======================================================= 
+Ontology Summary
+======================================================= 
+IRI_owlapi [ontoIRI=OntoIRI [fullIRI=http://www.griis.ca/projects/onto_tst, shortIRI=onto_tst], iriOwlapi=http://www.griis.ca/projects/onto_tst]
+
+--------------------------------------- 
+Imported Ontology : 0
+--------------------------------------- 
+
+--------------------------------------- 
+Prefixes : 6
+--------------------------------------- 
+  OntoPrefix [alias=:, path=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/]
+  OntoPrefix [alias=xsd:, path=http://www.w3.org/2001/XMLSchema#]
+  OntoPrefix [alias=rdfs:, path=http://www.w3.org/2000/01/rdf-schema#]
+  OntoPrefix [alias=owl:, path=http://www.w3.org/2002/07/owl#]
+  OntoPrefix [alias=xml:, path=http://www.w3.org/XML/1998/namespace]
+  OntoPrefix [alias=rdf:, path=http://www.w3.org/1999/02/22-rdf-syntax-ns#]
+
+--------------------------------------- 
+Datatypes : 0
+--------------------------------------- 
+
+--------------------------------------- 
+Data properties : 0
+--------------------------------------- 
+
+--------------------------------------- 
+Object properties : 1
+--------------------------------------- 
+ObjectProperty_owlapi [<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel>, isFunctional=false]
+  Domain : 
+  Range : 
+
+--------------------------------------- 
+Classes : 6
+--------------------------------------- 
+OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3, shortIRI=tst3],type=DECLARED]
+  ISA http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst
+  ISA http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0006X
+OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst1, shortIRI=tst1],type=DECLARED]
+  ISA http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst
+OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2, shortIRI=tst2],type=DECLARED]
+  ISA http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst
+  ISA http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0006X
+OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst, shortIRI=tst],type=DECLARED]
+OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0004X, shortIRI=ONTORELA_C0004X],type=PROPERTY_CLASS]
+OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=UNION_CLASS]
+
+--------------------------------------- 
+Class Inheritance Axioms : 5
+--------------------------------------- 
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst1, shortIRI=tst1],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst, shortIRI=tst],type=DECLARED]
+ axiomOrigin=DECLARED]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2, shortIRI=tst2],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst, shortIRI=tst],type=DECLARED]
+ axiomOrigin=DECLARED]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3, shortIRI=tst3],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst, shortIRI=tst],type=DECLARED]
+ axiomOrigin=DECLARED]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2, shortIRI=tst2],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=UNION_CLASS]
+ axiomOrigin=UNION_AXIOM]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3, shortIRI=tst3],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=UNION_CLASS]
+ axiomOrigin=UNION_AXIOM]
+
+--------------------------------------- 
+Data Association Axioms : 0
+--------------------------------------- 
+
+--------------------------------------- 
+Class Association Axioms : 2
+--------------------------------------- 
+  OntoAxiomClass [
+  axiomType=ASSOCIATION
+  determinant=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst1, shortIRI=tst1],type=DECLARED]
+  participation=Participation [participationType=SOME, min=1, max=2147483647]
+  property=ObjectProperty_owlapi [<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel>, isFunctional=false]
+  dependent=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0004X, shortIRI=ONTORELA_C0004X],type=PROPERTY_CLASS]
+  axiomOrigin=PROPERTY_AXIOM  annotations=OntoAnnotationSet [OntoAnnotation [type=DEFINITION, language=fr, value=ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectUnionOf(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2> <http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3>)))]
+OntoAnnotation [type=DEFINITION, language=en, value=ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectUnionOf(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2> <http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3>)))]
+]]
+  OntoAxiomClass [
+  axiomType=ASSOCIATION
+  determinant=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0004X, shortIRI=ONTORELA_C0004X],type=PROPERTY_CLASS]
+  participation=Participation [participationType=SOME, min=1, max=2147483647]
+  property=ObjectProperty_owlapi [<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel>, isFunctional=false]
+  dependent=OntoClass [OntoIRI [fullIRI=http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=UNION_CLASS]
+  axiomOrigin=UNION_AXIOM  annotations=OntoAnnotationSet [OntoAnnotation [type=DEFINITION, language=fr, value=ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectUnionOf(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2> <http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3>)))]
+OntoAnnotation [type=DEFINITION, language=en, value=ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectSomeValuesFrom(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/rel> ObjectUnionOf(<http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst2> <http://www.semanticweb.org/samueldussault/ontologies/2023/7/untitled-ontology-29/tst3>)))]
+]]

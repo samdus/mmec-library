@@ -1,0 +1,13 @@
+# Default database configurations
+schemaName: TST
+rdbmsName:
+  - postgresql
+defaultKeyName: uid
+defaultKeyDomainName: uid_domain
+defaultKeyType: UUID
+defaultAttributeName : value
+defaultAttributeDomaineName: value_domain
+defaultAttributeType: TEXT
+maxIdentifierLength: 60
+languages:
+  - en

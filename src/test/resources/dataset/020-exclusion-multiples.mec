@@ -1,6 +1,0 @@
-/* exclusions de l'OntoRel */
-exclusion T01f6 NOT_AVAILABLE 'La clinique ne gère pas ces données là.';
-exclusion T01f6 UNDEFINED 'À faire en 2022';
-
-/* exclusions de la source */
-exclusion "EXP"."LABORATOIRE"."COLUMN" 'Colonne non utilisée';
