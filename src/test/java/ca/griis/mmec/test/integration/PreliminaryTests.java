@@ -4,6 +4,7 @@ import ca.griis.mmec.test.integration.util.OntopTester;
 import ca.griis.mmec.test.integration.util.TestOptimize;
 import ca.griis.mmec.test.integration.util.TestR2RML;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
+import org.junit.After;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,12 +14,18 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 public class PreliminaryTests {
     private static final Path testSetPath = Paths.get("src","test", "resources", "testset");
     private final PostgresContainerWrapper postgresContainerWrapper = PostgresContainerWrapper.getInstance();
+
+    @After
+    public void tearDown() throws SQLException {
+        postgresContainerWrapper.resetDB();
+    }
 
     @ParameterizedTest
     @MethodSource("listTestElements")
