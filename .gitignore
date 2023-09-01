@@ -222,10 +222,10 @@ Temporary Items
 
 ### Windows ###
 # Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
+Thumbs.postgresContainerWrapper
+Thumbs.postgresContainerWrapper:encryptable
+ehthumbs.postgresContainerWrapper
+ehthumbs_vista.postgresContainerWrapper
 
 # Dump file
 *.stackdump

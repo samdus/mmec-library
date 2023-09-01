@@ -1,5 +1,6 @@
 package ca.griis.mmec.test.integration.util;
 
+import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.dbschema.DBMetadataProvider;
 import it.unibz.inf.ontop.dbschema.QuotedID;
@@ -21,7 +22,6 @@ import it.unibz.inf.ontop.model.term.Variable;
 import it.unibz.inf.ontop.spec.sqlparser.RAExpression;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import it.unibz.inf.ontop.utils.LocalJDBCConnectionUtils;
-import ca.griis.mmec.test.integration.util.dbtype.Db;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,8 +43,8 @@ public class TestOptimize extends OntopTester {
         add("SELECT CHILD.\"m\" AS \"CHILD_m\", PARENT.\"m\" AS \"PARENT_m\" FROM (SELECT * FROM \"TABLE2\") CHILD, (SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\") PARENT WHERE CHILD.m = PARENT.m");
     }};
 
-    public TestOptimize(Db db) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
-        super(db);
+    public TestOptimize(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile, String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
+        super(postgresContainerWrapper, ontologyFile, mappingFile);
     }
 
     @Override

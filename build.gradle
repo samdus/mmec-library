@@ -27,28 +27,38 @@ ext {
     minMutationUnit = 0
 }
 
-group = "ca.griis.mmec"
+group = "ca.griis"
 version = "1.0.0"
 ext.product = "Library"
 
 apply plugin: ca.griis.compliance.GriisPlugin
 
 dependencies {
-    implementation 'it.unibz.inf.ontop:ontop:5.1.0'
-    implementation 'it.unibz.inf.ontop:ontop-binding:5.1.0'
-    implementation 'it.unibz.inf.ontop:ontop-core:5.1.0'
-    implementation 'it.unibz.inf.ontop:ontop-model:5.1.0'
-    implementation 'it.unibz.inf.ontop:ontop-rdb:5.1.0'
-    implementation 'it.unibz.inf.ontop:ontop-system-sql-core:5.1.0'
-    implementation 'it.unibz.inf.ontop:ontop-system-sql-owlapi:5.1.0'
+    api 'it.unibz.inf.ontop:ontop:5.1.0'
+    api 'it.unibz.inf.ontop:ontop-binding:5.1.0'
+    api 'it.unibz.inf.ontop:ontop-core:5.1.0'
+    api 'it.unibz.inf.ontop:ontop-model:5.1.0'
+    api 'it.unibz.inf.ontop:ontop-rdb:5.1.0'
+    api 'it.unibz.inf.ontop:ontop-system-sql-core:5.1.0'
+    api 'it.unibz.inf.ontop:ontop-system-sql-owlapi:5.1.0'
 
-    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    api "ca.griis:logger-library:2.+"
+    api "org.postgresql:postgresql"
+
     testImplementation "org.mockito:mockito-core"
     testImplementation "org.mockito:mockito-inline"
-    testImplementation "net.jqwik:jqwik"
+    testImplementation "org.mockito:mockito-junit-jupiter"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.junit.jupiter:junit-jupiter-params"
+
+    testImplementation "org.testcontainers:database-commons"
+    testImplementation "org.testcontainers:jdbc"
     testImplementation "org.testcontainers:postgresql"
-    testImplementation 'org.postgresql:postgresql:42.6.0'
-    testImplementation 'com.h2database:h2:2.2.220'
+    testImplementation "org.testcontainers:junit-jupiter"
+
+    testImplementation "net.jqwik:jqwik"
+    testImplementation "com.github.spotbugs:spotbugs-annotations"
+    testImplementation "com.zaxxer:HikariCP"
 
     // Other possible dependencies from the Ontop project
 //    implementation 'it.unibz.inf.ontop:ontop-build:5.1.0'
