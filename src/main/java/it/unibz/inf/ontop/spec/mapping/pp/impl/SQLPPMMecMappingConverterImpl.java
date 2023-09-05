@@ -1,11 +1,21 @@
+/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Copie de l'implémentation de it.unibz.inf.ontop.spec.mapping.pp.impl.SQLPPMappingConverterImpl.
+ * @brief @~english Copy of the implementation of it.unibz.inf.ontop.spec.mapping.pp.impl.SQLPPMappingConverterImpl.
+ */
 package it.unibz.inf.ontop.spec.mapping.pp.impl;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
-import it.unibz.inf.ontop.dbschema.MetadataLookup;
-import it.unibz.inf.ontop.dbschema.QuotedID;
-import it.unibz.inf.ontop.dbschema.QuotedIDFactory;
+import it.unibz.inf.ontop.dbschema.*;
 import it.unibz.inf.ontop.dbschema.impl.RawQuotedIDFactory;
 import it.unibz.inf.ontop.exception.InvalidMappingSourceQueriesException;
 import it.unibz.inf.ontop.exception.InvalidQueryException;
@@ -14,24 +24,20 @@ import it.unibz.inf.ontop.injection.CoreSingletons;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.injection.OntopOBDASettings;
 import it.unibz.inf.ontop.iq.IQTree;
-import it.unibz.inf.ontop.model.term.ImmutableTerm;
-import it.unibz.inf.ontop.model.term.NonVariableTerm;
-import it.unibz.inf.ontop.model.term.Variable;
+import it.unibz.inf.ontop.model.term.*;
 import it.unibz.inf.ontop.spec.mapping.MappingAssertion;
 import it.unibz.inf.ontop.spec.mapping.TargetAtom;
+import it.unibz.inf.ontop.spec.sqlparser.*;
 import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMappingConverter;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
-import it.unibz.inf.ontop.spec.sqlparser.RAExpression;
-import it.unibz.inf.ontop.spec.sqlparser.SQLQueryParser;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.SubstitutionFactory;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -67,16 +73,6 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
             IQTree tree;
             Function<Variable, Optional<ImmutableTerm>> lookup;
 
-
-            // On vient de démontrer que c'est possible d'amener notre assertion jusqu'ici
-            // Il faudra maintenant l'amener jusqu'au saturateur pour pouvoir modifier son comportement pour que ça prenne en compte notre fonction
-            if(assertion instanceof SQLPPMMecTriplesMap) {
-                for(SQLPPTriplesMap subsetAssertion : ((SQLPPMMecTriplesMap) assertion).getSubsetList()) {
-                    System.out.println("========================================");
-                    System.out.printf("%s%n%nis subset of%n%n%s%n", assertion, subsetAssertion);
-                    System.out.println("========================================");
-                }
-            }
             try {
                 re = getRAExpression(assertion, metadataLookup);
                 tree = sqlQueryParser.convert(re);
@@ -113,12 +109,12 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
 
     private static <T> Function<Variable, Optional<T>> placeholderLookup(SQLPPTriplesMap mappingAssertion, QuotedIDFactory idFactory, ImmutableMap<QuotedID, T> lookup) {
         Function<Variable, Optional<T>> standard =
-                v -> Optional.ofNullable(lookup.get(idFactory.createAttributeID(v.getName())));
+            v -> Optional.ofNullable(lookup.get(idFactory.createAttributeID(v.getName())));
 
         if (mappingAssertion instanceof OntopNativeSQLPPTriplesMap) {
             QuotedIDFactory rawIdFactory = new RawQuotedIDFactory(idFactory);
             return v -> Optional.ofNullable(standard.apply(v)
-                            .orElse(lookup.get(rawIdFactory.createAttributeID(v.getName()))));
+                .orElse(lookup.get(rawIdFactory.createAttributeID(v.getName()))));
         }
         else
             return standard;
@@ -130,27 +126,27 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
         Substitution<ImmutableTerm> targetSubstitution = target.getSubstitution();
 
         ImmutableMap<Variable, Optional<ImmutableTerm>> targetPreMap =
-                targetSubstitution.apply(target.getProjectionAtom().getArguments()).stream()
-                        .flatMap(ImmutableTerm::getVariableStream)
-                        .distinct()
-                        .collect(ImmutableCollectors.toMap(v -> v, lookup));
+            targetSubstitution.apply(target.getProjectionAtom().getArguments()).stream()
+                .flatMap(ImmutableTerm::getVariableStream)
+                .distinct()
+                .collect(ImmutableCollectors.toMap(v -> v, lookup));
 
         ImmutableList<String> missingPlaceholders = targetPreMap.entrySet().stream()
-                .filter(e -> e.getValue().isEmpty())
-                .map(Map.Entry::getKey)
-                .map(Variable::getName)
-                .collect(ImmutableCollectors.toList());
+            .filter(e -> e.getValue().isEmpty())
+            .map(Map.Entry::getKey)
+            .map(Variable::getName)
+            .collect(ImmutableCollectors.toList());
 
         if (!missingPlaceholders.isEmpty())
             throw new InvalidMappingSourceQueriesException(missingPlaceholders.stream()
-                    .collect(Collectors.joining(", ",
-                            "The placeholder(s) ",
-                            " in the target do(es) not occur in source query of the mapping assertion\n["
-                                    + provenance.getProvenanceInfo() + "]")));
+                .collect(Collectors.joining(", ",
+                    "The placeholder(s) ",
+                    " in the target do(es) not occur in source query of the mapping assertion\n["
+                        + provenance.getProvenanceInfo() + "]")));
 
         //noinspection OptionalGetWithoutIsPresent
         Substitution<ImmutableTerm> substitution = targetPreMap.entrySet().stream()
-                .collect(substitutionFactory.toSubstitutionSkippingIdentityEntries(Map.Entry::getKey, e -> e.getValue().get()));
+            .collect(substitutionFactory.toSubstitutionSkippingIdentityEntries(Map.Entry::getKey, e -> e.getValue().get()));
 
         Substitution<Variable> targetRenamingPart = substitution.restrictRangeTo(Variable.class);
         Substitution<ImmutableTerm> spoSubstitution = targetSubstitution.transform(targetRenamingPart::applyToTerm);
@@ -158,11 +154,11 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
         Substitution<? extends ImmutableTerm> selectSubstitution = substitution.restrictRangeTo(NonVariableTerm.class);
 
         IQTree selectTree = iqFactory.createUnaryIQTree(
-                iqFactory.createConstructionNode(spoSubstitution.getRangeVariables(), selectSubstitution),
-                tree);
+            iqFactory.createConstructionNode(spoSubstitution.getRangeVariables(), selectSubstitution),
+            tree);
 
         IQTree mappingTree = iqFactory.createUnaryIQTree(iqFactory.createConstructionNode(
-                target.getProjectionAtom().getVariables(), spoSubstitution), selectTree);
+            target.getProjectionAtom().getVariables(), spoSubstitution), selectTree);
 
         return new MappingAssertion(iqFactory.createIQ(target.getProjectionAtom(), mappingTree), provenance);
     }
@@ -174,8 +170,8 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
         }
         catch (InvalidQueryException e) {
             throw new InvalidMappingSourceQueriesException("Error: " + e.getMessage()
-                    + " \nProblem location: source query of triplesMap \n["
-                    +  mappingAssertion.getTriplesMapProvenance().getProvenanceInfo() + "]");
+                + " \nProblem location: source query of triplesMap \n["
+                +  mappingAssertion.getTriplesMapProvenance().getProvenanceInfo() + "]");
         }
     }
 }
