@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de l'objet MappingConverterExtension.
  * @brief @~english MappingConverterExtension object implementation.
  */
+
 package ca.griis.mmec.controller.ontop.extension;
 
 /**
@@ -23,8 +24,10 @@ package ca.griis.mmec.controller.ontop.extension;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Étend le R2RMLMappingParser avec un prétraitement du graphe d'arrimage et un traitement avant
- *                 la génération des PPMapping. Sert à étendre le modèle interne avec les fonctions R2RML étendues.
+ * @brief @~french Étend le R2RMLMappingParser avec un prétraitement du graphe d'arrimage et un
+ *        traitement avant
+ *        la génération des PPMapping. Sert à étendre le modèle interne avec les fonctions R2RML
+ *        étendues.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -38,7 +41,7 @@ package ca.griis.mmec.controller.ontop.extension;
  *      2023-09-05 [SD] - Implémentation initiale.
  *
  * @par Tâches
- *      @todo 2023-09-06 [SD] - Faire la conception.
+ * @todo 2023-09-06 [SD] - Faire la conception.
  */
 public class MappingConverterExtension {
   private static final MappingConverterExtension instance = new MappingConverterExtension();

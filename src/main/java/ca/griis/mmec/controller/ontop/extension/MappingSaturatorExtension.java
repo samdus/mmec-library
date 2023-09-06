@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de l'objet MappingSaturatorExtension.
  * @brief @~english MappingSaturatorExtension object implementation.
  */
+
 package ca.griis.mmec.controller.ontop.extension;
 
 /**
@@ -37,7 +38,7 @@ package ca.griis.mmec.controller.ontop.extension;
  *      2023-09-06 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      @todo 2023-09-06 [SD] - Faire la conception.
+ * @todo 2023-09-06 [SD] - Faire la conception.
  */
 public class MappingSaturatorExtension {
   private static final MappingSaturatorExtension instance = new MappingSaturatorExtension();

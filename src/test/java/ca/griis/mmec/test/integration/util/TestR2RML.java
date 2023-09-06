@@ -6,12 +6,11 @@ import it.unibz.inf.ontop.model.atom.RDFAtomPredicate;
 import it.unibz.inf.ontop.spec.OBDASpecInput;
 import it.unibz.inf.ontop.spec.OBDASpecification;
 import it.unibz.inf.ontop.spec.mapping.Mapping;
-import org.apache.commons.rdf.api.IRI;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
+import org.apache.commons.rdf.api.IRI;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 public class TestR2RML extends OntopTester {
   OBDASpecInput specInputBuilder;
@@ -19,7 +18,7 @@ public class TestR2RML extends OntopTester {
   public TestR2RML(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
       String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
     super(postgresContainerWrapper, ontologyFile, mappingFile);
-    //        specInputBuilder = OBDASpecInput.defaultBuilder().addMappingFile(mappingFile).build();
+    // specInputBuilder = OBDASpecInput.defaultBuilder().addMappingFile(mappingFile).build();
   }
 
   @Override

@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MappingConfigurationBuilder
  * @brief @~english MappingConfigurationBuilder implementation
  */
+
 package ca.griis.mmec.configuration.builder;
 
 import ca.griis.logger.GriisLogger;
@@ -60,7 +61,6 @@ public class MappingConfigurationBuilder {
   public MappingConfiguration build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new MappingConfiguration() {
-    };
+    return new MappingConfiguration() {};
   }
 }

@@ -12,6 +12,7 @@
  * @brief @~english Copy of the implementation of
  *  * it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser including an extension.
  */
+
 package it.unibz.inf.ontop.spec.mapping.parser.impl;
 
 import ca.griis.mmec.controller.ontop.extension.MappingParserExtension;
@@ -30,21 +31,28 @@ import it.unibz.inf.ontop.spec.mapping.parser.SQLMappingParser;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.net.URL;
+import java.util.Collection;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 import org.eclipse.rdf4j.model.Namespace;
 import org.eclipse.rdf4j.model.impl.LinkedHashModel;
-import org.eclipse.rdf4j.rio.*;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFHandlerException;
+import org.eclipse.rdf4j.rio.RDFParseException;
+import org.eclipse.rdf4j.rio.RDFParser;
+import org.eclipse.rdf4j.rio.Rio;
 import org.eclipse.rdf4j.rio.helpers.StatementCollector;
-
-import java.io.*;
-import java.net.URL;
-import java.util.Collection;
 
 /**
  * High-level class that implements the MappingParser interface for R2RML.
  */
-public class R2RMLMMecMappingParserImpl implements SQLMappingParser {
+public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
 
   private final SQLPPMappingFactory ppMappingFactory;
   private final SpecificationFactory specificationFactory;
@@ -52,7 +60,7 @@ public class R2RMLMMecMappingParserImpl implements SQLMappingParser {
   private final RDF4JR2RMLMappingManager manager;
 
   @Inject
-  private R2RMLMMecMappingParserImpl(SQLPPMappingFactory ppMappingFactory,
+  private MMecR2rmlMappingParserImpl(SQLPPMappingFactory ppMappingFactory,
       SpecificationFactory specificationFactory,
       R2RMLToSQLPPTriplesMapConverter transformer) {
     this.ppMappingFactory = ppMappingFactory;
@@ -60,7 +68,6 @@ public class R2RMLMMecMappingParserImpl implements SQLMappingParser {
     this.transformer = transformer;
     this.manager = RDF4JR2RMLMappingManager.getInstance();
   }
-
 
   @Override
   public SQLPPMapping parse(File mappingFile) throws InvalidMappingException, MappingIOException {
@@ -79,7 +86,6 @@ public class R2RMLMMecMappingParserImpl implements SQLMappingParser {
     }
   }
 
-
   @Override
   public SQLPPMapping parse(Reader reader) throws InvalidMappingException, MappingIOException {
     LinkedHashModel rdf4jGraph = new LinkedHashModel();
@@ -95,13 +101,6 @@ public class R2RMLMMecMappingParserImpl implements SQLMappingParser {
     } catch (RDFParseException | RDFHandlerException e) {
       throw new InvalidMappingException(e.getMessage());
     }
-  }
-
-  private ImmutableMap<String, String> extractPrefixes(LinkedHashModel rdf4jGraph) {
-    return rdf4jGraph.getNamespaces().stream()
-        .collect(ImmutableCollectors.toMap(
-            namespace -> namespace.getPrefix() + ":",
-            Namespace::getName));
   }
 
   @Override
@@ -120,11 +119,18 @@ public class R2RMLMMecMappingParserImpl implements SQLMappingParser {
 
       PrefixManager prefixManager = specificationFactory.createPrefixManager(prefixes);
 
-      ImmutableList<SQLPPTriplesMap> extendedSourceMapping = MappingParserExtension.getInstance().
-          getTriplesMapBeforePreprocess(mappingGraph, tripleMaps, sourceMappings);
+      ImmutableList<SQLPPTriplesMap> extendedSourceMapping = MappingParserExtension.getInstance()
+          .getTriplesMapBeforePreprocess(mappingGraph, tripleMaps, sourceMappings);
       return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
     } catch (InvalidR2RMLMappingException e) {
       throw new InvalidMappingException(e.getMessage());
     }
+  }
+
+  private ImmutableMap<String, String> extractPrefixes(LinkedHashModel rdf4jGraph) {
+    return rdf4jGraph.getNamespaces().stream()
+        .collect(ImmutableCollectors.toMap(
+            namespace -> namespace.getPrefix() + ":",
+            Namespace::getName));
   }
 }

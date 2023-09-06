@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de l'objet MappingConfiguration.
  * @brief @~english MappingConfiguration object implementation.
  */
+
 package ca.griis.mmec.configuration;
 
 /**
@@ -40,5 +41,6 @@ package ca.griis.mmec.configuration;
  *      S.O.
  */
 public abstract class MappingConfiguration {
-  // TODO: Add the properties for the configuration of the mapping. For exemple, the path of the mapping file.
+  // TODO: Add the properties for the configuration of the mapping. For exemple, the path of the
+  // mapping file.
 }

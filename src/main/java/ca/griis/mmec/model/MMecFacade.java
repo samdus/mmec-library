@@ -38,7 +38,7 @@ package ca.griis.mmec.model;
  *      2023-09-06 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      @todo 2023-09-06 [SD] - Faire la conception.
+ * @todo 2023-09-06 [SD] - Faire la conception.
  */
 public class MMecFacade {
 }

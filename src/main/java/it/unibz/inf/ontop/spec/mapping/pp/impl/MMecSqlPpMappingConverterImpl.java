@@ -12,6 +12,7 @@
  * @brief @~english Copy of the implementation of
  *  it.unibz.inf.ontop.spec.mapping.pp.impl.SQLPPMappingConverterImpl.
  */
+
 package it.unibz.inf.ontop.spec.mapping.pp.impl;
 
 import com.google.common.collect.ImmutableList;
@@ -41,21 +42,20 @@ import it.unibz.inf.ontop.spec.sqlparser.SQLQueryParser;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.SubstitutionFactory;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
  * SQLPPMapping -> MappingAssertion
  */
-public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
+public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(SQLPPMMecMappingConverterImpl.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(MMecSqlPpMappingConverterImpl.class);
 
   private final IntermediateQueryFactory iqFactory;
   private final SubstitutionFactory substitutionFactory;
@@ -64,7 +64,7 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
   private final boolean ignoreInvalidMappingEntries;
 
   @Inject
-  private SQLPPMMecMappingConverterImpl(CoreSingletons coreSingletons,
+  private MMecSqlPpMappingConverterImpl(CoreSingletons coreSingletons,
       SQLQueryParser sqlQueryParser) {
     this.iqFactory = coreSingletons.getIQFactory();
     this.substitutionFactory = coreSingletons.getSubstitutionFactory();
@@ -83,10 +83,11 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
 
     if (mappingAssertion instanceof OntopNativeSQLPPTriplesMap) {
       QuotedIDFactory rawIdFactory = new RawQuotedIDFactory(idFactory);
-      return v -> Optional.ofNullable(standard.apply(v)
-          .orElse(lookup.get(rawIdFactory.createAttributeID(v.getName()))));
-    } else
+      return v -> Optional.ofNullable(
+          standard.apply(v).orElse(lookup.get(rawIdFactory.createAttributeID(v.getName()))));
+    } else {
       return standard;
+    }
   }
 
   @Override
@@ -100,18 +101,20 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
       Function<Variable, Optional<ImmutableTerm>> lookup;
 
       try {
-        re = getRAExpression(assertion, metadataLookup);
+        re = getRaExpression(assertion, metadataLookup);
         tree = sqlQueryParser.convert(re);
 
         lookup = placeholderLookup(assertion, metadataLookup.getQuotedIDFactory(),
             re.getUnqualifiedAttributes());
-      }
-      /*
-       * NB: runtime exceptions are also caught due to some JDBC drivers throwing them instead of SQLException-s
-       */ catch (InvalidMappingSourceQueriesException | MetadataExtractionException |
-          RuntimeException e) {
-        if (!ignoreInvalidMappingEntries)
+      } catch (InvalidMappingSourceQueriesException | MetadataExtractionException
+          | RuntimeException e) {
+        /*
+         * NB: runtime exceptions are also caught due to some JDBC drivers throwing them instead of
+         * SQLException-s
+         */
+        if (!ignoreInvalidMappingEntries) {
           throw e;
+        }
         LOGGER.warn("Mapping entry {} was ignored due to an issue: {}", assertion.getId(),
             e.getMessage());
         continue;
@@ -122,8 +125,9 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
           PPMappingAssertionProvenance provenance = assertion.getMappingAssertionProvenance(target);
           builder.add(convert(target, lookup, provenance, tree));
         } catch (InvalidMappingSourceQueriesException e) {
-          if (!ignoreInvalidMappingEntries)
+          if (!ignoreInvalidMappingEntries) {
             throw e;
+          }
           LOGGER.warn("Target atom {} was ignored due to an issue: {}", target, e.getMessage());
         }
       }
@@ -142,26 +146,23 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
 
     ImmutableMap<Variable, Optional<ImmutableTerm>> targetPreMap =
         targetSubstitution.apply(target.getProjectionAtom().getArguments()).stream()
-            .flatMap(ImmutableTerm::getVariableStream)
-            .distinct()
+            .flatMap(ImmutableTerm::getVariableStream).distinct()
             .collect(ImmutableCollectors.toMap(v -> v, lookup));
 
-    ImmutableList<String> missingPlaceholders = targetPreMap.entrySet().stream()
-        .filter(e -> e.getValue().isEmpty())
-        .map(Map.Entry::getKey)
-        .map(Variable::getName)
-        .collect(ImmutableCollectors.toList());
+    ImmutableList<String> missingPlaceholders =
+        targetPreMap.entrySet().stream().filter(e -> e.getValue().isEmpty()).map(Map.Entry::getKey)
+            .map(Variable::getName).collect(ImmutableCollectors.toList());
 
-    if (!missingPlaceholders.isEmpty())
-      throw new InvalidMappingSourceQueriesException(missingPlaceholders.stream()
-          .collect(Collectors.joining(", ",
-              "The placeholder(s) ",
+    if (!missingPlaceholders.isEmpty()) {
+      throw new InvalidMappingSourceQueriesException(missingPlaceholders.stream().collect(
+          Collectors.joining(", ", "The placeholder(s) ",
               " in the target do(es) not occur in source query of the mapping assertion\n["
                   + provenance.getProvenanceInfo() + "]")));
+    }
 
-    //noinspection OptionalGetWithoutIsPresent
-    Substitution<ImmutableTerm> substitution = targetPreMap.entrySet().stream()
-        .collect(substitutionFactory.toSubstitutionSkippingIdentityEntries(Map.Entry::getKey,
+    // noinspection OptionalGetWithoutIsPresent
+    Substitution<ImmutableTerm> substitution = targetPreMap.entrySet().stream().collect(
+        substitutionFactory.toSubstitutionSkippingIdentityEntries(Map.Entry::getKey,
             e -> e.getValue().get()));
 
     Substitution<Variable> targetRenamingPart = substitution.restrictRangeTo(Variable.class);
@@ -175,23 +176,25 @@ public class SQLPPMMecMappingConverterImpl implements SQLPPMappingConverter {
         iqFactory.createConstructionNode(spoSubstitution.getRangeVariables(), selectSubstitution),
         tree);
 
-    IQTree mappingTree = iqFactory.createUnaryIQTree(iqFactory.createConstructionNode(
-        target.getProjectionAtom().getVariables(), spoSubstitution), selectTree);
+    IQTree mappingTree = iqFactory.createUnaryIQTree(
+        iqFactory.createConstructionNode(target.getProjectionAtom().getVariables(),
+            spoSubstitution),
+        selectTree);
 
     return new MappingAssertion(iqFactory.createIQ(target.getProjectionAtom(), mappingTree),
         provenance);
   }
 
-  public RAExpression getRAExpression(SQLPPTriplesMap mappingAssertion,
+  public RAExpression getRaExpression(SQLPPTriplesMap mappingAssertion,
       MetadataLookup metadataLookup)
       throws InvalidMappingSourceQueriesException, MetadataExtractionException {
     String sourceQuery = mappingAssertion.getSourceQuery().getSQL();
     try {
       return sqlQueryParser.getRAExpression(sourceQuery, metadataLookup);
     } catch (InvalidQueryException e) {
-      throw new InvalidMappingSourceQueriesException("Error: " + e.getMessage()
-          + " \nProblem location: source query of triplesMap \n["
-          + mappingAssertion.getTriplesMapProvenance().getProvenanceInfo() + "]");
+      throw new InvalidMappingSourceQueriesException(
+          "Error: " + e.getMessage() + " \nProblem location: source query of triplesMap \n["
+              + mappingAssertion.getTriplesMapProvenance().getProvenanceInfo() + "]");
     }
   }
 }

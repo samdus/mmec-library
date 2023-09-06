@@ -14,16 +14,15 @@ import it.unibz.inf.ontop.iq.type.NotYetTypedEqualityTransformer;
 import it.unibz.inf.ontop.model.atom.AtomFactory;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.spec.mapping.impl.SQLMappingExtractor;
-import it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMMecMappingParserImpl;
+import it.unibz.inf.ontop.spec.mapping.parser.impl.MMecR2rmlMappingParserImpl;
 import it.unibz.inf.ontop.spec.sqlparser.SQLQueryParser;
 import it.unibz.inf.ontop.substitution.SubstitutionFactory;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Hashtable;
 import java.util.Properties;
 import java.util.stream.Stream;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 public abstract class OntopTester {
   protected final OntopSQLOWLAPIConfiguration configuration;
@@ -38,10 +37,9 @@ public abstract class OntopTester {
   protected final QueryPlanner queryPlanner;
   protected final NativeQueryGenerator nativeQueryGenerator;
   protected final NotYetTypedEqualityTransformer notYetTypedEqualityTransformer;
-  protected final NotYetTypedBinaryMathOperationTransformer
-      notYetTypedBinaryMathOperationTransformer;
+  protected final NotYetTypedBinaryMathOperationTransformer notYetTypedBinaryMathOperationTransformer;
   protected final SQLQueryParser sqlQueryParser;
-  protected final R2RMLMMecMappingParserImpl r2RMLMMecMappingParserImpl;
+  protected final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
   protected final SQLMappingExtractor mappingExtractor;
   protected final String injectionConfigurationFile = "defaultConfiguration.properties";
 
@@ -70,8 +68,8 @@ public abstract class OntopTester {
         configuration.getInjector().getInstance(NotYetTypedBinaryMathOperationTransformer.class);
     generalOptimizer =
         configuration.getInjector().getInstance(GeneralStructuralAndSemanticIQOptimizer.class);
-    r2RMLMMecMappingParserImpl =
-        configuration.getInjector().getInstance(R2RMLMMecMappingParserImpl.class);
+    mMecR2rmlMappingParserImpl =
+        configuration.getInjector().getInstance(MMecR2rmlMappingParserImpl.class);
     queryPlanner = configuration.getInjector().getInstance(QueryPlanner.class);
     mappingExtractor = configuration.getInjector().getInstance(SQLMappingExtractor.class);
     nativeQueryGenerator =
@@ -79,7 +77,7 @@ public abstract class OntopTester {
     sqlQueryParser = new SQLQueryParser(coreSingletons);
   }
 
-  abstract public void runTest() throws Exception;
+  public abstract void runTest() throws Exception;
 
   private Properties getInjectionConfigurationProperties() throws IOException {
     Properties prop = new Properties();

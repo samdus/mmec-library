@@ -42,8 +42,8 @@ dependencies {
     api 'it.unibz.inf.ontop:ontop-system-sql-core:5.1.0'
     api 'it.unibz.inf.ontop:ontop-system-sql-owlapi:5.1.0'
 
-    api "ca.griis:logger-library:2.+"
-    api "org.postgresql:postgresql"
+    implementation "ca.griis:logger-library:2.0.1-SNAPSHOT"
+    implementation "org.postgresql:postgresql"
 
     testImplementation "org.mockito:mockito-core"
     testImplementation "org.mockito:mockito-inline"

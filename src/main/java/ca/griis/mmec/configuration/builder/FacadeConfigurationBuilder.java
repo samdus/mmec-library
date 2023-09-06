@@ -10,6 +10,7 @@
  * @brief @~french Implémentation du constructeur pour la configuration d'une façade d'arrimage.
  * @brief @~english Implementation of the constructor for the mapping facade configuration.
  */
+
 package ca.griis.mmec.configuration.builder;
 
 import ca.griis.logger.GriisLogger;
@@ -61,7 +62,6 @@ public class FacadeConfigurationBuilder {
   public FacadeConfiguration build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new FacadeConfiguration() {
-    };
+    return new FacadeConfiguration() {};
   }
 }

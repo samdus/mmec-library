@@ -10,12 +10,12 @@
  * @brief @~french Implémentation de l'objet de configuration de la connexion à la base de données.
  * @brief @~english Implementation of the database connection configuration object.
  */
+
 package ca.griis.mmec.configuration;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
-
 import java.util.Properties;
 
 /**
@@ -58,7 +58,7 @@ public abstract class ConnectionConfiguration {
    *
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public abstract String getDriverName();
 
@@ -71,7 +71,7 @@ public abstract class ConnectionConfiguration {
    *
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public abstract String getDatabaseName();
 
@@ -84,7 +84,7 @@ public abstract class ConnectionConfiguration {
    *
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public abstract String getJdbcUrl();
 
@@ -98,7 +98,7 @@ public abstract class ConnectionConfiguration {
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public abstract String getUsername();
 
@@ -112,7 +112,7 @@ public abstract class ConnectionConfiguration {
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public abstract String getPassword();
 
@@ -125,7 +125,7 @@ public abstract class ConnectionConfiguration {
    *
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public Properties getPropertiesForOntop() {
     logger.trace(Trace.ENTER_METHOD_0);

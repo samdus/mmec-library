@@ -15,7 +15,6 @@ package ca.griis.mmec.model;
 
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import it.unibz.inf.ontop.spec.mapping.pp.impl.R2RMLSQLPPtriplesMap;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,7 @@ import java.util.List;
  *      «Limits description (optional)»
  *
  * @brief @~french Classe servant à étendre le modèle interne de TripleMap
- *                 avec les fonctions R2RML étendues.
+ *        avec les fonctions R2RML étendues.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -46,7 +45,7 @@ import java.util.List;
  *      2023-09-06 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *    S.O.
+ *      S.O.
  */
 public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
   private final List<SQLPPTriplesMap> subSetList = new ArrayList<>();
@@ -61,7 +60,7 @@ public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public MMecTriplesMap(SQLPPTriplesMap sqlppTriplesMap) {
     super(sqlppTriplesMap.getId(), sqlppTriplesMap.getSourceQuery(),
@@ -78,7 +77,7 @@ public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public List<SQLPPTriplesMap> getSubsetList() {
     return subSetList;
@@ -94,7 +93,7 @@ public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public void addSubset(SQLPPTriplesMap subset) {
     subSetList.add(subset);

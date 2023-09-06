@@ -8,7 +8,6 @@ import it.unibz.inf.ontop.dbschema.impl.CachingMetadataLookup;
 import it.unibz.inf.ontop.dbschema.impl.JDBCMetadataProviderFactory;
 import it.unibz.inf.ontop.exception.MinorOntopInternalBugException;
 import it.unibz.inf.ontop.exception.OntopInternalBugException;
-import it.unibz.inf.ontop.injection.OntopSQLCredentialSettings;
 import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.UnaryIQTree;
@@ -22,26 +21,27 @@ import it.unibz.inf.ontop.model.term.Variable;
 import it.unibz.inf.ontop.spec.sqlparser.RAExpression;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import it.unibz.inf.ontop.utils.LocalJDBCConnectionUtils;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestOptimize extends OntopTester {
   final Logger logger = LoggerFactory.getLogger(TestOptimize.class);
 
-  private final List<String> queries = new ArrayList<>() {{
-    // TODO: Ajouter des requêtes en prenant exemple sur it.unibz.inf.ontop.iq.executor
-    add("select \"m\",\"t1\".\"n\",\"t1\".\"o\" from \"TABLE1\" AS \"t1\" join \"TABLE1\" using(\"m\")");
-    add("select \"m\",\"n\",\"o\" from \"TABLE1\" where \"m\" is null");
-    add("select \"t1\".\"m\",\"t1\".\"n\",\"t1\".\"o\" from \"TABLE1\" AS \"t1\" left join \"TABLE2\" on \"t1\".\"m\" = \"TABLE2\".\"m\" where \"TABLE2\".\"m\" is null");
-    add("SELECT CHILD.\"m\" AS \"CHILD_m\", PARENT.\"m\" AS \"PARENT_m\" FROM (SELECT * FROM \"TABLE2\") CHILD, (SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\") PARENT WHERE CHILD.m = PARENT.m");
-  }};
+  private final List<String> queries = new ArrayList<>() {
+    {
+      // TODO: Ajouter des requêtes en prenant exemple sur it.unibz.inf.ontop.iq.executor
+      add("select \"m\",\"t1\".\"n\",\"t1\".\"o\" from \"TABLE1\" AS \"t1\" join \"TABLE1\" using(\"m\")");
+      add("select \"m\",\"n\",\"o\" from \"TABLE1\" where \"m\" is null");
+      add("select \"t1\".\"m\",\"t1\".\"n\",\"t1\".\"o\" from \"TABLE1\" AS \"t1\" left join \"TABLE2\" on \"t1\".\"m\" = \"TABLE2\".\"m\" where \"TABLE2\".\"m\" is null");
+      add("SELECT CHILD.\"m\" AS \"CHILD_m\", PARENT.\"m\" AS \"PARENT_m\" FROM (SELECT * FROM \"TABLE2\") CHILD, (SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\") PARENT WHERE CHILD.m = PARENT.m");
+    }
+  };
 
   public TestOptimize(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
       String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
@@ -60,8 +60,9 @@ public class TestOptimize extends OntopTester {
             metadataProviderFactory.getMetadataProvider(connection);
         CachingMetadataLookup metadataLookup = new CachingMetadataLookup(metadataProvider);
 
-        // TODO: Modifier les requêtes à parser pour qu'elles soient incluables comme sous-requête et qu'elle puisse être analysée correctement
-        //       Ex: Retirer les points virgules à la fin.
+        // TODO: Modifier les requêtes à parser pour qu'elles soient incluables comme sous-requête
+        // et qu'elle puisse être analysée correctement
+        // Ex: Retirer les points virgules à la fin.
         RAExpression re = sqlQueryParser.getRAExpression(sourceQuery, metadataLookup);
         IQTree tree = sqlQueryParser.convert(re);
 
@@ -73,8 +74,9 @@ public class TestOptimize extends OntopTester {
 
         logger.debug("Tree before transformer:\n{}", tree);
 
-        // TODO: Vérifier dans it.unibz.inf.ontop.spec.mapping.impl.SQLMappingExtractor.SQLMappingExtractor
-        //       Quels autres tranformers sont requis ici (ex: ImplicitDBConstraintsProviderFactory)
+        // TODO: Vérifier dans
+        // it.unibz.inf.ontop.spec.mapping.impl.SQLMappingExtractor.SQLMappingExtractor
+        // Quels autres tranformers sont requis ici (ex: ImplicitDBConstraintsProviderFactory)
         tree = notYetTypedEqualityTransformer.transform(tree);
         tree = notYetTypedBinaryMathOperationTransformer.transform(tree);
         logger.debug("Tree after transformers:\n{}", tree);
@@ -117,13 +119,14 @@ public class TestOptimize extends OntopTester {
         logger.debug("Rewritten IQ:\n{}\n", rewrittenIQ);
 
         IQ unfoldedIQ = rewrittenIQ;
-        //        Le Unfolder sert à unfold le mapping, il faudra simplement créer notre propre unfolder (qui ressemblera beaucoup au LensUnfolder)
+        // Le Unfolder sert à unfold le mapping, il faudra simplement créer notre propre unfolder
+        // (qui ressemblera beaucoup au LensUnfolder)
         //
-        //        logger.debug("Start the unfolding...");
-        //        IQ unfoldedIQ = queryUnfolder.optimize(rewrittenIQ);
-        //        if (unfoldedIQ.getTree().isDeclaredAsEmpty()) {
-        //            return unfoldedIQ;
-        //        }
+        // logger.debug("Start the unfolding...");
+        // IQ unfoldedIQ = queryUnfolder.optimize(rewrittenIQ);
+        // if (unfoldedIQ.getTree().isDeclaredAsEmpty()) {
+        // return unfoldedIQ;
+        // }
         logger.debug("Unfolded query:\n{}\n", unfoldedIQ);
 
         IQ optimizedQuery = generalOptimizer.optimize(unfoldedIQ);
@@ -141,15 +144,17 @@ public class TestOptimize extends OntopTester {
           logger.info("Final query:\n{}", sqlQuery);
           executeQuery(sqlQuery, connection);
         } catch (EmptyQueryException e) {
-          // TODO: Plutôt qu'un message, il faudrait créer une nouvelle projection qui respecte les bons types
-          //       et qui retourne l'ensemble vide, mais avec la bonne entête.
+          // TODO: Plutôt qu'un message, il faudrait créer une nouvelle projection qui respecte les
+          // bons types
+          // et qui retourne l'ensemble vide, mais avec la bonne entête.
           logger.info("Final query is empty");
         }
       }
     }
   }
 
-  // Copie de it.unibz.inf.ontop.answering.connection.impl.SQLQuestStatement.extractSQLQuery (membre privé)
+  // Copie de it.unibz.inf.ontop.answering.connection.impl.SQLQuestStatement.extractSQLQuery (membre
+  // privé)
   private String extractSQLQuery(IQ executableQuery)
       throws EmptyQueryException, OntopInternalBugException {
     IQTree tree = executableQuery.getTree();
@@ -166,7 +171,7 @@ public class TestOptimize extends OntopTester {
             "The query does not have the expected structure " +
                 "of an executable query\n" + executableQuery));
 
-    if (queryString.equals(""))
+    if (queryString.isEmpty())
       throw new EmptyQueryException();
 
     return queryString;

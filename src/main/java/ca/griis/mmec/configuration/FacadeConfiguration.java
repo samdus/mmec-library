@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de l'objet FacadeConfiguration.
  * @brief @~english FacadeConfiguration object implementation.
  */
+
 package ca.griis.mmec.configuration;
 
 /**
@@ -40,5 +41,6 @@ package ca.griis.mmec.configuration;
  *      S.O.
  */
 public abstract class FacadeConfiguration {
-  // TODO: Add the properties for the configuration of the façade. For exemple, is it views or materialized views?
+  // TODO: Add the properties for the configuration of the façade. For exemple, is it views or
+  // materialized views?
 }

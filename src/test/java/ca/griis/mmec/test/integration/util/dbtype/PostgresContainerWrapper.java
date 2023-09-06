@@ -20,8 +20,6 @@ import it.unibz.inf.ontop.dbschema.QuotedIDFactory;
 import it.unibz.inf.ontop.dbschema.impl.SQLStandardQuotedIDFactory;
 import it.unibz.inf.ontop.injection.CoreSingletons;
 import it.unibz.inf.ontop.model.type.DBTypeFactory;
-import org.testcontainers.containers.PostgreSQLContainer;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,6 +29,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 import java.util.TimeZone;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -83,7 +82,7 @@ public class PostgresContainerWrapper implements Closeable {
    * @throws SQLException exception SQL obtenue lors de la réinitialisation
    * @brief @~english «Description of the function»
    * @brief @~french Supprime toutes les tables de la base de données qui ne sont pas dans un schéma
-   * système
+   *        système
    */
   public void resetDB() throws SQLException {
     try (Connection connection = getConnection()) {
@@ -124,22 +123,22 @@ public class PostgresContainerWrapper implements Closeable {
       }
     }
 
-    //        try (Connection connection = getConnection();
-    //             BufferedReader reader = new BufferedReader(new FileReader(sqlFile))) {
+    // try (Connection connection = getConnection();
+    // BufferedReader reader = new BufferedReader(new FileReader(sqlFile))) {
     //
-    //            Statement statement = connection.createStatement();
-    //            String line;
-    //            StringBuilder sqlQuery = new StringBuilder();
+    // Statement statement = connection.createStatement();
+    // String line;
+    // StringBuilder sqlQuery = new StringBuilder();
     //
-    //            while ((line = reader.readLine()) != null) {
-    //                sqlQuery.append(line);
+    // while ((line = reader.readLine()) != null) {
+    // sqlQuery.append(line);
     //
-    //                if (line.trim().endsWith(";")) {
-    //                    statement.execute(sqlQuery.toString());
-    //                    sqlQuery.setLength(0);
-    //                }
-    //            }
-    //        }
+    // if (line.trim().endsWith(";")) {
+    // statement.execute(sqlQuery.toString());
+    // sqlQuery.setLength(0);
+    // }
+    // }
+    // }
 
     logger.trace(Trace.EXIT_METHOD_0);
   }

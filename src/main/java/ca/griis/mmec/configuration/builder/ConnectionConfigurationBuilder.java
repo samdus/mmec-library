@@ -10,6 +10,7 @@
  * @brief @~french Implémentation du constructeur pour la configuration de connexion.
  * @brief @~english Implementation of the constructor for the connection configuration.
  */
+
 package ca.griis.mmec.configuration.builder;
 
 import ca.griis.logger.GriisLogger;
