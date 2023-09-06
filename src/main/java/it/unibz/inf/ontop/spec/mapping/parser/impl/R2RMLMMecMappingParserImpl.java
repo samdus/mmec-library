@@ -1,12 +1,16 @@
 /**
  * @file
+ *
  * @copyright @@GRIIS_COPYRIGHT@@
+ *
  * @licence @@GRIIS_LICENCE@@
+ *
  * @version @@GRIIS_VERSION@@
+ *
  * @brief @~french Copie de l'implémentation de
- * it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser.
+ *  * it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser.
  * @brief @~english Copy of the implementation of
- * it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser including an extension.
+ *  * it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser including an extension.
  */
 package it.unibz.inf.ontop.spec.mapping.parser.impl;
 

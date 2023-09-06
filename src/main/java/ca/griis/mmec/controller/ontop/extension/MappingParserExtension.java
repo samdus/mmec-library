@@ -1,10 +1,14 @@
 /**
  * @file
+ *
  * @copyright @@GRIIS_COPYRIGHT@@
+ *
  * @licence @@GRIIS_LICENCE@@
+ *
  * @version @@GRIIS_VERSION@@
- * @brief @~french Implémentation des fonctions permettant d'étendre le R2RMLMappingParser.
- * @brief @~english Implementation of the functions allowing to extend the R2RMLMappingParser.
+ *
+ * @brief @~french Implémentation de l'objet MappingParserExtension.
+ * @brief @~english MappingParserExtension object implementation.
  */
 package ca.griis.mmec.controller.ontop.extension;
 
@@ -15,9 +19,7 @@ import eu.optique.r2rml.api.model.TriplesMap;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.Graph;
-import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 
 import java.util.Collection;
@@ -51,7 +53,7 @@ import java.util.stream.Collectors;
  *      2023-09-05 [SD] - Implémentation initiale.
  *
  * @par Tâches
- *      S.O.
+ *      @todo 2023-09-06 [SD] - Faire la conception.
  */
 public class MappingParserExtension {
 
@@ -103,14 +105,13 @@ public class MappingParserExtension {
         mapping.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
 
     // Voici un exemple de comment réassocier les triplets de fonctions custom au mapping généré :
-    Map<TriplesMap, List<TriplesMap>> hasSubset = mappingGraph.stream(null,
-            rdf.createIRI("http://www.griis.ca/projects/relrel#subsets"), null)
-        .map(axiom -> new ImmutablePair<>(
+    Map<TriplesMap, List<TriplesMap>> hasSubset =
+        mappingGraph.stream(null, rdf.createIRI("http://www.griis.ca/projects/relrel#subsets"),
+            null).map(axiom -> new ImmutablePair<>(
             tripleMaps.stream().filter(triple -> triple.getNode().equals(axiom.getSubject()))
                 .findFirst().orElseThrow(),
             tripleMaps.stream().filter(triple -> triple.getNode().equals(axiom.getObject()))
-                .findFirst().orElseThrow()))
-        .collect(Collectors.groupingBy(ImmutablePair::getRight,
+                .findFirst().orElseThrow())).collect(Collectors.groupingBy(ImmutablePair::getRight,
             Collectors.mapping(ImmutablePair::getLeft, Collectors.toList())));
 
     hasSubset.forEach(

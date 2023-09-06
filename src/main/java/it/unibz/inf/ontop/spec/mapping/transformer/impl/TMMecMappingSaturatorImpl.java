@@ -1,8 +1,12 @@
 /**
  * @file
+ *
  * @copyright @@GRIIS_COPYRIGHT@@
+ *
  * @licence @@GRIIS_LICENCE@@
+ *
  * @version @@GRIIS_VERSION@@
+ *
  * @brief @~french Copie de l'implémentation de
  * it.unibz.inf.ontop.spec.mapping.transformer.impl.TMappingSaturatorImpl.
  * @brief @~english Copy of the implementation of
