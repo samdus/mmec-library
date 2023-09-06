@@ -8,10 +8,12 @@
  * @version @@GRIIS_VERSION@@
  *
  * @brief @~french Copie de l'implémentation de it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser.
- * @brief @~english Copy of the implementation of it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser.
+ * @brief @~english Copy of the implementation of it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser
+ *                  including an extension.
  */
 package it.unibz.inf.ontop.spec.mapping.parser.impl;
 
+import ca.griis.mmec.controller.ontop.extension.MappingParserExtension;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
@@ -111,13 +113,17 @@ public class R2RMLMMecMappingParserImpl implements SQLMappingParser {
 
     protected SQLPPMapping parse(Graph mappingGraph, ImmutableMap<String, String> prefixes) throws InvalidMappingException {
         try {
+            MappingParserExtension.getInstance().updateMappingGraphBeforeParse(mappingGraph, prefixes);
+
             Collection<TriplesMap> tripleMaps = manager.importMappings(mappingGraph);
 
             ImmutableList<SQLPPTriplesMap> sourceMappings = transformer.convert(tripleMaps);
 
             PrefixManager prefixManager = specificationFactory.createPrefixManager(prefixes);
 
-            return ppMappingFactory.createSQLPreProcessedMapping(sourceMappings, prefixManager);
+            ImmutableList<SQLPPTriplesMap> extendedSourceMapping = MappingParserExtension.getInstance().
+                getTriplesMapBeforePreprocess(mappingGraph, tripleMaps, sourceMappings);
+            return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
         }
         catch (InvalidR2RMLMappingException e) {
             throw new InvalidMappingException(e.getMessage());

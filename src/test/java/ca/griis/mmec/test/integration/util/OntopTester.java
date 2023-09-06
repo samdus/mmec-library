@@ -13,7 +13,7 @@ import it.unibz.inf.ontop.spec.mapping.impl.SQLMappingExtractor;
 import it.unibz.inf.ontop.spec.sqlparser.SQLQueryParser;
 import it.unibz.inf.ontop.substitution.SubstitutionFactory;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
-import it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMMeclMappingParserImpl;
+import it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMMecMappingParserImpl;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ public abstract class OntopTester {
     protected final NotYetTypedEqualityTransformer notYetTypedEqualityTransformer;
     protected final NotYetTypedBinaryMathOperationTransformer notYetTypedBinaryMathOperationTransformer;
     protected final SQLQueryParser sqlQueryParser;
-    protected final R2RMLMMeclMappingParserImpl r2RMLMMeclMappingParserImpl;
+    protected final R2RMLMMecMappingParserImpl r2RMLMMecMappingParserImpl;
     protected final SQLMappingExtractor mappingExtractor;
     protected final String injectionConfigurationFile = "defaultConfiguration.properties";
 
@@ -64,7 +64,7 @@ public abstract class OntopTester {
         notYetTypedEqualityTransformer = configuration.getInjector().getInstance(NotYetTypedEqualityTransformer.class);
         notYetTypedBinaryMathOperationTransformer = configuration.getInjector().getInstance(NotYetTypedBinaryMathOperationTransformer.class);
         generalOptimizer = configuration.getInjector().getInstance(GeneralStructuralAndSemanticIQOptimizer.class);
-        r2RMLMMeclMappingParserImpl = configuration.getInjector().getInstance(R2RMLMMeclMappingParserImpl.class);
+        r2RMLMMecMappingParserImpl = configuration.getInjector().getInstance(R2RMLMMecMappingParserImpl.class);
         queryPlanner = configuration.getInjector().getInstance(QueryPlanner.class);
         mappingExtractor = configuration.getInjector().getInstance(SQLMappingExtractor.class);
         nativeQueryGenerator = translationFactory.create(postgresContainerWrapper.getDBParameters(coreSingletons));
