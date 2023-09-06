@@ -7,17 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
-    private final List<SQLPPTriplesMap> subSetList = new ArrayList<>();
+  private final List<SQLPPTriplesMap> subSetList = new ArrayList<>();
 
-    public MMecTriplesMap(SQLPPTriplesMap sqlppTriplesMap) {
-        super(sqlppTriplesMap.getId(), sqlppTriplesMap.getSourceQuery(), sqlppTriplesMap.getTargetAtoms());
-    }
+  public MMecTriplesMap(SQLPPTriplesMap sqlppTriplesMap) {
+    super(sqlppTriplesMap.getId(), sqlppTriplesMap.getSourceQuery(),
+        sqlppTriplesMap.getTargetAtoms());
+  }
 
-    public List<SQLPPTriplesMap> getSubsetList() {
-        return subSetList;
-    }
+  public List<SQLPPTriplesMap> getSubsetList() {
+    return subSetList;
+  }
 
-    public void addSubset(SQLPPTriplesMap subset) {
-        subSetList.add(subset);
-    }
+  public void addSubset(SQLPPTriplesMap subset) {
+    subSetList.add(subset);
+  }
 }

@@ -5,7 +5,7 @@ rdbmsName:
 defaultKeyName: uid
 defaultKeyDomainName: uid_domain
 defaultKeyType: UUID
-defaultAttributeName : value
+defaultAttributeName: value
 defaultAttributeDomaineName: value_domain
 defaultAttributeType: TEXT
 maxIdentifierLength: 60

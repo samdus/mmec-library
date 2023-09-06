@@ -41,24 +41,24 @@
 # Classes mappings
 # ****************************************************************************************
 <MappingDefinition>
-    a rrl:MappingDefinition ;
-    rrl:OntoRel 'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1';
-    rrl:Source 'https://griis.ca/JeDIS'.
+    a           rrl:MappingDefinition ;
+    rrl:OntoRel 'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1' ;
+    rrl:Source  'https://griis.ca/JeDIS' .
 
 <exclude:T01f6>
-    a rrl:OntoRelExclusions ;
-    rrl:excludedRelation "T01f6";
-    rrl:exclusionType rrl:NOT_AVAILABLE;
-    rrl:explanation "La clinique ne gère pas ces données là.".
+    a                    rrl:OntoRelExclusions ;
+    rrl:excludedRelation "T01f6" ;
+    rrl:exclusionType    rrl:NOT_AVAILABLE ;
+    rrl:explanation      "La clinique ne gère pas ces données là." .
 
 <exclude:Laboratoirecolumn>
-    a rrl:SourceExclusions ;
-    rrl:sourceObject [ rr:tableName "\"EXP\".\"LABORATOIRE\"";
-                       rr:column "\"COLUMN\"" ] ;
-    rrl:explanation "La clinique ne gère pas ces données là." .
+    a                rrl:SourceExclusions ;
+    rrl:sourceObject [ rr:tableName "\"EXP\".\"LABORATOIRE\"" ;
+                       rr:column    "\"COLUMN\"" ] ;
+    rrl:explanation  "La clinique ne gère pas ces données là." .
 
 <Mapping:SharedSignature1>
-    a rrl:SignatureSuperSet.
+    a rrl:SignatureSuperSet .
 
 <Mapping:tst>
     a               rr:TriplesMap ;
@@ -83,14 +83,14 @@
 .
 
 <Mapping:tst1>
-    a               rr:TriplesMap ;
-    rr:logicalTable [ rr:tableName "\"TABLE2\"" ] ;
-    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
-                      rr:class    tst:tst1 ;
-                      rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
-                      rr:termType rr:IRI ] ;
+    a                     rr:TriplesMap ;
+    rr:logicalTable       [ rr:tableName "\"TABLE2\"" ] ;
+    rr:subjectMap         [ a           rr:SubjectMap, rr:TermMap ;
+                            rr:class    tst:tst1 ;
+                            rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
+                            rr:termType rr:IRI ] ;
     rr:predicateObjectMap <Mapping:tst1:rel:tst1C0004X> ;
-    rrl:subsets     <Mapping:tst> .
+    rrl:subsets           <Mapping:tst> .
 
 <Mapping:tst2>
     a               rr:TriplesMap ;
@@ -111,14 +111,14 @@
                       rr:termType rr:IRI ] .
 
 <Mapping:tst1C0004X>
-    a               rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\"" ] ;
-    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
-                      rr:class    tst:ONTORELA_C0004X ;
-                      rr:template "http://www.griis.ca/projects/tst1C0004X/{\"m\"}" ;
-                      rr:termType rr:IRI ] ;
-    rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst2)>;
+    a                     rr:TriplesMap ;
+    rr:logicalTable       [ a           rr:R2RMLView ;
+                            rr:sqlQuery "SELECT \"m\", \"n\", \"o\" FROM \"TABLE2\"" ] ;
+    rr:subjectMap         [ a           rr:SubjectMap, rr:TermMap ;
+                            rr:class    tst:ONTORELA_C0004X ;
+                            rr:template "http://www.griis.ca/projects/tst1C0004X/{\"m\"}" ;
+                            rr:termType rr:IRI ] ;
+    rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst2)> ;
     rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst3)> .
 
 # ****************************************************************************************
