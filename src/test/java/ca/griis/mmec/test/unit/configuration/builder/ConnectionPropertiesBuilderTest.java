@@ -62,7 +62,7 @@ public class ConnectionPropertiesBuilderTest {
     String username = "testuser";
     String password = "testpassword";
 
-    ConnectionProperties configuration = builder
+    ConnectionProperties actualProperties = builder
         .setDriverName(driverName)
         .setDatabaseName(databaseName)
         .setJdbcUrl(jdbcUrl)
@@ -70,11 +70,12 @@ public class ConnectionPropertiesBuilderTest {
         .setPassword(password)
         .build();
 
-    Assertions.assertEquals(driverName, configuration.getDriverName());
-    Assertions.assertEquals(databaseName, configuration.getDatabaseName());
-    Assertions.assertEquals(jdbcUrl, configuration.getJdbcUrl());
-    Assertions.assertEquals(username, configuration.getUsername());
-    Assertions.assertEquals(password, configuration.getPassword());
+    Assertions.assertNotNull(actualProperties);
+    Assertions.assertEquals(driverName, actualProperties.getDriverName());
+    Assertions.assertEquals(databaseName, actualProperties.getDatabaseName());
+    Assertions.assertEquals(jdbcUrl, actualProperties.getJdbcUrl());
+    Assertions.assertEquals(username, actualProperties.getUsername());
+    Assertions.assertEquals(password, actualProperties.getPassword());
   }
 
   @Test
@@ -85,19 +86,23 @@ public class ConnectionPropertiesBuilderTest {
     String username = "testuser";
     String password = "testpassword";
 
-    ConnectionProperties configuration = builder
+    ConnectionProperties actualProperties = builder
         .setDriverName(driverName)
         .setDatabaseName(databaseName)
         .setJdbcUrl(jdbcUrl)
         .setUsername(username)
         .setPassword(password)
         .build();
-    Properties propertiesForOntop = configuration.getPropertiesForOntop();
+    Properties propertiesForOntop = actualProperties.getPropertiesForOntop();
 
-    Assertions.assertEquals(propertiesForOntop.get("jdbc.driver"), configuration.getDriverName());
-    Assertions.assertEquals(propertiesForOntop.get("jdbc.name"), configuration.getDatabaseName());
-    Assertions.assertEquals(propertiesForOntop.get("jdbc.url"), configuration.getJdbcUrl());
-    Assertions.assertEquals(propertiesForOntop.get("jdbc.user"), configuration.getUsername());
-    Assertions.assertEquals(propertiesForOntop.get("jdbc.password"), configuration.getPassword());
+    Assertions.assertNotNull(actualProperties);
+    Assertions.assertEquals(propertiesForOntop.get("jdbc.driver"),
+        actualProperties.getDriverName());
+    Assertions.assertEquals(propertiesForOntop.get("jdbc.name"),
+        actualProperties.getDatabaseName());
+    Assertions.assertEquals(propertiesForOntop.get("jdbc.url"), actualProperties.getJdbcUrl());
+    Assertions.assertEquals(propertiesForOntop.get("jdbc.user"), actualProperties.getUsername());
+    Assertions.assertEquals(propertiesForOntop.get("jdbc.password"),
+        actualProperties.getPassword());
   }
 }
