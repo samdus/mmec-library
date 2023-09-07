@@ -20,11 +20,9 @@ buildscript {
 }
 
 ext {
-    hasJooqing = false
-    isSpringBoot = false
-    minCoverageUnit = 0
-    minCoverageUnitItgr = 0
-    minMutationUnit = 0
+    minCoverageUnit = 70
+    minCoverageUnitItgr = 80
+    minMutationUnit = 70
 }
 
 group = "ca.griis"
