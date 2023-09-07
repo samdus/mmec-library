@@ -11,7 +11,7 @@
  * @brief @~english FacadeConfiguration object implementation.
  */
 
-package ca.griis.mmec.configuration;
+package ca.griis.mmec.properties;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -40,7 +40,7 @@ package ca.griis.mmec.configuration;
  * @par Tâches
  *      S.O.
  */
-public abstract class FacadeConfiguration {
+public abstract class FacadeProperties {
   // TODO: Add the properties for the configuration of the façade. For exemple, is it views or
   // materialized views?
 }

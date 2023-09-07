@@ -7,16 +7,17 @@
  *
  * @version @@GRIIS_VERSION@@
  *
- * @brief @~french Implémentation de la classe MappingConfigurationBuilder
- * @brief @~english MappingConfigurationBuilder implementation
+ * @brief @~french Implémentation du constructeur pour la configuration d'une façade d'arrimage.
+ * @brief @~english Implementation of the constructor for the mapping facade configuration.
  */
 
-package ca.griis.mmec.configuration.builder;
+package ca.griis.mmec.properties.builder;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
-import ca.griis.mmec.configuration.MappingConfiguration;
+import ca.griis.mmec.properties.FacadeProperties;
+
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -29,7 +30,7 @@ import ca.griis.mmec.configuration.MappingConfiguration;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Constructeur d'objet contenant les configurations de l'arrimage en tant que tel.
+ * @brief @~french Constructeur d'objet contenant les configurations de la façade d'arrimage.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -45,22 +46,22 @@ import ca.griis.mmec.configuration.MappingConfiguration;
  * @par Tâches
  *      S.O.
  */
-public class MappingConfigurationBuilder {
+public class FacadePropertiesBuilder {
   private static final GriisLogger logger =
-      GriisLoggerFactory.getLogger(MappingConfigurationBuilder.class);
+      GriisLoggerFactory.getLogger(FacadePropertiesBuilder.class);
 
   /**
    * @brief @~english «Description of the function»
    * @return «Return description»
    *
-   * @brief @~french Construit l'instance de configuration de l'arrimage
+   * @brief @~french Construit l'instance de configuration de façade
    * @par Details
    *      S.O.
-   * @return La configuration d'arrimage à partir des paramètres spécifiés.
+   * @return La configuration de la façade d'arrimage à partir des paramètres spécifiés.
    */
-  public MappingConfiguration build() {
+  public FacadeProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new MappingConfiguration() {};
+    return new FacadeProperties() {};
   }
 }

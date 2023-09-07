@@ -13,10 +13,10 @@
 
 package ca.griis.mmec.api;
 
-import ca.griis.mmec.configuration.ConnectionConfiguration;
-import ca.griis.mmec.configuration.FacadeConfiguration;
-import ca.griis.mmec.configuration.MappingConfiguration;
 import ca.griis.mmec.model.MMecFacade;
+import ca.griis.mmec.properties.ConnectionProperties;
+import ca.griis.mmec.properties.FacadeProperties;
+import ca.griis.mmec.properties.MappingProperties;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -53,12 +53,12 @@ public interface MMecFacadeService {
    * @return «Return description»
    *
    * @brief @~french Création d'une façade MMec à partir .
-   * @param mmecFacadeConfiguration La configuration de la façade MMec.
+   * @param mmecFacadeProperties La configuration de la façade MMec.
    * @return La façade MMec.
    *
    * @par Tâches
    *      S.O.
    */
-  MMecFacade createFacade(ConnectionConfiguration connectionConfiguration,
-      MappingConfiguration mappingConfiguration, FacadeConfiguration mmecFacadeConfiguration);
+  MMecFacade createFacade(ConnectionProperties connectionProperties,
+      MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties);
 }

@@ -11,7 +11,7 @@
  * @brief @~english MappingConfiguration object implementation.
  */
 
-package ca.griis.mmec.configuration;
+package ca.griis.mmec.properties;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -40,7 +40,7 @@ package ca.griis.mmec.configuration;
  * @par Tâches
  *      S.O.
  */
-public abstract class MappingConfiguration {
+public abstract class MappingProperties {
   // TODO: Add the properties for the configuration of the mapping. For exemple, the path of the
   // mapping file.
 }

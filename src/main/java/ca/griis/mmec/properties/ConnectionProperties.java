@@ -11,7 +11,7 @@
  * @brief @~english Implementation of the database connection configuration object.
  */
 
-package ca.griis.mmec.configuration;
+package ca.griis.mmec.properties;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
@@ -45,9 +45,9 @@ import java.util.Properties;
  * @par Tâches
  *      S.O.
  */
-public abstract class ConnectionConfiguration {
+public abstract class ConnectionProperties {
   private static final GriisLogger logger =
-      GriisLoggerFactory.getLogger(ConnectionConfiguration.class);
+      GriisLoggerFactory.getLogger(ConnectionProperties.class);
 
   /**
    * @brief @~english «Description of the method»

@@ -11,12 +11,12 @@
  * @brief @~english Implementation of the constructor for the connection configuration.
  */
 
-package ca.griis.mmec.configuration.builder;
+package ca.griis.mmec.properties.builder;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
-import ca.griis.mmec.configuration.ConnectionConfiguration;
+import ca.griis.mmec.properties.ConnectionProperties;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -45,9 +45,9 @@ import ca.griis.mmec.configuration.ConnectionConfiguration;
  * @par Tâches
  *      S.O.
  */
-public class ConnectionConfigurationBuilder {
+public class ConnectionPropertiesBuilder {
   private static final GriisLogger logger =
-      GriisLoggerFactory.getLogger(ConnectionConfigurationBuilder.class);
+      GriisLoggerFactory.getLogger(ConnectionPropertiesBuilder.class);
 
   private String driverName;
   private String databaseName;
@@ -62,7 +62,7 @@ public class ConnectionConfigurationBuilder {
    * @brief @~french Spécifie le nom du pilote JDBC.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionConfigurationBuilder setDriverName(String driverName) {
+  public ConnectionPropertiesBuilder setDriverName(String driverName) {
     this.driverName = driverName;
     return this;
   }
@@ -74,7 +74,7 @@ public class ConnectionConfigurationBuilder {
    * @brief @~french Spécifie le nom de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionConfigurationBuilder setDatabaseName(String databaseName) {
+  public ConnectionPropertiesBuilder setDatabaseName(String databaseName) {
     this.databaseName = databaseName;
     return this;
   }
@@ -87,7 +87,7 @@ public class ConnectionConfigurationBuilder {
    * @brief @~french Spécifie l'url de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionConfigurationBuilder setJdbcUrl(String jdbcUrl) {
+  public ConnectionPropertiesBuilder setJdbcUrl(String jdbcUrl) {
     this.jdbcUrl = jdbcUrl;
     return this;
   }
@@ -99,7 +99,7 @@ public class ConnectionConfigurationBuilder {
    * @brief @~french Spécifie le nom d'utilisateur de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionConfigurationBuilder setUsername(String username) {
+  public ConnectionPropertiesBuilder setUsername(String username) {
     this.username = username;
     return this;
   }
@@ -111,7 +111,7 @@ public class ConnectionConfigurationBuilder {
    * @brief @~french Spécifie le mot de passe de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionConfigurationBuilder setPassword(String password) {
+  public ConnectionPropertiesBuilder setPassword(String password) {
     this.password = password;
     return this;
   }
@@ -125,10 +125,10 @@ public class ConnectionConfigurationBuilder {
    *      S.O.
    * @return La configuration de connexion à partir des paramètres spécifiés.
    */
-  public ConnectionConfiguration build() {
+  public ConnectionProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new ConnectionConfiguration() {
+    return new ConnectionProperties() {
       @Override
       public String getDriverName() {
         return driverName;
