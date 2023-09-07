@@ -1,8 +1,8 @@
 package ca.griis.mmec.test.integration;
 
 import ca.griis.mmec.test.integration.util.OntopTester;
-import ca.griis.mmec.test.integration.util.TestOptimize;
-import ca.griis.mmec.test.integration.util.TestR2RML;
+import ca.griis.mmec.test.integration.util.OptimizeTester;
+import ca.griis.mmec.test.integration.util.R2rmlTester;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.After;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,17 +27,19 @@ public class PreliminaryTests {
           .filter(Files::isDirectory)
           .map(file -> {
             try {
-              Optional<Path> databaseFile = Optional.empty();
-              Optional<Path> ontologyFile = Optional.empty();
-              Optional<Path> mappingFile = Optional.empty();
+              Path databaseFile = null;
+              Path ontologyFile = null;
+              Path mappingFile = null;
 
               try (DirectoryStream<Path> fichiers = Files.newDirectoryStream(file)) {
                 for (Path fichier : fichiers) {
                   String nomFichier = fichier.getFileName().toString();
                   switch (nomFichier) {
-                    case "database.sql" -> databaseFile = Optional.of(fichier);
-                    case "ontology.ttl" -> ontologyFile = Optional.of(fichier);
-                    case "mapping.ttl" -> mappingFile = Optional.of(fichier);
+                    case "database.sql" -> databaseFile = fichier;
+                    case "ontology.ttl" -> ontologyFile = fichier;
+                    case "mapping.ttl" -> mappingFile = fichier;
+                    default -> {
+                    }
                   }
                 }
               }
@@ -60,25 +61,24 @@ public class PreliminaryTests {
 
   @ParameterizedTest
   @MethodSource("listTestElements")
-  public void TestOptimize(Optional<Path> databaseFile, Optional<Path> ontologyFile,
-      Optional<Path> mappingFile) throws Exception {
-    postgresContainerWrapper.executeSQLFile(databaseFile.orElseThrow());
+  public void testOptimize(Path databaseFile, Path ontologyFile, Path mappingFile)
+      throws Exception {
+    postgresContainerWrapper.executeSQLFile(databaseFile);
 
-    OntopTester tester = new TestOptimize(postgresContainerWrapper,
-        ontologyFile.orElseThrow().toAbsolutePath().toString(),
-        mappingFile.orElseThrow().toAbsolutePath().toString());
+    OntopTester tester = new OptimizeTester(postgresContainerWrapper,
+        ontologyFile.toAbsolutePath().toString(),
+        mappingFile.toAbsolutePath().toString());
     tester.runTest();
   }
 
   @ParameterizedTest
   @MethodSource("listTestElements")
-  public void TestR2RML(Optional<Path> databaseFile, Optional<Path> ontologyFile,
-      Optional<Path> mappingFile) throws Exception {
-    postgresContainerWrapper.executeSQLFile(databaseFile.orElseThrow());
+  public void testR2RML(Path databaseFile, Path ontologyFile, Path mappingFile) throws Exception {
+    postgresContainerWrapper.executeSQLFile(databaseFile);
 
-    OntopTester tester = new TestR2RML(postgresContainerWrapper,
-        ontologyFile.orElseThrow().toAbsolutePath().toString(),
-        mappingFile.orElseThrow().toAbsolutePath().toString());
+    OntopTester tester = new R2rmlTester(postgresContainerWrapper,
+        ontologyFile.toAbsolutePath().toString(),
+        mappingFile.toAbsolutePath().toString());
     tester.runTest();
   }
 }

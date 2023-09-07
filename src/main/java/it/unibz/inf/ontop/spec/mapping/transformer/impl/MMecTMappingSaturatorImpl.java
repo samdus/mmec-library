@@ -152,7 +152,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
                             cqc)))),
 
                 reasoner.classesDAG().stream().filter(
-                    node -> (node.getRepresentative() instanceof OClass)
+                    node -> node.getRepresentative() instanceof OClass
                         && !tmappingExclusionConfig.contains((OClass) node.getRepresentative()))
                     .flatMap(
                         node -> node.getMembers().stream().filter(d -> d instanceof OClass).map(

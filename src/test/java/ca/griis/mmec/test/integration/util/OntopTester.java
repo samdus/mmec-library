@@ -41,7 +41,7 @@ public abstract class OntopTester {
   protected final SQLQueryParser sqlQueryParser;
   protected final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
   protected final SQLMappingExtractor mappingExtractor;
-  protected final String injectionConfigurationFile = "defaultConfiguration.properties";
+  protected static final String injectionConfigurationFile = "defaultConfiguration.properties";
 
   public OntopTester(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
       String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {

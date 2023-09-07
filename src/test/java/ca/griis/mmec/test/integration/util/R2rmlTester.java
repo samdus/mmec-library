@@ -3,7 +3,6 @@ package ca.griis.mmec.test.integration.util;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
 import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.model.atom.RDFAtomPredicate;
-import it.unibz.inf.ontop.spec.OBDASpecInput;
 import it.unibz.inf.ontop.spec.OBDASpecification;
 import it.unibz.inf.ontop.spec.mapping.Mapping;
 import java.io.IOException;
@@ -12,13 +11,11 @@ import java.util.Optional;
 import org.apache.commons.rdf.api.IRI;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
-public class TestR2RML extends OntopTester {
-  OBDASpecInput specInputBuilder;
+public class R2rmlTester extends OntopTester {
 
-  public TestR2RML(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
+  public R2rmlTester(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
       String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
     super(postgresContainerWrapper, ontologyFile, mappingFile);
-    // specInputBuilder = OBDASpecInput.defaultBuilder().addMappingFile(mappingFile).build();
   }
 
   @Override

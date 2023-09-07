@@ -22,7 +22,11 @@ import it.unibz.inf.ontop.spec.sqlparser.RAExpression;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import it.unibz.inf.ontop.utils.LocalJDBCConnectionUtils;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,8 +34,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestOptimize extends OntopTester {
-  final Logger logger = LoggerFactory.getLogger(TestOptimize.class);
+public class OptimizeTester extends OntopTester {
+  final Logger logger = LoggerFactory.getLogger(OptimizeTester.class);
 
   private final List<String> queries = new ArrayList<>() {
     {
@@ -43,7 +47,7 @@ public class TestOptimize extends OntopTester {
     }
   };
 
-  public TestOptimize(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
+  public OptimizeTester(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
       String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
     super(postgresContainerWrapper, ontologyFile, mappingFile);
   }
@@ -158,8 +162,9 @@ public class TestOptimize extends OntopTester {
   private String extractSQLQuery(IQ executableQuery)
       throws EmptyQueryException, OntopInternalBugException {
     IQTree tree = executableQuery.getTree();
-    if (tree.isDeclaredAsEmpty())
+    if (tree.isDeclaredAsEmpty()) {
       throw new EmptyQueryException();
+    }
 
     String queryString = Optional.of(tree)
         .filter(t -> t instanceof UnaryIQTree)
@@ -171,8 +176,9 @@ public class TestOptimize extends OntopTester {
             "The query does not have the expected structure " +
                 "of an executable query\n" + executableQuery));
 
-    if (queryString.isEmpty())
+    if (queryString.isEmpty()) {
       throw new EmptyQueryException();
+    }
 
     return queryString;
   }
