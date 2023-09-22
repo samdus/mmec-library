@@ -39,11 +39,13 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      «Limits description (optional)»
  *
  * @brief @~french Étend le R2RMLMappingParser avec un prétraitement du graphe d'arrimage et un
- *        traitement avant
- *        la génération des PPMapping. Sert à étendre le modèle interne avec les fonctions R2RML
- *        étendues.
+ *        traitement avant la génération des PPMapping.
+ *        Sert à étendre le modèle interne avec les fonctions R2RML étendues.
  * @par Détails
- *      S.O.
+ *      L'arrimage R2RML étendu permet de spécifier les signatures de classes de façon à réduire les
+ *      erreurs liées à l'individuation et améliorer la qualité de celle-ci.
+ *
+ *      En particulier, il s'agit d'inclure des triplets pour spécifier
  * @par Modèle
  *      S.O.
  * @par Conception

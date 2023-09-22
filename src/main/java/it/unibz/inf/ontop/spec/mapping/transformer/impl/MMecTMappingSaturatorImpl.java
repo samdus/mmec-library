@@ -92,7 +92,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
   private final CoreSingletons coreSingletons;
 
   @Inject
-  private MMecTMappingSaturatorImpl(TMappingExclusionConfig tmappingExclusionConfig,
+  public MMecTMappingSaturatorImpl(TMappingExclusionConfig tmappingExclusionConfig,
       QueryUnionSplitter unionSplitter, UnionFlattener unionNormalizer,
       MappingCQCOptimizer mappingCqcOptimizer, UnionBasedQueryMerger queryMerger,
       CoreSingletons coreSingletons) {

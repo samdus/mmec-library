@@ -64,7 +64,7 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
   private final boolean ignoreInvalidMappingEntries;
 
   @Inject
-  private MMecSqlPpMappingConverterImpl(CoreSingletons coreSingletons,
+  public MMecSqlPpMappingConverterImpl(CoreSingletons coreSingletons,
       SQLQueryParser sqlQueryParser) {
     this.iqFactory = coreSingletons.getIQFactory();
     this.substitutionFactory = coreSingletons.getSubstitutionFactory();

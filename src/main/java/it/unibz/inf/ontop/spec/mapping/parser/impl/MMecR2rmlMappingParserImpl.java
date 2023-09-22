@@ -60,7 +60,7 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
   private final RDF4JR2RMLMappingManager manager;
 
   @Inject
-  private MMecR2rmlMappingParserImpl(SQLPPMappingFactory ppMappingFactory,
+  public MMecR2rmlMappingParserImpl(SQLPPMappingFactory ppMappingFactory,
       SpecificationFactory specificationFactory,
       R2RMLToSQLPPTriplesMapConverter transformer) {
     this.ppMappingFactory = ppMappingFactory;

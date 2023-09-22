@@ -288,6 +288,12 @@ version.txt
 src/main/resources/META-INF/artifact
 src/main/resources/META-INF/machine
 src/main/resources/META-INF/project
+*.crt
+*.csr
+*.key
+*.p12
+*.pem
+*.pub
 .attach_pid*
 .jqwik-database
 # End od added by USoutien
@@ -468,3 +474,7 @@ doxygen-error.txt
 /.pnp.loader.mjs
 /.yarn/
 /.asciidoctorconfig.adoc
+
+**/trial/**/*.log
+**/trial/**/*.json
+**/trial/**/detail/*.txt

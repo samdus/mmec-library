@@ -41,6 +41,7 @@ public abstract class OntopTester {
   protected final SQLQueryParser sqlQueryParser;
   protected final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
   protected final SQLMappingExtractor mappingExtractor;
+  protected final String mappingFile;
   protected static final String injectionConfigurationFile = "defaultConfiguration.properties";
 
   public OntopTester(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
@@ -54,6 +55,8 @@ public abstract class OntopTester {
         .r2rmlMappingFile(mappingFile)
         .ontologyFile(ontologyFile)
         .build();
+
+    this.mappingFile = mappingFile;
 
     coreSingletons = configuration.getInjector().getInstance(CoreSingletons.class);
     substitutionFactory = configuration.getInjector().getInstance(SubstitutionFactory.class);

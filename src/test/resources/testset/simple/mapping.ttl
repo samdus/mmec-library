@@ -2,7 +2,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rr:  <http://www.w3.org/ns/r2rml#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rrl: <http://www.griis.ca/projects/relrel#> .
+@prefix mmec: <http://www.griis.ca/projects/mmec/> .
 @prefix tst: <http://www.griis.ca/projects/> .
 
 # TODO: Modifier l'exemple pour qu'il utilise une ontologie et une source plus réalistes.
@@ -41,24 +41,25 @@
 # Classes mappings
 # ****************************************************************************************
 <MappingDefinition>
-    a           rrl:MappingDefinition ;
-    rrl:OntoRel 'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1' ;
-    rrl:Source  'https://griis.ca/JeDIS' .
+    a                  mmec:MappingDefinition ;
+    mmec:OntoRel        'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1' ;
+    mmec:Source         'https://griis.ca/JeDIS' ;
+    mmec:TemplatePrefix 'http://www.griis.ca/projects/' .
 
 <exclude:T01f6>
-    a                    rrl:OntoRelExclusions ;
-    rrl:excludedRelation "T01f6" ;
-    rrl:exclusionType    rrl:NOT_AVAILABLE ;
-    rrl:explanation      "La clinique ne gère pas ces données là." .
+    a                    mmec:OntoRelExclusions ;
+    mmec:excludedRelation "T01f6" ;
+    mmec:exclusionType    mmec:NOT_AVAILABLE ;
+    mmec:explanation      "La clinique ne gère pas ces données là." .
 
 <exclude:Laboratoirecolumn>
-    a                rrl:SourceExclusions ;
-    rrl:sourceObject [ rr:tableName "\"EXP\".\"LABORATOIRE\"" ;
+    a                mmec:SourceExclusions ;
+    mmec:sourceObject [ rr:tableName "\"EXP\".\"LABORATOIRE\"" ;
                        rr:column    "\"COLUMN\"" ] ;
-    rrl:explanation  "La clinique ne gère pas ces données là." .
+    mmec:explanation  "La clinique ne gère pas ces données là." .
 
 <Mapping:SharedSignature1>
-    a rrl:SignatureSuperSet .
+    a mmec:SignatureSuperSet .
 
 <Mapping:tst>
     a               rr:TriplesMap ;
@@ -68,7 +69,7 @@
                       rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
                       rr:termType rr:IRI ]
 #        ;
-#    rrl:subsets <Mapping:SharedSignature1>
+#    mmec:subsets <Mapping:SharedSignature1>
 .
 
 <Mapping:tst:secondsignature>
@@ -79,7 +80,7 @@
                       rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
                       rr:termType rr:IRI ]
 #        ;
-#    rrl:subsets <Mapping:SharedSignature1>
+#    mmec:subsets <Mapping:SharedSignature1>
 .
 
 <Mapping:tst1>
@@ -90,7 +91,7 @@
                             rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
                             rr:termType rr:IRI ] ;
     rr:predicateObjectMap <Mapping:tst1:rel:tst1C0004X> ;
-    rrl:subsets           <Mapping:tst> .
+    mmec:subsets           <Mapping:tst> .
 
 <Mapping:tst2>
     a               rr:TriplesMap ;
@@ -120,6 +121,7 @@
                             rr:termType rr:IRI ] ;
     rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst2)> ;
     rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst3)> .
+
 
 # ****************************************************************************************
 # Object Properties mappings
