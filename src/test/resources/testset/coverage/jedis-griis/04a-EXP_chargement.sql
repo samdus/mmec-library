@@ -1,0 +1,10 @@
+\copy "EXP"."PATIENT" from '/source/dataset/PATIENT.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."DOSSIER" from '/source/dataset/MEDICAL_RECORD.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDECIN" from '/source/dataset/CLINICIAN.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDECIN_TRAITANT" from '/source/dataset/TREATING_CLINICIAN.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."LABORATOIRE" from '/source/dataset/LABORATORY.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."CLASSE_MEDICAMENT" from '/source/dataset/DRUG_CATEGORY.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDICAMENT" from '/source/dataset/DRUG.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."PRESCRIPTION" from '/source/dataset/PRESCRIPTION.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."CONSULTATION" from '/source/dataset/CONSULTATION.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDICATION_SP" from '/source/dataset/DECLARATION.tsv' (format csv, delimiter E'\t', header) ;

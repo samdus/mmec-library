@@ -1,0 +1,16 @@
+== Contexte
+
+Ce jeu de test a été réalisé dans l'objectif de montrer que le procédé d'arrimage offre la couverture suffisante en terme :
+1. des différentes structures possible dans l'OntoRel (classes, propriétés d'objets, propriétés de données, conjonctions, disjonctions, etc.); 2. des cas limites de l'individuation
+
+== Réalisation
+
+Le jeu de test est composé de 3 fichiers :
+1. le fichier database.sql contient le script permettant la création de la base de données défini dans le répertoire jedis-griis;
+2. le fichier ontology.ttl contient l'ontologie de référence créé à partir de humanBodyWeightOntology/HumanBodyWeightAppli-inferred.owl;
+3. le fichier mapping.ttl contient l'arrimage de l'ontologie de référence sur la base de données.
+
+== Référence
+L'ontologie de référence a été développée dans le cadre du développement d'OntoRelA: Khnaisser, C., Lavoie, L., Fraikin, B., Barton, A., Dussault, S., Burgun, A., Ethier, J.-F., 2022. Using an ontology to derive a sharable and interoperable relational data model for heterogeneous healthcare data and various applications. Methods Inf Med a-1877-9498. https://doi.org/10.1055/a-1877-9498
+
+La base de données jedis-griis a été développée dans le cadre du projet PARS3 et est disponible via https://depot.griis.usherbrooke.ca/USoutien/clinical-data-testing/Jedis-GRIIS/. Le jeu de données utilisé correspond au jeu "demo".

@@ -1,0 +1,779 @@
+@prefix : <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl#> .
+
+<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl> rdf:type owl:Ontology .
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#langString
+rdf:langString rdf:type rdfs:Datatype ;
+               rdfs:label "langString"@en .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#Literal
+rdfs:Literal rdf:type rdfs:Datatype ;
+             rdfs:label "Literal"@en .
+
+
+###  http://www.w3.org/2001/XMLSchema#boolean
+xsd:boolean rdf:type rdfs:Datatype ;
+            rdfs:label "Boolean"@en .
+
+
+###  http://www.w3.org/2001/XMLSchema#double
+xsd:double rdf:type rdfs:Datatype ;
+           rdfs:label "Double"@en .
+
+
+###  http://www.w3.org/2001/XMLSchema#string
+xsd:string rdf:type rdfs:Datatype ;
+           rdfs:comment "String"@en ;
+           rdfs:label "String"@en .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.obolibrary.org/obo/BFO_0000050
+<http://purl.obolibrary.org/obo/BFO_0000050> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0002131> ;
+                                             rdfs:comment """
+a core relation that holds between a part and its whole
+"""@en ;
+                                             rdfs:label "part of"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000051
+<http://purl.obolibrary.org/obo/BFO_0000051> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0002131> ;
+                                             rdfs:comment """
+a core relation that holds between a whole and its part
+"""@en ;
+                                             rdfs:label "has part"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000052
+<http://purl.obolibrary.org/obo/BFO_0000052> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000054
+<http://purl.obolibrary.org/obo/BFO_0000054> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "Paraphrase of elucidation: a relation between a realizable entity and a process, where there is some material entity that is bearer of the realizable entity and participates in the process, and the realizable entity comes to be realized in the course of the process"@en ;
+                                             rdfs:label "realized in"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000055
+<http://purl.obolibrary.org/obo/BFO_0000055> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "Paraphrase of elucidation: a relation between a process and a realizable entity, where there is some material entity that is bearer of the realizable entity and participates in the process, and the realizable entity comes to be realized in the course of the process"@en ;
+                                             rdfs:label "realizes"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000056
+<http://purl.obolibrary.org/obo/BFO_0000056> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000057
+<http://purl.obolibrary.org/obo/BFO_0000057> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000066
+<http://purl.obolibrary.org/obo/BFO_0000066> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "Paraphrase of definition: a relation between a process and an independent continuant, in which the process takes place entirely within the independent continuant"@en ;
+                                             rdfs:label "occurs in"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000039
+<http://purl.obolibrary.org/obo/IAO_0000039> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000051> ;
+                                             rdf:type owl:FunctionalProperty ;
+                                             rdfs:label "has measurement unit label"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000136
+<http://purl.obolibrary.org/obo/IAO_0000136> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "is_about is a (currently) primitive relation that relates an information artifact to an entity."@en ;
+                                             rdfs:label "is about"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000219
+<http://purl.obolibrary.org/obo/IAO_0000219> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                             rdfs:label "denotes"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000221
+<http://purl.obolibrary.org/obo/IAO_0000221> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                             rdfs:comment """m is a quality measurement of q at t when
+q is a quality 
+there is a measurement process p that has specified output m, a measurement datum, that is about q"""@en ;
+                                             rdfs:label "is quality measurement of"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000413
+<http://purl.obolibrary.org/obo/IAO_0000413> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                             rdfs:comment "relates a process to a time-measurement-datum that represents the duration of the process"@en ;
+                                             rdfs:label "is duration of"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000417
+<http://purl.obolibrary.org/obo/IAO_0000417> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "inverse of the relation of is quality measurement of"@en ;
+                                             rdfs:label "is quality measured as"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000293
+<http://purl.obolibrary.org/obo/OBI_0000293> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000057> ;
+                                             rdfs:comment "A relation between a planned process and a continuant participating in that process that is not created during  the process. The presence of the continuant during the process is explicitly specified in the plan specification which the process realizes the concretization of."@en ;
+                                             rdfs:label "has_specified_input"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000295
+<http://purl.obolibrary.org/obo/OBI_0000295> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000056> ;
+                                             rdfs:comment "A relation between a planned process and a continuant participating in that process that is not created during  the process. The presence of the continuant during the process is explicitly specified in the plan specification which the process realizes the concretization of."@en ;
+                                             rdfs:label "is_specified_input_of"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000299
+<http://purl.obolibrary.org/obo/OBI_0000299> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000057> ,
+                                                                <http://purl.obolibrary.org/obo/RO_0000057> ;
+                                             rdfs:comment "A relation between a planned process and a continuant participating in that process. The presence of the continuant at the end of the process is explicitly specified in the objective specification which the process realizes the concretization of."@en ;
+                                             rdfs:label "has_specified_output"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000312
+<http://purl.obolibrary.org/obo/OBI_0000312> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000056> ;
+                                             rdfs:comment "A relation between a planned process and a continuant participating in that process. The presence of the continuant at the end of the process is explicitly specified in the objective specification which the process realizes the concretization of."@en ;
+                                             rdfs:label "is_specified_output_of"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000417
+<http://purl.obolibrary.org/obo/OBI_0000417> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "This relation obtains between a planned process and a objective specification when the criteria specified in the objective specification are met at the end of the planned process."@en ;
+                                             rdfs:label "achieves_planned_objective"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000833
+<http://purl.obolibrary.org/obo/OBI_0000833> rdf:type owl:ObjectProperty ;
+                                             rdfs:comment "This relation obtains between an objective specification and a planned process when the criteria specified in the objective specification are met at the end of the planned process."@en ;
+                                             rdfs:label "objective_achieved_by"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0001938
+<http://purl.obolibrary.org/obo/OBI_0001938> rdf:type owl:ObjectProperty ;
+                                             rdfs:label "has value specification"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000052
+<http://purl.obolibrary.org/obo/RO_0000052> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "a relation between a specifically dependent continuant (the dependent) and an independent continuant (the bearer), in which the dependent specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "inheres in"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000053
+<http://purl.obolibrary.org/obo/RO_0000053> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "a relation between an independent continuant (the bearer) and a specifically dependent continuant (the dependent), in which the dependent specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "bearer of"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000056
+<http://purl.obolibrary.org/obo/RO_0000056> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "a relation between a continuant and a process, in which the continuant is somehow involved in the process"@en ;
+                                            rdfs:label "participates in"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000057
+<http://purl.obolibrary.org/obo/RO_0000057> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "a relation between a process and a continuant, in which the continuant is somehow involved in the process"@en ;
+                                            rdfs:label "has participant"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000058
+<http://purl.obolibrary.org/obo/RO_0000058> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "A relationship between a generically dependent continuant and a specifically dependent continuant, in which the generically dependent continuant depends on some independent continuant in virtue of the fact that the specifically dependent continuant also depends on that same independent continuant. A generically dependent continuant may be concretized as multiple specifically dependent continuants."@en ;
+                                            rdfs:label "is concretized as"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000059
+<http://purl.obolibrary.org/obo/RO_0000059> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "A relationship between a specifically dependent continuant and a generically dependent continuant, in which the generically dependent continuant depends on some independent continuant in virtue of the fact that the specifically dependent continuant also depends on that same independent continuant. Multiple specifically dependent continuants can concretize the same generically dependent continuant."@en ;
+                                            rdfs:label "concretizes"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000079
+<http://purl.obolibrary.org/obo/RO_0000079> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000052> ;
+                                            rdfs:comment "a relation between a function and an independent continuant (the bearer), in which the function specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "function of"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000080
+<http://purl.obolibrary.org/obo/RO_0000080> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000052> ;
+                                            rdfs:comment "a relation between a quality and an independent continuant (the bearer), in which the quality specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "quality of"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000081
+<http://purl.obolibrary.org/obo/RO_0000081> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000052> ;
+                                            rdfs:comment "a relation between a role and an independent continuant (the bearer), in which the role specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "role of"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000085
+<http://purl.obolibrary.org/obo/RO_0000085> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000053> ;
+                                            rdfs:comment "a relation between an independent continuant (the bearer) and a function, in which the function specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "has function"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000086
+<http://purl.obolibrary.org/obo/RO_0000086> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000053> ;
+                                            rdfs:comment "a relation between an independent continuant (the bearer) and a quality, in which the quality specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "has quality"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000087
+<http://purl.obolibrary.org/obo/RO_0000087> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000053> ;
+                                            rdfs:comment "a relation between an independent continuant (the bearer) and a role, in which the role specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "has role"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000091
+<http://purl.obolibrary.org/obo/RO_0000091> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000053> ;
+                                            rdfs:comment "a relation between an independent continuant (the bearer) and a disposition, in which the disposition specifically depends on the bearer for its existence"@en ;
+                                            rdfs:label "has disposition"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0000092
+<http://purl.obolibrary.org/obo/RO_0000092> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000052> ;
+                                            rdfs:label "disposition of"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0001015
+<http://purl.obolibrary.org/obo/RO_0001015> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "a relation between two independent continuants, the location and the target, in which the target is entirely within the location"@en ;
+                                            rdfs:label "location of"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0001025
+<http://purl.obolibrary.org/obo/RO_0001025> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "a relation between two independent continuants, the target and the location, in which the target is entirely within the location"@en ;
+                                            rdfs:label "located in"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0002131
+<http://purl.obolibrary.org/obo/RO_0002131> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0002323> ;
+                                            rdfs:comment """
+x overlaps y if and only if there exists some z such that x has part z and z part of y
+"""@en ;
+                                            rdfs:label "overlaps"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0002323
+<http://purl.obolibrary.org/obo/RO_0002323> rdf:type owl:ObjectProperty ;
+                                            rdfs:comment "A mereological relationship or a topological relationship"@en ;
+                                            rdfs:label "mereotopologically related to"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0002350
+<http://purl.obolibrary.org/obo/RO_0002350> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000050> ;
+                                            rdfs:comment "is member of is a mereological relation between a item and a collection."@en ;
+                                            rdfs:label "member of"@en .
+
+
+###  http://purl.obolibrary.org/obo/RO_0002351
+<http://purl.obolibrary.org/obo/RO_0002351> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000051> ;
+                                            rdfs:comment "has member is a mereological relation between a collection and an item."@en ;
+                                            rdfs:label "has member"@en .
+
+
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089
+<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> rdf:type owl:ObjectProperty ;
+                                                                          rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000057> ;
+                                                                          rdfs:comment "A has participant property in a evaluation process"@en ;
+                                                                          rdfs:label "has evaluant"@en .
+
+
+###  http://purl.org/obo/owl/OBO_REL#exists_during
+<http://purl.org/obo/owl/OBO_REL#exists_during> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/obo/owl/obo#towards
+<http://purl.org/obo/owl/obo#towards> rdf:type owl:ObjectProperty ;
+                                      rdfs:comment "relation binding a relational quality or disposition to the relevant type of entity"@en ;
+                                      rdfs:label "towards"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.obolibrary.org/obo/IAO_0000004
+<http://purl.obolibrary.org/obo/IAO_0000004> rdf:type owl:DatatypeProperty ;
+                                             rdfs:subPropertyOf owl:topDataProperty ;
+                                             rdf:type owl:FunctionalProperty ;
+                                             rdfs:comment "Property of a scalar measurement datum of having a value."@en ;
+                                             rdfs:label "has measurement value"@en .
+
+
+###  http://purl.obolibrary.org/obo/PHYSIO_0000100
+<http://purl.obolibrary.org/obo/PHYSIO_0000100> rdf:type owl:DatatypeProperty ;
+                                                rdfs:comment "The property of having a value."@en ;
+                                                rdfs:label "has value"@en .
+
+
+###  http://www.w3.org/2002/07/owl#topDataProperty
+owl:topDataProperty rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.obolibrary.org/obo/BFO_0000001
+<http://purl.obolibrary.org/obo/BFO_0000001> rdf:type owl:Class ;
+                                             rdfs:subClassOf owl:Thing ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000050> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000001>
+                                                             ] ;
+                                             rdfs:comment "A thing that exists or has existed or will exist."@en ;
+                                             rdfs:label "entity"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000002
+<http://purl.obolibrary.org/obo/BFO_0000002> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000001> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000056> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000003>
+                                                             ] ;
+                                             rdfs:comment "An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts."@en ;
+                                             rdfs:label "continuant"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000003
+<http://purl.obolibrary.org/obo/BFO_0000003> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000001> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000066> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000004>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000057> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000002>
+                                                             ] ;
+                                             rdfs:comment "An entity that has temporal parts and that happens, unfolds or develops through time."@en ;
+                                             rdfs:label "occurrent"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000004
+<http://purl.obolibrary.org/obo/BFO_0000004> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000023>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000004>
+                                                             ] ;
+                                             rdfs:comment "b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])"@en ;
+                                             rdfs:label "ic"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000015
+<http://purl.obolibrary.org/obo/BFO_0000015> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000003> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000055> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000017>
+                                                             ] ;
+                                             rdfs:comment "An occurrent that has temporal proper parts and for some time t, p s-depends_on some material entity at t."@en ;
+                                             rdfs:label "process"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000017
+<http://purl.obolibrary.org/obo/BFO_0000017> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000020> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000054> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000015>
+                                                             ] ;
+                                             rdfs:comment "RealizableEntity"@en ;
+                                             rdfs:label "realizable"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000020
+<http://purl.obolibrary.org/obo/BFO_0000020> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000059> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000031>
+                                                             ] ;
+                                             rdfs:comment "per discussion with Barry Smith"@en ;
+                                             rdfs:label "specifically dependent continuant"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000023
+<http://purl.obolibrary.org/obo/BFO_0000023> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000017> ;
+                                             rdfs:comment "Role"@en ;
+                                             rdfs:label "role"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000031
+<http://purl.obolibrary.org/obo/BFO_0000031> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000058> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000020>
+                                                             ] ;
+                                             rdfs:comment "GenericallyDependentContinuant"@en ;
+                                             rdfs:label "gdc"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000040
+<http://purl.obolibrary.org/obo/BFO_0000040> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000004> ;
+                                             rdfs:comment "An independent continuant that is spatially extended whose identity is independent of that of other entities and can be maintained through time."@en ;
+                                             rdfs:label "material"@en .
+
+
+###  http://purl.obolibrary.org/obo/HADO_0000006
+<http://purl.obolibrary.org/obo/HADO_0000006> rdf:type owl:Class ;
+                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000577> ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000219> ;
+                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                owl:onClass <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C0025X>
+                                                              ] ;
+                                              rdfs:comment "A CRID symbol that is sufficent to look up a patient file in a medical record registry."@en ;
+                                              rdfs:label "medical record identifier"@en .
+
+
+###  http://purl.obolibrary.org/obo/HADO_0000008
+<http://purl.obolibrary.org/obo/HADO_0000008> rdf:type owl:Class ;
+                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/NCBITaxon_9606> ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
+                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                owl:onClass <http://purl.obolibrary.org/obo/OBI_0000093>
+                                                              ] ;
+                                              rdfs:comment "Homo sapiens having the role of patient."@en ;
+                                              rdfs:label "patient"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000003
+<http://purl.obolibrary.org/obo/IAO_0000003> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000009> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/PHYSIO_0000100> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onDataRange xsd:string
+                                                             ] ;
+                                             rdfs:comment "A measurement unit label is as a label that is part of a scalar measurement datum and denotes a unit of measure."@en ;
+                                             rdfs:label "measurement unit label"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000009
+<http://purl.obolibrary.org/obo/IAO_0000009> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ;
+                                             rdfs:comment "A label is a symbol that is part of some other datum and is used to either partially define  the denotation of that datum or to provide a means for identifying the datum as a member of the set of data with the same label"@en ;
+                                             rdfs:label "datum label"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000027
+<http://purl.obolibrary.org/obo/IAO_0000027> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ;
+                                             rdfs:comment "a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements."@en ;
+                                             rdfs:label "data item"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000028
+<http://purl.obolibrary.org/obo/IAO_0000028> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ;
+                                             rdfs:comment "An information content entity that is a mark(s) or character(s) used as a conventional representation of another entity."@en ;
+                                             rdfs:label "symbol"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000030
+<http://purl.obolibrary.org/obo/IAO_0000030> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000031> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000001>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000219> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/BFO_0000001>
+                                                             ] ;
+                                             rdfs:comment "An information content entity is an entity that is generically dependent on some artifact and stands in relation of aboutness to some entity"@en ;
+                                             rdfs:label "information content entity"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000032
+<http://purl.obolibrary.org/obo/IAO_0000032> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000109> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000039> ;
+                                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/OBI_0001938> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/OBI_0001931>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000004> ;
+                                                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000004> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onDataRange xsd:double
+                                                             ] ;
+                                             rdfs:comment "a scalar measurement datum is a measurement datum that is composed of two parts, numerals and a unit label."@en ;
+                                             rdfs:label "scalar measurement datum"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000109
+<http://purl.obolibrary.org/obo/IAO_0000109> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000027> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/OBI_0001938> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/OBI_0001933>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000039> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/IAO_0000003>
+                                                             ] ;
+                                             rdfs:comment "A measurement datum is an information content entity that is a recording of the output of a measurement such as produced by a device."@en ;
+                                             rdfs:label "measurement datum"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000310
+<http://purl.obolibrary.org/obo/IAO_0000310> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ;
+                                             rdfs:comment "An information content entity that is a collection of information content entities intended to be understood together as a whole."@en ;
+                                             rdfs:label "document"@en .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000577
+<http://purl.obolibrary.org/obo/IAO_0000577> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000028> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/PHYSIO_0000100> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onDataRange xsd:string
+                                                             ] ;
+                                             rdfs:comment "A symbol that is part of a CRID and that is sufficient to look up a record from the CRID's registry."@en ;
+                                             rdfs:label "centrally registered identifier symbol"@en .
+
+
+###  http://purl.obolibrary.org/obo/NCBITaxon_9606
+<http://purl.obolibrary.org/obo/NCBITaxon_9606> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0100026> ;
+                                                rdfs:comment "Organism member of the genus Homo, evolving from Homo heidelbergensis or a similar species and migrating out of Africa, gradually replacing or interbreeding with local populations of archaic humans."@en ;
+                                                rdfs:label "Homo sapiens"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000011
+<http://purl.obolibrary.org/obo/OBI_0000011> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000015> ;
+                                             rdfs:comment "A process that realizes a plan which is the concretization of a plan specification."@en ;
+                                             rdfs:label "planned process"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000093
+<http://purl.obolibrary.org/obo/OBI_0000093> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000052> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/NCBITaxon_9606>
+                                                             ] ;
+                                             rdfs:comment "a role which inheres in a person and is realized by the process of being under the care of a physician or health care provider"@en ;
+                                             rdfs:label "patient role"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0001931
+<http://purl.obolibrary.org/obo/OBI_0001931> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0001933> ;
+                                             rdfs:comment "A value specification that consists of two parts: a numeral and a unit label"@en ;
+                                             rdfs:label "scalar value specification"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0001933
+<http://purl.obolibrary.org/obo/OBI_0001933> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ;
+                                             rdfs:comment "An information content entity that specifies a value within a classification scheme or on a quantitative scale."@en ;
+                                             rdfs:label "value specification"@en .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0100026
+<http://purl.obolibrary.org/obo/OBI_0100026> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000040> ;
+                                             rdfs:comment "A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."@en ;
+                                             rdfs:label "organism"@en .
+
+
+###  http://purl.obolibrary.org/obo/PHYSIO_0000008
+<http://purl.obolibrary.org/obo/PHYSIO_0000008> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> ;
+                                                rdfs:comment "A physiological evaluation that evaluates an organism's body weight."@en ;
+                                                rdfs:label "body weight measurement process"@en .
+
+
+###  http://purl.obolibrary.org/obo/PHYSIO_0000065
+<http://purl.obolibrary.org/obo/PHYSIO_0000065> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000032> ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000312> ;
+                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                  owl:onClass <http://purl.obolibrary.org/obo/PHYSIO_0000008>
+                                                                ] ;
+                                                rdfs:comment "A scalar measurement datum that is a measurement of the mass of a human body."@en ;
+                                                rdfs:label "human body mass measurement datum"@en .
+
+
+###  http://purl.obolibrary.org/obo/PHYSIO_0000083
+<http://purl.obolibrary.org/obo/PHYSIO_0000083> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000310> ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                  owl:onClass <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093>
+                                                                ] ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                  owl:onClass <http://purl.obolibrary.org/obo/HADO_0000006>
+                                                                ] ;
+                                                rdfs:comment "A document that contains information representing the health-relevant qualities of a patient's body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions."@en ;
+                                                rdfs:label "physiological evaluation report"@en .
+
+
+###  http://purl.obolibrary.org/obo/PHYSIO_0000094
+<http://purl.obolibrary.org/obo/PHYSIO_0000094> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000310> ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                  owl:onClass <http://purl.obolibrary.org/obo/OBI_0100026>
+                                                                ] ;
+                                                rdfs:comment "A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting."@en ;
+                                                rdfs:label "health care record"@en .
+
+
+###  http://purl.obolibrary.org/obo/UO_0000002
+<http://purl.obolibrary.org/obo/UO_0000002> rdf:type owl:Class ;
+                                            rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000003> ;
+                                            rdfs:comment "A unit which is a standard measure of the amount of matter/energy of a physical object."@en ;
+                                            rdfs:label "mass unit"@en .
+
+
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085
+<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0000011> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <http://purl.obolibrary.org/obo/OBI_0100026>
+                                                                                          ] ;
+                                                                          rdfs:comment "A planned process that evaluates health-relevant qualities of an organism's body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions."@en ;
+                                                                          rdfs:label "physiological evaluation"@en .
+
+
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000090
+<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000090> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <http://purl.obolibrary.org/obo/NCBITaxon_9606>
+                                                                                          ] ;
+                                                                          rdfs:comment "A physiological evaluation that evaluates a human's body weight."@en ;
+                                                                          rdfs:label "physiological evaluation of human"@en .
+
+
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000091
+<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000091> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <http://purl.obolibrary.org/obo/HADO_0000008>
+                                                                                          ] ;
+                                                                          rdfs:comment "A physiological evaluation that evaluates a patient's body weight."@en ;
+                                                                          rdfs:label "physiological evaluation of patient"@en .
+
+
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093
+<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000027> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000312> ;
+                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085>
+                                                                                          ] ;
+                                                                          rdfs:comment "A data item that is the specified output of some physiological evaluation."@en ;
+                                                                          rdfs:label "physiological data item"@en .
+
+
+###  http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C0025X
+<http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C0025X> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://purl.obolibrary.org/obo/PHYSIO_0000094> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <http://purl.obolibrary.org/obo/HADO_0000008>
+                                                                            ] ;
+                                                            rdfs:comment "HADO_0000006 intersectionOf "@fr ,
+                                                                         "medical record identifier intersectionOf A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting. is_about is a (currently) primitive relation that relates an information artifact to an entity. Homo sapiens having the role of patient."@en ;
+                                                            rdfs:label "HADO_0000006 intersectionOf "@fr ,
+                                                                       "medical record identifier intersectionOf health care record | is about | patient"@en .
+
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdf:type owl:Class ;
+          rdfs:comment "The class owl:Thing is the class of all individuals."@en .
+
+
+###  Generated by the OWL API (version 5.1.19) https://github.com/owlcs/owlapi/
