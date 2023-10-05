@@ -38,6 +38,7 @@ TOIMPROVE 2019-03-09 [LL] Certains types pourraient être plus compacts et préc
  * ID_MEDICAMENT_EXT ?
 */
 
+DROP SCHEMA IF EXISTS "EXP" CASCADE;
 CREATE SCHEMA "EXP";
 
 --

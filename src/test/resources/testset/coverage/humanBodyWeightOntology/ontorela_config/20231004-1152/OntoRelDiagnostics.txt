@@ -1,0 +1,38 @@
+
+======================================================= 
+OntoRel Diagnostics
+======================================================= 
+
+--------------------------------------- 
+OWL to SQL datatypes
+--------------------------------------- 
+============ Reduction summary
+Creating join table for: IAO_0000032 [1..*] OBI_0001938 OBI_0001931
+Creating join table for: IAO_0000032 [1..*] IAO_0000039 Thing
+Creating join table for: BFO_0000020 [1..*] RO_0000059 BFO_0000031
+Creating join table for: IAO_0000030 [1..*] IAO_0000136 BFO_0000001
+Creating join table for: IAO_0000030 [1..*] IAO_0000219 BFO_0000001
+Creating join table for: BFO_0000004 [1..*] RO_0000087 BFO_0000023
+Creating join table for: BFO_0000004 [1..*] RO_0001025 BFO_0000004
+Creating join table for: BFO_0000002 [1..*] RO_0000056 BFO_0000003
+Creating join table for: HBW_0000004 [1..*] IAO_0000136 OBI_0100026
+Creating join table for: HBW_0000006 [1..1] IAO_0000219 ONTORELA_C002aX
+Creating join table for: HBW_0000008 [1..*] RO_0000087 HBW_0000010
+Creating join table for: ONTORELA_C002aX [1..*] IAO_0000136 HBW_0000007
+Creating join table for: ONTORELA_C002cX [1..*] IAO_0000136 ONTORELA_C002eX
+Creating join table for: HBW_0000012 [1..*] OBI_0000299 ONTORELA_C002cX
+Creating join table for: HBW_0000012 [1..1] PHYSIO_0000089 NCBITaxon_9606
+Creating join table for: BFO_0000017 [1..*] BFO_0000054 BFO_0000015
+Creating join table for: BFO_0000001 [1..*] BFO_0000050 BFO_0000001
+Creating join table for: BFO_0000031 [1..*] RO_0000058 BFO_0000020
+Creating join table for: BFO_0000015 [1..*] BFO_0000055 BFO_0000017
+Creating join table for: BFO_0000003 [1..*] BFO_0000066 BFO_0000004
+Creating join table for: BFO_0000003 [1..*] RO_0000057 BFO_0000002
+Creating join table for: HBW_0000005 [1..*] BFO_0000051 HBW_0000001
+Creating join table for: HBW_0000005 [1..1] BFO_0000051 HBW_0000006
+Creating join table for: ONTORELA_C002eX-el0 [1..*] RO_0000052 OBI_0100026
+Creating join table for: HBW_0000007 [1..*] RO_0000087 HBW_0000011
+Creating join table for: HBW_0000001 [1..*] OBI_0000312 HBW_0000012
+Creating join table for: HBW_0000013 [1..1] PHYSIO_0000089 HBW_0000008
+Creating join table for: IAO_0000109 [1..1] IAO_0000039 IAO_0000003
+Creating join table for: IAO_0000109 [1..*] OBI_0001938 OBI_0001933

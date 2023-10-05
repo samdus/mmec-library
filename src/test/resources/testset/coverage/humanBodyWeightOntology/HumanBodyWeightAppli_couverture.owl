@@ -15,6 +15,7 @@
      xmlns:oboInOWL="http://www.geneontology.org/formats/oboInOWL#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl">
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0"/>
         <rdfs:comment xml:lang="fr">Ontologie applicative - version sans héritages multiples.</rdfs:comment>
     </owl:Ontology>
     
@@ -1353,7 +1354,7 @@ A mereological relationship or a topological relationship
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089">
         <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
-        <rdfs:comment>A has participant property in a evaluation process</rdfs:comment>
+        <rdfs:comment>A has participant property in a evaluation process where the participant does evaluate</rdfs:comment>
         <rdfs:label xml:lang="en">has evaluant</rdfs:label>
     </owl:ObjectProperty>
     
@@ -1737,6 +1738,28 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
     
 
 
+    <!-- http://purl.obolibrary.org/obo/BFO_0000016 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000016">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000017"/>
+        <obo:BFO_0000179>disposition</obo:BFO_0000179>
+        <obo:BFO_0000180>Disposition</obo:BFO_0000180>
+        <obo:IAO_0000112 xml:lang="en">an atom of element X has the disposition to decay to an atom of element Y</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">certain people have a predisposition to colon cancer</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">children are innately disposed to categorize objects in certain ways.</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">the cell wall is disposed to filter chemicals in endocytosis and exocytosis</obo:IAO_0000112>
+        <obo:IAO_0000115 xml:lang="en">realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">BFO 2 Reference: Dispositions exist along a strength continuum. Weaker forms of disposition are realized in only a fraction of triggering cases. These forms occur in a significant number of cases of a similar type.</obo:IAO_0000116>
+        <obo:IAO_0000600 xml:lang="en">b is a disposition means: b is a realizable entity &amp;amp; b’s bearer is some material entity &amp;amp; b is such that if it ceases to exist, then its bearer is physically changed, &amp;amp; b’s realization occurs when and because this bearer is in some special physical circumstances, &amp;amp; this realization occurs in virtue of the bearer’s physical make-up. (axiom label in BFO2 Reference: [062-002])</obo:IAO_0000600>
+        <obo:IAO_0000601 xml:lang="en">If b is a realizable entity then for all t at which b exists, b s-depends_on some material entity at t. (axiom label in BFO2 Reference: [063-002])</obo:IAO_0000601>
+        <obo:IAO_0000602>(forall (x t) (if (and (RealizableEntity x) (existsAt x t)) (exists (y) (and (MaterialEntity y) (specificallyDepends x y t))))) // axiom label in BFO2 CLIF: [063-002]</obo:IAO_0000602>
+        <obo:IAO_0000602>(forall (x) (if (Disposition x) (and (RealizableEntity x) (exists (y) (and (MaterialEntity y) (bearerOfAt x y t)))))) // axiom label in BFO2 CLIF: [062-002]</obo:IAO_0000602>
+        <rdfs:isDefinedBy>http://purl.obolibrary.org/obo/bfo.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">disposition</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/BFO_0000017 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000017">
@@ -1780,6 +1803,29 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
         <owl:annotatedTarget>(forall (x) (if (RealizableEntity x) (and (SpecificallyDependentContinuant x) (exists (y) (and (IndependentContinuant y) (not (SpatialRegion y)) (inheresIn x y)))))) // axiom label in BFO2 CLIF: [058-002] </owl:annotatedTarget>
         <obo:IAO_0010000 rdf:resource="http://purl.obolibrary.org/obo/bfo/axiom/058-002"/>
     </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000019 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000019">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
+        <obo:BFO_0000179>quality</obo:BFO_0000179>
+        <obo:BFO_0000180>Quality</obo:BFO_0000180>
+        <obo:IAO_0000112 xml:lang="en">the ambient temperature of this portion of air</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">the color of a tomato</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">the length of the circumference of your waist</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">the mass of this piece of gold.</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">the shape of your nose</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">the shape of your nostril</obo:IAO_0000112>
+        <obo:IAO_0000115 xml:lang="en">a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized</obo:IAO_0000115>
+        <obo:IAO_0000600 xml:lang="en">If an entity is a quality at any time that it exists, then it is a quality at every time that it exists. (axiom label in BFO2 Reference: [105-001])</obo:IAO_0000600>
+        <obo:IAO_0000600 xml:lang="en">a quality is a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized. (axiom label in BFO2 Reference: [055-001])</obo:IAO_0000600>
+        <obo:IAO_0000602>(forall (x) (if (Quality x) (SpecificallyDependentContinuant x))) // axiom label in BFO2 CLIF: [055-001]</obo:IAO_0000602>
+        <obo:IAO_0000602>(forall (x) (if (exists (t) (and (existsAt x t) (Quality x))) (forall (t_1) (if (existsAt x t_1) (Quality x))))) // axiom label in BFO2 CLIF: [105-001]</obo:IAO_0000602>
+        <rdfs:isDefinedBy>http://purl.obolibrary.org/obo/bfo.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">quality</rdfs:label>
+    </owl:Class>
     
 
 
@@ -1964,9 +2010,89 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
     
 
 
-    <!-- http://purl.obolibrary.org/obo/HADO_0000006 -->
+    <!-- http://purl.obolibrary.org/obo/HBW_0000001 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HADO_0000006">
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000001">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000027"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/HBW_0000012"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <obo:IAO_0000115>A data item that is the specified output of some physiological evaluation.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">physiological data item</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000002 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000002">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <obo:IAO_0000115 xml:lang="en">A data item categorizing a type of health situation in order to adjust administrative handling of physician billing by the RAMQ.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">RAMQ vulnerability code</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000003 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000003">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000003"/>
+        <obo:IAO_0000115 xml:lang="en">a measurement unit label of a weight</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">weight unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000004 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000004">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000310"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting.</obo:IAO_0000115>
+        <rdfs:label>health care record</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000005 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000005">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000310"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/HBW_0000001"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HBW_0000006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A document that contains information representing the health-relevant qualities of a patient&apos;s body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions.</obo:IAO_0000115>
+        <rdfs:label>physiological evaluation report</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000006 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000006">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1975,10 +2101,10 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                 <owl:onClass>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/PHYSIO_0000094"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HBW_0000004"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/HADO_0000008"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/HBW_0000007"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -1991,23 +2117,161 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
     
 
 
-    <!-- http://purl.obolibrary.org/obo/HADO_0000008 -->
+    <!-- http://purl.obolibrary.org/obo/HBW_0000007 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HADO_0000008">
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000007">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0100026"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/HBW_0000011"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000115>An organism having the role of patient.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">patient</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000008 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000008">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000093"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/HBW_0000010"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000115>Homo sapiens having the role of patient.</obo:IAO_0000115>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/hado.owl"/>
-        <rdfs:label xml:lang="en">patient</rdfs:label>
+        <obo:IAO_0000115 xml:lang="en">A homo sapiens having with the health care provider role</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">health care provider</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000009 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000009">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
+        <obo:IAO_0000115 xml:lang="en">a quality of a body of having a weight</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">body weight</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000010 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000010">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+        <obo:IAO_0000115 xml:lang="en">A role inhering in an organization or human being that is realized by a process of providing health care services to an organism.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">health care provider role</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000011 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000011">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+        <obo:IAO_0000111>patient role</obo:IAO_0000111>
+        <obo:IAO_0000112 xml:lang="en">a hospitalized person; a person with controlled diabetes; the patient&apos;s role http://www.fertilityjourney.com/testingAndDiagnosis/theRightDoctor/thePatientsRole/index.asp?C=55245395146924652778</obo:IAO_0000112>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+        <obo:IAO_0000115 xml:lang="en">a role which inheres in a person and is realized by the process of being under the care of a physician or health care provider</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">GROUP:Role Branch</obo:IAO_0000117>
+        <obo:IAO_0000118>patient</obo:IAO_0000118>
+        <obo:IAO_0000119 xml:lang="en">OBI, CDISC</obo:IAO_0000119>
+        <obo:IAO_0000232 xml:lang="en">CDISC definition:  patient. Person under a physician&apos;s care for a particular disease or condition. NOTE: A subject in a clinical trial is not necessarily a patient, but a patient in a clinical trial is a subject. See also subject, trial subject, healthy volunteer. Often used interchangeably</obo:IAO_0000232>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/obi.owl"/>
+        <rdfs:label xml:lang="en">patient role</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000012 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000012">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000027"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <owl:Class>
+                                                <owl:unionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000016"/>
+                                                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000019"/>
+                                                </owl:unionOf>
+                                            </owl:Class>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A planned process that evaluates health-relevant qualities of an organism&apos;s body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">physiological evaluation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000013 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000013">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HBW_0000012"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HBW_0000008"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/HBW_0000012"/>
+        <obo:IAO_0000115 xml:lang="en">A physiological evaluation that is evaluated by a health care provider</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">physiological evaluation from health care provider</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000014 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000014">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000031"/>
+        <obo:IAO_0000115 xml:lang="en">A disease marked by an abnormally high, unhealthy amount of body fat.; A disorder characterized by having an increased body fat.</obo:IAO_0000115>
+        <obo:IAO_0000600>An organism is considered obese if the last measurement of its body mass index (BMI) outputs a value of 30 or more.</obo:IAO_0000600>
+        <rdfs:label xml:lang="en">obesity</rdfs:label>
     </owl:Class>
     
 
@@ -2250,30 +2514,6 @@ objectives is a planned process.</obo:IAO_0000116>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/OBI_0000093 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0000093">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000111>patient role</obo:IAO_0000111>
-        <obo:IAO_0000112 xml:lang="en">a hospitalized person; a person with controlled diabetes; the patient&apos;s role http://www.fertilityjourney.com/testingAndDiagnosis/theRightDoctor/thePatientsRole/index.asp?C=55245395146924652778</obo:IAO_0000112>
-        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
-        <obo:IAO_0000115 xml:lang="en">a role which inheres in a person and is realized by the process of being under the care of a physician or health care provider</obo:IAO_0000115>
-        <obo:IAO_0000117 xml:lang="en">GROUP:Role Branch</obo:IAO_0000117>
-        <obo:IAO_0000118>patient</obo:IAO_0000118>
-        <obo:IAO_0000119 xml:lang="en">OBI, CDISC</obo:IAO_0000119>
-        <obo:IAO_0000232 xml:lang="en">CDISC definition:  patient. Person under a physician&apos;s care for a particular disease or condition. NOTE: A subject in a clinical trial is not necessarily a patient, but a patient in a clinical trial is a subject. See also subject, trial subject, healthy volunteer. Often used interchangeably</obo:IAO_0000232>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/obi.owl"/>
-        <rdfs:label xml:lang="en">patient role</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/OBI_0001931 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0001931">
@@ -2319,162 +2559,12 @@ This issue is outside the scope of OBI.</obo:IAO_0000116>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/PHYSIO_0000008 -->
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000031 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PHYSIO_0000008">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085"/>
-        <obo:IAO_0000115>A physiological evaluation that evaluates an organism&apos;s body weight.</obo:IAO_0000115>
-        <rdfs:label xml:lang="en">body weight measurement process</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/PHYSIO_0000065 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PHYSIO_0000065">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000032"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/PHYSIO_0000008"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A scalar measurement datum that is a measurement of the mass of a human body.</obo:IAO_0000115>
-        <rdfs:label xml:lang="en">human body mass measurement datum</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/PHYSIO_0000083 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PHYSIO_0000083">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000310"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HADO_0000006"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115>A document that contains information representing the health-relevant qualities of a patient&apos;s body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions.</obo:IAO_0000115>
-        <rdfs:label>physiological evaluation report</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/PHYSIO_0000094 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PHYSIO_0000094">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000310"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115>A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting.</obo:IAO_0000115>
-        <rdfs:label>health care record</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/UO_0000002 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UO_0000002">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000003"/>
-        <obo:IAO_0000111>mass unit</obo:IAO_0000111>
-        <obo:IAO_0000115>A unit which is a standard measure of the amount of matter/energy of a physical object.</obo:IAO_0000115>
-        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/uo.owl"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/uo.owl"/>
-        <rdfs:label>mass unit</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/OBI_0100026"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115>A planned process that evaluates health-relevant qualities of an organism&apos;s body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions.</obo:IAO_0000115>
-        <rdfs:label xml:lang="en">physiological evaluation</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000090 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000090">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085"/>
-        <obo:IAO_0000115>A physiological evaluation that evaluates a human&apos;s body weight.</obo:IAO_0000115>
-        <rdfs:label xml:lang="en">physiological evaluation of human</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000091 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000091">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HADO_0000008"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085"/>
-        <obo:IAO_0000115>A physiological evaluation that evaluates a patient&apos;s body weight.</obo:IAO_0000115>
-        <rdfs:label xml:lang="en">physiological evaluation of patient</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000027"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
-        <obo:IAO_0000115>A data item that is the specified output of some physiological evaluation.</obo:IAO_0000115>
-        <rdfs:label xml:lang="en">physiological data item</rdfs:label>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000031">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <obo:IAO_0000115 xml:lang="en">A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">disease</rdfs:label>
     </owl:Class>
     
 

@@ -1,0 +1,431 @@
+ONTOLOGY :"humanbodyweight-appli.owl"  
+
+PROPERTY :"BFO_0000050"   
+  LABEL @en 'part of' 
+  DESCRIPTION @en 'a core relation that holds between a part and its whole'
+  ISA :"RO_0002131"  
+
+PROPERTY :"BFO_0000051"   
+  LABEL @en 'has part' 
+  DESCRIPTION @en '
+a core relation that holds between a whole and its part
+'
+  ISA :"RO_0002131"  
+
+PROPERTY :"BFO_0000052"  
+
+PROPERTY :"BFO_0000054"   
+  LABEL @en 'realized in' 
+  DESCRIPTION @en 'Paraphrase of elucidation: a relation between a realizable entity and a process, where there is some material entity that is bearer of the realizable entity and participates in the process, and the realizable entity comes to be realized in the course of the process'
+
+PROPERTY :"BFO_0000055"   
+  LABEL @en 'realizes' 
+  DESCRIPTION @en 'Paraphrase of elucidation: a relation between a process and a realizable entity, where there is some material entity that is bearer of the realizable entity and participates in the process, and the realizable entity comes to be realized in the course of the process'
+
+PROPERTY :"BFO_0000056"  
+
+PROPERTY :"BFO_0000057"  
+
+PROPERTY :"BFO_0000066"   
+  LABEL @en 'occurs in' 
+  DESCRIPTION @en 'Paraphrase of definition: a relation between a process and an independent continuant, in which the process takes place entirely within the independent continuant'
+
+PROPERTY :"IAO_0000039"   
+  LABEL @en 'has measurement unit label' 
+  ISA :"BFO_0000051"  
+
+PROPERTY :"IAO_0000136"   
+  LABEL @en 'is about' 
+  DESCRIPTION @en 'is_about is a (currently) primitive relation that relates an information artifact to an entity.'
+
+PROPERTY :"IAO_0000219"   
+  LABEL @en 'denotes' 
+  ISA :"IAO_0000136"  
+
+PROPERTY :"IAO_0000221"   
+  LABEL @en 'is quality measurement of' 
+  DESCRIPTION @en 'm is a quality measurement of q at t when
+q is a quality 
+there is a measurement process p that has specified output m, a measurement datum, that is about q'
+  ISA :"IAO_0000136"  
+
+PROPERTY :"IAO_0000413"   
+  LABEL @en 'is duration of' 
+  DESCRIPTION @en 'relates a process to a time-measurement-datum that represents the duration of the process'
+  ISA :"IAO_0000136"  
+
+PROPERTY :"IAO_0000417"   
+  LABEL @en 'is quality measured as' 
+  DESCRIPTION @en 'inverse of the relation of is quality measurement of'
+
+PROPERTY :"OBI_0000293"   
+  LABEL @en 'has_specified_input' 
+  DESCRIPTION @en 'A relation between a planned process and a continuant participating in that process that is not created during  the process. The presence of the continuant during the process is explicitly specified in the plan specification which the process realizes the concretization of.'
+  ISA :"RO_0000057"  
+
+PROPERTY :"OBI_0000295"   
+  LABEL @en 'is_specified_input_of' 
+  DESCRIPTION @en 'A relation between a planned process and a continuant participating in that process that is not created during  the process. The presence of the continuant during the process is explicitly specified in the plan specification which the process realizes the concretization of.'
+  ISA :"RO_0000056"  
+
+PROPERTY :"OBI_0000299"   
+  LABEL @en 'has_specified_output' 
+  DESCRIPTION @en 'A relation between a planned process and a continuant participating in that process. The presence of the continuant at the end of the process is explicitly specified in the objective specification which the process realizes the concretization of.'
+  ISA :"BFO_0000057" 
+  ISA :"RO_0000057"  
+
+PROPERTY :"OBI_0000312"   
+  LABEL @en 'is_specified_output_of' 
+  DESCRIPTION @en 'A relation between a planned process and a continuant participating in that process. The presence of the continuant at the end of the process is explicitly specified in the objective specification which the process realizes the concretization of.'
+  ISA :"RO_0000056"  
+
+PROPERTY :"OBI_0000417"   
+  LABEL @en 'achieves_planned_objective' 
+  DESCRIPTION @en 'This relation obtains between a planned process and a objective specification when the criteria specified in the objective specification are met at the end of the planned process.'
+
+PROPERTY :"OBI_0000833"   
+  LABEL @en 'objective_achieved_by' 
+  DESCRIPTION @en 'This relation obtains between an objective specification and a planned process when the criteria specified in the objective specification are met at the end of the planned process.'
+
+PROPERTY :"OBI_0001938"   
+  LABEL @en 'has value specification' 
+
+PROPERTY :"RO_0000052"   
+  LABEL @en 'inheres in' 
+  DESCRIPTION @en 'a relation between a specifically dependent continuant (the dependent) and an independent continuant (the bearer), in which the dependent specifically depends on the bearer for its existence'
+
+PROPERTY :"RO_0000053"   
+  LABEL @en 'bearer of' 
+  DESCRIPTION @en 'a relation between an independent continuant (the bearer) and a specifically dependent continuant (the dependent), in which the dependent specifically depends on the bearer for its existence'
+
+PROPERTY :"RO_0000056"   
+  LABEL @en 'participates in' 
+  DESCRIPTION @en 'a relation between a continuant and a process, in which the continuant is somehow involved in the process'
+
+PROPERTY :"RO_0000057"   
+  LABEL @en 'has participant' 
+  DESCRIPTION @en 'a relation between a process and a continuant, in which the continuant is somehow involved in the process'
+
+PROPERTY :"RO_0000058"   
+  LABEL @en 'is concretized as' 
+  DESCRIPTION @en 'A relationship between a generically dependent continuant and a specifically dependent continuant, in which the generically dependent continuant depends on some independent continuant in virtue of the fact that the specifically dependent continuant also depends on that same independent continuant. A generically dependent continuant may be concretized as multiple specifically dependent continuants.'
+
+PROPERTY :"RO_0000059"   
+  LABEL @en 'concretizes' 
+  DESCRIPTION @en 'A relationship between a specifically dependent continuant and a generically dependent continuant, in which the generically dependent continuant depends on some independent continuant in virtue of the fact that the specifically dependent continuant also depends on that same independent continuant. Multiple specifically dependent continuants can concretize the same generically dependent continuant.'
+
+PROPERTY :"RO_0000079"   
+  LABEL @en 'function of' 
+  DESCRIPTION @en 'a relation between a function and an independent continuant (the bearer), in which the function specifically depends on the bearer for its existence'
+  ISA :"RO_0000052"  
+
+PROPERTY :"RO_0000080"   
+  LABEL @en 'quality of' 
+  DESCRIPTION @en 'a relation between a quality and an independent continuant (the bearer), in which the quality specifically depends on the bearer for its existence'
+  ISA :"RO_0000052"  
+
+PROPERTY :"RO_0000081"   
+  LABEL @en 'role of' 
+  DESCRIPTION @en 'a relation between a role and an independent continuant (the bearer), in which the role specifically depends on the bearer for its existence'
+  ISA :"RO_0000052"  
+
+PROPERTY :"RO_0000085"   
+  LABEL @en 'has function' 
+  DESCRIPTION @en 'a relation between an independent continuant (the bearer) and a function, in which the function specifically depends on the bearer for its existence'
+  ISA :"RO_0000053"  
+
+PROPERTY :"RO_0000086"   
+  LABEL @en 'has quality' 
+  DESCRIPTION @en 'a relation between an independent continuant (the bearer) and a quality, in which the quality specifically depends on the bearer for its existence'
+  ISA :"RO_0000053"  
+
+PROPERTY :"RO_0000087"   
+  LABEL @en 'has role' 
+  DESCRIPTION @en 'a relation between an independent continuant (the bearer) and a role, in which the role specifically depends on the bearer for its existence'
+  ISA :"RO_0000053"  
+
+PROPERTY :"RO_0000091"   
+  LABEL @en 'has disposition' 
+  DESCRIPTION @en 'a relation between an independent continuant (the bearer) and a disposition, in which the disposition specifically depends on the bearer for its existence'
+  ISA :"RO_0000053"  
+
+PROPERTY :"RO_0000092"   
+  LABEL @en 'disposition of' 
+  ISA :"RO_0000052"  
+
+PROPERTY :"RO_0001015"   
+  LABEL @en 'location of' 
+  DESCRIPTION @en 'a relation between two independent continuants, the location and the target, in which the target is entirely within the location'
+
+PROPERTY :"RO_0001025"   
+  LABEL @en 'located in' 
+  DESCRIPTION @en 'a relation between two independent continuants, the target and the location, in which the target is entirely within the location'
+
+PROPERTY :"RO_0002131"   
+  LABEL @en 'overlaps' 
+  DESCRIPTION @en 'x overlaps y if and only if there exists some z such that x has part z and z part of y'
+  ISA :"RO_0002323"  
+
+PROPERTY :"RO_0002323"   
+  LABEL @en 'mereotopologically related to' 
+  DESCRIPTION @en 'A mereological relationship or a topological relationship'
+
+PROPERTY :"RO_0002350"   
+  LABEL @en 'member of' 
+  DESCRIPTION @en 'is member of is a mereological relation between a item and a collection.'
+  ISA :"BFO_0000050"  
+
+PROPERTY :"RO_0002351"   
+  LABEL @en 'has member' 
+  DESCRIPTION @en 'has member is a mereological relation between a collection and an item.'
+  ISA :"BFO_0000051"  
+
+PROPERTY :"PHYSIO_0000089"   
+  LABEL @en 'has evaluant' 
+  DESCRIPTION @en 'A has participant property in a evaluation process'
+  ISA :"RO_0000057"  
+
+PROPERTY :"exists_during"  
+
+PROPERTY :"towards"   
+  LABEL @en 'towards' 
+  DESCRIPTION @en 'relation binding a relational quality or disposition to the relevant type of entity'
+
+PROPERTY :"IAO_0000004"   
+  LABEL @en 'has measurement value' 
+  DESCRIPTION @en 'Property of a scalar measurement datum of having a value.'
+
+PROPERTY :"PHYSIO_0000100"   
+  LABEL @en 'has value' 
+  DESCRIPTION @en 'The property of having a value.'
+
+PROPERTY :"topDataProperty"  
+
+CLASS :"NCBITaxon_9606"   
+  LABEL @en 'Homo sapiens' 
+  DESCRIPTION @en 'Organism member of the genus Homo, evolving from Homo heidelbergensis or a similar species and migrating out of Africa, gradually replacing or interbreeding with local populations of archaic humans.' 
+  ISA :"OBI_0100026"  
+
+CLASS :"Thing"  
+  DESCRIPTION @en 'The class owl:Thing is the class of all individuals.' 
+
+CLASS :"PHYSIO_0000093"   
+  LABEL @en 'physiological data item' 
+  DESCRIPTION @en 'A data item that is the specified output of some physiological evaluation.' 
+  ISA :"IAO_0000027"  
+  :"OBI_0000312"  [1..*] :"PHYSIO_0000085" 
+
+CLASS :"PHYSIO_0000090"   
+  LABEL @en 'physiological evaluation of human' 
+  DESCRIPTION @en 'A physiological evaluation that evaluates a human%'s body weight.' 
+  ISA :"PHYSIO_0000085"  
+  :"PHYSIO_0000089"  [1..1] :"NCBITaxon_9606" 
+
+CLASS :"OBI_0000093"   
+  LABEL @en 'patient role' 
+  DESCRIPTION @en 'a role which inheres in a person and is realized by the process of being under the care of a physician or health care provider' 
+  ISA :"BFO_0000023"  
+  :"RO_0000052"  [1..*] :"NCBITaxon_9606" 
+
+CLASS :"PHYSIO_0000091"   
+  LABEL @en 'physiological evaluation of patient' 
+  DESCRIPTION @en 'A physiological evaluation that evaluates a patient%'s body weight.' 
+  ISA :"PHYSIO_0000085"  
+  :"PHYSIO_0000089"  [1..1] :"HADO_0000008" 
+
+CLASS :"PHYSIO_0000094"   
+  LABEL @en 'health care record' 
+  DESCRIPTION @en 'A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting.' 
+  ISA :"IAO_0000310"  
+  :"IAO_0000136"  [1..*] :"OBI_0100026" 
+
+CLASS :"BFO_0000003"   
+  LABEL @en 'occurrent' 
+  DESCRIPTION @en '
+An entity that has temporal parts and that happens, unfolds or develops through time.
+' 
+  ISA :"BFO_0000001"  
+  :"BFO_0000066"  [1..*] :"BFO_0000004" 
+  :"RO_0000057"  [1..*] :"BFO_0000002" 
+
+CLASS :"BFO_0000004"   
+  LABEL @en 'ic' 
+  DESCRIPTION @en 'b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])' 
+  ISA :"BFO_0000002"  
+  :"RO_0000087"  [1..*] :"BFO_0000023" 
+  :"RO_0001025"  [1..*] :"BFO_0000004" 
+
+CLASS :"OBI_0000011"   
+  LABEL @en 'planned process' 
+  DESCRIPTION @en 'A process that realizes a plan which is the concretization of a plan specification.' 
+  ISA :"BFO_0000015"  
+
+CLASS :"BFO_0000031"   
+  LABEL @en 'generically dependent continuant' 
+  DESCRIPTION @en 'GenericallyDependentContinuant' 
+  ISA :"BFO_0000002"  
+  :"RO_0000058"  [1..*] :"BFO_0000020" 
+
+CLASS :"IAO_0000577"   
+  LABEL @en 'centrally registered identifier symbol' 
+  DESCRIPTION @en 'A symbol that is part of a CRID and that is sufficient to look up a record from the CRID%'s registry.' 
+  ISA :"IAO_0000028"  
+  :"PHYSIO_0000100"  [1..1] :"string" 
+
+CLASS :"IAO_0000032"   
+  LABEL @en 'scalar measurement datum' 
+  DESCRIPTION @en 'a scalar measurement datum is a measurement datum that is composed of two parts, numerals and a unit label.' 
+  ISA :"IAO_0000109"  
+  :"IAO_0000039"  [1..*] :"Thing" 
+  :"OBI_0001938"  [1..*] :"OBI_0001931" 
+  :"IAO_0000004"  [1..1] :"double" 
+  :"IAO_0000004"  [1..*] :"Literal" 
+
+CLASS :"IAO_0000310"   
+  LABEL @en 'document' 
+  DESCRIPTION @en 'An information content entity that is a collection of information content entities intended to be understood together as a whole.' 
+  ISA :"IAO_0000030"  
+
+CLASS :"IAO_0000030"   
+  LABEL @en 'information content entity' 
+  DESCRIPTION @en 'A generically dependent continuant that is about some thing.' 
+  ISA :"BFO_0000031"  
+  :"IAO_0000136"  [1..*] :"BFO_0000001" 
+  :"IAO_0000219"  [1..*] :"BFO_0000001" 
+
+CLASS :"OBI_0001931"   
+  LABEL @en 'scalar value specification' 
+  DESCRIPTION @en 'A value specification that consists of two parts: a numeral and a unit label' 
+  ISA :"OBI_0001933"  
+
+CLASS :"PHYSIO_0000083"   
+  LABEL @en 'physiological evaluation report' 
+  DESCRIPTION @en 'A document that contains information representing the health-relevant qualities of a patient%'s body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions.' 
+  ISA :"IAO_0000310"  
+  :"BFO_0000051"  [1..*] :"PHYSIO_0000093" 
+  :"BFO_0000051"  [1..1] :"HADO_0000006" 
+
+CLASS :"BFO_0000017"   
+  LABEL @en 'realizable' 
+  DESCRIPTION @en 'A specifically dependent continuant that inheres in some independent continuant which is not a spatial region and is of a type instances of which are realized in processes of a correlated type.' 
+  ISA :"BFO_0000020"  
+  :"BFO_0000054"  [1..*] :"BFO_0000015" 
+
+CLASS :"BFO_0000015"   
+  LABEL @en 'process' 
+  DESCRIPTION @en '
+An occurrent that has temporal proper parts and for some time t, p s-depends_on some material entity at t.
+' 
+  ISA :"BFO_0000003"  
+  :"BFO_0000055"  [1..*] :"BFO_0000017" 
+
+CLASS :"PHYSIO_0000065"   
+  LABEL @en 'human body mass measurement datum' 
+  DESCRIPTION @en 'A scalar measurement datum that is a measurement of the mass of a human body.' 
+  ISA :"IAO_0000032"  
+  :"OBI_0000312"  [1..*] :"PHYSIO_0000008" 
+
+CLASS :"UO_0000002"   
+  LABEL @en 'mass unit' 
+  DESCRIPTION @en 'A unit which is a standard measure of the amount of matter/energy of a physical object.' 
+  ISA :"IAO_0000003"  
+
+CLASS :"IAO_0000009"   
+  LABEL @en 'datum label' 
+  DESCRIPTION @en 'A label is a symbol that is part of some other datum and is used to either partially define  the denotation of that datum or to provide a means for identifying the datum as a member of the set of data with the same label' 
+  ISA :"IAO_0000030"  
+
+CLASS :"PHYSIO_0000085"   
+  LABEL @en 'physiological evaluation' 
+  DESCRIPTION @en 'A planned process that evaluates health-relevant qualities of an organism%'s body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions.' 
+  ISA :"OBI_0000011"  
+  :"PHYSIO_0000089"  [1..1] :"OBI_0100026" 
+
+CLASS :"IAO_0000109"   
+  LABEL @en 'measurement datum' 
+  DESCRIPTION @en 'A measurement datum is an information content entity that is a recording of the output of a measurement such as produced by a device.' 
+  ISA :"IAO_0000027"  
+  :"IAO_0000039"  [1..1] :"IAO_0000003" 
+  :"OBI_0001938"  [1..*] :"OBI_0001933" 
+
+CLASS :"IAO_0000003"   
+  LABEL @en 'measurement unit label' 
+  DESCRIPTION @en 'A measurement unit label is as a label that is part of a scalar measurement datum and denotes a unit of measure.' 
+  ISA :"IAO_0000009"  
+  :"PHYSIO_0000100"  [1..1] :"string" 
+
+CLASS :"PHYSIO_0000008"   
+  LABEL @en 'body weight measurement process' 
+  DESCRIPTION @en 'A physiological evaluation that evaluates an organism%'s body weight.' 
+  ISA :"PHYSIO_0000085"  
+
+CLASS :"BFO_0000020"   
+  LABEL @en 'specifically dependent continuant' 
+  DESCRIPTION @en 'SpecificallyDependentContinuant' 
+  ISA :"BFO_0000002"  
+  :"RO_0000059"  [1..*] :"BFO_0000031" 
+
+CLASS :"IAO_0000027"   
+  LABEL @en 'data item' 
+  DESCRIPTION @en 'a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements.' 
+  ISA :"IAO_0000030"  
+
+CLASS :"BFO_0000040"   
+  LABEL @en 'material' 
+  DESCRIPTION @en 'MaterialEntity' 
+  ISA :"BFO_0000004"  
+
+CLASS :"IAO_0000028"   
+  LABEL @en 'symbol' 
+  DESCRIPTION @en 'An information content entity that is a mark(s) or character(s) used as a conventional representation of another entity.' 
+  ISA :"IAO_0000030"  
+
+CLASS :"BFO_0000001"   
+  LABEL @en 'entity' 
+  DESCRIPTION @en 'per discussion with Barry Smith' 
+  ISA :"Thing"  
+  :"BFO_0000050"  [1..*] :"BFO_0000001" 
+
+CLASS :"BFO_0000023"   
+  LABEL @en 'role' 
+  DESCRIPTION @en 'Role' 
+  ISA :"BFO_0000017"  
+
+CLASS :"BFO_0000002"   
+  LABEL @en 'continuant' 
+  DESCRIPTION @en '
+An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts.
+' 
+  ISA :"BFO_0000001"  
+  :"RO_0000056"  [1..*] :"BFO_0000003" 
+
+CLASS :"HADO_0000006"   
+  LABEL @en 'medical record identifier' 
+  DESCRIPTION @en 'A CRID symbol that is sufficent to look up a patient file in a medical record registry.' 
+  ISA :"IAO_0000577"  
+  :"IAO_0000219"  [1..1] :"ONTORELA_C0025X" 
+
+CLASS :"HADO_0000008"   
+  LABEL @en 'patient' 
+  DESCRIPTION @en 'Homo sapiens having the role of patient.' 
+  ISA :"NCBITaxon_9606"  
+  :"RO_0000087"  [1..*] :"OBI_0000093" 
+
+CLASS :"OBI_0100026"   
+  LABEL @en 'organism' 
+  DESCRIPTION @en 'A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.' 
+  ISA :"BFO_0000040"  
+
+CLASS :"OBI_0001933"   
+  LABEL @en 'value specification' 
+  DESCRIPTION @en 'An information content entity that specifies a value within a classification scheme or on a quantitative scale.' 
+  ISA :"IAO_0000030"  
+
+CLASS :"ONTORELA_C0025X"   
+  LABEL @fr 'HADO_0000006 intersectionOf '
+    @en 'medical record identifier intersectionOf health care record | is about | patient' 
+  DESCRIPTION @fr 'HADO_0000006 intersectionOf '
+    @en 'medical record identifier intersectionOf A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting. is_about is a (currently) primitive relation that relates an information artifact to an entity. Homo sapiens having the role of patient.' 
+  ISA :"PHYSIO_0000094"  
+  :"IAO_0000136"  [1..*] :"HADO_0000008" 
+

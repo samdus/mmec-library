@@ -30,6 +30,7 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.TimeZone;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.utility.MountableFile;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -47,8 +48,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
  */
 public class PostgresContainerWrapper implements Closeable {
 
-  private static final GriisLogger logger =
-      GriisLoggerFactory.getLogger(PostgresContainerWrapper.class);
+  private static final GriisLogger logger = GriisLoggerFactory.getLogger(
+      PostgresContainerWrapper.class);
   private static PostgresContainerWrapper instance;
   private final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15.4");
   private final HikariConfig hikariConfig = new HikariConfig();
@@ -56,6 +57,9 @@ public class PostgresContainerWrapper implements Closeable {
 
   private PostgresContainerWrapper() {
     TimeZone.setDefault(TimeZone.getTimeZone("Z"));
+
+    container.withCopyFileToContainer(MountableFile.forClasspathResource("testset/"),
+        "/docker-entrypoint-initdb.d/");
     container.start();
 
     hikariConfig.setJdbcUrl(container.getJdbcUrl());
@@ -87,15 +91,10 @@ public class PostgresContainerWrapper implements Closeable {
   public void resetDB() throws SQLException {
     try (Connection connection = getConnection()) {
       try (Statement statement = connection.createStatement()) {
-        statement.executeUpdate(
-            "do $$ declare\n" +
-                "    r record;\n" +
-                "begin\n" +
-                "    for r in select table_name from information_schema.tables where table_schema ~ '(?!^information_schema|pg_.+|sys.+).*' loop\n"
-                +
-                "        execute 'drop table if exists \"' || r.table_name || '\" cascade;';\n" +
-                "    end loop;\n" +
-                "end $$;");
+        statement.executeUpdate("do $$ declare\n" + "    r record;\n" + "begin\n"
+            + "    for r in select table_name from information_schema.tables where table_schema ~ '(?!^information_schema|pg_.+|sys.+).*' loop\n"
+            + "        execute 'drop table if exists \"' || r.table_name || '\" cascade;';\n"
+            + "    end loop;\n" + "end $$;");
       }
     }
   }

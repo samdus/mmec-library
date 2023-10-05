@@ -27,7 +27,6 @@ public class PreliminaryTests {
           .filter(Files::isDirectory)
           .map(file -> {
             try {
-              Path databaseFile = null;
               Path ontologyFile = null;
               Path mappingFile = null;
 
@@ -35,7 +34,6 @@ public class PreliminaryTests {
                 for (Path fichier : fichiers) {
                   String nomFichier = fichier.getFileName().toString();
                   switch (nomFichier) {
-                    case "database.sql" -> databaseFile = fichier;
                     case "ontology.ttl" -> ontologyFile = fichier;
                     case "mapping.ttl" -> mappingFile = fichier;
                     default -> {
@@ -44,7 +42,7 @@ public class PreliminaryTests {
                 }
               }
 
-              return Arguments.of(databaseFile, ontologyFile, mappingFile);
+              return Arguments.of(ontologyFile, mappingFile);
             } catch (IOException e) {
               throw new RuntimeException(e);
             }
@@ -54,17 +52,10 @@ public class PreliminaryTests {
     }
   }
 
-  @After
-  public void tearDown() throws SQLException {
-    postgresContainerWrapper.resetDB();
-  }
-
   @ParameterizedTest
   @MethodSource("listTestElements")
-  public void testOptimize(Path databaseFile, Path ontologyFile, Path mappingFile)
+  public void testOptimize(Path ontologyFile, Path mappingFile)
       throws Exception {
-    postgresContainerWrapper.executeSQLFile(databaseFile);
-
     OntopTester tester = new OptimizeTester(postgresContainerWrapper,
         ontologyFile.toAbsolutePath().toString(),
         mappingFile.toAbsolutePath().toString());
@@ -73,9 +64,7 @@ public class PreliminaryTests {
 
   @ParameterizedTest
   @MethodSource("listTestElements")
-  public void testR2RML(Path databaseFile, Path ontologyFile, Path mappingFile) throws Exception {
-    postgresContainerWrapper.executeSQLFile(databaseFile);
-
+  public void testR2RML(Path ontologyFile, Path mappingFile) throws Exception {
     OntopTester tester = new R2rmlTester(postgresContainerWrapper,
         ontologyFile.toAbsolutePath().toString(),
         mappingFile.toAbsolutePath().toString());

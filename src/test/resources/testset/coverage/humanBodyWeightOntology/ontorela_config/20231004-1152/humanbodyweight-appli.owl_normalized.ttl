@@ -55,11 +55,7 @@ xsd:string rdf:type rdfs:Datatype ;
                                              rdfs:comment """
 a core relation that holds between a whole and its part
 """@en ;
-                                             rdfs:label "has part"@en .
-
-
-###  http://purl.obolibrary.org/obo/BFO_0000052
-<http://purl.obolibrary.org/obo/BFO_0000052> rdf:type owl:ObjectProperty .
+                                             rdfs:label "has_part"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000054
@@ -72,10 +68,6 @@ a core relation that holds between a whole and its part
 <http://purl.obolibrary.org/obo/BFO_0000055> rdf:type owl:ObjectProperty ;
                                              rdfs:comment "Paraphrase of elucidation: a relation between a process and a realizable entity, where there is some material entity that is bearer of the realizable entity and participates in the process, and the realizable entity comes to be realized in the course of the process"@en ;
                                              rdfs:label "realizes"@en .
-
-
-###  http://purl.obolibrary.org/obo/BFO_0000056
-<http://purl.obolibrary.org/obo/BFO_0000056> rdf:type owl:ObjectProperty .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000057
@@ -281,13 +273,17 @@ there is a measurement process p that has specified output m, a measurement datu
 ###  http://purl.obolibrary.org/obo/RO_0002131
 <http://purl.obolibrary.org/obo/RO_0002131> rdf:type owl:ObjectProperty ;
                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0002323> ;
-                                            rdfs:comment "x overlaps y if and only if there exists some z such that x has part z and z part of y"@en ;
+                                            rdfs:comment """
+x overlaps y if and only if there exists some z such that x has part z and z part of y
+"""@en ;
                                             rdfs:label "overlaps"@en .
 
 
 ###  http://purl.obolibrary.org/obo/RO_0002323
 <http://purl.obolibrary.org/obo/RO_0002323> rdf:type owl:ObjectProperty ;
-                                            rdfs:comment "A mereological relationship or a topological relationship"@en ;
+                                            rdfs:comment """
+A mereological relationship or a topological relationship
+"""@en ;
                                             rdfs:label "mereotopologically related to"@en .
 
 
@@ -308,18 +304,8 @@ there is a measurement process p that has specified output m, a measurement datu
 ###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089
 <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> rdf:type owl:ObjectProperty ;
                                                                           rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0000057> ;
-                                                                          rdfs:comment "A has participant property in a evaluation process"@en ;
+                                                                          rdfs:comment "A has participant property in a evaluation process where the participant does evaluate"@en ;
                                                                           rdfs:label "has evaluant"@en .
-
-
-###  http://purl.org/obo/owl/OBO_REL#exists_during
-<http://purl.org/obo/owl/OBO_REL#exists_during> rdf:type owl:ObjectProperty .
-
-
-###  http://purl.org/obo/owl/obo#towards
-<http://purl.org/obo/owl/obo#towards> rdf:type owl:ObjectProperty ;
-                                      rdfs:comment "relation binding a relational quality or disposition to the relevant type of entity"@en ;
-                                      rdfs:label "towards"@en .
 
 
 #################################################################
@@ -387,9 +373,7 @@ An entity that exists in full at any time in which it exists at all, persists th
                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                owl:onClass <http://purl.obolibrary.org/obo/BFO_0000002>
                                                              ] ;
-                                             rdfs:comment """
-An entity that has temporal parts and that happens, unfolds or develops through time.
-"""@en ;
+                                             rdfs:comment "An entity that has temporal parts and that happens, unfolds or develops through time."@en ;
                                              rdfs:label "occurrent"@en .
 
 
@@ -406,8 +390,8 @@ An entity that has temporal parts and that happens, unfolds or develops through 
                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                owl:onClass <http://purl.obolibrary.org/obo/BFO_0000004>
                                                              ] ;
-                                             rdfs:comment "b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])"@en ;
-                                             rdfs:label "ic"@en .
+                                             rdfs:comment "A continuant that is a bearer of quality and realizable entity entities, in which other entities inhere and which itself cannot inhere in anything."@en ;
+                                             rdfs:label "independent continuant"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000015
@@ -424,6 +408,14 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                                              rdfs:label "process"@en .
 
 
+###  http://purl.obolibrary.org/obo/BFO_0000016
+<http://purl.obolibrary.org/obo/BFO_0000016> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000017> ,
+                                                             :ONTORELA_C002eX-el0 ;
+                                             rdfs:comment "Disposition"@en ;
+                                             rdfs:label "disposition"@en .
+
+
 ###  http://purl.obolibrary.org/obo/BFO_0000017
 <http://purl.obolibrary.org/obo/BFO_0000017> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000020> ,
@@ -433,7 +425,15 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                                                                owl:onClass <http://purl.obolibrary.org/obo/BFO_0000015>
                                                              ] ;
                                              rdfs:comment "A specifically dependent continuant that inheres in some independent continuant which is not a spatial region and is of a type instances of which are realized in processes of a correlated type."@en ;
-                                             rdfs:label "realizable"@en .
+                                             rdfs:label "realizable entity"@en .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000019
+<http://purl.obolibrary.org/obo/BFO_0000019> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000020> ,
+                                                             :ONTORELA_C002eX-el0 ;
+                                             rdfs:comment "Quality"@en ;
+                                             rdfs:label "quality"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000020
@@ -444,7 +444,7 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                owl:onClass <http://purl.obolibrary.org/obo/BFO_0000031>
                                                              ] ;
-                                             rdfs:comment "SpecificallyDependentContinuant"@en ;
+                                             rdfs:comment "b is a specifically dependent continuant = Def. b is a continuant & there is some independent continuant c which is not a spatial region and which is such that b s-depends_on c at every time t during the course of b’s existence. (axiom label in BFO2 Reference: [050-003])"@en ;
                                              rdfs:label "specifically dependent continuant"@en .
 
 
@@ -463,7 +463,7 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                owl:onClass <http://purl.obolibrary.org/obo/BFO_0000020>
                                                              ] ;
-                                             rdfs:comment "GenericallyDependentContinuant"@en ;
+                                             rdfs:comment "b is a generically dependent continuant = Def. b is a continuant that g-depends_on one or more other entities. (axiom label in BFO2 Reference: [074-001])"@en ;
                                              rdfs:label "generically dependent continuant"@en .
 
 
@@ -471,36 +471,175 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
 <http://purl.obolibrary.org/obo/BFO_0000040> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000004> ;
                                              rdfs:comment "MaterialEntity"@en ;
-                                             rdfs:label "material"@en .
+                                             rdfs:label "material entity"@en .
 
 
-###  http://purl.obolibrary.org/obo/HADO_0000006
-<http://purl.obolibrary.org/obo/HADO_0000006> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000577> ,
-                                                              [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000219> ;
-                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                owl:onClass <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C0025X>
-                                                              ] ,
-                                                              [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000219> ;
-                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                owl:onClass <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C0025X>
-                                                              ] ;
-                                              rdfs:comment "A CRID symbol that is sufficent to look up a patient file in a medical record registry."@en ;
-                                              rdfs:label "medical record identifier"@en .
+###  http://purl.obolibrary.org/obo/HBW_0000001
+<http://purl.obolibrary.org/obo/HBW_0000001> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000027> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000312> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000012>
+                                                             ] ;
+                                             rdfs:comment "A data item that is the specified output of some physiological evaluation."@en ;
+                                             rdfs:label "physiological data item"@en .
 
 
-###  http://purl.obolibrary.org/obo/HADO_0000008
-<http://purl.obolibrary.org/obo/HADO_0000008> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/NCBITaxon_9606> ,
-                                                              [ rdf:type owl:Restriction ;
-                                                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
-                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                owl:onClass <http://purl.obolibrary.org/obo/OBI_0000093>
-                                                              ] ;
-                                              rdfs:comment "Homo sapiens having the role of patient."@en ;
-                                              rdfs:label "patient"@en .
+###  http://purl.obolibrary.org/obo/HBW_0000002
+<http://purl.obolibrary.org/obo/HBW_0000002> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000027> ;
+                                             rdfs:comment "A data item categorizing a type of health situation in order to adjust administrative handling of physician billing by the RAMQ."@en ;
+                                             rdfs:label "RAMQ vulnerability code"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000003
+<http://purl.obolibrary.org/obo/HBW_0000003> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000003> ;
+                                             rdfs:comment "a measurement unit label of a weight"@en ;
+                                             rdfs:label "weight unit"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000004
+<http://purl.obolibrary.org/obo/HBW_0000004> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000310> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/OBI_0100026>
+                                                             ] ;
+                                             rdfs:comment "A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting."@en ;
+                                             rdfs:label "health care record"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000005
+<http://purl.obolibrary.org/obo/HBW_0000005> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000310> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000001>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000006>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
+                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000006>
+                                                             ] ;
+                                             rdfs:comment "A document that contains information representing the health-relevant qualities of a patient's body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions."@en ;
+                                             rdfs:label "physiological evaluation report"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000006
+<http://purl.obolibrary.org/obo/HBW_0000006> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000577> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000219> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass :ONTORELA_C002aX
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000219> ;
+                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass :ONTORELA_C002aX
+                                                             ] ;
+                                             rdfs:comment "A CRID symbol that is sufficent to look up a patient file in a medical record registry."@en ;
+                                             rdfs:label "medical record identifier"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000007
+<http://purl.obolibrary.org/obo/HBW_0000007> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0100026> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000011>
+                                                             ] ;
+                                             rdfs:comment "An organism having the role of patient."@en ;
+                                             rdfs:label "patient"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000008
+<http://purl.obolibrary.org/obo/HBW_0000008> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/NCBITaxon_9606> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000010>
+                                                             ] ;
+                                             rdfs:comment "A homo sapiens having with the health care provider role"@en ;
+                                             rdfs:label "health care provider"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000009
+<http://purl.obolibrary.org/obo/HBW_0000009> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000019> ;
+                                             rdfs:comment "a quality of a body of having a weight"@en ;
+                                             rdfs:label "body weight"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000010
+<http://purl.obolibrary.org/obo/HBW_0000010> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> ;
+                                             rdfs:comment "A role inhering in an organization or human being that is realized by a process of providing health care services to an organism."@en ;
+                                             rdfs:label "health care provider role"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000011
+<http://purl.obolibrary.org/obo/HBW_0000011> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> ;
+                                             rdfs:comment "a role which inheres in a person and is realized by the process of being under the care of a physician or health care provider"@en ;
+                                             rdfs:label "patient role"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000012
+<http://purl.obolibrary.org/obo/HBW_0000012> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0000011> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000299> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass :ONTORELA_C002cX
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/NCBITaxon_9606>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
+                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/NCBITaxon_9606>
+                                                             ] ;
+                                             rdfs:comment "A planned process that evaluates health-relevant qualities of an organism's body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions."@en ;
+                                             rdfs:label "physiological evaluation"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000013
+<http://purl.obolibrary.org/obo/HBW_0000013> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/HBW_0000012> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000008>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
+                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://purl.obolibrary.org/obo/HBW_0000008>
+                                                             ] ;
+                                             rdfs:comment "A physiological evaluation that is evaluated by a health care provider"@en ;
+                                             rdfs:label "physiological evaluation from health care provider"@en .
+
+
+###  http://purl.obolibrary.org/obo/HBW_0000014
+<http://purl.obolibrary.org/obo/HBW_0000014> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/OGMS_0000031> ;
+                                             rdfs:comment "A disease marked by an abnormally high, unhealthy amount of body fat.; A disorder characterized by having an increased body fat."@en ;
+                                             rdfs:label "obesity"@en .
 
 
 ###  http://purl.obolibrary.org/obo/IAO_0000003
@@ -554,7 +693,7 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                owl:onClass <http://purl.obolibrary.org/obo/BFO_0000001>
                                                              ] ;
-                                             rdfs:comment "A generically dependent continuant that is about some thing."@en ;
+                                             rdfs:comment "An information content entity is an entity that is generically dependent on some artifact and stands in relation of aboutness to some entity"@en ;
                                              rdfs:label "information content entity"@en .
 
 
@@ -648,18 +787,6 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                                              rdfs:label "planned process"@en .
 
 
-###  http://purl.obolibrary.org/obo/OBI_0000093
-<http://purl.obolibrary.org/obo/OBI_0000093> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> ,
-                                                             [ rdf:type owl:Restriction ;
-                                                               owl:onProperty <http://purl.obolibrary.org/obo/RO_0000052> ;
-                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                               owl:onClass <http://purl.obolibrary.org/obo/NCBITaxon_9606>
-                                                             ] ;
-                                             rdfs:comment "a role which inheres in a person and is realized by the process of being under the care of a physician or health care provider"@en ;
-                                             rdfs:label "patient role"@en .
-
-
 ###  http://purl.obolibrary.org/obo/OBI_0001931
 <http://purl.obolibrary.org/obo/OBI_0001931> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0001933> ;
@@ -681,141 +808,61 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                                              rdfs:label "organism"@en .
 
 
-###  http://purl.obolibrary.org/obo/PHYSIO_0000008
-<http://purl.obolibrary.org/obo/PHYSIO_0000008> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> ;
-                                                rdfs:comment "A physiological evaluation that evaluates an organism's body weight."@en ;
-                                                rdfs:label "body weight measurement process"@en .
+###  http://purl.obolibrary.org/obo/OGMS_0000031
+<http://purl.obolibrary.org/obo/OGMS_0000031> rdf:type owl:Class ;
+                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000016> ;
+                                              rdfs:comment "A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism."@en ;
+                                              rdfs:label "disease"@en .
 
 
-###  http://purl.obolibrary.org/obo/PHYSIO_0000065
-<http://purl.obolibrary.org/obo/PHYSIO_0000065> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000032> ,
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000312> ;
-                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://purl.obolibrary.org/obo/PHYSIO_0000008>
-                                                                ] ;
-                                                rdfs:comment "A scalar measurement datum that is a measurement of the mass of a human body."@en ;
-                                                rdfs:label "human body mass measurement datum"@en .
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl#ONTORELA_C002aX
+:ONTORELA_C002aX rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.obolibrary.org/obo/HBW_0000004> ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass <http://purl.obolibrary.org/obo/HBW_0000007>
+                                 ] ;
+                 rdfs:comment "HBW_0000006 intersectionOf "@fr ,
+                              "medical record identifier intersectionOf A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting. is_about is a (currently) primitive relation that relates an information artifact to an entity. An organism having the role of patient."@en ;
+                 rdfs:label "HBW_0000006 intersectionOf "@fr ,
+                            "medical record identifier intersectionOf health care record | is about | patient"@en .
 
 
-###  http://purl.obolibrary.org/obo/PHYSIO_0000083
-<http://purl.obolibrary.org/obo/PHYSIO_0000083> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000310> ,
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
-                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://purl.obolibrary.org/obo/HADO_0000006>
-                                                                ] ,
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
-                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093>
-                                                                ] ,
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000051> ;
-                                                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://purl.obolibrary.org/obo/HADO_0000006>
-                                                                ] ;
-                                                rdfs:comment "A document that contains information representing the health-relevant qualities of a patient's body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions."@en ;
-                                                rdfs:label "physiological evaluation report"@en .
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl#ONTORELA_C002cX
+:ONTORELA_C002cX rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000027> ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
+                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :ONTORELA_C002eX
+                                 ] ;
+                 rdfs:comment "HBW_0000012 intersectionOf "@fr ,
+                              "physiological evaluation intersectionOf a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements. is_about is a (currently) primitive relation that relates an information artifact to an entity. a relation between a specifically dependent continuant (the dependent) and an independent continuant (the bearer), in which the dependent specifically depends on the bearer for its existence realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."@en ;
+                 rdfs:label "HBW_0000012 intersectionOf "@fr ,
+                            "physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism"@en .
 
 
-###  http://purl.obolibrary.org/obo/PHYSIO_0000094
-<http://purl.obolibrary.org/obo/PHYSIO_0000094> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000310> ,
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
-                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                  owl:onClass <http://purl.obolibrary.org/obo/OBI_0100026>
-                                                                ] ;
-                                                rdfs:comment "A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting."@en ;
-                                                rdfs:label "health care record"@en .
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl#ONTORELA_C002eX
+:ONTORELA_C002eX rdf:type owl:Class ;
+                 rdfs:subClassOf :ONTORELA_C002eX-el0 ;
+                 rdfs:comment "HBW_0000012 intersectionOf  intersectionOf "@fr ,
+                              "physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality a relation between a specifically dependent continuant (the dependent) and an independent continuant (the bearer), in which the dependent specifically depends on the bearer for its existence A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."@en ;
+                 rdfs:label "HBW_0000012 intersectionOf  intersectionOf "@fr ,
+                            "physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism"@en .
 
 
-###  http://purl.obolibrary.org/obo/UO_0000002
-<http://purl.obolibrary.org/obo/UO_0000002> rdf:type owl:Class ;
-                                            rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000003> ;
-                                            rdfs:comment "A unit which is a standard measure of the amount of matter/energy of a physical object."@en ;
-                                            rdfs:label "mass unit"@en .
-
-
-###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085
-<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> rdf:type owl:Class ;
-                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0000011> ,
-                                                                                          [ rdf:type owl:Restriction ;
-                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
-                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                            owl:onClass <http://purl.obolibrary.org/obo/OBI_0100026>
-                                                                                          ] ,
-                                                                                          [ rdf:type owl:Restriction ;
-                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
-                                                                                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                            owl:onClass <http://purl.obolibrary.org/obo/OBI_0100026>
-                                                                                          ] ;
-                                                                          rdfs:comment "A planned process that evaluates health-relevant qualities of an organism's body, organ systems, individual organs, cells and biomolecules that perform chemical and physical functions."@en ;
-                                                                          rdfs:label "physiological evaluation"@en .
-
-
-###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000090
-<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000090> rdf:type owl:Class ;
-                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> ,
-                                                                                          [ rdf:type owl:Restriction ;
-                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
-                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                            owl:onClass <http://purl.obolibrary.org/obo/NCBITaxon_9606>
-                                                                                          ] ,
-                                                                                          [ rdf:type owl:Restriction ;
-                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
-                                                                                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                            owl:onClass <http://purl.obolibrary.org/obo/NCBITaxon_9606>
-                                                                                          ] ;
-                                                                          rdfs:comment "A physiological evaluation that evaluates a human's body weight."@en ;
-                                                                          rdfs:label "physiological evaluation of human"@en .
-
-
-###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000091
-<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000091> rdf:type owl:Class ;
-                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085> ,
-                                                                                          [ rdf:type owl:Restriction ;
-                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
-                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                            owl:onClass <http://purl.obolibrary.org/obo/HADO_0000008>
-                                                                                          ] ,
-                                                                                          [ rdf:type owl:Restriction ;
-                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089> ;
-                                                                                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                            owl:onClass <http://purl.obolibrary.org/obo/HADO_0000008>
-                                                                                          ] ;
-                                                                          rdfs:comment "A physiological evaluation that evaluates a patient's body weight."@en ;
-                                                                          rdfs:label "physiological evaluation of patient"@en .
-
-
-###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093
-<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000093> rdf:type owl:Class ;
-                                                                          rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000027> ,
-                                                                                          [ rdf:type owl:Restriction ;
-                                                                                            owl:onProperty <http://purl.obolibrary.org/obo/OBI_0000312> ;
-                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                            owl:onClass <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000085>
-                                                                                          ] ;
-                                                                          rdfs:comment "A data item that is the specified output of some physiological evaluation."@en ;
-                                                                          rdfs:label "physiological data item"@en .
-
-
-###  http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C0025X
-<http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C0025X> rdf:type owl:Class ;
-                                                            rdfs:subClassOf <http://purl.obolibrary.org/obo/PHYSIO_0000094> ,
-                                                                            [ rdf:type owl:Restriction ;
-                                                                              owl:onProperty <http://purl.obolibrary.org/obo/IAO_0000136> ;
-                                                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                              owl:onClass <http://purl.obolibrary.org/obo/HADO_0000008>
-                                                                            ] ;
-                                                            rdfs:comment "HADO_0000006 intersectionOf "@fr ,
-                                                                         "medical record identifier intersectionOf A document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting. is_about is a (currently) primitive relation that relates an information artifact to an entity. Homo sapiens having the role of patient."@en ;
-                                                            rdfs:label "HADO_0000006 intersectionOf "@fr ,
-                                                                       "medical record identifier intersectionOf health care record | is about | patient"@en .
+###  http://purl.obolibrary.org/obo/humanbodyweight-appli.owl#ONTORELA_C002eX-el0
+:ONTORELA_C002eX-el0 rdf:type owl:Class ;
+                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://purl.obolibrary.org/obo/RO_0000052> ;
+                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass <http://purl.obolibrary.org/obo/OBI_0100026>
+                                     ] ;
+                     rdfs:comment "HBW_0000012 intersectionOf  intersectionOf  el "@fr ,
+                                  "physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality"@en ;
+                     rdfs:label "HBW_0000012 intersectionOf  intersectionOf  el "@fr ,
+                                "physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality"@en .
 
 
 ###  http://www.w3.org/2002/07/owl#Thing

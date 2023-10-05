@@ -10,7 +10,98 @@ Le jeu de test est composé de 3 fichiers :
 2. le fichier ontology.ttl contient l'ontologie de référence créé à partir de humanBodyWeightOntology/HumanBodyWeightAppli-inferred.owl;
 3. le fichier mapping.ttl contient l'arrimage de l'ontologie de référence sur la base de données.
 
-== Référence
+== Cas limites illustrés
+Cette ontologie et cette source de données ont étés développé de sorte à faire montrer que le procédé fonctionne avec les différents les cas limites de l'individuation:
+
+.Cas limites
+|===
+|Description du cas |Modifier l'ontologie | Modifier la source |Référence|Commentaires
+
+|Héritage multiple
+|  |
+| disposition subClassOf 'realizable entity'; disposition subClassOf (disposition or quality) ;
+|
+
+|Héritage disjoint
+| X | X
+|Ajout d'un rôle de healthcareprovider et d'une table qui permet de savoir si un médecin est aussi un patient
+|Correspond au cas général, mais quand-même à illustrer
+
+|Héritage avec chevauchement
+| X | X
+| health care provider + patient
+|
+
+|Plusieurs signatures pour une classe
+| X | X
+|Normalisation, dans la source, des poids en kg et en lbs + Ajout  de <RAMQ vulnerability code> (Voir "paul" dans HDRN)
+|Un exemple fréquent est l'héritage disjoint dans la source (poids), mais pas dans l'ontologie ou à l'inverse une dénormalisation dans la source (RAMQ vulnerability code)
+
+|Cas où une signature existe pour les enfants, mais où il serait pratique qu'elle existe aussi pour le parent
+|  | X
+|Même ajout de table "humain" que pour l'héritage disjoint, permet de savoir si un humain a le rôle de patient, de médecin ou aucun des deux.
+| Nécessite l'ajout de la table humain
+
+|Individuation par inférence logique d'une autre signature
+|  |
+| L'existance du poids (qualité) est inféréré par l'existance d'une mesure du poids (ICE)
+|Par exemple, la signature est un conséquent de la proposition logique correspondant à la signature d'une autre classe. Ex: dans le test simple, on a Mapping:tst1C0004X conséquent de Mapping:tst1. On pourrait imaginer un attribut "mmec:consequentOf" qui remplacerait rr:logicalTable et rr:subjectMap. Ce genre d'inférence sera souvent pour faire l'individuation d'une classe équivalente, mais pas que.
+
+|Individuation d'une conjonction
+| |
+| medical record identifier (HADO:0000006) denotes exactly 1 ('health care record' and ('is about' some patient))
+|
+
+|Individuation d'une disjonction
+| x |x
+|Ajout d'une disjonction dans l'ontologie: sexe ou genre (voir ioio)  et ajout des 4 cas dans la bd (avec genre ou sexe ou les deux ou aucun)
+|
+
+|Individuation d'une combinaison de disjonction et de conjonction
+| X |
+| 'physiological evaluation': SubclassOf: has_specified_output some ('data item' and ('is about' some ((disposition or quality) and ('inheres in' some organism))))
+|
+
+|Individuation lorsque l'enfant n'est qu'une restriction du parent
+|  | X
+|weight unit (UO:0000100) = measurement unit label (IAO:0000003) restraint sur le poids
+| Nécessite la table de mesures normalisé (ne contient pas juste des poids)
+
+|Arrimage d'une propriété d'objet défini sur un parent, avec les signatures définies uniquement sur les enfants
+|  |
+|scalar measurement datum (IAO:0000032)
+|Correspond à une autre considération théorique que l'individuation à proprement parler, mais à illustrer quand-même
+
+| Arrimage utilisant des connaissances implicites de la source de données de façon à inférer une signature
+| |
+| patient subclassOf Homo sapiens
+| Ce n'est pas asserté dans l'ontologie, mais c'est un fait de la source
+
+| Arrimage faisant de l'inférence utilisant des opérateurs qui existent en logique des prédicats, mais pas en logique de description
+| X | X
+| Ajout des informations concernants l'obésité et l'indicateur d'un physiological evaluation ayant une valeur scalaire > 30 pour le BMI
+|
+
+|===
+
+=== Discussion
+
+1. Est-ce qu'on voudra, habituellement, générer les ontorel à partir des ontologies inférées ou pas ?
+1.1 Réponse intuitive: Oui -> Exemple de human body mass measurement datum qui ajouterait une FK vers physiological data item
+1.2 D'ailleur, c'est intéressant
+
+2. Il serait intéressant d'avoir un exemple, dans Human Body Weight, d'une classe d'équivalence qui aurait pu être inféré, mais n'était pas vrai dans le cas général (on a trouvé un contre exemple lors de la définition de l'ontoligie),
+    mais si on considère la source de données (donc, les hypothèses spécifiques qu'on a sur la source) on pourrait l'inférer -> Donne lieu à une signature conjointe.
+    ----> Faire en sorte que le patient ne sois pas spécifique à l'humain -> On aura l'inférence dans la source
+
+3. Le health care provider participe au measurement process
+3.1 Voir HOSO pour les des deux nouvelles propriétés de participation (pour distinguer l'évaluant et l'évalué)
+
+4. Classe qui servira au RAMQ vulnerability code dans HDRN -> Paul va le trouver
+
+5. Axiome compliquée pour rien -> Paul va y penser
+
+== Références
 L'ontologie de référence a été développée dans le cadre du développement d'OntoRelA: Khnaisser, C., Lavoie, L., Fraikin, B., Barton, A., Dussault, S., Burgun, A., Ethier, J.-F., 2022. Using an ontology to derive a sharable and interoperable relational data model for heterogeneous healthcare data and various applications. Methods Inf Med a-1877-9498. https://doi.org/10.1055/a-1877-9498
 
 La base de données jedis-griis a été développée dans le cadre du projet PARS3 et est disponible via https://depot.griis.usherbrooke.ca/USoutien/clinical-data-testing/Jedis-GRIIS/. Le jeu de données utilisé correspond au jeu "demo".

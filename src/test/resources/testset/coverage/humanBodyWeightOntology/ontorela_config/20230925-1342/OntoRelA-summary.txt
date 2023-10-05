@@ -1,0 +1,30 @@
+
+======================================================= 
+OntoRelA summary
+======================================================= 
+
+--------------------------------------- 
+Reduced Ontology (axiom redundancy reduction)
+--------------------------------------- 
+http://purl.obolibrary.org/obo/humanbodyweight-appli.owl
+Nb. classes          : 38
+Nb. data properties  : 3
+Nb. object properties: 44
+Nb. isa axioms       : 40
+Nb. data axioms      : 4
+Nb. class axioms     : 28
+Nb. reduced axioms : 0
+
+--------------------------------------- 
+OntoRel database
+--------------------------------------- 
+Nb. all tables          : 70
+Nb. association tables  : 28
+Nb. fks                 : 97
+Nb. constraint functions: 32
+
+--------------------------------------- 
+Other
+--------------------------------------- 
+Execution time: 2 sec
+Output total size: 528 KB
