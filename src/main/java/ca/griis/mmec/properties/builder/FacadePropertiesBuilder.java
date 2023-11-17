@@ -17,6 +17,8 @@ import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.FacadeProperties;
+import ca.griis.mmec.properties.FacadeType;
+import ca.griis.mmec.properties.SignatureType;
 
 
 /**
@@ -50,6 +52,95 @@ public class FacadePropertiesBuilder {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(FacadePropertiesBuilder.class);
 
+  private String facadeStgPath;
+  private String signatureStgPath;
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param facadeStgPath «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Indique le chemin vers le fichier de template de la façade d'arrimage.
+   * @param facadeStgPath Le chemin vers le fichier de template de la façade d'arrimage.
+   * @return L'instance du constructeur de la configuration de la façade d'arrimage.
+   *
+   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
+   *
+   * @par Tâches
+   *      S.O.
+   */
+  public FacadePropertiesBuilder withFacadeStgPath(String facadeStgPath) {
+    logger.trace(Trace.ENTER_METHOD_1, facadeStgPath);
+    this.facadeStgPath = facadeStgPath;
+    logger.trace(Trace.EXIT_METHOD_0);
+    return this;
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param facadeType «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Indique le chemin vers le fichier de template de la façade d'arrimage, basé
+   *        sur un type de façade prédéfinie.
+   * @param facadeType Le type de façade prédéfinie.
+   * @return L'instance du constructeur de la configuration de la façade d'arrimage.
+   *
+   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
+   *
+   * @par Tâches
+   *      S.O.
+   */
+  public FacadePropertiesBuilder withFacadeType(FacadeType facadeType) {
+    logger.trace(Trace.ENTER_METHOD_1, facadeType);
+    this.facadeStgPath = facadeType.getStgPath();
+    logger.trace(Trace.EXIT_METHOD_0);
+    return this;
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param signatureStgPath «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Indique le chemin vers le fichier de template de la signature.
+   * @param signatureStgPath «Description du paramètre»
+   * @return «Description du retour»
+   *
+   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
+   *
+   * @par Tâches
+   *      S.O.
+   */
+  public FacadePropertiesBuilder withSignatureStgPath(String signatureStgPath) {
+    logger.trace(Trace.ENTER_METHOD_1, signatureStgPath);
+    this.signatureStgPath = signatureStgPath;
+    logger.trace(Trace.EXIT_METHOD_0);
+    return this;
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param signatureType «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Indique le chemin vers le fichier de template de la signature, basé sur un
+   *        type de signature prédéfinie.
+   * @param signatureType Type de signature prédéfinie.
+   * @return L'instance du constructeur de la configuration de la façade d'arrimage.
+   *
+   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
+   *
+   * @par Tâches
+   *      S.O.
+   */
+  public FacadePropertiesBuilder withSignatureType(SignatureType signatureType) {
+    logger.trace(Trace.ENTER_METHOD_1, signatureType);
+    this.signatureStgPath = signatureType.getStgPath();
+    logger.trace(Trace.EXIT_METHOD_0);
+    return this;
+  }
+
   /**
    * @brief @~english «Description of the function»
    * @return «Return description»
@@ -62,6 +153,18 @@ public class FacadePropertiesBuilder {
   public FacadeProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new FacadeProperties() {};
+    return new FacadeProperties() {
+      @Override
+      public String getFacadeStgPath() {
+        logger.trace(Trace.ENTER_METHOD_0);
+        return facadeStgPath;
+      }
+
+      @Override
+      public String getSignatureStgPath() {
+        logger.trace(Trace.ENTER_METHOD_0);
+        return signatureStgPath;
+      }
+    };
   }
 }

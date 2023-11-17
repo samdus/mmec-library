@@ -63,11 +63,11 @@ public class ConnectionPropertiesBuilderTest {
     String password = "testpassword";
 
     ConnectionProperties actualProperties = builder
-        .setDriverName(driverName)
-        .setDatabaseName(databaseName)
-        .setJdbcUrl(jdbcUrl)
-        .setUsername(username)
-        .setPassword(password)
+        .withDriverName(driverName)
+        .withDatabaseName(databaseName)
+        .withJdbcUrl(jdbcUrl)
+        .withUsername(username)
+        .withPassword(password)
         .build();
 
     Assertions.assertNotNull(actualProperties);
@@ -87,11 +87,11 @@ public class ConnectionPropertiesBuilderTest {
     String password = "testpassword";
 
     ConnectionProperties actualProperties = builder
-        .setDriverName(driverName)
-        .setDatabaseName(databaseName)
-        .setJdbcUrl(jdbcUrl)
-        .setUsername(username)
-        .setPassword(password)
+        .withDriverName(driverName)
+        .withDatabaseName(databaseName)
+        .withJdbcUrl(jdbcUrl)
+        .withUsername(username)
+        .withPassword(password)
         .build();
     Properties propertiesForOntop = actualProperties.getPropertiesForOntop();
 

@@ -13,7 +13,10 @@
 package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.FacadeProperties;
+import ca.griis.mmec.properties.FacadeType;
+import ca.griis.mmec.properties.SignatureType;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
+import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -46,10 +49,52 @@ import org.junit.jupiter.api.Test;
  */
 public class FacadePropertiesBuilderTest {
   @Test
-  public void test() {
+  public void testCustomFacadeStg() {
+    String expectedFacadeStgPath = "TestFacadeStgPath";
+    String expectedSignatureStgPath = "TestSignatureStgPath";
+
     FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
-    FacadeProperties actualProperties = builder.build();
+    FacadeProperties actualProperties = builder
+        .withFacadeStgPath(expectedFacadeStgPath)
+        .withSignatureStgPath(expectedSignatureStgPath)
+        .build();
 
     Assertions.assertNotNull(actualProperties);
+    Assertions.assertEquals(expectedFacadeStgPath, actualProperties.getFacadeStgPath());
+    Assertions.assertEquals(expectedSignatureStgPath, actualProperties.getSignatureStgPath());
+  }
+
+  @Test
+  public void testSetPredefinedFacadeStg() {
+    String expectedFacadeStgPath = FacadeType.VIEWS.getStgPath();
+    String expectedSignatureStgPath = SignatureType.STRING.getStgPath();
+
+    FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
+    FacadeProperties actualProperties = builder
+        .withFacadeType(FacadeType.VIEWS)
+        .withSignatureType(SignatureType.STRING)
+        .build();
+
+    Assertions.assertNotNull(actualProperties);
+    Assertions.assertEquals(expectedFacadeStgPath, actualProperties.getFacadeStgPath());
+    Assertions.assertEquals(expectedSignatureStgPath, actualProperties.getSignatureStgPath());
+  }
+
+  @Test
+  public void testGetInStream() throws IOException {
+    FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
+    FacadeProperties actualProperties = builder
+        .withFacadeType(FacadeType.VIEWS)
+        .withSignatureType(SignatureType.STRING)
+        .build();
+
+    Assertions.assertNotNull(actualProperties);
+    Assertions.assertNotNull(actualProperties.getFacadeStgStream());
+    Assertions.assertNotNull(actualProperties.getSignatureStgStream());
+
+    Assertions.assertTrue(actualProperties.getFacadeStgStream().readAllBytes().length > 0,
+        "The facade stg stream is empty.");
+    Assertions.assertTrue(actualProperties.getSignatureStgStream().readAllBytes().length > 0,
+        "The signature stg stream is empty.");
   }
 }

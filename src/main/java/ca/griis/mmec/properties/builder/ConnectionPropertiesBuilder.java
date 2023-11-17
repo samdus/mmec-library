@@ -62,7 +62,7 @@ public class ConnectionPropertiesBuilder {
    * @brief @~french Spécifie le nom du pilote JDBC.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionPropertiesBuilder setDriverName(String driverName) {
+  public ConnectionPropertiesBuilder withDriverName(String driverName) {
     this.driverName = driverName;
     return this;
   }
@@ -74,7 +74,7 @@ public class ConnectionPropertiesBuilder {
    * @brief @~french Spécifie le nom de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionPropertiesBuilder setDatabaseName(String databaseName) {
+  public ConnectionPropertiesBuilder withDatabaseName(String databaseName) {
     this.databaseName = databaseName;
     return this;
   }
@@ -87,7 +87,7 @@ public class ConnectionPropertiesBuilder {
    * @brief @~french Spécifie l'url de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionPropertiesBuilder setJdbcUrl(String jdbcUrl) {
+  public ConnectionPropertiesBuilder withJdbcUrl(String jdbcUrl) {
     this.jdbcUrl = jdbcUrl;
     return this;
   }
@@ -99,7 +99,7 @@ public class ConnectionPropertiesBuilder {
    * @brief @~french Spécifie le nom d'utilisateur de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionPropertiesBuilder setUsername(String username) {
+  public ConnectionPropertiesBuilder withUsername(String username) {
     this.username = username;
     return this;
   }
@@ -111,7 +111,7 @@ public class ConnectionPropertiesBuilder {
    * @brief @~french Spécifie le mot de passe de la base de données.
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
-  public ConnectionPropertiesBuilder setPassword(String password) {
+  public ConnectionPropertiesBuilder withPassword(String password) {
     this.password = password;
     return this;
   }
