@@ -469,7 +469,6 @@ artifact.txt
 machine.txt
 project.txt
 
-doxygen-error.txt
 /.pnp.cjs
 /.pnp.loader.mjs
 /.yarn/

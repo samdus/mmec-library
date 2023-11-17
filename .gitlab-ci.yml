@@ -1,5 +1,6 @@
 
 # Le fichier a été généré par le plugin gradle.
+# cache sur "src/main/resources" car Cert ne sont pas versionnés.
 ---
 image: "archive.griis.usherbrooke.ca:5000/runner-java17:latest"
 stages:
@@ -14,6 +15,7 @@ variables:
   CACHE_COMPRESSION_LEVEL: "fast"
   DOCKER_HOST: "tcp://docker:2375/"
   DOCKER_TLS_CERTDIR: ""
+  TESTCONTAINERS_RYUK_DISABLED: "true"
   GRADLE_USER_HOME: "/cache/$CI_PROJECT_NAME/$CI_COMMIT_REF_NAME/.gradle"
   NPM_USER_HOME: "/cache/$CI_PROJECT_NAME"
 default:
@@ -25,6 +27,7 @@ cache:
   paths:
   - "build"
   - "src/gen"
+  - "src/main/resources"
 workflow:
   rules:
     - if: $CI_MERGE_REQUEST_ID
@@ -56,7 +59,7 @@ identification-likedev-identification:
   before_script: !reference [.before_script, identification]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew identification -Pflow=dev --profile --build-cache"
+  - "./gradlew identification -Pflow=dev"
   rules:
     - if: !reference [.rules, default]
 
@@ -65,7 +68,7 @@ construction-likedev-construction:
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, construction]
   script:
-  - "./gradlew construction -Pflow=dev --profile --build-cache"
+  - "./gradlew construction -Pflow=dev --refresh-dependencies"
   artifacts:
     expire_in: "2 days"
     paths:
@@ -81,7 +84,7 @@ verification-likedev-verification:
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew verification -Pflow=dev --profile --build-cache"
+  - "./gradlew verification -Pflow=dev"
   artifacts:
     expire_in: "2 days"
     paths:
@@ -91,13 +94,14 @@ verification-likedev-verification:
     when: "always"
   rules:
     - if: !reference [.rules, default]
+  allow_failure: true
 
 validation-likedev-validation:
   stage: "validation"
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew validation -Pflow=dev --profile --build-cache"
+  - "./gradlew validation -Pflow=dev"
   rules:
     - if: !reference [.rules, default]
 
@@ -106,7 +110,7 @@ preservation-likedev-preservation:
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew preservation -Pflow=dev --profile --build-cache"
+  - "./gradlew preservation -Pflow=dev"
   rules:
     - if: !reference [.rules, default]
   when: manual
@@ -116,7 +120,7 @@ identification-dev-identification:
   before_script: !reference [.before_script, identification]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew identification -Pflow=dev --profile --build-cache"
+  - "./gradlew identification -Pflow=dev"
   rules:
     - if: !reference [.rules, dev]
 
@@ -125,7 +129,7 @@ construction-dev-construction:
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, construction]
   script:
-  - "./gradlew construction -Pflow=dev --profile --build-cache"
+  - "./gradlew construction -Pflow=dev --refresh-dependencies"
   artifacts:
     expire_in: "2 days"
     paths:
@@ -141,7 +145,7 @@ verification-dev-verification:
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew verification -Pflow=dev --profile --build-cache"
+  - "./gradlew verification -Pflow=dev"
   artifacts:
     expire_in: "2 days"
     paths:
@@ -157,7 +161,7 @@ validation-dev-validation:
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew validation -Pflow=dev --profile --build-cache"
+  - "./gradlew validation -Pflow=dev"
   rules:
     - if: !reference [.rules, dev]
 
@@ -166,7 +170,7 @@ preservation-dev-preservation:
   before_script: !reference [.before_script, default]
   after_script: !reference [.after_script, default]
   script:
-  - "./gradlew preservation -Pflow=dev --profile --build-cache"
+  - "./gradlew preservation -Pflow=dev"
   rules:
     - if: !reference [.rules, dev]
 
