@@ -15,69 +15,82 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 
 .Cas limites
 |===
-|Description du cas |Modifier l'ontologie | Modifier la source |Référence|Commentaires
+|Description du cas | Figure fait |Modifier l'ontologie | Modifier la source |Référence|Commentaires
 
 |Héritage multiple
+| Oui
 |  |
 | disposition subClassOf 'realizable entity'; disposition subClassOf (disposition or quality) ;
 |
 
 |Héritage disjoint
+| Oui
 | X | X
 |Ajout d'un rôle de healthcareprovider et d'une table qui permet de savoir si un médecin est aussi un patient
 |Correspond au cas général, mais quand-même à illustrer
 
 |Héritage avec chevauchement
+| Oui
 | X | X
 | health care provider + patient
 |
 
 |Plusieurs signatures pour une classe
-| X | X
-|Normalisation, dans la source, des poids en kg et en lbs + Ajout  de <RAMQ vulnerability code> (Voir "paul" dans HDRN)
-|Un exemple fréquent est l'héritage disjoint dans la source (poids), mais pas dans l'ontologie ou à l'inverse une dénormalisation dans la source (RAMQ vulnerability code)
+| Oui
+| X |
+|Ajout  de <RAMQ vulnerability code>
+|
 
 |Cas où une signature existe pour les enfants, mais où il serait pratique qu'elle existe aussi pour le parent
+| NA: même que pour l'héritage disjoint
 |  | X
 |Même ajout de table "humain" que pour l'héritage disjoint, permet de savoir si un humain a le rôle de patient, de médecin ou aucun des deux.
 | Nécessite l'ajout de la table humain
 
 |Individuation par inférence logique d'une autre signature
+| NA: même que pour l'héritage multiple
 |  |
 | L'existance du poids (qualité) est inféréré par l'existance d'une mesure du poids (ICE)
 |Par exemple, la signature est un conséquent de la proposition logique correspondant à la signature d'une autre classe. Ex: dans le test simple, on a Mapping:tst1C0004X conséquent de Mapping:tst1. On pourrait imaginer un attribut "mmec:consequentOf" qui remplacerait rr:logicalTable et rr:subjectMap. Ce genre d'inférence sera souvent pour faire l'individuation d'une classe équivalente, mais pas que.
 
 |Individuation d'une conjonction
+| Non
 | |
 | medical record identifier (HADO:0000006) denotes exactly 1 ('health care record' and ('is about' some patient))
 |
 
 |Individuation d'une disjonction
+| Non
 | x |x
 |Ajout d'une disjonction dans l'ontologie: sexe ou genre (voir ioio)  et ajout des 4 cas dans la bd (avec genre ou sexe ou les deux ou aucun)
 |
 
 |Individuation d'une combinaison de disjonction et de conjonction
+| Non
 | X |
 | 'physiological evaluation': SubclassOf: has_specified_output some ('data item' and ('is about' some ((disposition or quality) and ('inheres in' some organism))))
 |
 
 |Individuation lorsque l'enfant n'est qu'une restriction du parent
+| Non
 |  | X
 |weight unit (UO:0000100) = measurement unit label (IAO:0000003) restraint sur le poids
 | Nécessite la table de mesures normalisé (ne contient pas juste des poids)
 
 |Arrimage d'une propriété d'objet défini sur un parent, avec les signatures définies uniquement sur les enfants
+| Non
 |  |
 |scalar measurement datum (IAO:0000032)
 |Correspond à une autre considération théorique que l'individuation à proprement parler, mais à illustrer quand-même
 
 | Arrimage utilisant des connaissances implicites de la source de données de façon à inférer une signature
+| Non
 | |
 | patient subclassOf Homo sapiens
 | Ce n'est pas asserté dans l'ontologie, mais c'est un fait de la source
 
 | Arrimage faisant de l'inférence utilisant des opérateurs qui existent en logique des prédicats, mais pas en logique de description
+| Non
 | X | X
 | Ajout des informations concernants l'obésité et l'indicateur d'un physiological evaluation ayant une valeur scalaire > 30 pour le BMI
 |

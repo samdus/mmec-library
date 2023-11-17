@@ -53,6 +53,7 @@ alter table "EXP"."MEDECIN"
     drop column "PRENOM",
     add constraint "FK_MEDECIN_PERSONNE" foreign key ("ID_MEDECIN_EXT") references "EXP"."PERSONNE" ("ID_PERSONNE_EXT");
 
+-- Faire en sorte qu'un patient soit également un médecin
 with "nb_patient_medecin_egaux" AS (select 1 as "nb_patient_medecin_egaux"),
      "premier_patient" as (select row_number() over (order by "ID_MEDECIN_EXT"), "ID_MEDECIN_EXT"
                            from "EXP"."MEDECIN"
@@ -98,9 +99,13 @@ union all
 select *
 from prescription_update;
 
-select *
-from "EXP"."MEDECIN"
-join "EXP"."PATIENT" on "MEDECIN"."ID_MEDECIN_EXT" = "PATIENT"."ID_PATIENT_EXT";
+-- Faire en sorte que le premier patient n'ait pas de dossier
+with "patient_sans_dossier" AS (select *
+                                from "EXP"."PATIENT"
+                                order by "ID_PATIENT_EXT"
+                                limit 1 offset 0)
+delete from "EXP"."DOSSIER"
+where "ID_PATIENT_EXT" = (select "ID_PATIENT_EXT" from "patient_sans_dossier");
 
 
 /*
