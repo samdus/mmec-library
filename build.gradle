@@ -55,7 +55,6 @@ dependencies {
     testImplementation "org.testcontainers:junit-jupiter"
 
     testImplementation "net.jqwik:jqwik"
-    testImplementation "com.github.spotbugs:spotbugs-annotations"
     testImplementation "com.zaxxer:HikariCP"
 
     // Other possible dependencies from the Ontop project
