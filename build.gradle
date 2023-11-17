@@ -43,6 +43,8 @@ dependencies {
     implementation "ca.griis:logger-library:2.0.1-SNAPSHOT"
     implementation "org.postgresql:postgresql"
 
+    implementation "org.antlr:stringtemplate:4.0.2"
+
     testImplementation "org.mockito:mockito-core"
     testImplementation "org.mockito:mockito-inline"
     testImplementation "org.mockito:mockito-junit-jupiter"
