@@ -30,7 +30,7 @@ import ca.griis.mmec.model.ImMecFacade;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Classe responsable de la représentation textuelle d'une façade MMec
+ * @brief @~french Interface pour la représentation textuelle d'une façade MMec
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -60,8 +60,6 @@ public interface ImMecFacadeView {
    *         de base de données qui sont nécessaires pour la façade. Les instructions sont en ordre
    *         d'interdépendance.
    *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
    * @par Tâches
    *      S.O.
    */
@@ -79,8 +77,6 @@ public interface ImMecFacadeView {
    *         pour désinstaller la façade dans la source de données. Elle détruit l'ensemble d'objets
    *         de base de données qui sont nécessaires pour la façade. Les instructions sont en ordre
    *         inverse d'interdépendance.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    *
    * @par Tâches
    *      S.O.

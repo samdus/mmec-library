@@ -1,0 +1,240 @@
+= API de mMec
+Samuel Dussault
+v1.0, 2023-11-21
+:toc:
+:toc-placement: auto
+:toc-title: Contenu
+:sectnums:
+:plantuml-format: svg
+:imagesdir: fig
+
+== Introduction
+L'API de mMec correspond à la bibliothèque de classes permettant d'interagir avec une instance du modèle mMec.
+
+La façade correspond à un modèle intermédiaire entre un OntoRel et une source de données qui permet d'accéder aux données de la source de données en utilisant le modèle de l'OntoRel.
+
+De ce fait, à partir de ce modèle, il est possible d'engendrer un script SQL dans un dialecte spécifique à la source de données. Ce script permettra d'installer la façade sur la source de données.
+
+Il existe plusieurs représentations de façades MMec. Par exemple, une façade peut être installée en utilisant des vues, des vues matérialisées, voir même un serveur permettant la réécriture de requête.
+
+== Cas d'utilisations
+À terme, deux acteurs sont sucessibles d'utiliser l'API de mMec. L'entité de connexion de données (ECD) d'une plateforme Dadagem et l'application RelRel.
+
+[plantuml, cas-utilisation, svg]
+----
+@startuml
+
+left to right direction
+
+actor "Entité de connexion\nde données" as ecd
+actor "Relrel" as relrel
+
+rectangle "mMec API" {
+    usecase "Obtenir Façade" as getFacade
+    usecase "Installer Façade" as installFacade
+    usecase "Exécuter Requête" as req
+    usecase "Configurer" as config
+    usecase "Obtenir OntoRel" as getOntoRel
+    usecase "Obtenir Ontologie" as getOnto
+    usecase "Obtenir Source" as getSrc
+    usecase "Vérifier Arrimage" as checkArr
+    usecase "Mettre à jour" as update
+
+    relrel -down-|> ecd
+
+    ecd --> getFacade
+    ecd --> installFacade
+    ecd --> req
+
+    relrel --> config
+    relrel --> getOntoRel
+    relrel --> getOnto
+    relrel --> getSrc
+    relrel --> checkArr
+    relrel --> update
+
+    getFacade .up.> getOnto : <<include>>
+    getFacade .up.> getOntoRel : <<include>>
+    getFacade .up.> getSrc : <<include>>
+}
+
+@enduml
+----
+
+Dans la portée de la présente thèse, uniquement les fonctions permettant de vérifier l'arrimage, d'obtenir une façade, et d'exécuter une requête sont considérées.
+
+=== Entrées
+Les entrées de la fonction sont les suivants:
+
+*E01 - Connexion*: Les paramètres de connexion à la source de données, à la base de données de configuration et à la base de données de catalogue de l'OntoRel.
+
+*E02 - Arrimage*: Le fichier mMec à partir duquel la façade sera générée.
+
+*E03 - Requête*: La requête à exécuter sur la façade.
+
+=== Sorties
+Les sorties de la fonction sont les suivants:
+
+*S01 - Script SQL* - Le script SQL permettant d'installer la façade sur la source de données.
+
+*S02 - Requête réécrite* - La requête réécrite en fonction de la façade.
+
+*S03 - Résultat* - Le résultat d'exécution de la requête réécrite sur la source de données.
+
+=== FN01 - Obtenir Façade
+La fonction Obtenir Façade a pour objectif de générer une façade à partir d'un arrimage mMec existant. La fonction prendra en entrée un arrimage mMec et une configuration spécifique à la source de données. Il engendrera en sortie un script SQL permettant d'installer la façade sur la source de données.
+
+==== Hypothèses
+*HY01* - La source de données est accessible à partir d'une connexion JDBC.
+
+*HY02* - La base de données de configuration est accessible à partir d'une connexion JDBC.
+
+*HY03* - La base de données de catalogue de l'OntoRel est accessible à partir d'une connexion JDBC.
+
+*HY04* - L'arrimage est valide.
+
+==== Contexte
+[plantuml, contexte-obtenir-facade, svg]
+----
+@startuml Façade
+
+file "E01 - Connexion" as Connexion
+file "E02 - Arrimage" as Arrimage
+
+database Configuration
+database OntoRelCat
+
+component logiciel as "Obtenir Façade"
+component "Librairie Ontop" as Ontop
+
+database Source
+
+file "S01 - Script SQL" as Façade
+
+Connexion --> logiciel
+Arrimage --> logiciel
+Configuration --> logiciel
+OntoRelCat --> logiciel
+
+logiciel -right-> Ontop
+logiciel <-left- Ontop
+
+logiciel -right-> Source
+logiciel <-left- Source
+
+
+logiciel --> Façade
+@enduml
+----
+
+==== Comportement
+
+// *      - SignPrototype :: La liste de prototypes de signatures utilisées dans l'arrimage.
+// *      Chaque prototype correspond à une liste ordonnée de types et une liste d'identifiant de
+// *      classes. Les types correspondent aux types des composants de signatures de ces classes.
+// *      - CastFunctions :: Une liste de fonctions de conversion de types utilisées dans les
+// *                         expressions d'arrimage. Chaque fonction possède un type d'entrée et un
+// *                         type de sortie.
+// *      - SignatureExpressions :: Une liste d'expression permettant d'obtenir des signatures dans
+// *      la source de données. Chaque expression possède un identifiant,
+// *      le texte de son implémentation et une instruction de
+// *      désinstallation.
+// *      - ClassExpressions :: Une liste d'expression permettant d'obtenir la façade d'une classe
+// *      dans la source de données. Chaque expression possède un identifiant,
+// *      le texte de son implémentation et une instruction de
+// *      désinstallation.
+// *      - ObjectPropertyExpressions :: Une liste d'expression permettant d'obtenir la façade d'une
+// *      propriété d'objet dans la source de données. Chaque
+// *      expression possède un identifiant, le texte de son
+// *      implémentation et une instruction de désinstallation.
+// *      - DataPropertyExpressions :: Une liste d'expression permettant d'obtenir la façade d'une
+// *      propriété de données dans la source de données. Chaque
+// *      expression possède un identifiant, le texte de son
+// *      implémentation et une instruction de désinstallation.
+// *      - DependencyGraph :: Le graphe de dépendances entre les éléments de l'OntoRel. Ce graphe
+// *      permet de déterminer l'ordre d'installation et de désinstallation
+// *      des éléments de la façade.
+
+[plantuml, activite-obtenir-facade, svg]
+----
+@startuml ActiviteObtenirFaçade
+
+start
+:Obtenir la connexion aux bases de données;
+:Initialiser Ontop;
+
+partition "Prototypes de signature" {
+    :<latex> signatures := getSignatures(); prototypes := \varnothing</latex>;
+    while(<latex> signatures \neq \varnothing</latex>)
+        :<latex>sign := signatures.pop() </latex>;
+        :<latex>cType := typesIn(sign)</latex>;
+
+        if(<latex>cType \notin prototypes</latex>) then (vrai)
+            :<latex>prototypes := prototypes \cup \{cType\}</latex>;
+        else (faux)
+        endif
+    endwhile
+}
+
+partition "Fonctions de conversion" {
+    :;
+}
+
+partition "Définition de classes" {
+    :;
+}
+
+partition "Définition de propriétés d'objet" {
+    :;
+}
+
+partition "Définition de propriétés de données" {
+    :;
+}
+
+partition "Ordre d'installation" {
+    :;
+}
+
+partition "Générer Script" {
+    :;
+}
+
+
+stop
+
+@enduml
+----
+
+=== FN02 - Exécuter Requête
+La fonction Exécution de requête a pour objectif d'exécuter une requête sur une façade. La fonction prendra en entrée une requête et une configuration spécifique à la source de données. Elle engendrera en sortie une requête réécrite et le résultat de la requête réécrite. Voici le contexte de la fonction.
+
+[plantuml, contexte-decompte, svg]
+----
+@startuml DécompteSélection
+
+file Connexion
+file Arrimage
+file Requête
+
+component logiciel as "Exécuter Requête"
+
+database Source
+
+file RequêteRéécrite as "Requête réécrite"
+file Résultat
+
+Connexion --> logiciel
+Arrimage --> logiciel
+Requête --> logiciel
+
+logiciel -right-> Source
+logiciel <-left- Source
+
+logiciel --> RequêteRéécrite
+logiciel --> Résultat
+@enduml
+----
+
+=== FN03 - Vérifier Arrimage
+

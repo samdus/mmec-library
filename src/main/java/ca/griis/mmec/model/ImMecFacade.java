@@ -36,31 +36,26 @@ package ca.griis.mmec.model;
  * @par Modèle
  *      S.O.
  * @par Conception
- *      Ce modèle servira à engendrer un script SQL dans un dialecte spécifique à la source de
- *      données. Ce script permettra d'installer la façade sur la source de données.
+ *      La facade correspond à un modèle intermédiaire entre un OntoRel et une source de données qui
+ *      permet d'accéder aux données de la source de données en utilisant le modèle de l'OntoRel.
  *      <br />
- *      Il existe plusieurs types de façades MMec. Par exemple, une façade peut être composée de
- *      vues ou de vues matérialisées.
+ *      De ce fait, à partir de ce modèle, il est possible d'engendrer un script SQL dans un
+ *      dialecte spécifique à la source de données. Ce script permettra d'installer la façade
+ *      sur la source de données.
  *      <br />
- *      Entrées :
+ *      Il existe plusieurs représentations de façades MMec. Par exemple, une façade peut être
+ *      installée en utilisant des vues, des vues matérialisées, voir même un serveur permettant
+ *      la réécriture de requête.
+ *      <br />
+ *      Entrées : S.O.
+ *      <br />
  *      Sorties :
- *      - SignFunctions :: Une liste de fonctions permettant de calculer les signatures.
- *      Chaque fonction possède un identifiant, une liste de paramètres et
- *      le texte de son implémentation. Ces fonctions sont prédéfinies selon
- *      le gabarit d'arrimage sélectionné dans la configuration d'arrimage.
- *      - CastFunctions :: Une liste de fonctions de conversion de types. Chaque fonction possède
- *      un identifiant, un type d'entrée, un type de sortie et le texte de son
- *      implémentation. Ces fonctions sont prédéfinies par le gabarit
- *      correspondant au SGBD de la source de données.
- *      - CastCheckFunctions :: Une liste de fonction permettant de vérifier si une conversion
- *      est possible. Chaque fonction possède un identifiant, l'identifiant
- *      de la fonction de conversion correspondante et le texte de son
- *      implémentation. Ces fonctions sont prédéfinies par le gabarit
- *      correspondant au SGBD de la source de données.
- *      - SignatureExpressions :: Une liste d'expression permettant d'obtenir des signatures dans
- *      la source de données. Chaque expression possède un identifiant,
- *      le texte de son implémentation et une instruction de
- *      désinstallation.
+ *      - SignPrototype :: La liste de prototypes de signatures utilisées dans l'arrimage.
+ *      Chaque prototype correspond à une liste ordonnée de types et une liste d'identifiant de
+ *      classes. Les types correspondent aux types des composants de signatures de ces classes.
+ *      - CastFunctions :: Une liste de fonctions de conversion de types utilisées dans les
+ *                         expressions d'arrimage. Chaque fonction possède un type d'entrée et un
+ *                         type de sortie.
  *      - ClassExpressions :: Une liste d'expression permettant d'obtenir la façade d'une classe
  *      dans la source de données. Chaque expression possède un identifiant,
  *      le texte de son implémentation et une instruction de
@@ -83,6 +78,15 @@ package ca.griis.mmec.model;
  *      2023-09-06 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
+ *      2023-11-20 [SD] - Il faut modifier la conception pour que ce qui est dans le modèle soit
+ *                        indépendant de la configuration. La vue est responsable de créer le script
+ *                        qui correspond à la config. Ici, on est dans une façade générique.
+ *
+ *                        SignPrototype et CastFunction ont étés ajustés, mais pas les autres.
+ *                        Ce qui me bug c'est le fait que les expressions sont déjà parsé par ontop
+ *                        à ce moment, alors on a déjà utilisé la vue. Ce qui contrevient au principe
+ *                        de MVC.
  */
 public interface ImMecFacade {
+
 }
