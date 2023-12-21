@@ -13,10 +13,6 @@
 
 package ca.griis.mmec.view;
 
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STGroup;
-import org.stringtemplate.v4.STGroupFile;
-
 import ca.griis.mmec.model.ImMecFacade;
 
 /**
@@ -63,7 +59,7 @@ public interface ImMecFacadeView {
    * @par Tâches
    *      S.O.
    */
-  String getFacadeInstallView(ImMecFacade facade);
+  String getFacadeInstallScript(ImMecFacade facade);
 
   /**
    * @brief @~english «Description of the method»
@@ -81,5 +77,5 @@ public interface ImMecFacadeView {
    * @par Tâches
    *      S.O.
    */
-  String getFacadeUninstallView(ImMecFacade facade);
+  String getFacadeUninstallScript(ImMecFacade facade);
 }

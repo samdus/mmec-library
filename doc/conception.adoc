@@ -20,6 +20,9 @@ Il existe plusieurs représentations de façades MMec. Par exemple, une façade 
 == Cas d'utilisations
 À terme, deux acteurs sont sucessibles d'utiliser l'API de mMec. L'entité de connexion de données (ECD) d'une plateforme Dadagem et l'application RelRel.
 
+// TODO: Mieux documenter les éléments qu'on retrouve comme "façade", "OntoRel", etc. Surtout au niveau de la structure.
+// TODO: Changer les acteurs pour des systèmes
+// TODO: Changer "obtenir" pour "synthétiser"
 [plantuml, cas-utilisation, svg]
 ----
 @startuml
@@ -30,14 +33,14 @@ actor "Entité de connexion\nde données" as ecd
 actor "Relrel" as relrel
 
 rectangle "mMec API" {
-    usecase "Obtenir Façade" as getFacade
+    usecase "Obtenir Façade" as getFacade #DeepSkyBlue
     usecase "Installer Façade" as installFacade
-    usecase "Exécuter Requête" as req
+    usecase "Exécuter Requête" as req #DeepSkyBlue
     usecase "Configurer" as config
     usecase "Obtenir OntoRel" as getOntoRel
     usecase "Obtenir Ontologie" as getOnto
     usecase "Obtenir Source" as getSrc
-    usecase "Vérifier Arrimage" as checkArr
+    usecase "Vérifier Arrimage" as checkArr #DeepSkyBlue
     usecase "Mettre à jour" as update
 
     relrel -down-|> ecd
@@ -129,6 +132,8 @@ logiciel --> Façade
 
 ==== Comportement
 
+L'objectif est d'utiliser les signatures définies à l'aide de R2RML pour créer un artefact d'arrimage qui puisse être installé sur la source de données. Notez qu'il n'est pas nécessaire d'accéder directement à la définition des signatures, puisqu'elles sont utilisées uniquement dans les fonctions de saturation de l'arrimage (non couvert par le présent algorithme, puisqu'inclus dans la fonction d'initialisation de Ontop).
+
 // *      - SignPrototype :: La liste de prototypes de signatures utilisées dans l'arrimage.
 // *      Chaque prototype correspond à une liste ordonnée de types et une liste d'identifiant de
 // *      classes. Les types correspondent aux types des composants de signatures de ces classes.
@@ -163,21 +168,32 @@ start
 :Obtenir la connexion aux bases de données;
 :Initialiser Ontop;
 
-partition "Prototypes de signature" {
-    :<latex> signatures := getSignatures(); prototypes := \varnothing</latex>;
-    while(<latex> signatures \neq \varnothing</latex>)
-        :<latex>sign := signatures.pop() </latex>;
-        :<latex>cType := typesIn(sign)</latex>;
+partition "Prototypes de signatures" {
+    :<latex> prototypes := \varnothing</latex>;
+    while(<latex> for\ each\ class\ in\ getOntologyClasses(): </latex>)
+        :<latex>classDef := getOntopDefinition(class)</latex>;
+
+        while(<latex> for\ each\ unionDefinition\ in\ classDef: </latex>)
+            :<latex>pTypes := typesInProjection(unionDefinition)</latex>;
+            if(<latex>pTypes \notin prototypes</latex>) then (true)
+                :<latex>prototypes := prototypes \cup \{cType\}</latex>;
+            else (false)
+            endif
+        endwhile
+    endwhile
+}
+
+partition "Fonctions de conversion et de vérification" {
+    :<latex> cvFunc := \varnothing</latex>;
+    while(<latex> for\ each\ datatypeProperty\ in\ getOntologyDatatypeProperty(): </latex>)
+        :<latex>dpDef := getOntopDefinition(dpDef)</latex>;
+        :<latex>cType := typesIn(classDef)</latex>;
 
         if(<latex>cType \notin prototypes</latex>) then (vrai)
             :<latex>prototypes := prototypes \cup \{cType\}</latex>;
         else (faux)
         endif
     endwhile
-}
-
-partition "Fonctions de conversion" {
-    :;
 }
 
 partition "Définition de classes" {
@@ -205,6 +221,12 @@ stop
 
 @enduml
 ----
+
+Dans le diagramme d'activité ci-dessous, on trouve les fonctions suivantes:
+
+- *pop* : Cette fonction permet d'obtenir et de retirer le premier élément d'une liste.
+- *getSignatures* : Cette fonction permet d'obtenir la liste des signatures définies dans l'arrimage.
+- *typesIn* : Cette fonction permet d'obtenir la liste ordonnée des types de chacun des composants d'une signature.
 
 === FN02 - Exécuter Requête
 La fonction Exécution de requête a pour objectif d'exécuter une requête sur une façade. La fonction prendra en entrée une requête et une configuration spécifique à la source de données. Elle engendrera en sortie une requête réécrite et le résultat de la requête réécrite. Voici le contexte de la fonction.

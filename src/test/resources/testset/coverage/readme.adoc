@@ -95,6 +95,11 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 | Ajout des informations concernants l'obésité et l'indicateur d'un physiological evaluation ayant une valeur scalaire > 30 pour le BMI
 |
 
+| Arrimage d'une situation du style: B is_a A; D is_a C; A op card C; B op card D
+| Non
+| TODO | TODO
+|
+|
 |===
 
 === Discussion
@@ -103,7 +108,7 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 1.1 Réponse intuitive: Oui -> Exemple de human body mass measurement datum qui ajouterait une FK vers physiological data item
 1.2 D'ailleur, c'est intéressant
 
-2. Il serait intéressant d'avoir un exemple, dans Human Body Weight, d'une classe d'équivalence qui aurait pu être inféré, mais n'était pas vrai dans le cas général (on a trouvé un contre exemple lors de la définition de l'ontoligie),
+2. Il serait intéressant d'avoir un exemple, dans Human Body Weight, d'une classe d'équivalence qui aurait pu être inféré, mais n'était pas vrai dans le cas général (on a trouvé un contre exemple lors de la définition de l'ontologie),
     mais si on considère la source de données (donc, les hypothèses spécifiques qu'on a sur la source) on pourrait l'inférer -> Donne lieu à une signature conjointe.
     ----> Faire en sorte que le patient ne sois pas spécifique à l'humain -> On aura l'inférence dans la source
 

@@ -43,12 +43,12 @@ import ca.griis.mmec.model.ImMecFacade;
  */
 public class MMecFacadeView implements ImMecFacadeView {
   @Override
-  public String getFacadeInstallView(ImMecFacade facade) {
+  public String getFacadeInstallScript(ImMecFacade facade) {
     return null;
   }
 
   @Override
-  public String getFacadeUninstallView(ImMecFacade facade) {
+  public String getFacadeUninstallScript(ImMecFacade facade) {
     return null;
   }
 }

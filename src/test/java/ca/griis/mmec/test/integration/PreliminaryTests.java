@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -66,6 +67,14 @@ public class PreliminaryTests {
     OntopTester tester = new R2rmlTester(postgresContainerWrapper,
         ontologyFile.toAbsolutePath().toString(),
         mappingFile.toAbsolutePath().toString());
+    tester.runTest();
+  }
+
+  @Test
+  public void specificTest() throws Exception {
+    OntopTester tester = new R2rmlTester(postgresContainerWrapper,
+        Paths.get("src", "test", "resources", "testset", "simple", "ontology.ttl").toAbsolutePath().toString(),
+        Paths.get("src", "test", "resources", "testset", "simple", "mapping.ttl").toAbsolutePath().toString());
     tester.runTest();
   }
 }

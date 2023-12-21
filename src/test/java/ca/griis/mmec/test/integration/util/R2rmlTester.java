@@ -70,8 +70,8 @@ public class R2rmlTester extends OntopTester {
 
   @Override
   public void runTest() throws Exception {
-    // String withAutomaticInjectors = testWithAutomaticInjector();
-    // String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
+//     String withAutomaticInjectors = testWithAutomaticInjector();
+//     String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
@@ -82,10 +82,6 @@ public class R2rmlTester extends OntopTester {
   public String testWithAutomaticInjector() throws OBDASpecificationException {
     StringBuilder builder = new StringBuilder();
 
-    // TODO: Voir comment est-ce qu'on peut obtenir une requête SQL à partir d'un IQ qu'on a
-    // contruit à partir d'un OP (ex: un IQ qui correspondrait au sparql :
-    // select suj rel obj from { suj rdf:type <SujetIRI> . rel rdf:type <RelationIRI> . obj rdf:type
-    // <ObjetIRI> . suj rel obj . }
     OBDASpecification obdaSpecification = configuration.loadSpecification();
     Mapping mapping = obdaSpecification.getSaturatedMapping();
 
@@ -205,19 +201,19 @@ public class R2rmlTester extends OntopTester {
         SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
 
         StatementPattern subStatement = new StatementPattern(new Var("sub"),
-            new Var("_const_f5e5585a_uri",
+            new Var("rdf_type_uri",
                 valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
-            new Var("_const_29732e82_uri",
+            new Var("sub_uri",
                 valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
 
         StatementPattern objStatement = new StatementPattern(new Var("obj"),
-            new Var("_const_f5e5585a_uri",
+            new Var("rdf_type_uri",
                 valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
-            new Var("_const_305deffb_uri",
+            new Var("obj_uri",
                 valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0006X"), true));
 
         StatementPattern relStatement = new StatementPattern(new Var("sub"),
-            new Var("_const_29732546_uri",
+            new Var("op_uri",
                 valueFactory.createIRI("http://www.griis.ca/projects/rel"), true),
             new Var("obj"));
 
