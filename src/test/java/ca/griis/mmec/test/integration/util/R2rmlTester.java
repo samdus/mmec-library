@@ -70,12 +70,17 @@ public class R2rmlTester extends OntopTester {
 
   @Override
   public void runTest() throws Exception {
-//     String withAutomaticInjectors = testWithAutomaticInjector();
-//     String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
+    //     String withAutomaticInjectors = testWithAutomaticInjector();
+    //     String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
+    System.out.println("Test de génération d'une expression de classe");
+    System.out.println("---------------------------------------------");
+    testGetClassDef();
 
+    System.out.println("Test de génération d'une expression de DataProperty");
+    System.out.println("---------------------------------------------------");
     testGetOPDef();
   }
 
@@ -189,6 +194,49 @@ public class R2rmlTester extends OntopTester {
     return builder.toString();
   }
 
+  private void testGetClassDef()
+      throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
+    configuration.loadSpecification();
+
+    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
+      ontopQueryEngine.connect();
+      try (OntopConnection connection = ontopQueryEngine.getConnection();
+          OntopStatement statement = connection.createStatement()) {
+
+        SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
+
+        StatementPattern classStatement = new StatementPattern(new Var("uid"),
+            new Var("rdf_type_uri",
+                valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+            new Var("uid_uri",
+                valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
+
+        QueryRoot queryRoot = new QueryRoot(classStatement);
+
+        RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
+            RDF4JQueryFactory.class);
+        RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery("",
+            new ParsedTupleQuery(queryRoot), new MapBindingSet());
+
+        IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+
+        System.out.println(firstExecutableQuery.toString());
+
+        // La configuration Ontop originale génère ceci :
+        //        ans1(uid)
+        //        CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
+        //        NATIVE [uid]
+        //        SELECT ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "uid"
+        //        FROM "TABLE2" v1
+        // Alors que la configuration MMec génère ceci :
+        //        ans1(uid)
+        //        NATIVE [uid]
+        //        SELECT individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "uid"
+        //        FROM "TABLE2" v1
+      }
+    }
+  }
+
   private void testGetOPDef()
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
     configuration.loadSpecification();
@@ -234,14 +282,19 @@ public class R2rmlTester extends OntopTester {
 
         System.out.println(firstExecutableQuery.toString());
 
-        // Se traduit par :
-        // ans1(sub, obj)
-        // CONSTRUCT [sub, obj]
-        // [sub/RDF(http://www.griis.ca/projects/tst/{}(INTEGERToTEXT(m1m6)),IRI),
-        // obj/RDF(http://www.griis.ca/projects/tst1C0004X/{}(INTEGERToTEXT(m1m6)),IRI)]
-        // NATIVE [m1m6]
-        // SELECT v1."m" AS "m1m6"
-        // FROM "TABLE2" v1
+        // La configuration Ontop originale génère ceci :
+        //        ans1(sub, obj)
+        //        CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
+        //        NATIVE [obj, sub]
+        //        SELECT DISTINCT ('http://www.griis.ca/projects/tst1C0004XUnionOf/' || CAST(v1."n" AS TEXT)) AS "obj", ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "sub"
+        //        FROM "TABLE2" v1, "TABLE2" v2
+        //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
+        // Alors que la configuration MMec génère ceci :
+        //        ans1(sub, obj)
+        //        NATIVE [obj, sub]
+        //        SELECT DISTINCT individuation('http://www.griis.ca/projects/tst1C0004XUnionOf/{}', v1."n") AS "obj", individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "sub"
+        //        FROM "TABLE2" v1, "TABLE2" v2
+        //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
       }
     }
   }
