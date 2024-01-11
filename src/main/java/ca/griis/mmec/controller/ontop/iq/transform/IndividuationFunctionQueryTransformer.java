@@ -16,6 +16,7 @@ import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.node.ConstructionNode;
 import it.unibz.inf.ontop.iq.transform.impl.DefaultRecursiveIQTreeVisitingTransformer;
 import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
+import it.unibz.inf.ontop.model.term.DBConstant;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.NonGroundFunctionalTerm;
 import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
@@ -83,12 +84,25 @@ public class IndividuationFunctionQueryTransformer extends
         && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
         && rdfTermTypeConstant.getRDFTermType() instanceof IRITermType) {
 
-      ImmutableList<TermType> argTypes = term
-          .getVariables().stream().map(
-              variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
-          .collect(ImmutableList.toImmutableList());
+      if (term.getTerm(0) instanceof NonGroundFunctionalTerm identityRDFFunction) {
+        DBConstant identifierForSignatureGroup = termFactory.getDBStringConstant(
+            identityRDFFunction.getFunctionSymbol().getName());
+        ImmutableList<ImmutableTerm> arguments = ImmutableList.<ImmutableTerm>builder()
+            .add(identifierForSignatureGroup)
+            .addAll(term.getVariables().asList())
+            .build();
+        ImmutableList<TermType> argTypes =
+            arguments.stream().map(
+                    variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
+                .collect(ImmutableList.toImmutableList());
 
-      return termFactory.getMMecSignatureFunction(argTypes, term.getVariables().asList());
+        return termFactory.getMMecSignatureFunction(argTypes, arguments);
+      } else {
+        throw new UnsupportedOperationException(
+            "The first argument of the RDF term function must be a functional term. It is used by"
+                + " Ontop to generate the IRI and used in MMec as the identifier for the signature"
+                + " group.");
+      }
     }
     return substitutionEntry.getValue();
   }
