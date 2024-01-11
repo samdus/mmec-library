@@ -62,12 +62,9 @@ public class MMecQueryOptimizer implements IQOptimizer {
 
   @Override
   public IQ optimize(IQ query) {
-    //TODO: Cette fonction doit pouvoir modifier les IQ pour remplacer les appels de fonctions qui
-    //      génère des IRI pour appeler la fonction de génération de signature.
-
-    //TODO: Ajouter le premier paramètre pour l'identifiant du groupe d'individuation.
-
-    //TODO: Faire en sorte d'ajouter les paires de fonctions de conversions de type et les not null
+    //TODO: Faire en sorte d'ajouter les paires de fonctions de conversions de type pour les
+    //      expression de DataProperty
+    //TODO: Ajouter les distinct et les not null pour les expressions de classes et d'ObjectProperty
 
     IQTree newTree = optimize(query.getTree());
     return iqFactory.createIQ(query.getProjectionAtom(), newTree);
