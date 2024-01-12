@@ -17,9 +17,11 @@ import it.unibz.inf.ontop.answering.reformulation.rewriting.QueryRewriter;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import it.unibz.inf.ontop.injection.TranslationFactory;
 import it.unibz.inf.ontop.iq.IQ;
+import it.unibz.inf.ontop.iq.node.EmptyNode;
 import it.unibz.inf.ontop.iq.node.NativeNode;
 import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
 import it.unibz.inf.ontop.iq.planner.QueryPlanner;
+import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.query.KGQueryFactory;
 import it.unibz.inf.ontop.query.translation.KGQueryTranslator;
 import it.unibz.inf.ontop.query.unfolding.QueryUnfolder;
@@ -60,7 +62,7 @@ import org.slf4j.LoggerFactory;
  *      S.O.
 */
 public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
-
+  private final BasicSingleTermTypeExtractor typeExtractor;
   private static final Logger LOGGER = LoggerFactory.getLogger(
       MMecToFullNativeQueryReformulator.class);
 
@@ -75,25 +77,32 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
       KGQueryTranslator inputQueryTranslator,
       GeneralStructuralAndSemanticIQOptimizer generalOptimizer,
       QueryPlanner queryPlanner,
-      QueryLogger.Factory queryLoggerFactory) {
+      QueryLogger.Factory queryLoggerFactory,
+      BasicSingleTermTypeExtractor typeExtractor) {
     super(obdaSpecification, queryCache, queryUnfolderFactory, translationFactory, queryRewriter,
         kgQueryFactory, inputQueryTranslator, generalOptimizer, queryPlanner, queryLoggerFactory);
+    this.typeExtractor = typeExtractor;
   }
 
   @Override
   protected IQ generateExecutableQuery(IQ iq) throws OntopReformulationException {
-    IQ sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)
-        .normalizeForOptimization();
-
-    if (!(sourceQuery.getTree() instanceof NativeNode)) {
-      throw new MMecNotFullyTranslatableToNativeQueryException(
-          "the post-processing step could not be eliminated");
+    if(iq.getTree() instanceof EmptyNode) {
+      return iq;
     }
+    else {
+      IQ sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)
+          .normalizeForOptimization();
 
-    return sourceQuery;
+      if (!(sourceQuery.getTree() instanceof NativeNode)) {
+        throw new MMecNotFullyTranslatableToNativeQueryException(
+            "the post-processing step could not be eliminated");
+      }
+
+      return sourceQuery;
+    }
   }
 
-  protected static class MMecNotFullyTranslatableToNativeQueryException
+  public static class MMecNotFullyTranslatableToNativeQueryException
       extends OntopReformulationException {
     protected MMecNotFullyTranslatableToNativeQueryException(String message) {
       super("Not fully translatable to a native query: " + message);
