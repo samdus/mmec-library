@@ -91,6 +91,7 @@
                             rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
                             rr:termType rr:IRI ] ;
     rr:predicateObjectMap <Mapping:tst1:rel:tst1C0004X> ;
+    rr:predicateObjectMap <Mapping:tst1:has_value:xsdString> ;
     mmec:subsets           <Mapping:tst> .
 
 <Mapping:tst2>
@@ -143,3 +144,13 @@
     rr:objectMap [ rr:parentTriplesMap <Mapping:tst3> ;
                    rr:joinCondition    [ rr:child  "m" ;
                                          rr:parent "m" ] ] .
+
+# ****************************************************************************************
+# Data Properties mappings
+# ****************************************************************************************
+<Mapping:tst1:has_value:xsdString>
+    rr:predicate tst:has_value ;
+    rr:objectMap [ a rr:TermMap, rr:ObjectMap;
+                   rr:column "o" ;
+                   rr:termType rr:Literal;
+                   rr:datatype xsd:string ] .

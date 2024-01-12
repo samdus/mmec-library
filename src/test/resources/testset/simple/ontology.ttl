@@ -1,69 +1,83 @@
-@prefix :     <http://www.griis.ca/projects/onto_tst#> .
-@prefix owl:  <http://www.w3.org/2002/07/owl#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml:  <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://www.griis.ca/projects/onto_tst#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://www.griis.ca/projects/onto_tst#> .
 
-<http://www.griis.ca/projects/onto_tst>
-    rdf:type owl:Ontology .
+<http://www.griis.ca/projects/onto_tst> rdf:type owl:Ontology .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  rel
-<rel>
-    rdf:type owl:ObjectProperty .
+###  http://www.griis.ca/projects/rel
+<http://www.griis.ca/projects/rel> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.griis.ca/projects/has_value
+<http://www.griis.ca/projects/has_value> rdf:type owl:DatatypeProperty .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  ONTORELA_C0004X
-<ONTORELA_C0004X>
-    rdf:type        owl:Class ;
-    rdfs:subClassOf [ rdf:type                    owl:Restriction ;
-                      owl:onProperty              <rel> ;
-                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                      owl:onClass                 <ONTORELA_C0006X> ] ;
-    rdfs:comment    "tst1 C0004X"@en, "tst1 C0004X"@fr ;
-    rdfs:label      "tst1 C0004X"@fr, "tst1 C0004Xtst3 | rel | tst2"@en .
+###  http://www.griis.ca/projects/ONTORELA_C0004X
+<http://www.griis.ca/projects/ONTORELA_C0004X> rdf:type owl:Class ;
+                                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.griis.ca/projects/rel> ;
+                                                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                 owl:onClass <http://www.griis.ca/projects/ONTORELA_C0006X>
+                                                               ] ;
+                                               rdfs:comment "tst1 C0004X"@en ,
+                                                            "tst1 C0004X"@fr ;
+                                               rdfs:label "tst1 C0004X"@fr ,
+                                                          "tst1 C0004Xtst3 | rel | tst2"@en .
 
 
-###  ONTORELA_C0006X
-<ONTORELA_C0006X>
-    rdf:type     owl:Class ;
-    rdfs:comment "tst1 C0004X unionOf "@fr, "tst1 C0004Xtst3 | rel | tst2 unionOf "@en ;
-    rdfs:label   "tst1 C0004X unionOf "@fr, "tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3"@en .
+###  http://www.griis.ca/projects/ONTORELA_C0006X
+<http://www.griis.ca/projects/ONTORELA_C0006X> rdf:type owl:Class ;
+                                               rdfs:comment "tst1 C0004X unionOf "@fr ,
+                                                            "tst1 C0004Xtst3 | rel | tst2 unionOf "@en ;
+                                               rdfs:label "tst1 C0004X unionOf "@fr ,
+                                                          "tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3"@en .
 
 
-###  tst
-<tst>
-    rdf:type owl:Class .
+###  http://www.griis.ca/projects/tst
+<http://www.griis.ca/projects/tst> rdf:type owl:Class ;
+                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://www.griis.ca/projects/has_value> ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onDataRange xsd:string
+                                                   ] .
 
 
-###  tst1
-<tst1>
-    rdf:type        owl:Class ;
-    rdfs:subClassOf <tst>, [ rdf:type                    owl:Restriction ;
-                             owl:onProperty              <rel> ;
-                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onClass                 <ONTORELA_C0004X> ] .
+###  http://www.griis.ca/projects/tst1
+<http://www.griis.ca/projects/tst1> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.griis.ca/projects/tst> ,
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty <http://www.griis.ca/projects/rel> ;
+                                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onClass <http://www.griis.ca/projects/ONTORELA_C0004X>
+                                                    ] .
 
 
-###  tst2
-<tst2>
-    rdf:type        owl:Class ;
-    rdfs:subClassOf <ONTORELA_C0006X>, <tst> .
+###  http://www.griis.ca/projects/tst2
+<http://www.griis.ca/projects/tst2> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.griis.ca/projects/ONTORELA_C0006X> ,
+                                                    <http://www.griis.ca/projects/tst> .
 
 
-###  tst3
-<tst3>
-    rdf:type        owl:Class ;
-    rdfs:subClassOf <ONTORELA_C0006X>, <tst> .
+###  http://www.griis.ca/projects/tst3
+<http://www.griis.ca/projects/tst3> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.griis.ca/projects/ONTORELA_C0006X> ,
+                                                    <http://www.griis.ca/projects/tst> .
 
 
-###  Generated by the OWL API (version 5.1.19.2021-07-31T19:16:32Z) https://github.com/owlcs/owlapi/
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

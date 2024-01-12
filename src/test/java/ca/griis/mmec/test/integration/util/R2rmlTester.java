@@ -49,12 +49,17 @@ import java.util.HashMap;
 import java.util.Optional;
 import org.apache.commons.rdf.api.IRI;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
+import org.eclipse.rdf4j.query.algebra.Compare;
+import org.eclipse.rdf4j.query.algebra.Datatype;
+import org.eclipse.rdf4j.query.algebra.Filter;
 import org.eclipse.rdf4j.query.algebra.Join;
 import org.eclipse.rdf4j.query.algebra.Projection;
 import org.eclipse.rdf4j.query.algebra.ProjectionElem;
 import org.eclipse.rdf4j.query.algebra.ProjectionElemList;
 import org.eclipse.rdf4j.query.algebra.QueryRoot;
 import org.eclipse.rdf4j.query.algebra.StatementPattern;
+import org.eclipse.rdf4j.query.algebra.TupleExpr;
+import org.eclipse.rdf4j.query.algebra.ValueConstant;
 import org.eclipse.rdf4j.query.algebra.Var;
 import org.eclipse.rdf4j.query.impl.MapBindingSet;
 import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
@@ -75,13 +80,7 @@ public class R2rmlTester extends OntopTester {
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
-    System.out.println("Test de génération d'une expression de classe");
-    System.out.println("---------------------------------------------");
-    testGetClassDef();
-
-    System.out.println("Test de génération d'une expression de DataProperty");
-    System.out.println("---------------------------------------------------");
-    testGetOPDef();
+    testGetDefinitions();
   }
 
   public String testWithAutomaticInjector() throws OBDASpecificationException {
@@ -194,108 +193,174 @@ public class R2rmlTester extends OntopTester {
     return builder.toString();
   }
 
-  private void testGetClassDef()
+  private void testGetDefinitions()
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
     configuration.loadSpecification();
 
+    //TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
+    //      expressions relationnelles vides.
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
-      try (OntopConnection connection = ontopQueryEngine.getConnection();
-          OntopStatement statement = connection.createStatement()) {
+      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
+        System.out.println("Test de génération d'une expression de classe");
+        System.out.println("---------------------------------------------");
+        testGetClassDef(connection);
 
-        SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
+        System.out.println("Test de génération d'une expression de ObjectProperty");
+        System.out.println("---------------------------------------------------");
+        testGetOPDef(connection);
 
-        StatementPattern classStatement = new StatementPattern(new Var("uid"),
-            new Var("rdf_type_uri",
-                valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
-            new Var("uid_uri",
-                valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
-
-        QueryRoot queryRoot = new QueryRoot(classStatement);
-
-        RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
-            RDF4JQueryFactory.class);
-        RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery("",
-            new ParsedTupleQuery(queryRoot), new MapBindingSet());
-
-        IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
-
-        System.out.println(firstExecutableQuery.toString());
-
-        // La configuration Ontop originale génère ceci :
-        //        ans1(uid)
-        //        CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
-        //        NATIVE [uid]
-        //        SELECT ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "uid"
-        //        FROM "TABLE2" v1
-        // Alors que la configuration MMec génère ceci :
-        //        ans1(uid)
-        //        NATIVE [uid]
-        //        SELECT individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "uid"
-        //        FROM "TABLE2" v1
+        System.out.println("Test de génération d'une expression de DataProperty");
+        System.out.println("---------------------------------------------------");
+        testGetDPDef(connection);
       }
     }
   }
 
-  private void testGetOPDef()
-      throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
-    configuration.loadSpecification();
+  private void testGetClassDef(OntopConnection connection)
+      throws OntopConnectionException, OntopReformulationException {
+    try (OntopStatement statement = connection.createStatement()) {
 
-    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
-      ontopQueryEngine.connect();
-      try (OntopConnection connection = ontopQueryEngine.getConnection();
-          OntopStatement statement = connection.createStatement()) {
+      SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
 
-        SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
+      StatementPattern classStatement = new StatementPattern(new Var("uid"),
+          new Var("rdf_type_uri",
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+          new Var("uid_uri",
+              valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
 
-        StatementPattern subStatement = new StatementPattern(new Var("sub"),
-            new Var("rdf_type_uri",
-                valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
-            new Var("sub_uri",
-                valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
+      QueryRoot queryRoot = new QueryRoot(classStatement);
 
-        StatementPattern objStatement = new StatementPattern(new Var("obj"),
-            new Var("rdf_type_uri",
-                valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
-            new Var("obj_uri",
-                valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0006X"), true));
+      RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
+          RDF4JQueryFactory.class);
+      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery("q1",
+          new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
-        StatementPattern relStatement = new StatementPattern(new Var("sub"),
-            new Var("op_uri",
-                valueFactory.createIRI("http://www.griis.ca/projects/rel"), true),
-            new Var("obj"));
+      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+      System.out.println(firstExecutableQuery.toString());
 
-        Join subAndObjJoin = new Join(subStatement, objStatement);
-        Join relJoin = new Join(subAndObjJoin, relStatement);
+      // La configuration Ontop originale génère ceci :
+      //        ans1(uid)
+      //        CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
+      //        NATIVE [uid]
+      //        SELECT ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "uid"
+      //        FROM "TABLE2" v1
+      // Alors que la configuration MMec génère ceci :
+      //        ans1(uid)
+      //        NATIVE [uid]
+      //        SELECT individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "uid"
+      //        FROM "TABLE2" v1
+    }
+  }
 
-        Projection projection = new Projection(relJoin,
-            new ProjectionElemList(new ProjectionElem("sub"),
-                new ProjectionElem("obj")));
-        QueryRoot queryRoot = new QueryRoot(projection);
+  private void testGetOPDef(OntopConnection connection)
+      throws OntopConnectionException, OntopReformulationException {
+    try (OntopStatement statement = connection.createStatement()) {
 
-        RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
-            RDF4JQueryFactory.class);
-        RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery("",
-            new ParsedTupleQuery(queryRoot), new MapBindingSet());
+      SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
 
-        IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+      StatementPattern subStatement = new StatementPattern(new Var("sub"),
+          new Var("rdf_type_uri",
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+          new Var("sub_uri",
+              valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
 
-        System.out.println(firstExecutableQuery.toString());
+      StatementPattern objStatement = new StatementPattern(new Var("obj"),
+          new Var("rdf_type_uri",
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+          new Var("obj_uri",
+              valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0006X"), true));
 
-        // La configuration Ontop originale génère ceci :
-        //        ans1(sub, obj)
-        //        CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
-        //        NATIVE [obj, sub]
-        //        SELECT DISTINCT ('http://www.griis.ca/projects/tst1C0004XUnionOf/' || CAST(v1."n" AS TEXT)) AS "obj", ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "sub"
-        //        FROM "TABLE2" v1, "TABLE2" v2
-        //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
-        // Alors que la configuration MMec génère ceci :
-        //        ans1(sub, obj)
-        //        NATIVE [obj, sub]
-        //        SELECT DISTINCT individuation('http://www.griis.ca/projects/tst1C0004XUnionOf/{}', v1."n") AS "obj", individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "sub"
-        //        FROM "TABLE2" v1, "TABLE2" v2
-        //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
-      }
+      StatementPattern relStatement = new StatementPattern(new Var("sub"),
+          new Var("op_uri",
+              valueFactory.createIRI("http://www.griis.ca/projects/rel"), true),
+          new Var("obj"));
+
+      Join subAndObjJoin = new Join(subStatement, objStatement);
+      Join relJoin = new Join(subAndObjJoin, relStatement);
+
+      Projection projection = new Projection(relJoin,
+          new ProjectionElemList(new ProjectionElem("sub"),
+              new ProjectionElem("obj")));
+      QueryRoot queryRoot = new QueryRoot(projection);
+
+      RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
+          RDF4JQueryFactory.class);
+      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery("q2",
+          new ParsedTupleQuery(queryRoot), new MapBindingSet());
+
+      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+      System.out.println(firstExecutableQuery.toString());
+
+      // La configuration Ontop originale génère ceci :
+      //        ans1(sub, obj)
+      //        CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
+      //        NATIVE [obj, sub]
+      //        SELECT DISTINCT ('http://www.griis.ca/projects/tst1C0004XUnionOf/' || CAST(v1."n" AS TEXT)) AS "obj", ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "sub"
+      //        FROM "TABLE2" v1, "TABLE2" v2
+      //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
+      // Alors que la configuration MMec génère ceci :
+      //        ans1(sub, obj)
+      //        NATIVE [obj, sub]
+      //        SELECT DISTINCT individuation('http://www.griis.ca/projects/tst1C0004XUnionOf/{}', v1."n") AS "obj", individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "sub"
+      //        FROM "TABLE2" v1, "TABLE2" v2
+      //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
+    }
+  }
+
+
+  private void testGetDPDef(OntopConnection connection)
+      throws OntopConnectionException, OntopReformulationException {
+    try (OntopStatement statement = connection.createStatement()) {
+
+      SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
+
+      StatementPattern subStatement = new StatementPattern(new Var("sub"),
+          new Var("rdf_type_uri",
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+          new Var("sub_uri",
+              valueFactory.createIRI("http://www.griis.ca/projects/tst"), true));
+
+      StatementPattern relStatement = new StatementPattern(new Var("sub"),
+          new Var("dp_uri",
+              valueFactory.createIRI("http://www.griis.ca/projects/has_value"), true),
+          new Var("val"));
+
+      Join relJoin = new Join(subStatement, relStatement);
+      Compare compare = new Compare(
+          new Datatype(new Var("val")),
+          new ValueConstant(valueFactory.createIRI("http://www.w3.org/2001/XMLSchema#string")));
+      Filter filter = new Filter(relJoin, compare);
+
+      Projection projection = new Projection(filter,
+          new ProjectionElemList(new ProjectionElem("sub"),
+              new ProjectionElem("val")));
+      QueryRoot queryRoot = new QueryRoot(projection);
+
+      RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
+          RDF4JQueryFactory.class);
+      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery(
+          queryRoot.toString(),
+          new ParsedTupleQuery(queryRoot), new MapBindingSet());
+
+      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+      System.out.println(firstExecutableQuery.toString());
+
+      // La configuration Ontop originale génère ceci :
+      //      ans1(sub, val)
+      //      CONSTRUCT [sub, val] [sub/RDF(TEXTToTEXT(sub),IRI), val/RDF(TEXTToTEXT(val),xsd:string)]
+      //      NATIVE [sub, val]
+      //      SELECT ('http://www.griis.ca/projects/tst/' || CAST(v1."m" AS TEXT)) AS "sub", CAST(v1."o" AS TEXT) AS "val"
+      //      FROM "TABLE2" v1
+      //      WHERE v1."o" IS NOT NULL
+
+      // Alors que la configuration MMec génère ceci (pour l'instant, parce qu'on veut changer que ça appel la paire de fonction appropriée aux types) :
+      //      ans1(sub, val)
+      //      CONSTRUCT [sub, val] [val/RDF(v0,xsd:string)]
+      //      NATIVE [sub, v0]
+      //      SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o" AS TEXT) AS "v0"
+      //      FROM "TABLE2" v1
+      //      WHERE v1."o" IS NOT NULL
     }
   }
 
@@ -303,9 +368,12 @@ public class R2rmlTester extends OntopTester {
       throws OBDASpecificationException, OntopInvalidKGQueryException, OntopReformulationException {
     String PERSON_QUERY_STRING = "PREFIX : <http://www.griis.ca/projects/>\n"
         + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
+        + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
         + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + "\n"
-        + "SELECT DISTINCT ?sub ?obj WHERE {\n" + "  ?sub rdf:type :tst .\n"
-        + "  ?obj rdf:type :ONTORELA_C0004X .\n" + "  ?sub :rel ?obj .\n" + "}";
+        + "SELECT DISTINCT ?sub ?val WHERE {\n" + "  ?sub rdf:type :tst .\n"
+        + "  \n" + "  ?sub :has_value ?val .\n"
+        + "  \n" + "  filter(datatype(?val) = xsd:string) .\n"
+        + "}";
 
     QueryReformulator queryReformulator = createReformulator();
     KGQueryFactory kgQueryFactory = queryReformulator.getInputQueryFactory();
