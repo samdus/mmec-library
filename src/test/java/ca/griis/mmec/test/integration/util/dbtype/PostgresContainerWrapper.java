@@ -27,9 +27,13 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Properties;
 import java.util.TimeZone;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
+import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
 /**
@@ -51,13 +55,17 @@ public class PostgresContainerWrapper implements Closeable {
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(
       PostgresContainerWrapper.class);
   private static PostgresContainerWrapper instance;
-  private final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15.4");
+  private final String ontorelcatLdmImageName = "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm";
+  private final DockerImageName ontorelcatLdmImage = DockerImageName.parse(ontorelcatLdmImageName)
+      .asCompatibleSubstituteFor("postgres");
+  private final PostgreSQLContainer<?> container = new PostgreSQLContainer<>(ontorelcatLdmImage);
   private final HikariConfig hikariConfig = new HikariConfig();
   private final HikariDataSource hikariDataSource;
 
   private PostgresContainerWrapper() {
     TimeZone.setDefault(TimeZone.getTimeZone("Z"));
-
+    container.setWaitStrategy(new HostPortWaitStrategy()
+        .withStartupTimeout(Duration.of(180, ChronoUnit.SECONDS)));
     container.withCopyFileToContainer(MountableFile.forClasspathResource("testset/"),
         "/docker-entrypoint-initdb.d/");
     container.start();
@@ -86,7 +94,7 @@ public class PostgresContainerWrapper implements Closeable {
    * @throws SQLException exception SQL obtenue lors de la réinitialisation
    * @brief @~english «Description of the function»
    * @brief @~french Supprime toutes les tables de la base de données qui ne sont pas dans un schéma
-   *        système
+   * système
    */
   public void resetDB() throws SQLException {
     try (Connection connection = getConnection()) {

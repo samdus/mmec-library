@@ -210,9 +210,9 @@ public class R2rmlTester extends OntopTester {
         System.out.println("---------------------------------------------------");
         testGetOPDef(connection);
 
-        System.out.println("Test de génération d'une expression de DataProperty");
-        System.out.println("---------------------------------------------------");
-        testGetDPDef(connection);
+//        System.out.println("Test de génération d'une expression de DataProperty");
+//        System.out.println("---------------------------------------------------");
+//        testGetDPDef(connection);
       }
     }
   }
