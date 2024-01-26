@@ -17,6 +17,8 @@ import it.unibz.inf.ontop.spec.mapping.impl.SQLMappingExtractor;
 import it.unibz.inf.ontop.spec.mapping.parser.impl.MMecR2rmlMappingParserImpl;
 import it.unibz.inf.ontop.spec.sqlparser.SQLQueryParser;
 import it.unibz.inf.ontop.substitution.SubstitutionFactory;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Hashtable;
@@ -41,11 +43,11 @@ public abstract class OntopTester {
   protected final SQLQueryParser sqlQueryParser;
   protected final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
   protected final SQLMappingExtractor mappingExtractor;
-  protected final String mappingFile;
+  protected final File mappingFile;
   protected static final String injectionConfigurationFile = "defaultConfiguration.properties";
 
-  public OntopTester(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
-      String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
+  public OntopTester(PostgresContainerWrapper postgresContainerWrapper, File ontologyFile,
+      File mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
     Properties dbProperties = postgresContainerWrapper.getPropertiesForOntop();
     Properties defaultConfigurationProperties = getInjectionConfigurationProperties();
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);

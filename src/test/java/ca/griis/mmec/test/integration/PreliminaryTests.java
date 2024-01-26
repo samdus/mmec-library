@@ -56,8 +56,8 @@ public class PreliminaryTests {
   public void testOptimize(Path ontologyFile, Path mappingFile)
       throws Exception {
     OntopTester tester = new OptimizeTester(postgresContainerWrapper,
-        ontologyFile.toAbsolutePath().toString(),
-        mappingFile.toAbsolutePath().toString());
+        ontologyFile.toFile(),
+        mappingFile.toFile());
     tester.runTest();
   }
 
@@ -65,16 +65,16 @@ public class PreliminaryTests {
   @MethodSource("listTestElements")
   public void testR2RML(Path ontologyFile, Path mappingFile) throws Exception {
     OntopTester tester = new R2rmlTester(postgresContainerWrapper,
-        ontologyFile.toAbsolutePath().toString(),
-        mappingFile.toAbsolutePath().toString());
+        ontologyFile.toFile(),
+        mappingFile.toFile());
     tester.runTest();
   }
 
   @Test
   public void specificTest() throws Exception {
     OntopTester tester = new R2rmlTester(postgresContainerWrapper,
-        Paths.get("src", "test", "resources", "testset", "simple", "ontology.ttl").toAbsolutePath().toString(),
-        Paths.get("src", "test", "resources", "testset", "simple", "mapping.ttl").toAbsolutePath().toString());
+        Paths.get("src", "test", "resources", "testset", "simple", "ontology.ttl").toFile(),
+        Paths.get("src", "test", "resources", "testset", "simple", "mapping.ttl").toFile());
     tester.runTest();
   }
 }

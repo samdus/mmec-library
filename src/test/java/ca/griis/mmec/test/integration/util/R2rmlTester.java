@@ -68,8 +68,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 public class R2rmlTester extends OntopTester {
 
-  public R2rmlTester(PostgresContainerWrapper postgresContainerWrapper, String ontologyFile,
-      String mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
+  public R2rmlTester(PostgresContainerWrapper postgresContainerWrapper, File ontologyFile,
+      File mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
     super(postgresContainerWrapper, ontologyFile, mappingFile);
   }
 
@@ -156,7 +156,7 @@ public class R2rmlTester extends OntopTester {
         coreSingletons);
 
     Ontology ontology = loadOntology();
-    SQLPPMapping ppMapping = mMecR2rmlMappingParserImpl.parse(new File(mappingFile));
+    SQLPPMapping ppMapping = mMecR2rmlMappingParserImpl.parse(mappingFile);
 
     OBDASpecInput specInput = OBDASpecInput.defaultBuilder().build();
 
