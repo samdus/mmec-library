@@ -27,6 +27,8 @@ import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.impl.IRITermType;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
+
+import javax.inject.Inject;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -51,6 +53,7 @@ public class IndividuationFunctionQueryTransformer extends
   private final MMecTermFactory termFactory;
   private final BasicSingleTermTypeExtractor typeExtractor;
 
+  @Inject
   public IndividuationFunctionQueryTransformer(
       IntermediateQueryFactory iqFactory, TermFactory termFactory,
       BasicSingleTermTypeExtractor typeExtractor) {

@@ -12,9 +12,9 @@ Objet :
 -- =========================================================================== A
 */
 
-call ontorelcat_pub.ontorel_ins('da724cb8-84b8-403b-a66b-d7345d34b662', '1.2.2');
+call ontorelcat_pub.ontorel_ins('OntoRelCat_simple', '1.2.2');
 
-call ontorelcat_pub.onto_config_db_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_config_db_ins('OntoRelCat_simple',
                                        'uid',
                                        'uid_domain',
                                        'TEXT',
@@ -27,7 +27,7 @@ call ontorelcat_pub.onto_config_db_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
                                        'false',
                                        'false');
 
-call ontorelcat_pub.onto_import_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'OntoRelCat.json', '{
+call ontorelcat_pub.onto_import_ins('OntoRelCat_simple', 'OntoRelCat.json', '{
   "OntoRel": {
     "ontologyIri": "http://www.griis.ca/projects/onto_tst",
     "label": {
@@ -241,103 +241,103 @@ call ontorelcat_pub.onto_import_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'Ont
   ]
 }', '2024-01-19T15:29:52.8347-05:00');
 
-call ontorelcat_pub.onto_schema_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'simple', 'en', 'BASE');
+call ontorelcat_pub.onto_schema_ins('OntoRelCat_simple', 'simple', 'en', 'BASE');
 
-call ontorelcat_pub.ontology_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/onto_tst',
+call ontorelcat_pub.ontology_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/onto_tst',
                                  'ontology.ttl', 'onto_tst', '', '2023-08-17T15:01:00Z');
 
-call ontorelcat_pub.onto_class_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.w3.org/2002/07/owl#Thing',
+call ontorelcat_pub.onto_class_ins('OntoRelCat_simple', 'http://www.w3.org/2002/07/owl#Thing',
                                    'T0000', 'DECLARED');
 
-call ontorelcat_pub.onto_class_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_ins('OntoRelCat_simple',
                                    'http://www.griis.ca/projects/ONTORELA_C0004X', 'T0001', 'DECLARED');
 
-call ontorelcat_pub.label_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/ONTORELA_C0004X',
+call ontorelcat_pub.label_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/ONTORELA_C0004X',
                               'fr', 'tst1 C0004X');
 
-call ontorelcat_pub.label_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/ONTORELA_C0004X',
+call ontorelcat_pub.label_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/ONTORELA_C0004X',
                               'en', 'tst1 C0004Xtst3 | rel | tst2');
 
-call ontorelcat_pub.definition_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.definition_ins('OntoRelCat_simple',
                                    'http://www.griis.ca/projects/ONTORELA_C0004X', 'fr', 'tst1 C0004X');
 
-call ontorelcat_pub.definition_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.definition_ins('OntoRelCat_simple',
                                    'http://www.griis.ca/projects/ONTORELA_C0004X', 'en', 'tst1 C0004X');
 
-call ontorelcat_pub.onto_class_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_ins('OntoRelCat_simple',
                                    'http://www.griis.ca/projects/ONTORELA_C0006X', 'T0002', 'DECLARED');
 
-call ontorelcat_pub.label_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/ONTORELA_C0006X',
+call ontorelcat_pub.label_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/ONTORELA_C0006X',
                               'fr', 'tst1 C0004X unionOf ');
 
-call ontorelcat_pub.label_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/ONTORELA_C0006X',
+call ontorelcat_pub.label_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/ONTORELA_C0006X',
                               'en', 'tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3');
 
-call ontorelcat_pub.definition_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.definition_ins('OntoRelCat_simple',
                                    'http://www.griis.ca/projects/ONTORELA_C0006X', 'fr', 'tst1 C0004X unionOf ');
 
-call ontorelcat_pub.definition_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.definition_ins('OntoRelCat_simple',
                                    'http://www.griis.ca/projects/ONTORELA_C0006X', 'en',
                                    'tst1 C0004Xtst3 | rel | tst2 unionOf ');
 
-call ontorelcat_pub.onto_class_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/tst3', 'T0003',
+call ontorelcat_pub.onto_class_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/tst3', 'T0003',
                                    'DECLARED');
 
-call ontorelcat_pub.onto_class_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/tst2', 'T0004',
+call ontorelcat_pub.onto_class_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/tst2', 'T0004',
                                    'DECLARED');
 
-call ontorelcat_pub.onto_class_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/tst', 'T0005',
+call ontorelcat_pub.onto_class_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/tst', 'T0005',
                                    'DECLARED');
 
-call ontorelcat_pub.onto_class_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/tst1', 'T0006',
+call ontorelcat_pub.onto_class_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/tst1', 'T0006',
                                    'DECLARED');
 
-call ontorelcat_pub.onto_data_properties_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_data_properties_ins('OntoRelCat_simple',
                                              'http://www.griis.ca/projects/has_value');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/tst1', 'http://www.griis.ca/projects/tst');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/tst3', 'http://www.griis.ca/projects/tst');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/tst',
                                                'http://www.w3.org/2002/07/owl#Thing');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/tst3',
                                                'http://www.griis.ca/projects/ONTORELA_C0006X');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/ONTORELA_C0004X',
                                                'http://www.w3.org/2002/07/owl#Thing');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/tst2',
                                                'http://www.griis.ca/projects/ONTORELA_C0006X');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/tst2', 'http://www.griis.ca/projects/tst');
 
-call ontorelcat_pub.onto_class_inheritance_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_inheritance_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/ONTORELA_C0006X',
                                                'http://www.w3.org/2002/07/owl#Thing');
 
-call ontorelcat_pub.onto_object_properties_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_object_properties_ins('OntoRelCat_simple',
                                                'http://www.griis.ca/projects/rel', null);
 
-call ontorelcat_pub.onto_class_axiom_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_class_axiom_ins('OntoRelCat_simple',
                                          'http://www.griis.ca/projects/ONTORELA_C0004X',
                                          'http://www.griis.ca/projects/ONTORELA_C0006X',
                                          'http://www.griis.ca/projects/rel', '[1..*]', '[0.. *]', 'DECLARED', 'T0008');
 
-call ontorelcat_pub.onto_class_axiom_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/tst1',
+call ontorelcat_pub.onto_class_axiom_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/tst1',
                                          'http://www.griis.ca/projects/ONTORELA_C0004X',
                                          'http://www.griis.ca/projects/rel', '[1..*]', '[0.. *]', 'DECLARED', 'T0009');
 
-call ontorelcat_pub.onto_data_type_ins('da724cb8-84b8-403b-a66b-d7345d34b662',
+call ontorelcat_pub.onto_data_type_ins('OntoRelCat_simple',
                                        'http://www.w3.org/2001/XMLSchema#string', null, 'TEXT');
-call ontorelcat_pub.onto_data_axiom_ins('da724cb8-84b8-403b-a66b-d7345d34b662', 'http://www.griis.ca/projects/tst',
+call ontorelcat_pub.onto_data_axiom_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/tst',
                                         'http://www.w3.org/2001/XMLSchema#string',
                                         'http://www.griis.ca/projects/has_value', '[1..1]', 'DECLARED', 'T0007');

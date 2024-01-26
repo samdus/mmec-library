@@ -13,6 +13,8 @@
 package ca.griis.mmec.controller.ontop.iq.optimizer;
 
 import ca.griis.mmec.controller.ontop.iq.transform.IndividuationFunctionQueryTransformer;
+import ca.griis.mmec.repository.OntoRelCatRepository;
+import ca.griis.mmec.repository.jooq.JooqOntoRelCatRepository;
 import com.google.inject.Inject;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQ;
@@ -20,6 +22,8 @@ import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.optimizer.IQOptimizer;
 import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.model.term.TermFactory;
+
+import java.sql.SQLException;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -52,12 +56,14 @@ public class MMecQueryOptimizer implements IQOptimizer {
   protected final IntermediateQueryFactory iqFactory;
   protected final TermFactory termFactory;
   protected final IndividuationFunctionQueryTransformer individuationFunctionQueryTransformer;
+  private final OntoRelCatRepository ontoRelCatRepository;
 
   @Inject
-  public MMecQueryOptimizer(IntermediateQueryFactory iqFactory, TermFactory termFactory, BasicSingleTermTypeExtractor typeExtractor) {
+  public MMecQueryOptimizer(IntermediateQueryFactory iqFactory, TermFactory termFactory, BasicSingleTermTypeExtractor typeExtractor, IndividuationFunctionQueryTransformer individuationFunctionQueryTransformer, JooqOntoRelCatRepository ontoRelCatRepository) {
     this.iqFactory = iqFactory;
     this.termFactory = termFactory;
-    this.individuationFunctionQueryTransformer = new IndividuationFunctionQueryTransformer(iqFactory, termFactory, typeExtractor);
+    this.individuationFunctionQueryTransformer = individuationFunctionQueryTransformer;
+    this.ontoRelCatRepository = ontoRelCatRepository;
   }
 
   @Override
@@ -66,7 +72,13 @@ public class MMecQueryOptimizer implements IQOptimizer {
     //      expression de DataProperty
     //TODO: Ajouter les distinct et les not null pour les expressions de classes et d'ObjectProperty
 
-    IQTree newTree = optimize(query.getTree());
+      try {
+          assert ontoRelCatRepository.getSQLType("OntoRelCat_simple", "http://www.w3.org/2001/XMLSchema#string").equals("TEXT");
+      } catch (SQLException e) {
+          throw new RuntimeException(e);
+      }
+
+      IQTree newTree = optimize(query.getTree());
     return iqFactory.createIQ(query.getProjectionAtom(), newTree);
   }
 
