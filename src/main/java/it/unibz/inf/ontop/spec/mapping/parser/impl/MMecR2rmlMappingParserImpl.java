@@ -58,15 +58,19 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
   private final SpecificationFactory specificationFactory;
   private final R2RMLToSQLPPTriplesMapConverter transformer;
   private final RDF4JR2RMLMappingManager manager;
+  private final MappingParserExtension mappingParserExtension;
+
 
   @Inject
   public MMecR2rmlMappingParserImpl(SQLPPMappingFactory ppMappingFactory,
       SpecificationFactory specificationFactory,
-      R2RMLToSQLPPTriplesMapConverter transformer) {
+      R2RMLToSQLPPTriplesMapConverter transformer,
+      MappingParserExtension mappingParserExtension) {
     this.ppMappingFactory = ppMappingFactory;
     this.specificationFactory = specificationFactory;
     this.transformer = transformer;
     this.manager = RDF4JR2RMLMappingManager.getInstance();
+    this.mappingParserExtension = mappingParserExtension;
   }
 
   @Override
@@ -111,7 +115,7 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
   protected SQLPPMapping parse(Graph mappingGraph, ImmutableMap<String, String> prefixes)
       throws InvalidMappingException {
     try {
-      MappingParserExtension.getInstance().updateMappingGraphBeforeParse(mappingGraph, prefixes);
+      mappingParserExtension.updateMappingGraphBeforeParse(mappingGraph, prefixes);
 
       Collection<TriplesMap> tripleMaps = manager.importMappings(mappingGraph);
 
@@ -119,7 +123,7 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
 
       PrefixManager prefixManager = specificationFactory.createPrefixManager(prefixes);
 
-      ImmutableList<SQLPPTriplesMap> extendedSourceMapping = MappingParserExtension.getInstance()
+      ImmutableList<SQLPPTriplesMap> extendedSourceMapping = mappingParserExtension
           .getTriplesMapBeforePreprocess(mappingGraph, tripleMaps, sourceMappings);
       return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
     } catch (InvalidR2RMLMappingException e) {

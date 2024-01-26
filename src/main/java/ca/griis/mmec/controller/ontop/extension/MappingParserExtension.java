@@ -61,12 +61,6 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  */
 public class MappingParserExtension {
 
-  private static final MappingParserExtension instance = new MappingParserExtension();
-
-  public static MappingParserExtension getInstance() {
-    return instance;
-  }
-
   /**
    * @brief @~english «Description of the function»
    * @param mappingGraph «Parameter description»

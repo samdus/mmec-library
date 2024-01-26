@@ -44,9 +44,4 @@ package ca.griis.mmec.controller.ontop.extension;
  * @todo 2023-09-06 [SD] - Faire la conception.
  */
 public class MappingConverterExtension {
-  private static final MappingConverterExtension instance = new MappingConverterExtension();
-
-  public static MappingConverterExtension getInstance() {
-    return instance;
-  }
 }

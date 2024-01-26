@@ -41,9 +41,5 @@ package ca.griis.mmec.controller.ontop.extension;
  * @todo 2023-09-06 [SD] - Faire la conception.
  */
 public class MappingSaturatorExtension {
-  private static final MappingSaturatorExtension instance = new MappingSaturatorExtension();
 
-  public static MappingSaturatorExtension getInstance() {
-    return instance;
-  }
 }
