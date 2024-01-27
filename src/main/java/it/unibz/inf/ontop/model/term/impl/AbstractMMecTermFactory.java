@@ -1408,5 +1408,4 @@ public abstract class AbstractMMecTermFactory implements TermFactory {
   public ImmutableFunctionalTerm getDBDateTrunc(ImmutableTerm dbDatetimeTerm, ImmutableTerm datePartTerm, String datePart) {
     return getImmutableFunctionalTerm(dbFunctionSymbolFactory.getDBDateTrunc(datePart), dbDatetimeTerm, datePartTerm);
   }
-
 }

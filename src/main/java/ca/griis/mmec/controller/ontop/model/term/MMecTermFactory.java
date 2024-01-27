@@ -14,9 +14,11 @@ import com.google.inject.Inject;
 import it.unibz.inf.ontop.injection.OntopModelSettings;
 import it.unibz.inf.ontop.model.term.ImmutableFunctionalTerm;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.Variable;
 import it.unibz.inf.ontop.model.term.functionsymbol.FunctionSymbolFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBFunctionSymbolFactory;
 import it.unibz.inf.ontop.model.term.impl.AbstractMMecTermFactory;
+import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.TypeFactory;
 import it.unibz.inf.ontop.utils.CoreUtilsFactory;
@@ -57,7 +59,13 @@ public class MMecTermFactory extends AbstractMMecTermFactory {
         getMMecDBFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes), terms);
   }
 
+  public ImmutableTerm getMMecConversionFunction(Variable variable, DBTermType variableType, DBTermType sqlDataType) {
+    return getImmutableFunctionalTerm(
+            getMMecDBFunctionSymbolFactory().createMMecConversionFunctionSymbol(variableType, sqlDataType), variable);
+  }
+
   private MMecSQLDBFunctionSymbolFactory getMMecDBFunctionSymbolFactory() {
     return (MMecSQLDBFunctionSymbolFactory) getDBFunctionSymbolFactory();
   }
+
 }

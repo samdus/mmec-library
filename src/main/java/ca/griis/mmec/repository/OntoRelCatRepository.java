@@ -1,7 +1,9 @@
 package ca.griis.mmec.repository;
 
+import it.unibz.inf.ontop.model.type.DBTermType;
+
 import java.sql.SQLException;
 
 public interface OntoRelCatRepository {
-    String getSQLType(String ontoRelId, String typeIri) throws SQLException;
+    DBTermType getSQLType(String ontoRelId, String typeIri) throws SQLException;
 }
