@@ -2,14 +2,11 @@ package ca.griis.mmec.test.integration.util;
 
 
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import it.unibz.inf.ontop.answering.OntopQueryEngine;
 import it.unibz.inf.ontop.answering.connection.OntopConnection;
 import it.unibz.inf.ontop.answering.connection.OntopStatement;
 import it.unibz.inf.ontop.answering.reformulation.QueryReformulator;
-import it.unibz.inf.ontop.datalog.UnionFlattener;
-import it.unibz.inf.ontop.exception.MetadataExtractionException;
 import it.unibz.inf.ontop.exception.OBDASpecificationException;
 import it.unibz.inf.ontop.exception.OntologyException;
 import it.unibz.inf.ontop.exception.OntopConnectionException;
@@ -17,30 +14,16 @@ import it.unibz.inf.ontop.exception.OntopInvalidKGQueryException;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import it.unibz.inf.ontop.injection.OntopMappingSQLAllConfiguration;
 import it.unibz.inf.ontop.injection.OntopReformulationSQLConfiguration;
-import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
-import it.unibz.inf.ontop.injection.SpecificationFactory;
 import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.iq.UnaryIQTree;
 import it.unibz.inf.ontop.iq.node.NativeNode;
-import it.unibz.inf.ontop.iq.tools.UnionBasedQueryMerger;
 import it.unibz.inf.ontop.model.atom.RDFAtomPredicate;
 import it.unibz.inf.ontop.query.KGQueryFactory;
 import it.unibz.inf.ontop.query.RDF4JQueryFactory;
 import it.unibz.inf.ontop.query.RDF4JSelectQuery;
 import it.unibz.inf.ontop.query.SelectQuery;
-import it.unibz.inf.ontop.spec.OBDASpecInput;
 import it.unibz.inf.ontop.spec.OBDASpecification;
 import it.unibz.inf.ontop.spec.mapping.Mapping;
-import it.unibz.inf.ontop.spec.mapping.MappingAssertion;
-import it.unibz.inf.ontop.spec.mapping.MappingExtractor;
-import it.unibz.inf.ontop.spec.mapping.TMappingExclusionConfig;
-import it.unibz.inf.ontop.spec.mapping.impl.SQLMappingExtractor;
-import it.unibz.inf.ontop.spec.mapping.parser.impl.MMecR2rmlMappingParserImpl;
-import it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLToSQLPPTriplesMapConverter;
-import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
-import it.unibz.inf.ontop.spec.mapping.transformer.MappingCQCOptimizer;
-import it.unibz.inf.ontop.spec.mapping.transformer.QueryUnionSplitter;
-import it.unibz.inf.ontop.spec.mapping.transformer.impl.MMecTMappingSaturatorImpl;
 import it.unibz.inf.ontop.spec.ontology.Ontology;
 import it.unibz.inf.ontop.spec.ontology.owlapi.OWLAPITranslatorOWL2QL;
 import java.io.File;
@@ -58,7 +41,6 @@ import org.eclipse.rdf4j.query.algebra.ProjectionElem;
 import org.eclipse.rdf4j.query.algebra.ProjectionElemList;
 import org.eclipse.rdf4j.query.algebra.QueryRoot;
 import org.eclipse.rdf4j.query.algebra.StatementPattern;
-import org.eclipse.rdf4j.query.algebra.TupleExpr;
 import org.eclipse.rdf4j.query.algebra.ValueConstant;
 import org.eclipse.rdf4j.query.algebra.Var;
 import org.eclipse.rdf4j.query.impl.MapBindingSet;
@@ -75,8 +57,8 @@ public class R2rmlTester extends OntopTester {
 
   @Override
   public void runTest() throws Exception {
-    //     String withAutomaticInjectors = testWithAutomaticInjector();
-    //     String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
+    // String withAutomaticInjectors = testWithAutomaticInjector();
+    // String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
@@ -112,93 +94,93 @@ public class R2rmlTester extends OntopTester {
     return builder.toString();
   }
 
-//  public String testWithoutAutomaticInjectors()
-//      throws OntopConnectionException, OntopInvalidKGQueryException, OntopReformulationException,
-//      OBDASpecificationException, MetadataExtractionException {
-//    SQLPPMappingFactory ppMappingFactory = configuration.getInjector().getInstance(
-//        SQLPPMappingFactory.class);
-//    SpecificationFactory specificationFactory = configuration.getInjector().getInstance(
-//        SpecificationFactory.class);
-//    R2RMLToSQLPPTriplesMapConverter transformer = configuration.getInjector().getInstance(
-//        R2RMLToSQLPPTriplesMapConverter.class);
-//    TMappingExclusionConfig tmappingExclusionConfig = configuration.getInjector().getInstance(
-//        TMappingExclusionConfig.class);
-//    QueryUnionSplitter unionSplitter = configuration.getInjector().getInstance(
-//        QueryUnionSplitter.class);
-//    UnionFlattener unionFlattener = configuration.getInjector().getInstance(UnionFlattener.class);
-//    MappingCQCOptimizer mappingCqcOptimizer = configuration.getInjector().getInstance(
-//        MappingCQCOptimizer.class);
-//    // DefaultMappingTransformer defaultMappingTransformer =
-//    // configuration.getInjector().getInstance(
-//    // DefaultMappingTransformer.class);
-//    UnionBasedQueryMerger queryMerger = configuration.getInjector().getInstance(
-//        UnionBasedQueryMerger.class);
-//    // JDBCMetadataProviderFactory metadataProviderFactory =
-//    // configuration.getInjector().getInstance(
-//    // JDBCMetadataProviderFactory.class);
-//    SQLMappingExtractor mappingExtractor = configuration.getInjector().getInstance(
-//        SQLMappingExtractor.class);
-//
-//    StringBuilder builder = new StringBuilder();
-//
-//    // try (Connection connection = LocalJDBCConnectionUtils.createConnection(
-//    // configuration.getSettings())) {
-//    // DBMetadataProvider metadataProvider =
-//    // metadataProviderFactory.getMetadataProvider(connection);
-//    // CachingMetadataLookup metadataLookup = new CachingMetadataLookup(metadataProvider);
-//
-//    MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl = new MMecR2rmlMappingParserImpl(
-//        ppMappingFactory, specificationFactory, transformer);
-//    // MMecSqlPpMappingConverterImpl mMecSqlPpMappingConverterImpl =
-//    // new MMecSqlPpMappingConverterImpl(coreSingletons, sqlQueryParser);
-//    MMecTMappingSaturatorImpl mMecTMappingSaturatorImpl = new MMecTMappingSaturatorImpl(
-//        tmappingExclusionConfig, unionSplitter, unionFlattener, mappingCqcOptimizer, queryMerger,
-//        coreSingletons);
-//
-//    Ontology ontology = loadOntology();
-//    SQLPPMapping ppMapping = mMecR2rmlMappingParserImpl.parse(mappingFile);
-//
-//    OBDASpecInput specInput = OBDASpecInput.defaultBuilder().build();
-//
-//    MappingExtractor.MappingAndDBParameters mappingAndDBParameters = mappingExtractor.extract(
-//        ppMapping, specInput, Optional.of(ontology));
-//    ImmutableList<MappingAssertion> mappingAssertions = mappingAndDBParameters.getMapping();
-//    // ImmutableList<MappingAssertion> mappingAssertions = mMecSqlPpMappingConverterImpl.convert(
-//    // ppMapping.getTripleMaps(), metadataLookup);
-//
-//    ImmutableList<MappingAssertion> saturatedMappingAssertions =
-//        mMecTMappingSaturatorImpl.saturate(mappingAssertions, loadOntology().tbox());
-//    // OBDASpecification obdaSpecification = defaultMappingTransformer.transform(
-//    // saturatedMappingAssertions,
-//    // metadataProvider.getDBParameters(), Optional.of(loadOntology()), ImmutableSet.of(),
-//    // ImmutableList.of());
-//    // Mapping mapping = obdaSpecification.getSaturatedMapping();
-//
-//    HashMap<IRI, Optional<IQ>> classesMapping = new HashMap<>();
-//
-//    // for (RDFAtomPredicate predicate : mapping.getRDFAtomPredicates()) {
-//    for (MappingAssertion assertion : saturatedMappingAssertions) {
-//      classesMapping.put(assertion.getIndex().getIri(), Optional.of(assertion.getQuery()));
-//    }
-//
-//    classesMapping.forEach((c, iq) -> {
-//      builder.append(String.format("Mapping for %s =>%n %s%n%n", c.getIRIString(),
-//          iq.map(IQ::toString).orElse("No IQ")));
-//    });
-//
-//    // } catch (Exception e) {
-//    // e.printStackTrace();
-//    // }
-//
-//    return builder.toString();
-//  }
+  // public String testWithoutAutomaticInjectors()
+  // throws OntopConnectionException, OntopInvalidKGQueryException, OntopReformulationException,
+  // OBDASpecificationException, MetadataExtractionException {
+  // SQLPPMappingFactory ppMappingFactory = configuration.getInjector().getInstance(
+  // SQLPPMappingFactory.class);
+  // SpecificationFactory specificationFactory = configuration.getInjector().getInstance(
+  // SpecificationFactory.class);
+  // R2RMLToSQLPPTriplesMapConverter transformer = configuration.getInjector().getInstance(
+  // R2RMLToSQLPPTriplesMapConverter.class);
+  // TMappingExclusionConfig tmappingExclusionConfig = configuration.getInjector().getInstance(
+  // TMappingExclusionConfig.class);
+  // QueryUnionSplitter unionSplitter = configuration.getInjector().getInstance(
+  // QueryUnionSplitter.class);
+  // UnionFlattener unionFlattener = configuration.getInjector().getInstance(UnionFlattener.class);
+  // MappingCQCOptimizer mappingCqcOptimizer = configuration.getInjector().getInstance(
+  // MappingCQCOptimizer.class);
+  // // DefaultMappingTransformer defaultMappingTransformer =
+  // // configuration.getInjector().getInstance(
+  // // DefaultMappingTransformer.class);
+  // UnionBasedQueryMerger queryMerger = configuration.getInjector().getInstance(
+  // UnionBasedQueryMerger.class);
+  // // JDBCMetadataProviderFactory metadataProviderFactory =
+  // // configuration.getInjector().getInstance(
+  // // JDBCMetadataProviderFactory.class);
+  // SQLMappingExtractor mappingExtractor = configuration.getInjector().getInstance(
+  // SQLMappingExtractor.class);
+  //
+  // StringBuilder builder = new StringBuilder();
+  //
+  // // try (Connection connection = LocalJDBCConnectionUtils.createConnection(
+  // // configuration.getSettings())) {
+  // // DBMetadataProvider metadataProvider =
+  // // metadataProviderFactory.getMetadataProvider(connection);
+  // // CachingMetadataLookup metadataLookup = new CachingMetadataLookup(metadataProvider);
+  //
+  // MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl = new MMecR2rmlMappingParserImpl(
+  // ppMappingFactory, specificationFactory, transformer);
+  // // MMecSqlPpMappingConverterImpl mMecSqlPpMappingConverterImpl =
+  // // new MMecSqlPpMappingConverterImpl(coreSingletons, sqlQueryParser);
+  // MMecTMappingSaturatorImpl mMecTMappingSaturatorImpl = new MMecTMappingSaturatorImpl(
+  // tmappingExclusionConfig, unionSplitter, unionFlattener, mappingCqcOptimizer, queryMerger,
+  // coreSingletons);
+  //
+  // Ontology ontology = loadOntology();
+  // SQLPPMapping ppMapping = mMecR2rmlMappingParserImpl.parse(mappingFile);
+  //
+  // OBDASpecInput specInput = OBDASpecInput.defaultBuilder().build();
+  //
+  // MappingExtractor.MappingAndDBParameters mappingAndDBParameters = mappingExtractor.extract(
+  // ppMapping, specInput, Optional.of(ontology));
+  // ImmutableList<MappingAssertion> mappingAssertions = mappingAndDBParameters.getMapping();
+  // // ImmutableList<MappingAssertion> mappingAssertions = mMecSqlPpMappingConverterImpl.convert(
+  // // ppMapping.getTripleMaps(), metadataLookup);
+  //
+  // ImmutableList<MappingAssertion> saturatedMappingAssertions =
+  // mMecTMappingSaturatorImpl.saturate(mappingAssertions, loadOntology().tbox());
+  // // OBDASpecification obdaSpecification = defaultMappingTransformer.transform(
+  // // saturatedMappingAssertions,
+  // // metadataProvider.getDBParameters(), Optional.of(loadOntology()), ImmutableSet.of(),
+  // // ImmutableList.of());
+  // // Mapping mapping = obdaSpecification.getSaturatedMapping();
+  //
+  // HashMap<IRI, Optional<IQ>> classesMapping = new HashMap<>();
+  //
+  // // for (RDFAtomPredicate predicate : mapping.getRDFAtomPredicates()) {
+  // for (MappingAssertion assertion : saturatedMappingAssertions) {
+  // classesMapping.put(assertion.getIndex().getIri(), Optional.of(assertion.getQuery()));
+  // }
+  //
+  // classesMapping.forEach((c, iq) -> {
+  // builder.append(String.format("Mapping for %s =>%n %s%n%n", c.getIRIString(),
+  // iq.map(IQ::toString).orElse("No IQ")));
+  // });
+  //
+  // // } catch (Exception e) {
+  // // e.printStackTrace();
+  // // }
+  //
+  // return builder.toString();
+  // }
 
   private void testGetDefinitions()
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
     configuration.loadSpecification();
 
-    //TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
-    //      expressions relationnelles vides.
+    // TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
+    // expressions relationnelles vides.
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
@@ -240,16 +222,16 @@ public class R2rmlTester extends OntopTester {
       System.out.println(firstExecutableQuery.toString());
 
       // La configuration Ontop originale génère ceci :
-      //        ans1(uid)
-      //        CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
-      //        NATIVE [uid]
-      //        SELECT ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "uid"
-      //        FROM "TABLE2" v1
+      // ans1(uid)
+      // CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
+      // NATIVE [uid]
+      // SELECT ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "uid"
+      // FROM "TABLE2" v1
       // Alors que la configuration MMec génère ceci :
-      //        ans1(uid)
-      //        NATIVE [uid]
-      //        SELECT individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "uid"
-      //        FROM "TABLE2" v1
+      // ans1(uid)
+      // NATIVE [uid]
+      // SELECT individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "uid"
+      // FROM "TABLE2" v1
     }
   }
 
@@ -293,18 +275,22 @@ public class R2rmlTester extends OntopTester {
       System.out.println(firstExecutableQuery.toString());
 
       // La configuration Ontop originale génère ceci :
-      //        ans1(sub, obj)
-      //        CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
-      //        NATIVE [obj, sub]
-      //        SELECT DISTINCT ('http://www.griis.ca/projects/tst1C0004XUnionOf/' || CAST(v1."n" AS TEXT)) AS "obj", ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "sub"
-      //        FROM "TABLE2" v1, "TABLE2" v2
-      //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
+      // ans1(sub, obj)
+      // CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
+      // NATIVE [obj, sub]
+      // SELECT DISTINCT ('http://www.griis.ca/projects/tst1C0004XUnionOf/' || CAST(v1."n" AS TEXT))
+      // AS "obj", ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "sub"
+      // FROM "TABLE2" v1, "TABLE2" v2
+      // WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" =
+      // v2."n")
       // Alors que la configuration MMec génère ceci :
-      //        ans1(sub, obj)
-      //        NATIVE [obj, sub]
-      //        SELECT DISTINCT individuation('http://www.griis.ca/projects/tst1C0004XUnionOf/{}', v1."n") AS "obj", individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "sub"
-      //        FROM "TABLE2" v1, "TABLE2" v2
-      //        WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" = v2."n")
+      // ans1(sub, obj)
+      // NATIVE [obj, sub]
+      // SELECT DISTINCT individuation('http://www.griis.ca/projects/tst1C0004XUnionOf/{}', v1."n")
+      // AS "obj", individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "sub"
+      // FROM "TABLE2" v1, "TABLE2" v2
+      // WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" =
+      // v2."n")
     }
   }
 
@@ -347,20 +333,23 @@ public class R2rmlTester extends OntopTester {
       System.out.println(firstExecutableQuery.toString());
 
       // La configuration Ontop originale génère ceci :
-      //      ans1(sub, val)
-      //      CONSTRUCT [sub, val] [sub/RDF(TEXTToTEXT(sub),IRI), val/RDF(TEXTToTEXT(val),xsd:string)]
-      //      NATIVE [sub, val]
-      //      SELECT ('http://www.griis.ca/projects/tst/' || CAST(v1."m" AS TEXT)) AS "sub", CAST(v1."o" AS TEXT) AS "val"
-      //      FROM "TABLE2" v1
-      //      WHERE v1."o" IS NOT NULL
+      // ans1(sub, val)
+      // CONSTRUCT [sub, val] [sub/RDF(TEXTToTEXT(sub),IRI), val/RDF(TEXTToTEXT(val),xsd:string)]
+      // NATIVE [sub, val]
+      // SELECT ('http://www.griis.ca/projects/tst/' || CAST(v1."m" AS TEXT)) AS "sub", CAST(v1."o"
+      // AS TEXT) AS "val"
+      // FROM "TABLE2" v1
+      // WHERE v1."o" IS NOT NULL
 
-      // Alors que la configuration MMec génère ceci (pour l'instant, parce qu'on veut changer que ça appel la paire de fonction appropriée aux types) :
-      //      ans1(sub, val)
-      //      CONSTRUCT [sub, val] [val/RDF(v0,xsd:string)]
-      //      NATIVE [sub, v0]
-      //      SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o" AS TEXT) AS "v0"
-      //      FROM "TABLE2" v1
-      //      WHERE v1."o" IS NOT NULL
+      // Alors que la configuration MMec génère ceci (pour l'instant, parce qu'on veut changer que
+      // ça appel la paire de fonction appropriée aux types) :
+      // ans1(sub, val)
+      // CONSTRUCT [sub, val] [val/RDF(v0,xsd:string)]
+      // NATIVE [sub, v0]
+      // SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o"
+      // AS TEXT) AS "v0"
+      // FROM "TABLE2" v1
+      // WHERE v1."o" IS NOT NULL
     }
   }
 

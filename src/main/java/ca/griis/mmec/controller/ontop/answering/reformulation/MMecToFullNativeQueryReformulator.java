@@ -41,11 +41,11 @@ import org.slf4j.LoggerFactory;
  *      «Limits description (optional)»
  *
  * @brief @~french Reformulateur de requête pour des MMec. Diffère du reformulateur Ontop par le
- *                 fait que la requête initiale est déjà dans les termes de la base de données.
- *                 <br />
- *                 C'est-à-dire que le bloc de construction qui contenait des substitutions RDF
- *                 a déjà été remplacé par des variables de la source de données et l'appel à la
- *                 fonction d'individuation.
+ *        fait que la requête initiale est déjà dans les termes de la base de données.
+ *        <br />
+ *        C'est-à-dire que le bloc de construction qui contenait des substitutions RDF
+ *        a déjà été remplacé par des variables de la source de données et l'appel à la
+ *        fonction d'individuation.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -60,7 +60,7 @@ import org.slf4j.LoggerFactory;
  *
  * @par Tâches
  *      S.O.
-*/
+ */
 public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
   private final BasicSingleTermTypeExtractor typeExtractor;
   private static final Logger LOGGER = LoggerFactory.getLogger(
@@ -86,10 +86,9 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
 
   @Override
   protected IQ generateExecutableQuery(IQ iq) throws OntopReformulationException {
-    if(iq.getTree() instanceof EmptyNode) {
+    if (iq.getTree() instanceof EmptyNode) {
       return iq;
-    }
-    else {
+    } else {
       IQ sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)
           .normalizeForOptimization();
 

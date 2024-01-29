@@ -59,9 +59,12 @@ public class MMecTermFactory extends AbstractMMecTermFactory {
         getMMecDBFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes), terms);
   }
 
-  public ImmutableTerm getMMecConversionFunction(Variable variable, DBTermType variableType, DBTermType sqlDataType) {
+  public ImmutableTerm getMMecConversionFunction(Variable variable, DBTermType variableType,
+      DBTermType sqlDataType) {
     return getImmutableFunctionalTerm(
-            getMMecDBFunctionSymbolFactory().createMMecConversionFunctionSymbol(variableType, sqlDataType), variable);
+        getMMecDBFunctionSymbolFactory().createMMecConversionFunctionSymbol(variableType,
+            sqlDataType),
+        variable);
   }
 
   private MMecSQLDBFunctionSymbolFactory getMMecDBFunctionSymbolFactory() {

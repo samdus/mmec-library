@@ -31,5 +31,6 @@ public interface MMecSQLDBFunctionSymbolFactory {
   MMecIndividuationFunctionSymbol createMMecIndividuationFunctionSymbol(
       ImmutableList<TermType> argTypes);
 
-  DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType, DBTermType sqlDataType);
+  DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType,
+      DBTermType sqlDataType);
 }

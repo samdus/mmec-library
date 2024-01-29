@@ -33,7 +33,7 @@ import javax.inject.Singleton;
  *      «Limits description (optional)»
  *
  * @brief @~french Surcharge de la classe AvoidJoinAboveUnionPlanner de Ontop pour ajouter
- *                 l'optimisation pour l'extension MMec.
+ *        l'optimisation pour l'extension MMec.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -68,13 +68,13 @@ public class MMecQueryPlanner extends AvoidJoinAboveUnionPlanner implements Quer
    * @return «Return description»
    *
    * @brief @~french Optimise la requête en utilisant le AvoidJoinAboveUnionPlanner de Ontop
-   *                 puis en utilisant le QueryUpdateForMMecOptimizer pour préparer la requête
-   *                 pour l'extension MMec.
+   *        puis en utilisant le QueryUpdateForMMecOptimizer pour préparer la requête
+   *        pour l'extension MMec.
    * @param query La requête à optimiser.
    * @return La requête optimisée.
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   @Override
   public IQ optimize(IQ query) {

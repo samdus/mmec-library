@@ -36,8 +36,8 @@ public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionS
   private final String functionCallTemplate;
   private final DBTermType individuationFunctionReturnType;
 
-  //TODO: Injecter la paramétrisation pour le template d'appel aux différentes fonctions
-  //      d'individuation et de leur type de retour.
+  // TODO: Injecter la paramétrisation pour le template d'appel aux différentes fonctions
+  // d'individuation et de leur type de retour.
   @Inject
   protected MMecPostgreSQLDBFunctionSymbolFactory(
       TypeFactory typeFactory) {
@@ -53,7 +53,8 @@ public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionS
         functionCallTemplate);
   }
 
-  public DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType, DBTermType sqlDataType) {
+  public DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType,
+      DBTermType sqlDataType) {
     return getDBCastFunctionSymbol(variableType, sqlDataType);
   }
 }

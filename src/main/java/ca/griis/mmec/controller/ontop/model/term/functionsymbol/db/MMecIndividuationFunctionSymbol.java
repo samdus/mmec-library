@@ -44,7 +44,7 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
    * @param functionCallTemplate
    * @brief @~french Constructeur pour le symbole de fonction d'individuation.
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   protected MMecIndividuationFunctionSymbol(ImmutableList<TermType> argTypes, DBTermType returnType,
       String functionCallTemplate) {

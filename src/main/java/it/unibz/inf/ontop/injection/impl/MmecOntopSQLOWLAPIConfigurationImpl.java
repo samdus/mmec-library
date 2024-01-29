@@ -23,146 +23,152 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
  * with the injectorSupplier.
  */
 public class MmecOntopSQLOWLAPIConfigurationImpl extends OntopStandaloneSQLConfigurationImpl
-        implements OntopSQLOWLAPIConfiguration {
+    implements OntopSQLOWLAPIConfiguration {
 
 
-    private final MmecOntopMappingOntologyConfigurationImpl mappingOWLConfiguration;
+  private final MmecOntopMappingOntologyConfigurationImpl mappingOWLConfiguration;
 
-    MmecOntopSQLOWLAPIConfigurationImpl(OntopStandaloneSQLSettings settings, MmecOntopSQLOWLAPIOptions options) {
-        super(settings, options.sqlOptions);
-        mappingOWLConfiguration = new MmecOntopMappingOntologyConfigurationImpl(settings, options.ontologyOptions, this::getInjector);
+  MmecOntopSQLOWLAPIConfigurationImpl(OntopStandaloneSQLSettings settings,
+      MmecOntopSQLOWLAPIOptions options) {
+    super(settings, options.sqlOptions);
+    mappingOWLConfiguration = new MmecOntopMappingOntologyConfigurationImpl(settings,
+        options.ontologyOptions, this::getInjector);
+  }
+
+  @Override
+  public OBDASpecification loadOBDASpecification() throws OBDASpecificationException {
+    return loadSpecification(mappingOWLConfiguration::loadOntology,
+        mappingOWLConfiguration::loadInputFacts);
+  }
+
+  @Override
+  public Optional<OWLOntology> loadInputOntology() throws OWLOntologyCreationException {
+    return mappingOWLConfiguration.loadInputOntology();
+  }
+
+  @Override
+  public Optional<ImmutableSet<RDFFact>> loadInputFacts() throws OBDASpecificationException {
+    return mappingOWLConfiguration.loadInputFacts();
+  }
+
+  static class MmecOntopSQLOWLAPIOptions {
+    final OntopStandaloneSQLOptions sqlOptions;
+    final OntopMappingOntologyOptions ontologyOptions;
+
+    MmecOntopSQLOWLAPIOptions(OntopStandaloneSQLOptions sqlOptions,
+        OntopMappingOntologyOptions ontologyOptions) {
+      this.sqlOptions = sqlOptions;
+      this.ontologyOptions = ontologyOptions;
+    }
+  }
+
+  protected abstract static class OntopSQLOWLAPIBuilderMixin<B extends OntopSQLOWLAPIConfiguration.Builder<B>>
+      extends OntopStandaloneSQLBuilderMixin<B>
+      implements OntopSQLOWLAPIConfiguration.Builder<B> {
+
+    private final StandardMappingOntologyBuilderFragment<B> ontologyBuilderFragment;
+    private boolean isOntologyDefined = false;
+
+    protected OntopSQLOWLAPIBuilderMixin() {
+      ontologyBuilderFragment = new StandardMappingOntologyBuilderFragment<>() {
+        @Override
+        protected B self() {
+          return OntopSQLOWLAPIBuilderMixin.this.self();
+        }
+
+        @Override
+        protected void declareOntologyDefined() {
+          OntopSQLOWLAPIBuilderMixin.this.declareOntologyDefined();
+        }
+      };
     }
 
     @Override
-    public OBDASpecification loadOBDASpecification() throws OBDASpecificationException {
-        return loadSpecification(mappingOWLConfiguration::loadOntology, mappingOWLConfiguration::loadInputFacts);
+    public B ontologyFile(@Nonnull String urlOrPath) {
+      return ontologyBuilderFragment.ontologyFile(urlOrPath);
     }
 
     @Override
-    public Optional<OWLOntology> loadInputOntology() throws OWLOntologyCreationException {
-        return mappingOWLConfiguration.loadInputOntology();
+    public B xmlCatalogFile(@Nonnull String xmlCatalogFile) {
+      return ontologyBuilderFragment.xmlCatalogFile(xmlCatalogFile);
     }
 
     @Override
-    public Optional<ImmutableSet<RDFFact>> loadInputFacts() throws OBDASpecificationException {
-        return mappingOWLConfiguration.loadInputFacts();
+    public B ontologyFile(@Nonnull URL url) {
+      return ontologyBuilderFragment.ontologyFile(url);
     }
 
-    static class MmecOntopSQLOWLAPIOptions {
-        final OntopStandaloneSQLOptions sqlOptions;
-        final OntopMappingOntologyOptions ontologyOptions;
-
-        MmecOntopSQLOWLAPIOptions(OntopStandaloneSQLOptions sqlOptions, OntopMappingOntologyOptions ontologyOptions) {
-            this.sqlOptions = sqlOptions;
-            this.ontologyOptions = ontologyOptions;
-        }
+    @Override
+    public B ontologyFile(@Nonnull File owlFile) {
+      return ontologyBuilderFragment.ontologyFile(owlFile);
     }
 
-    protected static abstract class OntopSQLOWLAPIBuilderMixin<B extends OntopSQLOWLAPIConfiguration.Builder<B>>
-            extends OntopStandaloneSQLBuilderMixin<B>
-            implements OntopSQLOWLAPIConfiguration.Builder<B> {
-
-        private final StandardMappingOntologyBuilderFragment<B> ontologyBuilderFragment;
-        private boolean isOntologyDefined = false;
-
-        protected OntopSQLOWLAPIBuilderMixin() {
-            ontologyBuilderFragment = new StandardMappingOntologyBuilderFragment<>() {
-                @Override
-                protected B self() {
-                    return OntopSQLOWLAPIBuilderMixin.this.self();
-                }
-
-                @Override
-                protected void declareOntologyDefined() {
-                    OntopSQLOWLAPIBuilderMixin.this.declareOntologyDefined();
-                }
-            };
-        }
-
-        @Override
-        public B ontologyFile(@Nonnull String urlOrPath) {
-            return ontologyBuilderFragment.ontologyFile(urlOrPath);
-        }
-
-        @Override
-        public B xmlCatalogFile(@Nonnull String xmlCatalogFile) {
-            return ontologyBuilderFragment.xmlCatalogFile(xmlCatalogFile);
-        }
-
-        @Override
-        public B ontologyFile(@Nonnull URL url) {
-            return ontologyBuilderFragment.ontologyFile(url);
-        }
-
-        @Override
-        public B ontologyFile(@Nonnull File owlFile) {
-            return ontologyBuilderFragment.ontologyFile(owlFile);
-        }
-
-        @Override
-        public B ontologyReader(@Nonnull Reader reader) {
-            return ontologyBuilderFragment.ontologyReader(reader);
-        }
-
-        @Override
-        public B factsFile(@Nonnull String urlOrPath) {
-            return ontologyBuilderFragment.factsFile(urlOrPath);
-        }
-
-        @Override
-        public B factFormat(@Nonnull String factFormat) {
-            return ontologyBuilderFragment.factFormat(factFormat);
-        }
-
-        @Override
-        public B factsBaseIRI(@Nonnull String factsBaseIRI) {
-            return ontologyBuilderFragment.factsBaseIRI(factsBaseIRI);
-        }
-
-        @Override
-        public B factsFile(@Nonnull URL url) {
-            return ontologyBuilderFragment.factsFile(url);
-        }
-
-        @Override
-        public B factsFile(@Nonnull File owlFile) {
-            return ontologyBuilderFragment.factsFile(owlFile);
-        }
-
-        @Override
-        public B factsReader(@Nonnull Reader reader) {
-            return ontologyBuilderFragment.factsReader(reader);
-        }
-
-        protected final void declareOntologyDefined() {
-            if (isOntologyDefined) {
-                throw new InvalidOntopConfigurationException("Ontology already defined!");
-            }
-            isOntologyDefined = true;
-        }
-
-        protected final MmecOntopSQLOWLAPIOptions generateSQLOWLAPIOptions() {
-            OntopStandaloneSQLOptions standaloneSQLOptions = generateStandaloneSQLOptions();
-            OntopMappingOntologyOptions mappingOntologyOptions = ontologyBuilderFragment.generateMappingOntologyOptions(
-                    standaloneSQLOptions.mappingOptions.mappingSQLOptions.mappingOptions);
-
-            return new MmecOntopSQLOWLAPIOptions(standaloneSQLOptions, mappingOntologyOptions);
-        }
+    @Override
+    public B ontologyReader(@Nonnull Reader reader) {
+      return ontologyBuilderFragment.ontologyReader(reader);
     }
 
-
-    public static class BuilderImpl extends OntopSQLOWLAPIBuilderMixin<BuilderImpl> {
-
-        @Override
-        public OntopSQLOWLAPIConfiguration build() {
-            OntopStandaloneSQLSettings settings = new OntopStandaloneSQLSettingsImpl(generateProperties(), isR2rml());
-            MmecOntopSQLOWLAPIOptions options = generateSQLOWLAPIOptions();
-            return new MmecOntopSQLOWLAPIConfigurationImpl(settings, options);
-        }
-
-        @Override
-        protected BuilderImpl self() {
-            return this;
-        }
+    @Override
+    public B factsFile(@Nonnull String urlOrPath) {
+      return ontologyBuilderFragment.factsFile(urlOrPath);
     }
+
+    @Override
+    public B factFormat(@Nonnull String factFormat) {
+      return ontologyBuilderFragment.factFormat(factFormat);
+    }
+
+    @Override
+    public B factsBaseIRI(@Nonnull String factsBaseIRI) {
+      return ontologyBuilderFragment.factsBaseIRI(factsBaseIRI);
+    }
+
+    @Override
+    public B factsFile(@Nonnull URL url) {
+      return ontologyBuilderFragment.factsFile(url);
+    }
+
+    @Override
+    public B factsFile(@Nonnull File owlFile) {
+      return ontologyBuilderFragment.factsFile(owlFile);
+    }
+
+    @Override
+    public B factsReader(@Nonnull Reader reader) {
+      return ontologyBuilderFragment.factsReader(reader);
+    }
+
+    protected final void declareOntologyDefined() {
+      if (isOntologyDefined) {
+        throw new InvalidOntopConfigurationException("Ontology already defined!");
+      }
+      isOntologyDefined = true;
+    }
+
+    protected final MmecOntopSQLOWLAPIOptions generateSQLOWLAPIOptions() {
+      OntopStandaloneSQLOptions standaloneSQLOptions = generateStandaloneSQLOptions();
+      OntopMappingOntologyOptions mappingOntologyOptions =
+          ontologyBuilderFragment.generateMappingOntologyOptions(
+              standaloneSQLOptions.mappingOptions.mappingSQLOptions.mappingOptions);
+
+      return new MmecOntopSQLOWLAPIOptions(standaloneSQLOptions, mappingOntologyOptions);
+    }
+  }
+
+
+  public static class BuilderImpl extends OntopSQLOWLAPIBuilderMixin<BuilderImpl> {
+
+    @Override
+    public OntopSQLOWLAPIConfiguration build() {
+      OntopStandaloneSQLSettings settings =
+          new OntopStandaloneSQLSettingsImpl(generateProperties(), isR2rml());
+      MmecOntopSQLOWLAPIOptions options = generateSQLOWLAPIOptions();
+      return new MmecOntopSQLOWLAPIConfigurationImpl(settings, options);
+    }
+
+    @Override
+    protected BuilderImpl self() {
+      return this;
+    }
+  }
 }

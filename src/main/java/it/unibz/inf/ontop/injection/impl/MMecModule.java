@@ -10,9 +10,6 @@ package it.unibz.inf.ontop.injection.impl;
 
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
-import ca.griis.mmec.properties.impl.FacadePropertiesImpl;
-import ca.griis.mmec.properties.impl.MappingPropertiesImpl;
-import com.google.inject.Scopes;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»

@@ -54,8 +54,8 @@ package ca.griis.mmec.model;
  *      Chaque prototype correspond à une liste ordonnée de types et une liste d'identifiant de
  *      classes. Les types correspondent aux types des composants de signatures de ces classes.
  *      - CastFunctions :: Une liste de fonctions de conversion de types utilisées dans les
- *                         expressions d'arrimage. Chaque fonction possède un type d'entrée et un
- *                         type de sortie.
+ *      expressions d'arrimage. Chaque fonction possède un type d'entrée et un
+ *      type de sortie.
  *      - ClassExpressions :: Une liste d'expression permettant d'obtenir la façade d'une classe
  *      dans la source de données. Chaque expression possède un identifiant,
  *      le texte de son implémentation et une instruction de
@@ -79,13 +79,13 @@ package ca.griis.mmec.model;
  *
  * @par Tâches
  *      2023-11-20 [SD] - Il faut modifier la conception pour que ce qui est dans le modèle soit
- *                        indépendant de la configuration. La vue est responsable de créer le script
- *                        qui correspond à la config. Ici, on est dans une façade générique.
+ *      indépendant de la configuration. La vue est responsable de créer le script
+ *      qui correspond à la config. Ici, on est dans une façade générique.
  *
- *                        SignPrototype et CastFunction ont étés ajustés, mais pas les autres.
- *                        Ce qui me bug c'est le fait que les expressions sont déjà parsé par ontop
- *                        à ce moment, alors on a déjà utilisé la vue. Ce qui contrevient au principe
- *                        de MVC.
+ *      SignPrototype et CastFunction ont étés ajustés, mais pas les autres.
+ *      Ce qui me bug c'est le fait que les expressions sont déjà parsé par ontop
+ *      à ce moment, alors on a déjà utilisé la vue. Ce qui contrevient au principe
+ *      de MVC.
  */
 public interface ImMecFacade {
 

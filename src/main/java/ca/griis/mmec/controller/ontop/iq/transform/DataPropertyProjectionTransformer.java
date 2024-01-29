@@ -50,9 +50,10 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
       IQTree child) {
 
-    //        CONSTRUCT [sub, val] [val/RDF(INTEGERToTEXT(o1m2),xsd:string), sub/Individuation_2("http://www.griis.ca/projects/tst/{}"^^TEXT,m1m0)]
-    //        FILTER IS_NOT_NULL(o1m2)
-    //                EXTENSIONAL "TABLE2"(0:m1m0,2:o1m2)
+    // CONSTRUCT [sub, val] [val/RDF(INTEGERToTEXT(o1m2),xsd:string),
+    // sub/Individuation_2("http://www.griis.ca/projects/tst/{}"^^TEXT,m1m0)]
+    // FILTER IS_NOT_NULL(o1m2)
+    // EXTENSIONAL "TABLE2"(0:m1m0,2:o1m2)
 
     Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
         ImmutableMap.copyOf(constructionNode.getSubstitution().stream()

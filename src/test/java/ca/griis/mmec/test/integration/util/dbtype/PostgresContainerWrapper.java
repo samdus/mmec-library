@@ -94,7 +94,7 @@ public class PostgresContainerWrapper implements Closeable {
    * @throws SQLException exception SQL obtenue lors de la réinitialisation
    * @brief @~english «Description of the function»
    * @brief @~french Supprime toutes les tables de la base de données qui ne sont pas dans un schéma
-   * système
+   *        système
    */
   public void resetDB() throws SQLException {
     try (Connection connection = getConnection()) {

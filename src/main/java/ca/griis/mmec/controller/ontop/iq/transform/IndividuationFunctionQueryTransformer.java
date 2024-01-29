@@ -27,10 +27,9 @@ import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.impl.IRITermType;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
-
-import javax.inject.Inject;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.inject.Inject;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -39,7 +38,7 @@ import java.util.stream.Collectors;
  * @par Conception «Conception description (criteria and constraints) (optional)»
  * @par Limits «Limits description (optional)»
  * @brief @~french Transforme la requête pour modifier les appels de fonctions qui génère des IRI
- * pour appeler la fonction de génération de signature. Retire aussi les conversions de type.
+ *        pour appeler la fonction de génération de signature. Retire aussi les conversions de type.
  * @par Détails S.O.
  * @par Modèle S.O.
  * @par Conception S.O.
@@ -96,7 +95,7 @@ public class IndividuationFunctionQueryTransformer extends
             .build();
         ImmutableList<TermType> argTypes =
             arguments.stream().map(
-                    variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
+                variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
                 .collect(ImmutableList.toImmutableList());
 
         return termFactory.getMMecSignatureFunction(argTypes, arguments);

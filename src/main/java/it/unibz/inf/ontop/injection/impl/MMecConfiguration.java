@@ -57,7 +57,8 @@ public class MMecConfiguration extends MmecOntopSQLOWLAPIConfigurationImpl {
   }
 
   public static class MMecConfigurationBuilder
-      extends MmecOntopSQLOWLAPIConfigurationImpl.OntopSQLOWLAPIBuilderMixin<MMecConfigurationBuilder> {
+      extends
+      MmecOntopSQLOWLAPIConfigurationImpl.OntopSQLOWLAPIBuilderMixin<MMecConfigurationBuilder> {
 
     private FacadeProperties facadeProperties;
     private MappingProperties mappingProperties;
@@ -66,7 +67,8 @@ public class MMecConfiguration extends MmecOntopSQLOWLAPIConfigurationImpl {
     public MMecConfiguration build() {
       OntopStandaloneSQLSettings settings = new OntopStandaloneSQLSettingsImpl(generateProperties(),
           isR2rml());
-      MmecOntopSQLOWLAPIConfigurationImpl.MmecOntopSQLOWLAPIOptions options = generateSQLOWLAPIOptions();
+      MmecOntopSQLOWLAPIConfigurationImpl.MmecOntopSQLOWLAPIOptions options =
+          generateSQLOWLAPIOptions();
 
       return new MMecConfiguration(settings, options, facadeProperties, mappingProperties);
     }

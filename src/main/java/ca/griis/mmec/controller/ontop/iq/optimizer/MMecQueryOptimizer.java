@@ -14,22 +14,15 @@ package ca.griis.mmec.controller.ontop.iq.optimizer;
 
 import ca.griis.mmec.controller.ontop.iq.transform.DataPropertyProjectionTransformer;
 import ca.griis.mmec.controller.ontop.iq.transform.IndividuationFunctionQueryTransformer;
-import ca.griis.mmec.repository.OntoRelCatRepository;
-import ca.griis.mmec.repository.jooq.JooqOntoRelCatRepository;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.optimizer.IQOptimizer;
 import it.unibz.inf.ontop.iq.transform.IQTreeVisitingTransformer;
-import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.model.term.TermFactory;
-
-import java.sql.SQLException;
 import java.util.List;
-import java.util.function.BiFunction;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -64,26 +57,30 @@ public class MMecQueryOptimizer implements IQOptimizer {
   protected final List<IQTreeVisitingTransformer> transformers;
 
   @Inject
-  public MMecQueryOptimizer(IntermediateQueryFactory iqFactory, TermFactory termFactory, IndividuationFunctionQueryTransformer individuationFunctionQueryTransformer, DataPropertyProjectionTransformer dataPropertyProjectionTransformer) {
+  public MMecQueryOptimizer(IntermediateQueryFactory iqFactory, TermFactory termFactory,
+      IndividuationFunctionQueryTransformer individuationFunctionQueryTransformer,
+      DataPropertyProjectionTransformer dataPropertyProjectionTransformer) {
     this.iqFactory = iqFactory;
     this.termFactory = termFactory;
-    this.transformers = ImmutableList.of(individuationFunctionQueryTransformer, dataPropertyProjectionTransformer);
+    this.transformers =
+        ImmutableList.of(individuationFunctionQueryTransformer, dataPropertyProjectionTransformer);
   }
 
   @Override
   public IQ optimize(IQ query) {
-    //TODO: Faire en sorte d'ajouter les paires de fonctions de conversions de type pour les
-    //      expression de DataProperty
-    //TODO: Ajouter les distinct et les not null pour les expressions de classes et d'ObjectProperty
+    // TODO: Faire en sorte d'ajouter les paires de fonctions de conversions de type pour les
+    // expression de DataProperty
+    // TODO: Ajouter les distinct et les not null pour les expressions de classes et
+    // d'ObjectProperty
     IQTree newTree = optimize(query.getTree());
     return iqFactory.createIQ(query.getProjectionAtom(), newTree);
   }
 
   private IQTree optimize(IQTree tree) {
-     for(IQTreeVisitingTransformer transformer : transformers) {
-         tree = tree.acceptTransformer(transformer);
-     }
-     return tree;
+    for (IQTreeVisitingTransformer transformer : transformers) {
+      tree = tree.acceptTransformer(transformer);
+    }
+    return tree;
   }
 
 }
