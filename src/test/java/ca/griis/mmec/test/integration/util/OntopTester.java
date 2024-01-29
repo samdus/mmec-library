@@ -1,12 +1,19 @@
 package ca.griis.mmec.test.integration.util;
 
+import ca.griis.mmec.properties.FacadeProperties;
+import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
+import ca.griis.mmec.properties.builder.MappingPropertiesBuilder;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
+import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
 import it.unibz.inf.ontop.answering.reformulation.generation.NativeQueryGenerator;
 import it.unibz.inf.ontop.answering.reformulation.rewriting.QueryRewriter;
 import it.unibz.inf.ontop.injection.CoreSingletons;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.injection.OntopSQLOWLAPIConfiguration;
 import it.unibz.inf.ontop.injection.TranslationFactory;
+import it.unibz.inf.ontop.injection.impl.MMecConfiguration;
 import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
 import it.unibz.inf.ontop.iq.planner.QueryPlanner;
 import it.unibz.inf.ontop.iq.type.NotYetTypedBinaryMathOperationTransformer;
@@ -27,7 +34,7 @@ import java.util.stream.Stream;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 public abstract class OntopTester {
-  protected final OntopSQLOWLAPIConfiguration configuration;
+  protected final MMecConfiguration configuration;
   protected final CoreSingletons coreSingletons;
   protected final SubstitutionFactory substitutionFactory;
   protected final IntermediateQueryFactory iqFactory;
@@ -39,7 +46,8 @@ public abstract class OntopTester {
   protected final QueryPlanner queryPlanner;
   protected final NativeQueryGenerator nativeQueryGenerator;
   protected final NotYetTypedEqualityTransformer notYetTypedEqualityTransformer;
-  protected final NotYetTypedBinaryMathOperationTransformer notYetTypedBinaryMathOperationTransformer;
+  protected final NotYetTypedBinaryMathOperationTransformer
+      notYetTypedBinaryMathOperationTransformer;
   protected final SQLQueryParser sqlQueryParser;
   protected final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
   protected final SQLMappingExtractor mappingExtractor;
@@ -51,11 +59,16 @@ public abstract class OntopTester {
     Properties dbProperties = postgresContainerWrapper.getPropertiesForOntop();
     Properties defaultConfigurationProperties = getInjectionConfigurationProperties();
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
+    MappingProperties mappingProperties = new MappingPropertiesBuilder()
+        .setOntoRelId("OntoRelCat_simple").build();
+    FacadeProperties facadeProperties = new FacadePropertiesBuilder().build();
 
-    configuration = OntopSQLOWLAPIConfiguration.defaultBuilder()
+    configuration = new MMecConfiguration.MMecConfigurationBuilder()
         .properties(properties)
         .r2rmlMappingFile(mappingFile)
         .ontologyFile(ontologyFile)
+        .mappingProperties(mappingProperties)
+        .facadeProperties(facadeProperties)
         .build();
 
     this.mappingFile = mappingFile;

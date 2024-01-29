@@ -84,7 +84,7 @@ public interface MMecFacadeService {
    * @return «Return description»
    *
    * @brief @~french Création d'une façade MMec à partir d'une configuration valide.
-   * @param connectionProperties La configuration de la connexion.
+   * @param connectionProperties La configuration de la connexion à la source de données.
    * @param mappingProperties La configuration du mapping.
    * @param mmecFacadeProperties La configuration de la façade MMec.
    * @return La façade MMec.

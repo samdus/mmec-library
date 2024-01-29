@@ -1,17 +1,14 @@
 /**
  * @file
- *
  * @copyright @@GRIIS_COPYRIGHT@@
- *
  * @licence @@GRIIS_LICENCE@@
- *
  * @version @@GRIIS_VERSION@@
- *
- * @brief @~french Implémentation de l'objet MappingConfiguration.
- * @brief @~english MappingConfiguration object implementation.
+ * @brief @~french Implémentation de la classe MappingPropertiesImpl.
+ * @brief @~english MappingPropertiesImpl class implementation.
  */
+package ca.griis.mmec.properties.impl;
 
-package ca.griis.mmec.properties;
+import ca.griis.mmec.properties.MappingProperties;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -35,13 +32,20 @@ package ca.griis.mmec.properties;
  *      S.O.
  *
  * @par Historique
- *      2023-09-06 [SD] - Implémentation initiale<br>
+ *      2024-01-29 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
  *      S.O.
  */
-public abstract class MappingProperties {
-  // TODO: Add the properties for the configuration of the mapping. For exemple, the path of the
-  // mapping file.
-  public abstract String getOntoRelId();
+public class MappingPropertiesImpl extends MappingProperties {
+  private String ontoRelId;
+
+  public MappingPropertiesImpl(String ontoRelId) {
+    this.ontoRelId = ontoRelId;
+  }
+
+  @Override
+  public String getOntoRelId() {
+    return ontoRelId;
+  }
 }

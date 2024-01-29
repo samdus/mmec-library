@@ -26,7 +26,7 @@ import java.io.InputStream;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Objet contenant les configurations de connexion à la source de données.
+ * @brief @~french Objet contenant les configurations pour la façade d'arrimage.
  * @par Détails
  *      Les informations spécifiques à la façade. On y trouve le type de façade
  *      (vues, vues matérialisées ou alimentation) et le type de signature (type, chaine de

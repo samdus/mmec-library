@@ -1,12 +1,8 @@
 /**
  * @file
- *
  * @copyright @@GRIIS_COPYRIGHT@@
- *
  * @licence @@GRIIS_LICENCE@@
- *
  * @version @@GRIIS_VERSION@@
- *
  * @brief @~french Implémentation du constructeur pour la configuration d'une façade d'arrimage.
  * @brief @~english Implementation of the constructor for the mapping facade configuration.
  */
@@ -19,6 +15,7 @@ import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.FacadeType;
 import ca.griis.mmec.properties.SignatureType;
+import ca.griis.mmec.properties.impl.FacadePropertiesImpl;
 
 
 /**
@@ -153,18 +150,6 @@ public class FacadePropertiesBuilder {
   public FacadeProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new FacadeProperties() {
-      @Override
-      public String getFacadeStgPath() {
-        logger.trace(Trace.ENTER_METHOD_0);
-        return facadeStgPath;
-      }
-
-      @Override
-      public String getSignatureStgPath() {
-        logger.trace(Trace.ENTER_METHOD_0);
-        return signatureStgPath;
-      }
-    };
+    return new FacadePropertiesImpl(facadeStgPath, signatureStgPath);
   }
 }

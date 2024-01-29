@@ -17,6 +17,7 @@ import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.properties.impl.MappingPropertiesImpl;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -49,6 +50,8 @@ public class MappingPropertiesBuilder {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(MappingPropertiesBuilder.class);
 
+  private String ontoRelId;
+
   /**
    * @brief @~english «Description of the function»
    * @return «Return description»
@@ -61,6 +64,15 @@ public class MappingPropertiesBuilder {
   public MappingProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new MappingProperties() {};
+    return new MappingPropertiesImpl(ontoRelId);
+  }
+
+  public String getOntoRelId() {
+    return ontoRelId;
+  }
+
+  public MappingPropertiesBuilder setOntoRelId(String ontoRelId) {
+    this.ontoRelId = ontoRelId;
+    return this;
   }
 }
