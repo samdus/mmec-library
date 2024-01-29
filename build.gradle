@@ -23,22 +23,23 @@ ext {
     minCoverageUnit = 70
     minCoverageUnitItgr = 80
     minMutationUnit = 70
+    product = "Library"
+    ontopVersion = "5.1.2"
 }
 
 group = "ca.griis"
 version = "1.0.0"
-ext.product = "Library"
 
 apply plugin: ca.griis.compliance.GriisPlugin
 
 dependencies {
-    api 'it.unibz.inf.ontop:ontop:5.1.0'
-    api 'it.unibz.inf.ontop:ontop-binding:5.1.0'
-    api 'it.unibz.inf.ontop:ontop-core:5.1.0'
-    api 'it.unibz.inf.ontop:ontop-model:5.1.0'
-    api 'it.unibz.inf.ontop:ontop-rdb:5.1.0'
-    api 'it.unibz.inf.ontop:ontop-system-sql-core:5.1.0'
-    api 'it.unibz.inf.ontop:ontop-system-sql-owlapi:5.1.0'
+    api "it.unibz.inf.ontop:ontop:$ontopVersion"
+    api "it.unibz.inf.ontop:ontop-binding:$ontopVersion"
+    api "it.unibz.inf.ontop:ontop-core:$ontopVersion"
+    api "it.unibz.inf.ontop:ontop-model:$ontopVersion"
+    api "it.unibz.inf.ontop:ontop-rdb:$ontopVersion"
+    api "it.unibz.inf.ontop:ontop-system-sql-core:$ontopVersion"
+    api "it.unibz.inf.ontop:ontop-system-sql-owlapi:$ontopVersion"
 
     implementation "ca.griis:logger-library:2.0.1-SNAPSHOT"
     implementation "org.jooq:jooq:3.19.0"
@@ -62,44 +63,44 @@ dependencies {
     testImplementation "com.zaxxer:HikariCP"
 
     // Other possible dependencies from the Ontop project
-//    implementation 'it.unibz.inf.ontop:ontop-build:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-cli:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-client:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-db:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-distribution:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-docker-tests:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-endpoint:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-engine:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-kg-query:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-lightweight-tests:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-core:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-native:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-owlapi:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-r2rml:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql-all:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql-core:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-mapping-sql-owlapi:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-obda-core:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-ontology:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-ontology-owlapi:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-optimization:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-owlapi:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-protege:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-protege-dependencies:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-protege-distribution:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-protege-plugin:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-rdb2rdf-compliance:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-rdf4j:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-reformulation:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-reformulation-core:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-reformulation-sql:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-semantic-index:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-sparql-compliance:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-system:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-system-core:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-system-owlapi:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-system-sql:5.1.0'
-//    implementation 'it.unibz.inf.ontop:ontop-test:5.1.0'
+//    api "it.unibz.inf.ontop:ontop-build:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-cli:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-client:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-db:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-distribution:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-docker-tests:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-endpoint:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-engine:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-kg-query:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-lightweight-tests:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-core:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-native:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-owlapi:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-r2rml:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-sql:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-sql-all:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-sql-core:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-mapping-sql-owlapi:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-obda-core:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-ontology:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-ontology-owlapi:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-optimization:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-owlapi:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-protege:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-protege-dependencies:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-protege-distribution:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-protege-plugin:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-rdb2rdf-compliance:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-rdf4j:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-reformulation:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-reformulation-core:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-reformulation-sql:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-semantic-index:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-sparql-compliance:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-system:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-system-core:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-system-owlapi:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-system-sql:$ontopVersion"
+//    api "it.unibz.inf.ontop:ontop-test:$ontopVersion"
 }

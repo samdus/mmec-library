@@ -29,36 +29,13 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Stream;
 
-/**
- * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details
- *      «Detailed description of the component (optional)»
- * @par Model
- *      «Model (Abstract, automation, etc.) (optional)»
- * @par Conception
- *      «Conception description (criteria and constraints) (optional)»
- * @par Limits
- *      «Limits description (optional)»
- *
- * @brief @~french Copie de la classe it.unibz.inf.ontop.model.term.impl.TermFactoryImpl avec un
- *                 constructeur protected plutôt que privé de sorte à pouvoir en hériter.
- * @par Détails
- *      S.O.
- * @par Modèle
- *      S.O.
- * @par Conception
- *      S.O.
- * @par Limites
- *      S.O.
- *
- * @par Historique
- *      2024-01-09 [SD] - Implémentation initiale<br>
- *
- * @par Tâches
- *      S.O.
-*/
+/*
+ * Copie de la classe it.unibz.inf.ontop.model.term.impl.TermFactoryImpl avec un
+ * constructeur protected plutôt que privé de sorte à pouvoir en hériter.
+ */
 @Singleton
-public abstract class AbstractMMecTermFactory implements TermFactory {
+public class AbstractMMecTermFactory implements TermFactory {
+
   private final TypeFactory typeFactory;
   private final FunctionSymbolFactory functionSymbolFactory;
   private final DBFunctionSymbolFactory dbFunctionSymbolFactory;
@@ -627,6 +604,16 @@ public abstract class AbstractMMecTermFactory implements TermFactory {
   @Override
   public ImmutableFunctionalTerm getDBAvg(ImmutableTerm subTerm, DBTermType dbType, boolean isDistinct) {
     return getImmutableFunctionalTerm(dbFunctionSymbolFactory.getNullIgnoringDBAvg(dbType, isDistinct), subTerm);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBStdev(ImmutableTerm subTerm, DBTermType dbType, boolean isPop, boolean isDistinct) {
+    return getImmutableFunctionalTerm(dbFunctionSymbolFactory.getNullIgnoringDBStdev(dbType, isPop, isDistinct), subTerm);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBVariance(ImmutableTerm subTerm, DBTermType dbType, boolean isPop, boolean isDistinct) {
+    return getImmutableFunctionalTerm(dbFunctionSymbolFactory.getNullIgnoringDBVariance(dbType, isPop, isDistinct), subTerm);
   }
 
   @Override
@@ -1408,4 +1395,5 @@ public abstract class AbstractMMecTermFactory implements TermFactory {
   public ImmutableFunctionalTerm getDBDateTrunc(ImmutableTerm dbDatetimeTerm, ImmutableTerm datePartTerm, String datePart) {
     return getImmutableFunctionalTerm(dbFunctionSymbolFactory.getDBDateTrunc(datePart), dbDatetimeTerm, datePartTerm);
   }
+
 }
