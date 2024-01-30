@@ -67,7 +67,7 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
       MMecToFullNativeQueryReformulator.class);
 
   @AssistedInject
-  protected MMecToFullNativeQueryReformulator(
+  public MMecToFullNativeQueryReformulator(
       @Assisted OBDASpecification obdaSpecification,
       QueryCache queryCache,
       QueryUnfolder.Factory queryUnfolderFactory,
