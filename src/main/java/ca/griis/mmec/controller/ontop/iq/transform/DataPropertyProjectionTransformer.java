@@ -31,6 +31,49 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   private final BasicSingleTermTypeExtractor typeExtractor;
   private final OntoRelCatRepository ontoRelCatRepository;
   private final MappingProperties mappingProperties;
+  private final ImmutableMap<DBTermType.Category, ImmutableMap<DBTermType.Category, Boolean>>
+      trivialCasts = ImmutableMap.of(
+      DBTermType.Category.STRING, ImmutableMap.of(
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.INTEGER, ImmutableMap.of(
+          DBTermType.Category.INTEGER, true,
+          DBTermType.Category.DECIMAL, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.DECIMAL, ImmutableMap.of(
+          DBTermType.Category.DECIMAL, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.FLOAT_DOUBLE, ImmutableMap.of(
+          DBTermType.Category.FLOAT_DOUBLE, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.BOOLEAN, ImmutableMap.of(
+          DBTermType.Category.BOOLEAN, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.DATE, ImmutableMap.of(
+          DBTermType.Category.DATE, true,
+          DBTermType.Category.DATETIME, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.DATETIME, ImmutableMap.of(
+          DBTermType.Category.DATETIME, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.UUID, ImmutableMap.of(
+          DBTermType.Category.UUID, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.JSON, ImmutableMap.of(
+          DBTermType.Category.JSON, true,
+          DBTermType.Category.STRING, true
+      ),
+      DBTermType.Category.ARRAY, ImmutableMap.of(
+          DBTermType.Category.ARRAY, true,
+          DBTermType.Category.STRING, true
+      ));
 
   @Inject
   protected DataPropertyProjectionTransformer(IntermediateQueryFactory iqFactory,
@@ -59,7 +102,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
           && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
           && rdfTermTypeConstant.getRDFTermType() instanceof SimpleRDFDatatype rdfDatatype) {
         try {
-          DBTermType sqlDataType = ontoRelCatRepository.getSQLType(mappingProperties.getOntoRelId(),
+          DBTermType targetType = ontoRelCatRepository.getSQLType(mappingProperties.getOntoRelId(),
               rdfDatatype.getIRI().getIRIString());
           Variable variable = term.getVariables().stream().findFirst().orElseThrow(
               SQLException::new);
@@ -67,11 +110,15 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
               .filter(termType -> termType instanceof DBTermType)
               .orElseThrow(SQLException::new);
 
-          if (sqlDataType.equals(variableType)) {
+          if (targetType.equals(variableType)) {
             newSubstitutionMap.put(substitutionEntry.getKey(), variable);
+          }
+          else if (isTrivialCast(variableType, targetType)) {
+            newSubstitutionMap.put(substitutionEntry.getKey(),
+                termFactory.getDBCastFunctionalTerm(variableType, targetType, variable));
           } else {
             newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getMMecConversionFunction(variable, variableType, sqlDataType));
+                termFactory.getMMecConversionFunction(variable, variableType, targetType));
 
             // Remove the filter node if there was already one for this variable
             if (child.getRootNode() instanceof FilterNodeImpl filterNode
@@ -83,7 +130,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
             child = iqFactory.createUnaryIQTree(
                 iqFactory.createFilterNode(termFactory.getStrictEquality(
                     termFactory.getMMecConversionValidationFunction(variable, variableType,
-                        sqlDataType),
+                        targetType),
                     termFactory.getDBBooleanConstant(true))),
                 child);
           }
@@ -100,5 +147,11 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
     ConstructionNode newConstructionNode = iqFactory.createConstructionNode(
         constructionNode.getVariables(), substitution);
     return transformUnaryNode(tree, newConstructionNode, child);
+  }
+
+  private boolean isTrivialCast(DBTermType variableType, DBTermType sqlDataType) {
+    return trivialCasts.containsKey(variableType.getCategory())
+        && trivialCasts.get(variableType.getCategory()).containsKey(sqlDataType.getCategory())
+        && trivialCasts.get(variableType.getCategory()).get(sqlDataType.getCategory());
   }
 }
