@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableMap;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.node.ConstructionNode;
+import it.unibz.inf.ontop.iq.node.impl.FilterNodeImpl;
 import it.unibz.inf.ontop.iq.transform.impl.DefaultRecursiveIQTreeVisitingTransformer;
 import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
@@ -21,8 +22,8 @@ import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVisitingTransformer {
@@ -49,50 +50,55 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   @Override
   public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
       IQTree child) {
+    Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
 
-    // CONSTRUCT [sub, val] [val/RDF(INTEGERToTEXT(o1m2),xsd:string),
-    // sub/Individuation_2("http://www.griis.ca/projects/tst/{}"^^TEXT,m1m0)]
-    // FILTER IS_NOT_NULL(o1m2)
-    // EXTENSIONAL "TABLE2"(0:m1m0,2:o1m2)
+    for (Map.Entry<Variable, ImmutableTerm> substitutionEntry : constructionNode.getSubstitution()
+        .stream().toList()) {
+      if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
+          && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
+          && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
+          && rdfTermTypeConstant.getRDFTermType() instanceof SimpleRDFDatatype rdfDatatype) {
+        try {
+          DBTermType sqlDataType = ontoRelCatRepository.getSQLType(mappingProperties.getOntoRelId(),
+              rdfDatatype.getIRI().getIRIString());
+          Variable variable = term.getVariables().stream().findFirst().orElseThrow(
+              SQLException::new);
+          DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable, tree)
+              .filter(termType -> termType instanceof DBTermType)
+              .orElseThrow(SQLException::new);
 
-    Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
-        ImmutableMap.copyOf(constructionNode.getSubstitution().stream()
-            .collect(Collectors.toMap(Map.Entry::getKey,
-                value -> getTermOrChangeRDFFunctionForConversionFunction(tree, value)))),
-        termFactory, true);
+          if (sqlDataType.equals(variableType)) {
+            newSubstitutionMap.put(substitutionEntry.getKey(), variable);
+          } else {
+            newSubstitutionMap.put(substitutionEntry.getKey(),
+                termFactory.getMMecConversionFunction(variable, variableType, sqlDataType));
 
-    // TODO: Add a filter node for each added conversion function
-
-    ConstructionNode newConstructionNode = iqFactory.createConstructionNode(
-        constructionNode.getVariables(),
-        substitution);
-    return transformUnaryNode(tree, newConstructionNode, child);
-  }
-
-  private ImmutableTerm getTermOrChangeRDFFunctionForConversionFunction(IQTree tree,
-      Map.Entry<Variable, ImmutableTerm> substitutionEntry) {
-    if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
-        && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
-        && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
-        && rdfTermTypeConstant.getRDFTermType() instanceof SimpleRDFDatatype rdfDatatype) {
-
-      try {
-        DBTermType sqlDataType = ontoRelCatRepository.getSQLType(mappingProperties.getOntoRelId(),
-            rdfDatatype.getIRI().getIRIString());
-        Variable variable = term.getVariables().stream().findFirst().orElseThrow(SQLException::new);
-        DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable, tree)
-            .filter(termType -> termType instanceof DBTermType)
-            .orElseThrow(SQLException::new);
-
-        if (sqlDataType.equals(variableType)) {
-          return variable;
-        } else {
-          return termFactory.getMMecConversionFunction(variable, variableType, sqlDataType);
+            // Remove the filter node if there was already one for this variable
+            if (child.getRootNode() instanceof FilterNodeImpl filterNode
+                && child.getChildren().size() == 1
+                && filterNode.getFilterCondition().getVariables().size() == 1
+                && filterNode.getFilterCondition().getVariables().contains(variable)) {
+              child = child.getChildren().get(0);
+            }
+            child = iqFactory.createUnaryIQTree(
+                iqFactory.createFilterNode(termFactory.getStrictEquality(
+                    termFactory.getMMecConversionValidationFunction(variable, variableType,
+                        sqlDataType),
+                    termFactory.getDBBooleanConstant(true))),
+                child);
+          }
+        } catch (SQLException e) {
+          newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
         }
-      } catch (SQLException e) {
-        return substitutionEntry.getValue();
+      } else {
+        newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
       }
     }
-    return substitutionEntry.getValue();
+
+    Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
+        ImmutableMap.copyOf(newSubstitutionMap), termFactory, true);
+    ConstructionNode newConstructionNode = iqFactory.createConstructionNode(
+        constructionNode.getVariables(), substitution);
+    return transformUnaryNode(tree, newConstructionNode, child);
   }
 }

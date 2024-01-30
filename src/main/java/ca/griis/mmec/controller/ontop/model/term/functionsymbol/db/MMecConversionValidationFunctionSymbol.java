@@ -9,10 +9,12 @@
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
+import it.unibz.inf.ontop.model.term.ImmutableExpression;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractTypedDBFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
 import java.util.function.Function;
@@ -29,7 +31,7 @@ import java.util.stream.Collectors;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Symbole pour la fonction d'individuation.
+ * @brief @~french Symbole pour la fonction de vérification de conversion.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -45,28 +47,43 @@ import java.util.stream.Collectors;
  * @par Tâches
  *      S.O.
  */
-public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymbol implements
-    RDFTermFunctionSymbol {
+public class MMecConversionValidationFunctionSymbol extends DBBooleanFunctionSymbolImpl {
   private final String functionCallTemplate;
 
   /***
    * @brief @~english «Description of the method»
-   * @param argTypes Type des arguments de la fonction - Spécifiques aux propriétés identifiantes
-   * @param returnType «Parameter description»
+   * @param dbBooleanType «Parameter description»
+   * @param argType «Parameter description»
+   * @param functionCallTemplate «Parameter description»
    *
-   * @param functionCallTemplate
-   * @brief @~french Constructeur pour le symbole de fonction d'individuation.
+   * @brief @~french Constructeur pour le symbole de fonction de vérification de conversion.
+   * @param argType Type de l'argument de la fonction
+   * @param dbBooleanType Type Booléen dans la base de données
+   * @param functionCallTemplate Template pour l'appel de la fonction
+   *
    * @par Tâches
-   *      S.O.
+   *    S.O.
    */
-  protected MMecIndividuationFunctionSymbol(ImmutableList<TermType> argTypes, DBTermType returnType,
-      String functionCallTemplate) {
-    super(String.format("Individuation_%s", argTypes.size()), argTypes, returnType);
+  protected MMecConversionValidationFunctionSymbol(TermType argType,
+      DBTermType dbBooleanType, String functionCallTemplate) {
+    super("ConversionValidation", ImmutableList.of(argType), dbBooleanType);
     this.functionCallTemplate = functionCallTemplate;
   }
 
   @Override
+  public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
+      Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
+    return String.format(functionCallTemplate,
+        terms.stream().map(termConverter).collect(Collectors.joining(", ")));
+  }
+
+  @Override
   protected boolean isAlwaysInjectiveInTheAbsenceOfNonInjectiveFunctionalTerms() {
+    return false;
+  }
+
+  @Override
+  protected boolean tolerateNulls() {
     return true;
   }
 
@@ -76,9 +93,13 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
   }
 
   @Override
-  public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
-      Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
-    return String.format(functionCallTemplate,
-        terms.stream().map(termConverter).collect(Collectors.joining(", ")));
+  public boolean blocksNegation() {
+    return true;
+  }
+
+  @Override
+  public ImmutableExpression negate(ImmutableList<? extends ImmutableTerm> subTerms,
+      TermFactory termFactory) {
+    throw new UnsupportedOperationException();
   }
 }

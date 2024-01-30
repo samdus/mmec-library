@@ -9,7 +9,9 @@
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
+import it.unibz.inf.ontop.model.term.functionsymbol.FunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
 
@@ -33,4 +35,6 @@ public interface MMecSQLDBFunctionSymbolFactory {
 
   DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType,
       DBTermType sqlDataType);
+
+  DBBooleanFunctionSymbolImpl createMMecConversionValidationFunctionSymbol(DBTermType variableType, DBTermType sqlDataType);
 }

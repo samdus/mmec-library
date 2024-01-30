@@ -10,7 +10,9 @@ package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
+import it.unibz.inf.ontop.model.term.functionsymbol.FunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.PostgreSQLDBFunctionSymbolFactory;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
@@ -33,7 +35,9 @@ import it.unibz.inf.ontop.model.type.impl.PostgreSQLDBTypeFactory;
  */
 public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionSymbolFactory
     implements MMecSQLDBFunctionSymbolFactory {
-  private final String functionCallTemplate;
+  private final String individuationFunctionCallTemplate;
+  private final String conversionFunctionNameTemplate;
+  private final String conversionValidationFunctionNameTemplate;
   private final DBTermType individuationFunctionReturnType;
 
   // TODO: Injecter la paramétrisation pour le template d'appel aux différentes fonctions
@@ -42,7 +46,9 @@ public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionS
   protected MMecPostgreSQLDBFunctionSymbolFactory(
       TypeFactory typeFactory) {
     super(typeFactory);
-    functionCallTemplate = "individuation(%s)";
+    individuationFunctionCallTemplate = "individuation(%s)";
+    conversionFunctionNameTemplate = "%s_to_%s_c";
+    conversionValidationFunctionNameTemplate = "%s_to_%s_v";
     individuationFunctionReturnType = dbTypeFactory.getDBTermType(PostgreSQLDBTypeFactory.UUID_STR);
   }
 
@@ -50,11 +56,27 @@ public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionS
   public MMecIndividuationFunctionSymbol createMMecIndividuationFunctionSymbol(
       ImmutableList<TermType> argTypes) {
     return new MMecIndividuationFunctionSymbol(argTypes, individuationFunctionReturnType,
-        functionCallTemplate);
+        individuationFunctionCallTemplate);
   }
 
+  @Override
   public DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType,
       DBTermType sqlDataType) {
-    return getDBCastFunctionSymbol(variableType, sqlDataType);
+    String conversionFunctionCallTemplate = String.format(
+            conversionFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
+        .toLowerCase() + "(%s)";
+    return new MMecConversionFunctionSymbol(variableType, sqlDataType,
+        conversionFunctionCallTemplate);
+  }
+
+  @Override
+  public DBBooleanFunctionSymbolImpl createMMecConversionValidationFunctionSymbol(
+      DBTermType variableType,
+      DBTermType sqlDataType) {
+    String conversionValidationFunctionCallTemplate = String.format(
+            conversionValidationFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
+        .toLowerCase() + "(%s)";
+    return new MMecConversionValidationFunctionSymbol(variableType, dbBooleanType,
+        conversionValidationFunctionCallTemplate);
   }
 }
