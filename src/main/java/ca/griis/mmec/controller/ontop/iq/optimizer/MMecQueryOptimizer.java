@@ -49,7 +49,8 @@ import java.util.List;
  *      2023-12-21 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      S.O.
+ * @todo 2024-01-01 [SD] - Ajouter les distinct et les not null pour les expressions de classes et
+ *                         d'ObjectProperty
  */
 public class MMecQueryOptimizer implements IQOptimizer {
   protected final IntermediateQueryFactory iqFactory;
@@ -68,15 +69,11 @@ public class MMecQueryOptimizer implements IQOptimizer {
 
   @Override
   public IQ optimize(IQ query) {
-    // TODO: Faire en sorte d'ajouter les paires de fonctions de conversions de type pour les
-    // expression de DataProperty
-    // TODO: Ajouter les distinct et les not null pour les expressions de classes et
-    // d'ObjectProperty
-    IQTree newTree = optimize(query.getTree());
+    IQTree newTree = acceptAllTransformer(query.getTree());
     return iqFactory.createIQ(query.getProjectionAtom(), newTree);
   }
 
-  private IQTree optimize(IQTree tree) {
+  private IQTree acceptAllTransformer(IQTree tree) {
     for (IQTreeVisitingTransformer transformer : transformers) {
       tree = tree.acceptTransformer(transformer);
     }
