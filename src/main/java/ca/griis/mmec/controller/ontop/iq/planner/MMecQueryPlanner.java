@@ -1,21 +1,15 @@
 /**
  * @file
- *
  * @copyright @@GRIIS_COPYRIGHT@@
- *
  * @licence @@GRIIS_LICENCE@@
- *
  * @version @@GRIIS_VERSION@@
- *
  * @brief @~french Implémentation de la classe MMecQueryPlanner.
  * @brief @~english MMecQueryPlanner class implementation.
  */
 package ca.griis.mmec.controller.ontop.iq.planner;
 
 import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;
-import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQ;
-import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
 import it.unibz.inf.ontop.iq.planner.QueryPlanner;
 import it.unibz.inf.ontop.iq.planner.impl.AvoidJoinAboveUnionPlanner;
 import javax.inject.Inject;
@@ -50,16 +44,16 @@ import javax.inject.Singleton;
  *      S.O.
  */
 @Singleton
-public class MMecQueryPlanner extends AvoidJoinAboveUnionPlanner implements QueryPlanner {
+public class MMecQueryPlanner implements QueryPlanner {
 
-  private final MMecQueryOptimizer MMecQueryOptimizer;
+  private final AvoidJoinAboveUnionPlanner avoidJoinAboveUnionPlanner;
+  private final MMecQueryOptimizer mMecQueryOptimizer;
 
   @Inject
-  protected MMecQueryPlanner(GeneralStructuralAndSemanticIQOptimizer generalOptimizer,
-      AvoidJoinAboveUnionTransformer transformer,
-      IntermediateQueryFactory iqFactory, MMecQueryOptimizer MMecQueryOptimizer) {
-    super(generalOptimizer, transformer, iqFactory);
-    this.MMecQueryOptimizer = MMecQueryOptimizer;
+  public MMecQueryPlanner(AvoidJoinAboveUnionPlanner avoidJoinAboveUnionPlanner,
+      MMecQueryOptimizer mMecQueryOptimizer) {
+    this.avoidJoinAboveUnionPlanner = avoidJoinAboveUnionPlanner;
+    this.mMecQueryOptimizer = mMecQueryOptimizer;
   }
 
   /**
@@ -67,9 +61,9 @@ public class MMecQueryPlanner extends AvoidJoinAboveUnionPlanner implements Quer
    * @param query «Parameter description»
    * @return «Return description»
    *
-   * @brief @~french Optimise la requête en utilisant le AvoidJoinAboveUnionPlanner de Ontop
-   *        puis en utilisant le QueryUpdateForMMecOptimizer pour préparer la requête
-   *        pour l'extension MMec.
+   * @brief @~french Optimise la requête en utilisant le QueryPlanner par défaut de Ontop
+   *        (AvoidJoinAboveUnionPlanner) puis en utilisant le QueryUpdateForMMecOptimizer pour
+   *        préparer la requête pour l'extension MMec.
    * @param query La requête à optimiser.
    * @return La requête optimisée.
    *
@@ -78,6 +72,6 @@ public class MMecQueryPlanner extends AvoidJoinAboveUnionPlanner implements Quer
    */
   @Override
   public IQ optimize(IQ query) {
-    return MMecQueryOptimizer.optimize(super.optimize(query));
+    return mMecQueryOptimizer.optimize(avoidJoinAboveUnionPlanner.optimize(query));
   }
 }
