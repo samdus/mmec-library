@@ -90,7 +90,7 @@ public class MappingParserExtension {
    * @brief @~french Ajoute les informations de l'arrimage R2RML étendu aux expressions d'arrimage
    *        Ontop.
    * @par Details
-   *      TODO: Définition de l'algo
+   *      TODO: Faire la conception de l'extension
    * @param mappingGraph Le graphe original de l'arrimage.
    * @param tripleMaps Les triplets d'arrimage importés du graphe
    * @param mapping Les expressions d'arrimage déduites converties à partir des triplets
