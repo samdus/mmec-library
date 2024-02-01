@@ -85,7 +85,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
       IQTree child) {
     Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
 
-    if(!constructionNode.getSubstitution().isEmpty()) {
+    if (!constructionNode.getSubstitution().isEmpty()) {
       for (Map.Entry<Variable, ImmutableTerm> substitutionEntry : constructionNode.getSubstitution()
           .stream().toList()) {
         if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
@@ -99,7 +99,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
             Variable variable = term.getVariables().stream().findFirst().orElseThrow(
                 SQLException::new);
             DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable,
-                    tree)
+                tree)
                 .filter(termType -> termType instanceof DBTermType)
                 .orElseThrow(SQLException::new);
 
