@@ -66,7 +66,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
               DBTermType.Category.STRING, true));
 
   @Inject
-  protected DataPropertyProjectionTransformer(IntermediateQueryFactory iqFactory,
+  public DataPropertyProjectionTransformer(IntermediateQueryFactory iqFactory,
       TermFactory termFactory,
       BasicSingleTermTypeExtractor typeExtractor,
       JooqOntoRelCatRepository ontoRelCatRepository,
@@ -85,57 +85,62 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
       IQTree child) {
     Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
 
-    for (Map.Entry<Variable, ImmutableTerm> substitutionEntry : constructionNode.getSubstitution()
-        .stream().toList()) {
-      if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
-          && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
-          && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
-          && rdfTermTypeConstant.getRDFTermType() instanceof SimpleRDFDatatype rdfDatatype) {
-        try {
-          DBTermType targetType = ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-              rdfDatatype.getIRI().getIRIString());
-          Variable variable = term.getVariables().stream().findFirst().orElseThrow(
-              SQLException::new);
-          DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable, tree)
-              .filter(termType -> termType instanceof DBTermType)
-              .orElseThrow(SQLException::new);
+    if(!constructionNode.getSubstitution().isEmpty()) {
+      for (Map.Entry<Variable, ImmutableTerm> substitutionEntry : constructionNode.getSubstitution()
+          .stream().toList()) {
+        if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
+            && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
+            && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
+            && rdfTermTypeConstant.getRDFTermType() instanceof SimpleRDFDatatype rdfDatatype) {
+          try {
+            DBTermType targetType = ontoRelCatRepository.getSqlType(
+                mappingProperties.getOntoRelId(),
+                rdfDatatype.getIRI().getIRIString());
+            Variable variable = term.getVariables().stream().findFirst().orElseThrow(
+                SQLException::new);
+            DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable,
+                    tree)
+                .filter(termType -> termType instanceof DBTermType)
+                .orElseThrow(SQLException::new);
 
-          if (targetType.equals(variableType)) {
-            newSubstitutionMap.put(substitutionEntry.getKey(), variable);
-          } else if (isTrivialCast(variableType, targetType)) {
-            newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getDBCastFunctionalTerm(variableType, targetType, variable));
-          } else {
-            newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getMMecConversionFunction(variable, variableType, targetType));
+            if (targetType.equals(variableType)) {
+              newSubstitutionMap.put(substitutionEntry.getKey(), variable);
+            } else if (isTrivialCast(variableType, targetType)) {
+              newSubstitutionMap.put(substitutionEntry.getKey(),
+                  termFactory.getDBCastFunctionalTerm(variableType, targetType, variable));
+            } else {
+              newSubstitutionMap.put(substitutionEntry.getKey(),
+                  termFactory.getMMecConversionFunction(variable, variableType, targetType));
 
-            // Remove the filter node if there was already one for this variable
-            if (child.getRootNode() instanceof FilterNodeImpl filterNode
-                && child.getChildren().size() == 1
-                && filterNode.getFilterCondition().getVariables().size() == 1
-                && filterNode.getFilterCondition().getVariables().contains(variable)) {
-              child = child.getChildren().get(0);
+              // Remove the filter node if there was already one for this variable
+              if (child.getRootNode() instanceof FilterNodeImpl filterNode
+                  && child.getChildren().size() == 1
+                  && filterNode.getFilterCondition().getVariables().size() == 1
+                  && filterNode.getFilterCondition().getVariables().contains(variable)) {
+                child = child.getChildren().get(0);
+              }
+              child = iqFactory.createUnaryIQTree(
+                  iqFactory.createFilterNode(termFactory.getStrictEquality(
+                      termFactory.getMMecConversionValidationFunction(variable, variableType,
+                          targetType),
+                      termFactory.getDBBooleanConstant(true))),
+                  child);
             }
-            child = iqFactory.createUnaryIQTree(
-                iqFactory.createFilterNode(termFactory.getStrictEquality(
-                    termFactory.getMMecConversionValidationFunction(variable, variableType,
-                        targetType),
-                    termFactory.getDBBooleanConstant(true))),
-                child);
+          } catch (SQLException e) {
+            newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
           }
-        } catch (SQLException e) {
+        } else {
           newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
         }
-      } else {
-        newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
       }
+
+      Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
+          ImmutableMap.copyOf(newSubstitutionMap), termFactory, true);
+      constructionNode = iqFactory.createConstructionNode(
+          constructionNode.getVariables(), substitution);
     }
 
-    Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
-        ImmutableMap.copyOf(newSubstitutionMap), termFactory, true);
-    ConstructionNode newConstructionNode = iqFactory.createConstructionNode(
-        constructionNode.getVariables(), substitution);
-    return transformUnaryNode(tree, newConstructionNode, child);
+    return transformUnaryNode(tree, constructionNode, child);
   }
 
   private boolean isTrivialCast(DBTermType variableType, DBTermType sqlDataType) {
