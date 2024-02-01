@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe QueryUpdateForMMecOptimizer.
  * @brief @~english QueryUpdateForMMecOptimizer class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.iq.optimizer;
 
 import ca.griis.mmec.controller.ontop.iq.transform.DataPropertyProjectionTransformer;
@@ -50,7 +51,7 @@ import java.util.List;
  *
  * @par Tâches
  * @todo 2024-01-01 [SD] - Ajouter les distinct et les not null pour les expressions de classes et
- *                         d'ObjectProperty
+ *       d'ObjectProperty
  */
 public class MMecQueryOptimizer implements IQOptimizer {
   protected final IntermediateQueryFactory iqFactory;

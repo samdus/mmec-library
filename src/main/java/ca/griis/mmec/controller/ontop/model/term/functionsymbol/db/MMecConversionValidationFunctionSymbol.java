@@ -6,14 +6,13 @@
  * @brief @~french Implémentation de la classe MMecIndividuationFunctionSymbol.
  * @brief @~english MMecIndividuationFunctionSymbol class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.ImmutableExpression;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.TermFactory;
-import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
-import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractTypedDBFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
@@ -62,7 +61,7 @@ public class MMecConversionValidationFunctionSymbol extends DBBooleanFunctionSym
    * @param functionCallTemplate Template pour l'appel de la fonction
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   protected MMecConversionValidationFunctionSymbol(TermType argType,
       DBTermType dbBooleanType, String functionCallTemplate) {

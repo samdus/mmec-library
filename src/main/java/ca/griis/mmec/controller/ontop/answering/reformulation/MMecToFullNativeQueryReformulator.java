@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecToFullNativeQueryReformulator.
  * @brief @~english MMecToFullNativeQueryReformulator class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.answering.reformulation;
 
 import com.google.inject.assistedinject.Assisted;
@@ -21,13 +22,10 @@ import it.unibz.inf.ontop.iq.node.EmptyNode;
 import it.unibz.inf.ontop.iq.node.NativeNode;
 import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
 import it.unibz.inf.ontop.iq.planner.QueryPlanner;
-import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.query.KGQueryFactory;
 import it.unibz.inf.ontop.query.translation.KGQueryTranslator;
 import it.unibz.inf.ontop.query.unfolding.QueryUnfolder;
 import it.unibz.inf.ontop.spec.OBDASpecification;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -59,12 +57,9 @@ import org.slf4j.LoggerFactory;
  *      2024-01-11 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      S.O.
+ * @todo 2024-02-01 [SD] - Ajouter le logger griis
  */
 public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
-  private final BasicSingleTermTypeExtractor typeExtractor;
-  private static final Logger LOGGER = LoggerFactory.getLogger(
-      MMecToFullNativeQueryReformulator.class);
 
   @AssistedInject
   public MMecToFullNativeQueryReformulator(
@@ -77,11 +72,9 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
       KGQueryTranslator inputQueryTranslator,
       GeneralStructuralAndSemanticIQOptimizer generalOptimizer,
       QueryPlanner queryPlanner,
-      QueryLogger.Factory queryLoggerFactory,
-      BasicSingleTermTypeExtractor typeExtractor) {
+      QueryLogger.Factory queryLoggerFactory) {
     super(obdaSpecification, queryCache, queryUnfolderFactory, translationFactory, queryRewriter,
         kgQueryFactory, inputQueryTranslator, generalOptimizer, queryPlanner, queryLoggerFactory);
-    this.typeExtractor = typeExtractor;
   }
 
   @Override

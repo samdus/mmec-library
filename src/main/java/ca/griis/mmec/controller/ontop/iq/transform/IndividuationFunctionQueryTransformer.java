@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe IndividuationFunctionQueryTransformer.
  * @brief @~english IndividuationFunctionQueryTransformer class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.iq.transform;
 
 import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
@@ -70,7 +71,7 @@ public class IndividuationFunctionQueryTransformer extends
     Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
         ImmutableMap.copyOf(constructionNode.getSubstitution().stream()
             .collect(Collectors.toMap(Map.Entry::getKey,
-                value -> getTermOrChangeRDFFunctionForIndividuationFunction(tree, value)))),
+                value -> getTermOrChangeRdfFunctionForIndividuationFunction(tree, value)))),
         termFactory, true);
 
     ConstructionNode newConstructionNode = iqFactory.createConstructionNode(
@@ -79,16 +80,16 @@ public class IndividuationFunctionQueryTransformer extends
     return transformUnaryNode(tree, newConstructionNode, child);
   }
 
-  private ImmutableTerm getTermOrChangeRDFFunctionForIndividuationFunction(IQTree tree,
+  private ImmutableTerm getTermOrChangeRdfFunctionForIndividuationFunction(IQTree tree,
       Map.Entry<Variable, ImmutableTerm> substitutionEntry) {
     if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
         && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
         && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
         && rdfTermTypeConstant.getRDFTermType() instanceof IRITermType) {
 
-      if (term.getTerm(0) instanceof NonGroundFunctionalTerm identityRDFFunction) {
+      if (term.getTerm(0) instanceof NonGroundFunctionalTerm identityRdfFunction) {
         DBConstant identifierForSignatureGroup = termFactory.getDBStringConstant(
-            identityRDFFunction.getFunctionSymbol().getName());
+            identityRdfFunction.getFunctionSymbol().getName());
         ImmutableList<ImmutableTerm> arguments = ImmutableList.<ImmutableTerm>builder()
             .add(identifierForSignatureGroup)
             .addAll(term.getVariables().asList())

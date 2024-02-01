@@ -10,7 +10,7 @@ package ca.griis.mmec.test.unit.controller.ontop.model.term;
 
 import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecIndividuationFunctionSymbol;
-import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSQLDBFunctionSymbolFactory;
+import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSqlDbFunctionSymbolFactory;
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.ImmutableFunctionalTerm;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
@@ -75,8 +75,8 @@ public class MMecTermFactoryTest {
 
     ImmutableList<TermType> argTypes = ImmutableList.of();
     ImmutableList<? extends ImmutableTerm> terms = ImmutableList.of();
-    MMecSQLDBFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
-        MMecSQLDBFunctionSymbolFactory.class);
+    MMecSqlDbFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
+        MMecSqlDbFunctionSymbolFactory.class);
     MMecIndividuationFunctionSymbol individuationFunctionSymbol = Mockito.mock(
         MMecIndividuationFunctionSymbol.class);
 
@@ -102,8 +102,8 @@ public class MMecTermFactoryTest {
     Variable variable = Mockito.mock(Variable.class);
     DBTermType variableType = Mockito.mock(DBTermType.class);
     DBTermType sqlDataType = Mockito.mock(DBTermType.class);
-    MMecSQLDBFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
-        MMecSQLDBFunctionSymbolFactory.class);
+    MMecSqlDbFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
+        MMecSqlDbFunctionSymbolFactory.class);
     DBTypeConversionFunctionSymbol conversionFunctionSymbol = Mockito.mock(
         DBTypeConversionFunctionSymbol.class);
 
@@ -128,8 +128,8 @@ public class MMecTermFactoryTest {
     Variable variable = Mockito.mock(Variable.class);
     DBTermType variableType = Mockito.mock(DBTermType.class);
     DBTermType sqlDataType = Mockito.mock(DBTermType.class);
-    MMecSQLDBFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
-        MMecSQLDBFunctionSymbolFactory.class);
+    MMecSqlDbFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
+        MMecSqlDbFunctionSymbolFactory.class);
     DBBooleanFunctionSymbolImpl conversionValidationFunctionSymbol = Mockito.mock(
         DBBooleanFunctionSymbolImpl.class);
 
@@ -176,7 +176,7 @@ public class MMecTermFactoryTest {
    * @return Un objet quelconque utilisable pour les tests
    * @brief @~english «Description of the method»
    * @brief @~french Obtenir un objet de la classe, la valeur par défaut du type ou null dans le cas
-   * ou il est impossible d'obtenir un mock
+   *        ou il est impossible d'obtenir un mock
    * @par Tâches S.O.
    */
   private Object getMockForType(Class<?> aClass) {

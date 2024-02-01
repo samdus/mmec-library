@@ -33,6 +33,7 @@ import java.util.Properties;
 import java.util.TimeZone;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.containers.wait.strategy.HostPortWaitStrategy;
+import org.testcontainers.containers.wait.strategy.WaitStrategy;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
@@ -64,8 +65,10 @@ public class PostgresContainerWrapper implements Closeable {
 
   private PostgresContainerWrapper() {
     TimeZone.setDefault(TimeZone.getTimeZone("Z"));
-    container.setWaitStrategy(new HostPortWaitStrategy()
-        .withStartupTimeout(Duration.of(180, ChronoUnit.SECONDS)));
+    WaitStrategy waitStrategy = new HostPortWaitStrategy()
+        .withStartupTimeout(Duration.of(300, ChronoUnit.SECONDS));
+    container.setWaitStrategy(waitStrategy);
+    container.waitingFor(waitStrategy);
     container.withCopyFileToContainer(MountableFile.forClasspathResource("testset/"),
         "/docker-entrypoint-initdb.d/");
     container.start();

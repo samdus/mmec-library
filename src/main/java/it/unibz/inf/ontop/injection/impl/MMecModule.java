@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecModule.
  * @brief @~english MMecModule class implementation.
  */
+
 package it.unibz.inf.ontop.injection.impl;
 
 import ca.griis.mmec.properties.FacadeProperties;

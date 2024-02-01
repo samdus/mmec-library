@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecFacadeView.
  * @brief @~english MMecFacadeView class implementation.
  */
+
 package ca.griis.mmec.view;
 
 import ca.griis.mmec.model.ImMecFacade;

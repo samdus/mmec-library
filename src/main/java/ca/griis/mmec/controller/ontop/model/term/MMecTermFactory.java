@@ -6,9 +6,10 @@
  * @brief @~french Implémentation de la classe MMecTermFactoryImpl.
  * @brief @~english MMecTermFactoryImpl class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.model.term;
 
-import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSQLDBFunctionSymbolFactory;
+import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSqlDbFunctionSymbolFactory;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -77,13 +78,14 @@ public class MMecTermFactory implements TermFactory {
       ImmutableList<TermType> argTypes,
       ImmutableList<? extends ImmutableTerm> terms) {
     return defaultTermFactory.getImmutableFunctionalTerm(
-        getMMecDBFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes), terms);
+        getMMecDbFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes), terms);
   }
 
-  public ImmutableFunctionalTerm getMMecConversionFunction(Variable variable, DBTermType variableType,
+  public ImmutableFunctionalTerm getMMecConversionFunction(Variable variable,
+      DBTermType variableType,
       DBTermType sqlDataType) {
     return defaultTermFactory.getImmutableFunctionalTerm(
-        getMMecDBFunctionSymbolFactory().createMMecConversionFunctionSymbol(variableType,
+        getMMecDbFunctionSymbolFactory().createMMecConversionFunctionSymbol(variableType,
             sqlDataType),
         variable);
   }
@@ -91,13 +93,13 @@ public class MMecTermFactory implements TermFactory {
   public ImmutableFunctionalTerm getMMecConversionValidationFunction(Variable variable,
       DBTermType variableType, DBTermType sqlDataType) {
     return defaultTermFactory.getImmutableFunctionalTerm(
-        getMMecDBFunctionSymbolFactory().createMMecConversionValidationFunctionSymbol(variableType,
+        getMMecDbFunctionSymbolFactory().createMMecConversionValidationFunctionSymbol(variableType,
             sqlDataType),
         variable);
   }
 
-  private MMecSQLDBFunctionSymbolFactory getMMecDBFunctionSymbolFactory() {
-    return (MMecSQLDBFunctionSymbolFactory) defaultTermFactory.getDBFunctionSymbolFactory();
+  private MMecSqlDbFunctionSymbolFactory getMMecDbFunctionSymbolFactory() {
+    return (MMecSqlDbFunctionSymbolFactory) defaultTermFactory.getDBFunctionSymbolFactory();
   }
 
   // The following methods are just delegating to the default term factory
@@ -412,8 +414,8 @@ public class MMecTermFactory implements TermFactory {
 
   @Override
   public ImmutableFunctionalTerm getRDFLiteralFunctionalTerm(ImmutableTerm lexicalTerm,
-      IRI datatypeIRI) {
-    return defaultTermFactory.getRDFLiteralFunctionalTerm(lexicalTerm, datatypeIRI);
+      IRI datatypeIri) {
+    return defaultTermFactory.getRDFLiteralFunctionalTerm(lexicalTerm, datatypeIri);
   }
 
   @Override
@@ -516,15 +518,15 @@ public class MMecTermFactory implements TermFactory {
   }
 
   @Override
-  public ImmutableFunctionalTerm getConversionFromRDFLexical2DB(DBTermType targetDBType,
+  public ImmutableFunctionalTerm getConversionFromRDFLexical2DB(DBTermType targetDbType,
       ImmutableTerm dbTerm, RDFTermType rdfType) {
-    return defaultTermFactory.getConversionFromRDFLexical2DB(targetDBType, dbTerm, rdfType);
+    return defaultTermFactory.getConversionFromRDFLexical2DB(targetDbType, dbTerm, rdfType);
   }
 
   @Override
-  public ImmutableFunctionalTerm getConversionFromRDFLexical2DB(DBTermType targetDBType,
+  public ImmutableFunctionalTerm getConversionFromRDFLexical2DB(DBTermType targetDbType,
       ImmutableTerm dbTerm) {
-    return defaultTermFactory.getConversionFromRDFLexical2DB(targetDBType, dbTerm);
+    return defaultTermFactory.getConversionFromRDFLexical2DB(targetDbType, dbTerm);
   }
 
   @Override
@@ -674,13 +676,13 @@ public class MMecTermFactory implements TermFactory {
   }
 
   @Override
-  public ImmutableExpression getStrictNEquality(ImmutableSet<ImmutableTerm> terms) {
-    return defaultTermFactory.getStrictNEquality(terms);
+  public ImmutableExpression getDBIsStringEmpty(ImmutableTerm stringTerm) {
+    return defaultTermFactory.getDBIsStringEmpty(stringTerm);
   }
 
   @Override
-  public ImmutableExpression getDBIsStringEmpty(ImmutableTerm stringTerm) {
-    return defaultTermFactory.getDBIsStringEmpty(stringTerm);
+  public ImmutableExpression getStrictNEquality(ImmutableSet<ImmutableTerm> terms) {
+    return defaultTermFactory.getStrictNEquality(terms);
   }
 
   @Override
@@ -857,9 +859,9 @@ public class MMecTermFactory implements TermFactory {
 
   @Override
   public ImmutableFunctionalTerm getUnaryLatelyTypedFunctionalTerm(ImmutableTerm lexicalTerm,
-      ImmutableTerm inputRDFTypeTerm, DBTermType targetType,
+      ImmutableTerm inputRdfTypeTerm, DBTermType targetType,
       Function<DBTermType, Optional<DBFunctionSymbol>> dbFunctionSymbolFct) {
-    return defaultTermFactory.getUnaryLatelyTypedFunctionalTerm(lexicalTerm, inputRDFTypeTerm,
+    return defaultTermFactory.getUnaryLatelyTypedFunctionalTerm(lexicalTerm, inputRdfTypeTerm,
         targetType, dbFunctionSymbolFct);
   }
 
@@ -873,10 +875,10 @@ public class MMecTermFactory implements TermFactory {
 
   @Override
   public ImmutableFunctionalTerm getBinaryLatelyTypedFunctionalTerm(ImmutableTerm lexicalTerm0,
-      ImmutableTerm lexicalTerm1, ImmutableTerm inputRDFTypeTerm0, ImmutableTerm inputRDFTypeTerm1,
+      ImmutableTerm lexicalTerm1, ImmutableTerm inputRdfTypeTerm0, ImmutableTerm inputRdfTypeTerm1,
       DBTermType targetType, Function<DBTermType, Optional<DBFunctionSymbol>> dbFunctionSymbolFct) {
     return defaultTermFactory.getBinaryLatelyTypedFunctionalTerm(lexicalTerm0, lexicalTerm1,
-        inputRDFTypeTerm0, inputRDFTypeTerm1, targetType, dbFunctionSymbolFct);
+        inputRdfTypeTerm0, inputRdfTypeTerm1, targetType, dbFunctionSymbolFct);
   }
 
   @Override
@@ -952,8 +954,8 @@ public class MMecTermFactory implements TermFactory {
   }
 
   @Override
-  public ImmutableFunctionalTerm getDBIriStringResolution(IRI baseIRI, ImmutableTerm argLexical) {
-    return defaultTermFactory.getDBIriStringResolution(baseIRI, argLexical);
+  public ImmutableFunctionalTerm getDBIriStringResolution(IRI baseIri, ImmutableTerm argLexical) {
+    return defaultTermFactory.getDBIriStringResolution(baseIri, argLexical);
   }
 
   @Override

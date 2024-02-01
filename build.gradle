@@ -1,29 +1,30 @@
 buildscript {
-    def nexusUsername = project.getProperties().getOrDefault("nexusUsername", "novalue")
-    def nexusPassword = project.getProperties().getOrDefault("nexusPassword", "novalue")
-    def nexusAddress = project.getProperties().getOrDefault("nexusAddress", "https://novalue")
-    repositories {
-        mavenLocal()
-        maven {
-            credentials {
-                username nexusUsername
-                password nexusPassword
-            }
-            url nexusAddress
+  repositories {
+    mavenLocal()
+    if(project.getProperties().get("archiveAddress")) {
+      maven {
+        credentials {
+          username project.getProperties().get("archiveUsername")
+          password project.getProperties().get("archivePassword")
         }
-        maven { url "https://plugins.gradle.org/m2/" }
-        mavenCentral()
+        url project.getProperties().get("archiveAddress")
+      }
     }
-    dependencies {
-        classpath "ca.griis:compliance-application:2.+"
-    }
+    maven {url "https://plugins.gradle.org/m2/"}
+    mavenCentral()
+    jcenter()
+  }
+  dependencies {
+    classpath "ca.griis:compliance-application:1.+"
+  }
 }
+
 
 ext {
     minCoverageUnit = 70
     minCoverageUnitItgr = 80
     minMutationUnit = 70
-    product = "Library"
+    product = "LIBRARY"
     ontopVersion = "5.1.2"
 }
 
@@ -49,7 +50,6 @@ dependencies {
     implementation "org.antlr:stringtemplate:4.0.2"
 
     testImplementation "org.mockito:mockito-core"
-    testImplementation "org.mockito:mockito-inline"
     testImplementation "org.mockito:mockito-junit-jupiter"
     testImplementation "org.junit.jupiter:junit-jupiter-engine"
     testImplementation "org.junit.jupiter:junit-jupiter-params"

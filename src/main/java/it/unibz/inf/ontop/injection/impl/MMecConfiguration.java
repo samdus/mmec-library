@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecConfiguration.
  * @brief @~english MMecConfiguration class implementation.
  */
+
 package it.unibz.inf.ontop.injection.impl;
 
 import ca.griis.mmec.properties.FacadeProperties;
@@ -17,38 +18,25 @@ import javax.annotation.Nonnull;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details
- *      «Detailed description of the component (optional)»
- * @par Model
- *      «Model (Abstract, automation, etc.) (optional)»
- * @par Conception
- *      «Conception description (criteria and constraints) (optional)»
- * @par Limits
- *      «Limits description (optional)»
- *
+ * @par Details «Detailed description of the component (optional)»
+ * @par Model «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception «Conception description (criteria and constraints) (optional)»
+ * @par Limits «Limits description (optional)»
  * @brief @~french Classe de configuration pour le module MMec
- * @par Détails
- *      S.O.
- * @par Modèle
- *      S.O.
- * @par Conception
- *      S.O.
- * @par Limites
- *      S.O.
- *
- * @par Historique
- *      2024-01-29 [SD] - Implémentation initiale<br>
- *
- * @par Tâches
- *      S.O.
+ * @par Détails S.O.
+ * @par Modèle S.O.
+ * @par Conception S.O.
+ * @par Limites S.O.
+ * @par Historique 2024-01-29 [SD] - Implémentation initiale<br>
+ * @par Tâches S.O.
  */
-public class MMecConfiguration extends MmecOntopSQLOWLAPIConfigurationImpl {
+public class MMecConfiguration extends MmecOntopSqlOwlApiConfigurationImpl {
 
   private final FacadeProperties facadeProperties;
   private final MappingProperties mappingProperties;
 
   MMecConfiguration(OntopStandaloneSQLSettings settings,
-      MmecOntopSQLOWLAPIOptions options, @Nonnull FacadeProperties facadeProperties,
+      MmecOntopSqlOwlApiOptions options, @Nonnull FacadeProperties facadeProperties,
       @Nonnull MappingProperties mappingProperties) {
     super(settings, options);
 
@@ -57,8 +45,7 @@ public class MMecConfiguration extends MmecOntopSQLOWLAPIConfigurationImpl {
   }
 
   public static class MMecConfigurationBuilder
-      extends
-      MmecOntopSQLOWLAPIConfigurationImpl.OntopSQLOWLAPIBuilderMixin<MMecConfigurationBuilder> {
+      extends OwlApiBuilderMixin<MMecConfigurationBuilder> {
 
     private FacadeProperties facadeProperties;
     private MappingProperties mappingProperties;
@@ -67,8 +54,8 @@ public class MMecConfiguration extends MmecOntopSQLOWLAPIConfigurationImpl {
     public MMecConfiguration build() {
       OntopStandaloneSQLSettings settings = new OntopStandaloneSQLSettingsImpl(generateProperties(),
           isR2rml());
-      MmecOntopSQLOWLAPIConfigurationImpl.MmecOntopSQLOWLAPIOptions options =
-          generateSQLOWLAPIOptions();
+      MmecOntopSqlOwlApiOptions options =
+          generateSqlOwlApiOptions();
 
       return new MMecConfiguration(settings, options, facadeProperties, mappingProperties);
     }

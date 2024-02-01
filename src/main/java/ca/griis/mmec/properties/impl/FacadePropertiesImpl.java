@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe FacadePropertiesImpl.
  * @brief @~english FacadePropertiesImpl class implementation.
  */
+
 package ca.griis.mmec.properties.impl;
 
 import ca.griis.mmec.properties.FacadeProperties;

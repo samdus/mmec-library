@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecQueryPlanner.
  * @brief @~english MMecQueryPlanner class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.iq.planner;
 
 import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;
@@ -47,13 +48,13 @@ import javax.inject.Singleton;
 public class MMecQueryPlanner implements QueryPlanner {
 
   private final AvoidJoinAboveUnionPlanner avoidJoinAboveUnionPlanner;
-  private final MMecQueryOptimizer mMecQueryOptimizer;
+  private final MMecQueryOptimizer queryOptimizer;
 
   @Inject
   public MMecQueryPlanner(AvoidJoinAboveUnionPlanner avoidJoinAboveUnionPlanner,
-      MMecQueryOptimizer mMecQueryOptimizer) {
+      MMecQueryOptimizer queryOptimizer) {
     this.avoidJoinAboveUnionPlanner = avoidJoinAboveUnionPlanner;
-    this.mMecQueryOptimizer = mMecQueryOptimizer;
+    this.queryOptimizer = queryOptimizer;
   }
 
   /**
@@ -72,6 +73,6 @@ public class MMecQueryPlanner implements QueryPlanner {
    */
   @Override
   public IQ optimize(IQ query) {
-    return mMecQueryOptimizer.optimize(avoidJoinAboveUnionPlanner.optimize(query));
+    return queryOptimizer.optimize(avoidJoinAboveUnionPlanner.optimize(query));
   }
 }

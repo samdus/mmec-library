@@ -6,11 +6,11 @@
  * @brief @~french Implémentation de la classe MMecPostgreSQLDBFunctionSymbolFactory.
  * @brief @~english MMecPostgreSQLDBFunctionSymbolFactory class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
-import it.unibz.inf.ontop.model.term.functionsymbol.FunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.PostgreSQLDBFunctionSymbolFactory;
@@ -33,8 +33,8 @@ import it.unibz.inf.ontop.model.type.impl.PostgreSQLDBTypeFactory;
  * @par Historique 2024-01-09 [SD] - Implémentation initiale<br>
  * @par Tâches S.O.
  */
-public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionSymbolFactory
-    implements MMecSQLDBFunctionSymbolFactory {
+public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionSymbolFactory
+    implements MMecSqlDbFunctionSymbolFactory {
   private final String individuationFunctionCallTemplate;
   private final String conversionFunctionNameTemplate;
   private final String conversionValidationFunctionNameTemplate;
@@ -43,7 +43,7 @@ public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionS
   // TODO: Injecter la paramétrisation pour le template d'appel aux différentes fonctions
   // d'individuation et de leur type de retour.
   @Inject
-  protected MMecPostgreSQLDBFunctionSymbolFactory(
+  protected MMecPostgreSqlDbFunctionSymbolFactory(
       TypeFactory typeFactory) {
     super(typeFactory);
     individuationFunctionCallTemplate = "individuation(%s)";
@@ -63,7 +63,7 @@ public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionS
   public DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType,
       DBTermType sqlDataType) {
     String conversionFunctionCallTemplate = String.format(
-            conversionFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
+        conversionFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
         .toLowerCase() + "(%s)";
     return new MMecConversionFunctionSymbol(variableType, sqlDataType,
         conversionFunctionCallTemplate);
@@ -74,7 +74,7 @@ public class MMecPostgreSQLDBFunctionSymbolFactory extends PostgreSQLDBFunctionS
       DBTermType variableType,
       DBTermType sqlDataType) {
     String conversionValidationFunctionCallTemplate = String.format(
-            conversionValidationFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
+        conversionValidationFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
         .toLowerCase() + "(%s)";
     return new MMecConversionValidationFunctionSymbol(variableType, dbBooleanType,
         conversionValidationFunctionCallTemplate);

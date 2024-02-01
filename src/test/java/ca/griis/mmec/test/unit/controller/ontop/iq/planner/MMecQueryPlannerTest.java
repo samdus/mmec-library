@@ -10,9 +10,7 @@ package ca.griis.mmec.test.unit.controller.ontop.iq.planner;
 
 import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;
 import ca.griis.mmec.controller.ontop.iq.planner.MMecQueryPlanner;
-import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQ;
-import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
 import it.unibz.inf.ontop.iq.planner.QueryPlanner;
 import it.unibz.inf.ontop.iq.planner.impl.AvoidJoinAboveUnionPlanner;
 import org.junit.jupiter.api.Assertions;

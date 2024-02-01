@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecIndividuationFunctionSymbol.
  * @brief @~english MMecIndividuationFunctionSymbol class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;

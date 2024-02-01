@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecIndividuationFunctionSymbol.
  * @brief @~english MMecIndividuationFunctionSymbol class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
@@ -50,7 +51,7 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
    * @param functionCallTemplate Template pour l'appel de la fonction
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   protected MMecConversionFunctionSymbol(DBTermType inputType, DBTermType targetType,
       String functionCallTemplate) {
@@ -84,7 +85,7 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
   @Override
   protected ImmutableTerm convertDBConstant(DBConstant constant, TermFactory termFactory)
       throws DBTypeConversionException {
-    return termFactory.getDBConstant((constant).getValue(), getTargetType());
+    return termFactory.getDBConstant(constant.getValue(), getTargetType());
   }
 
   @Override

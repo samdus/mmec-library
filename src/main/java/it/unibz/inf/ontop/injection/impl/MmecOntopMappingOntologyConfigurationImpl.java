@@ -128,9 +128,9 @@ public class MmecOntopMappingOntologyConfigurationImpl extends OntopMappingConfi
     /*
      * URL
      */
-    Optional<URL> optionalURL = options.ontologyURL;
-    if (optionalURL.isPresent()) {
-      try (InputStream is = optionalURL.get().openStream()) {
+    Optional<URL> optionalUrl = options.ontologyURL;
+    if (optionalUrl.isPresent()) {
+      try (InputStream is = optionalUrl.get().openStream()) {
         owlOntology = Optional.of(manager.loadOntologyFromOntologyDocument(is));
       } catch (MalformedURLException e) {
         throw new OWLOntologyCreationException("Invalid URI: " + e.getMessage());
@@ -142,7 +142,7 @@ public class MmecOntopMappingOntologyConfigurationImpl extends OntopMappingConfi
     return owlOntology;
   }
 
-  private RDFFormat toRDFFormat(String format) {
+  private RDFFormat toRdfFormat(String format) {
     Optional<RDFFormat> guessedFormat = Rio.getParserFormatForFileName(format);
     // the else case should never happen.
     return guessedFormat.orElse(RDFFormat.TURTLE);
@@ -150,14 +150,17 @@ public class MmecOntopMappingOntologyConfigurationImpl extends OntopMappingConfi
 
   private Optional<ImmutableSet<RDFFact>> loadFactsFromFile() throws FactsException {
     Optional<RDFFormat> format = options.factFormat
-        .map(this::toRDFFormat)
+        .map(this::toRdfFormat)
         .or(() -> options.factsFile.map(f -> Rio.getParserFormatForFileName(f.getName()))
             .orElse(Optional.empty()));
-    if (options.factsFile.isEmpty() && options.factsURL.isEmpty() && options.factsReader.isEmpty())
+    if (options.factsFile.isEmpty() && options.factsURL.isEmpty()
+        && options.factsReader.isEmpty()) {
       return factsFile;
+    }
     if (format.isEmpty()) {
       throw new FactsException(
-          "No valid fact file format was provided, and a format could not be inferred from the file name.");
+          "No valid fact file format was provided,"
+              + " and a format could not be inferred from the file name.");
     }
 
     try {

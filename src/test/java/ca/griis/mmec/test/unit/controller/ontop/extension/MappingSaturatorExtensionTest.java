@@ -33,7 +33,7 @@ package ca.griis.mmec.test.unit.controller.ontop.extension;
  *      2024-01-31 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      @todo 2024-01-31 [SD] - Écrire les tests suite à la conception.
+ * @todo 2024-01-31 [SD] - Écrire les tests suite à la conception.
  */
 public class MappingSaturatorExtensionTest {
 }

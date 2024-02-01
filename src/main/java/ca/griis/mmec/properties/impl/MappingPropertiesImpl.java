@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MappingPropertiesImpl.
  * @brief @~english MappingPropertiesImpl class implementation.
  */
+
 package ca.griis.mmec.properties.impl;
 
 import ca.griis.mmec.properties.MappingProperties;

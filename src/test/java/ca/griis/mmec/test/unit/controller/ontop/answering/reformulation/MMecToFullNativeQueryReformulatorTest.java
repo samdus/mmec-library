@@ -28,7 +28,6 @@ import it.unibz.inf.ontop.iq.node.IntensionalDataNode;
 import it.unibz.inf.ontop.iq.node.NativeNode;
 import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
 import it.unibz.inf.ontop.iq.planner.QueryPlanner;
-import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.query.KGQueryFactory;
 import it.unibz.inf.ontop.query.RDF4JSelectQuery;
 import it.unibz.inf.ontop.query.translation.KGQueryTranslator;
@@ -80,7 +79,6 @@ class MMecToFullNativeQueryReformulatorTest {
   GeneralStructuralAndSemanticIQOptimizer generalOptimizer;
   QueryPlanner queryPlanner;
   QueryLogger.Factory queryLoggerFactory;
-  BasicSingleTermTypeExtractor typeExtractor;
   QueryLogger queryLogger;
   ClassifiedTBox tBox;
   Mapping saturatedMapping;
@@ -100,7 +98,6 @@ class MMecToFullNativeQueryReformulatorTest {
     generalOptimizer = Mockito.mock(GeneralStructuralAndSemanticIQOptimizer.class);
     queryPlanner = Mockito.mock(QueryPlanner.class);
     queryLoggerFactory = Mockito.mock(QueryLogger.Factory.class);
-    typeExtractor = Mockito.mock(BasicSingleTermTypeExtractor.class);
     queryLogger = Mockito.mock(QueryLogger.class);
     tBox = Mockito.mock(ClassifiedTBox.class);
     saturatedMapping = Mockito.mock(Mapping.class);
@@ -121,7 +118,7 @@ class MMecToFullNativeQueryReformulatorTest {
     QuestQueryProcessor mMecQueryProcessor = new MMecToFullNativeQueryReformulator(
         obdaSpecification, queryCache, queryUnfolderFactory,
         translationFactory, queryRewriter, kgQueryFactory, inputQueryTranslator, generalOptimizer,
-        queryPlanner, queryLoggerFactory, typeExtractor);
+        queryPlanner, queryLoggerFactory);
     RDF4JSelectQuery inputQuery = Mockito.mock(RDF4JSelectQuery.class);
     IQ expected = Mockito.mock(IQ.class);
 
@@ -153,7 +150,7 @@ class MMecToFullNativeQueryReformulatorTest {
     QuestQueryProcessor mMecQueryProcessor = new MMecToFullNativeQueryReformulator(
         obdaSpecification, queryCache, queryUnfolderFactory,
         translationFactory, queryRewriter, kgQueryFactory, inputQueryTranslator, generalOptimizer,
-        queryPlanner, queryLoggerFactory, typeExtractor);
+        queryPlanner, queryLoggerFactory);
     RDF4JSelectQuery inputQuery = Mockito.mock(RDF4JSelectQuery.class);
     IQ expected = Mockito.mock(IQ.class);
 
@@ -190,7 +187,7 @@ class MMecToFullNativeQueryReformulatorTest {
     QuestQueryProcessor mMecQueryProcessor = new MMecToFullNativeQueryReformulator(
         obdaSpecification, queryCache, queryUnfolderFactory,
         translationFactory, queryRewriter, kgQueryFactory, inputQueryTranslator, generalOptimizer,
-        queryPlanner, queryLoggerFactory, typeExtractor);
+        queryPlanner, queryLoggerFactory);
     RDF4JSelectQuery inputQuery = Mockito.mock(RDF4JSelectQuery.class);
     IQ expected = Mockito.mock(IQ.class);
 
