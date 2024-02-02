@@ -92,42 +92,38 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
             && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
             && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
             && rdfTermTypeConstant.getRDFTermType() instanceof SimpleRDFDatatype rdfDatatype) {
-          try {
-            DBTermType targetType = ontoRelCatRepository.getSqlType(
-                mappingProperties.getOntoRelId(),
-                rdfDatatype.getIRI().getIRIString());
-            Variable variable = term.getVariables().stream().findFirst().orElseThrow(
-                SQLException::new);
-            DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable,
-                tree)
-                .filter(termType -> termType instanceof DBTermType)
-                .orElseThrow(SQLException::new);
 
-            if (targetType.equals(variableType)) {
-              newSubstitutionMap.put(substitutionEntry.getKey(), variable);
-            } else if (isTrivialCast(variableType, targetType)) {
-              newSubstitutionMap.put(substitutionEntry.getKey(),
-                  termFactory.getDBCastFunctionalTerm(variableType, targetType, variable));
-            } else {
-              newSubstitutionMap.put(substitutionEntry.getKey(),
-                  termFactory.getMMecConversionFunction(variable, variableType, targetType));
+          DBTermType targetType = getTargetSqlType(tree, rdfDatatype);
+          Variable variable = term.getVariables().stream().findFirst().orElseThrow(
+              () -> new DataPropertyProjectionTransformerException(tree,
+                  "Cannot get the variable from the data property's substitution."));
+          DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable, tree)
+              .filter(termType -> termType instanceof DBTermType)
+              .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
+                  "Cannot get the type of the data property's substitution variable."));
 
-              // Remove the filter node if there was already one for this variable
-              if (child.getRootNode() instanceof FilterNodeImpl filterNode
-                  && child.getChildren().size() == 1
-                  && filterNode.getFilterCondition().getVariables().size() == 1
-                  && filterNode.getFilterCondition().getVariables().contains(variable)) {
-                child = child.getChildren().get(0);
-              }
-              child = iqFactory.createUnaryIQTree(
-                  iqFactory.createFilterNode(termFactory.getStrictEquality(
-                      termFactory.getMMecConversionValidationFunction(variable, variableType,
-                          targetType),
-                      termFactory.getDBBooleanConstant(true))),
-                  child);
+          if (targetType.getName().equals(variableType.getName())) {
+            newSubstitutionMap.put(substitutionEntry.getKey(), variable);
+          } else if (isTrivialCast(variableType, targetType)) {
+            newSubstitutionMap.put(substitutionEntry.getKey(),
+                termFactory.getDBCastFunctionalTerm(variableType, targetType, variable));
+          } else {
+            newSubstitutionMap.put(substitutionEntry.getKey(),
+                termFactory.getMMecConversionFunction(variable, variableType, targetType));
+
+            // Remove the filter node if there was already one for this variable
+            if (child.getRootNode() instanceof FilterNodeImpl filterNode
+                && child.getChildren().size() == 1
+                && filterNode.getFilterCondition().getVariables().size() == 1
+                && filterNode.getFilterCondition().getVariables().contains(variable)) {
+              child = child.getChildren().get(0);
             }
-          } catch (SQLException e) {
-            newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
+            child = iqFactory.createUnaryIQTree(
+                iqFactory.createFilterNode(termFactory.getStrictEquality(
+                    termFactory.getMMecConversionValidationFunction(variable, variableType,
+                        targetType),
+                    termFactory.getDBBooleanConstant(true))),
+                child);
           }
         } else {
           newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
@@ -143,9 +139,32 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
     return transformUnaryNode(tree, constructionNode, child);
   }
 
+  private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
+    try {
+      return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
+          rdfDatatype.getIRI().getIRIString());
+    } catch (SQLException e) {
+      throw new DataPropertyProjectionTransformerException(iqTree, e);
+    }
+  }
+
   private boolean isTrivialCast(DBTermType variableType, DBTermType sqlDataType) {
     return triv.containsKey(variableType.getCategory())
         && triv.get(variableType.getCategory()).containsKey(sqlDataType.getCategory())
         && triv.get(variableType.getCategory()).get(sqlDataType.getCategory());
+  }
+
+  public static class DataPropertyProjectionTransformerException extends RuntimeException {
+    public DataPropertyProjectionTransformerException(IQTree iqTree, String reason) {
+      super(String.format("Impossible to transform the DataProperty from the following tree. {\n"
+          + "Cause: \"%s\";\n"
+          + "IQTree:\n%s\n}", reason, iqTree.toString()));
+    }
+
+    public DataPropertyProjectionTransformerException(IQTree iqTree, Throwable cause) {
+      super(String.format("Impossible to transform the DataProperty from the following tree. {\n"
+          + "Cause: \"%s\";\n"
+          + "IQTree:\n%s\n}", cause.getMessage(), iqTree.toString()), cause);
+    }
   }
 }
