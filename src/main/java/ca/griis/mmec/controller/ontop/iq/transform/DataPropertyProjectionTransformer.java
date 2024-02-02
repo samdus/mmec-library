@@ -27,44 +27,69 @@ import java.util.Map;
 import java.util.Objects;
 import javax.inject.Inject;
 
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Transformateur pour les projections de propriétés de données
+ * @par Détails
+ *      Permet de transformer les projections de requêtes de propriétés de données pour
+ *      retourner la valeur SQL du modèle commun plutôt que sa représentation RDF.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      Parmi les substitutions de la requête, on cherche les substitutions de propriétés de données
+ *      Pour chaque substitution de propriété de données, on détermine le type de la variable à
+ *      substituer et le type de destination selon la configuration du modèle commun.
+ *      <br>
+ *      Si le type de la variable et le type de destination sont identiques, on remplace la
+ *      substitution par un simple renommage de la variable.
+ *      <br>
+ *      Si les tous les types qui sont dans la même catégorie que le type de la variable peuvent
+ *      être trivialement convertis vers tous les types dans la même catégorie que le type de
+ *      destination (par exemple, INTEGER vers DECIMAL), on remplace la substitution par un simple
+ *      cast SQL.
+ *      <br>
+ *      Si une fonction de conversion existe pour dans ce SGBD pour convertir une variable du type
+ *      de la variable vers le type de destination, on remplace la substitution par l'appel de cette
+ *      fonction.
+ *      <br>
+ *      Si aucune des conditions précédentes n'est remplie, on lève une exception.
+ *      <br>
+ *      <br>
+ *      Les catégories JSON, ARRAY et OTHER ne peuvent pas être converties de façon triviale vers
+ *      d'autres types de la même catégorie, puisque leur structure est directement lié au contenu.
+ *      Par exemple, on ne veut pas automatiquement convertir un tableau de longueur 5 en un tableau
+ *      de longueur 2.
+ *
+ * @par Limites
+ *      Les types limités ne sont pas supportés dans le modèle commun.
+ *      S'il advenait que le modèle commun utilisait des types de données limités (par
+ *      exemple VARCHAR(50)) les conversions vers ce type résulteraient en une possible perte de
+ *      données sans avertissement puisqu'on considère que toutes variables peut être converties
+ *      vers n'importe quel type dans la même catégorie que son type d'origine.
+ *
+ * @par Historique
+ *      2024-02-02 [SD] - Implémentation initiale<br>
+ *
+ * @par Tâches
+ *      - @todo 2024-02-02 [SD] - Corriger l'implémentation pour aller chercher les conversions
+ *                                possibles dans le SGBD tel que documenté dans la conception.
+ *                                Prendre exemple sur la conversion C_CLOB_VARCHAR2 du mapping
+ *                                Omnimed Oracle.
+ */
 public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVisitingTransformer {
   private final MMecTermFactory termFactory;
   private final BasicSingleTermTypeExtractor typeExtractor;
   private final OntoRelCatRepository ontoRelCatRepository;
   private final MappingProperties mappingProperties;
-  private final ImmutableMap<DBTermType.Category, ImmutableMap<DBTermType.Category, Boolean>> triv =
-      ImmutableMap.of(
-          DBTermType.Category.STRING, ImmutableMap.of(
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.INTEGER, ImmutableMap.of(
-              DBTermType.Category.INTEGER, true,
-              DBTermType.Category.DECIMAL, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.DECIMAL, ImmutableMap.of(
-              DBTermType.Category.DECIMAL, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.FLOAT_DOUBLE, ImmutableMap.of(
-              DBTermType.Category.FLOAT_DOUBLE, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.BOOLEAN, ImmutableMap.of(
-              DBTermType.Category.BOOLEAN, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.DATE, ImmutableMap.of(
-              DBTermType.Category.DATE, true,
-              DBTermType.Category.DATETIME, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.DATETIME, ImmutableMap.of(
-              DBTermType.Category.DATETIME, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.UUID, ImmutableMap.of(
-              DBTermType.Category.UUID, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.JSON, ImmutableMap.of(
-              DBTermType.Category.JSON, true,
-              DBTermType.Category.STRING, true),
-          DBTermType.Category.ARRAY, ImmutableMap.of(
-              DBTermType.Category.ARRAY, true,
-              DBTermType.Category.STRING, true));
 
   @Inject
   public DataPropertyProjectionTransformer(IntermediateQueryFactory iqFactory,
@@ -140,6 +165,42 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
     return transformUnaryNode(tree, constructionNode, child);
   }
 
+  public static ImmutableMap<DBTermType.Category, ImmutableMap<DBTermType.Category, Boolean>>
+  getTrivialCasts() {
+    return ImmutableMap.of(
+        DBTermType.Category.STRING, ImmutableMap.of(
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.INTEGER, ImmutableMap.of(
+            DBTermType.Category.INTEGER, true,
+            DBTermType.Category.DECIMAL, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.DECIMAL, ImmutableMap.of(
+            DBTermType.Category.DECIMAL, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.FLOAT_DOUBLE, ImmutableMap.of(
+            DBTermType.Category.FLOAT_DOUBLE, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.BOOLEAN, ImmutableMap.of(
+            DBTermType.Category.BOOLEAN, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.DATE, ImmutableMap.of(
+            DBTermType.Category.DATE, true,
+            DBTermType.Category.DATETIME, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.DATETIME, ImmutableMap.of(
+            DBTermType.Category.DATETIME, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.UUID, ImmutableMap.of(
+            DBTermType.Category.UUID, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.JSON, ImmutableMap.of(
+            DBTermType.Category.JSON, true,
+            DBTermType.Category.STRING, true),
+        DBTermType.Category.ARRAY, ImmutableMap.of(
+            DBTermType.Category.ARRAY, true,
+            DBTermType.Category.STRING, true));
+  }
+
   private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
     try {
       return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
@@ -150,9 +211,9 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   }
 
   private boolean isTrivialCast(DBTermType variableType, DBTermType sqlDataType) {
-    return triv.containsKey(variableType.getCategory()) &&
+    return getTrivialCasts().containsKey(variableType.getCategory()) &&
         Boolean.TRUE.equals(
-            Objects.requireNonNull(triv.get(variableType.getCategory()))
+            Objects.requireNonNull(getTrivialCasts().get(variableType.getCategory()))
                 .getOrDefault(sqlDataType.getCategory(), false));
   }
 

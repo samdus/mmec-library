@@ -341,13 +341,10 @@ public class R2rmlTester extends OntopTester {
       // FROM "TABLE2" v1
       // WHERE v1."o" IS NOT NULL
 
-      // Alors que la configuration MMec génère ceci (pour l'instant, parce qu'on veut changer que
-      // ça appel la paire de fonction appropriée aux types) :
+      // Alors que la configuration MMec génère ceci :
       // ans1(sub, val)
-      // CONSTRUCT [sub, val] [val/RDF(v0,xsd:string)]
-      // NATIVE [sub, v0]
-      // SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o"
-      // AS TEXT) AS "v0"
+      // NATIVE [sub, val]
+      // SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o" AS TEXT) AS "val"
       // FROM "TABLE2" v1
       // WHERE v1."o" IS NOT NULL
     }
