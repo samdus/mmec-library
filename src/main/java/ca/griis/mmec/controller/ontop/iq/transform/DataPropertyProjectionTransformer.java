@@ -24,6 +24,7 @@ import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.inject.Inject;
 
 public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVisitingTransformer {
@@ -149,9 +150,10 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   }
 
   private boolean isTrivialCast(DBTermType variableType, DBTermType sqlDataType) {
-    return triv.containsKey(variableType.getCategory())
-        && triv.get(variableType.getCategory()).containsKey(sqlDataType.getCategory())
-        && triv.get(variableType.getCategory()).get(sqlDataType.getCategory());
+    return triv.containsKey(variableType.getCategory()) &&
+        Boolean.TRUE.equals(
+            Objects.requireNonNull(triv.get(variableType.getCategory()))
+                .getOrDefault(sqlDataType.getCategory(), false));
   }
 
   public static class DataPropertyProjectionTransformerException extends RuntimeException {
