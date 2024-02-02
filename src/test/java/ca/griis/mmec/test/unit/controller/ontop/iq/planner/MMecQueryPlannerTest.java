@@ -50,7 +50,7 @@ public class MMecQueryPlannerTest {
   MMecQueryOptimizer MMecQueryOptimizer;
 
   @BeforeEach
-  public void initialisation() {
+  public void init() {
     avoidJoinAboveUnionPlanner = Mockito.mock(AvoidJoinAboveUnionPlanner.class);
     MMecQueryOptimizer = Mockito.mock(MMecQueryOptimizer.class);
   }

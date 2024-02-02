@@ -69,7 +69,7 @@ public class DataPropertyProjectionTransformerTest {
   private MappingProperties mappingProperties;
 
   @BeforeEach
-  public void initialisation() {
+  public void init() {
     iqFactory = Mockito.mock(IntermediateQueryFactory.class);
     termFactory = Mockito.mock(MMecTermFactory.class);
     typeExtractor = Mockito.mock(BasicSingleTermTypeExtractor.class);

@@ -86,7 +86,7 @@ class MMecToFullNativeQueryReformulatorTest {
   NativeQueryGenerator datasourceQueryGenerator;
 
   @BeforeEach
-  void initialisation() {
+  void init() {
     obdaSpecification = Mockito.mock(OBDASpecification.class);
     queryCache = Mockito.mock(QueryCache.class);
     queryUnfolderFactory = Mockito.mock(QueryUnfolder.Factory.class);

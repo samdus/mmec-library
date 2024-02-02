@@ -43,7 +43,7 @@ public class MMecQueryOptimizerTest {
   DataPropertyProjectionTransformer dataPropertyProjectionTransformer;
 
   @BeforeEach
-  public void initialisation() {
+  public void init() {
     iqFactory = Mockito.mock(IntermediateQueryFactory.class);
     termFactory = Mockito.mock(TermFactory.class);
     individuationFunctionQueryTransformer = Mockito.mock(
