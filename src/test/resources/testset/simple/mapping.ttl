@@ -90,8 +90,6 @@
                             rr:class    tst:tst1 ;
                             rr:template "http://www.griis.ca/projects/tst/{\"m\"}" ;
                             rr:termType rr:IRI ] ;
-    rr:predicateObjectMap <Mapping:tst1:rel:tst1C0004X> ;
-    rr:predicateObjectMap <Mapping:tst1:has_value:xsdString> ;
     mmec:subsets           <Mapping:tst> .
 
 <Mapping:tst2>
@@ -119,38 +117,46 @@
     rr:subjectMap         [ a           rr:SubjectMap, rr:TermMap ;
                             rr:class    tst:ONTORELA_C0004X ;
                             rr:template "http://www.griis.ca/projects/tst1C0004X/{\"m\"}" ;
-                            rr:termType rr:IRI ] ;
-    rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst2)> ;
-    rr:predicateObjectMap <Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst3)> .
+                            rr:termType rr:IRI ] .
 
 
 # ****************************************************************************************
 # Object Properties mappings
 # ****************************************************************************************
-<Mapping:tst1:rel:tst1C0004X>
+
+# tsts1 rel tst1C0004X
+<Mapping:tst1> rr:predicateObjectMap [
     rr:predicate tst:rel ;
     rr:objectMap [ rr:parentTriplesMap <Mapping:tst1C0004X> ;
                    rr:joinCondition    [ rr:child  "m" ;
-                                         rr:parent "m" ] ] .
+                                         rr:parent "m" ] ]
+] .
 
-<Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst2)>
+# tst1C0004X rel tst1C0004XUnionOf(tst2)
+<Mapping:tst1C0004X> rr:predicateObjectMap [
     rr:predicate tst:rel ;
     rr:objectMap [ rr:parentTriplesMap <Mapping:tst2> ;
                    rr:joinCondition    [ rr:child  "m" ;
-                                         rr:parent "m" ] ] .
+                                         rr:parent "m" ] ]
+].
 
-<Mapping:tst1C0004X:rel:tst1C0004XUnionOf(tst3)>
+# tst1C0004X rel tst1C0004XUnionOf(tst3)
+<Mapping:tst1C0004X> rr:predicateObjectMap [
     rr:predicate tst:rel ;
     rr:objectMap [ rr:parentTriplesMap <Mapping:tst3> ;
                    rr:joinCondition    [ rr:child  "m" ;
-                                         rr:parent "m" ] ] .
+                                         rr:parent "m" ] ]
+].
 
 # ****************************************************************************************
 # Data Properties mappings
 # ****************************************************************************************
-<Mapping:tst1:has_value:xsdString>
+
+# tst1 has_value xsd:String
+<Mapping:tst1> rr:predicateObjectMap [
     rr:predicate tst:has_value ;
     rr:objectMap [ a rr:TermMap, rr:ObjectMap;
                    rr:column "o" ;
                    rr:termType rr:Literal;
-                   rr:datatype xsd:string ] .
+                   rr:datatype xsd:string ]
+].
