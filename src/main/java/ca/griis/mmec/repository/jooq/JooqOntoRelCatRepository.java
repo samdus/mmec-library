@@ -17,8 +17,8 @@ import org.jooq.impl.DSL;
 
 public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
-  private DBTypeFactory dbTypeFactory;
-  private OntopSQLCredentialSettings settings;
+  private final DBTypeFactory dbTypeFactory;
+  private final OntopSQLCredentialSettings settings;
 
   @Inject
   public JooqOntoRelCatRepository(CoreSingletons coreSingletons, TypeFactory typeFactory) {
