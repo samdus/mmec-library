@@ -47,34 +47,40 @@ import javax.inject.Inject;
  * @par Conception
  *      Parmi les substitutions de la requête, on cherche les substitutions de propriétés de données
  *      Pour chaque substitution de propriété de données, on détermine le type de la variable à
- *      substituer et le type de destination selon la configuration du modèle commun.
+ *      substituer et le type de destination dans la configuration du modèle commun.
  *      <br>
  *      Si le type de la variable et le type de destination sont identiques, on remplace la
  *      substitution par un simple renommage de la variable.
  *      <br>
+ *      Si le nom de conversion du type de la variable et le nom de conversion du type de
+ *      destination sont identiques, on remplace la substitution par une conversion simple de la
+ *      variable (CAST SQL).
+ *      <br>
  *      Si les tous les types qui sont dans la même catégorie que le type de la variable peuvent
  *      être trivialement convertis vers tous les types dans la même catégorie que le type de
- *      destination (par exemple, INTEGER vers DECIMAL), on remplace la substitution par un simple
- *      cast SQL.
+ *      destination (par exemple, INTEGER vers DECIMAL), on remplace la substitution par une
+ *      conversion simple de la variable (CAST SQL).
  *      <br>
- *      Si une fonction de conversion existe pour dans ce SGBD pour convertir une variable du type
+ *      Si une fonction de conversion existe dans cet arrimage pour convertir une variable du type
  *      de la variable vers le type de destination, on remplace la substitution par l'appel de cette
- *      fonction.
+ *      fonction en ajoutant l'appel à la fonction de validation de la conversion.
  *      <br>
- *      Si aucune des conditions précédentes n'est remplie, on lève une exception.
+ *      Si aucune des conditions précédentes n'est remplie, on lève une exception. La conversion
+ *      aurait dû avoir été spécifié lors de l'arrimage.
  *      <br>
  *      <br>
- *      Les catégories JSON, ARRAY et OTHER ne peuvent pas être converties de façon triviale vers
- *      d'autres types de la même catégorie, puisque leur structure est directement lié au contenu.
- *      Par exemple, on ne veut pas automatiquement convertir un tableau de longueur 5 en un tableau
- *      de longueur 2.
+ *      NOTE: Les catégories JSON, ARRAY et OTHER ne peuvent pas être converties de façon triviale
+ *      vers d'autres types de la même catégorie, puisque leur structure est directement lié à la
+ *      sémantique du contenu. Par exemple, on ne veut pas automatiquement tronquer un tableau de
+ *      longueur 5 en un tableau de longueur 2.
  *
  * @par Limites
  *      Les types limités ne sont pas supportés dans le modèle commun.
  *      S'il advenait que le modèle commun utilisait des types de données limités (par
  *      exemple VARCHAR(50)) les conversions vers ce type résulteraient en une possible perte de
  *      données sans avertissement puisqu'on considère que toutes variables peut être converties
- *      vers n'importe quel type dans la même catégorie que son type d'origine.
+ *      vers n'importe quel type dans la même catégorie que son type d'origine. Notez qu'il s'agit
+ *      d'une limitation de Ontop, qui ne conserve pas les limites de types.
  *
  * @par Historique
  *      2024-02-02 [SD] - Implémentation initiale<br>
