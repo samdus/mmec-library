@@ -85,11 +85,11 @@ from ins_t0000;
 -- Insertion pour Héritage avec chevauchement
 with ins_t0022 AS (
     insert into "BW"."T0022" ("T0022_uid")
-        values ('o1'), ('o2'), ('o3')
+        values ('o1', 'o2', 'o3')
         returning "T0022_uid"),
      ins_t000d AS (
          insert into "BW"."T000d" ("T000d_uid")
-             values ('o4')
+             values ('o2', 'o3', 'o4')
              returning "T000d_uid"),
      ins_t0026 AS (
          insert into "BW"."T0026" ("T0026_uid")
