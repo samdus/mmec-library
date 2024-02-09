@@ -13,6 +13,10 @@ import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.logger.statuscode.Warn;
+import com.github.dockerjava.api.model.ExposedPort;
+import com.github.dockerjava.api.model.HostConfig;
+import com.github.dockerjava.api.model.PortBinding;
+import com.github.dockerjava.api.model.Ports;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import it.unibz.inf.ontop.dbschema.DBParameters;
@@ -57,6 +61,7 @@ public class PostgresContainerWrapper implements Closeable {
       PostgresContainerWrapper.class);
   private static PostgresContainerWrapper instance;
   private final String ontorelcatLdmImageName = "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm";
+  private final Integer hostPort = 25432;
   private final DockerImageName ontorelcatLdmImage = DockerImageName.parse(ontorelcatLdmImageName)
       .asCompatibleSubstituteFor("postgres");
   private final PostgreSQLContainer<?> container = new PostgreSQLContainer<>(ontorelcatLdmImage);
@@ -69,6 +74,10 @@ public class PostgresContainerWrapper implements Closeable {
         .withStartupTimeout(Duration.of(300, ChronoUnit.SECONDS));
     container.setWaitStrategy(waitStrategy);
     container.waitingFor(waitStrategy);
+    container.withCreateContainerCmdModifier(createContainerCmd ->
+        createContainerCmd.withHostConfig(new HostConfig().withPortBindings(
+            new PortBinding(Ports.Binding.bindPort(hostPort), new ExposedPort(5432)))
+        ));
     container.withCopyFileToContainer(MountableFile.forClasspathResource("testset/"),
         "/docker-entrypoint-initdb.d/");
     container.start();

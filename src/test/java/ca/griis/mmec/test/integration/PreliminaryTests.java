@@ -77,4 +77,10 @@ public class PreliminaryTests {
         Paths.get("src", "test", "resources", "testset", "simple", "mapping.ttl").toFile());
     tester.runTest();
   }
+
+  @Test
+  public void loadContainter() throws Exception {
+    System.out.printf("Simplement mettre un break point ici pour garder le container.\n"
+        + "Info du container:\n%s", postgresContainerWrapper.getPropertiesForOntop().toString());
+  }
 }
