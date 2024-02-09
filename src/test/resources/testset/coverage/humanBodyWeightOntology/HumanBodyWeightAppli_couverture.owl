@@ -147,6 +147,12 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/IAO_0000233 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000233"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/IAO_0000412 -->
 
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000412">
@@ -2035,6 +2041,13 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000002">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/PHYSIO_0000100"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A data item categorizing a type of health situation in order to adjust administrative handling of physician billing by the RAMQ.</obo:IAO_0000115>
         <rdfs:label xml:lang="en">RAMQ vulnerability code</rdfs:label>
     </owl:Class>
@@ -2276,6 +2289,44 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
     
 
 
+    <!-- http://purl.obolibrary.org/obo/HBW_0000018 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000018">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdfs:comment xml:lang="en">A biological sex information content entity that denotes the biological sex of a human.</rdfs:comment>
+        <rdfs:label xml:lang="en">human biological sex information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000022 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000022">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0020015"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0020017"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000219"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>An identifier that is composed of some family name and some personal name that denotes of an Homo Sapiens.</rdfs:comment>
+        <rdfs:label xml:lang="en">human name</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/IAO_0000003 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000003">
@@ -2395,14 +2446,9 @@ Previous. An information content entity is a non-realizable information entity t
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0001938"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001931"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000039"/>
-                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/IAO_0000003"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2429,12 +2475,6 @@ this case we explicitly refer to the singular form</obo:IAO_0000116>
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0001938"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000111>measurement datum</obo:IAO_0000111>
         <obo:IAO_0000111 xml:lang="en">measurement datum</obo:IAO_0000111>
         <obo:IAO_0000112 xml:lang="en">Examples of measurement data are the recoding of the weight of a mouse as {40,mass,&quot;grams&quot;}, the recording of an observation of the behavior of the mouse {,process,&quot;agitated&quot;}, the recording of the expression level of a gene as measured through the process of microarray experiment {3.4,luminosity,}.</obo:IAO_0000112>
@@ -2477,6 +2517,84 @@ this case we explicitly refer to the singular form</obo:IAO_0000116>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/IAO_0020000 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0020000">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000219"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">An information content entity that is the outcome of a dubbing process and is used to refer to one instance of entity shared by a group of people to refer to that individual entity.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">identifier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0020015 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0020015">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/PHYSIO_0000100"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">An identifier referring to an individual entity that is ascribed personhood by the user of the identifier.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Justin Whorton</obo:IAO_0000117>
+        <obo:IAO_0000117 xml:lang="en">Mathias Brochhausen</obo:IAO_0000117>
+        <obo:IAO_0000119>http://en.wikipedia.org/wiki/Personal_name</obo:IAO_0000119>
+        <obo:IAO_0000233 xml:lang="en">https://github.com/information-artifact-ontology/IAO/issues/237</obo:IAO_0000233>
+        <rdfs:comment xml:lang="en">Personal names &quot;today usually comprises a given name bestowed at birth or at a young age plus a surname. It is nearly universal for a human to have a name; except in rare cases, for example feral children growing up in isolation, or infants orphaned by natural disaster for whom no written record survives.[citation needed] The Convention on the Rights of the Child specifies that a child has the right from birth to a name. Certain isolated tribes, such as the Machiguenga of the Amazon, also lack personal names.&quot; (http://en.wikipedia.org/wiki/Personal_name)</rdfs:comment>
+        <rdfs:comment xml:lang="en">Personal names to not include names of fictional characters, e.g. Sherlock Holmes.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Sep 29, 2016: The comment that including the wikipedia definition of personal name is not to be interpreted in a way that restricts this class to only contain strings of letters. A numerical or alphanumerical identifier that denotes a human is being is a personal name, too. (MB)</rdfs:comment>
+        <rdfs:label xml:lang="en">personal name</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0020016 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0020016">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0020015"/>
+        <obo:IAO_0000115 xml:lang="en">A personal name that specifies and differentiates between members of a group of individuals, especially in a family, all of whose members usually share the same family name (surname). A given name is purposefully given, usually by a child&apos;s parents at or near birth, in contrast to an inherited one such as a family name</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Justin Whorton</obo:IAO_0000117>
+        <obo:IAO_0000117 xml:lang="en">Mathias Brochhausen</obo:IAO_0000117>
+        <obo:IAO_0000118 xml:lang="en">first name</obo:IAO_0000118>
+        <obo:IAO_0000119>http://en.wikipedia.org/wiki/Given_name</obo:IAO_0000119>
+        <obo:IAO_0000233 xml:lang="en">https://github.com/information-artifact-ontology/IAO/issues/237</obo:IAO_0000233>
+        <rdfs:label xml:lang="en">given name</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0020017 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0020017">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/PHYSIO_0000100"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">An identifier that is typically a part of a person&apos;s name which has been passed, according to law or custom, from one or both parents to their children.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Justin Whorton</obo:IAO_0000117>
+        <obo:IAO_0000117 xml:lang="en">Mathias Brochhausen</obo:IAO_0000117>
+        <obo:IAO_0000118 xml:lang="en">last name</obo:IAO_0000118>
+        <obo:IAO_0000118 xml:lang="en">surname</obo:IAO_0000118>
+        <obo:IAO_0000119>http://en.wikipedia.org/wiki/Family_name</obo:IAO_0000119>
+        <obo:IAO_0000233 xml:lang="en">https://github.com/information-artifact-ontology/IAO/issues/237</obo:IAO_0000233>
+        <rdfs:label xml:lang="en">family name</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/NCBITaxon_9606 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606">
@@ -2510,28 +2628,6 @@ objectives is a planned process.</obo:IAO_0000116>
         <obo:IAO_0000232 xml:lang="en">This class merges the previously separated objective driven process and planned process, as they the separation proved hard to maintain. (1/22/09, branch call)</obo:IAO_0000232>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/obi.owl"/>
         <rdfs:label xml:lang="en">planned process</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OBI_0001931 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0001931">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
-        <obo:IAO_0000115>A value specification that consists of two parts: a numeral and a unit label</obo:IAO_0000115>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/obi.owl"/>
-        <rdfs:label>scalar value specification</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OBI_0001933 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OBI_0001933">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
-        <obo:IAO_0000115>An information content entity that specifies a value within a classification scheme or on a quantitative scale.</obo:IAO_0000115>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/obi.owl"/>
-        <rdfs:label>value specification</rdfs:label>
     </owl:Class>
     
 

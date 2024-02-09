@@ -89,7 +89,7 @@ with ins_t0022 AS (
         returning "T0022_uid"),
      ins_t000d AS (
          insert into "BW"."T000d" ("T000d_uid")
-             values ('o4')
+             values ('o2'), ('o3'), ('o4')
              returning "T000d_uid"),
      ins_t0026 AS (
          insert into "BW"."T0026" ("T0026_uid")
@@ -100,7 +100,7 @@ with ins_t0022 AS (
          insert into "BW"."T0027" ("T0027_uid")
              select "T0022_uid"
              from ins_t0022
-             union all
+             union
              select "T0026_uid"
              from ins_t0026
              returning "T0027_uid"),
@@ -261,10 +261,12 @@ from ins_t0000;
 -- Insérer mri1 denotes x1 et mri2 denotes x2
 insert into "BW"."T003b"("T000b_uid", "T000f_uid")
 values ('mri1', 'x1'),
-       ('mri2', 'x2');
+       ('mri2', 'x2')
+returning *;
 
 -- Insérer x1 is about o2 et x2 is about o3
 insert into "BW"."T003d"("T000f_uid", "T0022_uid")
 values ('x1', 'o2'),
-       ('x2', 'o3');
+       ('x2', 'o3')
+returning *;
 

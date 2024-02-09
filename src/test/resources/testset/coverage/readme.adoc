@@ -17,6 +17,12 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 |===
 |Description du cas | Figure fait |Modifier l'ontologie | Modifier la source |Référence|Commentaires
 
+| Illustration du cas général
+| Non
+| Ajout des classes pour le nom d'une personne |
+| 'human name': 'has part' some 'family name'; 'family name' 'has value' exactly 1 String
+| Cas simple avec deux classes, un OP et un DP
+
 |Héritage multiple
 | Oui
 |  |
@@ -92,7 +98,7 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 | Arrimage faisant de l'inférence utilisant des opérateurs qui existent en logique des prédicats, mais pas en logique de description
 | Non
 | X | X
-| Ajout des informations concernants l'obésité et l'indicateur d'un physiological evaluation ayant une valeur scalaire > 30 pour le BMI
+| Ajout des informations concernant l'obésité et l'indicateur d'un physiological evaluation ayant une valeur scalaire > 30 pour le BMI
 |
 
 | Arrimage d'une situation du style: B is_a A; D is_a C; A op card C; B op card D
