@@ -1,4 +1,4 @@
-owlFilePath: ../HumanBodyWeightAppli_couverture-inferred.owl
+owlFilePath: HumanBodyWeightAppli_couverture.owl
 loadEquivalentClass: true
 annotations:
   labels:

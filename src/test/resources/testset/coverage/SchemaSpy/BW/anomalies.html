@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>test.BW</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="../index.html" class="navbar-brand"><b>test</b></a><span class="navbar-brand" style="padding-left: 0">.BW</span>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                                <li><a href="types.html" title="Types, domains, etc.">Types</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Anomalies</h1><br />
+                    <div class="callout callout-warning">
+                        <p>Things that might not be 'quite right' about your database and schema</p>
+                    </div>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-6"> <!-- Implied Relationship -->
+                            <div class="box box-success">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Columns whose name and type imply a relationship to another table's primary key</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <table
+                                            id="implied_constraint"
+                                            class="table table-bordered table-striped dataTable"
+                                            role="grid"
+                                            data-paging="true"
+                                            data-page-length="10"
+                                            data-length-change="false">
+                                        <thead align='left'>
+                                            <tr>
+                                                <th>Child Column</th>
+                                                <th>Implied Parent Column</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="3">Anomaly not detected</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> <!-- Tables without indexes -->
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Tables without indexes</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <table
+                                            id="un_indexed_table"
+                                            class="table table-bordered table-striped dataTable"
+                                            role="grid"
+                                            data-paging="true"
+                                            data-page-length="10"
+                                            data-length-change="false">
+                                        <thead align='left'>
+                                            <tr>
+                                                <th>Table</th>
+                                                <th>Rows</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="3">Anomaly not detected</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> <!-- Tables that contain a single column -->
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Tables that contain a single column</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <table
+                                            id="single_column_table"
+                                            class="table table-bordered table-striped dataTable"
+                                            role="grid"
+                                            data-paging="true"
+                                            data-page-length="10"
+                                            data-length-change="false">
+                                        <thead align='left'>
+                                            <tr>
+                                                <th>Table</th>
+                                                <th>Column</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a href='tables/T128627bb000000000000000000000.html'>T128627bb000000000000000000000</a></td>
+                                                <td>T128627bb000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T128627c1000000000000000000000.html'>T128627c1000000000000000000000</a></td>
+                                                <td>T128627c1000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T128627fd000000000000000000000.html'>T128627fd000000000000000000000</a></td>
+                                                <td>T128627fd000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T128627fe000000000000000000000.html'>T128627fe000000000000000000000</a></td>
+                                                <td>T128627fe000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12862815000000000000000000000.html'>T12862815000000000000000000000</a></td>
+                                                <td>T12862815000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12862817000000000000000000000.html'>T12862817000000000000000000000</a></td>
+                                                <td>T12862817000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12862b82000000000000000000000.html'>T12862b82000000000000000000000</a></td>
+                                                <td>T12862b82000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T1286331a000000000000000000000.html'>T1286331a000000000000000000000</a></td>
+                                                <td>T1286331a000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12863b5d000000000000000000000.html'>T12863b5d000000000000000000000</a></td>
+                                                <td>T12863b5d000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12a256ba000000000000000000000.html'>T12a256ba000000000000000000000</a></td>
+                                                <td>T12a256ba000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12a256de000000000000000000000.html'>T12a256de000000000000000000000</a></td>
+                                                <td>T12a256de000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12a256df000000000000000000000.html'>T12a256df000000000000000000000</a></td>
+                                                <td>T12a256df000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T12a256e0000000000000000000000.html'>T12a256e0000000000000000000000</a></td>
+                                                <td>T12a256e0000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e1f000000000000000000000.html'>T140e5e1f000000000000000000000</a></td>
+                                                <td>T140e5e1f000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e20000000000000000000000.html'>T140e5e20000000000000000000000</a></td>
+                                                <td>T140e5e20000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e21000000000000000000000.html'>T140e5e21000000000000000000000</a></td>
+                                                <td>T140e5e21000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e22000000000000000000000.html'>T140e5e22000000000000000000000</a></td>
+                                                <td>T140e5e22000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e23000000000000000000000.html'>T140e5e23000000000000000000000</a></td>
+                                                <td>T140e5e23000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e24000000000000000000000.html'>T140e5e24000000000000000000000</a></td>
+                                                <td>T140e5e24000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e25000000000000000000000.html'>T140e5e25000000000000000000000</a></td>
+                                                <td>T140e5e25000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e26000000000000000000000.html'>T140e5e26000000000000000000000</a></td>
+                                                <td>T140e5e26000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e27000000000000000000000.html'>T140e5e27000000000000000000000</a></td>
+                                                <td>T140e5e27000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e3d000000000000000000000.html'>T140e5e3d000000000000000000000</a></td>
+                                                <td>T140e5e3d000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e3e000000000000000000000.html'>T140e5e3e000000000000000000000</a></td>
+                                                <td>T140e5e3e000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e3f000000000000000000000.html'>T140e5e3f000000000000000000000</a></td>
+                                                <td>T140e5e3f000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e40000000000000000000000.html'>T140e5e40000000000000000000000</a></td>
+                                                <td>T140e5e40000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e41000000000000000000000.html'>T140e5e41000000000000000000000</a></td>
+                                                <td>T140e5e41000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e5e000000000000000000000.html'>T140e5e5e000000000000000000000</a></td>
+                                                <td>T140e5e5e000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e5f000000000000000000000.html'>T140e5e5f000000000000000000000</a></td>
+                                                <td>T140e5e5f000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e60000000000000000000000.html'>T140e5e60000000000000000000000</a></td>
+                                                <td>T140e5e60000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e61000000000000000000000.html'>T140e5e61000000000000000000000</a></td>
+                                                <td>T140e5e61000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T140e5e62000000000000000000000.html'>T140e5e62000000000000000000000</a></td>
+                                                <td>T140e5e62000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T2054073d000000000000000000000.html'>T2054073d000000000000000000000</a></td>
+                                                <td>T2054073d000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T24486284000000000000000000000.html'>T24486284000000000000000000000</a></td>
+                                                <td>T24486284000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T33199bc2000000000000000000000.html'>T33199bc2000000000000000000000</a></td>
+                                                <td>T33199bc2000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T3319fe55000000000000000000000.html'>T3319fe55000000000000000000000</a></td>
+                                                <td>T3319fe55000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T331b75ba000000000000000000000.html'>T331b75ba000000000000000000000</a></td>
+                                                <td>T331b75ba000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T331b75bb000000000000000000000.html'>T331b75bb000000000000000000000</a></td>
+                                                <td>T331b75bb000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T3b1d43f1000000000000000000000.html'>T3b1d43f1000000000000000000000</a></td>
+                                                <td>T3b1d43f1000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T77183c4e000000000000000000000.html'>T77183c4e000000000000000000000</a></td>
+                                                <td>T77183c4e000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T7f4f7942000000000000000000000.html'>T7f4f7942000000000000000000000</a></td>
+                                                <td>T7f4f7942000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T82131e8f000000000000000000000.html'>T82131e8f000000000000000000000</a></td>
+                                                <td>T82131e8f000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T82131e94000000000000000000000.html'>T82131e94000000000000000000000</a></td>
+                                                <td>T82131e94000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T82131eaa000000000000000000000.html'>T82131eaa000000000000000000000</a></td>
+                                                <td>T82131eaa000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T82131eab000000000000000000000.html'>T82131eab000000000000000000000</a></td>
+                                                <td>T82131eab000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/T82131eac000000000000000000000.html'>T82131eac000000000000000000000</a></td>
+                                                <td>T82131eac000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Ta0d5c562000000000000000000000.html'>Ta0d5c562000000000000000000000</a></td>
+                                                <td>Ta0d5c562000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Ta912f770000000000000000000000.html'>Ta912f770000000000000000000000</a></td>
+                                                <td>Ta912f770000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc46083a0000000000000000000000.html'>Tc46083a0000000000000000000000</a></td>
+                                                <td>Tc46083a0000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a0d000000000000000000000.html'>Tc5b47a0d000000000000000000000</a></td>
+                                                <td>Tc5b47a0d000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a0e000000000000000000000.html'>Tc5b47a0e000000000000000000000</a></td>
+                                                <td>Tc5b47a0e000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a0f000000000000000000000.html'>Tc5b47a0f000000000000000000000</a></td>
+                                                <td>Tc5b47a0f000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a10000000000000000000000.html'>Tc5b47a10000000000000000000000</a></td>
+                                                <td>Tc5b47a10000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a30000000000000000000000.html'>Tc5b47a30000000000000000000000</a></td>
+                                                <td>Tc5b47a30000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a31000000000000000000000.html'>Tc5b47a31000000000000000000000</a></td>
+                                                <td>Tc5b47a31000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a32000000000000000000000.html'>Tc5b47a32000000000000000000000</a></td>
+                                                <td>Tc5b47a32000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a34000000000000000000000.html'>Tc5b47a34000000000000000000000</a></td>
+                                                <td>Tc5b47a34000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a4a000000000000000000000.html'>Tc5b47a4a000000000000000000000</a></td>
+                                                <td>Tc5b47a4a000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a4d000000000000000000000.html'>Tc5b47a4d000000000000000000000</a></td>
+                                                <td>Tc5b47a4d000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a6a000000000000000000000.html'>Tc5b47a6a000000000000000000000</a></td>
+                                                <td>Tc5b47a6a000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tc5b47a88000000000000000000000.html'>Tc5b47a88000000000000000000000</a></td>
+                                                <td>Tc5b47a88000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tdc045940000000000000000000000.html'>Tdc045940000000000000000000000</a></td>
+                                                <td>Tdc045940000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Te2278919000000000000000000000.html'>Te2278919000000000000000000000</a></td>
+                                                <td>Te2278919000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Te227891a000000000000000000000.html'>Te227891a000000000000000000000</a></td>
+                                                <td>Te227891a000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Te2278993000000000000000000000.html'>Te2278993000000000000000000000</a></td>
+                                                <td>Te2278993000000000000000000000_uid</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href='tables/Tf9aa0e24000000000000000000000.html'>Tf9aa0e24000000000000000000000</a></td>
+                                                <td>Tf9aa0e24000000000000000000000_uid</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> <!-- Tables with incrementing column names, potentially indicating denormalization -->
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Tables with incrementing column names, potentially indicating denormalization</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <table
+                                            id="inc_column_table"
+                                            class="table table-bordered table-striped dataTable"
+                                            role="grid"
+                                            data-paging="true"
+                                            data-page-length="10"
+                                            data-length-change="false">
+                                        <thead align='left'>
+                                            <tr>
+                                                <th>Table</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="3">Anomaly not detected</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> <!-- Columns whose default value is the word 'NULL' or 'null', but the SQL NULL value may have been intended -->
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title" title="Columns whose default value is the word 'NULL' or 'null', but the SQL NULL value may have been intende">Columns whose default value is the word 'NULL' or 'null'</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <table
+                                            id="null_string_table"
+                                            class="table table-bordered table-striped dataTable"
+                                            role="grid"
+                                            data-paging="true"
+                                            data-page-length="10"
+                                            data-length-change="false">
+                                        <thead align='left'>
+                                            <tr>
+                                                <th>Table</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="3">Anomaly not detected</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy @project.version@</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="anomalies.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

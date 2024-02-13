@@ -10,5 +10,6 @@ defaultAttributeName : value
 defaultAttributeDomaineName: value_domain
 defaultAttributeType: TEXT
 maxIdentifierLength: 60
+useIRIasTableId: true
 languages:
   - en

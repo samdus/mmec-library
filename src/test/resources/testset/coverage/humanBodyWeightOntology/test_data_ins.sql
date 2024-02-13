@@ -1,4 +1,6 @@
+-- *****************************************************************************
 -- Insertions pour Héritage multiple
+-- *****************************************************************************
 with ins_t0024 AS (
     insert into "BW"."T0024" ("T0024_uid")
         values ('po1'), ('po2'), ('po3'), ('po4')
@@ -36,7 +38,9 @@ with ins_t0024 AS (
 select *
 from ins_t0000;
 
--- Données de tests pour Héritage disjoint
+-- *****************************************************************************
+-- Insertions pour Héritage disjoint
+-- *****************************************************************************
 with ins_t0028 AS (
     insert into "BW"."T0028" ("T0028_uid")
         values ('pr1'), ('pr2'), ('pr3')
@@ -82,7 +86,9 @@ with ins_t0028 AS (
 select *
 from ins_t0000;
 
+-- *****************************************************************************
 -- Insertion pour Héritage avec chevauchement
+-- *****************************************************************************
 with ins_t0022 AS (
     insert into "BW"."T0022" ("T0022_uid")
         values ('o1', 'o2', 'o3')
@@ -132,7 +138,9 @@ with ins_t0022 AS (
 select *
 from ins_t0000;
 
--- Insertion pour le cas de plusieurs signatures pour une classe
+-- *****************************************************************************
+-- Insertion pour Plusieurs signatures pour une classe
+-- *****************************************************************************
 with ins_t0015 AS (
     insert into "BW"."T0015" ("T0015_uid")
         values ('c1'), ('c2'), ('c3'), ('c4'), ('c5'), ('c6')
@@ -170,7 +178,9 @@ with ins_t0015 AS (
 select *
 from ins_t0000;
 
--- Insertion pour le cas de conjonction (en supposant que o1, o2 et o3 existent déjà)
+-- *****************************************************************************
+-- Insertions pour Conjonction (en supposant que o1, o2 et o3 existent déjà)
+-- *****************************************************************************
 
 -- Insérer 'mri1' et 'mri2' dans T000b (donc, dans T0025,  T0023,  T0004, T001d,  T0008,  T0019,  T0000)
 with ins_t000b AS (
@@ -270,3 +280,149 @@ values ('x1', 'o2'),
        ('x2', 'o3')
 returning *;
 
+-- *****************************************************************************
+-- Insertions pour Arrimage Simple
+-- *****************************************************************************
+
+
+-- Insertions personal name
+with personalName AS (select *
+                      from (values ('pn1', 'Owen'), ('pn2', 'Beru')) "t"("IAO_0020015_uid", "IAO_0020015_PHYSIO_0000100_string_PHYSIO_0000100")),
+     ins_IAO_0020015 AS (
+         insert into "BW"."IAO_0020015" ("IAO_0020015_uid")
+             select "IAO_0020015_uid"
+             from personalName
+             returning "IAO_0020015_uid"),
+     ins_IAO_0020000 AS (
+         insert into "BW"."IAO_0020000" ("IAO_0020000_uid")
+             select "IAO_0020015_uid"
+             from ins_IAO_0020015
+             returning "IAO_0020000_uid"),
+     ins_IAO_0000030 AS (
+         insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+             select "IAO_0020000_uid"
+             from ins_IAO_0020000
+             returning "IAO_0000030_uid"),
+     ins_BFO_0000031 AS (
+         insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+             select "IAO_0000030_uid"
+             from ins_IAO_0000030
+             returning "BFO_0000031_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000031_uid"
+             from ins_BFO_0000031
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid"),
+     ins_IAO_0020015_PHYSIO_0000100_string AS (
+         insert into "BW"."IAO_0020015_PHYSIO_0000100_string" ("IAO_0020015_uid", "IAO_0020015_PHYSIO_0000100_string_PHYSIO_0000100")
+             select "IAO_0020015_uid", "IAO_0020015_PHYSIO_0000100_string_PHYSIO_0000100"
+             from personalName
+             returning "IAO_0020015_uid", "IAO_0020015_PHYSIO_0000100_string_PHYSIO_0000100")
+select *
+from ins_Thing ins_Thing("IAO_0020015_uid")
+         natural join ins_IAO_0020015_PHYSIO_0000100_string;
+
+-- Insertions family name
+with familyName AS (select *
+                    from (values ('nm1', 'Lars'), ('nm2', 'Whitesun lars')) as t("IAO_0020017_uid", "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100")),
+     ins_IAO_0020017 AS (
+         insert into "BW"."IAO_0020017" ("IAO_0020017_uid")
+             select "IAO_0020017_uid"
+             from familyName
+             returning "IAO_0020017_uid"),
+     ins_IAO_0020000 AS (
+         insert into "BW"."IAO_0020000" ("IAO_0020000_uid")
+             select "IAO_0020017_uid"
+             from ins_IAO_0020017
+             returning "IAO_0020000_uid"),
+     ins_IAO_0000030 AS (
+         insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+             select "IAO_0020000_uid"
+             from ins_IAO_0020000
+             returning "IAO_0000030_uid"),
+     ins_BFO_0000031 AS (
+         insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+             select "IAO_0000030_uid"
+             from ins_IAO_0000030
+             returning "BFO_0000031_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000031_uid"
+             from ins_BFO_0000031
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid"),
+     ins_IAO_0020017_PHYSIO_0000100_string AS (
+         insert into "BW"."IAO_0020017_PHYSIO_0000100_string" ("IAO_0020017_uid", "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100")
+             select "IAO_0020017_uid", "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100"
+             from familyName
+             returning *)
+select *
+from ins_Thing ins_Thing("IAO_0020017_uid")
+         natural join ins_IAO_0020017_PHYSIO_0000100_string;
+
+-- insert human name
+with ins_HBW_0000022 AS (
+    insert into "BW"."HBW_0000022" ("HBW_0000022_uid")
+        values ('n1'), ('n2')
+        returning *),
+     ins_IAO_0020000 AS (
+         insert into "BW"."IAO_0020000" ("IAO_0020000_uid")
+             select "HBW_0000022_uid"
+             from ins_HBW_0000022
+             returning *),
+     ins_IAO_0000030 AS (
+         insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+             select "IAO_0020000_uid"
+             from ins_IAO_0020000
+             returning *),
+     ins_BFO_0000031 AS (
+         insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+             select "IAO_0000030_uid"
+             from ins_IAO_0000030
+             returning *),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000031_uid"
+             from ins_BFO_0000031
+             returning *),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning *),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning *)
+select *
+from ins_Thing;
+
+-- Insertions for the association between the family name and the human name
+insert into "BW"."HBW_0000022_BFO_0000051_IAO_0020017"("HBW_0000022_uid", "IAO_0020017_uid")
+values ('n1', 'nm1'),
+       ('n2', 'nm2');
+
+-- Insertions for the association between the personal name and the human name
+insert into "BW"."HBW_0000022_BFO_0000051_IAO_0020015"("HBW_0000022_uid", "IAO_0020015_uid")
+values ('n1', 'pn1'),
+       ('n2', 'pn2');
