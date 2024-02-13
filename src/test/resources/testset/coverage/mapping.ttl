@@ -15,6 +15,25 @@
                       rr:sqlQuery "SELECT \"ID_PATIENT_EXT\" FROM \"EXP\".\"PATIENT\" where \"POIDS\" IS NOT NULL" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:PHYSIO_0000065 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/{\"ID_PATIENT_EXT\"}" ;
+                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/humanBodyMassMeasurementDatum/{\"ID_PATIENT_EXT\"}" ;
                       rr:termType rr:IRI ] .
 
+# health care record
+<Mapping:healthCareRecord>
+    a rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                       rr:sqlQuery "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:HBW_0000004 ;
+                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/healthCareRecord/{\"ID_PATIENT_UUID\"}" ;
+                      rr:termType rr:IRI ] .
+
+# ONTORELA_C002aX (health care record and (is about exactly 1 patient))
+<Mapping:ONTORELA_C002aX>
+    a rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\" WHERE \"ID_PATIENT_EXT\" IS NOT NULL" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:HBW_0000004 ;
+                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/healthCareRecord/{\"ID_PATIENT_UUID\"}" ;
+                      rr:termType rr:IRI ] .
