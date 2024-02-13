@@ -189,59 +189,70 @@ with "sexe_m_identite_inconnue" as (select *, null as "S_OU_G", 'M' "S", null "G
                                      from "EXP"."PATIENT"
                                      order by "ID_PATIENT_EXT"
                                      limit 1 offset 15),
-    "a_changer" as (
-        select *
-        from "sexe_m_identite_inconnue"
-        union
-        select *
-        from "sexe_f_identite_inconnue"
-        union
-        select *
-        from "sexe_i_identite_inconnue"
-        union
-        select *
-        from "sexe_m_identite_m"
-        union
-        select *
-        from "sexe_f_identite_f"
-        union
-        select *
-        from "sexe_m_identite_nb"
-        union
-        select *
-        from "sexe_f_identite_nb"
-        union
-        select *
-        from "sexe_i_identite_nb"
-        union
-        select *
-        from "sexe_m_identite_f"
-        union
-        select *
-        from "sexe_f_identite_m"
-        union
-        select *
-        from "sexe_i_identite_m"
-        union
-        select *
-        from "sexe_i_identite_f"
-        union
-        select *
-        from "sexe_inconnue_identite_m"
-        union
-        select *
-        from "sexe_inconnue_identite_f"
-        union
-        select *
-        from "sexe_inconnue_identite_nb"
-    )
+     "a_changer" as (select *
+                     from "sexe_m_identite_inconnue"
+                     union
+                     select *
+                     from "sexe_f_identite_inconnue"
+                     union
+                     select *
+                     from "sexe_i_identite_inconnue"
+                     union
+                     select *
+                     from "sexe_m_identite_m"
+                     union
+                     select *
+                     from "sexe_f_identite_f"
+                     union
+                     select *
+                     from "sexe_m_identite_nb"
+                     union
+                     select *
+                     from "sexe_f_identite_nb"
+                     union
+                     select *
+                     from "sexe_i_identite_nb"
+                     union
+                     select *
+                     from "sexe_m_identite_f"
+                     union
+                     select *
+                     from "sexe_f_identite_m"
+                     union
+                     select *
+                     from "sexe_i_identite_m"
+                     union
+                     select *
+                     from "sexe_i_identite_f"
+                     union
+                     select *
+                     from "sexe_inconnue_identite_m"
+                     union
+                     select *
+                     from "sexe_inconnue_identite_f"
+                     union
+                     select *
+                     from "sexe_inconnue_identite_nb")
 update "EXP"."PATIENT"
-set "SEXE" = "a_changer"."S_OU_G"::"EXP"."SEXE_OU_IDENTITE_GENRE",
-    "SEXE_BIO" = "a_changer"."S"::"EXP"."SEXE_BIO",
+set "SEXE"           = "a_changer"."S_OU_G"::"EXP"."SEXE_OU_IDENTITE_GENRE",
+    "SEXE_BIO"       = "a_changer"."S"::"EXP"."SEXE_BIO",
     "IDENTITE_GENRE" = "a_changer"."G"::"EXP"."IDENTITE_GENRE"
 from "a_changer"
 where "PATIENT"."ID_PATIENT_EXT" = "a_changer"."ID_PATIENT_EXT";
 
+-- Ajouter une code de vulnérabilité 7 (VIH/SIDA, hépatite-C) pour le patient 1
+with echantillon as (select *
+                     from (values ('P0000001', 5, 7, 0),
+                                  ('P0000002', 0, 5, 0),
+                                  ('P0000003', 0, 0, 5))
+                              as e("ID_PATIENT_EXT", "CODE_VULN_1", "CODE_VULN_2", "CODE_VULN_3"))
+update "EXP"."PATIENT"
+set "CODE_VULN_1" = echantillon."CODE_VULN_1",
+    "CODE_VULN_2" = echantillon."CODE_VULN_2",
+    "CODE_VULN_3" = echantillon."CODE_VULN_3"
+from echantillon
+where "PATIENT"."ID_PATIENT_EXT" = echantillon."ID_PATIENT_EXT"
+returning "PATIENT"."ID_PATIENT_EXT", "PATIENT"."CODE_VULN_1", "PATIENT"."CODE_VULN_2", "PATIENT"."CODE_VULN_3";
 
 /*
 -- =========================================================================== Z

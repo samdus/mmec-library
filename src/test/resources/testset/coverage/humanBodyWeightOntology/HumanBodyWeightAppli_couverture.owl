@@ -12,6 +12,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:metadata="http://data.bioontology.org/metadata/"
      xmlns:oboInOWL="http://www.geneontology.org/formats/oboInOWL#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl">
@@ -29,6 +30,12 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://data.bioontology.org/metadata/prefixIRI -->
+
+    <owl:AnnotationProperty rdf:about="http://data.bioontology.org/metadata/prefixIRI"/>
     
 
 
@@ -211,6 +218,12 @@
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">has axiom label</rdfs:label>
     </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OpenLHS-Core_0000062 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/OpenLHS-Core_0000062"/>
     
 
 
@@ -578,6 +591,14 @@
     <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#boolean">
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2001/xmlschema.owl"/>
         <rdfs:label>Boolean</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#decimal -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#decimal">
+        <rdfs:label>Decimal</rdfs:label>
     </rdf:Description>
     
 
@@ -2289,16 +2310,6 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
     
 
 
-    <!-- http://purl.obolibrary.org/obo/HBW_0000018 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000018">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
-        <rdfs:comment xml:lang="en">A biological sex information content entity that denotes the biological sex of a human.</rdfs:comment>
-        <rdfs:label xml:lang="en">human biological sex information content entity</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/HBW_0000022 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000022">
@@ -2323,6 +2334,72 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
         </rdfs:subClassOf>
         <rdfs:comment>An identifier that is composed of some family name and some personal name that denotes of an Homo Sapiens.</rdfs:comment>
         <rdfs:label xml:lang="en">human name</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000023 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000023">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IOIO_0000012"/>
+        <obo:IAO_0000112 xml:lang="en">‘M’ (intended to refer to a male biological sex), 
+‘M’ (intended to refer to a male gender identity), 
+‘Male’, ‘Man’, ‘1’ (intended to refer to a male biological sex), 
+‘0’ (intended to refer to a male biological role)</obo:IAO_0000112>
+        <obo:IAO_0000115 xml:lang="en">A biological sex or gender identity datum that is intended to denote a male biological sex or a male gender identity.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">male biological sex or gender identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000024 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000024">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IOIO_0000012"/>
+        <obo:IAO_0000112 xml:lang="en">‘I’ (intended to refer to an intersex biological sex), 
+‘Intersex’, ‘Hermaphrodite’, ‘Pseudo-hermaphrodite’, 
+‘2’ (intended to refer to an intersex biological sex). 
+‘Non-binary’, ‘Trigender’, ‘Agender’, ‘Genderfluid’, ‘2’ (intended to refer to a non-binary gender role)</obo:IAO_0000112>
+        <obo:IAO_0000115 xml:lang="en">A biological sex or gender identity datum that is intended to denote a intersex biological sex or a non-binary gender identity.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">intersex biological sex or non-binary gender identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000025 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000025">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IOIO_0000012"/>
+        <obo:IAO_0000112 xml:lang="en">‘F’ (intended to refer to a female biological sex), 
+‘F’ (intended to refer to a female gender identity), 
+‘W’, ‘Female’, ‘Woman’, ‘0’ (intended to refer to a female biological sex), 
+‘1’ (intended to refer to a female biological role)</obo:IAO_0000112>
+        <obo:IAO_0000115 xml:lang="en">A biological sex or gender identity datum that is intended to denote a female biological sex or a female gender identity.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">female biological sex or gender identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000026 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000026">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000032"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000039"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HBW_0000003"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000004"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A scalar measurement datum composed of two parts: a Decimal and a weight unit label.</rdfs:comment>
+        <rdfs:label xml:lang="fr">weight measurement datum</rdfs:label>
     </owl:Class>
     
 
@@ -2478,12 +2555,15 @@ this case we explicitly refer to the singular form</obo:IAO_0000116>
         <obo:IAO_0000111>measurement datum</obo:IAO_0000111>
         <obo:IAO_0000111 xml:lang="en">measurement datum</obo:IAO_0000111>
         <obo:IAO_0000112 xml:lang="en">Examples of measurement data are the recoding of the weight of a mouse as {40,mass,&quot;grams&quot;}, the recording of an observation of the behavior of the mouse {,process,&quot;agitated&quot;}, the recording of the expression level of a gene as measured through the process of microarray experiment {3.4,luminosity,}.</obo:IAO_0000112>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
         <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
         <obo:IAO_0000115 xml:lang="en">A measurement datum is an information content entity that is a recording of the output of a measurement such as produced by a device.</obo:IAO_0000115>
         <obo:IAO_0000116 xml:lang="en">2/2/2009 is_specified_output of some assay?</obo:IAO_0000116>
         <obo:IAO_0000117 xml:lang="en">person:Chris Stoeckert</obo:IAO_0000117>
         <obo:IAO_0000119 xml:lang="en">OBI_0000305</obo:IAO_0000119>
         <obo:IAO_0000119 xml:lang="en">group:OBI</obo:IAO_0000119>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/obi.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">measurement datum</rdfs:label>
     </owl:Class>
@@ -2595,6 +2675,26 @@ this case we explicitly refer to the singular form</obo:IAO_0000116>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/IOIO_0000012 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IOIO_0000012">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OMRSE_00000209"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/VO_0001194"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <obo:IAO_0000115 xml:lang="en">An information content entity that denotes a biological sex or a gender identity of a human.</obo:IAO_0000115>
+        <obo:OpenLHS-Core_0000062 xml:lang="en">An information content entity that denotes a biological sex or a gender identity of a human.</obo:OpenLHS-Core_0000062>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OpenLHS-Core#OpenLHS-H"/>
+        <rdfs:label xml:lang="en">human biological sex or gender identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/NCBITaxon_9606 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606">
@@ -2607,6 +2707,44 @@ this case we explicitly refer to the singular form</obo:IAO_0000116>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ncbitaxon.owl"/>
         <rdfs:label>Homo sapiens</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NOYO_0000012 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NOYO_0000012">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <obo:IAO_0000115 xml:lang="en">A generically dependent continuant that is a building block of information or a combination thereof.</obo:IAO_0000115>
+        <obo:IAO_0000600 xml:lang="en">Contrarily to ICE, informational entities are not necessarily about some things. Therefore they includes ICE, but also words like &apos;unicorn&apos;, letters like &apos;a&apos; or pictures of unicorns.</obo:IAO_0000600>
+        <rdfs:label xml:lang="en">informational entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NOYO_0000013 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NOYO_0000013">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NOYO_0000012"/>
+        <obo:IAO_0000115 xml:lang="en">An informational entity that is considered valid by some agent at some point in time. (TBD)</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">statement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NOYO_0000050 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NOYO_0000050">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NOYO_0000013"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A statement about the information surrounding the birth of a human.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">birth statement</rdfs:label>
     </owl:Class>
     
 
@@ -2661,6 +2799,154 @@ This issue is outside the scope of OBI.</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
         <obo:IAO_0000115 xml:lang="en">A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism.</obo:IAO_0000115>
         <rdfs:label xml:lang="en">disease</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OMRSE_00000204 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OMRSE_00000204">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <metadata:prefixIRI>OMRSE:00000204</metadata:prefixIRI>
+        <obo:IAO_0000115 xml:lang="en">An information content entity that is intended to be a truthful statement about some person and whether that person identifies as some particular aspect of social identity—such as a gender, an ethnicity, a race, or a sexual orientation—where the sense of identifying may correspond to either (i) an aspect of one’s cognitive representation of oneself, (ii) how one prefers to be regarded by others within some social context, or (iii) how one chooses to present oneself to others within some social context.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">S. Clint Dowland</obo:IAO_0000117>
+        <dc:contributor xml:lang="en">Amanda Hicks</dc:contributor>
+        <dc:contributor xml:lang="en">Mathias Brochhausen</dc:contributor>
+        <dc:contributor xml:lang="en">Matthew Diller</dc:contributor>
+        <dc:contributor xml:lang="en">Sarah Bost</dc:contributor>
+        <dc:contributor xml:lang="en">William R. Hogan</dc:contributor>
+        <rdfs:comment xml:lang="en">We include (i)-(iii) to acknowledge that there are different senses of &quot;identify&quot; that are relevant here, and that we may not always be sure which sense the person concretizing the social identity information content entity intended. While (i) concerns how one thinks of oneself, (ii) and (iii) are more focused on one&apos;s interactions with others. Importantly, some choose not to share with others how they identify in the sense of (i). For example, one can consider oneself to be some certain gender without either wanting others to know or choosing to present oneself in a corresponding way. We distinguish (ii) and (iii) because one can prefer to be regarded some certain way without attempting to present oneself in any corresponding way.</rdfs:comment>
+        <rdfs:label xml:lang="en">social identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OMRSE_00000209 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OMRSE_00000209">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000204"/>
+        <metadata:prefixIRI>OMRSE:00000209</metadata:prefixIRI>
+        <obo:IAO_0000115 xml:lang="en">A social identity information content entity that is about whether some person identifies as some gender.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">S. Clint Dowland</obo:IAO_0000117>
+        <dc:contributor xml:lang="en">Amanda Hicks</dc:contributor>
+        <dc:contributor xml:lang="en">Mathias Brochhausen</dc:contributor>
+        <dc:contributor xml:lang="en">Matthew Diller</dc:contributor>
+        <dc:contributor xml:lang="en">Sarah Bost</dc:contributor>
+        <dc:contributor xml:lang="en">William R. Hogan</dc:contributor>
+        <rdfs:label xml:lang="en">gender identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OMRSE_00000210 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OMRSE_00000210">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000209"/>
+        <metadata:prefixIRI>OMRSE:00000210</metadata:prefixIRI>
+        <obo:IAO_0000115 xml:lang="en">A gender identity information content entity that is about some person&apos;s identifying as female in gender.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">S. Clint Dowland</obo:IAO_0000117>
+        <dc:contributor xml:lang="en">Amanda Hicks</dc:contributor>
+        <dc:contributor xml:lang="en">Mathias Brochhausen</dc:contributor>
+        <dc:contributor xml:lang="en">Matthew Diller</dc:contributor>
+        <dc:contributor xml:lang="en">Sarah Bost</dc:contributor>
+        <dc:contributor xml:lang="en">William R. Hogan</dc:contributor>
+        <rdfs:label xml:lang="en">female gender identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OMRSE_00000211 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OMRSE_00000211">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000209"/>
+        <metadata:prefixIRI>OMRSE:00000211</metadata:prefixIRI>
+        <obo:IAO_0000115 xml:lang="en">A gender identity information content entity that is about some person&apos;s identifying as male in gender.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">S. Clint Dowland</obo:IAO_0000117>
+        <dc:contributor xml:lang="en">Amanda Hicks</dc:contributor>
+        <dc:contributor xml:lang="en">Mathias Brochhausen</dc:contributor>
+        <dc:contributor xml:lang="en">Matthew Diller</dc:contributor>
+        <dc:contributor xml:lang="en">Sarah Bost</dc:contributor>
+        <dc:contributor xml:lang="en">William R. Hogan</dc:contributor>
+        <rdfs:label xml:lang="en">male gender identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OMRSE_00000212 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OMRSE_00000212">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000209"/>
+        <metadata:prefixIRI>OMRSE:00000212</metadata:prefixIRI>
+        <obo:IAO_0000115 xml:lang="en">A gender identity information content entity that is about some person&apos;s identifying as non-binary in gender.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">S. Clint Dowland</obo:IAO_0000117>
+        <dc:contributor xml:lang="en">Amanda Hicks</dc:contributor>
+        <dc:contributor xml:lang="en">Mathias Brochhausen</dc:contributor>
+        <dc:contributor xml:lang="en">Matthew Diller</dc:contributor>
+        <dc:contributor xml:lang="en">Sarah Bost</dc:contributor>
+        <dc:contributor xml:lang="en">William R. Hogan</dc:contributor>
+        <rdfs:label xml:lang="en">non-binary identity information content entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/VO_0000613 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/VO_0000613">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/VO_0001194"/>
+        <obo:IAO_0000112 xml:lang="en">‘M’ (intended to refer to a male biological sex), 
+‘Male’, ‘Man’, ‘1’ (intended to refer to a male biological sex)</obo:IAO_0000112>
+        <obo:IAO_0000112>‘M’ (intended to refer to a male biological sex), ‘Male’, ‘Man’, ‘1’ (intended to refer to a male biological sex)</obo:IAO_0000112>
+        <obo:IAO_0000115>A biological sex datum that represents the biological sex of an animal (including human) as being male.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A biological sex measurement datum that is intended to denote a male biological sex.</obo:IAO_0000115>
+        <obo:IAO_0000117>Paul Fabry, Oliver He</obo:IAO_0000117>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/vo.owl"/>
+        <rdfs:label xml:lang="en">male biological sex datum</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/VO_0001194 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/VO_0001194">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <obo:IAO_0000115>A measurement datum that represents the biological sex of an animal. The result can be represented using a discretized digit, for example, 0 = female; 1 = male.</obo:IAO_0000115>
+        <obo:IAO_0000117>YH</obo:IAO_0000117>
+        <obo:IAO_0000119>He Y, Xiang Z, Todd T, Courtot M, Brinkman R, Zheng J, Stoeckert CJ, Malone J, Rocca-Serra P, Sansone S, Fostel J, Soldatova LN, Peters B, Rutternberg A. Ontology representation and ANOVA analysis of vaccine protection investigation. Proceeding of Bio-Ontologies 2010: Semantic Applications in Life Sciences, ISMB, July 9-10, 2010. Boston, MA, USA. Full length paper. URL: http://www.hegroup.org/docs/ANOVA_Vaccine_usecase_camera.pdf</obo:IAO_0000119>
+        <obo:IAO_0000119>Todd TE, Tibi O, Lin Y, Sayers S, Bronner DN, Xiang Z, He Y. Meta-analysis of variables affecting mouse protection efficacy of whole organism Brucella vaccines and vaccine candidates. BMC Bioinformatics. 2013, 14(Suppl 6):S3. PMID: 23735014. PMCID: PMC3633026. </obo:IAO_0000119>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/vo.owl"/>
+        <rdfs:label>biological sex datum</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/VO_0004895 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/VO_0004895">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/VO_0001194"/>
+        <obo:IAO_0000112 xml:lang="en">‘F’ (intended to refer to a female biological sex),
+‘Female’, ‘Woman’, ‘0’ (intended to refer to a female biological sex)</obo:IAO_0000112>
+        <obo:IAO_0000112>‘F’ (intended to refer to a female biological sex), ‘Female’, ‘Woman’, ‘0’ (intended to refer to a female biological sex)</obo:IAO_0000112>
+        <obo:IAO_0000115>A biological sex datum that represents the biological sex of an animal (including human) as being female.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A biological sex measurement datum that is intended to denote a female biological sex.</obo:IAO_0000115>
+        <obo:IAO_0000117>Paul Fabry, Oliver He</obo:IAO_0000117>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/vo.owl"/>
+        <rdfs:label xml:lang="en">female biological sex datum</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/VO_0004896 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/VO_0004896">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/VO_0001194"/>
+        <obo:IAO_0000112 xml:lang="en">‘I’ (intended to refer to an intersex biological sex), 
+‘Intersex’, ‘Hermaphrodite’, ‘Pseudo-hermaphrodite’, ‘2’ (intended to refer to an intersex biological sex)</obo:IAO_0000112>
+        <obo:IAO_0000112>‘I’ (intended to refer to an intersex biological sex), ‘Intersex’, ‘Hermaphrodite’, ‘Pseudo-hermaphrodite’, ‘2’ (intended to refer to an intersex biological sex)</obo:IAO_0000112>
+        <obo:IAO_0000115>A biological sex datum that represents the biological sex of an animal (including human) as being intersex.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A biological sex measurement datum that is intended to denote an intersex biological sex.</obo:IAO_0000115>
+        <obo:IAO_0000117>Paul Fabry, Oliver He</obo:IAO_0000117>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/vo.owl"/>
+        <rdfs:label xml:lang="en">intersex biological sex datum</rdfs:label>
     </owl:Class>
     
 
@@ -2762,9 +3048,6 @@ This issue is outside the scope of OBI.</obo:IAO_0000116>
     </rdf:Description>
     <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#dateTimeStamp">
         <rdfs:label>Date timestamp</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#decimal">
-        <rdfs:label>Decimal</rdfs:label>
     </rdf:Description>
     <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#float">
         <rdfs:label>Float</rdfs:label>

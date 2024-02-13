@@ -69,7 +69,7 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 | Non
 | x |x
 |Ajout d'une disjonction dans l'ontologie: sexe ou genre (voir ioio)  et ajout des 4 cas dans la bd (avec genre ou sexe ou les deux ou aucun)
-|
+| human biological sex or gender identity information content entity (IOIO:0000012) et ses enfants: HBW:0000023, HBW:0000024 et HBW:0000025
 
 |Individuation d'une combinaison de disjonction et de conjonction
 | Non
@@ -90,7 +90,7 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 |Correspond à une autre considération théorique que l'individuation à proprement parler, mais à illustrer quand-même
 
 | Arrimage utilisant des connaissances implicites de la source de données de façon à inférer une signature
-| Non
+| NA: Même que pour héritage disjoint
 | |
 | patient subclassOf Homo sapiens
 | Ce n'est pas asserté dans l'ontologie, mais c'est un fait de la source
@@ -103,9 +103,9 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 
 | Arrimage d'une situation du style: B is_a A; D is_a C; A op card C; B op card D
 | Non
-| TODO | TODO
-|
-|
+| X |
+| 'weight measurement datum' is_a 'scalar measurement datum'; 'weight unit' is_a 'measurement unit label' ; 'scalar measurement datum' 'has measurement unit label' min 1 'measurement unit label' ; 'has measurement unit label' min 1 'weight unit'
+| Le weight n'est pas spécifié dans la base de données, mais on le génère à partir de notre connaissance de la source.
 |===
 
 === Discussion
