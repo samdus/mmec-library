@@ -426,3 +426,252 @@ values ('n1', 'nm1'),
 insert into "BW"."HBW_0000022_BFO_0000051_IAO_0020015"("HBW_0000022_uid", "IAO_0020015_uid")
 values ('n1', 'pn1'),
        ('n2', 'pn2');
+
+-- *****************************************************************************
+-- Insertions pour Disjonction
+-- *****************************************************************************
+
+-- Insertions d'une information qu'on ne peut différencier d'un biological sex datum ou d'un gender identity ice
+with ins_HBW_0000025 AS (
+    insert into "BW"."HBW_0000025" ("HBW_0000025_uid")
+        values ('ice2')
+        returning "HBW_0000025_uid"),
+     ins_IOIO_0000012 AS (
+         insert into "BW"."IOIO_0000012" ("IOIO_0000012_uid")
+             select "HBW_0000025_uid"
+             from ins_HBW_0000025
+             returning "IOIO_0000012_uid"),
+     ins_IAO_0000030 AS (
+         insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+             select "IOIO_0000012_uid"
+             from ins_IOIO_0000012
+             returning "IAO_0000030_uid"),
+     ins_BFO_0000031 AS (
+         insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+             select "IAO_0000030_uid"
+             from ins_IAO_0000030
+             returning "BFO_0000031_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000031_uid"
+             from ins_BFO_0000031
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Insertions pour un female datum
+with ins_VO_0004895 AS (
+    insert into "BW"."VO_0004895" ("VO_0004895_uid")
+        values ('ice1')
+        returning "VO_0004895_uid"),
+     ins_VO_0001194 AS (
+         insert into "BW"."VO_0001194" ("VO_0001194_uid")
+             select "VO_0004895_uid"
+             from ins_VO_0004895
+             returning "VO_0001194_uid"),
+     ins_HBW_0000025 AS (
+         insert into "BW"."HBW_0000025" ("HBW_0000025_uid")
+             select "VO_0001194_uid"
+             from ins_VO_0001194
+             returning "HBW_0000025_uid"),
+     ins_IAO_0000109 AS (
+         insert into "BW"."IAO_0000109" ("IAO_0000109_uid")
+             select "HBW_0000025_uid"
+             from ins_HBW_0000025
+             returning "IAO_0000109_uid"),
+     ins_IAO_0000027 AS (
+         insert into "BW"."IAO_0000027" ("IAO_0000027_uid")
+             select "IAO_0000109_uid"
+             from ins_IAO_0000109
+             returning "IAO_0000027_uid"),
+     ins_IOIO_0000012 AS (
+         insert into "BW"."IOIO_0000012" ("IOIO_0000012_uid")
+             select "HBW_0000025_uid"
+             from ins_HBW_0000025
+             returning "IOIO_0000012_uid"),
+     ins_IAO_0000030 AS (
+         insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+             select "IOIO_0000012_uid"
+             from ins_IOIO_0000012
+             returning "IAO_0000030_uid"),
+     ins_BFO_0000031 AS (
+         insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+             select "IAO_0000030_uid"
+             from ins_IAO_0000030
+             returning "BFO_0000031_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000031_uid"
+             from ins_BFO_0000031
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Insertions pour un female gender identity ICE
+with ins_OMRSE_00000210 AS (
+    insert into "BW"."OMRSE_00000210" ("OMRSE_00000210_uid")
+        values ('ice3')
+        returning "OMRSE_00000210_uid"),
+    ins_OMRSE_00000209 AS (
+            insert into "BW"."OMRSE_00000209" ("OMRSE_00000209_uid")
+                select "OMRSE_00000210_uid"
+                from ins_OMRSE_00000210
+                returning "OMRSE_00000209_uid"),
+    ins_OMRSE_00000204 AS (
+            insert into "BW"."OMRSE_00000204" ("OMRSE_00000204_uid")
+                select "OMRSE_00000209_uid"
+                from ins_OMRSE_00000209
+                returning "OMRSE_00000204_uid"),
+    ins_IOIO_0000012 AS (
+            insert into "BW"."IOIO_0000012" ("IOIO_0000012_uid")
+                select "OMRSE_00000204_uid"
+                from ins_OMRSE_00000204
+                returning "IOIO_0000012_uid"),
+    ins_IAO_0000030 AS (
+            insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+                select "IOIO_0000012_uid"
+                from ins_IOIO_0000012
+                returning "IAO_0000030_uid"),
+    ins_BFO_0000031 AS (
+            insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+                select "IAO_0000030_uid"
+                from ins_IAO_0000030
+                returning "BFO_0000031_uid"),
+    ins_BFO_0000002 AS (
+            insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+                select "BFO_0000031_uid"
+                from ins_BFO_0000031
+                returning "BFO_0000002_uid"),
+    ins_BFO_0000001 AS (
+            insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+                select "BFO_0000002_uid"
+                from ins_BFO_0000002
+                returning "BFO_0000001_uid"),
+    ins_Thing AS (
+            insert into "BW"."Thing" ("Thing_uid")
+                select "BFO_0000001_uid"
+                from ins_BFO_0000001
+                returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Insertions pour un intersex datum
+with ins_VO_0004896 AS (
+    insert into "BW"."VO_0004896"("VO_0004896_uid")
+           values ('ice4')
+              returning "VO_0004896_uid"),
+    ins_VO_0001194 AS (
+            insert into "BW"."VO_0001194"("VO_0001194_uid")
+                select "VO_0004896_uid"
+                from ins_VO_0004896
+                returning "VO_0001194_uid"),
+    ins_IOIO_0000012 AS (
+            insert into "BW"."IOIO_0000012"("IOIO_0000012_uid")
+                select "VO_0001194_uid"
+                from ins_VO_0001194
+                returning "IOIO_0000012_uid"),
+    ins_IAO_0000109 AS (
+            insert into "BW"."IAO_0000109"("IAO_0000109_uid")
+                select "VO_0001194_uid"
+                from ins_VO_0001194
+                returning "IAO_0000109_uid"),
+    ins_IAO_0000027 AS (
+            insert into "BW"."IAO_0000027"("IAO_0000027_uid")
+                select "IAO_0000109_uid"
+                from ins_IAO_0000109
+                returning "IAO_0000027_uid"),
+    ins_IAO_0000030 AS (
+            insert into "BW"."IAO_0000030"("IAO_0000030_uid")
+                select "IOIO_0000012_uid"
+                from ins_IOIO_0000012
+                returning "IAO_0000030_uid"),
+    ins_BFO_0000031 AS (
+            insert into "BW"."BFO_0000031"("BFO_0000031_uid")
+                select "IAO_0000030_uid"
+                from ins_IAO_0000030
+                returning "BFO_0000031_uid"),
+    ins_BFO_0000002 AS (
+            insert into "BW"."BFO_0000002"("BFO_0000002_uid")
+                select "BFO_0000031_uid"
+                from ins_BFO_0000031
+                returning "BFO_0000002_uid"),
+    ins_BFO_0000001 AS (
+            insert into "BW"."BFO_0000001"("BFO_0000001_uid")
+                select "BFO_0000002_uid"
+                from ins_BFO_0000002
+                returning "BFO_0000001_uid"),
+    ins_Thing AS (
+            insert into "BW"."Thing"("Thing_uid")
+                select "BFO_0000001_uid"
+                from ins_BFO_0000001
+                returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Insertions pour un non-binary identity ICE
+with ins_OMRSE_00000212 AS (
+    insert into "BW"."OMRSE_00000212"("OMRSE_00000212_uid")
+           values ('ice5')
+              returning "OMRSE_00000212_uid"),
+    ins_OMRSE_00000209 AS (
+            insert into "BW"."OMRSE_00000209"("OMRSE_00000209_uid")
+                select "OMRSE_00000212_uid"
+                from ins_OMRSE_00000212
+                returning "OMRSE_00000209_uid"),
+    ins_IOIO_0000012 AS (
+            insert into "BW"."IOIO_0000012"("IOIO_0000012_uid")
+                select "OMRSE_00000209_uid"
+                from ins_OMRSE_00000209
+                returning "IOIO_0000012_uid"),
+    ins_OMRSE_00000204 AS (
+            insert into "BW"."OMRSE_00000204"("OMRSE_00000204_uid")
+                select "OMRSE_00000209_uid"
+                from ins_OMRSE_00000209
+                returning "OMRSE_00000204_uid"),
+    ins_IAO_0000030 AS (
+            insert into "BW"."IAO_0000030"("IAO_0000030_uid")
+                select "IOIO_0000012_uid"
+                from ins_IOIO_0000012
+                returning "IAO_0000030_uid"),
+    ins_BFO_0000031 AS (
+            insert into "BW"."BFO_0000031"("BFO_0000031_uid")
+                select "IAO_0000030_uid"
+                from ins_IAO_0000030
+                returning "BFO_0000031_uid"),
+    ins_BFO_0000002 AS (
+            insert into "BW"."BFO_0000002"("BFO_0000002_uid")
+                select "BFO_0000031_uid"
+                from ins_BFO_0000031
+                returning "BFO_0000002_uid"),
+    ins_BFO_0000001 AS (
+            insert into "BW"."BFO_0000001"("BFO_0000001_uid")
+                select "BFO_0000002_uid"
+                from ins_BFO_0000002
+                returning "BFO_0000001_uid"),
+    ins_Thing AS (
+            insert into "BW"."Thing"("Thing_uid")
+                select "BFO_0000001_uid"
+                from ins_BFO_0000001
+                returning "Thing_uid")
+select *
+from ins_Thing;

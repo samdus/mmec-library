@@ -18,10 +18,16 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 |Description du cas | Figure fait |Modifier l'ontologie | Modifier la source |Référence|Commentaires
 
 | Illustration du cas général
-| Non
+| Oui
 | Ajout des classes pour le nom d'une personne |
 | 'human name': 'has part' some 'family name'; 'family name' 'has value' exactly 1 String
 | Cas simple avec deux classes, un OP et un DP
+
+| Illustration du cas d'héritage général
+| Oui
+| Idem cas général |
+| 'human name' subClassOf 'identifier' subClassOf 'ICE' subClassOf 'GDC' subClassOf 'Continuant' subClassOf 'entity' subClassOf 'Thing'
+| Cas simple d'héritage jusqu'à Thing
 
 |Héritage multiple
 | Oui
@@ -67,8 +73,8 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 
 |Individuation d'une disjonction
 | Non
-| x |x
-|Ajout d'une disjonction dans l'ontologie: sexe ou genre (voir ioio)  et ajout des 4 cas dans la bd (avec genre ou sexe ou les deux ou aucun)
+| x | x
+|Ajout d'une disjonction dans l'ontologie: sexe ou genre (voir ioio) et ajout des 4 cas dans la bd (avec genre ou sexe ou les deux ou aucun)
 | human biological sex or gender identity information content entity (IOIO:0000012) et ses enfants: HBW:0000023, HBW:0000024 et HBW:0000025
 
 |Individuation d'une combinaison de disjonction et de conjonction
@@ -126,13 +132,13 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 5. Axiome compliquée pour rien -> Paul va y penser
 
 == Import d'une nouvelle version de l'OntoRel
-1. Exécuter OntoRelA en indiquant, à OntoRelA, l'argument: `./humanBodyWeightOntology/ontorela_config"`
+1. Exécuter OntoRelA en indiquant, à OntoRelA, l'argument: `./humanBodyWeightOntology/ontorela_config`
 2. Modifier le fichier OntoGraph.dot pour retirer le patron `[0-9a-zA-Z]+@`
-2. Importer le fichier OntoGraph.dot dans cas_limites_individuation.graffle en glissant et déposant l'icone du fichier sur l'icone de OmniGraffle dans la barre de tâche.
-3. S'assurer que 1000-BW_OntoRelCat_ins est bien conforme à la version de l'OntoRelCat utilisé dans le projet
-4. Créer une instance de la base de données
-5. Générer la figure schemaSpy à l'aide de la commande: `schemaspy-griis-application -t pgsql11 -dp $PG_DRIVER -vizjs -imageformat svg -schemas 'BW' -host localhost -port 25432 -db test -u test -p test -o ./src/test/resources/testset/coverage/humanBodyWeightOntology/SchemaSpy -desc "Documentation de l'OntoRel BW."`
-6. Importer le fichier "src/test/resources/testset/coverage/SchemaSpy/BW/diagrams/summary/relationships.real.large.svg" dans le fichier "cas_limites_individuation.graffle" en glissant et déposant l'icone du fichier dans un nouveau calque.
+3. Importer le fichier OntoGraph.dot dans cas_limites_individuation.graffle en glissant et déposant l'icone du fichier sur l'icone de OmniGraffle dans la barre de tâche.
+4. S'assurer que 1000-BW_OntoRelCat_ins est bien conforme à la version de l'OntoRelCat utilisé dans le projet
+5. Créer une instance de la base de données
+6. Générer la figure schemaSpy à l'aide de la commande: `schemaspy-griis-application -t pgsql11 -dp $PG_DRIVER -vizjs -imageformat svg -host localhost -port 25432 -db test -u test -p test -o ./src/test/resources/testset/coverage/schemaSpy -desc "Documentation de la base de données de couverture." -all -schemaSpec '(?!^information_schema|pg_.+|sys.+).*'`
+7. Importer le fichier "src/test/resources/testset/coverage/schemaSpy/BW/diagrams/summary/relationships.real.large.svg" dans le fichier "cas_limites_individuation.graffle" en glissant et déposant l'icone du fichier dans un nouveau calque.
 
 == Références
 L'ontologie de référence a été développée dans le cadre du développement d'OntoRelA: Khnaisser, C., Lavoie, L., Fraikin, B., Barton, A., Dussault, S., Burgun, A., Ethier, J.-F., 2022. Using an ontology to derive a sharable and interoperable relational data model for heterogeneous healthcare data and various applications. Methods Inf Med a-1877-9498. https://doi.org/10.1055/a-1877-9498

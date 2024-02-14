@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="test" schema="EXP" type="PostgreSQL - 15.3 (Debian 15.3-1.pgdg120+1)">
+   <tables>
+      <table name="CLASSE_MEDICAMENT" numRows="2665" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="DIN_CODE" nullable="false" remarks="" size="255" type="varchar" typeCode="12">
+            <child column="DIN_CODE" foreignKey="MEDICAMENT_DIN_CODE_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDICAMENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ATC_CODE" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="DIN_CODE" sequenceNumberInPK="1"/>
+         <index name="EXP_CLASSE_MEDICAMENT_PK" unique="true">
+            <column ascending="true" name="DIN_CODE"/>
+         </index>
+      </table>
+      <table name="CONSULTATION" numRows="151" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_CONSULTATION_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <child column="ID_CONSULTATION_EXT" foreignKey="MEDICATION_SP_ID_CONSULTATION_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDICATION_SP"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_PATIENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_PATIENT_EXT" foreignKey="CONSULTATION_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PATIENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="DATE_CONS" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ID_MEDECIN_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_MEDECIN_EXT" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="EXP" table="MEDECIN"/>
+         </column>
+         <primaryKey column="ID_CONSULTATION_EXT" sequenceNumberInPK="1"/>
+         <index name="EXP_CONSULTATION_PK" unique="true">
+            <column ascending="true" name="ID_CONSULTATION_EXT"/>
+         </index>
+      </table>
+      <table name="DOSSIER" numRows="29" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_PATIENT_UUID" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_PATIENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_PATIENT_EXT" foreignKey="DOSSIER_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PATIENT"/>
+         </column>
+         <primaryKey column="ID_PATIENT_EXT" sequenceNumberInPK="1"/>
+         <index name="EXP_DOSSIER_PK" unique="true">
+            <column ascending="true" name="ID_PATIENT_EXT"/>
+         </index>
+         <index name="EXP_DOSSIER_UK1" unique="true">
+            <column ascending="true" name="ID_PATIENT_UUID"/>
+         </index>
+      </table>
+      <table name="LABORATOIRE" numRows="347" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_LABORATOIRE_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_PATIENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_PATIENT_EXT" foreignKey="LABORATOIRE_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PATIENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="DATE_PRELEVEMENT" nullable="false" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="VALEUR" nullable="true" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="REF_LABO" nullable="true" remarks="" size="355" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="NOM_TEST" nullable="false" remarks="" size="650" type="varchar" typeCode="12"/>
+         <primaryKey column="ID_LABORATOIRE_EXT" sequenceNumberInPK="1"/>
+         <index name="EXP_LABORATOIRE_PK" unique="true">
+            <column ascending="true" name="ID_LABORATOIRE_EXT"/>
+         </index>
+      </table>
+      <table name="MEDECIN" numRows="4" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_MEDECIN_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <child column="ID_MEDECIN_EXT" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="EXP" table="CONSULTATION"/>
+            <child column="ID_MEDECIN_EXT" foreignKey="MEDECIN_TRAITANT_ID_MEDECIN_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDECIN_TRAITANT"/>
+            <child column="ID_MEDECIN_EXT" foreignKey="PRESCRIPTION_ID_MEDECIN_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PRESCRIPTION"/>
+            <parent column="ID_PERSONNE_EXT" foreignKey="FK_MEDECIN_PERSONNE" implied="false" onDeleteCascade="false" schema="EXP" table="PERSONNE"/>
+         </column>
+         <primaryKey column="ID_MEDECIN_EXT" sequenceNumberInPK="1"/>
+         <index name="EXP_MEDECIN_PK" unique="true">
+            <column ascending="true" name="ID_MEDECIN_EXT"/>
+         </index>
+      </table>
+      <table name="MEDECIN_TRAITANT" numRows="30" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_PATIENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_PATIENT_EXT" foreignKey="MEDECIN_TRAITANT_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PATIENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_MEDECIN_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_MEDECIN_EXT" foreignKey="MEDECIN_TRAITANT_ID_MEDECIN_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDECIN"/>
+         </column>
+         <primaryKey column="ID_PATIENT_EXT" sequenceNumberInPK="1"/>
+         <primaryKey column="ID_MEDECIN_EXT" sequenceNumberInPK="2"/>
+         <index name="EXP_MEDECIN_TRAITANT_PK" unique="true">
+            <column ascending="true" name="ID_PATIENT_EXT"/>
+            <column ascending="true" name="ID_MEDECIN_EXT"/>
+         </index>
+      </table>
+      <table name="MEDICAMENT" numRows="2665" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_MEDICAMENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <child column="ID_MEDICAMENT_EXT" foreignKey="MEDICATION_SP_ID_MEDICAMENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDICATION_SP"/>
+            <child column="ID_MEDICAMENT_EXT" foreignKey="PRESCRIPTION_ID_MEDICAMENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PRESCRIPTION"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="NOM_MEDICAMENT" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="DIN_CODE" nullable="false" remarks="" size="255" type="varchar" typeCode="12">
+            <parent column="DIN_CODE" foreignKey="MEDICAMENT_DIN_CODE_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="CLASSE_MEDICAMENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="FORME" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="FORCE" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="ROUTE" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="ID_MEDICAMENT_EXT" sequenceNumberInPK="1"/>
+         <index name="EXP_MEDICAMENT_PK" unique="true">
+            <column ascending="true" name="ID_MEDICAMENT_EXT"/>
+         </index>
+         <index name="EXP_MEDICAMENT_UK1" unique="true">
+            <column ascending="true" name="DIN_CODE"/>
+         </index>
+      </table>
+      <table name="MEDICATION_SP" numRows="74" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_CONSULTATION_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_CONSULTATION_EXT" foreignKey="MEDICATION_SP_ID_CONSULTATION_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="CONSULTATION"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_MEDICAMENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_MEDICAMENT_EXT" foreignKey="MEDICATION_SP_ID_MEDICAMENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDICAMENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="MOMENT" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+      </table>
+      <table name="PATIENT" numRows="30" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_PATIENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <child column="ID_PATIENT_EXT" foreignKey="CONSULTATION_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="CONSULTATION"/>
+            <child column="ID_PATIENT_EXT" foreignKey="DOSSIER_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="DOSSIER"/>
+            <child column="ID_PATIENT_EXT" foreignKey="LABORATOIRE_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="LABORATOIRE"/>
+            <child column="ID_PATIENT_EXT" foreignKey="MEDECIN_TRAITANT_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDECIN_TRAITANT"/>
+            <child column="ID_PATIENT_EXT" foreignKey="PRESCRIPTION_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PRESCRIPTION"/>
+            <parent column="ID_PERSONNE_EXT" foreignKey="FK_PATIENT_PERSONNE" implied="false" onDeleteCascade="false" schema="EXP" table="PERSONNE"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="DATE_NAISSANCE" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="SEXE" nullable="true" remarks="" size="2147483647" type="&quot;EXP&quot;.&quot;SEXE_OU_IDENTITE_GENRE&quot;" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="CODE_VULN_1" nullable="false" remarks="" size="11" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="CODE_VULN_2" nullable="false" remarks="" size="11" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="CODE_VULN_3" nullable="false" remarks="" size="11" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="POIDS" nullable="true" remarks="" size="11" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="TAILLE" nullable="true" remarks="" size="11" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="SEXE_BIO" nullable="true" remarks="" size="2147483647" type="&quot;EXP&quot;.&quot;SEXE_BIO&quot;" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="IDENTITE_GENRE" nullable="true" remarks="" size="2147483647" type="&quot;EXP&quot;.&quot;IDENTITE_GENRE&quot;" typeCode="12"/>
+         <primaryKey column="ID_PATIENT_EXT" sequenceNumberInPK="1"/>
+         <index name="EXP_PATIENT_PK" unique="true">
+            <column ascending="true" name="ID_PATIENT_EXT"/>
+         </index>
+         <checkConstraint constraint="(((&quot;SEXE&quot; IS NULL) OR ((&quot;SEXE_BIO&quot; IS NULL) AND (&quot;IDENTITE_GENRE&quot; IS NULL))))" name="CK_SEXE_BIO_IDENTITE_GENRE"/>
+      </table>
+      <table name="PERSONNE" numRows="33" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_PERSONNE_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <child column="ID_MEDECIN_EXT" foreignKey="FK_MEDECIN_PERSONNE" implied="false" onDeleteCascade="false" schema="EXP" table="MEDECIN"/>
+            <child column="ID_PATIENT_EXT" foreignKey="FK_PATIENT_PERSONNE" implied="false" onDeleteCascade="false" schema="EXP" table="PATIENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="NOM" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="PRENOM" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <primaryKey column="ID_PERSONNE_EXT" sequenceNumberInPK="1"/>
+         <index name="PERSONNE_pkey" unique="true">
+            <column ascending="true" name="ID_PERSONNE_EXT"/>
+         </index>
+      </table>
+      <table name="PRESCRIPTION" numRows="275" remarks="" schema="EXP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_PRESCRIPTION_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_PATIENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_PATIENT_EXT" foreignKey="PRESCRIPTION_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PATIENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="ID_MEDECIN_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_MEDECIN_EXT" foreignKey="PRESCRIPTION_ID_MEDECIN_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDECIN"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ID_MEDICAMENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+            <parent column="ID_MEDICAMENT_EXT" foreignKey="PRESCRIPTION_ID_MEDICAMENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="MEDICAMENT"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="DEBUT" nullable="false" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="FIN" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="TEXT_DOSAGE" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="ID_PRESCRIPTION_EXT" sequenceNumberInPK="1"/>
+         <index name="EXP_PRESCRIPTION_PK" unique="true">
+            <column ascending="true" name="ID_PRESCRIPTION_EXT"/>
+         </index>
+      </table>
+   </tables>
+</database>

@@ -2,7 +2,6 @@
 \i '/docker-entrypoint-initdb.d/coverage/jedis-griis/02a-EXP_coi.sql'
 \i '/docker-entrypoint-initdb.d/coverage/jedis-griis/04a-EXP_chargement.sql'
 \i '/docker-entrypoint-initdb.d/coverage/jedis-griis/03a-EXP_coe.sql'
-
 \i '/docker-entrypoint-initdb.d/coverage/jedis-griis/05A-EXP_MAJForCoverage.sql'
 
 \i '/docker-entrypoint-initdb.d/coverage/humanBodyWeightOntology/ontorela_config/20240213-1415/DatabaseScripts/100-BW_cre-table_v0_20240213-1415.sql'

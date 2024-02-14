@@ -1,5 +1,0 @@
-date=2024-02-13 11:44:07-0500
-os=Mac OS X 13.6.3
-schemaspy-version=1.0.0-SNAPSHOT
-schemaspy-build=IDE
-renderer=Viz.js 1.7.1 (Graphviz 2.40.1, Expat 2.1.0, Emscripten 1.37.9)
