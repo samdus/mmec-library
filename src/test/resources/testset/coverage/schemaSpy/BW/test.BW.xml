@@ -208,8 +208,8 @@
       <table name="BFO_0000019" numRows="0" remarks="" schema="BW" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000019_uid" nullable="false" remarks="uid quality::Default primary key of quality" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="HBW_0000009_uid" foreignKey="fk0_HBW_0000009" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000009"/>
-            <parent column="ONTORELA_C2986e108-el0_uid" foreignKey="fk1_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
             <parent column="BFO_0000020_uid" foreignKey="fk0_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000020"/>
+            <parent column="ONTORELA_C2986e108-el0_uid" foreignKey="fk1_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
          </column>
          <primaryKey column="BFO_0000019_uid" sequenceNumberInPK="1"/>
          <index name="key_BFO_0000019" unique="true">
@@ -1067,7 +1067,7 @@
             <child column="OBI_0100026_uid" foreignKey="fk1_HBW_0000004_IAO_0000136_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000004_IAO_0000136_OBI_0100026"/>
             <child column="HBW_0000007_uid" foreignKey="fk0_HBW_0000007" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000007"/>
             <child column="NCBITaxon_9606_uid" foreignKey="fk0_NCBITaxon_9606" implied="false" onDeleteCascade="false" schema="BW" table="NCBITaxon_9606"/>
-            <child column="OBI_0100026_uid" foreignKey="fk1_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"/>
+            <child column="OBI_0100026_uid" foreignKey="fk1_ONTORELA_C2986e108_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108_RO_0000052_OBI_0100026"/>
             <parent column="BFO_0000040_uid" foreignKey="fk0_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000040"/>
          </column>
          <primaryKey column="OBI_0100026_uid" sequenceNumberInPK="1"/>
@@ -1100,8 +1100,8 @@
             <child column="OMRSE_00000210_uid" foreignKey="fk0_OMRSE_00000210" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000210"/>
             <child column="OMRSE_00000211_uid" foreignKey="fk0_OMRSE_00000211" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000211"/>
             <child column="OMRSE_00000212_uid" foreignKey="fk0_OMRSE_00000212" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000212"/>
-            <parent column="OMRSE_00000204_uid" foreignKey="fk0_OMRSE_00000209" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000204"/>
             <parent column="IOIO_0000012_uid" foreignKey="fk1_OMRSE_00000209" implied="false" onDeleteCascade="false" schema="BW" table="IOIO_0000012"/>
+            <parent column="OMRSE_00000204_uid" foreignKey="fk0_OMRSE_00000209" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000204"/>
          </column>
          <primaryKey column="OMRSE_00000209_uid" sequenceNumberInPK="1"/>
          <index name="key_OMRSE_00000209" unique="true">
@@ -1137,6 +1137,7 @@
       </table>
       <table name="ONTORELA_C2986e108" numRows="0" remarks="" schema="BW" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+            <child column="ONTORELA_C2986e108_uid" foreignKey="fk0_ONTORELA_C2986e108_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108_RO_0000052_OBI_0100026"/>
             <child column="ONTORELA_C2986e108_uid" foreignKey="fk1_ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108"/>
             <parent column="ONTORELA_C2986e108-el0_uid" foreignKey="fk0_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
          </column>
@@ -1150,7 +1151,6 @@
             <child column="BFO_0000016_uid" foreignKey="fk1_BFO_0000016" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000016"/>
             <child column="BFO_0000019_uid" foreignKey="fk1_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000019"/>
             <child column="ONTORELA_C2986e108_uid" foreignKey="fk0_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108"/>
-            <child column="ONTORELA_C2986e108-el0_uid" foreignKey="fk0_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"/>
             <parent column="Thing_uid" foreignKey="fk0_ONTORELA_C2986e108-el0" implied="false" onDeleteCascade="false" schema="BW" table="Thing"/>
          </column>
          <primaryKey column="ONTORELA_C2986e108-el0_uid" sequenceNumberInPK="1"/>
@@ -1158,17 +1158,17 @@
             <column ascending="true" name="ONTORELA_C2986e108-el0_uid"/>
          </index>
       </table>
-      <table name="ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108-el0_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
-            <parent column="ONTORELA_C2986e108-el0_uid" foreignKey="fk0_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
+      <table name="ONTORELA_C2986e108_RO_0000052_OBI_0100026" numRows="0" remarks="" schema="BW" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+            <parent column="ONTORELA_C2986e108_uid" foreignKey="fk0_ONTORELA_C2986e108_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="OBI_0100026_uid" nullable="false" remarks="uid organism::Default primary key of organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
-            <parent column="OBI_0100026_uid" foreignKey="fk1_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="OBI_0100026"/>
+            <parent column="OBI_0100026_uid" foreignKey="fk1_ONTORELA_C2986e108_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="OBI_0100026"/>
          </column>
-         <primaryKey column="ONTORELA_C2986e108-el0_uid" sequenceNumberInPK="1"/>
+         <primaryKey column="ONTORELA_C2986e108_uid" sequenceNumberInPK="1"/>
          <primaryKey column="OBI_0100026_uid" sequenceNumberInPK="2"/>
-         <index name="key_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" unique="true">
-            <column ascending="true" name="ONTORELA_C2986e108-el0_uid"/>
+         <index name="key_ONTORELA_C2986e108_RO_0000052_OBI_0100026" unique="true">
+            <column ascending="true" name="ONTORELA_C2986e108_uid"/>
             <column ascending="true" name="OBI_0100026_uid"/>
          </index>
       </table>
@@ -1246,8 +1246,8 @@
             <child column="VO_0000613_uid" foreignKey="fk0_VO_0000613" implied="false" onDeleteCascade="false" schema="BW" table="VO_0000613"/>
             <child column="VO_0004895_uid" foreignKey="fk0_VO_0004895" implied="false" onDeleteCascade="false" schema="BW" table="VO_0004895"/>
             <child column="VO_0004896_uid" foreignKey="fk0_VO_0004896" implied="false" onDeleteCascade="false" schema="BW" table="VO_0004896"/>
-            <parent column="IAO_0000109_uid" foreignKey="fk0_VO_0001194" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000109"/>
             <parent column="IOIO_0000012_uid" foreignKey="fk1_VO_0001194" implied="false" onDeleteCascade="false" schema="BW" table="IOIO_0000012"/>
+            <parent column="IAO_0000109_uid" foreignKey="fk0_VO_0001194" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000109"/>
          </column>
          <primaryKey column="VO_0001194_uid" sequenceNumberInPK="1"/>
          <index name="key_VO_0001194" unique="true">

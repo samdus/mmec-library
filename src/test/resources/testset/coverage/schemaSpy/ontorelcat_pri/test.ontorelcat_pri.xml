@@ -129,9 +129,9 @@
       </table>
       <table name="Onto_Data_Axiom" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
+            <parent column="ontorel_id" foreignKey="Onto_Data_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
             <parent column="ontorel_id" foreignKey="Onto_Data_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
             <parent column="ontorel_id" foreignKey="Onto_Data_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
-            <parent column="ontorel_id" foreignKey="Onto_Data_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="domain_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
             <parent column="iri" foreignKey="Onto_Data_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
@@ -200,8 +200,8 @@
       </table>
       <table name="Onto_Data_Property_Range" numRows="0" remarks="" schema="ontorelcat_pri" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Data_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
             <parent column="ontorel_id" foreignKey="Onto_Data_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
+            <parent column="ontorel_id" foreignKey="Onto_Data_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="datatype_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
             <parent column="iri" foreignKey="Onto_Data_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>

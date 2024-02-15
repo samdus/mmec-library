@@ -123,6 +123,11 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
+                                                <td title="Onto_Data_Axiom.[ontorel_id, range_iri] references Onto_Data_Type.[ontorel_id, iri] via Onto_Data_Axiom_fk1"><a href='Onto_Data_Type.html'>Onto_Data_Type</a><span class='relatedKey'>.ontorel_id</span></td>
+                                                <td class="constraint detail">Onto_Data_Axiom_fk1</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td title="Onto_Data_Axiom.[ontorel_id, domain_iri] references Onto_Class.[ontorel_id, iri] via Onto_Data_Axiom_fk0"><a href='Onto_Class.html'>Onto_Class</a><span class='relatedKey'>.ontorel_id</span></td>
                                                 <td class="constraint detail">Onto_Data_Axiom_fk0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
@@ -130,11 +135,6 @@
                                             <tr>
                                                 <td title="Onto_Data_Axiom.[ontorel_id, property_iri] references Onto_Data_Property.[ontorel_id, iri] via Onto_Data_Axiom_fk2"><a href='Onto_Data_Property.html'>Onto_Data_Property</a><span class='relatedKey'>.ontorel_id</span></td>
                                                 <td class="constraint detail">Onto_Data_Axiom_fk2</td>
-                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="Onto_Data_Axiom.[ontorel_id, range_iri] references Onto_Data_Type.[ontorel_id, iri] via Onto_Data_Axiom_fk1"><a href='Onto_Data_Type.html'>Onto_Data_Type</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Onto_Data_Axiom_fk1</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>

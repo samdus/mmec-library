@@ -1,4 +1,4 @@
-date=2024-02-14 14:04:45-0500
+date=2024-02-15 13:59:26-0500
 os=Mac OS X 13.6.3
 schemaspy-version=1.0.0-SNAPSHOT
 schemaspy-build=IDE

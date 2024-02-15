@@ -72,22 +72,22 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 |
 
 |Individuation d'une disjonction
-| Non
+| Oui
 | x | x
 |Ajout d'une disjonction dans l'ontologie: sexe ou genre (voir ioio) et ajout des 4 cas dans la bd (avec genre ou sexe ou les deux ou aucun)
 | human biological sex or gender identity information content entity (IOIO:0000012) et ses enfants: HBW:0000023, HBW:0000024 et HBW:0000025
 
 |Individuation d'une combinaison de disjonction et de conjonction
-| Non
+| Oui
 | X |
 | 'physiological evaluation': SubclassOf: has_specified_output some ('data item' and ('is about' some ((disposition or quality) and ('inheres in' some organism))))
 |
 
 |Individuation lorsque l'enfant n'est qu'une restriction du parent
-| Non
-|  | X
-|weight unit (UO:0000100) = measurement unit label (IAO:0000003) restraint sur le poids
-| Nécessite la table de mesures normalisé (ne contient pas juste des poids)
+| Déjà inclus dans conjonction
+|  |
+| Autre exemple: weight unit (UO:0000100) = measurement unit label (IAO:0000003) restraint sur le poids
+| Nécessiterait une table de mesures normalisée (qui ne contiendrait pas juste des poids)
 
 |Arrimage d'une propriété d'objet défini sur un parent, avec les signatures définies uniquement sur les enfants
 | Non
@@ -111,7 +111,14 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 | Non
 | X |
 | 'weight measurement datum' is_a 'scalar measurement datum'; 'weight unit' is_a 'measurement unit label' ; 'scalar measurement datum' 'has measurement unit label' min 1 'measurement unit label' ; 'has measurement unit label' min 1 'weight unit'
-| Le weight n'est pas spécifié dans la base de données, mais on le génère à partir de notre connaissance de la source.
+| Le weight unit n'est pas spécifié dans la base de données, mais on le génère à partir de notre connaissance de la source.
+
+| Arrimage d'un OP qui sous-type un OP du parent
+| Non
+| X |
+| 'physiological evaluation' 'has evaluant' max 1 'Homo sapiens' ; 'physiological evaluation from health care provider' 'has evaluant' max 1 'health care provider';
+| Voir comment Ontop gère ça, intuitivement on devrait pouvoir ne rien faire de spécial pour que ça fonctionne sans avoir à écrire spécifiquement l'arrimage. On a le mapping pour l'enfant, celui du parent devrait être généré automagiquement.
+
 |===
 
 === Discussion

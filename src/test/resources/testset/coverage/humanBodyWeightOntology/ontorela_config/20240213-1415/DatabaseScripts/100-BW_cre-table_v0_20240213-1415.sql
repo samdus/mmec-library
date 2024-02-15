@@ -793,17 +793,17 @@ COMMENT ON COLUMN "BW"."BFO_0000020_RO_0000059_BFO_0000031"."BFO_0000020_uid" IS
 
 COMMENT ON COLUMN "BW"."BFO_0000020_RO_0000059_BFO_0000031"."BFO_0000031_uid" IS 'uid generically dependent continuant::Default primary key of generically dependent continuant';
 
--- table ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026 definition
-CREATE TABLE "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"
+-- table ONTORELA_C2986e108_RO_0000052_OBI_0100026 definition
+CREATE TABLE "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"
 (
-  "ONTORELA_C2986e108-el0_uid" "BW"."uid_domain"  NOT NULL, 
+  "ONTORELA_C2986e108_uid" "BW"."uid_domain"  NOT NULL,
   "OBI_0100026_uid" "BW"."uid_domain"  NOT NULL,
-  CONSTRAINT "key_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" PRIMARY KEY ("ONTORELA_C2986e108-el0_uid", "OBI_0100026_uid")
+  CONSTRAINT "key_ONTORELA_C2986e108_RO_0000052_OBI_0100026" PRIMARY KEY ("ONTORELA_C2986e108_uid", "OBI_0100026_uid")
 );
 
-COMMENT ON COLUMN "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"."ONTORELA_C2986e108-el0_uid" IS 'uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality';
+COMMENT ON COLUMN "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"."ONTORELA_C2986e108_uid" IS 'uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality';
 
-COMMENT ON COLUMN "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"."OBI_0100026_uid" IS 'uid organism::Default primary key of organism';
+COMMENT ON COLUMN "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"."OBI_0100026_uid" IS 'uid organism::Default primary key of organism';
 
 -- table BFO_0000004_RO_0000087_BFO_0000023 definition
 CREATE TABLE "BW"."BFO_0000004_RO_0000087_BFO_0000023"
@@ -1740,19 +1740,19 @@ ALTER TABLE "BW"."BFO_0000020_RO_0000059_BFO_0000031"
 
 COMMENT ON CONSTRAINT "fk1_BFO_0000020_RO_0000059_BFO_0000031" ON "BW"."BFO_0000020_RO_0000059_BFO_0000031" IS 'specifically dependent continuant concretizes generically dependent continuant -> generically dependent continuant';
 
--- Foreign key definition : ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026 -> ONTORELA_C2986e108-el0
-ALTER TABLE "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"
-  ADD CONSTRAINT "fk0_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" FOREIGN KEY ("ONTORELA_C2986e108-el0_uid")
-    REFERENCES "BW"."ONTORELA_C2986e108-el0" ("ONTORELA_C2986e108-el0_uid");
+-- Foreign key definition : ONTORELA_C2986e108_RO_0000052_OBI_0100026 -> ONTORELA_C2986e108
+ALTER TABLE "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"
+  ADD CONSTRAINT "fk0_ONTORELA_C2986e108_RO_0000052_OBI_0100026" FOREIGN KEY ("ONTORELA_C2986e108_uid")
+    REFERENCES "BW"."ONTORELA_C2986e108" ("ONTORELA_C2986e108_uid");
 
-COMMENT ON CONSTRAINT "fk0_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" ON "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" IS 'physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality inheres in organism -> physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality';
+COMMENT ON CONSTRAINT "fk0_ONTORELA_C2986e108_RO_0000052_OBI_0100026" ON "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026" IS 'physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality inheres in organism -> physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality';
 
--- Foreign key definition : ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026 -> OBI_0100026
-ALTER TABLE "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"
-  ADD CONSTRAINT "fk1_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" FOREIGN KEY ("OBI_0100026_uid")
+-- Foreign key definition : ONTORELA_C2986e108_RO_0000052_OBI_0100026 -> OBI_0100026
+ALTER TABLE "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"
+  ADD CONSTRAINT "fk1_ONTORELA_C2986e108_RO_0000052_OBI_0100026" FOREIGN KEY ("OBI_0100026_uid")
     REFERENCES "BW"."OBI_0100026" ("OBI_0100026_uid");
 
-COMMENT ON CONSTRAINT "fk1_ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" ON "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026" IS 'physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality inheres in organism -> organism';
+COMMENT ON CONSTRAINT "fk1_ONTORELA_C2986e108_RO_0000052_OBI_0100026" ON "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026" IS 'physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality inheres in organism -> organism';
 
 -- Foreign key definition : BFO_0000004_RO_0000087_BFO_0000023 -> BFO_0000004
 ALTER TABLE "BW"."BFO_0000004_RO_0000087_BFO_0000023"
