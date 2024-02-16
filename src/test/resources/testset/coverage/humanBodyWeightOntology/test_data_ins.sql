@@ -1058,7 +1058,7 @@ values ('dt3', 'kgLabel'),
 -- *****************************************************************************
 -- Insertions de DP uniquement sur parent
 -- *****************************************************************************
-
+-- TODO: Ajouter des guillemets français pour les autres valeurs de type string
 insert into "BW"."IAO_0000003_PHYSIO_0000100_string"("IAO_0000003_uid", "IAO_0000003_PHYSIO_0000100_string_PHYSIO_0000100")
 values ('kgLabel', E'«\u00a0kg\u00a0»'),
        ('cmLabel', E'«\u00a0cm\u00a0»');
