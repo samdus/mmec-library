@@ -1,3 +1,7 @@
+-- TODO: Mettre à jour avec le nouvel OntoRel.
+-- TODO: Réutiliser les mêmes uid entre les exemples lorsqu'on réfère à un particulier déjà engendré par ces
+--       informations de la source de données.
+
 -- *****************************************************************************
 -- Insertions pour Héritage multiple
 -- *****************************************************************************
@@ -678,6 +682,7 @@ from ins_Thing;
 
 -- *****************************************************************************
 -- Insertions pour Conjonction de disjonction
+-- TODO: Réutiliser po1 et po2 de l'exemple d'héritage multiple
 -- *****************************************************************************
 
 -- Insertion des instances de physiological evaluation
@@ -841,3 +846,219 @@ values ('out1', 'bow1'),
 insert into "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"("ONTORELA_C2986e108_uid", "OBI_0100026_uid")
 values ('bow1', 'org1'),
        ('bow2', 'org2');
+
+-- *****************************************************************************
+-- Insertions pour arrimage d'Inférence
+-- *****************************************************************************
+
+-- Ajout de obesity1 et obesity2 SubClassOf obesity
+with ins_HBW_0000014 AS (
+    insert into "BW"."HBW_0000014" ("HBW_0000014_uid")
+        values ('obesity1'), ('obesity2')
+        returning "HBW_0000014_uid"),
+     ins_OGMS_0000031 AS (
+         insert into "BW"."OGMS_0000031" ("OGMS_0000031_uid")
+             select "HBW_0000014_uid"
+             from ins_HBW_0000014
+             returning "OGMS_0000031_uid"),
+     ins_BFO_0000016 AS (
+         insert into "BW"."BFO_0000016" ("BFO_0000016_uid")
+             select "OGMS_0000031_uid"
+             from ins_OGMS_0000031
+             returning "BFO_0000016_uid"),
+     "ins_ONTORELA_C2986e108-el0" AS (
+         insert into "BW"."ONTORELA_C2986e108-el0" ("ONTORELA_C2986e108-el0_uid")
+             select "BFO_0000016_uid"
+             from ins_BFO_0000016
+             returning "ONTORELA_C2986e108-el0_uid"),
+     ins_ins_ONTORELA_C2986e108 AS (
+         insert into "BW"."ONTORELA_C2986e108" ("ONTORELA_C2986e108_uid")
+             select "ONTORELA_C2986e108-el0_uid"
+             from "ins_ONTORELA_C2986e108-el0"
+             returning "ONTORELA_C2986e108_uid"),
+     ins_BFO_0000017 AS (
+         insert into "BW"."BFO_0000017" ("BFO_0000017_uid")
+             select "BFO_0000016_uid"
+             from ins_BFO_0000016
+             returning "BFO_0000017_uid"),
+     ins_BFO_0000020 AS (
+         insert into "BW"."BFO_0000020" ("BFO_0000020_uid")
+             select "BFO_0000017_uid"
+             from ins_BFO_0000017
+             returning "BFO_0000020_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000020_uid"
+             from ins_BFO_0000020
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Ajout des organismes org3 et org4
+with ins_OBI_0100026 AS (
+    insert into "BW"."OBI_0100026" ("OBI_0100026_uid")
+        values ('org3'), ('org4')
+        returning "OBI_0100026_uid"),
+     ins_BFO_0000040 AS (
+         insert into "BW"."BFO_0000040" ("BFO_0000040_uid")
+             select "OBI_0100026_uid"
+             from ins_OBI_0100026
+             returning "BFO_0000040_uid"),
+     ins_BFO_0000004 AS (
+         insert into "BW"."BFO_0000004" ("BFO_0000004_uid")
+             select "BFO_0000040_uid"
+             from ins_BFO_0000040
+             returning "BFO_0000004_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000004_uid"
+             from ins_BFO_0000004
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Ajout de obesity1 et obesity2 inheres_in org3 et org4
+insert into "BW"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"("ONTORELA_C2986e108_uid", "OBI_0100026_uid")
+values ('obesity1', 'org3'),
+       ('obesity2', 'org4');
+
+-- *****************************************************************************
+-- Insertions pour un cas de sous-typage de OP
+-- *****************************************************************************
+
+-- Insertion du weight unit et du height unit
+with ins_HBW_0000003 AS (
+    insert into "BW"."HBW_0000003" ("HBW_0000003_uid")
+        values ('kgLabel')
+        returning "HBW_0000003_uid"),
+     ins_IAO_0000003 AS (
+         insert into "BW"."IAO_0000003" ("IAO_0000003_uid")
+             select "HBW_0000003_uid"
+             from ins_HBW_0000003
+             union
+             select 'cmLabel' as "IAO_0000003_uid"
+             returning "IAO_0000003_uid"),
+     ins_IAO_0000009 AS (
+         insert into "BW"."IAO_0000009" ("IAO_0000009_uid")
+             select "IAO_0000003_uid"
+             from ins_IAO_0000003
+             returning "IAO_0000009_uid"),
+     ins_IAO_0000030 AS (
+         insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+             select "IAO_0000009_uid"
+             from ins_IAO_0000009
+             returning "IAO_0000030_uid"),
+     ins_BFO_0000031 AS (
+         insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+             select "IAO_0000030_uid"
+             from ins_IAO_0000030
+             returning "BFO_0000031_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000031_uid"
+             from ins_BFO_0000031
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Insertion des weight measurement datum et des height measurement datum
+with ins_HBW_0000026 AS (
+    insert into "BW"."HBW_0000026" ("HBW_0000026_uid")
+        values ('dt3'), ('dt4')
+        returning "HBW_0000026_uid"),
+     ins_IAO_0000032 AS (
+         insert into "BW"."IAO_0000032" ("IAO_0000032_uid")
+             select "HBW_0000026_uid"
+             from ins_HBW_0000026
+             union
+             select 'dt1' as "IAO_0000032_uid"
+             union
+             select 'dt2' as "IAO_0000032_uid"
+             returning "IAO_0000032_uid"),
+     ins_IAO_0000109 AS (
+         insert into "BW"."IAO_0000109" ("IAO_0000109_uid")
+             select "IAO_0000032_uid"
+             from ins_IAO_0000032
+             returning "IAO_0000109_uid"),
+     ins_IAO_0000027 AS (
+         insert into "BW"."IAO_0000027" ("IAO_0000027_uid")
+             select "IAO_0000109_uid"
+             from ins_IAO_0000109
+             returning "IAO_0000027_uid"),
+     ins_IAO_0000030 AS (
+         insert into "BW"."IAO_0000030" ("IAO_0000030_uid")
+             select "IAO_0000027_uid"
+             from ins_IAO_0000027
+             returning "IAO_0000030_uid"),
+     ins_BFO_0000031 AS (
+         insert into "BW"."BFO_0000031" ("BFO_0000031_uid")
+             select "IAO_0000030_uid"
+             from ins_IAO_0000030
+             returning "BFO_0000031_uid"),
+     ins_BFO_0000002 AS (
+         insert into "BW"."BFO_0000002" ("BFO_0000002_uid")
+             select "BFO_0000031_uid"
+             from ins_BFO_0000031
+             returning "BFO_0000002_uid"),
+     ins_BFO_0000001 AS (
+         insert into "BW"."BFO_0000001" ("BFO_0000001_uid")
+             select "BFO_0000002_uid"
+             from ins_BFO_0000002
+             returning "BFO_0000001_uid"),
+     ins_Thing AS (
+         insert into "BW"."Thing" ("Thing_uid")
+             select "BFO_0000001_uid"
+             from ins_BFO_0000001
+             returning "Thing_uid")
+select *
+from ins_Thing;
+
+-- Insertion des has measurement unit label pour le parent
+insert into "BW"."IAO_0000032_IAO_0000039_IAO_0000003"("IAO_0000032_uid", "IAO_0000003_uid")
+values ('dt1', 'cmLabel'),
+       ('dt2', 'cmLabel'),
+       ('dt3', 'kgLabel'),
+       ('dt4', 'kgLabel');
+
+-- Insertion des has measurement unit label pour l'enfant
+insert into "BW"."HBW_0000026_IAO_0000039_HBW_0000003"("HBW_0000026_uid", "HBW_0000003_uid")
+values ('dt3', 'kgLabel'),
+       ('dt4', 'kgLabel');
+
+-- *****************************************************************************
+-- Insertions de DP uniquement sur parent
+-- *****************************************************************************
+
+insert into "BW"."IAO_0000003_PHYSIO_0000100_string"("IAO_0000003_uid", "IAO_0000003_PHYSIO_0000100_string_PHYSIO_0000100")
+values ('kgLabel', E'«\u00a0kg\u00a0»'),
+       ('cmLabel', E'«\u00a0cm\u00a0»');

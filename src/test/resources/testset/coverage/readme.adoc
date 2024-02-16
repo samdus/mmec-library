@@ -89,11 +89,11 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 | Autre exemple: weight unit (UO:0000100) = measurement unit label (IAO:0000003) restraint sur le poids
 | Nécessiterait une table de mesures normalisée (qui ne contiendrait pas juste des poids)
 
-|Arrimage d'une propriété d'objet défini sur un parent, avec les signatures définies uniquement sur les enfants
-| Non
+|Arrimage d'une propriété défini sur un parent, avec les signatures définies uniquement sur les enfants
+| Oui
 |  |
-|scalar measurement datum (IAO:0000032)
-|Correspond à une autre considération théorique que l'individuation à proprement parler, mais à illustrer quand-même
+| measurement unit label (IAO:0000003) 'has value' exactly 1 String ; 'weight unit' subClassOf 'measurement unit label'
+| Correspond à une autre considération théorique que l'individuation à proprement parler, mais à illustrer quand-même
 
 | Arrimage utilisant des connaissances implicites de la source de données de façon à inférer une signature
 | NA: Même que pour héritage disjoint
@@ -102,22 +102,17 @@ Cette ontologie et cette source de données ont étés développé de sorte à f
 | Ce n'est pas asserté dans l'ontologie, mais c'est un fait de la source
 
 | Arrimage faisant de l'inférence utilisant des opérateurs qui existent en logique des prédicats, mais pas en logique de description
-| Non
+| Oui
 | X | X
-| Ajout des informations concernant l'obésité et l'indicateur d'un physiological evaluation ayant une valeur scalaire > 30 pour le BMI
+| HBW_0000014 inféré à partir de la taille et du poids, avec BMI > 30
 |
 
-| Arrimage d'une situation du style: B is_a A; D is_a C; A op card C; B op card D
-| Non
+| Arrimage d'un sous-typage de OP, ex: B is_a A; D is_a C; A op card C; B op card D
+| Oui
 | X |
 | 'weight measurement datum' is_a 'scalar measurement datum'; 'weight unit' is_a 'measurement unit label' ; 'scalar measurement datum' 'has measurement unit label' min 1 'measurement unit label' ; 'has measurement unit label' min 1 'weight unit'
 | Le weight unit n'est pas spécifié dans la base de données, mais on le génère à partir de notre connaissance de la source.
-
-| Arrimage d'un OP qui sous-type un OP du parent
-| Non
-| X |
-| 'physiological evaluation' 'has evaluant' max 1 'Homo sapiens' ; 'physiological evaluation from health care provider' 'has evaluant' max 1 'health care provider';
-| Voir comment Ontop gère ça, intuitivement on devrait pouvoir ne rien faire de spécial pour que ça fonctionne sans avoir à écrire spécifiquement l'arrimage. On a le mapping pour l'enfant, celui du parent devrait être généré automagiquement.
+Voir comment Ontop gère ça, intuitivement on devrait pouvoir ne rien faire de spécial pour que ça fonctionne sans avoir à écrire spécifiquement l'arrimage. On a le mapping pour l'enfant, celui du parent devrait être généré automagiquement.
 
 |===
 

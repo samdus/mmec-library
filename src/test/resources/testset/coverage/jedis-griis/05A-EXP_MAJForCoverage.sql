@@ -254,6 +254,15 @@ from echantillon
 where "PATIENT"."ID_PATIENT_EXT" = echantillon."ID_PATIENT_EXT"
 returning "PATIENT"."ID_PATIENT_EXT", "PATIENT"."CODE_VULN_1", "PATIENT"."CODE_VULN_2", "PATIENT"."CODE_VULN_3";
 
+-- Requête pour obtenir l'IMC des patients ou les patients obèses
+-- with patient_imc AS (select "ID_PATIENT_EXT", "POIDS", "TAILLE", "POIDS" / ("TAILLE" / 100 * "TAILLE" / 100) as "IMC"
+--                      from "EXP"."PATIENT")
+-- select "ID_PATIENT_EXT", "POIDS" "poids (kg)", "TAILLE" "taille (cm)", round("IMC", 1) "IMC"
+-- from patient_imc
+-- -- where "IMC" >= 30
+-- where "ID_PATIENT_EXT" in ('P0000001', 'P0000002', 'P0000007', 'P0000011')
+-- order by "ID_PATIENT_EXT";
+
 /*
 -- =========================================================================== Z
 Contributeurs :
