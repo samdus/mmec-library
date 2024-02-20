@@ -1,0 +1,141 @@
+
+======================================================= 
+Database Report
+======================================================= 
+
+--------------------------------------- 
+Class-Table Catalog
+--------------------------------------- 
+http://www.w3.org/2002/07/owl#Thing -> Thing::Thing::Thing
+http://purl.obolibrary.org/obo/HBW_0000002 -> HBW_0000002::HBW_0000002::RAMQ vulnerability code
+http://purl.obolibrary.org/obo/VO_0001194 -> VO_0001194::VO_0001194::biological sex datum
+http://purl.obolibrary.org/obo/HBW_0000022 -> HBW_0000022::HBW_0000022::human name
+http://purl.obolibrary.org/obo/HBW_0000010 -> HBW_0000010::HBW_0000010::health care provider role
+http://purl.obolibrary.org/obo/HBW_0000006 -> HBW_0000006::HBW_0000006::medical record identifier
+http://purl.obolibrary.org/obo/IAO_0000009 -> IAO_0000009::IAO_0000009::datum label
+http://purl.obolibrary.org/obo/HBW_0000026 -> HBW_0000026::HBW_0000026::HBW_0000026
+http://purl.obolibrary.org/obo/HBW_0000014 -> HBW_0000014::HBW_0000014::obesity
+http://purl.obolibrary.org/obo/BFO_0000020 -> BFO_0000020::BFO_0000020::specifically dependent continuant
+http://purl.obolibrary.org/obo/BFO_0000040 -> BFO_0000040::BFO_0000040::material entity
+http://purl.obolibrary.org/obo/BFO_0000016 -> BFO_0000016::BFO_0000016::disposition
+http://purl.obolibrary.org/obo/OGMS_0000031 -> OGMS_0000031::OGMS_0000031::disease
+http://purl.obolibrary.org/obo/BFO_0000004 -> BFO_0000004::BFO_0000004::independent continuant
+http://purl.obolibrary.org/obo/IAO_0020015 -> IAO_0020015::IAO_0020015::personal name
+http://purl.obolibrary.org/obo/OMRSE_00000209 -> OMRSE_00000209::OMRSE_00000209::gender identity information content entity
+http://purl.obolibrary.org/obo/OBI_0100026 -> OBI_0100026::OBI_0100026::organism
+http://purl.obolibrary.org/obo/NCBITaxon_9606 -> NCBITaxon_9606::NCBITaxon_9606::Homo sapiens
+http://purl.obolibrary.org/obo/IAO_0000032 -> IAO_0000032::IAO_0000032::scalar measurement datum
+http://purl.obolibrary.org/obo/IOIO_0000012 -> IOIO_0000012::IOIO_0000012::human biological sex or gender identity information content entity
+http://purl.obolibrary.org/obo/HBW_0000013 -> HBW_0000013::HBW_0000013::physiological evaluation from health care provider
+http://purl.obolibrary.org/obo/IAO_0000028 -> IAO_0000028::IAO_0000028::symbol
+http://purl.obolibrary.org/obo/HBW_0000001 -> HBW_0000001::HBW_0000001::physiological data item
+http://purl.obolibrary.org/obo/OMRSE_00000210 -> OMRSE_00000210::OMRSE_00000210::female gender identity information content entity
+http://purl.obolibrary.org/obo/IAO_0000109 -> IAO_0000109::IAO_0000109::measurement datum
+http://purl.obolibrary.org/obo/HBW_0000005 -> HBW_0000005::HBW_0000005::physiological evaluation report
+http://purl.obolibrary.org/obo/HBW_0000025 -> HBW_0000025::HBW_0000025::female biological sex or gender identity information content entity
+http://purl.obolibrary.org/obo/HBW_0000009 -> HBW_0000009::HBW_0000009::body weight
+http://purl.obolibrary.org/obo/NOYO_0000012 -> NOYO_0000012::NOYO_0000012::informational entity
+http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C61c354fb -> ONTORELA_C61c354fb::ONTORELA_C61c354fb::data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+http://purl.obolibrary.org/obo/VO_0004895 -> VO_0004895::VO_0004895::female biological sex datum
+http://purl.obolibrary.org/obo/BFO_0000017 -> BFO_0000017::BFO_0000017::realizable entity
+http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C2986e108-el0 -> ONTORELA_C2986e108-el0::ONTORELA_C2986e108-el0::disposition or quality
+http://purl.obolibrary.org/obo/BFO_0000001 -> BFO_0000001::BFO_0000001::entity
+http://purl.obolibrary.org/obo/IAO_0000310 -> IAO_0000310::IAO_0000310::document
+http://purl.obolibrary.org/obo/IAO_0000003 -> IAO_0000003::IAO_0000003::measurement unit label
+http://purl.obolibrary.org/obo/HBW_0000024 -> HBW_0000024::HBW_0000024::intersex biological sex or non-binary gender identity information content entity
+http://purl.obolibrary.org/obo/OMRSE_00000211 -> OMRSE_00000211::OMRSE_00000211::male gender identity information content entity
+http://purl.obolibrary.org/obo/HBW_0000012 -> HBW_0000012::HBW_0000012::physiological evaluation
+http://purl.obolibrary.org/obo/IAO_0000027 -> IAO_0000027::IAO_0000027::data item
+http://purl.obolibrary.org/obo/VO_0000613 -> VO_0000613::VO_0000613::male biological sex datum
+http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C4d0c3f45 -> ONTORELA_C4d0c3f45::ONTORELA_C4d0c3f45::health care record
+ and (is about some patient)
+http://purl.obolibrary.org/obo/IAO_0020000 -> IAO_0020000::IAO_0020000::identifier
+http://purl.obolibrary.org/obo/HBW_0000004 -> HBW_0000004::HBW_0000004::health care record
+http://purl.obolibrary.org/obo/HBW_0000008 -> HBW_0000008::HBW_0000008::health care provider
+http://purl.obolibrary.org/obo/NOYO_0000013 -> NOYO_0000013::NOYO_0000013::statement
+http://purl.obolibrary.org/obo/OBI_0000011 -> OBI_0000011::OBI_0000011::planned process
+http://purl.obolibrary.org/obo/VO_0004896 -> VO_0004896::VO_0004896::intersex biological sex datum
+http://purl.obolibrary.org/obo/BFO_0000002 -> BFO_0000002::BFO_0000002::continuant
+http://purl.obolibrary.org/obo/IAO_0020017 -> IAO_0020017::IAO_0020017::family name
+http://purl.obolibrary.org/obo/IAO_0000030 -> IAO_0000030::IAO_0000030::information content entity
+http://purl.obolibrary.org/obo/IAO_0000577 -> IAO_0000577::IAO_0000577::centrally registered identifier symbol
+http://purl.obolibrary.org/obo/NOYO_0000050 -> NOYO_0000050::NOYO_0000050::birth statement
+http://purl.obolibrary.org/obo/OMRSE_00000212 -> OMRSE_00000212::OMRSE_00000212::non-binary identity information content entity
+http://purl.obolibrary.org/obo/HBW_0000023 -> HBW_0000023::HBW_0000023::male biological sex or gender identity information content entity
+http://purl.obolibrary.org/obo/HBW_0000011 -> HBW_0000011::HBW_0000011::patient role
+http://purl.obolibrary.org/obo/HBW_0000003 -> HBW_0000003::HBW_0000003::weight unit
+http://purl.obolibrary.org/obo/BFO_0000031 -> BFO_0000031::BFO_0000031::gdc
+http://purl.obolibrary.org/obo/HBW_0000007 -> HBW_0000007::HBW_0000007::patient
+http://purl.obolibrary.org/obo/BFO_0000019 -> BFO_0000019::BFO_0000019::quality
+http://purl.obolibrary.org/obo/BFO_0000023 -> BFO_0000023::BFO_0000023::role
+http://purl.obolibrary.org/obo/BFO_0000015 -> BFO_0000015::BFO_0000015::process
+http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C2986e108 -> ONTORELA_C2986e108::ONTORELA_C2986e108::(disposition or quality)
+ and (inheres in some organism)
+http://purl.obolibrary.org/obo/BFO_0000003 -> BFO_0000003::BFO_0000003::occurrent
+http://purl.obolibrary.org/obo/OMRSE_00000204 -> OMRSE_00000204::OMRSE_00000204::social identity information content entity
+
+--------------------------------------- 
+Type-Table Catalog
+--------------------------------------- 
+
+--------------------------------------- 
+ObjectProperty-Table Catalog
+--------------------------------------- 
+
+--------------------------------------- 
+Axiom-Table Catalog
+--------------------------------------- 
+IAO_0000032 [1..1] IAO_0000004 double -> IAO_0000032_IAO_0000004_double::scalar measurement datum has measurement value
+IAO_0000003 [1..1] PHYSIO_0000100 string -> IAO_0000003_PHYSIO_0000100_string::measurement unit label has value
+IAO_0020017 [1..1] PHYSIO_0000100 string -> IAO_0020017_PHYSIO_0000100_string::family name has value
+HBW_0000026 [1..*] IAO_0000004 decimal -> HBW_0000026_IAO_0000004_decimal::HBW_0000026 has measurement value
+IAO_0000577 [1..1] PHYSIO_0000100 string -> IAO_0000577_PHYSIO_0000100_string::centrally registered identifier symbol has value
+HBW_0000002 [1..1] PHYSIO_0000100 string -> HBW_0000002_PHYSIO_0000100_string::RAMQ vulnerability code has value
+IAO_0000032 [1..*] IAO_0000004 Literal -> IAO_0000032_IAO_0000004_Literal::scalar measurement datum has measurement value
+IAO_0020015 [1..1] PHYSIO_0000100 string -> IAO_0020015_PHYSIO_0000100_string::personal name has value
+HBW_0000022 [1..*] BFO_0000051 IAO_0020017 -> HBW_0000022_BFO_0000051_IAO_0020017::human name has_part family name
+HBW_0000022 [1..*] BFO_0000051 IAO_0020015 -> HBW_0000022_BFO_0000051_IAO_0020015::human name has_part personal name
+HBW_0000022 [1..*] IAO_0000219 NCBITaxon_9606 -> HBW_0000022_IAO_0000219_NCBITaxon_9606::human name denotes Homo sapiens
+HBW_0000006 [1..1] IAO_0000219 ONTORELA_C4d0c3f45 -> HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45::medical record identifier denotes health care record
+ and (is about some patient)
+HBW_0000026 [1..*] IAO_0000039 HBW_0000003 -> HBW_0000026_IAO_0000039_HBW_0000003::HBW_0000026 has measurement unit label weight unit
+BFO_0000020 [1..*] RO_0000059 BFO_0000031 -> BFO_0000020_RO_0000059_BFO_0000031::specifically dependent continuant concretizes gdc
+BFO_0000004 [1..*] RO_0000087 BFO_0000023 -> BFO_0000004_RO_0000087_BFO_0000023::independent continuant has role role
+BFO_0000004 [1..*] RO_0001025 BFO_0000004 -> BFO_0000004_RO_0001025_BFO_0000004::independent continuant located in independent continuant
+IAO_0000032 [1..*] IAO_0000039 IAO_0000003 -> IAO_0000032_IAO_0000039_IAO_0000003::scalar measurement datum has measurement unit label measurement unit label
+HBW_0000013 [1..1] PHYSIO_0000089 HBW_0000008 -> HBW_0000013_PHYSIO_0000089_HBW_0000008::physiological evaluation from health care provider has evaluant health care provider
+HBW_0000001 [1..*] OBI_0000312 HBW_0000012 -> HBW_0000001_OBI_0000312_HBW_0000012::physiological data item is_specified_output_of physiological evaluation
+IAO_0000109 [1..1] IAO_0000039 IAO_0000003 -> IAO_0000109_IAO_0000039_IAO_0000003::measurement datum has measurement unit label measurement unit label
+HBW_0000005 [1..1] BFO_0000051 HBW_0000006 -> HBW_0000005_BFO_0000051_HBW_0000006::physiological evaluation report has_part medical record identifier
+HBW_0000005 [1..*] BFO_0000051 HBW_0000001 -> HBW_0000005_BFO_0000051_HBW_0000001::physiological evaluation report has_part physiological data item
+ONTORELA_C61c354fb [1..*] IAO_0000136 ONTORELA_C2986e108 -> ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108::data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism))) is about (disposition or quality)
+ and (inheres in some organism)
+BFO_0000017 [1..*] BFO_0000054 BFO_0000015 -> BFO_0000017_BFO_0000054_BFO_0000015::realizable entity realized in process
+BFO_0000001 [1..*] BFO_0000050 BFO_0000001 -> BFO_0000001_BFO_0000050_BFO_0000001::entity part of entity
+HBW_0000012 [1..*] OBI_0000299 ONTORELA_C61c354fb -> HBW_0000012_OBI_0000299_ONTORELA_C61c354fb::physiological evaluation has_specified_output data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+HBW_0000012 [1..1] PHYSIO_0000089 NCBITaxon_9606 -> HBW_0000012_PHYSIO_0000089_NCBITaxon_9606::physiological evaluation has evaluant Homo sapiens
+ONTORELA_C4d0c3f45 [1..*] IAO_0000136 HBW_0000007 -> ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007::health care record
+ and (is about some patient) is about patient
+IAO_0020000 [1..*] IAO_0000219 BFO_0000001 -> IAO_0020000_IAO_0000219_BFO_0000001::identifier denotes entity
+HBW_0000004 [1..*] IAO_0000136 OBI_0100026 -> HBW_0000004_IAO_0000136_OBI_0100026::health care record is about organism
+HBW_0000008 [1..*] RO_0000087 HBW_0000010 -> HBW_0000008_RO_0000087_HBW_0000010::health care provider has role health care provider role
+BFO_0000002 [1..*] RO_0000056 BFO_0000003 -> BFO_0000002_RO_0000056_BFO_0000003::continuant participates in occurrent
+IAO_0000030 [1..*] IAO_0000136 BFO_0000001 -> IAO_0000030_IAO_0000136_BFO_0000001::information content entity is about entity
+IAO_0000030 [1..*] IAO_0000219 BFO_0000001 -> IAO_0000030_IAO_0000219_BFO_0000001::information content entity denotes entity
+NOYO_0000050 [1..*] IAO_0000136 NCBITaxon_9606 -> NOYO_0000050_IAO_0000136_NCBITaxon_9606::birth statement is about Homo sapiens
+BFO_0000031 [1..*] RO_0000058 BFO_0000020 -> BFO_0000031_RO_0000058_BFO_0000020::gdc is concretized as specifically dependent continuant
+HBW_0000007 [1..*] RO_0000087 HBW_0000011 -> HBW_0000007_RO_0000087_HBW_0000011::patient has role patient role
+BFO_0000015 [1..*] BFO_0000055 BFO_0000017 -> BFO_0000015_BFO_0000055_BFO_0000017::process realizes realizable entity
+ONTORELA_C2986e108 [1..*] RO_0000052 OBI_0100026 -> ONTORELA_C2986e108_RO_0000052_OBI_0100026::(disposition or quality)
+ and (inheres in some organism) inheres in organism
+BFO_0000003 [1..*] BFO_0000066 BFO_0000004 -> BFO_0000003_BFO_0000066_BFO_0000004::occurrent occurs in independent continuant
+BFO_0000003 [1..*] RO_0000057 BFO_0000002 -> BFO_0000003_RO_0000057_BFO_0000002::occurrent has participant continuant

@@ -1,0 +1,266 @@
+
+======================================================= 
+Long view identifiers anomalies
+======================================================= 
+  Note : if the identifier is long, the IRI idenfiers will be used.
+
+--------------------------------------- 
+Long view name and attributes identifiers
+--------------------------------------- 
+Table Thing
+
+Table HBW_0000002
+
+Table VO_0001194
+
+Table HBW_0000022
+
+Table HBW_0000010
+
+Table HBW_0000006
+
+Table IAO_0000009
+
+Table HBW_0000026
+
+Table HBW_0000014
+
+Table BFO_0000020
+
+Table BFO_0000040
+
+Table BFO_0000016
+
+Table OGMS_0000031
+
+Table BFO_0000004
+
+Table IAO_0020015
+
+Table OMRSE_00000209
+
+Table OBI_0100026
+
+Table NCBITaxon_9606
+
+Table IAO_0000032
+
+Table IOIO_0000012
+  View name @en: human biological sex or gender identity information content entity
+    View attribute @en: uid human biological sex or gender identity information content entity
+
+Table HBW_0000013
+
+Table IAO_0000028
+
+Table HBW_0000001
+
+Table OMRSE_00000210
+
+Table IAO_0000109
+
+Table HBW_0000005
+
+Table HBW_0000025
+  View name @en: female biological sex or gender identity information content entity
+    View attribute @en: uid female biological sex or gender identity information content entity
+
+Table HBW_0000009
+
+Table NOYO_0000012
+
+Table ONTORELA_C61c354fb
+  View name @en: data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+    View attribute @en: uid data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+
+Table VO_0004895
+
+Table BFO_0000017
+
+Table ONTORELA_C2986e108-el0
+
+Table BFO_0000001
+
+Table IAO_0000310
+
+Table IAO_0000003
+
+Table HBW_0000024
+  View name @en: intersex biological sex or non-binary gender identity information content entity
+    View attribute @en: uid intersex biological sex or non-binary gender identity information content entity
+
+Table OMRSE_00000211
+
+Table HBW_0000012
+
+Table IAO_0000027
+
+Table VO_0000613
+
+Table ONTORELA_C4d0c3f45
+
+Table IAO_0020000
+
+Table HBW_0000004
+
+Table HBW_0000008
+
+Table NOYO_0000013
+
+Table OBI_0000011
+
+Table VO_0004896
+
+Table BFO_0000002
+
+Table IAO_0020017
+
+Table IAO_0000030
+
+Table IAO_0000577
+
+Table NOYO_0000050
+
+Table OMRSE_00000212
+
+Table HBW_0000023
+  View name @en: male biological sex or gender identity information content entity
+    View attribute @en: uid male biological sex or gender identity information content entity
+
+Table HBW_0000011
+
+Table HBW_0000003
+
+Table BFO_0000031
+
+Table HBW_0000007
+
+Table BFO_0000019
+
+Table BFO_0000023
+
+Table BFO_0000015
+
+Table ONTORELA_C2986e108
+
+Table BFO_0000003
+
+Table OMRSE_00000204
+
+Table IAO_0000032_IAO_0000004_double
+
+Table IAO_0000003_PHYSIO_0000100_string
+
+Table IAO_0020017_PHYSIO_0000100_string
+
+Table HBW_0000026_IAO_0000004_decimal
+
+Table IAO_0000577_PHYSIO_0000100_string
+
+Table HBW_0000002_PHYSIO_0000100_string
+
+Table IAO_0000032_IAO_0000004_Literal
+
+Table IAO_0020015_PHYSIO_0000100_string
+
+Table HBW_0000022_BFO_0000051_IAO_0020017
+
+Table HBW_0000022_BFO_0000051_IAO_0020015
+
+Table HBW_0000022_IAO_0000219_NCBITaxon_9606
+
+Table HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45
+  View name @en: medical record identifier denotes health care record
+ and (is about some patient)
+
+Table HBW_0000026_IAO_0000039_HBW_0000003
+
+Table BFO_0000020_RO_0000059_BFO_0000031
+
+Table BFO_0000004_RO_0000087_BFO_0000023
+
+Table BFO_0000004_RO_0001025_BFO_0000004
+
+Table IAO_0000032_IAO_0000039_IAO_0000003
+  View name @en: scalar measurement datum has measurement unit label measurement unit label
+
+Table HBW_0000013_PHYSIO_0000089_HBW_0000008
+  View name @en: physiological evaluation from health care provider has evaluant health care provider
+
+Table HBW_0000001_OBI_0000312_HBW_0000012
+  View name @en: physiological data item is_specified_output_of physiological evaluation
+
+Table IAO_0000109_IAO_0000039_IAO_0000003
+  View name @en: measurement datum has measurement unit label measurement unit label
+
+Table HBW_0000005_BFO_0000051_HBW_0000006
+  View name @en: physiological evaluation report has_part medical record identifier
+
+Table HBW_0000005_BFO_0000051_HBW_0000001
+  View name @en: physiological evaluation report has_part physiological data item
+
+Table ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108
+  View name @en: data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism))) is about (disposition or quality)
+ and (inheres in some organism)
+    View attribute @en: uid data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+
+Table BFO_0000017_BFO_0000054_BFO_0000015
+
+Table BFO_0000001_BFO_0000050_BFO_0000001
+
+Table HBW_0000012_OBI_0000299_ONTORELA_C61c354fb
+  View name @en: physiological evaluation has_specified_output data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+    View attribute @en: uid data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+
+Table HBW_0000012_PHYSIO_0000089_NCBITaxon_9606
+
+Table ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007
+  View name @en: health care record
+ and (is about some patient) is about patient
+
+Table IAO_0020000_IAO_0000219_BFO_0000001
+
+Table HBW_0000004_IAO_0000136_OBI_0100026
+
+Table HBW_0000008_RO_0000087_HBW_0000010
+
+Table BFO_0000002_RO_0000056_BFO_0000003
+
+Table IAO_0000030_IAO_0000136_BFO_0000001
+
+Table IAO_0000030_IAO_0000219_BFO_0000001
+
+Table NOYO_0000050_IAO_0000136_NCBITaxon_9606
+
+Table BFO_0000031_RO_0000058_BFO_0000020
+
+Table HBW_0000007_RO_0000087_HBW_0000011
+
+Table BFO_0000015_BFO_0000055_BFO_0000017
+
+Table ONTORELA_C2986e108_RO_0000052_OBI_0100026
+  View name @en: (disposition or quality)
+ and (inheres in some organism) inheres in organism
+
+Table BFO_0000003_BFO_0000066_BFO_0000004
+
+Table BFO_0000003_RO_0000057_BFO_0000002
+
