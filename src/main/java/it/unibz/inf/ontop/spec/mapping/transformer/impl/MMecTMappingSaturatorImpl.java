@@ -34,7 +34,7 @@ package it.unibz.inf.ontop.spec.mapping.transformer.impl;
  * limitations under the License.
  * #L%
  *
- * NOTE: 
+ * NOTE:
  * This class is a copy of it.unibz.inf.ontop.spec.mapping.transformer.impl.TMappingSaturatorImpl
  * that has been modified to use MMecTMappingRules
  */
