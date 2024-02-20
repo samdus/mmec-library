@@ -101,6 +101,9 @@ public class IndividuationFunctionQueryTransformer extends
 
         return termFactory.getMMecSignatureFunction(argTypes, arguments);
       } else {
+        // TODO: Vérifier pourquoi est-ce qu'un exception est lancée ici lorsqu'on a une définition
+        //       d'union au premier niveau.
+        //       ex: Classe http://www.griis.ca/projects/tst
         throw new UnsupportedOperationException(
             "The first argument of the RDF term function must be a functional term. It is used by"
                 + " Ontop to generate the IRI and used in MMec as the identifier for the signature"
