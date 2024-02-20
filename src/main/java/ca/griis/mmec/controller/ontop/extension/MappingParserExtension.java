@@ -17,12 +17,16 @@ import ca.griis.mmec.model.MMecTriplesMap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import eu.optique.r2rml.api.model.TriplesMap;
+import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
+import it.unibz.inf.ontop.spec.mapping.PrefixManager;
+import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.inject.Inject;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.rdf4j.RDF4J;
@@ -61,6 +65,15 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  */
 public class MappingParserExtension {
 
+  private final SQLPPMappingFactory ppMappingFactory;
+  private final RDF4J rdf;
+
+  @Inject
+  public MappingParserExtension(SQLPPMappingFactory ppMappingFactory, RDF4J rdf) {
+    this.ppMappingFactory = ppMappingFactory;
+    this.rdf = rdf;
+  }
+
   /**
    * @brief @~english «Description of the function»
    * @param mappingGraph «Parameter description»
@@ -82,6 +95,31 @@ public class MappingParserExtension {
   }
 
   /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param tripleMaps «Parameter description»
+   * @param sourceMappings «Parameter description»
+   * @param prefixManager «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french «Description de la méthode»
+   * @param mappingGraph «Description du paramètre»
+   * @param tripleMaps «Description du paramètre»
+   * @param sourceMappings «Description du paramètre»
+   * @param prefixManager «Description du paramètre»
+   * @return «Description du retour»
+   *
+   * @par Tâches
+   *    S.O.
+   */
+  public SQLPPMapping getExtendedMapping(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
+      ImmutableList<SQLPPTriplesMap> sourceMappings, PrefixManager prefixManager) {
+    ImmutableList<SQLPPTriplesMap> extendedSourceMapping = getTriplesMap(mappingGraph, tripleMaps,
+        sourceMappings);
+    return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
+  }
+
+  /**
    * @brief @~english «Description of the function»
    * @param mappingGraph «Parameter description»
    * @param tripleMaps «Parameter description»
@@ -98,16 +136,15 @@ public class MappingParserExtension {
    * @par Tâches
    *      S.O.
    */
-  public ImmutableList<SQLPPTriplesMap> getTriplesMapBeforePreprocess(Graph mappingGraph,
+  private ImmutableList<SQLPPTriplesMap> getTriplesMap(Graph mappingGraph,
       Collection<TriplesMap> tripleMaps, ImmutableList<SQLPPTriplesMap> mapping) {
-    RDF4J rdf = new RDF4J();
     ImmutableList<MMecTriplesMap> sourceMappings =
         mapping.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
 
     // Voici un exemple de comment réassocier les triplets de fonctions custom au mapping généré :
     Map<TriplesMap, List<TriplesMap>> hasSubset =
-        mappingGraph.stream(null, rdf.createIRI("http://www.griis.ca/projects/relrel#subsets"),
-            null).map(
+        mappingGraph.stream(null, rdf.createIRI("http://www.griis.ca/projects/mmec/subsets"),
+                null).map(
                 axiom -> new ImmutablePair<>(
                     tripleMaps.stream()
                         .filter(triple -> triple.getNode().equals(axiom.getSubject()))
@@ -120,13 +157,13 @@ public class MappingParserExtension {
     hasSubset.forEach(
         (supersetMapping, subsetMappingList) -> subsetMappingList.forEach(subsetMapping -> {
           MMecTriplesMap superSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", supersetMapping.hashCode())))
+                  sourceMapping -> sourceMapping.getId()
+                      .equals(String.format("mapping-%s", supersetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
-          SQLPPTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", subsetMapping.hashCode())))
+          MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
+                  sourceMapping -> sourceMapping.getId()
+                      .equals(String.format("mapping-%s", subsetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
 

@@ -33,8 +33,14 @@ package it.unibz.inf.ontop.spec.mapping.transformer.impl;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
+ *
+ * NOTE: 
+ * This class is a copy of it.unibz.inf.ontop.spec.mapping.transformer.impl.TMappingSaturatorImpl
+ * that has been modified to use MMecTMappingRules
  */
 
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPPMappingAssertionProvenance;
+import ca.griis.mmec.controller.ontop.spec.mapping.transformer.impl.MMecTMappingEntry;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -120,40 +126,44 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
     // but the same IRI cannot be an object and a data or annotation property name at the same time
     // see https://www.w3.org/TR/owl2-new-features/#F12:_Punning
 
-    ImmutableMap<MappingAssertionIndex, Collection<TMappingRule>> original =
+    ImmutableMap<MappingAssertionIndex, Collection<MMecTMappingRule>> original =
         mapping.stream().flatMap(a -> unionSplitter.splitUnion(
-            unionNormalizer.optimize(a.getQuery())).map(
-                IQ::normalizeForOptimization) // replaces join equalities
-            .map(q -> mappingCqcOptimizer.optimize(cqc, q))
-            .map(q -> Maps.immutableEntry(a.getIndex(), new TMappingRule(q, coreSingletons))))
-            .collect(ImmutableCollectors.toMultimap()).asMap();
+                    unionNormalizer.optimize(a.getQuery()))
+                .map(IQ::normalizeForOptimization) // replaces join equalities
+                .map(q -> mappingCqcOptimizer.optimize(cqc, q))
+                .map(q -> Maps.immutableEntry(a.getIndex(), new MMecTMappingRule(
+                    (MMecPPMappingAssertionProvenance) a.getProvenance(), q,
+                    coreSingletons)))
+            )
+            .collect(ImmutableCollectors.toMultimap())
+            .asMap();
 
-    ImmutableMap<MappingAssertionIndex, ImmutableList<TMappingRule>> saturated =
+    ImmutableMap<MappingAssertionIndex, ImmutableList<MMecTMappingRule>> saturated =
         original.keySet().stream().map(MappingAssertionIndex::getPredicate).distinct().map(
-            rdfAtomPredicate -> new TMappingRuleHeadConstructorProvider(rdfAtomPredicate,
-                termFactory))
+                rdfAtomPredicate -> new TMappingRuleHeadConstructorProvider(rdfAtomPredicate,
+                    termFactory))
             .flatMap(provider -> Stream.concat(Stream.concat(
-                reasoner.objectPropertiesDAG().stream().filter(
-                    node -> !node.getRepresentative().isInverse()
-                        && !tmappingExclusionConfig.contains(
-                            node.getRepresentative()))
-                    .flatMap(node -> node.getMembers().stream()
-                        .filter(d -> !d.isInverse() || d.getInverse() != node.getRepresentative())
-                        .map(
-                            saturator(node, reasoner.objectPropertiesDAG(), original,
-                                provider::constructor,
-                                cqc))),
+                    reasoner.objectPropertiesDAG().stream().filter(
+                            node -> !node.getRepresentative().isInverse()
+                                && !tmappingExclusionConfig.contains(
+                                node.getRepresentative()))
+                        .flatMap(node -> node.getMembers().stream()
+                            .filter(d -> !d.isInverse() || d.getInverse() != node.getRepresentative())
+                            .map(
+                                saturator(node, reasoner.objectPropertiesDAG(), original,
+                                    provider::constructor,
+                                    cqc))),
 
-                reasoner.dataPropertiesDAG().stream()
-                    .filter(node -> !tmappingExclusionConfig.contains(node.getRepresentative()))
-                    .flatMap(node -> node.getMembers().stream().map(
-                        saturator(node, reasoner.dataPropertiesDAG(), original,
-                            provider::constructor,
-                            cqc)))),
+                    reasoner.dataPropertiesDAG().stream()
+                        .filter(node -> !tmappingExclusionConfig.contains(node.getRepresentative()))
+                        .flatMap(node -> node.getMembers().stream().map(
+                            saturator(node, reasoner.dataPropertiesDAG(), original,
+                                provider::constructor,
+                                cqc)))),
 
                 reasoner.classesDAG().stream().filter(
-                    node -> node.getRepresentative() instanceof OClass
-                        && !tmappingExclusionConfig.contains((OClass) node.getRepresentative()))
+                        node -> node.getRepresentative() instanceof OClass
+                            && !tmappingExclusionConfig.contains((OClass) node.getRepresentative()))
                     .flatMap(
                         node -> node.getMembers().stream().filter(d -> d instanceof OClass).map(
                             saturator(node, reasoner.classesDAG(), original, provider::constructor,
@@ -161,42 +171,45 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
             .filter(e -> !e.getValue().isEmpty()).collect(ImmutableCollectors.toMap());
 
-    ImmutableMap<MappingAssertionIndex, ImmutableList<TMappingRule>> combined = Stream.concat(
-        saturated.entrySet().stream(),
-        original.entrySet().stream().filter(e -> !saturated.containsKey(e.getKey())).map(
-            e -> Maps.immutableEntry(e.getKey(),
-                e.getValue().stream().collect(TMappingEntry.toTMappingEntry(cqc, coreSingletons)))))
+    ImmutableMap<MappingAssertionIndex, ImmutableList<MMecTMappingRule>> combined = Stream.concat(
+            saturated.entrySet().stream(),
+            original.entrySet().stream().filter(e -> !saturated.containsKey(e.getKey())).map(
+                e -> Maps.immutableEntry(e.getKey(),
+                    e.getValue().stream().collect(
+                        MMecTMappingEntry.toMMecTMappingEntry(cqc, coreSingletons)))))
         .collect(ImmutableCollectors.toMap());
 
     return combined.entrySet().stream().map(
         e -> new MappingAssertion(e.getKey(), toIQ(e.getValue()), null)).collect(
-            ImmutableCollectors.toList());
+        ImmutableCollectors.toList());
   }
 
-  private IQ toIQ(Collection<TMappingRule> rules) {
+  private IQ toIQ(Collection<MMecTMappingRule> rules) {
     return queryMerger.mergeDefinitions(
-        rules.stream().map(r -> r.asIQ(coreSingletons)).collect(ImmutableCollectors.toList())).get()
+            rules.stream().map(r -> r.asIQ(coreSingletons)).collect(ImmutableCollectors.toList())).get()
         .normalizeForOptimization();
   }
 
-  private <T> Function<T, Map.Entry<MappingAssertionIndex, ImmutableList<TMappingRule>>> saturator(
+  private <T> Function<T, Map.Entry<MappingAssertionIndex, ImmutableList<MMecTMappingRule>>> saturator(
       Equivalences<T> node, EquivalencesDAG<T> dag,
-      ImmutableMap<MappingAssertionIndex, Collection<TMappingRule>> original,
+      ImmutableMap<MappingAssertionIndex, Collection<MMecTMappingRule>> original,
       Function<T, TMappingRuleHeadConstructor> constructor,
       ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc) {
 
     IRIConstant iri = constructor.apply(node.getRepresentative()).getIri();
 
-    ImmutableList<TMappingRule> saturatedRepresentative = dag.getSub(node).stream().flatMap(
-        subnode -> subnode.getMembers().stream()).map(constructor).flatMap(
+    ImmutableList<MMecTMappingRule> saturatedRepresentative = dag.getSub(node).stream().flatMap(
+            subnode -> subnode.getMembers().stream()).map(constructor).flatMap(
             t -> original.getOrDefault(t.indexOf(), ImmutableList.of()).stream()
-                .map(m -> new TMappingRule(t.getArguments(m.getHeadTerms(), iri), m)))
+                .map(m -> new MMecTMappingRule(m.getProvenance(), t.getArguments(m.getHeadTerms(), iri),
+                    m)))
         .collect(
-            TMappingEntry.toTMappingEntry(cqc, coreSingletons));
+            MMecTMappingEntry.toMMecTMappingEntry(cqc, coreSingletons));
 
     return constructor.andThen(t -> Maps.immutableEntry(t.indexOf(),
         saturatedRepresentative.stream()
-            .map(m -> new TMappingRule(t.getArguments(m.getHeadTerms(), t.getIri()), m))
+            .map(m -> new MMecTMappingRule(m.getProvenance(),
+                t.getArguments(m.getHeadTerms(), t.getIri()), m))
             .collect(ImmutableCollectors.toList())));
   }
 

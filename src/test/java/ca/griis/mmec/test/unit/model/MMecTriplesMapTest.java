@@ -49,8 +49,8 @@ public class MMecTriplesMapTest {
 
   @Test
   public void setUp() {
-    SQLPPTriplesMap supersetTripleMap = Mockito.mock(SQLPPTriplesMap.class);
-    SQLPPTriplesMap subsetTripleMap = Mockito.mock(SQLPPTriplesMap.class);
+    MMecTriplesMap supersetTripleMap = Mockito.mock(MMecTriplesMap.class);
+    MMecTriplesMap subsetTripleMap = Mockito.mock(MMecTriplesMap.class);
 
     MMecTriplesMap mmecTriplesMap = new MMecTriplesMap(supersetTripleMap);
     mmecTriplesMap.addSubset(subsetTripleMap);

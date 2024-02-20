@@ -13,6 +13,9 @@
 
 package ca.griis.mmec.model;
 
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPPMappingAssertionProvenance;
+import it.unibz.inf.ontop.spec.mapping.TargetAtom;
+import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import it.unibz.inf.ontop.spec.mapping.pp.impl.R2RMLSQLPPtriplesMap;
 import java.util.ArrayList;
@@ -48,7 +51,7 @@ import java.util.List;
  *      S.O.
  */
 public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
-  private final List<SQLPPTriplesMap> subSetList = new ArrayList<>();
+  private final List<MMecTriplesMap> subSetList = new ArrayList<>();
 
   /**
    * @brief @~english «Description of the method»
@@ -56,11 +59,6 @@ public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
    *
    * @brief @~french Constructeur par défaut.
    * @param sqlppTriplesMap Le SQLPPTriplesMap à étendre.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
-   * @par Tâches
-   *      S.O.
    */
   public MMecTriplesMap(SQLPPTriplesMap sqlppTriplesMap) {
     super(sqlppTriplesMap.getId(), sqlppTriplesMap.getSourceQuery(),
@@ -73,13 +71,8 @@ public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
    *
    * @brief @~french Obtenir la liste des sous-ensembles de l'expression d'arrimage.
    * @return La liste des sous-ensembles de l'expression d'arrimage.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
-   * @par Tâches
-   *      S.O.
    */
-  public List<SQLPPTriplesMap> getSubsetList() {
+  public List<MMecTriplesMap> getSubsetList() {
     return subSetList;
   }
 
@@ -89,13 +82,13 @@ public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
    *
    * @brief @~french Ajouter une expression d'arrimage sous-ensemble à l'expression d'arrimage.
    * @param subset L'expression d'arrimage à ajouter comme sous-ensemble.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
-   * @par Tâches
-   *      S.O.
    */
-  public void addSubset(SQLPPTriplesMap subset) {
+  public void addSubset(MMecTriplesMap subset) {
     subSetList.add(subset);
+  }
+
+  @Override
+  public PPMappingAssertionProvenance getMappingAssertionProvenance(TargetAtom targetAtom) {
+    return new MMecPPMappingAssertionProvenance(targetAtom, this);
   }
 }
