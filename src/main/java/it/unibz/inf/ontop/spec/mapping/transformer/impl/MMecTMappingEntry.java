@@ -10,8 +10,9 @@
  * @brief @~french Implémentation de la classe MMecTMappingEntry.
  * @brief @~english MMecTMappingEntry class implementation.
  */
-package ca.griis.mmec.controller.ontop.spec.mapping.transformer.impl;
+package it.unibz.inf.ontop.spec.mapping.transformer.impl;
 
+import ca.griis.mmec.controller.ontop.extension.TMappingEntryExtension;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterators;
@@ -25,7 +26,6 @@ import it.unibz.inf.ontop.model.term.ImmutableExpression;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.model.term.Variable;
-import it.unibz.inf.ontop.spec.mapping.transformer.impl.MMecTMappingRule;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -67,14 +67,9 @@ import java.util.stream.Stream;
  *      S.O.
  */
 public class MMecTMappingEntry {
-  public MMecTMappingEntry(ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc,
-      CoreSingletons coreSingletons) {
-    this.cqc = cqc;
-    this.termFactory = coreSingletons.getTermFactory();
-    this.coreSingletons = coreSingletons;
-  }
 
-  public static Collector<MMecTMappingRule, MMecTMappingEntry, ImmutableList<MMecTMappingRule>> toMMecTMappingEntry(
+  public static Collector<MMecTMappingRule, MMecTMappingEntry, ImmutableList<MMecTMappingRule>>
+  toMMecTMappingEntry(
       ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc,
       CoreSingletons coreSingletons) {
     return Collector.of(
@@ -89,6 +84,15 @@ public class MMecTMappingEntry {
   private final ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc;
   private final TermFactory termFactory;
   private final CoreSingletons coreSingletons;
+  private TMappingEntryExtension tMecTMappingEntryExtension;
+
+  public MMecTMappingEntry(ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc,
+      CoreSingletons coreSingletons) {
+    this.cqc = cqc;
+    this.termFactory = coreSingletons.getTermFactory();
+    this.coreSingletons = coreSingletons;
+    this.tMecTMappingEntryExtension = new TMappingEntryExtension(rules);
+  }
 
   public MMecTMappingEntry add(MMecTMappingRule rule) {
     mergeMappingsWithCQC(rule);
@@ -107,22 +111,21 @@ public class MMecTMappingEntry {
 
 
   /***
-   *
    * This is an optimization mechanism that allows T-mappings to reduce
    * the number of mapping assertions. The unfolding will then produce fewer queries.
-   *
+   * <br>
    * The method
    *    (1) removes a mapping assertion from rules if it is subsumed by the given assertion
-   *
+   * <br>
    *    (2) does not add the assertion if it is subsumed by one of the rules
-   *
+   * <br>
    *    (3) merges the given assertion into an existing assertion if their database atoms
    *        are homomorphically equivalent
-   *
+   * <br>
    *    (4) does not add the assertion if it is a subset of another assertion
-   *
+   * <br>
    *    (5) removes any assertion that is a subset of the given assertion
-   *
+   * <br>
    * For example, if we are given
    *     S(x,z) :- R(x,y,z), y = 2
    * and rules contains
@@ -231,16 +234,9 @@ public class MMecTMappingEntry {
         }
       }
 
-      // Do not add the new rule if another rule is a superset of the new rule
-      if (rules.stream().anyMatch(
-          potentialSuperSet -> potentialSuperSet.getProvenance().getmMecTriplesMap().getSubsetList()
-              .contains(assertion.getProvenance().getmMecTriplesMap()))) {
+      if (tMecTMappingEntryExtension.extensionResultsInMerge(assertion)) {
         return;
       }
-      // Remove any rule that are subset of the new rule
-      Iterators.removeIf(rules.iterator(), potentialSubSet ->
-          assertion.getProvenance().getmMecTriplesMap().getSubsetList().contains(
-              potentialSubSet.getProvenance().getmMecTriplesMap()));
     }
     rules.add(assertion);
   }

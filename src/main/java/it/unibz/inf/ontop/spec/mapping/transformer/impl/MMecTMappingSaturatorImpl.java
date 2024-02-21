@@ -40,7 +40,6 @@ package it.unibz.inf.ontop.spec.mapping.transformer.impl;
  */
 
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPPMappingAssertionProvenance;
-import ca.griis.mmec.controller.ontop.spec.mapping.transformer.impl.MMecTMappingEntry;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;

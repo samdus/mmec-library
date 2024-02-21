@@ -260,3 +260,48 @@ logiciel --> Résultat
 
 === FN03 - Vérifier Arrimage
 
+== Conception détaillée
+
+=== Architecture du code
+Le package "api" contient la classe principale de l'API. Il s'agit de la porte d'entrée de la bibliothèque.
+
+Le code le patron de conception principal est MVC. C'est-à-dire que la représentation de l'arrimage
+est définie dans les classes du package "view", les objets manipulés par l'arrimage sont définis dans les classes
+du package "model" et les classes du package "controller" permettent de manipuler les objets du modèle de façon à
+générer l'arrimage.
+
+Le package "repository" est défini pour toutes les interactions avec des bases de données qui ne passe pas par la
+bibliothèque Ontop. Par exemple, la classe "OntoRelRepository" permet de manipuler les objets de l'OntoRel.
+
+Le package "properties" contient les classes permettant de manipuler les propriétés de l'arrimage.
+
+Un package "it.unibz.inf.ontop" est défini pour toutes les classes qui ont dû être copiées de Ontop pour introduire un
+comportement spécifique à mMec à l'intérieur des traîtements de Ontop ou des classes qui ont dû être définies dans un
+package de Ontop de sorte à pouvoir utiliser certaines propriétés ou constructeurs package protected. Ces classes ne
+sont pas sujettes à la couverture de test et doivent être maintenus à chaque nouvelle version d'Ontop. Ce faisant, il
+faut limiter au maximum le nombre de classes ajoutées dans ce package et les dérivations entre le code original et le
+code de mMec. C'est pourquoi un package du contrôleur "controller.ontop.extension" est défini pour séparer les nouveaux
+traitements de ceux d'Ontop.
+
+Plusieurs classes du package "controller.ontop" sont basées sur des classes de Ontop et en change le comportement.
+L'idée est de pouvoir configurer l'injection Guice de Ontop pour utiliser les classes de mMec à la place des classes
+de Ontop. Cette configuration est majoritairement faite dans le fichier de propriété :
+"src/main/resources/defaultConfiguration.properties", mais également dans la classe
+it.unibz.inf.ontop.injection.impl.MMecModule.
+
+[plantuml, architecture, svg]
+----
+@startuml Architecture
+
+package api {
+    class MMecFacadeService
+}
+
+package view {
+    class MMEcFacadeView
+}
+
+package model {
+    class MMecFacade
+    class MMecTriplesMap
+}
