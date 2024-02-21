@@ -45,9 +45,14 @@ import java.util.stream.Stream;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french «Brève description de la composante (classe, interface, ...)»
+ * @brief @~french Classe permettant
  * @par Détails
- *      S.O.
+ *      Il s'agit d'une copie de "it.unibz.inf.ontop.spec.mapping.transformer.impl.TMappingEntry"
+ *      dans laquelle on a ajouté un traitement lors de l'étape de fusion des règles.
+ *      <br>
+ *      Ce traitement fait en sorte de ne pas ajouter une règle si elle est défini comme
+ *      sous-ensemble d'une autre règle et supprime les règles qui sont définies comme sous-ensemble
+ *      de la règle à ajouter.
  * @par Modèle
  *      S.O.
  * @par Conception
@@ -113,6 +118,10 @@ public class MMecTMappingEntry {
    *
    *    (3) merges the given assertion into an existing assertion if their database atoms
    *        are homomorphically equivalent
+   *
+   *    (4) does not add the assertion if it is a subset of another assertion
+   *
+   *    (5) removes any assertion that is a subset of the given assertion
    *
    * For example, if we are given
    *     S(x,z) :- R(x,y,z), y = 2
