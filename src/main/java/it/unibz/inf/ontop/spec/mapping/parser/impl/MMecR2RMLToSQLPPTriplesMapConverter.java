@@ -198,7 +198,7 @@ public class MMecR2RMLToSQLPPTriplesMapConverter {
 		String sourceQuery;
 
 		if (robm.getJoinConditions().isEmpty() &&
-				!parent.getLogicalTable().getSQLQuery().trim().equals(tm.getLogicalTable().getSQLQuery().trim())) {
+				parent.getLogicalTable().getSQLQuery().trim().equals(tm.getLogicalTable().getSQLQuery().trim())) {
 			sub = ob = Stream.of(Stream.of(extractedSubject, extractedObject),
 							extractedPredicates.stream(), extractedGraphs.stream())
 					.flatMap(s -> s)
