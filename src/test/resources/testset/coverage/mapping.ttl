@@ -1,28 +1,19 @@
-@prefix isc: <http://resource.geosciml.org/classifier/ics/ischart/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rr:  <http://www.w3.org/ns/r2rml#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix isc:  <http://resource.geosciml.org/classifier/ics/ischart/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rr:   <http://www.w3.org/ns/r2rml#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix mmec: <http://www.griis.ca/projects/mmec/> .
-@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
 
-# ****************************************************************************************
-# Classes mappings
-# ****************************************************************************************
-# 'human body mass measurement datum'
-<Mapping:humanBodyMassMeasurementDatum>
-    a               rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "SELECT \"ID_PATIENT_EXT\" FROM \"EXP\".\"PATIENT\" where \"POIDS\" IS NOT NULL" ] ;
-    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
-                      rr:class    obo:PHYSIO_0000065 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/humanBodyMassMeasurementDatum/{\"ID_PATIENT_EXT\"}" ;
-                      rr:termType rr:IRI ] .
+# ----------------------------------------------------------------------------------------------------------------------
+# Classes
+# ----------------------------------------------------------------------------------------------------------------------
 
 # health care record
 <Mapping:healthCareRecord>
-    a rr:TriplesMap ;
+    a               rr:TriplesMap ;
     rr:logicalTable [ a           rr:R2RMLView ;
-                       rr:sqlQuery "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\"" ] ;
+                      rr:sqlQuery "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\"" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:HBW_0000004 ;
                       rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/healthCareRecord/{\"ID_PATIENT_UUID\"}" ;
@@ -30,10 +21,73 @@
 
 # ONTORELA_C002aX (health care record and (is about exactly 1 patient))
 <Mapping:ONTORELA_C002aX>
-    a rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\" WHERE \"ID_PATIENT_EXT\" IS NOT NULL" ] ;
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a rr:R2RMLView ;
+                      rr:sqlQuery
+                        "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\" WHERE \"ID_PATIENT_EXT\" IS NOT NULL" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:HBW_0000004 ;
                       rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/healthCareRecord/{\"ID_PATIENT_UUID\"}" ;
                       rr:termType rr:IRI ] .
+
+
+# scalar measurement datum
+<Mapping:IAO_0000032>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\" where \"TAILLE\" is not null" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:IAO_0000032 ;
+                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/IAO_0000032/{\"ID_PATIENT_EXT\"}" ;
+                      rr:termType rr:IRI ] .
+
+# weight measurement datum
+<Mapping:HBW_0000026>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\" where \"POIDS\" is not null" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:HBW_0000026 ;
+                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/HBW_0000026/{\"ID_PATIENT_EXT\"}" ;
+                      rr:termType rr:IRI ] .
+
+# measurement unit label
+<Mapping:IAO_0000003>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "select 'cm' as \"label\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:IAO_0000003 ;
+                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/IAO_0000003/{\"label\"}" ;
+                      rr:termType rr:IRI ] .
+
+# weight unit
+<Mapping:HBW_0000003>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "select 'kg' as \"label\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:HBW_0000003 ;
+                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/HBW_0000003/{\"label\"}" ;
+                      rr:termType rr:IRI ] .
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Object Properties
+# ----------------------------------------------------------------------------------------------------------------------
+# 'scalar measurement datum' 'has measurement unit label' 'measurement unit label'
+<Mapping:IAO_0000032>
+    rr:predicateObjectMap [ rr:predicate obo:IAO_0000039 ;
+                            rr:objectMap [ rr:parentTriplesMap <Mapping:IAO_0000003> ;
+                                            ] ] .
+
+# 'scalar measurement datum' 'has measurement unit label' 'measurement unit label'
+<Mapping:HBW_0000026>
+    rr:predicateObjectMap [ rr:predicate obo:IAO_0000039 ;
+                            rr:objectMap [ rr:parentTriplesMap <Mapping:HBW_0000003> ;
+                                            ] ] .
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Data Properties
+# ----------------------------------------------------------------------------------------------------------------------
+
+

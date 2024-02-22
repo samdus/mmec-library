@@ -209,7 +209,7 @@ public class R2rmlTester extends OntopTester {
           new Var("rdf_type_uri",
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
           new Var("uid_uri",
-              valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000004"), true));
 
       QueryRoot queryRoot = new QueryRoot(classStatement);
 
@@ -245,17 +245,17 @@ public class R2rmlTester extends OntopTester {
           new Var("rdf_type_uri",
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
           new Var("sub_uri",
-              valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0004X"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000032"), true));
 
       StatementPattern objStatement = new StatementPattern(new Var("obj"),
           new Var("rdf_type_uri",
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
           new Var("obj_uri",
-              valueFactory.createIRI("http://www.griis.ca/projects/ONTORELA_C0006X"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000003"), true));
 
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("op_uri",
-              valueFactory.createIRI("http://www.griis.ca/projects/rel"), true),
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000039"), true),
           new Var("obj"));
 
       Join subAndObjJoin = new Join(subStatement, objStatement);

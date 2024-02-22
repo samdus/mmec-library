@@ -73,8 +73,8 @@ public class PreliminaryTests {
   @Test
   public void specificTest() throws Exception {
     OntopTester tester = new R2rmlTester(postgresContainerWrapper,
-        Paths.get("src", "test", "resources", "testset", "simple", "ontology.ttl").toFile(),
-        Paths.get("src", "test", "resources", "testset", "simple", "mapping.ttl").toFile());
+        Paths.get("src", "test", "resources", "testset", "coverage", "ontology.ttl").toFile(),
+        Paths.get("src", "test", "resources", "testset", "coverage", "mapping.ttl").toFile());
     tester.runTest();
   }
 
