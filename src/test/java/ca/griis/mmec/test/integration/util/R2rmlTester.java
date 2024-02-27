@@ -57,12 +57,13 @@ public class R2rmlTester extends OntopTester {
 
   @Override
   public void runTest() throws Exception {
-    // String withAutomaticInjectors = testWithAutomaticInjector();
+//    String withAutomaticInjectors = testWithAutomaticInjector();
+//    System.out.println(withAutomaticInjectors);
     // String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
-    testGetDefinitions();
+        testGetDefinitions();
   }
 
   public String testWithAutomaticInjector() throws OBDASpecificationException {
@@ -177,10 +178,9 @@ public class R2rmlTester extends OntopTester {
 
   private void testGetDefinitions()
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
-    configuration.loadSpecification();
 
     // TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
-    // expressions relationnelles vides.
+    //       expressions relationnelles vides.
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
@@ -305,11 +305,11 @@ public class R2rmlTester extends OntopTester {
           new Var("rdf_type_uri",
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
           new Var("sub_uri",
-              valueFactory.createIRI("http://www.griis.ca/projects/tst"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000003"), true));
 
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("dp_uri",
-              valueFactory.createIRI("http://www.griis.ca/projects/has_value"), true),
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/PHYSIO_0000100"), true), //has_value
           new Var("val"));
 
       Join relJoin = new Join(subStatement, relStatement);

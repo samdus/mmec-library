@@ -82,8 +82,15 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
     if (iq.getTree() instanceof EmptyNode) {
       return iq;
     } else {
-      IQ sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)
-          .normalizeForOptimization();
+      IQ sourceQuery;
+      try {
+        sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)
+            .normalizeForOptimization();
+      } catch (UnsupportedOperationException e) {
+        throw new MMecNotFullyTranslatableToNativeQueryException(
+            "TODO: Comprendre pourquoi le DP génère une exception ici, "
+                + "voir dans la classe originale de ontop");
+      }
 
       if (!(sourceQuery.getTree() instanceof NativeNode)) {
         throw new MMecNotFullyTranslatableToNativeQueryException(

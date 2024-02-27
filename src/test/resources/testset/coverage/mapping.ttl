@@ -16,7 +16,7 @@
                       rr:sqlQuery "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\"" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:HBW_0000004 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/healthCareRecord/{\"ID_PATIENT_UUID\"}" ;
+                      rr:template "http://purl.obolibrary.org/obo/HBW_0000004/{\"ID_PATIENT_UUID\"}" ;
                       rr:termType rr:IRI ] .
 
 # ONTORELA_C002aX (health care record and (is about exactly 1 patient))
@@ -26,10 +26,21 @@
                       rr:sqlQuery
                         "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\" WHERE \"ID_PATIENT_EXT\" IS NOT NULL" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
-                      rr:class    obo:HBW_0000004 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/healthCareRecord/{\"ID_PATIENT_UUID\"}" ;
-                      rr:termType rr:IRI ] .
+                      rr:class    <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C4d0c3f45> ;
+                      rr:template "http://purl.obolibrary.org/obo/ONTORELA_C002aX/{\"ID_PATIENT_UUID\"}" ;
+                      rr:termType rr:IRI ] ;
+    mmec:subsets    <Mapping:healthCareRecord> .
 
+# Homo sapiens patients
+<Mapping:HomoSapiensPatients>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:HBW_0000007 ;
+                      rr:class    obo:NCBITaxon_9606 ;
+                      rr:template "http://purl.obolibrary.org/obo/HBW_0000007_NCBITaxon_9606/{\"ID_PATIENT_EXT\"}" ;
+                      rr:termType rr:IRI ] .
 
 # scalar measurement datum
 <Mapping:IAO_0000032>
@@ -38,7 +49,7 @@
                       rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\" where \"TAILLE\" is not null" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:IAO_0000032 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/IAO_0000032/{\"ID_PATIENT_EXT\"}" ;
+                      rr:template "http://purl.obolibrary.org/obo/IAO_0000032/{\"ID_PATIENT_EXT\"}" ;
                       rr:termType rr:IRI ] .
 
 # weight measurement datum
@@ -48,27 +59,29 @@
                       rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\" where \"POIDS\" is not null" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:HBW_0000026 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/HBW_0000026/{\"ID_PATIENT_EXT\"}" ;
+                      rr:template "http://purl.obolibrary.org/obo/HBW_0000026/{\"ID_PATIENT_EXT\"}" ;
                       rr:termType rr:IRI ] .
 
 # measurement unit label
 <Mapping:IAO_0000003>
     a               rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "select 'cm' as \"label\"" ] ;
+    rr:logicalTable [ a rr:R2RMLView ;
+                      rr:sqlQuery
+                        "select \"ID_PATIENT_EXT\", 'cm' as \"label\" from \"EXP\".\"PATIENT\" where \"TAILLE\" is not null" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:IAO_0000003 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/IAO_0000003/{\"label\"}" ;
+                      rr:template "http://purl.obolibrary.org/obo/IAO_0000003/{\"label\"}" ;
                       rr:termType rr:IRI ] .
 
 # weight unit
 <Mapping:HBW_0000003>
     a               rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "select 'kg' as \"label\"" ] ;
+    rr:logicalTable [ a rr:R2RMLView ;
+                      rr:sqlQuery
+                        "select \"ID_PATIENT_EXT\", 'kg' as \"label\" from \"EXP\".\"PATIENT\" where \"POIDS\" is not null" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:HBW_0000003 ;
-                      rr:template "http://purl.obolibrary.org/obo/humanbodyweight-appli/jedis/HBW_0000003/{\"label\"}" ;
+                      rr:template "http://purl.obolibrary.org/obo/HBW_0000003/{\"label\"}" ;
                       rr:termType rr:IRI ] .
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -78,16 +91,26 @@
 <Mapping:IAO_0000032>
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000039 ;
                             rr:objectMap [ rr:parentTriplesMap <Mapping:IAO_0000003> ;
-                                            ] ] .
+                                           rr:joinCondition    [ rr:child  "\"ID_PATIENT_EXT\"" ;
+                                                                 rr:parent "\"ID_PATIENT_EXT\"" ] ] ] .
 
 # 'scalar measurement datum' 'has measurement unit label' 'measurement unit label'
 <Mapping:HBW_0000026>
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000039 ;
                             rr:objectMap [ rr:parentTriplesMap <Mapping:HBW_0000003> ;
-                                            ] ] .
+                                           rr:joinCondition    [ rr:child  "\"ID_PATIENT_EXT\"" ;
+                                                                 rr:parent "\"ID_PATIENT_EXT\"" ] ] ] .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Data Properties
 # ----------------------------------------------------------------------------------------------------------------------
+# measurement unit label 'has value' 'cm'
+<Mapping:IAO_0000003>
+    rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
+                            rr:objectMap [ rr:column "label" ] ] .
 
+# weight unit 'has value' 'kg'
+<Mapping:HBW_0000003>
+    rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
+                            rr:objectMap [ rr:column "label" ] ] .
 

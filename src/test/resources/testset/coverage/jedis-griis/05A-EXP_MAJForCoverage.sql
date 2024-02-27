@@ -19,6 +19,18 @@ Statut : en vigueur
 
 /*
 -- =====
+-- Modifier DOSSIER pour permettre à une personne d'avoir plusieurs dossiers et aussi à un dossier
+-- de n'être à propos d'aucun patient (ex: hospitalisation d'une personne inconsciente sans papier).
+-- =====
+ */
+alter table "EXP"."DOSSIER"
+    drop constraint "EXP_DOSSIER_PK",
+    drop constraint "EXP_DOSSIER_UK1",
+    add constraint "EXP_DOSSIER_PK" PRIMARY KEY ("ID_PATIENT_UUID"),
+    alter column "ID_PATIENT_EXT" drop not null;
+
+/*
+-- =====
 -- Ajout d'une table PERSONNE qui sert à regrouper les patients et les médecins.
 -- =====
  */
