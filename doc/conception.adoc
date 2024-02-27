@@ -289,19 +289,3 @@ de Ontop. Cette configuration est majoritairement faite dans le fichier de propr
 "src/main/resources/defaultConfiguration.properties", mais également dans la classe
 it.unibz.inf.ontop.injection.impl.MMecModule.
 
-[plantuml, architecture, svg]
-----
-@startuml Architecture
-
-package api {
-    class MMecFacadeService
-}
-
-package view {
-    class MMEcFacadeView
-}
-
-package model {
-    class MMecFacade
-    class MMecTriplesMap
-}
