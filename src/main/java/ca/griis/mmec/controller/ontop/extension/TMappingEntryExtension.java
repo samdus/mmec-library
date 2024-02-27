@@ -44,11 +44,6 @@ import java.util.List;
  *      S.O.
  */
 public class TMappingEntryExtension {
-  private final List<MMecTMappingRule> rules;
-
-  public TMappingEntryExtension(List<MMecTMappingRule> rules) {
-    this.rules = rules;
-  }
 
   /**
    * @brief @~english «Description of the method»
@@ -66,12 +61,12 @@ public class TMappingEntryExtension {
    * @param assertion La nouvelle règle en ajout
    * @return Vrai si la nouvelle règle ne devrait pas être ajoutée
    */
-  public boolean extensionResultsInMerge(MMecTMappingRule assertion) {
-    if (isSubsetOfAlreadyPresentRule(assertion)) {
+  public boolean extensionResultsInMerge(List<MMecTMappingRule> rules, MMecTMappingRule assertion) {
+    if (isSubsetOfAlreadyPresentRule(rules, assertion)) {
       return true;
     }
 
-    removeSubsets(assertion);
+    removeSubsets(rules, assertion);
     return false;
   }
 
@@ -82,7 +77,7 @@ public class TMappingEntryExtension {
    * @brief @~french Supprime toute règle qui est un sous-ensemble de la nouvelle règle
    * @param assertion La nouvelle règle en ajout
    */
-  public void removeSubsets(MMecTMappingRule assertion) {
+  public void removeSubsets(List<MMecTMappingRule> rules, MMecTMappingRule assertion) {
     Iterators.removeIf(rules.iterator(), potentialSubSet ->
         assertion.getProvenance().getmMecTriplesMap().getSubsetList().contains(
             potentialSubSet.getProvenance().getmMecTriplesMap()));
@@ -97,7 +92,7 @@ public class TMappingEntryExtension {
    * @param assertion La nouvelle règle à vérifier
    * @return Vrai si la nouvelle règle est un sous-ensemble d'une règle déjà présente
    */
-  public boolean isSubsetOfAlreadyPresentRule(MMecTMappingRule assertion) {
+  public boolean isSubsetOfAlreadyPresentRule(List<MMecTMappingRule> rules, MMecTMappingRule assertion) {
     return rules.stream().anyMatch(
         potentialSuperSet -> potentialSuperSet.getProvenance().getmMecTriplesMap().getSubsetList()
             .contains(assertion.getProvenance().getmMecTriplesMap()));

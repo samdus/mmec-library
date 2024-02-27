@@ -39,6 +39,7 @@ package it.unibz.inf.ontop.spec.mapping.transformer.impl;
  * that has been modified to use MMecTMappingRules
  */
 
+import ca.griis.mmec.controller.ontop.extension.TMappingEntryExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPPMappingAssertionProvenance;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -95,12 +96,14 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
   private final UnionBasedQueryMerger queryMerger;
   private final CoreUtilsFactory coreUtilsFactory;
   private final CoreSingletons coreSingletons;
+  private final TMappingEntryExtension tMappingEntryExtension;
 
   @Inject
   public MMecTMappingSaturatorImpl(TMappingExclusionConfig tmappingExclusionConfig,
       QueryUnionSplitter unionSplitter, UnionFlattener unionNormalizer,
       MappingCQCOptimizer mappingCqcOptimizer, UnionBasedQueryMerger queryMerger,
-      CoreSingletons coreSingletons) {
+      CoreSingletons coreSingletons,
+      TMappingEntryExtension tMappingEntryExtension) {
     this.tmappingExclusionConfig = tmappingExclusionConfig;
     this.atomFactory = coreSingletons.getAtomFactory();
     this.termFactory = coreSingletons.getTermFactory();
@@ -110,6 +113,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
     this.queryMerger = queryMerger;
     this.coreUtilsFactory = coreSingletons.getCoreUtilsFactory();
     this.coreSingletons = coreSingletons;
+    this.tMappingEntryExtension = tMappingEntryExtension;
   }
 
   @Override
@@ -175,7 +179,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
             original.entrySet().stream().filter(e -> !saturated.containsKey(e.getKey())).map(
                 e -> Maps.immutableEntry(e.getKey(),
                     e.getValue().stream().collect(
-                        MMecTMappingEntry.toMMecTMappingEntry(cqc, coreSingletons)))))
+                        MMecTMappingEntry.toMMecTMappingEntry(cqc, coreSingletons, tMappingEntryExtension)))))
         .collect(ImmutableCollectors.toMap());
 
     return combined.entrySet().stream().map(
@@ -203,7 +207,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
                 .map(m -> new MMecTMappingRule(m.getProvenance(), t.getArguments(m.getHeadTerms(), iri),
                     m)))
         .collect(
-            MMecTMappingEntry.toMMecTMappingEntry(cqc, coreSingletons));
+            MMecTMappingEntry.toMMecTMappingEntry(cqc, coreSingletons, tMappingEntryExtension));
 
     return constructor.andThen(t -> Maps.immutableEntry(t.indexOf(),
         saturatedRepresentative.stream()

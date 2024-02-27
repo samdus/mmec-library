@@ -71,9 +71,9 @@ public class MMecTMappingEntry {
   public static Collector<MMecTMappingRule, MMecTMappingEntry, ImmutableList<MMecTMappingRule>>
   toMMecTMappingEntry(
       ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc,
-      CoreSingletons coreSingletons) {
+      CoreSingletons coreSingletons, TMappingEntryExtension tMecTMappingEntryExtension) {
     return Collector.of(
-        () -> new MMecTMappingEntry(cqc, coreSingletons), // Supplier
+        () -> new MMecTMappingEntry(cqc, coreSingletons, tMecTMappingEntryExtension), // Supplier
         MMecTMappingEntry::add, // Accumulator
         (b1, b2) -> b1.addAll(b2.build().iterator()), // Merger
         MMecTMappingEntry::build, // Finisher
@@ -84,14 +84,14 @@ public class MMecTMappingEntry {
   private final ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc;
   private final TermFactory termFactory;
   private final CoreSingletons coreSingletons;
-  private TMappingEntryExtension tMecTMappingEntryExtension;
+  private final TMappingEntryExtension tMecTMappingEntryExtension;
 
   public MMecTMappingEntry(ImmutableCQContainmentCheckUnderLIDs<RelationPredicate> cqc,
-      CoreSingletons coreSingletons) {
+      CoreSingletons coreSingletons, TMappingEntryExtension tMecTMappingEntryExtension) {
     this.cqc = cqc;
     this.termFactory = coreSingletons.getTermFactory();
     this.coreSingletons = coreSingletons;
-    this.tMecTMappingEntryExtension = new TMappingEntryExtension(rules);
+    this.tMecTMappingEntryExtension = tMecTMappingEntryExtension;
   }
 
   public MMecTMappingEntry add(MMecTMappingRule rule) {
@@ -234,7 +234,7 @@ public class MMecTMappingEntry {
         }
       }
 
-      if (tMecTMappingEntryExtension.extensionResultsInMerge(assertion)) {
+      if (tMecTMappingEntryExtension.extensionResultsInMerge(rules, assertion)) {
         return;
       }
     }
