@@ -18,25 +18,39 @@ import javax.annotation.Nonnull;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details «Detailed description of the component (optional)»
- * @par Model «Model (Abstract, automation, etc.) (optional)»
- * @par Conception «Conception description (criteria and constraints) (optional)»
- * @par Limits «Limits description (optional)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
  * @brief @~french Classe de configuration pour le module MMec
- * @par Détails S.O.
- * @par Modèle S.O.
- * @par Conception S.O.
- * @par Limites S.O.
- * @par Historique 2024-01-29 [SD] - Implémentation initiale<br>
- * @par Tâches S.O.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-01-29 [SD] - Implémentation initiale<br>
+ *
+ * @par Tâches
+ *      S.O.
  */
 public class MMecConfiguration extends MmecOntopSqlOwlApiConfigurationImpl {
 
   private final FacadeProperties facadeProperties;
   private final MappingProperties mappingProperties;
 
-  MMecConfiguration(OntopStandaloneSQLSettings settings,
-      MmecOntopSqlOwlApiOptions options, @Nonnull FacadeProperties facadeProperties,
+  MMecConfiguration(@Nonnull OntopStandaloneSQLSettings settings,
+      @Nonnull MmecOntopSqlOwlApiOptions options,
+      @Nonnull FacadeProperties facadeProperties,
       @Nonnull MappingProperties mappingProperties) {
     super(settings, options);
 
