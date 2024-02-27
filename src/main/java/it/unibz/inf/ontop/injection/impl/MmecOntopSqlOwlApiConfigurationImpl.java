@@ -21,6 +21,9 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
  * Copy of the it.unibz.inf.ontop.injection.impl.OntopSQLOWLAPIConfigurationImpl class required
  * because the original class doesn't uses the mappingOWLConfiguration constructor with the
  * injectorSupplier.
+ * <br>
+ * TODO: Remove this class when upgrading to ontop >= 5.1.3 because the original class has been
+ *       updated to use the mappingOWLConfiguration constructor with the injectorSupplier.
  */
 public class MmecOntopSqlOwlApiConfigurationImpl extends OntopStandaloneSQLConfigurationImpl
     implements OntopSQLOWLAPIConfiguration {
