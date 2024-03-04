@@ -66,6 +66,7 @@ public class MMecPPMappingAssertionProvenance implements PPMappingAssertionProve
         "\ntarget atom: " + targetAtom.toString() +
         "\nsource query: " + mMecTriplesMap.getSourceQuery();
   }
+
   @Override
   public String toString() {
     return getProvenanceInfo();

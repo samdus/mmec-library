@@ -1,6 +1,7 @@
 package it.unibz.inf.ontop.spec.mapping.transformer.impl;
 
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPPMappingAssertionProvenance;
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.UnionPPMappingAssertionProvenance;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -50,6 +51,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import javax.swing.text.html.Option;
 
 /**
  *
@@ -400,16 +402,13 @@ public class MMecMappingAssertionUnion {
             Stream.concat(conjunctiveIqs.stream().map(ConjunctiveIQ::asIQ), otherIqs.stream())
                 .collect(ImmutableCollectors.toList()))
         .map(IQ::normalizeForOptimization);
-
-    //TODO: Ajouter une vérification que le projectionAtom contient des unbound functions ou des
-    //      variables. Sinon, doit remplacer l'arbre par un arbre vide.
+    
     //if (query.toString().contains("UNION"))
     //    System.out.println("MAU-UNION: " + query);
-    List<MMecPPMappingAssertionProvenance> provenances = conjunctiveIqs.stream().map(
-        ConjunctiveIQ::getProvenance).distinct().toList();
-    MMecPPMappingAssertionProvenance provenance = provenances.size() == 1
-        ? provenances.get(0)
-        : null;
+    PPMappingAssertionProvenance provenance = conjunctiveIqs.stream().map(
+        ConjunctiveIQ::getProvenance)
+        .collect(UnionPPMappingAssertionProvenance.getPpMappingAssertionProvenanceCollector())
+        .orElse(null);
     return query.map(q -> new MappingAssertion(q, provenance));
   }
 
