@@ -53,7 +53,7 @@ import java.util.List;
  * @todo 2024-01-01 [SD] - Ajouter les distinct et les not null pour les expressions de classes et
  *       d'ObjectProperty
  */
-public class MMecQueryOptimizer implements IQOptimizer {
+public class MMecQueryOptimizer {
   protected final IntermediateQueryFactory iqFactory;
   protected final TermFactory termFactory;
   protected final List<IQTreeVisitingTransformer> transformers;
@@ -68,13 +68,7 @@ public class MMecQueryOptimizer implements IQOptimizer {
         ImmutableList.of(individuationFunctionQueryTransformer, dataPropertyProjectionTransformer);
   }
 
-  @Override
-  public IQ optimize(IQ query) {
-    IQTree newTree = acceptAllTransformer(query.getTree());
-    return iqFactory.createIQ(query.getProjectionAtom(), newTree);
-  }
-
-  private IQTree acceptAllTransformer(IQTree tree) {
+  public IQTree optimize(IQTree tree) {
     for (IQTreeVisitingTransformer transformer : transformers) {
       tree = tree.acceptTransformer(transformer);
     }

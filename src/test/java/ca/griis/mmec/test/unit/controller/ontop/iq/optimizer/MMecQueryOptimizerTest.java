@@ -12,10 +12,7 @@ import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;
 import ca.griis.mmec.controller.ontop.iq.transform.DataPropertyProjectionTransformer;
 import ca.griis.mmec.controller.ontop.iq.transform.IndividuationFunctionQueryTransformer;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
-import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.iq.IQTree;
-import it.unibz.inf.ontop.iq.optimizer.IQOptimizer;
-import it.unibz.inf.ontop.model.atom.DistinctVariableOnlyDataAtom;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,22 +50,17 @@ public class MMecQueryOptimizerTest {
 
   @Test
   public void allTransformerMustBeApplied() {
-    IQOptimizer optimizer = new MMecQueryOptimizer(iqFactory, termFactory,
+    MMecQueryOptimizer optimizer = new MMecQueryOptimizer(iqFactory, termFactory,
         individuationFunctionQueryTransformer, dataPropertyProjectionTransformer);
 
-    IQ expected = Mockito.mock(IQ.class);
-    DistinctVariableOnlyDataAtom projectionAtom = Mockito.mock(DistinctVariableOnlyDataAtom.class);
-    IQ initialIq = Mockito.mock(IQ.class);
     IQTree iqTree = Mockito.mock(IQTree.class);
+    IQTree expected = Mockito.mock(IQTree.class);
 
-    Mockito.when(initialIq.getTree()).thenReturn(iqTree);
-    Mockito.when(initialIq.getProjectionAtom()).thenReturn(projectionAtom);
     Mockito.when(iqTree.acceptTransformer(individuationFunctionQueryTransformer)).thenReturn(
         iqTree);
-    Mockito.when(iqTree.acceptTransformer(dataPropertyProjectionTransformer)).thenReturn(iqTree);
-    Mockito.when(iqFactory.createIQ(projectionAtom, iqTree)).thenReturn(expected);
+    Mockito.when(iqTree.acceptTransformer(dataPropertyProjectionTransformer)).thenReturn(expected);
 
-    IQ actual = optimizer.optimize(initialIq);
+    IQTree actual = optimizer.optimize(iqTree);
 
     Assertions.assertEquals(expected, actual);
     Mockito.verify(iqTree).acceptTransformer(individuationFunctionQueryTransformer);
