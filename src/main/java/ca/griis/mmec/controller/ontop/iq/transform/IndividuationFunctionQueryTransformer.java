@@ -68,7 +68,6 @@ public class IndividuationFunctionQueryTransformer extends
   @Override
   public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
       IQTree child) {
-
     Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
         ImmutableMap.copyOf(constructionNode.getSubstitution().stream()
             .collect(Collectors.toMap(Map.Entry::getKey,
@@ -107,17 +106,14 @@ public class IndividuationFunctionQueryTransformer extends
     if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
         && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
         && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
-        && rdfTermTypeConstant.getRDFTermType() instanceof IRITermType) {
-      newTerm = term.getTerm(0);
-    }
-
-    if (newTerm instanceof NonGroundFunctionalTerm term &&
-        term.getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {
+        && rdfTermTypeConstant.getRDFTermType() instanceof IRITermType
+        && term.getTerm(0) instanceof NonGroundFunctionalTerm iriFunctionTerm
+        && iriFunctionTerm.getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {
       DBConstant identifierForSignatureGroup = termFactory.getDBStringConstant(
           iriStrTemplateFn.getName());
       ImmutableList<ImmutableTerm> arguments = ImmutableList.<ImmutableTerm>builder()
           .add(identifierForSignatureGroup)
-          .addAll(term.getVariables().asList())
+          .addAll(iriFunctionTerm.getVariables().asList())
           .build();
       ImmutableList<TermType> argTypes =
           arguments.stream().map(

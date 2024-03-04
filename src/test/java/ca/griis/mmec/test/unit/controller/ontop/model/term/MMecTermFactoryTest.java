@@ -14,6 +14,7 @@ import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSqlDbFunc
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.ImmutableFunctionalTerm;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.NonGroundFunctionalTerm;
 import it.unibz.inf.ontop.model.term.Variable;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
@@ -97,7 +98,7 @@ public class MMecTermFactoryTest {
   @Test
   public void getMMecConversionFunction() {
     MMecTermFactory termFactory = new MMecTermFactory(defaultTermFactory);
-    ImmutableFunctionalTerm expected = Mockito.mock(ImmutableFunctionalTerm.class);
+    NonGroundFunctionalTerm expected = Mockito.mock(NonGroundFunctionalTerm.class);
 
     Variable variable = Mockito.mock(Variable.class);
     DBTermType variableType = Mockito.mock(DBTermType.class);
@@ -111,7 +112,7 @@ public class MMecTermFactoryTest {
         dbFunctionSymbolFactory);
     Mockito.when(dbFunctionSymbolFactory.createMMecConversionFunctionSymbol(variableType,
         sqlDataType)).thenReturn(conversionFunctionSymbol);
-    Mockito.when(defaultTermFactory.getImmutableFunctionalTerm(conversionFunctionSymbol, variable))
+    Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(conversionFunctionSymbol, variable))
         .thenReturn(expected);
 
     ImmutableTerm actual = termFactory.getMMecConversionFunction(variable, variableType,
@@ -123,7 +124,7 @@ public class MMecTermFactoryTest {
   @Test
   public void getMMecConversionValidationFunction() {
     MMecTermFactory termFactory = new MMecTermFactory(defaultTermFactory);
-    ImmutableFunctionalTerm expected = Mockito.mock(ImmutableFunctionalTerm.class);
+    NonGroundFunctionalTerm expected = Mockito.mock(NonGroundFunctionalTerm.class);
 
     Variable variable = Mockito.mock(Variable.class);
     DBTermType variableType = Mockito.mock(DBTermType.class);
@@ -137,7 +138,7 @@ public class MMecTermFactoryTest {
         dbFunctionSymbolFactory);
     Mockito.when(dbFunctionSymbolFactory.createMMecConversionValidationFunctionSymbol(variableType,
         sqlDataType)).thenReturn(conversionValidationFunctionSymbol);
-    Mockito.when(defaultTermFactory.getImmutableFunctionalTerm(
+    Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(
         conversionValidationFunctionSymbol, variable)).thenReturn(expected);
 
     ImmutableTerm actual = termFactory.getMMecConversionValidationFunction(variable, variableType,

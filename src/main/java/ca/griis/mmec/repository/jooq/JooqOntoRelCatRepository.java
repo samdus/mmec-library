@@ -10,6 +10,7 @@ import it.unibz.inf.ontop.model.type.TypeFactory;
 import it.unibz.inf.ontop.utils.LocalJDBCConnectionUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Optional;
 import javax.inject.Inject;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
@@ -27,13 +28,14 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
   }
 
   @Override
-  public DBTermType getSqlType(String ontoRelId, String typeIri) throws SQLException {
+  public Optional<DBTermType> getSqlType(String ontoRelId, String typeIri) throws SQLException {
     try (Connection connection = LocalJDBCConnectionUtils.createConnection(settings)) {
       // TODO: Support dynamic dialect
       DSLContext context = DSL.using(connection, SQLDialect.POSTGRES);
       String sqlType = Routines.getSqlTypeByIri(context.configuration(), ontoRelId, typeIri);
 
-      return dbTypeFactory.getDBTermType(sqlType);
+      return Optional.ofNullable(sqlType)
+          .map(dbTypeFactory::getDBTermType);
     }
   }
 }

@@ -9,20 +9,19 @@
 
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
-import ca.griis.mmec.controller.ontop.model.type.MMecIndividuationTermType;
+import ca.griis.mmec.controller.ontop.model.type.DBValueTermType;
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractTypedDBFunctionSymbol;
 import it.unibz.inf.ontop.model.type.DBTermType;
-import it.unibz.inf.ontop.model.type.ObjectRDFType;
-import it.unibz.inf.ontop.model.type.TermType;
+import it.unibz.inf.ontop.model.type.MetaRDFTermType;
 import it.unibz.inf.ontop.model.type.TermTypeInference;
-import it.unibz.inf.ontop.model.type.impl.IRITermType;
+import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -35,7 +34,7 @@ import java.util.stream.Collectors;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Symbole pour la fonction d'individuation.
+ * @brief @~french Symbole pour une valeur de données.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -46,33 +45,31 @@ import java.util.stream.Collectors;
  *      S.O.
  *
  * @par Historique
- *      2024-01-30 [SD] - Implémentation initiale<br>
+ *      2024-02-29 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
  *      S.O.
  */
-public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymbol implements
+public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol implements
     RDFTermFunctionSymbol {
-  private final String functionCallTemplate;
-  private final MMecIndividuationTermType mMecIndividuationTermType;
 
-  /***
+  private final DBTermType valueType;
+
+  /**
    * @brief @~english «Description of the method»
-   * @param argTypes Type des arguments de la fonction - Spécifiques aux propriétés identifiantes
-   * @param returnType «Parameter description»
+   * @param valueType «Parameter description»
    *
-   * @param functionCallTemplate
-   * @brief @~french Constructeur pour le symbole de fonction d'individuation.
+   * @brief @~french Constructeur pour le symbole de valeur.
+   * @param valueType Type de la valeur
+   * @par typeTermType Type de terme
+   *
    * @par Tâches
-   *      S.O.
+   *    S.O.
    */
-  protected MMecIndividuationFunctionSymbol(ImmutableList<TermType> argTypes,
-      ObjectRDFType iriTermType, DBTermType returnType,
-      String functionCallTemplate) {
-    super(String.format("Individuation_%s", argTypes.size()), argTypes, returnType);
-    this.functionCallTemplate = functionCallTemplate;
-    mMecIndividuationTermType = new MMecIndividuationTermType(
-        iriTermType.getAncestry(), returnType);
+  protected MMecValueFunctionSymbol(DBTermType valueType, MetaRDFTermType typeTermType) {
+    super(String.format("Value_%s", valueType.getName()), ImmutableList.of(valueType, typeTermType),
+        valueType);
+    this.valueType = valueType;
   }
 
   @Override
@@ -93,12 +90,28 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
   @Override
   public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
       Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
-    return String.format(functionCallTemplate,
-        terms.stream().map(termConverter).collect(Collectors.joining(", ")));
+    checkArity(terms);
+    return termConverter.apply(terms.get(0));
   }
 
   @Override
   public Optional<TermTypeInference> inferType(ImmutableList<? extends ImmutableTerm> terms) {
-    return Optional.of(mMecIndividuationTermType).map(TermTypeInference::declareTermType);
+    checkArity(terms);
+
+    return Optional.of(terms.get(1))
+        .filter(term -> term instanceof RDFTermTypeConstant)
+        .map(term -> (RDFTermTypeConstant) term)
+        .map(RDFTermTypeConstant::getRDFTermType)
+        .filter(rdfTermType -> rdfTermType instanceof SimpleRDFDatatype)
+        .map(rdfTermType -> (SimpleRDFDatatype) rdfTermType)
+        .map(rdfTermType -> new DBValueTermType(rdfTermType, valueType))
+        .map(TermTypeInference::declareTermType);
+  }
+
+  private static void checkArity(ImmutableList<? extends ImmutableTerm> terms)
+      throws IllegalArgumentException {
+    if (terms.size() != 2) {
+      throw new IllegalArgumentException("Wrong arity");
+    }
   }
 }

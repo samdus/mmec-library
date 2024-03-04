@@ -15,6 +15,7 @@ import it.unibz.inf.ontop.answering.logging.QueryLogger;
 import it.unibz.inf.ontop.answering.reformulation.QueryCache;
 import it.unibz.inf.ontop.answering.reformulation.impl.QuestQueryProcessor;
 import it.unibz.inf.ontop.answering.reformulation.rewriting.QueryRewriter;
+import it.unibz.inf.ontop.evaluator.QueryContext;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import it.unibz.inf.ontop.injection.TranslationFactory;
 import it.unibz.inf.ontop.iq.IQ;
@@ -72,9 +73,11 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
       KGQueryTranslator inputQueryTranslator,
       GeneralStructuralAndSemanticIQOptimizer generalOptimizer,
       QueryPlanner queryPlanner,
-      QueryLogger.Factory queryLoggerFactory) {
+      QueryLogger.Factory queryLoggerFactory,
+      QueryContext.Factory queryContextFactory) {
     super(obdaSpecification, queryCache, queryUnfolderFactory, translationFactory, queryRewriter,
-        kgQueryFactory, inputQueryTranslator, generalOptimizer, queryPlanner, queryLoggerFactory);
+        kgQueryFactory, inputQueryTranslator, generalOptimizer, queryPlanner, queryLoggerFactory,
+        queryContextFactory);
   }
 
   @Override
@@ -82,15 +85,8 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
     if (iq.getTree() instanceof EmptyNode) {
       return iq;
     } else {
-      IQ sourceQuery;
-      try {
-        sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)
-            .normalizeForOptimization();
-      } catch (UnsupportedOperationException e) {
-        throw new MMecNotFullyTranslatableToNativeQueryException(
-            "TODO: Comprendre pourquoi le DP génère une exception ici, "
-                + "voir dans la classe originale de ontop");
-      }
+      IQ sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)
+          .normalizeForOptimization();
 
       if (!(sourceQuery.getTree() instanceof NativeNode)) {
         throw new MMecNotFullyTranslatableToNativeQueryException(

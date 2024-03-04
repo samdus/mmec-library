@@ -2,11 +2,13 @@ package ca.griis.mmec.test.integration.util;
 
 
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import it.unibz.inf.ontop.answering.OntopQueryEngine;
 import it.unibz.inf.ontop.answering.connection.OntopConnection;
 import it.unibz.inf.ontop.answering.connection.OntopStatement;
 import it.unibz.inf.ontop.answering.reformulation.QueryReformulator;
+import it.unibz.inf.ontop.evaluator.QueryContext;
 import it.unibz.inf.ontop.exception.OBDASpecificationException;
 import it.unibz.inf.ontop.exception.OntologyException;
 import it.unibz.inf.ontop.exception.OntopConnectionException;
@@ -57,13 +59,13 @@ public class R2rmlTester extends OntopTester {
 
   @Override
   public void runTest() throws Exception {
-//    String withAutomaticInjectors = testWithAutomaticInjector();
-//    System.out.println(withAutomaticInjectors);
+    //    String withAutomaticInjectors = testWithAutomaticInjector();
+    //    System.out.println(withAutomaticInjectors);
     // String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
-        testGetDefinitions();
+    testGetDefinitions();
   }
 
   public String testWithAutomaticInjector() throws OBDASpecificationException {
@@ -207,18 +209,21 @@ public class R2rmlTester extends OntopTester {
 
       StatementPattern classStatement = new StatementPattern(new Var("uid"),
           new Var("rdf_type_uri",
-              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
+              true),
           new Var("uid_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000004"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000004"), true, true));
 
       QueryRoot queryRoot = new QueryRoot(classStatement);
 
       RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
           RDF4JQueryFactory.class);
-      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery("q1",
+      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery(
+          queryRoot.toString(),
           new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
-      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
+          ImmutableMultimap.of());
       System.out.println(firstExecutableQuery.toString());
 
       // La configuration Ontop originale génère ceci :
@@ -243,19 +248,21 @@ public class R2rmlTester extends OntopTester {
 
       StatementPattern subStatement = new StatementPattern(new Var("sub"),
           new Var("rdf_type_uri",
-              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
+              true),
           new Var("sub_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000032"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000032"), true, true));
 
       StatementPattern objStatement = new StatementPattern(new Var("obj"),
           new Var("rdf_type_uri",
-              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
+              true),
           new Var("obj_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000003"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000003"), true, true));
 
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("op_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000039"), true),
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000039"), true, true),
           new Var("obj"));
 
       Join subAndObjJoin = new Join(subStatement, objStatement);
@@ -268,10 +275,12 @@ public class R2rmlTester extends OntopTester {
 
       RDF4JQueryFactory factrdf4JQueryFactory = configuration.getInjector().getInstance(
           RDF4JQueryFactory.class);
-      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery("q2",
+      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery(
+          queryRoot.toString(),
           new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
-      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
+          ImmutableMultimap.of());
       System.out.println(firstExecutableQuery.toString());
 
       // La configuration Ontop originale génère ceci :
@@ -296,20 +305,22 @@ public class R2rmlTester extends OntopTester {
 
 
   private void testGetDPDef(OntopConnection connection)
-      throws OntopConnectionException, OntopReformulationException {
+      throws OntopConnectionException, OntopReformulationException, OBDASpecificationException {
     try (OntopStatement statement = connection.createStatement()) {
 
       SimpleValueFactory valueFactory = SimpleValueFactory.getInstance();
 
       StatementPattern subStatement = new StatementPattern(new Var("sub"),
           new Var("rdf_type_uri",
-              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true),
+              valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
+              true),
           new Var("sub_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000003"), true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000003"), true, true));
 
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("dp_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/PHYSIO_0000100"), true), //has_value
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/PHYSIO_0000100"), true, true),
+          //has_value
           new Var("val"));
 
       Join relJoin = new Join(subStatement, relStatement);
@@ -329,7 +340,8 @@ public class R2rmlTester extends OntopTester {
           queryRoot.toString(),
           new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
-      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery);
+      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
+          ImmutableMultimap.of());
       System.out.println(firstExecutableQuery.toString());
 
       // La configuration Ontop originale génère ceci :
@@ -365,9 +377,11 @@ public class R2rmlTester extends OntopTester {
     KGQueryFactory kgQueryFactory = queryReformulator.getInputQueryFactory();
 
     SelectQuery query = kgQueryFactory.createSelectQuery(PERSON_QUERY_STRING);
+    QueryContext emptyQueryContext = queryReformulator.getQueryContextFactory().create(
+        ImmutableMap.of());
 
-    IQ executableQuery = queryReformulator.reformulateIntoNativeQuery(query,
-        queryReformulator.getQueryLoggerFactory().create(ImmutableMultimap.of()));
+    IQ executableQuery = queryReformulator.reformulateIntoNativeQuery(query, emptyQueryContext,
+        queryReformulator.getQueryLoggerFactory().create(ImmutableMap.of()));
     String sqlQuery = Optional.of(executableQuery.getTree()).filter(t -> t instanceof UnaryIQTree)
         .map(t -> ((UnaryIQTree) t).getChild().getRootNode()).filter(n -> n instanceof NativeNode)
         .map(n -> ((NativeNode) n).getNativeQueryString()).orElseThrow(

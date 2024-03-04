@@ -15,6 +15,8 @@
 
 package it.unibz.inf.ontop.spec.mapping.pp.impl;
 
+import ca.griis.mmec.controller.ontop.iq.transform.DataPropertyProjectionTransformer;
+import ca.griis.mmec.controller.ontop.iq.transform.IndividuationFunctionQueryTransformer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
@@ -62,10 +64,12 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
   private final SQLQueryParser sqlQueryParser;
 
   private final boolean ignoreInvalidMappingEntries;
+  private final IndividuationFunctionQueryTransformer individuationFunctionQueryTransformer;
+  private final DataPropertyProjectionTransformer dataPropertyProjectionTransformer;
 
   @Inject
   public MMecSqlPpMappingConverterImpl(CoreSingletons coreSingletons,
-      SQLQueryParser sqlQueryParser) {
+      SQLQueryParser sqlQueryParser, IndividuationFunctionQueryTransformer individuationFunctionQueryTransformer, DataPropertyProjectionTransformer dataPropertyProjectionTransformer) {
     this.iqFactory = coreSingletons.getIQFactory();
     this.substitutionFactory = coreSingletons.getSubstitutionFactory();
     this.sqlQueryParser = sqlQueryParser;
@@ -73,6 +77,8 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
     ignoreInvalidMappingEntries =
         ((OntopOBDASettings) coreSingletons.getSettings()).ignoreInvalidMappingEntries();
 
+    this.individuationFunctionQueryTransformer = individuationFunctionQueryTransformer;
+    this.dataPropertyProjectionTransformer = dataPropertyProjectionTransformer;
   }
 
   private static <T> Function<Variable, Optional<T>> placeholderLookup(
@@ -180,6 +186,9 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
         iqFactory.createConstructionNode(target.getProjectionAtom().getVariables(),
             spoSubstitution),
         selectTree);
+
+    mappingTree = individuationFunctionQueryTransformer.transform(mappingTree);
+    mappingTree = dataPropertyProjectionTransformer.transform(mappingTree);
 
     return new MappingAssertion(iqFactory.createIQ(target.getProjectionAtom(), mappingTree),
         provenance);

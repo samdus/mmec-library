@@ -39,4 +39,6 @@ public interface MMecSqlDbFunctionSymbolFactory extends DBFunctionSymbolFactory 
 
   DBBooleanFunctionSymbolImpl createMMecConversionValidationFunctionSymbol(DBTermType variableType,
       DBTermType sqlDataType);
+
+  MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType);
 }

@@ -25,7 +25,7 @@ ext {
     minCoverageUnitItgr = 80
     minMutationUnit = 70
     product = "LIBRARY"
-    ontopVersion = "5.1.2"
+    ontopVersion = "5.2.0-SNAPSHOT"
 }
 
 group = "ca.griis"

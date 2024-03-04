@@ -55,7 +55,9 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
   @Override
   public MMecIndividuationFunctionSymbol createMMecIndividuationFunctionSymbol(
       ImmutableList<TermType> argTypes) {
-    return new MMecIndividuationFunctionSymbol(argTypes, individuationFunctionReturnType,
+    return new MMecIndividuationFunctionSymbol(argTypes,
+        typeFactory.getIRITermType(),
+        individuationFunctionReturnType,
         individuationFunctionCallTemplate);
   }
 
@@ -78,5 +80,10 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
         .toLowerCase() + "(%s)";
     return new MMecConversionValidationFunctionSymbol(variableType, dbBooleanType,
         conversionValidationFunctionCallTemplate);
+  }
+
+  @Override
+  public MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType) {
+    return new MMecValueFunctionSymbol(valueType, typeFactory.getMetaRDFTermType());
   }
 }

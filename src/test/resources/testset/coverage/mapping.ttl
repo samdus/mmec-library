@@ -107,10 +107,12 @@
 # measurement unit label 'has value' 'cm'
 <Mapping:IAO_0000003>
     rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
-                            rr:objectMap [ rr:column "label" ] ] .
+                            rr:objectMap [ rr:column   "label" ;
+                                           rr:datatype xsd:string ] ] .
 
 # weight unit 'has value' 'kg'
 <Mapping:HBW_0000003>
     rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
-                            rr:objectMap [ rr:column "label" ] ] .
+                            rr:objectMap [ rr:column   "label" ;
+                                           rr:datatype xsd:string ] ] .
 

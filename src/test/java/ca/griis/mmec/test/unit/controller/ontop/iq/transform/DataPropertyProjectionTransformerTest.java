@@ -261,7 +261,7 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
         Optional.of(targetType));
     Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
-        targetType);
+        Optional.of(targetType));
     Mockito.when(term.getVariables()).thenReturn(emptyThereforeInvalidSubstitutionTerm);
     Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariableSet);
     Mockito.when(iqFactory.createConstructionNode(constructionNodeArgumentCaptor.capture(),
@@ -316,7 +316,7 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
     Mockito.when(simpleRDFDatatype.getIRI()).thenReturn(datatypeIri);
     Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
-        targetType);
+        Optional.of(targetType));
     Mockito.when(term.getVariables()).thenReturn(substitutionTermVariables);
     Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
         emptyThereforeInvalidTermType);
@@ -373,7 +373,7 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
     Mockito.when(simpleRDFDatatype.getIRI()).thenReturn(datatypeIri);
     Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
-        targetType);
+        Optional.of(targetType));
     Mockito.when(term.getVariables()).thenReturn(substitutionTermVariables);
     Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
         Optional.of(nonDbTermTypeThereforeInvalidVariableType));
@@ -415,6 +415,7 @@ public class DataPropertyProjectionTransformerTest {
     ImmutableSet<Variable> substitutionTermVariables = ImmutableSet.of(originalVariable);
     String variableTypeName = "variableTypeName";
     String targetTypeName = variableTypeName;
+    NonGroundFunctionalTerm mmecValueFunctionTerm = Mockito.mock(NonGroundFunctionalTerm.class);
 
     ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
         ArgumentCaptor.forClass(ImmutableSet.class);
@@ -431,10 +432,12 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
     Mockito.when(simpleRDFDatatype.getIRI()).thenReturn(datatypeIri);
     Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
-        targetType);
+        Optional.of(targetType));
     Mockito.when(term.getVariables()).thenReturn(substitutionTermVariables);
     Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
         Optional.of(variableType));
+    Mockito.when(termFactory.getMMecValueFunction(originalVariable, variableType,
+        rdfTermTypeConstant)).thenReturn(mmecValueFunctionTerm);
     Mockito.when(variableType.getName()).thenReturn(variableTypeName);
     Mockito.when(targetType.getName()).thenReturn(targetTypeName);
     Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariableSet);
@@ -448,8 +451,8 @@ public class DataPropertyProjectionTransformerTest {
 
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(constructionNodeVariableSet, constructionNodeArgumentCaptor.getValue());
-    Assertions.assertEquals(substitutionMap.get(originalVariable),
-        substitutionArgumentCaptor.getValue().get(originalVariable));
+    Assertions.assertEquals(mmecValueFunctionTerm,
+        substitutionArgumentCaptor.getValue().get(constructionNodeVariable));
   }
 
   private static Stream<Arguments> transformConstructionWithTrivialCastTestProvider() {
@@ -511,6 +514,7 @@ public class DataPropertyProjectionTransformerTest {
     String variableTypeName = String.format("Variable%s", variableTypeCategory.name());
     String targetTypeName = String.format("Target%s", targetTypeCategory.name());
     ImmutableFunctionalTerm expectedTerm = Mockito.mock(ImmutableFunctionalTerm.class);
+    NonGroundFunctionalTerm mmecValueFunctionTerm = Mockito.mock(NonGroundFunctionalTerm.class);
 
     ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
         ArgumentCaptor.forClass(ImmutableSet.class);
@@ -527,10 +531,12 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
     Mockito.when(simpleRDFDatatype.getIRI()).thenReturn(datatypeIri);
     Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
-        targetType);
+        Optional.of(targetType));
     Mockito.when(term.getVariables()).thenReturn(substitutionTermVariables);
     Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
         Optional.of(variableType));
+    Mockito.when(termFactory.getMMecValueFunction(originalVariable, variableType,
+        rdfTermTypeConstant)).thenReturn(mmecValueFunctionTerm);
     Mockito.when(variableType.getName()).thenReturn(variableTypeName);
     Mockito.when(targetType.getName()).thenReturn(targetTypeName);
     Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariableSet);
@@ -541,7 +547,8 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(iqFactory.createUnaryIQTree(newConstructionNode, childTree)).thenReturn(expected);
     Mockito.when(variableType.getCategory()).thenReturn(variableTypeCategory);
     Mockito.when(targetType.getCategory()).thenReturn(targetTypeCategory);
-    Mockito.when(termFactory.getDBCastFunctionalTerm(variableType, targetType, originalVariable))
+    Mockito.when(
+            termFactory.getDBCastFunctionalTerm(variableType, targetType, mmecValueFunctionTerm))
         .thenReturn(expectedTerm);
 
     IQTree actual = transformer.transformConstruction(iqTree, constructionNode, childTree);
@@ -594,6 +601,7 @@ public class DataPropertyProjectionTransformerTest {
     String variableTypeName = String.format("Variable%s", variableTypeCategory.name());
     String targetTypeName = String.format("Target%s", targetTypeCategory.name());
     ImmutableFunctionalTerm expectedTerm = Mockito.mock(ImmutableFunctionalTerm.class);
+    NonGroundFunctionalTerm mmecValueFunctionTerm = Mockito.mock(NonGroundFunctionalTerm.class);
 
     ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
         ArgumentCaptor.forClass(ImmutableSet.class);
@@ -610,10 +618,12 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
     Mockito.when(simpleRDFDatatype.getIRI()).thenReturn(datatypeIri);
     Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
-        targetType);
+        Optional.of(targetType));
     Mockito.when(term.getVariables()).thenReturn(substitutionTermVariables);
     Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
         Optional.of(variableType));
+    Mockito.when(termFactory.getMMecValueFunction(originalVariable, variableType,
+        rdfTermTypeConstant)).thenReturn(mmecValueFunctionTerm);
     Mockito.when(variableType.getName()).thenReturn(variableTypeName);
     Mockito.when(targetType.getName()).thenReturn(targetTypeName);
     Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariableSet);
@@ -624,7 +634,8 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(iqFactory.createUnaryIQTree(newConstructionNode, childTree)).thenReturn(expected);
     Mockito.when(variableType.getCategory()).thenReturn(variableTypeCategory);
     Mockito.when(targetType.getCategory()).thenReturn(targetTypeCategory);
-    Mockito.when(termFactory.getDBCastFunctionalTerm(variableType, targetType, originalVariable))
+    Mockito.when(
+            termFactory.getDBCastFunctionalTerm(variableType, targetType, mmecValueFunctionTerm))
         .thenReturn(expectedTerm);
 
     IQTree actual = transformer.transformConstruction(iqTree, constructionNode, childTree);

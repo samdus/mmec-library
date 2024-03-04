@@ -134,14 +134,16 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
               .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
                   "Cannot get the type of the data property's substitution variable."));
 
+          NonGroundFunctionalTerm valueTerm = termFactory.getMMecValueFunction(variable,
+              variableType, rdfTermTypeConstant);
           if (targetType.getName().equals(variableType.getName())) {
-            newSubstitutionMap.put(substitutionEntry.getKey(), variable);
+            newSubstitutionMap.put(substitutionEntry.getKey(), valueTerm);
           } else if (isTrivialCast(variableType, targetType)) {
             newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getDBCastFunctionalTerm(variableType, targetType, variable));
+                termFactory.getDBCastFunctionalTerm(variableType, targetType, valueTerm));
           } else {
             newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getMMecConversionFunction(variable, variableType, targetType));
+                termFactory.getMMecConversionFunction(valueTerm, variableType, targetType));
 
             // Remove the filter node if there was already one for this variable
             if (child.getRootNode() instanceof FilterNodeImpl filterNode
@@ -152,7 +154,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
             }
             child = iqFactory.createUnaryIQTree(
                 iqFactory.createFilterNode(termFactory.getStrictEquality(
-                    termFactory.getMMecConversionValidationFunction(variable, variableType,
+                    termFactory.getMMecConversionValidationFunction(valueTerm, variableType,
                         targetType),
                     termFactory.getDBBooleanConstant(true))),
                 child);
@@ -210,7 +212,10 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
     try {
       return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-          rdfDatatype.getIRI().getIRIString());
+              rdfDatatype.getIRI().getIRIString())
+          .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
+              String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
+                  rdfDatatype.getIRI().getIRIString())));
     } catch (SQLException e) {
       throw new DataPropertyProjectionTransformerException(iqTree, e);
     }

@@ -74,28 +74,35 @@ public class MMecTermFactory implements TermFactory {
     this.defaultTermFactory = defaultTermFactory;
   }
 
-  public ImmutableFunctionalTerm getMMecSignatureFunction(
+  public NonGroundFunctionalTerm getMMecSignatureFunction(
       ImmutableList<TermType> argTypes,
       ImmutableList<? extends ImmutableTerm> terms) {
-    return defaultTermFactory.getImmutableFunctionalTerm(
-        getMMecDbFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes), terms);
+    return defaultTermFactory.getNonGroundFunctionalTerm(
+        getMMecDbFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes), terms.toArray(new ImmutableTerm[0]));
   }
 
-  public ImmutableFunctionalTerm getMMecConversionFunction(Variable variable,
+  public NonGroundFunctionalTerm getMMecConversionFunction(ImmutableTerm variable,
       DBTermType variableType,
       DBTermType sqlDataType) {
-    return defaultTermFactory.getImmutableFunctionalTerm(
+    return defaultTermFactory.getNonGroundFunctionalTerm(
         getMMecDbFunctionSymbolFactory().createMMecConversionFunctionSymbol(variableType,
             sqlDataType),
         variable);
   }
 
-  public ImmutableFunctionalTerm getMMecConversionValidationFunction(Variable variable,
+  public NonGroundFunctionalTerm getMMecConversionValidationFunction(ImmutableTerm variable,
       DBTermType variableType, DBTermType sqlDataType) {
-    return defaultTermFactory.getImmutableFunctionalTerm(
+    return defaultTermFactory.getNonGroundFunctionalTerm(
         getMMecDbFunctionSymbolFactory().createMMecConversionValidationFunctionSymbol(variableType,
             sqlDataType),
         variable);
+  }
+
+  public NonGroundFunctionalTerm getMMecValueFunction(ImmutableTerm variable,
+      DBTermType variableType, RDFTermTypeConstant rdfTermTypeConstant) {
+    return defaultTermFactory.getNonGroundFunctionalTerm(
+        getMMecDbFunctionSymbolFactory().createMMecValueFunctionSymbol(variableType), variable,
+        rdfTermTypeConstant);
   }
 
   private MMecSqlDbFunctionSymbolFactory getMMecDbFunctionSymbolFactory() {
@@ -1285,5 +1292,10 @@ public class MMecTermFactory implements TermFactory {
   public ImmutableFunctionalTerm getDBDateTrunc(ImmutableTerm dbDatetimeTerm,
       ImmutableTerm datePartTerm, String datePart) {
     return defaultTermFactory.getDBDateTrunc(dbDatetimeTerm, datePartTerm, datePart);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getIdentityFunctionalTerm(ImmutableTerm immutableTerm) {
+    return defaultTermFactory.getIdentityFunctionalTerm(immutableTerm);
   }
 }

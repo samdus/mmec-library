@@ -15,9 +15,11 @@ import it.unibz.inf.ontop.answering.reformulation.generation.NativeQueryGenerato
 import it.unibz.inf.ontop.answering.reformulation.impl.QuestQueryProcessor;
 import it.unibz.inf.ontop.answering.reformulation.rewriting.QueryRewriter;
 import it.unibz.inf.ontop.dbschema.DBParameters;
+import it.unibz.inf.ontop.evaluator.QueryContext;
 import it.unibz.inf.ontop.exception.OntopInvalidKGQueryException;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import it.unibz.inf.ontop.exception.OntopUnsupportedKGQueryException;
+import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.injection.TranslationFactory;
 import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.iq.IQTree;
@@ -28,6 +30,7 @@ import it.unibz.inf.ontop.iq.node.IntensionalDataNode;
 import it.unibz.inf.ontop.iq.node.NativeNode;
 import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
 import it.unibz.inf.ontop.iq.planner.QueryPlanner;
+import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.query.KGQueryFactory;
 import it.unibz.inf.ontop.query.RDF4JSelectQuery;
 import it.unibz.inf.ontop.query.translation.KGQueryTranslator;
@@ -35,6 +38,8 @@ import it.unibz.inf.ontop.query.unfolding.QueryUnfolder;
 import it.unibz.inf.ontop.spec.OBDASpecification;
 import it.unibz.inf.ontop.spec.mapping.Mapping;
 import it.unibz.inf.ontop.spec.ontology.ClassifiedTBox;
+import it.unibz.inf.ontop.substitution.SubstitutionFactory;
+import javax.management.Query;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -84,6 +89,7 @@ class MMecToFullNativeQueryReformulatorTest {
   Mapping saturatedMapping;
   DBParameters dbParameters;
   NativeQueryGenerator datasourceQueryGenerator;
+  QueryContext.Factory queryContextFactory;
 
   @BeforeEach
   void init() {
@@ -98,6 +104,7 @@ class MMecToFullNativeQueryReformulatorTest {
     generalOptimizer = Mockito.mock(GeneralStructuralAndSemanticIQOptimizer.class);
     queryPlanner = Mockito.mock(QueryPlanner.class);
     queryLoggerFactory = Mockito.mock(QueryLogger.Factory.class);
+    queryContextFactory = Mockito.mock(QueryContext.Factory.class);
     queryLogger = Mockito.mock(QueryLogger.class);
     tBox = Mockito.mock(ClassifiedTBox.class);
     saturatedMapping = Mockito.mock(Mapping.class);
@@ -118,15 +125,16 @@ class MMecToFullNativeQueryReformulatorTest {
     QuestQueryProcessor mMecQueryProcessor = new MMecToFullNativeQueryReformulator(
         obdaSpecification, queryCache, queryUnfolderFactory,
         translationFactory, queryRewriter, kgQueryFactory, inputQueryTranslator, generalOptimizer,
-        queryPlanner, queryLoggerFactory);
+        queryPlanner, queryLoggerFactory, queryContextFactory);
     RDF4JSelectQuery inputQuery = Mockito.mock(RDF4JSelectQuery.class);
     IQ expected = Mockito.mock(IQ.class);
 
+    QueryContext queryContext = Mockito.mock(QueryContext.class);
     IQ intermediaryIQ = Mockito.mock(IQ.class);
     IQTree intermediaryTree = Mockito.mock(IQTree.class);
     IQTree emptyTree = Mockito.mock(EmptyNode.class);
 
-    Mockito.when(queryCache.get(inputQuery)).thenReturn(null);
+    Mockito.when(queryCache.get(inputQuery, queryContext)).thenReturn(null);
     Mockito.when(inputQuery.getOriginalString()).thenReturn(
         "emptyQueryGeneratesEmptyQueryTest");
     Mockito.when(inputQuery.translate(inputQueryTranslator)).thenReturn(intermediaryIQ);
@@ -134,11 +142,11 @@ class MMecToFullNativeQueryReformulatorTest {
     Mockito.when(queryUnfolder.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
     Mockito.when(intermediaryIQ.getTree()).thenReturn(intermediaryTree);
     Mockito.when(intermediaryTree.isDeclaredAsEmpty()).thenReturn(false);
-    Mockito.when(generalOptimizer.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
+    Mockito.when(generalOptimizer.optimize(intermediaryIQ, queryContext)).thenReturn(intermediaryIQ);
     Mockito.when(queryPlanner.optimize(intermediaryIQ)).thenReturn(expected);
     Mockito.when(expected.getTree()).thenReturn(emptyTree);
 
-    IQ actual = mMecQueryProcessor.reformulateIntoNativeQuery(inputQuery, queryLogger);
+    IQ actual = mMecQueryProcessor.reformulateIntoNativeQuery(inputQuery, queryContext, queryLogger);
 
     Assertions.assertEquals(actual, expected);
   }
@@ -150,16 +158,17 @@ class MMecToFullNativeQueryReformulatorTest {
     QuestQueryProcessor mMecQueryProcessor = new MMecToFullNativeQueryReformulator(
         obdaSpecification, queryCache, queryUnfolderFactory,
         translationFactory, queryRewriter, kgQueryFactory, inputQueryTranslator, generalOptimizer,
-        queryPlanner, queryLoggerFactory);
+        queryPlanner, queryLoggerFactory, queryContextFactory);
     RDF4JSelectQuery inputQuery = Mockito.mock(RDF4JSelectQuery.class);
     IQ expected = Mockito.mock(IQ.class);
 
+    QueryContext queryContext = Mockito.mock(QueryContext.class);
     IQ intermediaryIQ = Mockito.mock(IQ.class);
     IQTree intermediaryTree = Mockito.mock(IQTree.class);
     IQTree nonEmptyTree = Mockito.mock(UnaryIQTree.class);
     IQTree nativeNode = Mockito.mock(NativeNode.class);
 
-    Mockito.when(queryCache.get(inputQuery)).thenReturn(null);
+    Mockito.when(queryCache.get(inputQuery, queryContext)).thenReturn(null);
     Mockito.when(inputQuery.getOriginalString()).thenReturn(
         "nonEmptyQueryGeneratesNonEmptyQueryTest");
     Mockito.when(inputQuery.translate(inputQueryTranslator)).thenReturn(intermediaryIQ);
@@ -167,7 +176,7 @@ class MMecToFullNativeQueryReformulatorTest {
     Mockito.when(queryUnfolder.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
     Mockito.when(intermediaryIQ.getTree()).thenReturn(intermediaryTree);
     Mockito.when(intermediaryTree.isDeclaredAsEmpty()).thenReturn(false);
-    Mockito.when(generalOptimizer.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
+    Mockito.when(generalOptimizer.optimize(intermediaryIQ, queryContext)).thenReturn(intermediaryIQ);
     Mockito.when(queryPlanner.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
     Mockito.when(intermediaryIQ.getTree()).thenReturn(nonEmptyTree);
     Mockito.when(datasourceQueryGenerator.generateSourceQuery(intermediaryIQ, true)).thenReturn(
@@ -175,7 +184,7 @@ class MMecToFullNativeQueryReformulatorTest {
     Mockito.when(intermediaryIQ.normalizeForOptimization()).thenReturn(expected);
     Mockito.when(expected.getTree()).thenReturn(nativeNode);
 
-    IQ actual = mMecQueryProcessor.reformulateIntoNativeQuery(inputQuery, queryLogger);
+    IQ actual = mMecQueryProcessor.reformulateIntoNativeQuery(inputQuery, queryContext, queryLogger);
 
     Assertions.assertEquals(actual, expected);
   }
@@ -187,16 +196,17 @@ class MMecToFullNativeQueryReformulatorTest {
     QuestQueryProcessor mMecQueryProcessor = new MMecToFullNativeQueryReformulator(
         obdaSpecification, queryCache, queryUnfolderFactory,
         translationFactory, queryRewriter, kgQueryFactory, inputQueryTranslator, generalOptimizer,
-        queryPlanner, queryLoggerFactory);
+        queryPlanner, queryLoggerFactory, queryContextFactory);
     RDF4JSelectQuery inputQuery = Mockito.mock(RDF4JSelectQuery.class);
     IQ expected = Mockito.mock(IQ.class);
 
+    QueryContext queryContext = Mockito.mock(QueryContext.class);
     IQ intermediaryIQ = Mockito.mock(IQ.class);
     IQTree intermediaryTree = Mockito.mock(IQTree.class);
     IQTree nonEmptyTree = Mockito.mock(UnaryIQTree.class);
     IQTree notNativeNode = Mockito.mock(IntensionalDataNode.class);
 
-    Mockito.when(queryCache.get(inputQuery)).thenReturn(null);
+    Mockito.when(queryCache.get(inputQuery, queryContext)).thenReturn(null);
     Mockito.when(inputQuery.getOriginalString()).thenReturn(
         "nonEmptyQueryResultingInNotNativeNodeShouldThrow");
     Mockito.when(inputQuery.translate(inputQueryTranslator)).thenReturn(intermediaryIQ);
@@ -204,7 +214,7 @@ class MMecToFullNativeQueryReformulatorTest {
     Mockito.when(queryUnfolder.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
     Mockito.when(intermediaryIQ.getTree()).thenReturn(intermediaryTree);
     Mockito.when(intermediaryTree.isDeclaredAsEmpty()).thenReturn(false);
-    Mockito.when(generalOptimizer.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
+    Mockito.when(generalOptimizer.optimize(intermediaryIQ, queryContext)).thenReturn(intermediaryIQ);
     Mockito.when(queryPlanner.optimize(intermediaryIQ)).thenReturn(intermediaryIQ);
     Mockito.when(intermediaryIQ.getTree()).thenReturn(nonEmptyTree);
     Mockito.when(datasourceQueryGenerator.generateSourceQuery(intermediaryIQ, true)).thenReturn(
@@ -213,6 +223,6 @@ class MMecToFullNativeQueryReformulatorTest {
     Mockito.when(expected.getTree()).thenReturn(notNativeNode);
 
     Assertions.assertThrows(OntopReformulationException.class,
-        () -> mMecQueryProcessor.reformulateIntoNativeQuery(inputQuery, queryLogger));
+        () -> mMecQueryProcessor.reformulateIntoNativeQuery(inputQuery, queryContext, queryLogger));
   }
 }
