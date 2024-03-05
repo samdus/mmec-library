@@ -18,9 +18,7 @@ import ca.griis.mmec.controller.ontop.iq.transform.IndividuationFunctionQueryTra
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
-import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.iq.IQTree;
-import it.unibz.inf.ontop.iq.optimizer.IQOptimizer;
 import it.unibz.inf.ontop.iq.transform.IQTreeVisitingTransformer;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import java.util.List;
@@ -36,7 +34,8 @@ import java.util.List;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french «Brève description de la composante (classe, interface, ...)»
+ * @brief @~french Optimiseur de requête pour mMec, permet d'appliquer tous les transformateurs
+ *                 de requête utile pour mMec.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -50,8 +49,6 @@ import java.util.List;
  *      2023-12-21 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- * @todo 2024-01-01 [SD] - Ajouter les distinct et les not null pour les expressions de classes et
- *       d'ObjectProperty
  */
 public class MMecQueryOptimizer {
   protected final IntermediateQueryFactory iqFactory;

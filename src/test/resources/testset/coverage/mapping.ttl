@@ -24,10 +24,10 @@
     a               rr:TriplesMap ;
     rr:logicalTable [ a rr:R2RMLView ;
                       rr:sqlQuery
-                        "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\" WHERE \"ID_PATIENT_EXT\" IS NOT NULL" ] ;
+                        "SELECT \"PRENOM\"::\"BW\".\"string\" AS \"prenom\" FROM \"EXP\".\"PERSONNE\" JOIN \"EXP\".\"PATIENT\" ON \"ID_PATIENT_EXT\" = \"ID_PERSONNE_EXT\"" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C4d0c3f45> ;
-                      rr:template "http://purl.obolibrary.org/obo/ONTORELA_C002aX/{\"ID_PATIENT_UUID\"}" ;
+                      rr:template "http://purl.obolibrary.org/obo/ONTORELA_C002aX/{\"prenom\"}" ;
                       rr:termType rr:IRI ] ;
     mmec:subsets    <Mapping:healthCareRecord> .
 

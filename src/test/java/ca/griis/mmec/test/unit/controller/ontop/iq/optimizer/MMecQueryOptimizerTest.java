@@ -19,20 +19,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-/**
- * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details «Detailed description of the component (optional)»
- * @par Model «Model (Abstract, automation, etc.) (optional)»
- * @par Conception «Conception description (criteria and constraints) (optional)»
- * @par Limits «Limits description (optional)»
- * @brief @~french «Brève description de la composante (classe, interface, ...)»
- * @par Détails S.O.
- * @par Modèle S.O.
- * @par Conception S.O.
- * @par Limites S.O.
- * @par Historique 2024-01-31 [SD] - Implémentation initiale<br>
- * @par Tâches S.O.
- */
 public class MMecQueryOptimizerTest {
   IntermediateQueryFactory iqFactory;
   TermFactory termFactory;
@@ -54,11 +40,11 @@ public class MMecQueryOptimizerTest {
         individuationFunctionQueryTransformer, dataPropertyProjectionTransformer);
 
     IQTree iqTree = Mockito.mock(IQTree.class);
-    IQTree expected = Mockito.mock(IQTree.class);
+    IQTree expected = iqTree;
 
     Mockito.when(iqTree.acceptTransformer(individuationFunctionQueryTransformer)).thenReturn(
         iqTree);
-    Mockito.when(iqTree.acceptTransformer(dataPropertyProjectionTransformer)).thenReturn(expected);
+    Mockito.when(iqTree.acceptTransformer(dataPropertyProjectionTransformer)).thenReturn(iqTree);
 
     IQTree actual = optimizer.optimize(iqTree);
 

@@ -29,8 +29,8 @@ import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.impl.IRITermType;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 /**
@@ -68,11 +68,27 @@ public class IndividuationFunctionQueryTransformer extends
   @Override
   public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
       IQTree child) {
+    Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
+    for (Map.Entry<Variable, ImmutableTerm> substitutionEntry : constructionNode.getSubstitution()
+        .stream().toList()) {
+      if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
+          && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
+          && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
+          && rdfTermTypeConstant.getRDFTermType() instanceof IRITermType
+          && term.getTerm(0) instanceof NonGroundFunctionalTerm iriFunctionTerm
+          && iriFunctionTerm.getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {
+        newSubstitutionMap.put(substitutionEntry.getKey(),
+            getIndividuationTerm(tree, iriStrTemplateFn, iriFunctionTerm));
+
+        if (!child.isDistinct()) {
+          child = iqFactory.createUnaryIQTree(iqFactory.createDistinctNode(), child);
+        }
+      } else {
+        newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
+      }
+    }
     Substitution<ImmutableTerm> substitution = new SubstitutionImpl<>(
-        ImmutableMap.copyOf(constructionNode.getSubstitution().stream()
-            .collect(Collectors.toMap(Map.Entry::getKey,
-                value -> updateTermIfRelatedToIndividuation(tree, value)))),
-        termFactory, true);
+        ImmutableMap.copyOf(newSubstitutionMap), termFactory, true);
 
     ConstructionNode newConstructionNode = iqFactory.createConstructionNode(
         constructionNode.getVariables(),
@@ -83,46 +99,33 @@ public class IndividuationFunctionQueryTransformer extends
   /**
    * @brief @~english «Description of the method»
    * @param tree «Parameter description»
-   * @param substitutionEntry «Parameter description»
+   * @param iriStrTemplateFn «Parameter description»
+   * @param iriFunctionTerm «Parameter description»
    * @return «Return description»
    *
-   * @brief @~french Updates the term if it is related to individuation.
-   * @param tree The IQTree in which the substituted term is defined.
-   * @param substitutionEntry The substitution entry to update.
-   * @return The value of the substitution entry if not related to individuation.
-   *         The inner term if the substitution was a call to the RDF function, without
-   *         any call to the IRIStringTemplateFunction.
-   *         A new term MMEcSignatureFunction term if the substitution was a call to the
-   *         IRIStringTemplateFunction or a call to RDF with an inner term that was a
-   *         call to the IRIStringTemplateFunction.
+   * @brief @~french Création d'un appel à la fonction de signature à partir d'un appel à la
+   *                 fonction de génération d'IRI.
+   * @param tree Arbre correspondant à la requête complète
+   * @param iriStrTemplateFn Fonction de génération d'IRI à transformer
+   * @param iriFunctionTerm Appel de la fonction de génération d'IRI
+   * @return Appel à la fonction de signature
    *
    * @par Tâches
    *    S.O.
    */
-  private ImmutableTerm updateTermIfRelatedToIndividuation(IQTree tree,
-      Map.Entry<Variable, ImmutableTerm> substitutionEntry) {
-    ImmutableTerm newTerm = substitutionEntry.getValue();
+  private ImmutableTerm getIndividuationTerm(IQTree tree,
+      IRIStringTemplateFunctionSymbol iriStrTemplateFn, NonGroundFunctionalTerm iriFunctionTerm) {
+    DBConstant identifierForSignatureGroup = termFactory.getDBStringConstant(
+        iriStrTemplateFn.getName());
+    ImmutableList<ImmutableTerm> arguments = ImmutableList.<ImmutableTerm>builder()
+        .add(identifierForSignatureGroup)
+        .addAll(iriFunctionTerm.getVariables().asList())
+        .build();
+    ImmutableList<TermType> argTypes =
+        arguments.stream().map(
+                variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
+            .collect(ImmutableList.toImmutableList());
 
-    if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
-        && term.getFunctionSymbol() instanceof RDFTermFunctionSymbol
-        && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
-        && rdfTermTypeConstant.getRDFTermType() instanceof IRITermType
-        && term.getTerm(0) instanceof NonGroundFunctionalTerm iriFunctionTerm
-        && iriFunctionTerm.getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {
-      DBConstant identifierForSignatureGroup = termFactory.getDBStringConstant(
-          iriStrTemplateFn.getName());
-      ImmutableList<ImmutableTerm> arguments = ImmutableList.<ImmutableTerm>builder()
-          .add(identifierForSignatureGroup)
-          .addAll(iriFunctionTerm.getVariables().asList())
-          .build();
-      ImmutableList<TermType> argTypes =
-          arguments.stream().map(
-                  variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
-              .collect(ImmutableList.toImmutableList());
-
-      return termFactory.getMMecSignatureFunction(argTypes, arguments);
-    }
-
-    return newTerm;
+    return termFactory.getMMecSignatureFunction(argTypes, arguments);
   }
 }
