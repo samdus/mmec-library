@@ -43,13 +43,13 @@ import javax.annotation.Nonnull;
  * @par Tâches
  *      S.O.
  */
-public class MMecConfiguration extends MmecOntopSqlOwlApiConfigurationImpl {
+public class MMecConfiguration extends OntopSQLOWLAPIConfigurationImpl {
 
   private final FacadeProperties facadeProperties;
   private final MappingProperties mappingProperties;
 
   MMecConfiguration(@Nonnull OntopStandaloneSQLSettings settings,
-      @Nonnull MmecOntopSqlOwlApiOptions options,
+      @Nonnull OntopSQLOWLAPIOptions options,
       @Nonnull FacadeProperties facadeProperties,
       @Nonnull MappingProperties mappingProperties) {
     super(settings, options);
@@ -59,7 +59,7 @@ public class MMecConfiguration extends MmecOntopSqlOwlApiConfigurationImpl {
   }
 
   public static class MMecConfigurationBuilder
-      extends OwlApiBuilderMixin<MMecConfigurationBuilder> {
+      extends OntopSQLOWLAPIBuilderMixin<MMecConfigurationBuilder> {
 
     private FacadeProperties facadeProperties;
     private MappingProperties mappingProperties;
@@ -68,8 +68,7 @@ public class MMecConfiguration extends MmecOntopSqlOwlApiConfigurationImpl {
     public MMecConfiguration build() {
       OntopStandaloneSQLSettings settings = new OntopStandaloneSQLSettingsImpl(generateProperties(),
           isR2rml());
-      MmecOntopSqlOwlApiOptions options =
-          generateSqlOwlApiOptions();
+      OntopSQLOWLAPIOptions options = generateSQLOWLAPIOptions();
 
       return new MMecConfiguration(settings, options, facadeProperties, mappingProperties);
     }
