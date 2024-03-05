@@ -29,6 +29,7 @@ import it.unibz.inf.ontop.iq.tools.UnionBasedQueryMerger;
 import it.unibz.inf.ontop.model.atom.DistinctVariableOnlyDataAtom;
 import it.unibz.inf.ontop.model.atom.RDFAtomPredicate;
 import it.unibz.inf.ontop.model.term.Constant;
+import it.unibz.inf.ontop.model.term.GroundTerm;
 import it.unibz.inf.ontop.model.term.IRIConstant;
 import it.unibz.inf.ontop.model.term.ImmutableExpression;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
@@ -253,7 +254,11 @@ public class MMecMappingAssertionUnion {
       // assumes that filter is a possibly empty list of non-empty lists
       Optional<ImmutableExpression> mergedConditions = translate(filter);
 
-      if (extensionalDataNodes.isEmpty() && valuesNode.isEmpty()) {
+      // if there's not extensionalDataNodes or valuesNode
+      // or if all the variable in the substitution are ground,
+      // we can return a TrueNode
+      if ((extensionalDataNodes.isEmpty() && valuesNode.isEmpty()) || substitution.stream()
+          .allMatch(substitution -> substitution.getValue() instanceof GroundTerm)) {
         return iqFactory.createTrueNode();
       } else if (valuesNode.isEmpty() && extensionalDataNodes.size() == 1) {
         return mergedConditions
