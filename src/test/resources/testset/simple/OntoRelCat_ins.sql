@@ -337,7 +337,7 @@ call ontorelcat_pub.onto_class_axiom_ins('OntoRelCat_simple', 'http://www.griis.
                                          'http://www.griis.ca/projects/rel', '[1..*]', '[0.. *]', 'DECLARED', 'T0009');
 
 call ontorelcat_pub.onto_data_type_ins('OntoRelCat_simple',
-                                       'http://www.w3.org/2001/XMLSchema#string', null, 'TEXT');
+                                       'http://www.w3.org/2001/XMLSchema#string', null, '"BW"."string"');
 call ontorelcat_pub.onto_data_axiom_ins('OntoRelCat_simple', 'http://www.griis.ca/projects/tst',
                                         'http://www.w3.org/2001/XMLSchema#string',
                                         'http://www.griis.ca/projects/has_value', '[1..1]', 'DECLARED', 'T0007');

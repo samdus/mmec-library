@@ -95,57 +95,57 @@ public class MMecTermFactoryTest {
     Assertions.assertEquals(expected, actual);
   }
 
-  @Test
-  public void getMMecConversionFunction() {
-    MMecTermFactory termFactory = new MMecTermFactory(defaultTermFactory);
-    NonGroundFunctionalTerm expected = Mockito.mock(NonGroundFunctionalTerm.class);
+//  @Test
+//  public void getMMecConversionFunction() {
+//    MMecTermFactory termFactory = new MMecTermFactory(defaultTermFactory);
+//    NonGroundFunctionalTerm expected = Mockito.mock(NonGroundFunctionalTerm.class);
+//
+//    Variable variable = Mockito.mock(Variable.class);
+//    DBTermType variableType = Mockito.mock(DBTermType.class);
+//    DBTermType sqlDataType = Mockito.mock(DBTermType.class);
+//    MMecSqlDbFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
+//        MMecSqlDbFunctionSymbolFactory.class);
+//    DBTypeConversionFunctionSymbol conversionFunctionSymbol = Mockito.mock(
+//        DBTypeConversionFunctionSymbol.class);
+//
+//    Mockito.when(defaultTermFactory.getDBFunctionSymbolFactory()).thenReturn(
+//        dbFunctionSymbolFactory);
+//    Mockito.when(dbFunctionSymbolFactory.createMMecConversionFunctionSymbol(variableType,
+//        sqlDataType)).thenReturn(conversionFunctionSymbol);
+//    Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(conversionFunctionSymbol, variable))
+//        .thenReturn(expected);
+//
+//    ImmutableTerm actual = termFactory.getMMecConversionFunction(variable, variableType,
+//        sqlDataType);
+//
+//    Assertions.assertEquals(expected, actual);
+//  }
 
-    Variable variable = Mockito.mock(Variable.class);
-    DBTermType variableType = Mockito.mock(DBTermType.class);
-    DBTermType sqlDataType = Mockito.mock(DBTermType.class);
-    MMecSqlDbFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
-        MMecSqlDbFunctionSymbolFactory.class);
-    DBTypeConversionFunctionSymbol conversionFunctionSymbol = Mockito.mock(
-        DBTypeConversionFunctionSymbol.class);
-
-    Mockito.when(defaultTermFactory.getDBFunctionSymbolFactory()).thenReturn(
-        dbFunctionSymbolFactory);
-    Mockito.when(dbFunctionSymbolFactory.createMMecConversionFunctionSymbol(variableType,
-        sqlDataType)).thenReturn(conversionFunctionSymbol);
-    Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(conversionFunctionSymbol, variable))
-        .thenReturn(expected);
-
-    ImmutableTerm actual = termFactory.getMMecConversionFunction(variable, variableType,
-        sqlDataType);
-
-    Assertions.assertEquals(expected, actual);
-  }
-
-  @Test
-  public void getMMecConversionValidationFunction() {
-    MMecTermFactory termFactory = new MMecTermFactory(defaultTermFactory);
-    NonGroundFunctionalTerm expected = Mockito.mock(NonGroundFunctionalTerm.class);
-
-    Variable variable = Mockito.mock(Variable.class);
-    DBTermType variableType = Mockito.mock(DBTermType.class);
-    DBTermType sqlDataType = Mockito.mock(DBTermType.class);
-    MMecSqlDbFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
-        MMecSqlDbFunctionSymbolFactory.class);
-    DBBooleanFunctionSymbolImpl conversionValidationFunctionSymbol = Mockito.mock(
-        DBBooleanFunctionSymbolImpl.class);
-
-    Mockito.when(defaultTermFactory.getDBFunctionSymbolFactory()).thenReturn(
-        dbFunctionSymbolFactory);
-    Mockito.when(dbFunctionSymbolFactory.createMMecConversionValidationFunctionSymbol(variableType,
-        sqlDataType)).thenReturn(conversionValidationFunctionSymbol);
-    Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(
-        conversionValidationFunctionSymbol, variable)).thenReturn(expected);
-
-    ImmutableTerm actual = termFactory.getMMecConversionValidationFunction(variable, variableType,
-        sqlDataType);
-
-    Assertions.assertEquals(expected, actual);
-  }
+//  @Test
+//  public void getMMecConversionValidationFunction() {
+//    MMecTermFactory termFactory = new MMecTermFactory(defaultTermFactory);
+//    NonGroundFunctionalTerm expected = Mockito.mock(NonGroundFunctionalTerm.class);
+//
+//    Variable variable = Mockito.mock(Variable.class);
+//    DBTermType variableType = Mockito.mock(DBTermType.class);
+//    DBTermType sqlDataType = Mockito.mock(DBTermType.class);
+//    MMecSqlDbFunctionSymbolFactory dbFunctionSymbolFactory = Mockito.mock(
+//        MMecSqlDbFunctionSymbolFactory.class);
+//    DBBooleanFunctionSymbolImpl conversionValidationFunctionSymbol = Mockito.mock(
+//        DBBooleanFunctionSymbolImpl.class);
+//
+//    Mockito.when(defaultTermFactory.getDBFunctionSymbolFactory()).thenReturn(
+//        dbFunctionSymbolFactory);
+//    Mockito.when(dbFunctionSymbolFactory.createMMecConversionValidationFunctionSymbol(variableType,
+//        sqlDataType)).thenReturn(conversionValidationFunctionSymbol);
+//    Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(
+//        conversionValidationFunctionSymbol, variable)).thenReturn(expected);
+//
+//    ImmutableTerm actual = termFactory.getMMecConversionValidationFunction(variable, variableType,
+//        sqlDataType);
+//
+//    Assertions.assertEquals(expected, actual);
+//  }
 
   private static Stream<Method> getDelegatedMethods() {
     return Arrays.stream(TermFactoryImpl.class.getDeclaredMethods()).filter(

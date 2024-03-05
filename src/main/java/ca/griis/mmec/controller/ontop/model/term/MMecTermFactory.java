@@ -10,6 +10,7 @@
 package ca.griis.mmec.controller.ontop.model.term;
 
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSqlDbFunctionSymbolFactory;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -78,23 +79,21 @@ public class MMecTermFactory implements TermFactory {
       ImmutableList<TermType> argTypes,
       ImmutableList<? extends ImmutableTerm> terms) {
     return defaultTermFactory.getNonGroundFunctionalTerm(
-        getMMecDbFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes), terms.toArray(new ImmutableTerm[0]));
+        getMMecDbFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes),
+        terms.toArray(new ImmutableTerm[0]));
   }
 
   public NonGroundFunctionalTerm getMMecConversionFunction(ImmutableTerm variable,
-      DBTermType variableType,
-      DBTermType sqlDataType) {
+      MMecMappingConversion conversion) {
     return defaultTermFactory.getNonGroundFunctionalTerm(
-        getMMecDbFunctionSymbolFactory().createMMecConversionFunctionSymbol(variableType,
-            sqlDataType),
+        conversion.getConversionFunction().orElseThrow(),
         variable);
   }
 
   public NonGroundFunctionalTerm getMMecConversionValidationFunction(ImmutableTerm variable,
-      DBTermType variableType, DBTermType sqlDataType) {
+      MMecMappingConversion conversion) {
     return defaultTermFactory.getNonGroundFunctionalTerm(
-        getMMecDbFunctionSymbolFactory().createMMecConversionValidationFunctionSymbol(variableType,
-            sqlDataType),
+        conversion.getValidationFunction().orElseThrow(),
         variable);
   }
 

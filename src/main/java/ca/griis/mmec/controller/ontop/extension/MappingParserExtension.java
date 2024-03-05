@@ -13,6 +13,7 @@
 
 package ca.griis.mmec.controller.ontop.extension;
 
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.model.MMecTriplesMap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -25,10 +26,13 @@ import it.unibz.inf.ontop.utils.ImmutableCollectors;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.Triple;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 
 /**
@@ -65,11 +69,16 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  */
 public class MappingParserExtension {
 
+  public static final String subsetIRI = "http://www.griis.ca/projects/mmec/subsets";
+  private final String conversionIRI = "http://www.griis.ca/projects/mmec/conversion";
+  private final MMecMappingExtension mappingExtension;
   private final SQLPPMappingFactory ppMappingFactory;
   private final RDF4J rdf;
 
   @Inject
-  public MappingParserExtension(SQLPPMappingFactory ppMappingFactory, RDF4J rdf) {
+  public MappingParserExtension(MMecMappingExtension mappingExtension,
+      SQLPPMappingFactory ppMappingFactory, RDF4J rdf) {
+    this.mappingExtension = mappingExtension;
     this.ppMappingFactory = ppMappingFactory;
     this.rdf = rdf;
   }
@@ -141,9 +150,12 @@ public class MappingParserExtension {
     ImmutableList<MMecTriplesMap> sourceMappings =
         mapping.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
 
+    // FIXME: D'après-moi, ça serait sûrement plus simple et propre de modifier le stream().map(x->)
+    //        ci-haut et d'utiliser le mappingGraph.stream(null, rdf.createIRI(subsetIRI), x) pour
+    //        ajouter les subsets directement en construisant le MMecTriplesMap.
     // Voici un exemple de comment réassocier les triplets de fonctions custom au mapping généré :
     Map<TriplesMap, List<TriplesMap>> hasSubset =
-        mappingGraph.stream(null, rdf.createIRI("http://www.griis.ca/projects/mmec/subsets"),
+        mappingGraph.stream(null, rdf.createIRI(subsetIRI),
                 null).map(
                 axiom -> new ImmutablePair<>(
                     tripleMaps.stream()
@@ -170,7 +182,35 @@ public class MappingParserExtension {
           superSetSourceMapping.addSubset(subSetSourceMapping);
         }));
 
+    processExtendedMapping(mappingGraph, sourceMappings);
+
     return sourceMappings.stream().map(SQLPPTriplesMap.class::cast)
         .collect(ImmutableCollectors.toList());
+  }
+
+  private void processExtendedMapping(Graph mappingGraph,
+      ImmutableList<MMecTriplesMap> sourceMappings) {
+    List<? extends Triple> conversionTriples = mappingGraph.stream(null,
+        rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+        rdf.createIRI("http://www.griis.ca/projects/mmec/conversion")).toList();
+
+    for(Triple conversionTriple : conversionTriples) {
+      RDFTerm declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
+          rdf.createIRI("http://www.griis.ca/projects/mmec/conversionInputType"), null)
+          .map(Triple::getObject).findFirst().orElseThrow();
+      RDFTerm declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
+          rdf.createIRI("http://www.griis.ca/projects/mmec/conversionOutputType"), null)
+          .map(Triple::getObject).findFirst().orElseThrow();
+      Optional<RDFTerm> declaredConversionFunction = mappingGraph.stream(conversionTriple.getSubject(),
+          rdf.createIRI("http://www.griis.ca/projects/mmec/conversionFunction"), null)
+          .map(Triple::getObject).findFirst();
+      Optional<RDFTerm> declaredValidationFunction = mappingGraph.stream(conversionTriple.getSubject(),
+          rdf.createIRI("http://www.griis.ca/projects/mmec/validationFunction"), null)
+          .map(Triple::getObject).findFirst();
+
+      MMecMappingExtension mappingExtension = new MMecMappingExtension();
+      // mappingExtension.addMappingConversion(...);
+    }
+
   }
 }
