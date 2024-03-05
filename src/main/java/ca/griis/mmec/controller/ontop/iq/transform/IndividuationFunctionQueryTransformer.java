@@ -79,10 +79,6 @@ public class IndividuationFunctionQueryTransformer extends
           && iriFunctionTerm.getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {
         newSubstitutionMap.put(substitutionEntry.getKey(),
             getIndividuationTerm(tree, iriStrTemplateFn, iriFunctionTerm));
-
-        if (!child.isDistinct()) {
-          child = iqFactory.createUnaryIQTree(iqFactory.createDistinctNode(), child);
-        }
       } else {
         newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
       }

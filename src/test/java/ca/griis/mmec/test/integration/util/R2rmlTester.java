@@ -186,9 +186,15 @@ public class R2rmlTester extends OntopTester {
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
-        System.out.println("Test de génération d'une expression de classe");
+        String classIri = "http://purl.obolibrary.org/obo/HBW_0000004";
+        System.out.printf("Test de génération d'une expression pour la classe %s\n", classIri);
         System.out.println("---------------------------------------------");
-        testGetClassDef(connection);
+        testGetClassDef(connection, classIri);
+
+        classIri = "http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C4d0c3f45";
+        System.out.printf("Test de génération d'une expression pour la classe %s\n", classIri);
+        System.out.println("---------------------------------------------");
+        testGetClassDef(connection, classIri);
 
         System.out.println("Test de génération d'une expression de ObjectProperty");
         System.out.println("---------------------------------------------------");
@@ -201,7 +207,7 @@ public class R2rmlTester extends OntopTester {
     }
   }
 
-  private void testGetClassDef(OntopConnection connection)
+  private void testGetClassDef(OntopConnection connection, String classIri)
       throws OntopConnectionException, OntopReformulationException {
     try (OntopStatement statement = connection.createStatement()) {
 
@@ -212,7 +218,7 @@ public class R2rmlTester extends OntopTester {
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
               true),
           new Var("uid_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000004"), true, true));
+              valueFactory.createIRI(classIri), true, true));
 
       QueryRoot queryRoot = new QueryRoot(classStatement);
 

@@ -167,10 +167,6 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
           ImmutableMap.copyOf(newSubstitutionMap), termFactory, true);
       constructionNode = iqFactory.createConstructionNode(
           constructionNode.getVariables(), substitution);
-
-      if (!child.isDistinct()) {
-        child = iqFactory.createUnaryIQTree(iqFactory.createDistinctNode(), child);
-      }
     }
 
     return transformUnaryNode(tree, constructionNode, child);

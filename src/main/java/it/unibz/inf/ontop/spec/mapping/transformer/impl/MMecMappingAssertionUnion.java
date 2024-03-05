@@ -48,10 +48,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import javax.swing.text.html.Option;
 
 /**
  *
@@ -147,7 +145,7 @@ public class MMecMappingAssertionUnion {
                           extensionalDataNodes.stream().flatMap(n -> n.getVariables().stream()),
                           valuesNode.stream().flatMap(n -> n.getVariables().stream())))
                   .collect(ImmutableCollectors.toSet()));
-      ;
+
       this.projectionAtom = projectionAtom;
 
       // replaces constant IRI in the object position of properties with a ValueNode
@@ -245,9 +243,10 @@ public class MMecMappingAssertionUnion {
 
     IQ asIQ() {
       return iqFactory.createIQ(projectionAtom,
-          iqFactory.createUnaryIQTree(
-              iqFactory.createConstructionNode(projectionAtom.getVariables(), substitution),
-              getTree()));
+          iqFactory.createUnaryIQTree(iqFactory.createDistinctNode(),
+              iqFactory.createUnaryIQTree(
+                  iqFactory.createConstructionNode(projectionAtom.getVariables(), substitution),
+                  getTree())));
     }
 
     IQTree getTree() {
@@ -402,11 +401,11 @@ public class MMecMappingAssertionUnion {
             Stream.concat(conjunctiveIqs.stream().map(ConjunctiveIQ::asIQ), otherIqs.stream())
                 .collect(ImmutableCollectors.toList()))
         .map(IQ::normalizeForOptimization);
-    
+
     //if (query.toString().contains("UNION"))
     //    System.out.println("MAU-UNION: " + query);
     PPMappingAssertionProvenance provenance = conjunctiveIqs.stream().map(
-        ConjunctiveIQ::getProvenance)
+            ConjunctiveIQ::getProvenance)
         .collect(UnionPPMappingAssertionProvenance.getPpMappingAssertionProvenanceCollector())
         .orElse(null);
     return query.map(q -> new MappingAssertion(q, provenance));
