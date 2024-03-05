@@ -101,7 +101,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   public DataPropertyProjectionTransformer(IntermediateQueryFactory iqFactory,
       TermFactory termFactory,
       BasicSingleTermTypeExtractor typeExtractor,
-      JooqOntoRelCatRepository ontoRelCatRepository,
+      OntoRelCatRepository ontoRelCatRepository,
       MappingProperties mappingProperties) {
     super(iqFactory);
 

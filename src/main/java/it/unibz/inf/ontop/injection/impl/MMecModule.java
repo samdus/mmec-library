@@ -11,6 +11,7 @@ package it.unibz.inf.ontop.injection.impl;
 
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.repository.OntoRelCatRepository;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -51,5 +52,7 @@ public class MMecModule extends OntopAbstractModule {
   protected void configure() {
     bind(FacadeProperties.class).toInstance(configuration.getFacadeProperties());
     bind(MappingProperties.class).toInstance(configuration.getMappingProperties());
+
+    bindFromSettings(OntoRelCatRepository.class);
   }
 }
