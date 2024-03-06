@@ -254,11 +254,7 @@ public class MMecMappingAssertionUnion {
       // assumes that filter is a possibly empty list of non-empty lists
       Optional<ImmutableExpression> mergedConditions = translate(filter);
 
-      // if there's not extensionalDataNodes or valuesNode
-      // or if all the variable in the substitution are ground,
-      // we can return a TrueNode
-      if ((extensionalDataNodes.isEmpty() && valuesNode.isEmpty()) || substitution.stream()
-          .allMatch(substitution -> substitution.getValue() instanceof GroundTerm)) {
+      if (extensionalDataNodes.isEmpty() && valuesNode.isEmpty()) {
         return iqFactory.createTrueNode();
       } else if (valuesNode.isEmpty() && extensionalDataNodes.size() == 1) {
         return mergedConditions
