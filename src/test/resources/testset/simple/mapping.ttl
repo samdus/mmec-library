@@ -46,17 +46,10 @@
     mmec:Source         'https://griis.ca/JeDIS' ;
     mmec:TemplatePrefix 'http://www.griis.ca/projects/' .
 
-<exclude:T01f6>
-    a                    mmec:OntoRelExclusions ;
-    mmec:excludedRelation "T01f6" ;
-    mmec:exclusionType    mmec:NOT_AVAILABLE ;
-    mmec:explanation      "La clinique ne gère pas ces données là." .
-
-<exclude:Laboratoirecolumn>
-    a                mmec:SourceExclusions ;
-    mmec:sourceObject [ rr:tableName "\"EXP\".\"LABORATOIRE\"" ;
-                       rr:column    "\"COLUMN\"" ] ;
-    mmec:explanation  "La clinique ne gère pas ces données là." .
+<Conversion:integer:string>
+    a mmec:conversion ;
+    mmec:conversionInputType  "integer" ;
+    mmec:conversionOutputType "\"BW\".\"string\"" .
 
 <Mapping:SharedSignature1>
     a mmec:SignatureSuperSet .

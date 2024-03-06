@@ -321,7 +321,7 @@ public class R2rmlTester extends OntopTester {
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
               true),
           new Var("sub_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/HBW_0000003"), true, true));
+              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000003"), true, true));
 
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("dp_uri",

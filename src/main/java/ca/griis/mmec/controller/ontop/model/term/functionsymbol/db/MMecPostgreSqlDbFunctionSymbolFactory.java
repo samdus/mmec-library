@@ -11,9 +11,9 @@ package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
+import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
-import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.PostgreSQLDBFunctionSymbolFactory;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
@@ -59,6 +59,12 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
   }
 
   @Override
+  public DBTypeConversionFunctionSymbol createMMecSimpleConversionFunctionSymbol(
+      DBTermType inputType, DBTermType targetType) {
+    return new MMecSimpleConversionFunctionSymbol(inputType, targetType);
+  }
+
+  @Override
   public DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(String functionName,
       DBTermType inputType, DBTermType targetType) {
     return new MMecConversionFunctionSymbol(functionName, inputType, targetType);
@@ -71,7 +77,7 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
   }
 
   @Override
-  public MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType) {
-    return new MMecValueFunctionSymbol(valueType, typeFactory.getMetaRDFTermType());
+  public MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType, RDFTermTypeConstant rdfTermTypeConstant) {
+    return new MMecValueFunctionSymbol(valueType, rdfTermTypeConstant, typeFactory.getMetaRDFTermType());
   }
 }

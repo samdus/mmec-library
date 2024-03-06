@@ -13,58 +13,58 @@ import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.DBConstant;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.TermFactory;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBFunctionSymbolSerializer;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractDBTypeConversionFunctionSymbolImpl;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.Serializers;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details «Detailed description of the component (optional)»
- * @par Model «Model (Abstract, automation, etc.) (optional)»
- * @par Conception «Conception description (criteria and constraints) (optional)»
- * @par Limits «Limits description (optional)»
- * @brief @~french Symbole pour la fonction de vérification de conversion.
- * @par Détails S.O.
- * @par Modèle S.O.
- * @par Conception S.O.
- * @par Limites S.O.
- * @par Historique 2024-01-30 [SD] - Implémentation initiale<br>
- * @par Tâches S.O.
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Sert à s'assurer que le type exprimé par la requête d'arrimage est bien le type
+ *                 prévu par l'OntoRel.
+ *                 <br>
+ *                 S'assure aussi que la conversion s'applique explicitement pour les constantes.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-03-06 [SD] - Implémentation initiale<br>
+ *
+ * @par Tâches
+ *      S.O.
  */
-public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFunctionSymbolImpl {
-  private final String functionName;
-  @Nullable
+public class MMecSimpleConversionFunctionSymbol
+    extends AbstractDBTypeConversionFunctionSymbolImpl {
   private final DBTermType inputType;
+  private final DBFunctionSymbolSerializer serializer;
 
-  /***
-   * @brief @~english «Description of the method»
-   * @param functionName «Parameter description»
-   * @param targetType «Parameter description»
-   * @param inputType «Parameter description»
-   *
-   * @brief @~french Constructeur pour le symbole de fonction de vérification de conversion.
-   * @param functionName Nom de la fonction déclarée dans l'arrimage
-   * @param inputType Type de l'argument de la fonction
-   * @param targetType Type vers lequel faire la conversion
-   *
-   * @par Tâches
-   *      S.O.
-   */
-  protected MMecConversionFunctionSymbol(String functionName, DBTermType inputType,
-      DBTermType targetType) {
-    super("Conversion", inputType, targetType);
+  protected MMecSimpleConversionFunctionSymbol(DBTermType inputType, DBTermType targetType) {
+    super("SimpleCastTo" + targetType.getName(), targetType, targetType);
+    serializer = Serializers.getCastSerializer(targetType);
     this.inputType = inputType;
-    this.functionName = functionName;
   }
 
   @Override
   public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
       Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
-    return String.format("%s(%s)", functionName,
-        terms.stream().map(termConverter).collect(Collectors.joining(", ")));
+    return serializer.getNativeDBString(terms, termConverter, termFactory);
   }
 
   @Override

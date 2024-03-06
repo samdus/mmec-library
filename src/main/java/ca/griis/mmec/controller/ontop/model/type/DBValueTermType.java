@@ -12,6 +12,7 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.DBTypeFactory;
 import it.unibz.inf.ontop.model.type.LanguageTag;
 import it.unibz.inf.ontop.model.type.RDFDatatype;
+import it.unibz.inf.ontop.model.type.RDFTermType;
 import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.TermTypeAncestry;
 import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
@@ -46,10 +47,10 @@ import org.apache.commons.rdf.api.IRI;
  *      S.O.
  */
 public class DBValueTermType implements DBTermType, RDFDatatype {
-  private final SimpleRDFDatatype innerRDFTermType;
+  private final RDFDatatype innerRDFTermType;
   private final DBTermType innerDBTermType;
 
-  public DBValueTermType(SimpleRDFDatatype innerRDFTermType, DBTermType innerDBTermType) {
+  public DBValueTermType(RDFDatatype innerRDFTermType, DBTermType innerDBTermType) {
     this.innerRDFTermType = innerRDFTermType;
     this.innerDBTermType = innerDBTermType;
   }

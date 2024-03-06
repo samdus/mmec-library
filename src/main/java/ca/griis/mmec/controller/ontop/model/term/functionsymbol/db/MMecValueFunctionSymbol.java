@@ -18,8 +18,8 @@ import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractTypedDBFunctionSymbol;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.MetaRDFTermType;
+import it.unibz.inf.ontop.model.type.RDFDatatype;
 import it.unibz.inf.ontop.model.type.TermTypeInference;
-import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -54,6 +54,7 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
     RDFTermFunctionSymbol {
 
   private final DBTermType valueType;
+  private final RDFDatatype rdfDatatype;
 
   /**
    * @brief @~english «Description of the method»
@@ -66,10 +67,15 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
    * @par Tâches
    *    S.O.
    */
-  protected MMecValueFunctionSymbol(DBTermType valueType, MetaRDFTermType typeTermType) {
+  protected MMecValueFunctionSymbol(DBTermType valueType, RDFTermTypeConstant rdfTermTypeConstant,
+      MetaRDFTermType typeTermType) {
     super(String.format("Value_%s", valueType.getName()), ImmutableList.of(valueType, typeTermType),
         valueType);
     this.valueType = valueType;
+    this.rdfDatatype = Optional.of(rdfTermTypeConstant.getRDFTermType())
+        .filter(type -> type instanceof RDFDatatype)
+        .map(RDFDatatype.class::cast)
+        .orElseThrow();
   }
 
   @Override
@@ -96,16 +102,8 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
 
   @Override
   public Optional<TermTypeInference> inferType(ImmutableList<? extends ImmutableTerm> terms) {
-    checkArity(terms);
-
-    return Optional.of(terms.get(1))
-        .filter(term -> term instanceof RDFTermTypeConstant)
-        .map(term -> (RDFTermTypeConstant) term)
-        .map(RDFTermTypeConstant::getRDFTermType)
-        .filter(rdfTermType -> rdfTermType instanceof SimpleRDFDatatype)
-        .map(rdfTermType -> (SimpleRDFDatatype) rdfTermType)
-        .map(rdfTermType -> new DBValueTermType(rdfTermType, valueType))
-        .map(TermTypeInference::declareTermType);
+    return Optional.of(
+        TermTypeInference.declareTermType(new DBValueTermType(rdfDatatype, valueType)));
   }
 
   private static void checkArity(ImmutableList<? extends ImmutableTerm> terms)

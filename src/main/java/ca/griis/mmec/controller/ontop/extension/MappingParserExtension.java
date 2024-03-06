@@ -202,14 +202,13 @@ public class MappingParserExtension {
           superSetSourceMapping.addSubset(subSetSourceMapping);
         }));
 
-    processExtendedMapping(mappingGraph, sourceMappings);
+    processExtendedMapping(mappingGraph);
 
     return sourceMappings.stream().map(SQLPPTriplesMap.class::cast)
         .collect(ImmutableCollectors.toList());
   }
 
-  private void processExtendedMapping(Graph mappingGraph,
-      ImmutableList<MMecTriplesMap> sourceMappings) {
+  private void processExtendedMapping(Graph mappingGraph) {
     List<? extends Triple> conversionTriples = mappingGraph.stream(null,
         rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
         rdf.createIRI("http://www.griis.ca/projects/mmec/conversion")).toList();

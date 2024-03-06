@@ -9,7 +9,6 @@ import com.google.common.collect.ImmutableMap;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.node.ConstructionNode;
-import it.unibz.inf.ontop.iq.node.impl.FilterNodeImpl;
 import it.unibz.inf.ontop.iq.transform.impl.DefaultRecursiveIQTreeVisitingTransformer;
 import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
@@ -49,12 +48,8 @@ import javax.inject.Inject;
  *      Pour chaque substitution de propriété de données, on détermine le type de la variable à
  *      substituer et le type de destination dans la configuration du modèle commun.
  *      <br>
- *      Si le type de la variable et le type de destination sont identiques, on remplace la
+ *      Si le type de la variable et le type de destination ont le même nom, on remplace la
  *      substitution par un simple renommage de la variable.
- *      <br>
- *      Si le nom de conversion du type de la variable et le nom de conversion du type de
- *      destination sont identiques, on remplace la substitution par une conversion simple de la
- *      variable (CAST SQL).
  *      <br>
  *      Si une fonction de conversion existe dans cet arrimage pour convertir une variable du type
  *      de la variable vers le type de destination, on remplace la substitution par l'appel de cette
@@ -120,16 +115,11 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
               .filter(termType -> termType instanceof DBTermType)
               .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
                   "Cannot get the type of the data property's substitution variable."));
+          ImmutableTerm valueTerm;
 
-          if (targetType.getName().equals(variableType.getName())) {
-            newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getMMecValueFunction(variable,
-                    variableType, rdfTermTypeConstant));
-          } else if (targetType.getCastName().equals(variableType.getCastName())) {
-            newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getDBCastFunctionalTerm(variableType, targetType,
-                    termFactory.getMMecValueFunction(variable,
-                        variableType, rdfTermTypeConstant)));
+          if (targetType.getName().compareToIgnoreCase(variableType.getName()) == 0) {
+            valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
+                variable);
           } else {
             MMecMappingConversion conversion = mappingExtension
                 .getMappingConversion(variableType, targetType)
@@ -139,23 +129,13 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
                         variableType.getName(), targetType.getName())));
 
             if (conversion.getConversionFunction().isPresent()) {
-              newSubstitutionMap.put(substitutionEntry.getKey(), termFactory.getMMecValueFunction(
-                  termFactory.getMMecConversionFunction(variable, conversion),
-                  variableType, rdfTermTypeConstant));
+              valueTerm = termFactory.getMMecConversionFunction(variable, conversion);
             } else {
-              newSubstitutionMap.put(substitutionEntry.getKey(), termFactory.getMMecValueFunction(
-                  termFactory.getDBCastFunctionalTerm(variableType, targetType, variable),
-                  variableType, rdfTermTypeConstant));
+              valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
+                  variable);
             }
 
             if (conversion.getValidationFunction().isPresent()) {
-              // Remove the filter node if there was already one for this variable
-              if (child.getRootNode() instanceof FilterNodeImpl filterNode
-                  && child.getChildren().size() == 1
-                  && filterNode.getFilterCondition().getVariables().size() == 1
-                  && filterNode.getFilterCondition().getVariables().contains(variable)) {
-                child = child.getChildren().get(0);
-              }
               child = iqFactory.createUnaryIQTree(
                   iqFactory.createFilterNode(termFactory.getStrictEquality(
                       termFactory.getMMecConversionValidationFunction(variable, conversion),
@@ -163,6 +143,8 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
                   child);
             }
           }
+          newSubstitutionMap.put(substitutionEntry.getKey(),
+              termFactory.getMMecValueFunction(valueTerm, targetType, rdfTermTypeConstant));
         } else {
           newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
         }

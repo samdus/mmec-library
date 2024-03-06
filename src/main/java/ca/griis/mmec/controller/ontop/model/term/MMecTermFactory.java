@@ -83,6 +83,13 @@ public class MMecTermFactory implements TermFactory {
         terms.toArray(new ImmutableTerm[0]));
   }
 
+  public ImmutableFunctionalTerm getMMecSimpleCastFunctionalTerm(DBTermType inputType,
+      DBTermType targetType, ImmutableTerm term) {
+    return defaultTermFactory.getNonGroundFunctionalTerm(
+        getMMecDbFunctionSymbolFactory().createMMecSimpleConversionFunctionSymbol(inputType, targetType),
+        term);
+  }
+
   public NonGroundFunctionalTerm getMMecConversionFunction(ImmutableTerm variable,
       MMecMappingConversion conversion) {
     return defaultTermFactory.getNonGroundFunctionalTerm(
@@ -100,7 +107,8 @@ public class MMecTermFactory implements TermFactory {
   public NonGroundFunctionalTerm getMMecValueFunction(ImmutableTerm variable,
       DBTermType variableType, RDFTermTypeConstant rdfTermTypeConstant) {
     return defaultTermFactory.getNonGroundFunctionalTerm(
-        getMMecDbFunctionSymbolFactory().createMMecValueFunctionSymbol(variableType), variable,
+        getMMecDbFunctionSymbolFactory().createMMecValueFunctionSymbol(variableType,
+            rdfTermTypeConstant), variable,
         rdfTermTypeConstant);
   }
 

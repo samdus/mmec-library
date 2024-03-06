@@ -11,7 +11,7 @@
 <Conversion:TEXT:string>
     a mmec:conversion ;
     mmec:conversionInputType  "text" ;
-    mmec:conversionOutputType "\"BW\".\"string\"" ;
+    mmec:conversionOutputType "\"BW\".\"string\""
     mmec:conversionFunction "convertTextToBWString" ;
     mmec:validationFunction "v_convertTextToBWString" .
 
@@ -88,7 +88,7 @@
     a               rr:TriplesMap ;
     rr:logicalTable [ a rr:R2RMLView ;
                       rr:sqlQuery
-                        "select \"ID_PATIENT_EXT\", 'kg' as \"label\" from \"EXP\".\"PATIENT\" where \"POIDS\" is not null" ] ;
+                        "select \"ID_PATIENT_EXT\", 'kg'::\"BW\".\"string\" as \"label\" from \"EXP\".\"PATIENT\" where \"POIDS\" is not null" ] ;
     rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
                       rr:class    obo:HBW_0000003 ;
                       rr:template "http://purl.obolibrary.org/obo/HBW_0000003/{\"label\"}" ;
