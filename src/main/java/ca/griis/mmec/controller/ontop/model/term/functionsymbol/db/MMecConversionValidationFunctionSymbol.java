@@ -47,32 +47,32 @@ import java.util.stream.Collectors;
  *      S.O.
  */
 public class MMecConversionValidationFunctionSymbol extends DBBooleanFunctionSymbolImpl {
-  private final String functionCallTemplate;
+  private final String functionName;
 
   /***
    * @brief @~english «Description of the method»
+   * @param functionName «Parameter description»
    * @param dbBooleanType «Parameter description»
    * @param argType «Parameter description»
-   * @param functionCallTemplate «Parameter description»
    *
    * @brief @~french Constructeur pour le symbole de fonction de vérification de conversion.
+   * @param functionName Nom de la fonction déclarée dans l'arrimage
    * @param argType Type de l'argument de la fonction
    * @param dbBooleanType Type Booléen dans la base de données
-   * @param functionCallTemplate Template pour l'appel de la fonction
    *
    * @par Tâches
    *      S.O.
    */
-  protected MMecConversionValidationFunctionSymbol(TermType argType,
-      DBTermType dbBooleanType, String functionCallTemplate) {
+  protected MMecConversionValidationFunctionSymbol(String functionName, TermType argType,
+      DBTermType dbBooleanType) {
     super("ConversionValidation", ImmutableList.of(argType), dbBooleanType);
-    this.functionCallTemplate = functionCallTemplate;
+    this.functionName = functionName;
   }
 
   @Override
   public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
       Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
-    return String.format(functionCallTemplate,
+    return String.format("%s(%s)", functionName,
         terms.stream().map(termConverter).collect(Collectors.joining(", ")));
   }
 

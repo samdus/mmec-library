@@ -10,11 +10,13 @@
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBFunctionSymbolFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
+import org.apache.commons.rdf.api.Literal;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -34,11 +36,11 @@ public interface MMecSqlDbFunctionSymbolFactory extends DBFunctionSymbolFactory 
   MMecIndividuationFunctionSymbol createMMecIndividuationFunctionSymbol(
       ImmutableList<TermType> argTypes);
 
-  DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType,
-      DBTermType sqlDataType);
+  DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(String functionName,
+      DBTermType inputType, DBTermType targetType);
 
-  DBBooleanFunctionSymbolImpl createMMecConversionValidationFunctionSymbol(DBTermType variableType,
-      DBTermType sqlDataType);
+  DBBooleanFunctionSymbol createMMecConversionValidationFunctionSymbol(String functionName,
+      DBTermType inputType, DBTermType targetType);
 
   MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType);
 }

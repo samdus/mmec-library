@@ -121,13 +121,15 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
               .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
                   "Cannot get the type of the data property's substitution variable."));
 
-          NonGroundFunctionalTerm valueTerm = termFactory.getMMecValueFunction(variable,
-              variableType, rdfTermTypeConstant);
           if (targetType.getName().equals(variableType.getName())) {
-            newSubstitutionMap.put(substitutionEntry.getKey(), valueTerm);
+            newSubstitutionMap.put(substitutionEntry.getKey(),
+                termFactory.getMMecValueFunction(variable,
+                    variableType, rdfTermTypeConstant));
           } else if (targetType.getCastName().equals(variableType.getCastName())) {
             newSubstitutionMap.put(substitutionEntry.getKey(),
-                termFactory.getDBCastFunctionalTerm(variableType, targetType, valueTerm));
+                termFactory.getDBCastFunctionalTerm(variableType, targetType,
+                    termFactory.getMMecValueFunction(variable,
+                        variableType, rdfTermTypeConstant)));
           } else {
             MMecMappingConversion conversion = mappingExtension
                 .getMappingConversion(variableType, targetType)
@@ -137,11 +139,13 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
                         variableType.getName(), targetType.getName())));
 
             if (conversion.getConversionFunction().isPresent()) {
-              newSubstitutionMap.put(substitutionEntry.getKey(),
-                  termFactory.getMMecConversionFunction(valueTerm, conversion));
+              newSubstitutionMap.put(substitutionEntry.getKey(), termFactory.getMMecValueFunction(
+                  termFactory.getMMecConversionFunction(variable, conversion),
+                  variableType, rdfTermTypeConstant));
             } else {
-              newSubstitutionMap.put(substitutionEntry.getKey(),
-                  termFactory.getDBCastFunctionalTerm(variableType, targetType, valueTerm));
+              newSubstitutionMap.put(substitutionEntry.getKey(), termFactory.getMMecValueFunction(
+                  termFactory.getDBCastFunctionalTerm(variableType, targetType, variable),
+                  variableType, rdfTermTypeConstant));
             }
 
             if (conversion.getValidationFunction().isPresent()) {
@@ -154,7 +158,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
               }
               child = iqFactory.createUnaryIQTree(
                   iqFactory.createFilterNode(termFactory.getStrictEquality(
-                      termFactory.getMMecConversionValidationFunction(valueTerm, conversion),
+                      termFactory.getMMecConversionValidationFunction(variable, conversion),
                       termFactory.getDBBooleanConstant(true))),
                   child);
             }

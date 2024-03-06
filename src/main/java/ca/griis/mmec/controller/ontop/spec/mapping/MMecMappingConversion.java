@@ -12,8 +12,8 @@
  */
 package ca.griis.mmec.controller.ontop.spec.mapping;
 
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
-import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import java.util.Optional;
 
@@ -50,12 +50,12 @@ import java.util.Optional;
 public class MMecMappingConversion {
   private final DBTermType inputType;
   private final DBTermType outputType;
-  private final DBTypeConversionFunctionSymbol conversionFunction;
-  private final DBBooleanFunctionSymbolImpl validationFunction;
+  private final Optional<DBTypeConversionFunctionSymbol> conversionFunction;
+  private final Optional<DBBooleanFunctionSymbol> validationFunction;
 
   public MMecMappingConversion(DBTermType inputType, DBTermType outputType,
-      DBTypeConversionFunctionSymbol conversionFunction,
-      DBBooleanFunctionSymbolImpl validationFunction) {
+      Optional<DBTypeConversionFunctionSymbol> conversionFunction,
+      Optional<DBBooleanFunctionSymbol> validationFunction) {
     this.inputType = inputType;
     this.outputType = outputType;
     this.conversionFunction = conversionFunction;
@@ -71,10 +71,10 @@ public class MMecMappingConversion {
   }
 
   public Optional<DBTypeConversionFunctionSymbol> getConversionFunction() {
-    return Optional.ofNullable(conversionFunction);
+    return conversionFunction;
   }
 
-  public Optional<DBBooleanFunctionSymbolImpl> getValidationFunction() {
-    return Optional.ofNullable(validationFunction);
+  public Optional<DBBooleanFunctionSymbol> getValidationFunction() {
+    return validationFunction;
   }
 }

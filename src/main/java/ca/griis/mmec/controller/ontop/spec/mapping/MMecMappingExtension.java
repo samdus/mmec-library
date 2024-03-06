@@ -56,9 +56,8 @@ public class MMecMappingExtension {
         .map(m -> m.get(to));
   }
 
-  public void addMappingConversion(DBTermType from, DBTermType to,
-      MMecMappingConversion addedConversion) {
-    conversions.computeIfAbsent(from, k -> new HashMap<>())
-        .put(to, addedConversion);
+  public void addMappingConversion(MMecMappingConversion addedConversion) {
+    conversions.computeIfAbsent(addedConversion.getInputType(), k -> new HashMap<>())
+        .put(addedConversion.getOutputType(), addedConversion);
   }
 }

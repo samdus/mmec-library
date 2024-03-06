@@ -35,35 +35,35 @@ import javax.annotation.Nullable;
  * @par Tâches S.O.
  */
 public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFunctionSymbolImpl {
-  private final String functionCallTemplate;
+  private final String functionName;
   @Nullable
   private final DBTermType inputType;
 
   /***
    * @brief @~english «Description of the method»
+   * @param functionName «Parameter description»
    * @param targetType «Parameter description»
    * @param inputType «Parameter description»
-   * @param functionCallTemplate «Parameter description»
    *
    * @brief @~french Constructeur pour le symbole de fonction de vérification de conversion.
+   * @param functionName Nom de la fonction déclarée dans l'arrimage
    * @param inputType Type de l'argument de la fonction
    * @param targetType Type vers lequel faire la conversion
-   * @param functionCallTemplate Template pour l'appel de la fonction
    *
    * @par Tâches
    *      S.O.
    */
-  protected MMecConversionFunctionSymbol(DBTermType inputType, DBTermType targetType,
-      String functionCallTemplate) {
+  protected MMecConversionFunctionSymbol(String functionName, DBTermType inputType,
+      DBTermType targetType) {
     super("Conversion", inputType, targetType);
     this.inputType = inputType;
-    this.functionCallTemplate = functionCallTemplate;
+    this.functionName = functionName;
   }
 
   @Override
   public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
       Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
-    return String.format(functionCallTemplate,
+    return String.format("%s(%s)", functionName,
         terms.stream().map(termConverter).collect(Collectors.joining(", ")));
   }
 
@@ -85,7 +85,7 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
   @Override
   protected ImmutableTerm convertDBConstant(DBConstant constant, TermFactory termFactory)
       throws DBTypeConversionException {
-    return termFactory.getDBConstant(constant.getValue(), getTargetType());
+    return termFactory.getImmutableFunctionalTerm(this, constant);
   }
 
   @Override

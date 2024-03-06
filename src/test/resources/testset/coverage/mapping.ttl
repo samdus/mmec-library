@@ -12,8 +12,8 @@
     a mmec:conversion ;
     mmec:conversionInputType  "text" ;
     mmec:conversionOutputType "\"BW\".\"string\"" ;
-    mmec:conversionFunction "" ;
-    mmec:validationFunction "" .
+    mmec:conversionFunction "convertTextToBWString" ;
+    mmec:validationFunction "v_convertTextToBWString" .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Classes

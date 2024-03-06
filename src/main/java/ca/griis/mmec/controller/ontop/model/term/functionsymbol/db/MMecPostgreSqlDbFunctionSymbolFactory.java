@@ -11,6 +11,7 @@ package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.PostgreSQLDBFunctionSymbolFactory;
@@ -36,8 +37,6 @@ import it.unibz.inf.ontop.model.type.impl.PostgreSQLDBTypeFactory;
 public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionSymbolFactory
     implements MMecSqlDbFunctionSymbolFactory {
   private final String individuationFunctionCallTemplate;
-  private final String conversionFunctionNameTemplate;
-  private final String conversionValidationFunctionNameTemplate;
   private final DBTermType individuationFunctionReturnType;
 
   // TODO: Injecter la paramétrisation pour le template d'appel aux différentes fonctions
@@ -47,8 +46,6 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
       TypeFactory typeFactory) {
     super(typeFactory);
     individuationFunctionCallTemplate = "individuation(%s)";
-    conversionFunctionNameTemplate = "%s_to_%s_c";
-    conversionValidationFunctionNameTemplate = "%s_to_%s_v";
     individuationFunctionReturnType = dbTypeFactory.getDBTermType(PostgreSQLDBTypeFactory.UUID_STR);
   }
 
@@ -62,24 +59,15 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
   }
 
   @Override
-  public DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(DBTermType variableType,
-      DBTermType sqlDataType) {
-    String conversionFunctionCallTemplate = String.format(
-        conversionFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
-        .toLowerCase() + "(%s)";
-    return new MMecConversionFunctionSymbol(variableType, sqlDataType,
-        conversionFunctionCallTemplate);
+  public DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(String functionName,
+      DBTermType inputType, DBTermType targetType) {
+    return new MMecConversionFunctionSymbol(functionName, inputType, targetType);
   }
 
   @Override
-  public DBBooleanFunctionSymbolImpl createMMecConversionValidationFunctionSymbol(
-      DBTermType variableType,
-      DBTermType sqlDataType) {
-    String conversionValidationFunctionCallTemplate = String.format(
-        conversionValidationFunctionNameTemplate, variableType.getName(), sqlDataType.getName())
-        .toLowerCase() + "(%s)";
-    return new MMecConversionValidationFunctionSymbol(variableType, dbBooleanType,
-        conversionValidationFunctionCallTemplate);
+  public DBBooleanFunctionSymbol createMMecConversionValidationFunctionSymbol(
+      String functionName, DBTermType inputType, DBTermType targetType) {
+    return new MMecConversionValidationFunctionSymbol(functionName, inputType, targetType);
   }
 
   @Override

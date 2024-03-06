@@ -13,12 +13,19 @@
 
 package ca.griis.mmec.controller.ontop.extension;
 
+import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.model.MMecTriplesMap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import eu.optique.r2rml.api.model.TriplesMap;
 import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
+import it.unibz.inf.ontop.model.type.DBTermType;
+import it.unibz.inf.ontop.model.type.DBTypeFactory;
+import it.unibz.inf.ontop.model.type.TypeFactory;
 import it.unibz.inf.ontop.spec.mapping.PrefixManager;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
@@ -31,7 +38,7 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.rdf.api.Graph;
-import org.apache.commons.rdf.api.RDFTerm;
+import org.apache.commons.rdf.api.Literal;
 import org.apache.commons.rdf.api.Triple;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 
@@ -70,17 +77,30 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
 public class MappingParserExtension {
 
   public static final String subsetIRI = "http://www.griis.ca/projects/mmec/subsets";
+  public static final String conversionInputTypeIri =
+      "http://www.griis.ca/projects/mmec/conversionInputType";
+  public static final String conversionOutputTypeIri =
+      "http://www.griis.ca/projects/mmec/conversionOutputType";
+  public static final String conversionFunctionIri =
+      "http://www.griis.ca/projects/mmec/conversionFunction";
+  public static final String validationFunctionIri =
+      "http://www.griis.ca/projects/mmec/validationFunction";
   private final String conversionIRI = "http://www.griis.ca/projects/mmec/conversion";
   private final MMecMappingExtension mappingExtension;
   private final SQLPPMappingFactory ppMappingFactory;
   private final RDF4J rdf;
+  private final DBTypeFactory dbTypeFactory;
+  private final MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory;
 
   @Inject
-  public MappingParserExtension(MMecMappingExtension mappingExtension,
-      SQLPPMappingFactory ppMappingFactory, RDF4J rdf) {
+  public MappingParserExtension(TypeFactory typeFactory, MMecMappingExtension mappingExtension,
+      SQLPPMappingFactory ppMappingFactory, RDF4J rdf,
+      MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory) {
     this.mappingExtension = mappingExtension;
     this.ppMappingFactory = ppMappingFactory;
     this.rdf = rdf;
+    this.dbTypeFactory = typeFactory.getDBTypeFactory();
+    this.sqlDbFunctionSymbolFactory = sqlDbFunctionSymbolFactory;
   }
 
   /**
@@ -194,23 +214,51 @@ public class MappingParserExtension {
         rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
         rdf.createIRI("http://www.griis.ca/projects/mmec/conversion")).toList();
 
-    for(Triple conversionTriple : conversionTriples) {
-      RDFTerm declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI("http://www.griis.ca/projects/mmec/conversionInputType"), null)
-          .map(Triple::getObject).findFirst().orElseThrow();
-      RDFTerm declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI("http://www.griis.ca/projects/mmec/conversionOutputType"), null)
-          .map(Triple::getObject).findFirst().orElseThrow();
-      Optional<RDFTerm> declaredConversionFunction = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI("http://www.griis.ca/projects/mmec/conversionFunction"), null)
-          .map(Triple::getObject).findFirst();
-      Optional<RDFTerm> declaredValidationFunction = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI("http://www.griis.ca/projects/mmec/validationFunction"), null)
-          .map(Triple::getObject).findFirst();
+    for (Triple conversionTriple : conversionTriples) {
+      DBTermType declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
+              rdf.createIRI(conversionInputTypeIri), null)
+          .map(Triple::getObject)
+          .filter(term -> term instanceof Literal)
+          .map(Literal.class::cast)
+          .map(Literal::getLexicalForm)
+          .map(dbTypeFactory::getDBTermType)
+          .findFirst()
+          .orElseThrow();
+      DBTermType declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
+              rdf.createIRI(conversionOutputTypeIri), null)
+          .map(Triple::getObject)
+          .filter(term -> term instanceof Literal)
+          .map(Literal.class::cast)
+          .map(Literal::getLexicalForm)
+          .map(dbTypeFactory::getDBTermType)
+          .findFirst()
+          .orElseThrow();
+      Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction = mappingGraph.stream(
+              conversionTriple.getSubject(),
+              rdf.createIRI(conversionFunctionIri), null)
+          .map(Triple::getObject)
+          .filter(term -> term instanceof Literal)
+          .map(Literal.class::cast)
+          .map(Literal::getLexicalForm)
+          .map(functionName -> sqlDbFunctionSymbolFactory.createMMecConversionFunctionSymbol(
+              functionName, declaredInputType, declaredOutputType))
+          .findFirst();
+      Optional<DBBooleanFunctionSymbol> declaredValidationFunction = mappingGraph.stream(
+              conversionTriple.getSubject(),
+              rdf.createIRI(validationFunctionIri), null)
+          .map(Triple::getObject)
+          .filter(term -> term instanceof Literal)
+          .map(Literal.class::cast)
+          .map(Literal::getLexicalForm)
+          .map(functionName ->
+              sqlDbFunctionSymbolFactory.createMMecConversionValidationFunctionSymbol(functionName,
+                  declaredInputType, declaredOutputType))
+          .findFirst();
 
-      MMecMappingExtension mappingExtension = new MMecMappingExtension();
-      // mappingExtension.addMappingConversion(...);
+      mappingExtension.addMappingConversion(
+          new MMecMappingConversion(declaredInputType, declaredOutputType,
+              declaredConversionFunction,
+              declaredValidationFunction));
     }
-
   }
 }
