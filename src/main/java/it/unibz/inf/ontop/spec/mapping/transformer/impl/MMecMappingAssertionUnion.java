@@ -29,7 +29,6 @@ import it.unibz.inf.ontop.iq.tools.UnionBasedQueryMerger;
 import it.unibz.inf.ontop.model.atom.DistinctVariableOnlyDataAtom;
 import it.unibz.inf.ontop.model.atom.RDFAtomPredicate;
 import it.unibz.inf.ontop.model.term.Constant;
-import it.unibz.inf.ontop.model.term.GroundTerm;
 import it.unibz.inf.ontop.model.term.IRIConstant;
 import it.unibz.inf.ontop.model.term.ImmutableExpression;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
@@ -65,7 +64,8 @@ import java.util.stream.Stream;
  *      «Limits description (optional)»
  *
  * @brief @~french Copie de la classe
- * it.unibz.inf.ontop.spec.mapping.transformer.impl.MappingAssertionUnion pour l'extension MMec.
+ *        it.unibz.inf.ontop.spec.mapping.transformer.impl.MappingAssertionUnion pour l'extension
+ *        MMec.
  * @par Détails
  *      Permet de conserver la provenance des règles de mapping, de sorte à pouvoir utiliser des
  *      attributs d'arrimage spécifiques à MMec comme le subset.
@@ -84,8 +84,7 @@ import java.util.stream.Stream;
  */
 public class MMecMappingAssertionUnion {
 
-  public static Collector<MappingAssertion, MMecMappingAssertionUnion, Optional<MappingAssertion>>
-  toMappingAssertion(
+  public static Collector<MappingAssertion, MMecMappingAssertionUnion, Optional<MappingAssertion>> toMappingAssertion(
       ExtensionalDataNodeListContainmentCheck cqc, CoreSingletons coreSingletons,
       UnionBasedQueryMerger queryMerger) {
     return Collector.of(
@@ -142,9 +141,9 @@ public class MMecMappingAssertionUnion {
       VariableGenerator variableGenerator =
           coreSingletons.getCoreUtilsFactory().createVariableGenerator(
               Stream.concat(constructionNode.getVariables().stream(),
-                      Stream.concat(
-                          extensionalDataNodes.stream().flatMap(n -> n.getVariables().stream()),
-                          valuesNode.stream().flatMap(n -> n.getVariables().stream())))
+                  Stream.concat(
+                      extensionalDataNodes.stream().flatMap(n -> n.getVariables().stream()),
+                      valuesNode.stream().flatMap(n -> n.getVariables().stream())))
                   .collect(ImmutableCollectors.toSet()));
 
       this.projectionAtom = projectionAtom;
@@ -155,11 +154,11 @@ public class MMecMappingAssertionUnion {
           projectionAtom.getArguments());
 
       ImmutableMap<IRIConstant, Variable> map = Stream.of(
-              Optional.of(rdfAtomPredicate.getSubject(args)),
-              rdfAtomPredicate.getPropertyIRI(args)
-                  .filter(i -> !i.equals(RDF.TYPE))
-                  .map(i -> rdfAtomPredicate.getObject(args)),
-              rdfAtomPredicate.getGraph(args))
+          Optional.of(rdfAtomPredicate.getSubject(args)),
+          rdfAtomPredicate.getPropertyIRI(args)
+              .filter(i -> !i.equals(RDF.TYPE))
+              .map(i -> rdfAtomPredicate.getObject(args)),
+          rdfAtomPredicate.getGraph(args))
           .flatMap(Optional::stream)
           .filter(c -> c instanceof IRIConstant)
           .map(c -> (IRIConstant) c)
@@ -177,7 +176,7 @@ public class MMecMappingAssertionUnion {
 
       // replaces constants in extensional data nodes with a ValueNode
       ImmutableMap<Integer, ImmutableMap<Integer, Variable>> variableMap = IntStream.range(0,
-              extensionalDataNodes.size())
+          extensionalDataNodes.size())
           .boxed()
           .collect(ImmutableCollectors.toMap(i -> i, i -> extensionalDataNodes.get(i)
               .getArgumentMap().entrySet().stream()
@@ -196,19 +195,19 @@ public class MMecMappingAssertionUnion {
                           .collect(ImmutableCollectors.toMap(
                               Map.Entry::getKey,
                               e -> Optional.<VariableOrGroundTerm>ofNullable(
-                                      variableMap.get(i).get(e.getKey()))
+                                  variableMap.get(i).get(e.getKey()))
                                   .orElseGet(e::getValue)))))
               .collect(ImmutableCollectors.toList());
 
       Optional<ImmutableMap<Variable, Constant>> constantsMap = Optional.of(Stream.concat(
-                  constantSubstitutionEntries.entrySet().stream(),
-                  variableMap.entrySet().stream()
-                      .flatMap(me -> me.getValue().entrySet().stream()
-                          .map(e -> Maps.immutableEntry(
-                              e.getValue(),
-                              (Constant) extensionalDataNodes.get(me.getKey()).getArgumentMap()
-                                  .get(e.getKey())))))
-              .collect(ImmutableCollectors.toMap()))
+          constantSubstitutionEntries.entrySet().stream(),
+          variableMap.entrySet().stream()
+              .flatMap(me -> me.getValue().entrySet().stream()
+                  .map(e -> Maps.immutableEntry(
+                      e.getValue(),
+                      (Constant) extensionalDataNodes.get(me.getKey()).getArgumentMap()
+                          .get(e.getKey())))))
+          .collect(ImmutableCollectors.toMap()))
           .filter(cm -> !cm.isEmpty());
 
       this.valuesNode = valuesNode
@@ -292,7 +291,8 @@ public class MMecMappingAssertionUnion {
               sharedAtoms.stream(),
               termFactory.getDisjunction(filter.stream()
                   .map(e -> termFactory.getConjunction(
-                      ImmutableList.copyOf(Sets.difference(e, sharedAtoms))))).stream()));
+                      ImmutableList.copyOf(Sets.difference(e, sharedAtoms)))))
+                  .stream()));
       }
     }
 
@@ -300,13 +300,21 @@ public class MMecMappingAssertionUnion {
       return substitution.applyToTerms(projectionAtom.getArguments());
     }
 
-    public Substitution<ImmutableTerm> getSubstitution() {return substitution;}
+    public Substitution<ImmutableTerm> getSubstitution() {
+      return substitution;
+    }
 
-    public ImmutableList<ExtensionalDataNode> getDatabaseAtoms() {return extensionalDataNodes;}
+    public ImmutableList<ExtensionalDataNode> getDatabaseAtoms() {
+      return extensionalDataNodes;
+    }
 
-    public Optional<ValuesNode> getValuesNode() {return valuesNode;}
+    public Optional<ValuesNode> getValuesNode() {
+      return valuesNode;
+    }
 
-    public DisjunctionOfConjunctions getConditions() {return filter;}
+    public DisjunctionOfConjunctions getConditions() {
+      return filter;
+    }
 
     @Override
     public int hashCode() {
@@ -399,14 +407,14 @@ public class MMecMappingAssertionUnion {
 
   public Optional<MappingAssertion> build() {
     Optional<IQ> query = queryMerger.mergeDefinitions(
-            Stream.concat(conjunctiveIqs.stream().map(ConjunctiveIQ::asIQ), otherIqs.stream())
-                .collect(ImmutableCollectors.toList()))
+        Stream.concat(conjunctiveIqs.stream().map(ConjunctiveIQ::asIQ), otherIqs.stream())
+            .collect(ImmutableCollectors.toList()))
         .map(IQ::normalizeForOptimization);
 
-    //if (query.toString().contains("UNION"))
-    //    System.out.println("MAU-UNION: " + query);
+    // if (query.toString().contains("UNION"))
+    // System.out.println("MAU-UNION: " + query);
     PPMappingAssertionProvenance provenance = conjunctiveIqs.stream().map(
-            ConjunctiveIQ::getProvenance)
+        ConjunctiveIQ::getProvenance)
         .collect(UnionPPMappingAssertionProvenance.getPpMappingAssertionProvenanceCollector())
         .orElse(null);
     return query.map(q -> new MappingAssertion(q, provenance));
@@ -419,25 +427,25 @@ public class MMecMappingAssertionUnion {
    * the number of mapping assertions. The unfolding will then produce fewer queries.
    * <br>
    * The method
-   *    (1) removes a mapping assertion from rules if it is subsumed by the given assertion
+   * (1) removes a mapping assertion from rules if it is subsumed by the given assertion
    * <br>
-   *    (2) does not add the assertion if it is subsumed by one of the rules
+   * (2) does not add the assertion if it is subsumed by one of the rules
    * <br>
-   *    (3) merges the given assertion into an existing assertion if their database atoms
-   *        are homomorphically equivalent
+   * (3) merges the given assertion into an existing assertion if their database atoms
+   * are homomorphically equivalent
    * <br>
-   *    (4) removes any assertion that is a subset of the given assertion
+   * (4) removes any assertion that is a subset of the given assertion
    * <br>
    * For example, if we are given
-   *     S(x,z) :- R(x,y,z), y = 2
+   * S(x,z) :- R(x,y,z), y = 2
    * and rules contains
-   *     S(x,z) :- R(x,y,z), y > 7
+   * S(x,z) :- R(x,y,z), y > 7
    * then this method will modify the existing assertion into
-   *     S(x,z) :- R(x,y,z), OR(y > 7, y = 2)
+   * S(x,z) :- R(x,y,z), OR(y > 7, y = 2)
    */
   private void mergeMappingsWithCQC(ConjunctiveIQ newCIQ) {
 
-    //System.out.println("PROCESSING: " + newCIQ);
+    // System.out.println("PROCESSING: " + newCIQ);
 
     if (conjunctiveIqs.contains(newCIQ)) {
       return;
@@ -454,8 +462,7 @@ public class MMecMappingAssertionUnion {
           .filter(Iterator::hasNext)
           .map(Iterator::next);
       Optional<DisjunctionOfConjunctions> currentCIQConditionsImage = fromCurrentCIQ
-          .map(h -> applyHomomorphism(h, currentCIQ.getConditions()));
-      ;
+          .map(h -> applyHomomorphism(h, currentCIQ.getConditions()));;
       if (fromCurrentCIQ.isPresent() && contains(currentCIQConditionsImage.get(),
           newCIQ.getConditions())) {
         if (contains(fromCurrentCIQ.get(), currentCIQ.getValuesNode(), newCIQ.getValuesNode())) {
@@ -499,16 +506,18 @@ public class MMecMappingAssertionUnion {
                   Optional.of(iqFactory.createValuesNode(
                       currentCIQValuesNode.getVariables(),
                       Stream.concat(
-                              newCIQValuesNodeImage.getValueMaps().stream(),
-                              currentCIQValuesNode.getValueMaps().stream())
+                          newCIQValuesNodeImage.getValueMaps().stream(),
+                          currentCIQValuesNode.getValueMaps().stream())
                           .distinct()
-                          .collect(ImmutableCollectors.toList()))), currentCIQ.provenance));
-              //System.out.println("MAU-MERGE-VALUES: " + currentCIQ + " AND " + newCIQ);
+                          .collect(ImmutableCollectors.toList()))),
+                  currentCIQ.provenance));
+              // System.out.println("MAU-MERGE-VALUES: " + currentCIQ + " AND " + newCIQ);
               return;
             }
           }
         }
-        // We found an equivalence, we will try to merge the *non-empty* conditions of newCIQ into currentCIQ
+        // We found an equivalence, we will try to merge the *non-empty* conditions of newCIQ into
+        // currentCIQ
         ImmutableSet<Variable> currentCIQDatabaseAtomVariables =
             currentCIQ.getDatabaseAtoms().stream()
                 .flatMap(a -> a.getVariables().stream())
@@ -529,12 +538,15 @@ public class MMecMappingAssertionUnion {
                           translate(currentCIQ.getValuesNode())),
                       newCIQCombinedConditionsImage),
                   Optional.empty(), currentCIQ.provenance));
-          //System.out.println("MAU-MERGE-CONDITION: " + currentCIQ + " AND " + newCIQ);
+          // System.out.println("MAU-MERGE-CONDITION: " + currentCIQ + " AND " + newCIQ);
           return;
         }
-        // one reason for non-merge is R(x,_), x = 1 and R(_,x), x = 2 (see TMappingConstantPositionsTest)
-        // second reason for non-merge is variables in ValueNode that do not occur in data atoms (but occur in the ConstructionNode instead)
-        //System.out.println("MAU-CANT-MERGE-45: " + currentCIQ + " AND " + newCIQ + " " + currentCIQDatabaseAtomVariables + " " + newCIQCombinedConditionsImage.getVariables());
+        // one reason for non-merge is R(x,_), x = 1 and R(_,x), x = 2 (see
+        // TMappingConstantPositionsTest)
+        // second reason for non-merge is variables in ValueNode that do not occur in data atoms
+        // (but occur in the ConstructionNode instead)
+        // System.out.println("MAU-CANT-MERGE-45: " + currentCIQ + " AND " + newCIQ + " " +
+        // currentCIQDatabaseAtomVariables + " " + newCIQCombinedConditionsImage.getVariables());
       }
 
       if (isSubsetOfAlreadyPresentRule(conjunctiveIqs, newCIQ)) {
@@ -554,8 +566,8 @@ public class MMecMappingAssertionUnion {
    * @param newCIQ La nouvelle règle en ajout
    */
   private void removeSubsets(List<ConjunctiveIQ> conjunctiveIqs, ConjunctiveIQ newCIQ) {
-    Iterators.removeIf(conjunctiveIqs.iterator(), potentialSubSet ->
-        newCIQ.getProvenance().getmMecTriplesMap().getSubsetList().contains(
+    Iterators.removeIf(conjunctiveIqs.iterator(),
+        potentialSubSet -> newCIQ.getProvenance().getmMecTriplesMap().getSubsetList().contains(
             potentialSubSet.getProvenance().getmMecTriplesMap()));
   }
 

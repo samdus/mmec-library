@@ -76,7 +76,8 @@ public class IndividuationFunctionQueryTransformer extends
           && term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant
           && rdfTermTypeConstant.getRDFTermType() instanceof IRITermType
           && term.getTerm(0) instanceof NonGroundFunctionalTerm iriFunctionTerm
-          && iriFunctionTerm.getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {
+          && iriFunctionTerm
+              .getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {
         newSubstitutionMap.put(substitutionEntry.getKey(),
             getIndividuationTerm(tree, iriStrTemplateFn, iriFunctionTerm));
       } else {
@@ -100,14 +101,14 @@ public class IndividuationFunctionQueryTransformer extends
    * @return «Return description»
    *
    * @brief @~french Création d'un appel à la fonction de signature à partir d'un appel à la
-   *                 fonction de génération d'IRI.
+   *        fonction de génération d'IRI.
    * @param tree Arbre correspondant à la requête complète
    * @param iriStrTemplateFn Fonction de génération d'IRI à transformer
    * @param iriFunctionTerm Appel de la fonction de génération d'IRI
    * @return Appel à la fonction de signature
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   private ImmutableTerm getIndividuationTerm(IQTree tree,
       IRIStringTemplateFunctionSymbol iriStrTemplateFn, NonGroundFunctionalTerm iriFunctionTerm) {
@@ -119,7 +120,7 @@ public class IndividuationFunctionQueryTransformer extends
         .build();
     ImmutableList<TermType> argTypes =
         arguments.stream().map(
-                variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
+            variable -> typeExtractor.extractSingleTermType(variable, tree).orElseThrow())
             .collect(ImmutableList.toImmutableList());
 
     return termFactory.getMMecSignatureFunction(argTypes, arguments);

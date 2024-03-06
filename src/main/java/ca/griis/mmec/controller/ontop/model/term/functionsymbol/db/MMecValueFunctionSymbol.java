@@ -65,7 +65,7 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
    * @par typeTermType Type de terme
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   protected MMecValueFunctionSymbol(DBTermType valueType, RDFTermTypeConstant rdfTermTypeConstant,
       MetaRDFTermType typeTermType) {

@@ -77,7 +77,9 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
   }
 
   @Override
-  public MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType, RDFTermTypeConstant rdfTermTypeConstant) {
-    return new MMecValueFunctionSymbol(valueType, rdfTermTypeConstant, typeFactory.getMetaRDFTermType());
+  public MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType,
+      RDFTermTypeConstant rdfTermTypeConstant) {
+    return new MMecValueFunctionSymbol(valueType, rdfTermTypeConstant,
+        typeFactory.getMetaRDFTermType());
   }
 }

@@ -59,8 +59,8 @@ public class R2rmlTester extends OntopTester {
 
   @Override
   public void runTest() throws Exception {
-    //    String withAutomaticInjectors = testWithAutomaticInjector();
-    //    System.out.println(withAutomaticInjectors);
+    // String withAutomaticInjectors = testWithAutomaticInjector();
+    // System.out.println(withAutomaticInjectors);
     // String withoutAutomaticInjectors = testWithoutAutomaticInjectors();
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
@@ -182,7 +182,7 @@ public class R2rmlTester extends OntopTester {
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
 
     // TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
-    //       expressions relationnelles vides.
+    // expressions relationnelles vides.
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
@@ -326,7 +326,7 @@ public class R2rmlTester extends OntopTester {
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("dp_uri",
               valueFactory.createIRI("http://purl.obolibrary.org/obo/PHYSIO_0000100"), true, true),
-          //has_value
+          // has_value
           new Var("val"));
 
       Join relJoin = new Join(subStatement, relStatement);
@@ -362,7 +362,8 @@ public class R2rmlTester extends OntopTester {
       // Alors que la configuration MMec génère ceci :
       // ans1(sub, val)
       // NATIVE [sub, val]
-      // SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o" AS TEXT) AS "val"
+      // SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o"
+      // AS TEXT) AS "val"
       // FROM "TABLE2" v1
       // WHERE v1."o" IS NOT NULL
     }

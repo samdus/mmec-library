@@ -139,7 +139,7 @@ public class MappingParserExtension {
    * @return «Description du retour»
    *
    * @par Tâches
-   *    S.O.
+   *      S.O.
    */
   public SQLPPMapping getExtendedMapping(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
       ImmutableList<SQLPPTriplesMap> sourceMappings, PrefixManager prefixManager) {
@@ -171,12 +171,12 @@ public class MappingParserExtension {
         mapping.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
 
     // FIXME: D'après-moi, ça serait sûrement plus simple et propre de modifier le stream().map(x->)
-    //        ci-haut et d'utiliser le mappingGraph.stream(null, rdf.createIRI(subsetIRI), x) pour
-    //        ajouter les subsets directement en construisant le MMecTriplesMap.
+    // ci-haut et d'utiliser le mappingGraph.stream(null, rdf.createIRI(subsetIRI), x) pour
+    // ajouter les subsets directement en construisant le MMecTriplesMap.
     // Voici un exemple de comment réassocier les triplets de fonctions custom au mapping généré :
     Map<TriplesMap, List<TriplesMap>> hasSubset =
         mappingGraph.stream(null, rdf.createIRI(subsetIRI),
-                null).map(
+            null).map(
                 axiom -> new ImmutablePair<>(
                     tripleMaps.stream()
                         .filter(triple -> triple.getNode().equals(axiom.getSubject()))
@@ -189,13 +189,13 @@ public class MappingParserExtension {
     hasSubset.forEach(
         (supersetMapping, subsetMappingList) -> subsetMappingList.forEach(subsetMapping -> {
           MMecTriplesMap superSetSourceMapping = sourceMappings.stream().filter(
-                  sourceMapping -> sourceMapping.getId()
-                      .equals(String.format("mapping-%s", supersetMapping.hashCode())))
+              sourceMapping -> sourceMapping.getId()
+                  .equals(String.format("mapping-%s", supersetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
           MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
-                  sourceMapping -> sourceMapping.getId()
-                      .equals(String.format("mapping-%s", subsetMapping.hashCode())))
+              sourceMapping -> sourceMapping.getId()
+                  .equals(String.format("mapping-%s", subsetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
 
@@ -215,7 +215,7 @@ public class MappingParserExtension {
 
     for (Triple conversionTriple : conversionTriples) {
       DBTermType declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
-              rdf.createIRI(conversionInputTypeIri), null)
+          rdf.createIRI(conversionInputTypeIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -224,7 +224,7 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       DBTermType declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
-              rdf.createIRI(conversionOutputTypeIri), null)
+          rdf.createIRI(conversionOutputTypeIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -233,8 +233,8 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction = mappingGraph.stream(
-              conversionTriple.getSubject(),
-              rdf.createIRI(conversionFunctionIri), null)
+          conversionTriple.getSubject(),
+          rdf.createIRI(conversionFunctionIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -243,14 +243,14 @@ public class MappingParserExtension {
               functionName, declaredInputType, declaredOutputType))
           .findFirst();
       Optional<DBBooleanFunctionSymbol> declaredValidationFunction = mappingGraph.stream(
-              conversionTriple.getSubject(),
-              rdf.createIRI(validationFunctionIri), null)
+          conversionTriple.getSubject(),
+          rdf.createIRI(validationFunctionIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
           .map(Literal::getLexicalForm)
-          .map(functionName ->
-              sqlDbFunctionSymbolFactory.createMMecConversionValidationFunctionSymbol(functionName,
+          .map(functionName -> sqlDbFunctionSymbolFactory
+              .createMMecConversionValidationFunctionSymbol(functionName,
                   declaredInputType, declaredOutputType))
           .findFirst();
 

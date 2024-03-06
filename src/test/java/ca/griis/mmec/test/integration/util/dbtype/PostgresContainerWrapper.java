@@ -74,10 +74,9 @@ public class PostgresContainerWrapper implements Closeable {
         .withStartupTimeout(Duration.of(300, ChronoUnit.SECONDS));
     container.setWaitStrategy(waitStrategy);
     container.waitingFor(waitStrategy);
-    container.withCreateContainerCmdModifier(createContainerCmd ->
-        createContainerCmd.withHostConfig(new HostConfig().withPortBindings(
-            new PortBinding(Ports.Binding.bindPort(hostPort), new ExposedPort(5432)))
-        ));
+    container.withCreateContainerCmdModifier(
+        createContainerCmd -> createContainerCmd.withHostConfig(new HostConfig().withPortBindings(
+            new PortBinding(Ports.Binding.bindPort(hostPort), new ExposedPort(5432)))));
     container.withCopyFileToContainer(MountableFile.forClasspathResource("testset/"),
         "/docker-entrypoint-initdb.d/");
     container.start();

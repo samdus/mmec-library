@@ -35,7 +35,8 @@ public interface MMecSqlDbFunctionSymbolFactory extends DBFunctionSymbolFactory 
   MMecIndividuationFunctionSymbol createMMecIndividuationFunctionSymbol(
       ImmutableList<TermType> argTypes);
 
-  DBTypeConversionFunctionSymbol createMMecSimpleConversionFunctionSymbol(DBTermType inputType, DBTermType targetType);
+  DBTypeConversionFunctionSymbol createMMecSimpleConversionFunctionSymbol(DBTermType inputType,
+      DBTermType targetType);
 
   DBTypeConversionFunctionSymbol createMMecConversionFunctionSymbol(String functionName,
       DBTermType inputType, DBTermType targetType);
@@ -43,5 +44,6 @@ public interface MMecSqlDbFunctionSymbolFactory extends DBFunctionSymbolFactory 
   DBBooleanFunctionSymbol createMMecConversionValidationFunctionSymbol(String functionName,
       DBTermType inputType, DBTermType targetType);
 
-  MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType, RDFTermTypeConstant rdfTermTypeConstant);
+  MMecValueFunctionSymbol createMMecValueFunctionSymbol(DBTermType valueType,
+      RDFTermTypeConstant rdfTermTypeConstant);
 }

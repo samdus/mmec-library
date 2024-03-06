@@ -35,7 +35,7 @@ import java.util.List;
  *      «Limits description (optional)»
  *
  * @brief @~french Optimiseur de requête pour mMec, permet d'appliquer tous les transformateurs
- *                 de requête utile pour mMec.
+ *        de requête utile pour mMec.
  * @par Détails
  *      S.O.
  * @par Modèle

@@ -161,7 +161,7 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
   private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
     try {
       return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-              rdfDatatype.getIRI().getIRIString())
+          rdfDatatype.getIRI().getIRIString())
           .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
               String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
                   rdfDatatype.getIRI().getIRIString())));

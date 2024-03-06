@@ -123,7 +123,8 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
 
       PrefixManager prefixManager = specificationFactory.createPrefixManager(prefixes);
 
-      return mappingParserExtension.getExtendedMapping(mappingGraph, tripleMaps, sourceMappings, prefixManager);
+      return mappingParserExtension.getExtendedMapping(mappingGraph, tripleMaps, sourceMappings,
+          prefixManager);
     } catch (InvalidR2RMLMappingException e) {
       throw new InvalidMappingException(e.getMessage());
     }

@@ -96,7 +96,7 @@ public class MMecTermFactoryTest {
         .thenReturn(individuationFunctionSymbol);
     Mockito.when(terms.toArray(Mockito.<ImmutableTerm[]>any())).thenReturn(termArray);
     Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(individuationFunctionSymbol,
-            termArray))
+        termArray))
         .thenReturn(expected);
 
     ImmutableFunctionalTerm actual = termFactory.getMMecSignatureFunction(argTypes, terms);
@@ -121,10 +121,10 @@ public class MMecTermFactoryTest {
     Mockito.when(defaultTermFactory.getDBFunctionSymbolFactory()).thenReturn(
         dbFunctionSymbolFactory);
     Mockito.when(dbFunctionSymbolFactory.createMMecSimpleConversionFunctionSymbol(inputType,
-            targetType))
+        targetType))
         .thenReturn(dbTypeConversionFunctionSymbol);
     Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(dbTypeConversionFunctionSymbol,
-            term))
+        term))
         .thenReturn(expected);
 
     ImmutableTerm actual = termFactory.getMMecSimpleCastFunctionalTerm(inputType, targetType, term);
@@ -145,7 +145,7 @@ public class MMecTermFactoryTest {
     Mockito.when(conversion.getConversionFunction()).thenReturn(
         Optional.of(dBTypeConversionFunctionSymbol));
     Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(dBTypeConversionFunctionSymbol,
-            variable))
+        variable))
         .thenReturn(expected);
 
     ImmutableTerm actual = termFactory.getMMecConversionFunction(variable, conversion);
@@ -190,11 +190,11 @@ public class MMecTermFactoryTest {
     Mockito.when(defaultTermFactory.getDBFunctionSymbolFactory()).thenReturn(
         dbFunctionSymbolFactory);
     Mockito.when(
-            dbFunctionSymbolFactory.createMMecValueFunctionSymbol(variableType,
-                rdfTermTypeConstant))
+        dbFunctionSymbolFactory.createMMecValueFunctionSymbol(variableType,
+            rdfTermTypeConstant))
         .thenReturn(mMecValueFunctionSymbol);
     Mockito.when(defaultTermFactory.getNonGroundFunctionalTerm(mMecValueFunctionSymbol, variable,
-            rdfTermTypeConstant))
+        rdfTermTypeConstant))
         .thenReturn(expected);
 
     ImmutableTerm actual = termFactory.getMMecValueFunction(variable, variableType,

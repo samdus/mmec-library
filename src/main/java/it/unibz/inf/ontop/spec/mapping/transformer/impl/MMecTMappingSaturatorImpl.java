@@ -117,8 +117,8 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
         coreSingletons.getHomomorphismFactory(), coreSingletons.getCoreUtilsFactory());
 
     // index mapping assertions by the predicate type
-    //     same IRI can be a class name and a property name
-    //     but the same IRI cannot be an object and a data or annotation property name at the same time
+    // same IRI can be a class name and a property name
+    // but the same IRI cannot be an object and a data or annotation property name at the same time
     // see https://www.w3.org/TR/owl2-new-features/#F12:_Punning
 
     ImmutableMultimap<MappingAssertionIndex, MappingAssertion> original = mapping.stream()
@@ -130,22 +130,23 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
         .distinct()
         .map(MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformerProvider::new)
         .flatMap(provider -> Stream.concat(Stream.concat(
-                reasoner.objectPropertiesDAG().stream()
-                    .filter(node -> !node.getRepresentative().isInverse()
-                        && !tMappingExclusionConfig.contains(node.getRepresentative()))
-                    .flatMap(node -> saturate(node.getRepresentative(),
-                        getSubsumees(reasoner.objectPropertiesDAG(), node), original,
-                        provider::getTransformer, cqc).stream()
+            reasoner.objectPropertiesDAG().stream()
+                .filter(node -> !node.getRepresentative().isInverse()
+                    && !tMappingExclusionConfig.contains(node.getRepresentative()))
+                .flatMap(node -> saturate(node.getRepresentative(),
+                    getSubsumees(reasoner.objectPropertiesDAG(), node), original,
+                    provider::getTransformer, cqc).stream()
                         .flatMap(ma -> node.getMembers().stream()
-                            .filter(d -> !d.isInverse() || d.getInverse() != node.getRepresentative())
+                            .filter(
+                                d -> !d.isInverse() || d.getInverse() != node.getRepresentative())
                             .map(d -> Maps.immutableEntry(
                                 provider.getTransformer(node.getRepresentative(), d), ma)))),
 
-                reasoner.dataPropertiesDAG().stream()
-                    .filter(node -> !tMappingExclusionConfig.contains(node.getRepresentative()))
-                    .flatMap(node -> saturate(node.getRepresentative(),
-                        getSubsumees(reasoner.dataPropertiesDAG(), node), original,
-                        provider::getTransformer, cqc).stream()
+            reasoner.dataPropertiesDAG().stream()
+                .filter(node -> !tMappingExclusionConfig.contains(node.getRepresentative()))
+                .flatMap(node -> saturate(node.getRepresentative(),
+                    getSubsumees(reasoner.dataPropertiesDAG(), node), original,
+                    provider::getTransformer, cqc).stream()
                         .flatMap(ma -> node.getMembers().stream()
                             .map(d -> Maps.immutableEntry(
                                 provider.getTransformer(node.getRepresentative(), d), ma))))),
@@ -156,23 +157,23 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
                 .flatMap(node -> saturate(node.getRepresentative(),
                     getSubsumees(reasoner.classesDAG(), node), original, provider::getTransformer,
                     cqc).stream()
-                    .flatMap(ma -> node.getMembers().stream()
-                        .filter(d -> d instanceof OClass)
-                        .map(d -> Maps.immutableEntry(
-                            provider.getTransformer(node.getRepresentative(), d), ma))))))
+                        .flatMap(ma -> node.getMembers().stream()
+                            .filter(d -> d instanceof OClass)
+                            .map(d -> Maps.immutableEntry(
+                                provider.getTransformer(node.getRepresentative(), d), ma))))))
 
         .map(e -> Maps.immutableEntry(
             e.getKey().getToIndex(), e.getKey().updateConstructionNodeIri(e.getValue())))
         .collect(ImmutableCollectors.toMap());
 
     return Stream.concat(
-            saturated.values().stream(),
-            original.asMap().entrySet().stream()
-                .filter(e -> !saturated.containsKey(e.getKey()))
-                .map(e -> e.getValue().stream()
-                    .collect(
-                        MMecMappingAssertionUnion.toMappingAssertion(cqc, coreSingletons, queryMerger)))
-                .map(Optional::get))
+        saturated.values().stream(),
+        original.asMap().entrySet().stream()
+            .filter(e -> !saturated.containsKey(e.getKey()))
+            .map(e -> e.getValue().stream()
+                .collect(
+                    MMecMappingAssertionUnion.toMappingAssertion(cqc, coreSingletons, queryMerger)))
+            .map(Optional::get))
         .collect(ImmutableCollectors.toList());
   }
 
@@ -203,8 +204,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
   private class MappingAssertionConstructionNodeTransformer {
     private final MappingAssertionIndex fromIndex, toIndex;
-    private final Function<ImmutableList<ImmutableTerm>, ImmutableList<ImmutableTerm>>
-        termTransformer;
+    private final Function<ImmutableList<ImmutableTerm>, ImmutableList<ImmutableTerm>> termTransformer;
     private final boolean needOptimization;
 
     MappingAssertionConstructionNodeTransformer(MappingAssertionIndex fromIndex,
@@ -217,11 +217,17 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
       this.needOptimization = needOptimization;
     }
 
-    MappingAssertionIndex getFromIndex() {return fromIndex;}
+    MappingAssertionIndex getFromIndex() {
+      return fromIndex;
+    }
 
-    MappingAssertionIndex getToIndex() {return toIndex;}
+    MappingAssertionIndex getToIndex() {
+      return toIndex;
+    }
 
-    boolean needOptimization() {return needOptimization;}
+    boolean needOptimization() {
+      return needOptimization;
+    }
 
     MappingAssertion updateConstructionNodeIri(MappingAssertion assertion) {
       IQ query = assertion.getQuery();
@@ -279,7 +285,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
             MappingAssertionIndex.ofClass(rdfAtomPredicate, toClass.getIRI()),
             ope.isInverse()
                 ? args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getObject(args),
-                rdfType, newIri)
+                    rdfType, newIri)
                 : args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args),
                     rdfType, newIri),
             true);
@@ -304,7 +310,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
           MappingAssertionIndex.ofProperty(rdfAtomPredicate, to.getIRI()),
           from.isInverse() != to.isInverse()
               ? args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getObject(args), newIri,
-              rdfAtomPredicate.getSubject(args))
+                  rdfAtomPredicate.getSubject(args))
               : args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args), newIri,
                   rdfAtomPredicate.getObject(args)),
           false);

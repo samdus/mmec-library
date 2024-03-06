@@ -32,9 +32,9 @@ import java.util.function.Function;
  *      «Limits description (optional)»
  *
  * @brief @~french Sert à s'assurer que le type exprimé par la requête d'arrimage est bien le type
- *                 prévu par l'OntoRel.
- *                 <br>
- *                 S'assure aussi que la conversion s'applique explicitement pour les constantes.
+ *        prévu par l'OntoRel.
+ *        <br>
+ *        S'assure aussi que la conversion s'applique explicitement pour les constantes.
  * @par Détails
  *      S.O.
  * @par Modèle

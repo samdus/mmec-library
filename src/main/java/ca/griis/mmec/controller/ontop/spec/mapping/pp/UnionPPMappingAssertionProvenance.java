@@ -70,9 +70,7 @@ public class UnionPPMappingAssertionProvenance implements PPMappingAssertionProv
     return getProvenanceInfo();
   }
 
-  public static Collector<PPMappingAssertionProvenance, UnionPPMappingAssertionProvenance,
-      Optional<PPMappingAssertionProvenance>>
-  getPpMappingAssertionProvenanceCollector() {
+  public static Collector<PPMappingAssertionProvenance, UnionPPMappingAssertionProvenance, Optional<PPMappingAssertionProvenance>> getPpMappingAssertionProvenanceCollector() {
     return Collector.of(
         UnionPPMappingAssertionProvenance::new, // Supplier
         UnionPPMappingAssertionProvenance::add, // Accumulator

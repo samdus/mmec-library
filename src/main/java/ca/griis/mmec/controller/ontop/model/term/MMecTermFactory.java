@@ -109,7 +109,8 @@ public class MMecTermFactory implements TermFactory {
       DBTermType variableType, RDFTermTypeConstant rdfTermTypeConstant) {
     return defaultTermFactory.getNonGroundFunctionalTerm(
         getMMecDbFunctionSymbolFactory().createMMecValueFunctionSymbol(variableType,
-            rdfTermTypeConstant), variable, rdfTermTypeConstant);
+            rdfTermTypeConstant),
+        variable, rdfTermTypeConstant);
   }
 
   private MMecSqlDbFunctionSymbolFactory getMMecDbFunctionSymbolFactory() {

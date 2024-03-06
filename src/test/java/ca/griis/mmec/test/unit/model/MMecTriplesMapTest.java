@@ -13,7 +13,6 @@
 package ca.griis.mmec.test.unit.model;
 
 import ca.griis.mmec.model.MMecTriplesMap;
-import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

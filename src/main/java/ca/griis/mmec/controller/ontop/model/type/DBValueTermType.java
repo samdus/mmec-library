@@ -12,10 +12,8 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.DBTypeFactory;
 import it.unibz.inf.ontop.model.type.LanguageTag;
 import it.unibz.inf.ontop.model.type.RDFDatatype;
-import it.unibz.inf.ontop.model.type.RDFTermType;
 import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.TermTypeAncestry;
-import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import java.util.Optional;
 import org.apache.commons.rdf.api.IRI;
 

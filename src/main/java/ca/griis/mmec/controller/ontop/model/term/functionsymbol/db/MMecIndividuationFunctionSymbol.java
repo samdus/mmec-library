@@ -19,7 +19,6 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.ObjectRDFType;
 import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.TermTypeInference;
-import it.unibz.inf.ontop.model.type.impl.IRITermType;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
