@@ -5,16 +5,13 @@ import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.properties.MappingProperties;
 import ca.griis.mmec.repository.jooq.JooqOntoRelCatRepository;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.UnaryIQTree;
 import it.unibz.inf.ontop.iq.node.ConstructionNode;
 import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
-import it.unibz.inf.ontop.model.term.ImmutableFunctionalTerm;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.NonGroundFunctionalTerm;
 import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
@@ -26,37 +23,16 @@ import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import it.unibz.inf.ontop.substitution.Substitution;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.semanticweb.owlapi.model.IRI;
 
-/**
- * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details «Detailed description of the component (optional)»
- * @par Model «Model (Abstract, automation, etc.) (optional)»
- * @par Conception «Conception description (criteria and constraints) (optional)»
- * @par Limits «Limits description (optional)»
- * @brief @~french Tests pour la classe DataPropertyProjectionTransformer
- * @par Détails S.O.
- * @par Modèle S.O.
- * @par Conception S.O.
- * @par Limites S.O.
- * @par Historique 2024-02-01 [SD] - Implémentation initiale<br>
- * @par Tâches S.O.
- */
+//fixme: Ajouter les cas de tests manquant
 @SuppressWarnings("unchecked")
 public class DataPropertyProjectionTransformerTest {
   private IntermediateQueryFactory iqFactory;
@@ -78,7 +54,8 @@ public class DataPropertyProjectionTransformerTest {
 
   @Test
   public void transformConstructionWithoutSubstitutionAndWithoutRecursionIsIdempotentTest() {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
 
     IQTree iqTree = Mockito.mock(IQTree.class);
@@ -101,7 +78,8 @@ public class DataPropertyProjectionTransformerTest {
 
   @Test
   public void transformConstructionWithoutSubstitutionDoesRecurseTest() {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
 
     IQTree iqTree = Mockito.mock(IQTree.class);
@@ -127,7 +105,8 @@ public class DataPropertyProjectionTransformerTest {
 
   @Test
   public void transformConstructionWithSingleSubstitutionNotDPTest() {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
 
     IQTree iqTree = Mockito.mock(IQTree.class);
@@ -172,7 +151,8 @@ public class DataPropertyProjectionTransformerTest {
 
   @Test
   public void transformConstructionWithSingleInvalidDatatypeShouldThrowTest() throws SQLException {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
     String ontoRelId = "ontoRelId";
     String datatypeIriString = "datatypeIri";
@@ -223,7 +203,8 @@ public class DataPropertyProjectionTransformerTest {
   @Test
   public void transformConstructionWithSingleInvalidSubstitutionShouldThrowTest()
       throws SQLException {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
 
     String ontoRelId = "ontoRelId";
@@ -281,7 +262,8 @@ public class DataPropertyProjectionTransformerTest {
   @Test
   public void transformConstructionWithSingleSubstitutionOfEmptyTermTypeShouldThrowTest()
       throws SQLException {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
     String ontoRelId = "ontoRelId";
     String datatypeIriString = "datatypeIri";
@@ -338,7 +320,8 @@ public class DataPropertyProjectionTransformerTest {
   @Test
   public void transformConstructionWithSingleSubstitutionOfNonDbTermTypeShouldThrowTest()
       throws SQLException {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
     String ontoRelId = "ontoRelId";
     String datatypeIriString = "datatypeIri";
@@ -394,7 +377,8 @@ public class DataPropertyProjectionTransformerTest {
 
   @Test
   public void transformConstructionWithSameTypeNameTest() throws SQLException {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(mappingExtension,
+    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
+        mappingExtension,
         iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
     String ontoRelId = "ontoRelId";
     String datatypeIriString = "datatypeIri";
@@ -418,12 +402,14 @@ public class DataPropertyProjectionTransformerTest {
     ImmutableSet<Variable> substitutionTermVariables = ImmutableSet.of(originalVariable);
     String variableTypeName = "variableTypeName";
     String targetTypeName = variableTypeName;
-    NonGroundFunctionalTerm mmecValueFunctionTerm = Mockito.mock(NonGroundFunctionalTerm.class);
+    NonGroundFunctionalTerm mMecSimpleCastFunctionalTerm = Mockito.mock(
+        NonGroundFunctionalTerm.class);
+    NonGroundFunctionalTerm mMecValueFunction = Mockito.mock(NonGroundFunctionalTerm.class);
 
-    ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
-        ArgumentCaptor.forClass(ImmutableSet.class);
     ArgumentCaptor<Substitution<ImmutableTerm>> substitutionArgumentCaptor =
         ArgumentCaptor.forClass(Substitution.class);
+    ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
+        ArgumentCaptor.forClass(ImmutableSet.class);
 
     Mockito.when(substitution.isEmpty()).thenReturn(false);
     Mockito.when(substitution.stream()).thenReturn(substitutionMap.entrySet().stream());
@@ -439,10 +425,12 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(term.getVariables()).thenReturn(substitutionTermVariables);
     Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
         Optional.of(variableType));
-    Mockito.when(termFactory.getMMecValueFunction(originalVariable, variableType,
-        rdfTermTypeConstant)).thenReturn(mmecValueFunctionTerm);
     Mockito.when(variableType.getName()).thenReturn(variableTypeName);
     Mockito.when(targetType.getName()).thenReturn(targetTypeName);
+    Mockito.when(termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
+        originalVariable)).thenReturn(mMecSimpleCastFunctionalTerm);
+    Mockito.when(termFactory.getMMecValueFunction(mMecSimpleCastFunctionalTerm, targetType,
+        rdfTermTypeConstant)).thenReturn(mMecValueFunction);
     Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariableSet);
     Mockito.when(iqFactory.createConstructionNode(constructionNodeArgumentCaptor.capture(),
         substitutionArgumentCaptor.capture())).thenReturn(newConstructionNode);
@@ -454,7 +442,7 @@ public class DataPropertyProjectionTransformerTest {
 
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(constructionNodeVariableSet, constructionNodeArgumentCaptor.getValue());
-    Assertions.assertEquals(mmecValueFunctionTerm,
+    Assertions.assertEquals(mMecValueFunction,
         substitutionArgumentCaptor.getValue().get(constructionNodeVariable));
   }
 
