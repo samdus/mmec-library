@@ -196,8 +196,9 @@ public class MMecMappingAssertionUnion {
       Optional<ImmutableMap<Variable, Constant>> constantsMap = Optional.of(
           Stream.concat(constantSubstitutionEntries.entrySet().stream(),
               variableMap.entrySet().stream().flatMap(me -> me.getValue().entrySet().stream()
-                  .map(e -> Maps.immutableEntry(e.getValue(), (Constant) extensionalDataNodes.get(
-                      me.getKey()).getArgumentMap().get(e.getKey())))))
+                  .map(e -> Maps.immutableEntry(e.getValue(),
+                      (Constant) extensionalDataNodes.get(me.getKey())
+                          .getArgumentMap().get(e.getKey())))))
               .collect(ImmutableCollectors.toMap()))
           .filter(cm -> !cm.isEmpty());
 
@@ -304,9 +305,9 @@ public class MMecMappingAssertionUnion {
     @Override
     public boolean equals(Object o) {
       if (o instanceof ConjunctiveIQ other) {
-        return (projectionAtom.equals(other.projectionAtom) && substitution.equals(
+        return projectionAtom.equals(other.projectionAtom) && substitution.equals(
             other.substitution) && extensionalDataNodes.equals(other.extensionalDataNodes)
-            && valuesNode.equals(other.valuesNode) && filter.equals(other.filter));
+            && valuesNode.equals(other.valuesNode) && filter.equals(other.filter);
       }
       return false;
     }
@@ -389,8 +390,7 @@ public class MMecMappingAssertionUnion {
     // if (query.toString().contains("UNION"))
     // System.out.println("MAU-UNION: " + query);
     PPMappingAssertionProvenance provenance = conjunctiveIqs.stream().map(
-        ConjunctiveIQ::getProvenance).collect(
-            ProvUnion.getPpMappingAssertionProvenanceCollector())
+        ConjunctiveIQ::getProvenance).collect(ProvUnion.getPpMappingAssertionProvenanceCollector())
         .orElse(null);
     return query.map(q -> new MappingAssertion(q, provenance));
   }
@@ -438,13 +438,13 @@ public class MMecMappingAssertionUnion {
       Optional<DisjunctionOfConjunctions> currentCiqConditionsImage = fromCurrentCiq.map(
           h -> applyHomomorphism(h, currentCiq.getConditions()));;
       if (fromCurrentCiq.isPresent() && contains(currentCiqConditionsImage.get(),
-          newCiq.getConditions())) {
-        if (contains(fromCurrentCiq.get(), currentCiq.getValuesNode(), newCiq.getValuesNode())) {
-          if (newCiq.getDatabaseAtoms().size() >= currentCiq.getDatabaseAtoms().size()) {
-            return;
-          }
-          currentCiqContainsNewCiqButIsLonger = true;
+          newCiq.getConditions())
+          && contains(fromCurrentCiq.get(), currentCiq.getValuesNode(),
+              newCiq.getValuesNode())) {
+        if (newCiq.getDatabaseAtoms().size() >= currentCiq.getDatabaseAtoms().size()) {
+          return;
         }
+        currentCiqContainsNewCiqButIsLonger = true;
       }
 
       Optional<Homomorphism> fromNewCiq = getHomomorphismIterator(newCiq, currentCiq).filter(
@@ -453,11 +453,11 @@ public class MMecMappingAssertionUnion {
           h -> applyHomomorphism(h, newCiq.getConditions()));
 
       if (fromNewCiq.isPresent() && contains(newCiqConditionsImage.get(),
-          currentCiq.getConditions())) {
-        if (contains(fromNewCiq.get(), newCiq.getValuesNode(), currentCiq.getValuesNode())) {
-          iterator.remove();
-          continue;
-        }
+          currentCiq.getConditions())
+          && contains(fromNewCiq.get(), newCiq.getValuesNode(),
+              currentCiq.getValuesNode())) {
+        iterator.remove();
+        continue;
       }
 
       if (currentCiqContainsNewCiqButIsLonger) {

@@ -24,7 +24,6 @@ import eu.optique.r2rml.api.model.TriplesMap;
 import eu.optique.r2rml.api.model.impl.InvalidR2RMLMappingException;
 import it.unibz.inf.ontop.exception.InvalidMappingException;
 import it.unibz.inf.ontop.exception.MappingIOException;
-import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
 import it.unibz.inf.ontop.injection.SpecificationFactory;
 import it.unibz.inf.ontop.spec.mapping.PrefixManager;
 import it.unibz.inf.ontop.spec.mapping.parser.SQLMappingParser;
@@ -53,8 +52,6 @@ import org.eclipse.rdf4j.rio.helpers.StatementCollector;
  * High-level class that implements the MappingParser interface for R2RML.
  */
 public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
-
-  private final SQLPPMappingFactory ppMappingFactory;
   private final SpecificationFactory specificationFactory;
   private final R2RMLToSQLPPTriplesMapConverter transformer;
   private final RDF4JR2RMLMappingManager manager;
@@ -62,11 +59,9 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
 
 
   @Inject
-  public MMecR2rmlMappingParserImpl(SQLPPMappingFactory ppMappingFactory,
-      SpecificationFactory specificationFactory,
+  public MMecR2rmlMappingParserImpl(SpecificationFactory specificationFactory,
       R2RMLToSQLPPTriplesMapConverter transformer,
       MappingParserExtension mappingParserExtension) {
-    this.ppMappingFactory = ppMappingFactory;
     this.specificationFactory = specificationFactory;
     this.transformer = transformer;
     this.manager = RDF4JR2RMLMappingManager.getInstance();

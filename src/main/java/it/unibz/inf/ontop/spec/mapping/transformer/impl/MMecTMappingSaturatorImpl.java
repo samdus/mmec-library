@@ -152,7 +152,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
                                 provider.getTransformer(node.getRepresentative(), d), ma))))),
 
             reasoner.classesDAG().stream()
-                .filter(node -> (node.getRepresentative() instanceof OClass)
+                .filter(node -> node.getRepresentative() instanceof OClass
                     && !exclusionConfig.contains((OClass) node.getRepresentative()))
                 .flatMap(node -> saturate(node.getRepresentative(),
                     getSubsumees(reasoner.classesDAG(), node), original, provider::getTransformer,
