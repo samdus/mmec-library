@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecMappingConversion.
  * @brief @~english MMecMappingConversion class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping;
 
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;

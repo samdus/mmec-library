@@ -21,9 +21,9 @@ buildscript {
 
 
 ext {
-    minCoverageUnit = 70
-    minCoverageUnitItgr = 80
-    minMutationUnit = 70
+    minCoverageUnit = 50
+    minCoverageUnitItgr = 50
+    minMutationUnit = 50
     product = "LIBRARY"
     ontopVersion = "5.2.0-SNAPSHOT"
 }

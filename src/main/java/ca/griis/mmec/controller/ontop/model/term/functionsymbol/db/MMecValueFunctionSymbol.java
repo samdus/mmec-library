@@ -9,7 +9,7 @@
 
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
-import ca.griis.mmec.controller.ontop.model.type.DBValueTermType;
+import ca.griis.mmec.controller.ontop.model.type.DbValueTermType;
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
@@ -103,7 +103,7 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
   @Override
   public Optional<TermTypeInference> inferType(ImmutableList<? extends ImmutableTerm> terms) {
     return Optional.of(
-        TermTypeInference.declareTermType(new DBValueTermType(rdfDatatype, valueType)));
+        TermTypeInference.declareTermType(new DbValueTermType(rdfDatatype, valueType)));
   }
 
   private static void checkArity(ImmutableList<? extends ImmutableTerm> terms)

@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecIndividuationTermType.
  * @brief @~english MMecIndividuationTermType class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.model.type;
 
 import it.unibz.inf.ontop.model.type.DBTermType;

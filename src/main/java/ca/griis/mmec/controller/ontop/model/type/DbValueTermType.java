@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe DBValueTermType.
  * @brief @~english DBValueTermType class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.model.type;
 
 import it.unibz.inf.ontop.model.type.DBTermType;
@@ -44,13 +45,13 @@ import org.apache.commons.rdf.api.IRI;
  * @par Tâches
  *      S.O.
  */
-public class DBValueTermType implements DBTermType, RDFDatatype {
-  private final RDFDatatype innerRDFTermType;
-  private final DBTermType innerDBTermType;
+public class DbValueTermType implements DBTermType, RDFDatatype {
+  private final RDFDatatype innerRdfTermType;
+  private final DBTermType innerDbTermType;
 
-  public DBValueTermType(RDFDatatype innerRDFTermType, DBTermType innerDBTermType) {
-    this.innerRDFTermType = innerRDFTermType;
-    this.innerDBTermType = innerDBTermType;
+  public DbValueTermType(RDFDatatype innerRdfTermType, DBTermType innerDbTermType) {
+    this.innerRdfTermType = innerRdfTermType;
+    this.innerDbTermType = innerDbTermType;
   }
 
   // Overloaded methods with a custom behavior
@@ -63,88 +64,88 @@ public class DBValueTermType implements DBTermType, RDFDatatype {
   @Override
   public DBTermType getClosestDBType(DBTypeFactory dbTypeFactory)
       throws UnsupportedOperationException {
-    return innerDBTermType;
+    return innerDbTermType;
   }
 
   @Override
   public Optional<RDFDatatype> getNaturalRDFDatatype() {
-    return Optional.of(innerRDFTermType);
+    return Optional.of(innerRdfTermType);
   }
 
   // Delegated methods
 
   @Override
   public String getName() {
-    return innerDBTermType.getName();
+    return innerDbTermType.getName();
   }
 
   @Override
   public String getCastName() {
-    return innerDBTermType.getCastName();
+    return innerDbTermType.getCastName();
   }
 
   @Override
   public Category getCategory() {
-    return innerDBTermType.getCategory();
+    return innerDbTermType.getCategory();
   }
 
   @Override
   public boolean isNeedingIRISafeEncoding() {
-    return innerDBTermType.isNeedingIRISafeEncoding();
+    return innerDbTermType.isNeedingIRISafeEncoding();
   }
 
   @Override
   public boolean areEqualitiesStrict() {
-    return innerDBTermType.areEqualitiesStrict();
+    return innerDbTermType.areEqualitiesStrict();
   }
 
   @Override
   public Optional<Boolean> areEqualitiesStrict(DBTermType otherType) {
-    return innerDBTermType.areEqualitiesStrict(otherType);
+    return innerDbTermType.areEqualitiesStrict(otherType);
   }
 
   @Override
   public boolean areEqualitiesBetweenTwoDBAttributesStrict() {
-    return innerDBTermType.areEqualitiesBetweenTwoDBAttributesStrict();
+    return innerDbTermType.areEqualitiesBetweenTwoDBAttributesStrict();
   }
 
   @Override
   public Optional<Boolean> isValidLexicalValue(String lexicalValue) {
-    return innerDBTermType.isValidLexicalValue(lexicalValue);
+    return innerDbTermType.isValidLexicalValue(lexicalValue);
   }
 
   @Override
   public boolean isPreventDistinctRecommended() {
-    return innerDBTermType.isPreventDistinctRecommended();
-  }
-
-  @Override
-  public boolean isA(TermType otherTermType) {
-    return innerRDFTermType.isA(otherTermType);
+    return innerDbTermType.isPreventDistinctRecommended();
   }
 
   @Override
   public TermType getCommonDenominator(TermType otherTermType) {
-    return innerRDFTermType.getCommonDenominator(otherTermType);
+    return innerRdfTermType.getCommonDenominator(otherTermType);
   }
 
   @Override
   public TermTypeAncestry getAncestry() {
-    return innerRDFTermType.getAncestry();
+    return innerRdfTermType.getAncestry();
   }
 
   @Override
   public Optional<LanguageTag> getLanguageTag() {
-    return innerRDFTermType.getLanguageTag();
+    return innerRdfTermType.getLanguageTag();
+  }
+
+  @Override
+  public boolean isA(TermType otherTermType) {
+    return innerRdfTermType.isA(otherTermType);
   }
 
   @Override
   public boolean isA(IRI baseDatatypeIri) {
-    return innerRDFTermType.isA(baseDatatypeIri);
+    return innerRdfTermType.isA(baseDatatypeIri);
   }
 
   @Override
   public IRI getIRI() {
-    return innerRDFTermType.getIRI();
+    return innerRdfTermType.getIRI();
   }
 }

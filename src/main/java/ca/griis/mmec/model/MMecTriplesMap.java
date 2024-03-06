@@ -13,7 +13,7 @@
 
 package ca.griis.mmec.model;
 
-import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPPMappingAssertionProvenance;
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPpMappingAssertionProvenance;
 import it.unibz.inf.ontop.spec.mapping.TargetAtom;
 import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
@@ -89,6 +89,6 @@ public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
 
   @Override
   public PPMappingAssertionProvenance getMappingAssertionProvenance(TargetAtom targetAtom) {
-    return new MMecPPMappingAssertionProvenance(targetAtom, this);
+    return new MMecPpMappingAssertionProvenance(targetAtom, this);
   }
 }

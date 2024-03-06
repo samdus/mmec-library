@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecPPMappingAssertionProvenance.
  * @brief @~english MMecPPMappingAssertionProvenance class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.pp;
 
 import it.unibz.inf.ontop.exception.MinorOntopInternalBugException;
@@ -47,22 +48,23 @@ import java.util.stream.Collectors;
  * @par Tâches
  *      S.O.
  */
-public class UnionPPMappingAssertionProvenance implements PPMappingAssertionProvenance {
-  private final List<PPMappingAssertionProvenance> unionPPMappingAssertionProvenances;
+public class ProvUnion implements PPMappingAssertionProvenance {
+  private final List<PPMappingAssertionProvenance> unionPpMappingAssertionProvenances;
 
-  public UnionPPMappingAssertionProvenance() {
-    unionPPMappingAssertionProvenances = new ArrayList<>();
+  public ProvUnion() {
+    unionPpMappingAssertionProvenances = new ArrayList<>();
   }
 
   @Override
   public String getProvenanceInfo() {
-    String provenanceDescription = unionPPMappingAssertionProvenances.stream()
-        .map(unionPPMappingAssertionProvenance -> String.format("{\n%s\n}",
+    String provenanceDescription = unionPpMappingAssertionProvenances.stream().map(
+        unionPPMappingAssertionProvenance -> String.format("{\n%s\n}",
             unionPPMappingAssertionProvenance.getProvenanceInfo()))
-        .collect(Collectors.joining(",\n"));
+        .collect(
+            Collectors.joining(",\n"));
 
-    return String.format("Union of %d provenance:\n[%s]",
-        unionPPMappingAssertionProvenances.size(), provenanceDescription);
+    return String.format("Union of %d provenance:\n[%s]", unionPpMappingAssertionProvenances.size(),
+        provenanceDescription);
   }
 
   @Override
@@ -70,23 +72,27 @@ public class UnionPPMappingAssertionProvenance implements PPMappingAssertionProv
     return getProvenanceInfo();
   }
 
-  public static Collector<PPMappingAssertionProvenance, UnionPPMappingAssertionProvenance, Optional<PPMappingAssertionProvenance>> getPpMappingAssertionProvenanceCollector() {
-    return Collector.of(
-        UnionPPMappingAssertionProvenance::new, // Supplier
-        UnionPPMappingAssertionProvenance::add, // Accumulator
+  public abstract static class AssertionProvenanceCollector implements
+      Collector<PPMappingAssertionProvenance, ProvUnion, Optional<PPMappingAssertionProvenance>> {
+  }
+
+  public static AssertionProvenanceCollector getPpMappingAssertionProvenanceCollector() {
+    return (AssertionProvenanceCollector) Collector.of(ProvUnion::new,
+        // Supplier
+        ProvUnion::add, // Accumulator
         (b1, b2) -> {
           throw new MinorOntopInternalBugException("no merge");
         }, // Merger
-        UnionPPMappingAssertionProvenance::build, // Finisher
+        ProvUnion::build, // Finisher
         Collector.Characteristics.UNORDERED);
   }
 
-  private static void add(UnionPPMappingAssertionProvenance a, PPMappingAssertionProvenance t) {
-    a.unionPPMappingAssertionProvenances.add(t);
+  private static void add(ProvUnion a, PPMappingAssertionProvenance t) {
+    a.unionPpMappingAssertionProvenances.add(t);
   }
 
-  private static Optional<PPMappingAssertionProvenance> build(UnionPPMappingAssertionProvenance a) {
-    if (a.unionPPMappingAssertionProvenances.isEmpty()) {
+  private static Optional<PPMappingAssertionProvenance> build(ProvUnion a) {
+    if (a.unionPpMappingAssertionProvenances.isEmpty()) {
       return Optional.empty();
     }
     return Optional.of(a);

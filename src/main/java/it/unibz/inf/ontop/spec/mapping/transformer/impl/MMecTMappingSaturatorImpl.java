@@ -87,7 +87,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
   // TODO: the implementation of EXCLUDE ignores equivalent classes / properties
 
-  private final TMappingExclusionConfig tMappingExclusionConfig;
+  private final TMappingExclusionConfig exclusionConfig;
   private final TermFactory termFactory;
   private final MappingCQCOptimizer mappingCqcOptimizer;
   private final UnionBasedQueryMerger queryMerger;
@@ -96,11 +96,11 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
   private final SubstitutionFactory substitutionFactory;
 
   @Inject
-  private MMecTMappingSaturatorImpl(TMappingExclusionConfig tMappingExclusionConfig,
+  private MMecTMappingSaturatorImpl(TMappingExclusionConfig exclusionConfig,
       MappingCQCOptimizer mappingCqcOptimizer,
       UnionBasedQueryMerger queryMerger,
       CoreSingletons coreSingletons) {
-    this.tMappingExclusionConfig = tMappingExclusionConfig;
+    this.exclusionConfig = exclusionConfig;
     this.termFactory = coreSingletons.getTermFactory();
     this.mappingCqcOptimizer = mappingCqcOptimizer;
     this.queryMerger = queryMerger;
@@ -132,7 +132,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
         .flatMap(provider -> Stream.concat(Stream.concat(
             reasoner.objectPropertiesDAG().stream()
                 .filter(node -> !node.getRepresentative().isInverse()
-                    && !tMappingExclusionConfig.contains(node.getRepresentative()))
+                    && !exclusionConfig.contains(node.getRepresentative()))
                 .flatMap(node -> saturate(node.getRepresentative(),
                     getSubsumees(reasoner.objectPropertiesDAG(), node), original,
                     provider::getTransformer, cqc).stream()
@@ -143,7 +143,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
                                 provider.getTransformer(node.getRepresentative(), d), ma)))),
 
             reasoner.dataPropertiesDAG().stream()
-                .filter(node -> !tMappingExclusionConfig.contains(node.getRepresentative()))
+                .filter(node -> !exclusionConfig.contains(node.getRepresentative()))
                 .flatMap(node -> saturate(node.getRepresentative(),
                     getSubsumees(reasoner.dataPropertiesDAG(), node), original,
                     provider::getTransformer, cqc).stream()
@@ -153,7 +153,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
             reasoner.classesDAG().stream()
                 .filter(node -> (node.getRepresentative() instanceof OClass)
-                    && !tMappingExclusionConfig.contains((OClass) node.getRepresentative()))
+                    && !exclusionConfig.contains((OClass) node.getRepresentative()))
                 .flatMap(node -> saturate(node.getRepresentative(),
                     getSubsumees(reasoner.classesDAG(), node), original, provider::getTransformer,
                     cqc).stream()
@@ -173,20 +173,13 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
             .map(e -> e.getValue().stream()
                 .collect(
                     MMecMappingAssertionUnion.toMappingAssertion(cqc, coreSingletons, queryMerger)))
-            .map(Optional::get))
+            .map(Optional::orElseThrow))
         .collect(ImmutableCollectors.toList());
-  }
-
-  private MappingAssertion optimize(ExtensionalDataNodeListContainmentCheck cqc,
-      MappingAssertion m) {
-    IQ optimizedIQ = m.getQuery().normalizeForOptimization();
-    IQ cqcOptimizedIQ = mappingCqcOptimizer.optimize(cqc, optimizedIQ);
-    return m.copyOf(cqcOptimizedIQ);
   }
 
   private <T> Optional<MappingAssertion> saturate(T representative, Stream<T> subsumees,
       ImmutableMultimap<MappingAssertionIndex, MappingAssertion> original,
-      BiFunction<T, T, MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer> transformerProvider,
+      BiFunction<T, T, MappingAssertionConstructionNodeTransformer> transformerProvider,
       ExtensionalDataNodeListContainmentCheck cqc) {
 
     return subsumees
@@ -197,14 +190,22 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
         .collect(MMecMappingAssertionUnion.toMappingAssertion(cqc, coreSingletons, queryMerger));
   }
 
+  private MappingAssertion optimize(ExtensionalDataNodeListContainmentCheck cqc,
+      MappingAssertion m) {
+    IQ optimizedIQ = m.getQuery().normalizeForOptimization();
+    IQ cqcOptimizedIQ = mappingCqcOptimizer.optimize(cqc, optimizedIQ);
+    return m.copyOf(cqcOptimizedIQ);
+  }
+
   private static <T> Stream<T> getSubsumees(EquivalencesDAG<T> dag, Equivalences<T> node) {
     return dag.getSub(node).stream()
         .flatMap(n -> n.getMembers().stream());
   }
 
   private class MappingAssertionConstructionNodeTransformer {
-    private final MappingAssertionIndex fromIndex, toIndex;
-    private final Function<ImmutableList<ImmutableTerm>, ImmutableList<ImmutableTerm>> termTransformer;
+    private final MappingAssertionIndex fromIndex;
+    private final MappingAssertionIndex toIndex;
+    private final Function<ImmutableList<ImmutableTerm>, ImmutableList<ImmutableTerm>> transformer;
     private final boolean needOptimization;
 
     MappingAssertionConstructionNodeTransformer(MappingAssertionIndex fromIndex,
@@ -213,7 +214,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
         boolean needOptimization) {
       this.fromIndex = fromIndex;
       this.toIndex = toIndex;
-      this.termTransformer = termTransformer;
+      this.transformer = termTransformer;
       this.needOptimization = needOptimization;
     }
 
@@ -236,7 +237,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
       ImmutableList<Variable> variables = projectionAtom.getArguments();
       ImmutableList<ImmutableTerm> args = constructionNode.getSubstitution().apply(variables);
       Substitution<ImmutableTerm> updatedSubstitution = substitutionFactory.getSubstitution(
-          variables, termTransformer.apply(args));
+          variables, transformer.apply(args));
       ConstructionNode updatedConstructionNode = iqFactory.createConstructionNode(
           constructionNode.getVariables(), updatedSubstitution);
       IQ updatedQuery = iqFactory.createIQ(projectionAtom,
@@ -263,15 +264,13 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
     MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer getTransformer(
         ClassExpression from, ClassExpression to) {
-      if (!(to instanceof OClass)) {
+      if (!(to instanceof OClass toClass)) {
         throw new MinorOntopInternalBugException(
             "Cannot get a transformer to a property restriction: " + from + " " + to);
       }
 
-      OClass toClass = (OClass) to;
       IRIConstant newIri = termFactory.getConstantIRI(toClass.getIRI());
-      if (from instanceof OClass) {
-        OClass oc = (OClass) from;
+      if (from instanceof OClass oc) {
         return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(
             MappingAssertionIndex.ofClass(rdfAtomPredicate, oc.getIRI()),
             MappingAssertionIndex.ofClass(rdfAtomPredicate, toClass.getIRI()),

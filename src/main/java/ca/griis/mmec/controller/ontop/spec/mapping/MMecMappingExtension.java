@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecMappingExtension.
  * @brief @~english MMecMappingExtension class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping;
 
 import it.unibz.inf.ontop.model.type.DBTermType;

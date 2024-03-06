@@ -225,7 +225,6 @@ public class DataPropertyProjectionTransformerTest {
     IRI datatypeIri = Mockito.mock(IRI.class);
     DBTermType targetType = Mockito.mock(DBTermType.class);
     Variable originalVariable = Mockito.mock(Variable.class);
-    ImmutableSet<Variable> substitutionTermVariables = ImmutableSet.of(originalVariable);
     ImmutableSet<Variable> emptyThereforeInvalidSubstitutionTerm = ImmutableSet.of();
 
     ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =

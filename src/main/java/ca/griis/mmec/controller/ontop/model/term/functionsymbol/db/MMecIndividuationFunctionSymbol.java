@@ -53,7 +53,7 @@ import java.util.stream.Collectors;
 public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymbol implements
     RDFTermFunctionSymbol {
   private final String functionCallTemplate;
-  private final MMecIndividuationTermType mMecIndividuationTermType;
+  private final MMecIndividuationTermType mmecIndividuationTermType;
 
   /***
    * @brief @~english «Description of the method»
@@ -70,7 +70,7 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
       String functionCallTemplate) {
     super(String.format("Individuation_%s", argTypes.size()), argTypes, returnType);
     this.functionCallTemplate = functionCallTemplate;
-    mMecIndividuationTermType = new MMecIndividuationTermType(
+    mmecIndividuationTermType = new MMecIndividuationTermType(
         iriTermType.getAncestry(), returnType);
   }
 
@@ -98,6 +98,6 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
 
   @Override
   public Optional<TermTypeInference> inferType(ImmutableList<? extends ImmutableTerm> terms) {
-    return Optional.of(mMecIndividuationTermType).map(TermTypeInference::declareTermType);
+    return Optional.of(mmecIndividuationTermType).map(TermTypeInference::declareTermType);
   }
 }

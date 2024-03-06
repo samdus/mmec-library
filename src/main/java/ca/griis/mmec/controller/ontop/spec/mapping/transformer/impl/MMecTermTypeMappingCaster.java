@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecTermTypeMappingCaster.
  * @brief @~english MMecTermTypeMappingCaster class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.transformer.impl;
 
 import it.unibz.inf.ontop.spec.mapping.MappingAssertion;

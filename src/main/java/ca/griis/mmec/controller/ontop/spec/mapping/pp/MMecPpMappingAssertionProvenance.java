@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecPPMappingAssertionProvenance.
  * @brief @~english MMecPPMappingAssertionProvenance class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.pp;
 
 import ca.griis.mmec.model.MMecTriplesMap;
@@ -43,17 +44,17 @@ import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
  * @par Tâches
  *      S.O.
  */
-public class MMecPPMappingAssertionProvenance implements PPMappingAssertionProvenance {
+public class MMecPpMappingAssertionProvenance implements PPMappingAssertionProvenance {
   private final TargetAtom targetAtom;
-  private final MMecTriplesMap mMecTriplesMap;
+  private final MMecTriplesMap mmecTriplesMap;
 
-  public MMecPPMappingAssertionProvenance(TargetAtom targetAtom, MMecTriplesMap mMecTriplesMap) {
+  public MMecPpMappingAssertionProvenance(TargetAtom targetAtom, MMecTriplesMap mmecTriplesMap) {
     this.targetAtom = targetAtom;
-    this.mMecTriplesMap = mMecTriplesMap;
+    this.mmecTriplesMap = mmecTriplesMap;
   }
 
-  public MMecTriplesMap getmMecTriplesMap() {
-    return mMecTriplesMap;
+  public MMecTriplesMap getMmecTriplesMap() {
+    return mmecTriplesMap;
   }
 
   public TargetAtom getTargetAtom() {
@@ -62,9 +63,8 @@ public class MMecPPMappingAssertionProvenance implements PPMappingAssertionProve
 
   @Override
   public String getProvenanceInfo() {
-    return "id: " + mMecTriplesMap.getId() +
-        "\ntarget atom: " + targetAtom.toString() +
-        "\nsource query: " + mMecTriplesMap.getSourceQuery();
+    return "id: " + mmecTriplesMap.getId() + "\ntarget atom: " + targetAtom.toString()
+        + "\nsource query: " + mmecTriplesMap.getSourceQuery();
   }
 
   @Override

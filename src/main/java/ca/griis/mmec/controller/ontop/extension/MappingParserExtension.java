@@ -77,6 +77,7 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
 public class MappingParserExtension {
 
   public static final String subsetIRI = "http://www.griis.ca/projects/mmec/subsets";
+  private final String conversionIri = "http://www.griis.ca/projects/mmec/conversion";
   public static final String conversionInputTypeIri =
       "http://www.griis.ca/projects/mmec/conversionInputType";
   public static final String conversionOutputTypeIri =
@@ -85,7 +86,6 @@ public class MappingParserExtension {
       "http://www.griis.ca/projects/mmec/conversionFunction";
   public static final String validationFunctionIri =
       "http://www.griis.ca/projects/mmec/validationFunction";
-  private final String conversionIRI = "http://www.griis.ca/projects/mmec/conversion";
   private final MMecMappingExtension mappingExtension;
   private final SQLPPMappingFactory ppMappingFactory;
   private final RDF4J rdf;
@@ -211,7 +211,7 @@ public class MappingParserExtension {
   private void processExtendedMapping(Graph mappingGraph) {
     List<? extends Triple> conversionTriples = mappingGraph.stream(null,
         rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
-        rdf.createIRI("http://www.griis.ca/projects/mmec/conversion")).toList();
+        rdf.createIRI(conversionIri)).toList();
 
     for (Triple conversionTriple : conversionTriples) {
       DBTermType declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
