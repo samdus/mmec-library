@@ -60,7 +60,6 @@ public class IndividuationFunctionQueryTransformer extends
       BasicSingleTermTypeExtractor typeExtractor) {
     super(iqFactory);
 
-    assert termFactory instanceof MMecTermFactory;
     this.termFactory = (MMecTermFactory) termFactory;
     this.typeExtractor = typeExtractor;
   }

@@ -47,6 +47,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -84,22 +89,52 @@ import java.util.stream.Stream;
  */
 public class MMecMappingAssertionUnion {
 
-  public abstract static class MMecMappingAssertionUnionCollector implements
+  public static class MMecMappingAssertionUnionCollector implements
       Collector<MappingAssertion, MMecMappingAssertionUnion, Optional<MappingAssertion>> {
+    private final ExtensionalDataNodeListContainmentCheck cqc;
+    private final CoreSingletons coreSingletons;
+    private final UnionBasedQueryMerger queryMerger;
+
+    public MMecMappingAssertionUnionCollector(ExtensionalDataNodeListContainmentCheck cqc,
+        CoreSingletons coreSingletons,
+        UnionBasedQueryMerger queryMerger) {
+      this.cqc = cqc;
+      this.coreSingletons = coreSingletons;
+      this.queryMerger = queryMerger;
+    }
+
+    @Override
+    public Supplier<MMecMappingAssertionUnion> supplier() {
+      return () -> new MMecMappingAssertionUnion(cqc, coreSingletons, queryMerger);
+    }
+
+    @Override
+    public BiConsumer<MMecMappingAssertionUnion, MappingAssertion> accumulator() {
+      return MMecMappingAssertionUnion::add;
+    }
+
+    @Override
+    public BinaryOperator<MMecMappingAssertionUnion> combiner() {
+      return (union1, union2) -> {
+        throw new MinorOntopInternalBugException("no merge");
+      };
+    }
+
+    @Override
+    public Function<MMecMappingAssertionUnion, Optional<MappingAssertion>> finisher() {
+      return MMecMappingAssertionUnion::build;
+    }
+
+    @Override
+    public Set<Characteristics> characteristics() {
+      return Set.of(Collector.Characteristics.UNORDERED);
+    }
   }
 
   public static MMecMappingAssertionUnionCollector toMappingAssertion(
       ExtensionalDataNodeListContainmentCheck cqc, CoreSingletons coreSingletons,
       UnionBasedQueryMerger queryMerger) {
-    return (MMecMappingAssertionUnionCollector) Collector.of(
-        () -> new MMecMappingAssertionUnion(cqc, coreSingletons, queryMerger),
-        // Supplier
-        MMecMappingAssertionUnion::add, // Accumulator
-        (b1, b2) -> {
-          throw new MinorOntopInternalBugException("no merge");
-        }, // Merger
-        MMecMappingAssertionUnion::build, // Finisher
-        Collector.Characteristics.UNORDERED);
+    return new MMecMappingAssertionUnionCollector(cqc, coreSingletons, queryMerger);
   }
 
   private final List<ConjunctiveIQ> conjunctiveIqs = new ArrayList<>();
@@ -139,7 +174,6 @@ public class MMecMappingAssertionUnion {
     ConjunctiveIQ(DistinctVariableOnlyDataAtom projectionAtom, ConstructionNode constructionNode,
         ImmutableList<ExtensionalDataNode> extensionalDataNodes, Optional<ValuesNode> valuesNode,
         DisjunctionOfConjunctions filter, PPMappingAssertionProvenance provenance) {
-      assert provenance instanceof MMecPpMappingAssertionProvenance;
       this.provenance = (MMecPpMappingAssertionProvenance) provenance;
 
       VariableGenerator variableGenerator =
@@ -436,7 +470,7 @@ public class MMecMappingAssertionUnion {
       Optional<Homomorphism> fromCurrentCiq = getHomomorphismIterator(currentCiq, newCiq).filter(
           Iterator::hasNext).map(Iterator::next);
       Optional<DisjunctionOfConjunctions> currentCiqConditionsImage = fromCurrentCiq.map(
-          h -> applyHomomorphism(h, currentCiq.getConditions()));;
+          h -> applyHomomorphism(h, currentCiq.getConditions()));
       if (fromCurrentCiq.isPresent() && contains(currentCiqConditionsImage.get(),
           newCiq.getConditions())
           && contains(fromCurrentCiq.get(), currentCiq.getValuesNode(),

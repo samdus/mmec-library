@@ -17,6 +17,7 @@ import it.unibz.inf.ontop.model.term.functionsymbol.db.DBFunctionSymbolSerialize
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractDBTypeConversionFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.Serializers;
 import it.unibz.inf.ontop.model.type.DBTermType;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -101,5 +102,22 @@ public class MMecSimpleConversionFunctionSymbol
   @Override
   public boolean isSimple() {
     return false;
+  }
+
+  @Override
+  public final boolean equals(Object other) {
+    return super.equals(other)
+        && other instanceof MMecSimpleConversionFunctionSymbol otherSymbol
+        && this.inputType.equals(otherSymbol.inputType)
+        && this.serializer.equals(otherSymbol.serializer);
+  }
+
+  @Override
+  public final int hashCode() {
+    return Arrays.hashCode(new Object[] {
+        super.hashCode(),
+        this.inputType,
+        this.serializer
+    });
   }
 }

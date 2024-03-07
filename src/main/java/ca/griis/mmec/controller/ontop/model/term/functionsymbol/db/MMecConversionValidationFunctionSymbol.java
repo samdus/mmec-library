@@ -3,8 +3,8 @@
  * @copyright @@GRIIS_COPYRIGHT@@
  * @licence @@GRIIS_LICENCE@@
  * @version @@GRIIS_VERSION@@
- * @brief @~french Implémentation de la classe MMecIndividuationFunctionSymbol.
- * @brief @~english MMecIndividuationFunctionSymbol class implementation.
+ * @brief @~french Implémentation de la classe MMecConversionValidationFunctionSymbol.
+ * @brief @~english MMecConversionValidationFunctionSymbol class implementation.
  */
 
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
@@ -16,6 +16,7 @@ import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.DBBooleanFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
+import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -100,5 +101,20 @@ public class MMecConversionValidationFunctionSymbol extends DBBooleanFunctionSym
   public ImmutableExpression negate(ImmutableList<? extends ImmutableTerm> subTerms,
       TermFactory termFactory) {
     throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public final boolean equals(Object other) {
+    return super.equals(other)
+        && other instanceof MMecConversionValidationFunctionSymbol otherSymbol
+        && this.functionName.compareToIgnoreCase(otherSymbol.functionName) == 0;
+  }
+
+  @Override
+  public final int hashCode() {
+    return Arrays.hashCode(new Object[] {
+        super.hashCode(),
+        this.functionName.toLowerCase()
+    });
   }
 }

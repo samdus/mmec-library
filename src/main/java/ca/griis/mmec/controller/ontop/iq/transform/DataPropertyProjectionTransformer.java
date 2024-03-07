@@ -69,7 +69,8 @@ import javax.inject.Inject;
  * @par Tâches
  *      S.O.
  */
-public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVisitingTransformer {
+public class DataPropertyProjectionTransformer
+    extends DefaultRecursiveIQTreeVisitingTransformer {
   private final MMecTermFactory termFactory;
   private final BasicSingleTermTypeExtractor typeExtractor;
   private final OntoRelCatRepository ontoRelCatRepository;
@@ -85,7 +86,6 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
       OntoRelCatRepository ontoRelCatRepository,
       MappingProperties mappingProperties) {
     super(iqFactory);
-    assert termFactory instanceof MMecTermFactory;
 
     this.mappingExtension = mappingExtension;
     this.termFactory = (MMecTermFactory) termFactory;
@@ -172,15 +172,15 @@ public class DataPropertyProjectionTransformer extends DefaultRecursiveIQTreeVis
 
   public static class DataPropertyProjectionTransformerException extends RuntimeException {
     public DataPropertyProjectionTransformerException(IQTree iqTree, String reason) {
-      super(String.format("Impossible to transform the DataProperty from the following tree. {\n"
-          + "Cause: \"%s\";\n"
-          + "IQTree:\n%s\n}", reason, iqTree.toString()));
+      super(String.format("Impossible to transform the DataProperty from the following tree. {%n"
+          + "Cause: \"%s\";%n"
+          + "IQTree:%n%s%n}", reason, iqTree.toString()));
     }
 
     public DataPropertyProjectionTransformerException(IQTree iqTree, Throwable cause) {
-      super(String.format("Impossible to transform the DataProperty from the following tree. {\n"
-          + "Cause: \"%s\";\n"
-          + "IQTree:\n%s\n}", cause.getMessage(), iqTree.toString()), cause);
+      super(String.format("Impossible to transform the DataProperty from the following tree. {%n"
+          + "Cause: \"%s\";%n"
+          + "IQTree:%n%s%n}", cause.getMessage(), iqTree.toString()), cause);
     }
   }
 }

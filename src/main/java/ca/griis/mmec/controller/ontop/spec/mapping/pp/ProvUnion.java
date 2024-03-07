@@ -18,6 +18,11 @@ import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -58,12 +63,12 @@ public class ProvUnion implements PPMappingAssertionProvenance {
   @Override
   public String getProvenanceInfo() {
     String provenanceDescription = unionPpMappingAssertionProvenances.stream().map(
-        unionPPMappingAssertionProvenance -> String.format("{\n%s\n}",
+        unionPPMappingAssertionProvenance -> String.format("{%n%s%n}",
             unionPPMappingAssertionProvenance.getProvenanceInfo()))
         .collect(
             Collectors.joining(",\n"));
 
-    return String.format("Union of %d provenance:\n[%s]", unionPpMappingAssertionProvenances.size(),
+    return String.format("Union of %d provenance:%n[%s]", unionPpMappingAssertionProvenances.size(),
         provenanceDescription);
   }
 
@@ -72,19 +77,38 @@ public class ProvUnion implements PPMappingAssertionProvenance {
     return getProvenanceInfo();
   }
 
-  public abstract static class AssertionProvenanceCollector implements
+  public static class AssertionProvenanceCollector implements
       Collector<PPMappingAssertionProvenance, ProvUnion, Optional<PPMappingAssertionProvenance>> {
+    @Override
+    public Supplier<ProvUnion> supplier() {
+      return ProvUnion::new;
+    }
+
+    @Override
+    public BiConsumer<ProvUnion, PPMappingAssertionProvenance> accumulator() {
+      return ProvUnion::add;
+    }
+
+    @Override
+    public BinaryOperator<ProvUnion> combiner() {
+      return (union1, union2) -> {
+        throw new MinorOntopInternalBugException("no merge");
+      };
+    }
+
+    @Override
+    public Function<ProvUnion, Optional<PPMappingAssertionProvenance>> finisher() {
+      return ProvUnion::build;
+    }
+
+    @Override
+    public Set<Characteristics> characteristics() {
+      return Set.of(Collector.Characteristics.UNORDERED);
+    }
   }
 
   public static AssertionProvenanceCollector getPpMappingAssertionProvenanceCollector() {
-    return (AssertionProvenanceCollector) Collector.of(ProvUnion::new,
-        // Supplier
-        ProvUnion::add, // Accumulator
-        (b1, b2) -> {
-          throw new MinorOntopInternalBugException("no merge");
-        }, // Merger
-        ProvUnion::build, // Finisher
-        Collector.Characteristics.UNORDERED);
+    return new AssertionProvenanceCollector();
   }
 
   private static void add(ProvUnion a, PPMappingAssertionProvenance t) {

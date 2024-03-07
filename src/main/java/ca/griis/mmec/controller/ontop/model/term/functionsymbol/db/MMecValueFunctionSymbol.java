@@ -20,6 +20,7 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.MetaRDFTermType;
 import it.unibz.inf.ontop.model.type.RDFDatatype;
 import it.unibz.inf.ontop.model.type.TermTypeInference;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -111,5 +112,22 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
     if (terms.size() != 2) {
       throw new IllegalArgumentException("Wrong arity");
     }
+  }
+
+  @Override
+  public final boolean equals(Object other) {
+    return super.equals(other)
+        && other instanceof MMecValueFunctionSymbol otherSymbol
+        && this.valueType.equals(otherSymbol.valueType)
+        && this.rdfDatatype.equals(otherSymbol.rdfDatatype);
+  }
+
+  @Override
+  public final int hashCode() {
+    return Arrays.hashCode(new Object[] {
+        super.hashCode(),
+        valueType,
+        rdfDatatype,
+    });
   }
 }

@@ -19,6 +19,7 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.ObjectRDFType;
 import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.TermTypeInference;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -99,5 +100,22 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
   @Override
   public Optional<TermTypeInference> inferType(ImmutableList<? extends ImmutableTerm> terms) {
     return Optional.of(mmecIndividuationTermType).map(TermTypeInference::declareTermType);
+  }
+
+  @Override
+  public final boolean equals(Object other) {
+    return super.equals(other)
+        && other instanceof MMecIndividuationFunctionSymbol otherSymbol
+        && this.functionCallTemplate.compareToIgnoreCase(otherSymbol.functionCallTemplate) == 0
+        && this.mmecIndividuationTermType.equals(otherSymbol.mmecIndividuationTermType);
+  }
+
+  @Override
+  public final int hashCode() {
+    return Arrays.hashCode(new Object[] {
+        super.hashCode(),
+        this.functionCallTemplate.toLowerCase(),
+        this.mmecIndividuationTermType
+    });
   }
 }

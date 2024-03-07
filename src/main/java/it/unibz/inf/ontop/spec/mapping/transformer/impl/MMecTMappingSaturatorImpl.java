@@ -172,7 +172,8 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
             .filter(e -> !saturated.containsKey(e.getKey()))
             .map(e -> e.getValue().stream()
                 .collect(
-                    MMecMappingAssertionUnion.toMappingAssertion(cqc, coreSingletons, queryMerger)))
+                    MMecMappingAssertionUnion.toMappingAssertion(
+                        cqc, coreSingletons, queryMerger)))
             .map(Optional::orElseThrow))
         .collect(ImmutableCollectors.toList());
   }

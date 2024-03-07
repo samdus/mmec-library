@@ -27,7 +27,6 @@ import java.io.InputStream;
 import java.util.Hashtable;
 import java.util.Properties;
 import java.util.stream.Stream;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 public abstract class OntopTester {
   protected final MMecConfiguration configuration;
@@ -50,9 +49,14 @@ public abstract class OntopTester {
   protected static final String injectionConfigurationFile = "defaultConfiguration.properties";
 
   public OntopTester(PostgresContainerWrapper postgresContainerWrapper, File ontologyFile,
-      File mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
+      File mappingFile) {
     Properties dbProperties = postgresContainerWrapper.getPropertiesForOntop();
-    Properties defaultConfigurationProperties = getInjectionConfigurationProperties();
+    Properties defaultConfigurationProperties = null;
+    try {
+      defaultConfigurationProperties = getInjectionConfigurationProperties();
+    } catch (IOException e) {
+      System.err.println(e.getMessage());
+    }
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
     MappingProperties mappingProperties = new MappingPropertiesBuilder()
         .setOntoRelId("OntoRelCat_simple").build();

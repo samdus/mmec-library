@@ -77,7 +77,7 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
 public class MappingParserExtension {
 
   public static final String subsetIRI = "http://www.griis.ca/projects/mmec/subsets";
-  private final String conversionIri = "http://www.griis.ca/projects/mmec/conversion";
+  private static final String conversionIri = "http://www.griis.ca/projects/mmec/conversion";
   public static final String conversionInputTypeIri =
       "http://www.griis.ca/projects/mmec/conversionInputType";
   public static final String conversionOutputTypeIri =

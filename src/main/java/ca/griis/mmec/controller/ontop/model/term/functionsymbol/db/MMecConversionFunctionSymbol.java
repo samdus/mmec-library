@@ -15,6 +15,7 @@ import it.unibz.inf.ontop.model.term.ImmutableTerm;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractDBTypeConversionFunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.DBTermType;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -101,5 +102,22 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
   @Override
   public boolean isSimple() {
     return false;
+  }
+
+  @Override
+  public final boolean equals(Object other) {
+    return super.equals(other)
+        && other instanceof MMecConversionFunctionSymbol otherSymbol
+        && this.functionName.compareToIgnoreCase(otherSymbol.functionName) == 0
+        && (this.inputType == null || this.inputType.equals(otherSymbol.inputType));
+  }
+
+  @Override
+  public final int hashCode() {
+    return Arrays.hashCode(new Object[] {
+        super.hashCode(),
+        this.functionName.toLowerCase(),
+        this.inputType
+    });
   }
 }

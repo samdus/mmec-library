@@ -60,8 +60,9 @@ public class PostgresContainerWrapper implements Closeable {
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(
       PostgresContainerWrapper.class);
   private static PostgresContainerWrapper instance;
-  private final String ontorelcatLdmImageName = "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm";
-  private final Integer hostPort = 25432;
+  private static final String ontorelcatLdmImageName =
+      "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm";
+  private static final Integer hostPort = 25432;
   private final DockerImageName ontorelcatLdmImage = DockerImageName.parse(ontorelcatLdmImageName)
       .asCompatibleSubstituteFor("postgres");
   private final PostgreSQLContainer<?> container = new PostgreSQLContainer<>(ontorelcatLdmImage);

@@ -187,12 +187,12 @@ public class R2rmlTester extends OntopTester {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
         String classIri = "http://purl.obolibrary.org/obo/HBW_0000004";
-        System.out.printf("Test de génération d'une expression pour la classe %s\n", classIri);
+        System.out.printf("Test de génération d'une expression pour la classe %s%n", classIri);
         System.out.println("---------------------------------------------");
         testGetClassDef(connection, classIri);
 
         classIri = "http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C4d0c3f45";
-        System.out.printf("Test de génération d'une expression pour la classe %s\n", classIri);
+        System.out.printf("Test de génération d'une expression pour la classe %s%n", classIri);
         System.out.println("---------------------------------------------");
         testGetClassDef(connection, classIri);
 
