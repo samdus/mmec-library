@@ -61,7 +61,7 @@ public class PostgresContainerWrapper implements Closeable {
       PostgresContainerWrapper.class);
   private static PostgresContainerWrapper instance;
   private static final String ontorelcatLdmImageName =
-      "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm";
+      "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm:0.0.1";
   private static final Integer hostPort = 25432;
   private final DockerImageName ontorelcatLdmImage = DockerImageName.parse(ontorelcatLdmImageName)
       .asCompatibleSubstituteFor("postgres");
