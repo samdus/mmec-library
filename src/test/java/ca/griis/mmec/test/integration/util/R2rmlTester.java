@@ -65,7 +65,13 @@ public class R2rmlTester extends OntopTester {
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
-    testGetDefinitions();
+    //    testGetDefinitions();
+    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
+      ontopQueryEngine.connect();
+      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
+        testFigure1(connection);
+      }
+    }
   }
 
   public String testWithAutomaticInjector() throws OBDASpecificationException {
@@ -182,7 +188,7 @@ public class R2rmlTester extends OntopTester {
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
 
     // TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
-    // expressions relationnelles vides.
+    //       expressions relationnelles vides.
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
@@ -198,13 +204,66 @@ public class R2rmlTester extends OntopTester {
 
         System.out.println("Test de génération d'une expression de ObjectProperty");
         System.out.println("---------------------------------------------------");
-        testGetOPDef(connection);
+
+        testGetOPDef(connection, "http://purl.obolibrary.org/obo/IAO_0000032",
+            "http://purl.obolibrary.org/obo/IAO_0000003",
+            "http://purl.obolibrary.org/obo/IAO_0000039");
 
         System.out.println("Test de génération d'une expression de DataProperty");
         System.out.println("---------------------------------------------------");
-        testGetDPDef(connection);
+        testGetDPDef(connection, "http://purl.obolibrary.org/obo/IAO_0000003",
+            "http://purl.obolibrary.org/obo/PHYSIO_0000100",
+            "http://www.w3.org/2001/XMLSchema#string");
       }
     }
+  }
+
+  private void testFigure1(OntopConnection connection)
+      throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
+    System.out.println("*********************************************");
+    System.out.println("Tests pour la figure 1");
+    System.out.println("*********************************************");
+    System.out.println();
+
+    System.out.println("---------------------------------------------");
+    System.out.println("Classes");
+    System.out.println("---------------------------------------------");
+    System.out.println("Expression pour engendrer la classe \"IAO_0020015\"@personal name :");
+    testGetClassDef(connection, "http://purl.obolibrary.org/obo/IAO_0020015");
+
+    System.out.println("Expression pour engendrer la classe \"IAO_0020017\"@family name :");
+    testGetClassDef(connection, "http://purl.obolibrary.org/obo/IAO_0020017");
+
+    System.out.println("Expression pour engendrer la classe \"HBW_0000022\"@human name :");
+    testGetClassDef(connection, "http://purl.obolibrary.org/obo/HBW_0000022");
+
+    System.out.println("---------------------------------------------");
+    System.out.println("ObjectProperties");
+    System.out.println("---------------------------------------------");
+    System.out.println("\"HBW_0000022\"@human name BFO_0000051@'has part' " +
+        "\"IAO_0020015\"@personal name");
+    testGetOPDef(connection, "http://purl.obolibrary.org/obo/HBW_0000022",
+        "http://purl.obolibrary.org/obo/BFO_0000051",
+        "http://purl.obolibrary.org/obo/IAO_0020015");
+
+    System.out.println("\"HBW_0000022\"@personal name BFO_0000051@'has part' " +
+        "\"IAO_0020017\"@family name");
+    testGetOPDef(connection, "http://purl.obolibrary.org/obo/HBW_0000022",
+        "http://purl.obolibrary.org/obo/BFO_0000051",
+        "http://purl.obolibrary.org/obo/IAO_0020017");
+
+    System.out.println("---------------------------------------------");
+    System.out.println("DataProperties");
+    System.out.println("---------------------------------------------");
+    System.out.println("\"IAO_0020015\"@personal name PHYSIO_0000100@'has value' \"PRENOM\"");
+    testGetDPDef(connection, "http://purl.obolibrary.org/obo/IAO_0020015",
+        "http://purl.obolibrary.org/obo/PHYSIO_0000100",
+        "http://www.w3.org/2001/XMLSchema#string");
+
+    System.out.println("\"IAO_0020017\"@family name 'has value' \"NOM\"");
+    testGetDPDef(connection, "http://purl.obolibrary.org/obo/IAO_0020017",
+        "http://purl.obolibrary.org/obo/PHYSIO_0000100",
+        "http://www.w3.org/2001/XMLSchema#string");
   }
 
   private void testGetClassDef(OntopConnection connection, String classIri)
@@ -228,25 +287,11 @@ public class R2rmlTester extends OntopTester {
           queryRoot.toString(),
           new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
-      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
-          ImmutableMultimap.of());
-      System.out.println(firstExecutableQuery.toString());
-
-      // La configuration Ontop originale génère ceci :
-      // ans1(uid)
-      // CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
-      // NATIVE [uid]
-      // SELECT ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "uid"
-      // FROM "TABLE2" v1
-      // Alors que la configuration MMec génère ceci :
-      // ans1(uid)
-      // NATIVE [uid]
-      // SELECT individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "uid"
-      // FROM "TABLE2" v1
+      printExecutableQuery(statement, rdf4JSelectQuery);
     }
   }
 
-  private void testGetOPDef(OntopConnection connection)
+  private void testGetOPDef(OntopConnection connection, String subUri, String opUri, String objUri)
       throws OntopConnectionException, OntopReformulationException {
     try (OntopStatement statement = connection.createStatement()) {
 
@@ -257,18 +302,18 @@ public class R2rmlTester extends OntopTester {
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
               true),
           new Var("sub_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000032"), true, true));
+              valueFactory.createIRI(subUri), true, true));
 
       StatementPattern objStatement = new StatementPattern(new Var("obj"),
           new Var("rdf_type_uri",
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
               true),
           new Var("obj_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000003"), true, true));
+              valueFactory.createIRI(objUri), true, true));
 
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("op_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000039"), true, true),
+              valueFactory.createIRI(opUri), true, true),
           new Var("obj"));
 
       Join subAndObjJoin = new Join(subStatement, objStatement);
@@ -285,32 +330,28 @@ public class R2rmlTester extends OntopTester {
           queryRoot.toString(),
           new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
+      printExecutableQuery(statement, rdf4JSelectQuery);
+    }
+  }
+
+  private static void printExecutableQuery(OntopStatement statement,
+      RDF4JSelectQuery rdf4JSelectQuery)
+      throws OntopReformulationException {
+    try {
       IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
           ImmutableMultimap.of());
       System.out.println(firstExecutableQuery.toString());
-
-      // La configuration Ontop originale génère ceci :
-      // ans1(sub, obj)
-      // CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
-      // NATIVE [obj, sub]
-      // SELECT DISTINCT ('http://www.griis.ca/projects/tst1C0004XUnionOf/' || CAST(v1."n" AS TEXT))
-      // AS "obj", ('http://www.griis.ca/projects/tst1C0004X/' || CAST(v1."m" AS TEXT)) AS "sub"
-      // FROM "TABLE2" v1, "TABLE2" v2
-      // WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" =
-      // v2."n")
-      // Alors que la configuration MMec génère ceci :
-      // ans1(sub, obj)
-      // NATIVE [obj, sub]
-      // SELECT DISTINCT individuation('http://www.griis.ca/projects/tst1C0004XUnionOf/{}', v1."n")
-      // AS "obj", individuation('http://www.griis.ca/projects/tst1C0004X/{}', v1."m") AS "sub"
-      // FROM "TABLE2" v1, "TABLE2" v2
-      // WHERE (((v2."o" < 5) OR (v2."o" >= 5)) AND ((v1."o" >= 5) OR (v1."o" < 5)) AND v1."n" =
-      // v2."n")
+    } catch (Exception e) {
+      if (e.getMessage().contains("IQ: EMPTY")) {
+        System.out.println("Empty mapping");
+      } else {
+        throw e;
+      }
     }
   }
 
 
-  private void testGetDPDef(OntopConnection connection)
+  private void testGetDPDef(OntopConnection connection, String subUri, String dpUri, String dtUri)
       throws OntopConnectionException, OntopReformulationException, OBDASpecificationException {
     try (OntopStatement statement = connection.createStatement()) {
 
@@ -321,18 +362,18 @@ public class R2rmlTester extends OntopTester {
               valueFactory.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), true,
               true),
           new Var("sub_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/IAO_0000003"), true, true));
+              valueFactory.createIRI(subUri), true, true));
 
       StatementPattern relStatement = new StatementPattern(new Var("sub"),
           new Var("dp_uri",
-              valueFactory.createIRI("http://purl.obolibrary.org/obo/PHYSIO_0000100"), true, true),
+              valueFactory.createIRI(dpUri), true, true),
           // has_value
           new Var("val"));
 
       Join relJoin = new Join(subStatement, relStatement);
       Compare compare = new Compare(
           new Datatype(new Var("val")),
-          new ValueConstant(valueFactory.createIRI("http://www.w3.org/2001/XMLSchema#string")));
+          new ValueConstant(valueFactory.createIRI(dtUri)));
       Filter filter = new Filter(relJoin, compare);
 
       Projection projection = new Projection(filter,
@@ -346,26 +387,7 @@ public class R2rmlTester extends OntopTester {
           queryRoot.toString(),
           new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
-      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
-          ImmutableMultimap.of());
-      System.out.println(firstExecutableQuery.toString());
-
-      // La configuration Ontop originale génère ceci :
-      // ans1(sub, val)
-      // CONSTRUCT [sub, val] [sub/RDF(TEXTToTEXT(sub),IRI), val/RDF(TEXTToTEXT(val),xsd:string)]
-      // NATIVE [sub, val]
-      // SELECT ('http://www.griis.ca/projects/tst/' || CAST(v1."m" AS TEXT)) AS "sub", CAST(v1."o"
-      // AS TEXT) AS "val"
-      // FROM "TABLE2" v1
-      // WHERE v1."o" IS NOT NULL
-
-      // Alors que la configuration MMec génère ceci :
-      // ans1(sub, val)
-      // NATIVE [sub, val]
-      // SELECT individuation('http://www.griis.ca/projects/tst/{}', v1."m") AS "sub", CAST(v1."o"
-      // AS TEXT) AS "val"
-      // FROM "TABLE2" v1
-      // WHERE v1."o" IS NOT NULL
+      printExecutableQuery(statement, rdf4JSelectQuery);
     }
   }
 

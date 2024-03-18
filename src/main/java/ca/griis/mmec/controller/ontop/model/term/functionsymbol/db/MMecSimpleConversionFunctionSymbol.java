@@ -108,16 +108,14 @@ public class MMecSimpleConversionFunctionSymbol
   public final boolean equals(Object other) {
     return super.equals(other)
         && other instanceof MMecSimpleConversionFunctionSymbol otherSymbol
-        && this.inputType.equals(otherSymbol.inputType)
-        && this.serializer.equals(otherSymbol.serializer);
+        && this.inputType.equals(otherSymbol.inputType);
   }
 
   @Override
   public final int hashCode() {
     return Arrays.hashCode(new Object[] {
         super.hashCode(),
-        this.inputType,
-        this.serializer
+        this.inputType
     });
   }
 }
