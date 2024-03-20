@@ -180,8 +180,7 @@ public class MappingParserExtension {
   private void processSubSetExpressions(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
       ImmutableList<MMecTriplesMap> sourceMappings) {
     Map<TriplesMap, List<TriplesMap>> hasSubset =
-        mappingGraph.stream(null, rdf.createIRI(subsetIRI),
-            null).map(
+        mappingGraph.stream(null, rdf.createIRI(subsetIRI), null).map(
                 axiom -> new ImmutablePair<>(
                     tripleMaps.stream()
                         .filter(triple -> triple.getNode().equals(axiom.getSubject()))
@@ -194,13 +193,13 @@ public class MappingParserExtension {
     hasSubset.forEach(
         (supersetMapping, subsetMappingList) -> subsetMappingList.forEach(subsetMapping -> {
           MMecTriplesMap superSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", supersetMapping.hashCode())))
+                  sourceMapping -> sourceMapping.getId()
+                      .equals(String.format("mapping-%s", supersetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
           MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", subsetMapping.hashCode())))
+                  sourceMapping -> sourceMapping.getId()
+                      .equals(String.format("mapping-%s", subsetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
 
@@ -215,7 +214,7 @@ public class MappingParserExtension {
 
     for (Triple conversionTriple : conversionTriples) {
       DBTermType declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI(conversionInputTypeIri), null)
+              rdf.createIRI(conversionInputTypeIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -224,7 +223,7 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       DBTermType declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI(conversionOutputTypeIri), null)
+              rdf.createIRI(conversionOutputTypeIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -233,8 +232,8 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction = mappingGraph.stream(
-          conversionTriple.getSubject(),
-          rdf.createIRI(conversionFunctionIri), null)
+              conversionTriple.getSubject(),
+              rdf.createIRI(conversionFunctionIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -243,8 +242,8 @@ public class MappingParserExtension {
               functionName, declaredInputType, declaredOutputType))
           .findFirst();
       Optional<DBBooleanFunctionSymbol> declaredValidationFunction = mappingGraph.stream(
-          conversionTriple.getSubject(),
-          rdf.createIRI(validationFunctionIri), null)
+              conversionTriple.getSubject(),
+              rdf.createIRI(validationFunctionIri), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
