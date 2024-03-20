@@ -170,10 +170,15 @@ public class MappingParserExtension {
     ImmutableList<MMecTriplesMap> sourceMappings =
         mapping.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
 
-    // FIXME: D'après-moi, ça serait sûrement plus simple et propre de modifier le stream().map(x->)
-    // ci-haut et d'utiliser le mappingGraph.stream(null, rdf.createIRI(subsetIRI), x) pour
-    // ajouter les subsets directement en construisant le MMecTriplesMap.
-    // Voici un exemple de comment réassocier les triplets de fonctions custom au mapping généré :
+    processSubSetExpressions(mappingGraph, tripleMaps, sourceMappings);
+    processConversionExpressions(mappingGraph);
+
+    return sourceMappings.stream().map(SQLPPTriplesMap.class::cast)
+        .collect(ImmutableCollectors.toList());
+  }
+
+  private void processSubSetExpressions(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
+      ImmutableList<MMecTriplesMap> sourceMappings) {
     Map<TriplesMap, List<TriplesMap>> hasSubset =
         mappingGraph.stream(null, rdf.createIRI(subsetIRI),
             null).map(
@@ -201,14 +206,9 @@ public class MappingParserExtension {
 
           superSetSourceMapping.addSubset(subSetSourceMapping);
         }));
-
-    processExtendedMapping(mappingGraph);
-
-    return sourceMappings.stream().map(SQLPPTriplesMap.class::cast)
-        .collect(ImmutableCollectors.toList());
   }
 
-  private void processExtendedMapping(Graph mappingGraph) {
+  private void processConversionExpressions(Graph mappingGraph) {
     List<? extends Triple> conversionTriples = mappingGraph.stream(null,
         rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
         rdf.createIRI(conversionIri)).toList();
