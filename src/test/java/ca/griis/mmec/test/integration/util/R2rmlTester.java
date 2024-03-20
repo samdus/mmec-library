@@ -184,7 +184,7 @@ public class R2rmlTester extends OntopTester {
   // return builder.toString();
   // }
 
-  private void testGetDefinitions()
+  public void testGetDefinitions()
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
 
     // TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
