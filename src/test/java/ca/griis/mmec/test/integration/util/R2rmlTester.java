@@ -65,7 +65,7 @@ public class R2rmlTester extends OntopTester {
     //
     // Assertions.assertEquals(withAutomaticInjectors, withoutAutomaticInjectors);
     // tt();
-    //    testGetDefinitions();
+    // testGetDefinitions();
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
@@ -188,7 +188,7 @@ public class R2rmlTester extends OntopTester {
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
 
     // TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
-    //       expressions relationnelles vides.
+    // expressions relationnelles vides.
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
