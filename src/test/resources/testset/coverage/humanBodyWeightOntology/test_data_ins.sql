@@ -103,14 +103,14 @@ with ins_t0022 AS (
              returning "T000d_uid"),
      ins_t0026 AS (
          insert into "BW"."T0026" ("T0026_uid")
+             select "T0022_uid"
+             from ins_t0022
+             union
              select "T000d_uid"
              from ins_t000d
              returning "T0026_uid"),
      ins_t0027 AS (
          insert into "BW"."T0027" ("T0027_uid")
-             select "T0022_uid"
-             from ins_t0022
-             union
              select "T0026_uid"
              from ins_t0026
              returning "T0027_uid"),
@@ -536,6 +536,11 @@ with ins_OMRSE_00000210 AS (
     insert into "BW"."OMRSE_00000210" ("OMRSE_00000210_uid")
         values ('ice3')
         returning "OMRSE_00000210_uid"),
+    ins_HBW_0000025 AS (
+        insert into "BW"."HBW_0000025" ("HBW_0000025_uid")
+            select "OMRSE_00000210_uid"
+            from ins_OMRSE_00000210
+            returning "HBW_0000025_uid"),
      ins_OMRSE_00000209 AS (
          insert into "BW"."OMRSE_00000209" ("OMRSE_00000209_uid")
              select "OMRSE_00000210_uid"
@@ -1062,3 +1067,11 @@ values ('dt3', 'kgLabel'),
 insert into "BW"."IAO_0000003_PHYSIO_0000100_string"("IAO_0000003_uid", "IAO_0000003_PHYSIO_0000100_string_PHYSIO_0000100")
 values ('kgLabel', E'«\u00a0kg\u00a0»'),
        ('cmLabel', E'«\u00a0cm\u00a0»');
+
+with data as (
+    select 'ice4' as "HBW_0000024_uid"
+    union select 'ice5'
+)
+select *
+from data
+order by 1;

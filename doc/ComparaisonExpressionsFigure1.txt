@@ -1,0 +1,136 @@
+*********************************************
+Tests pour la figure 1 SANS mMec
+*********************************************
+
+---------------------------------------------
+Classes
+---------------------------------------------
+Expression pour engendrer la classe "IAO_0020015"@personal name :
+ans1(uid)
+CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
+   NATIVE [uid]
+SELECT DISTINCT ('http://purl.obolibrary.org/obo/IAO_0020015/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."PRENOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) AS "uid"
+FROM "EXP"."PERSONNE" v1
+
+
+Expression pour engendrer la classe "IAO_0020017"@family name :
+ans1(uid)
+CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
+   NATIVE [uid]
+SELECT DISTINCT ('http://purl.obolibrary.org/obo/IAO_0020017/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."NOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) AS "uid"
+FROM "EXP"."PERSONNE" v1
+
+
+Expression pour engendrer la classe "HBW_0000022"@human name :
+ans1(uid)
+CONSTRUCT [uid] [uid/RDF(TEXTToTEXT(uid),IRI)]
+   NATIVE [uid]
+SELECT DISTINCT ('http://purl.obolibrary.org/obo/HBW_0000022/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."PRENOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D') || '/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."NOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) AS "uid"
+FROM "EXP"."PERSONNE" v1
+
+
+---------------------------------------------
+ObjectProperties
+---------------------------------------------
+"HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020015"@personal name
+ans1(sub, obj)
+CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
+   NATIVE [obj, sub]
+SELECT DISTINCT ('http://purl.obolibrary.org/obo/IAO_0020015/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."PRENOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) 
+                     AS "obj", 
+                ('http://purl.obolibrary.org/obo/HBW_0000022/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."PRENOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D') || '/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."NOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) 
+                     AS "sub"
+FROM "EXP"."PERSONNE" v1
+
+
+"HBW_0000022"@personal name BFO_0000051@'has part' "IAO_0020017"@family name
+ans1(sub, obj)
+CONSTRUCT [obj, sub] [obj/RDF(TEXTToTEXT(obj),IRI), sub/RDF(TEXTToTEXT(sub),IRI)]
+   NATIVE [obj, sub]
+SELECT DISTINCT ('http://purl.obolibrary.org/obo/IAO_0020017/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."NOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) 
+                     AS "obj", 
+                ('http://purl.obolibrary.org/obo/HBW_0000022/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."PRENOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D') || '/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."NOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) 
+                     AS "sub"
+FROM "EXP"."PERSONNE" v1
+
+
+---------------------------------------------
+DataProperties
+---------------------------------------------
+"IAO_0020015"@personal name PHYSIO_0000100@'has value' "PRENOM"
+ans1(sub, val)
+CONSTRUCT [sub, val] [sub/RDF(TEXTToTEXT(sub),IRI), val/RDF(TEXTToTEXT(val),xsd:string)]
+   NATIVE [sub, val]
+SELECT DISTINCT ('http://purl.obolibrary.org/obo/IAO_0020015/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."PRENOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) 
+                     AS "sub", 
+                v1."PRENOM" AS "val"
+FROM "EXP"."PERSONNE" v1
+
+
+"IAO_0020017"@family name 'has value' "NOM"
+ans1(sub, val)
+CONSTRUCT [sub, val] [sub/RDF(TEXTToTEXT(sub),IRI), val/RDF(TEXTToTEXT(val),xsd:string)]
+   NATIVE [sub, val]
+SELECT DISTINCT ('http://purl.obolibrary.org/obo/IAO_0020017/' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(v1."NOM", '%', '%25'), ' ', '%20'), '!', '%21'), '"', '%22'), '#', '%23'), '$', '%24'), '&', '%26'), '''', '%27'), '(', '%28'), ')', '%29'), '*', '%2A'), '+', '%2B'), ',', '%2C'), '/', '%2F'), ':', '%3A'), ';', '%3B'), '<', '%3C'), '=', '%3D'), '>', '%3E'), '?', '%3F'), '@', '%40'), '[', '%5B'), '\', '%5C'), ']', '%5D'), '^', '%5E'), '`', '%60'), '{', '%7B'), '|', '%7C'), '}', '%7D')) 
+                     AS "sub", 
+                v1."NOM" AS "val"
+FROM "EXP"."PERSONNE" v1
+
+*********************************************
+Tests pour la figure 1 AVEC mMec
+*********************************************
+
+---------------------------------------------
+Classes
+---------------------------------------------
+Expression pour engendrer la classe "IAO_0020015"@personal name :
+ans1(uid)
+NATIVE [uid]
+SELECT DISTINCT individuation('http://purl.obolibrary.org/obo/IAO_0020015/{}', v1."PRENOM") AS "uid"
+FROM "EXP"."PERSONNE" v1
+
+Expression pour engendrer la classe "IAO_0020017"@family name :
+ans1(uid)
+NATIVE [uid]
+SELECT DISTINCT individuation('http://purl.obolibrary.org/obo/IAO_0020017/{}', v1."NOM") AS "uid"
+FROM "EXP"."PERSONNE" v1
+
+Expression pour engendrer la classe "HBW_0000022"@human name :
+ans1(uid)
+NATIVE [uid]
+SELECT DISTINCT individuation('http://purl.obolibrary.org/obo/HBW_0000022/{}/{}', v1."PRENOM", v1."NOM") AS "uid"
+FROM "EXP"."PERSONNE" v1
+
+---------------------------------------------
+ObjectProperties
+---------------------------------------------
+"HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020015"@personal name
+ans1(sub, obj)
+NATIVE [obj, sub]
+SELECT DISTINCT individuation('http://purl.obolibrary.org/obo/IAO_0020015/{}', v1."PRENOM") AS "obj", 
+                individuation('http://purl.obolibrary.org/obo/HBW_0000022/{}/{}', v1."PRENOM", v1."NOM") AS "sub"
+FROM "EXP"."PERSONNE" v1
+
+"HBW_0000022"@personal name BFO_0000051@'has part' "IAO_0020017"@family name
+ans1(sub, obj)
+NATIVE [obj, sub]
+SELECT DISTINCT individuation('http://purl.obolibrary.org/obo/IAO_0020017/{}', v1."NOM") AS "obj", 
+                individuation('http://purl.obolibrary.org/obo/HBW_0000022/{}/{}', v1."PRENOM", v1."NOM") AS "sub"
+FROM "EXP"."PERSONNE" v1
+
+---------------------------------------------
+DataProperties
+---------------------------------------------
+"IAO_0020015"@personal name PHYSIO_0000100@'has value' "PRENOM"
+ans1(sub, val)
+NATIVE [sub, val]
+SELECT DISTINCT individuation('http://purl.obolibrary.org/obo/IAO_0020015/{}', v1."PRENOM") AS "sub", 
+                CAST(v1."PRENOM" AS "BW"."STRING") AS "val"
+FROM "EXP"."PERSONNE" v1
+
+"IAO_0020017"@family name 'has value' "NOM"
+ans1(sub, val)
+NATIVE [sub, val]
+SELECT DISTINCT individuation('http://purl.obolibrary.org/obo/IAO_0020017/{}', v1."NOM") AS "sub", 
+                CAST(v1."NOM" AS "BW"."STRING") AS "val"
+FROM "EXP"."PERSONNE" v1

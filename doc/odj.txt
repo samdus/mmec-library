@@ -1,0 +1,2 @@
+1. Discussion à propos des fonctions de conversions
+2. Passer chaque cas d'individuation et donner l'exemple du mapping de la figure 1
