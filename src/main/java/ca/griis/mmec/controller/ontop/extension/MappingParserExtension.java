@@ -111,7 +111,29 @@ public class MappingParserExtension {
    * @brief @~french Ajoute les triplets rr:template en concordance avec les fonctions R2RML
    *        étendues.
    * @par Details
-   *      TODO: Définition de l'algo
+   *     Pour chaque triplet <x, a, rr:TriplesMap> dans le graphe :
+   *       p := x
+   *       Jusqu'à ce qu'il n'existe pas de triplet <p, mmec:subsets, y> dans le graphe :
+   *         p := y
+   *       Obtenir <x, rr:subjectMap, xSubjectMap>
+   *       Obtenir <p, rr:subjectMap, pSubjectMap>
+   *       S'il existe un triplet <pSubjectMap, mmec:signId, pSignId> dans le graphe :
+   *         idSign := pSignId
+   *       Sinon :
+   *         idSign := p.ntriplesString()
+   *       S'il existe un triplet <xSubjectMap, mmec:signId, xSignId> dans le graphe,
+   *           avec xSignId <> idSign :
+   *         Lancer une exception
+   *       Si le nombre de triplets <xSubjectMap, mmec:signComponent, ANY> est différent
+   *           du nombre de triplets <pSubjectMap, mmec:signComponent, ANY>
+   *         Lancer une exception
+   *       Obtenir <mappingDef, mmec:templatePrefix, templatePrefix>
+   *       componentString := Former une chaîne de caractère à partir des triplets
+   *           <pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
+   *       Ajouter un triplet <xSubjectMap, rr:template, templatePrefix + componentString>
+   * --
+   *   Note : Si p correspond à un mmec:SignatureSuperSet, il est possible que pSubjectMap, mais le
+   *          traitement reste valide.
    * @param mappingGraph Le graphe d'arrimage.
    * @param prefixes Les préfixes de l'ontologie.
    *
