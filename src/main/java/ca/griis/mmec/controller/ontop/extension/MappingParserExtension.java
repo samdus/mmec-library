@@ -141,49 +141,49 @@ public class MappingParserExtension {
     String templatePrefix = getLiteral(mappingGraph, null,
         rdf.createIRI(MMecVocabulary.MAPPING_TEMPLATE_PREFIX)).orElseThrow();
 
-    for (Triple xTriple : mappingGraph.stream(null, rdf.createIRI(nsTypeIri),
+    for (Triple currentTriple : mappingGraph.stream(null, rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP)).toList()) {
-      BlankNodeOrIRI x = xTriple.getSubject();
-      BlankNodeOrIRI p = x;
-      Optional<? extends Triple> pTriple;
-      while ((pTriple = mappingGraph.stream(p, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+      BlankNodeOrIRI current = currentTriple.getSubject();
+      BlankNodeOrIRI parent = current;
+      Optional<? extends Triple> parentTriple;
+      while ((parentTriple = mappingGraph.stream(parent, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
           null).findFirst())
               .isPresent()) {
-        p = pTriple.get().getSubject();
+        parent = parentTriple.get().getSubject();
       }
 
-      BlankNodeOrIRI xSubjectMap = getObject(mappingGraph, x,
+      BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
           rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
-      BlankNodeOrIRI pSubjectMap = getObject(mappingGraph, p,
+      BlankNodeOrIRI parentSubjectMap = getObject(mappingGraph, parent,
           rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
 
-      String signScope = getLiteral(mappingGraph, pSubjectMap,
+      String signScope = getLiteral(mappingGraph, parentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE))
-              .orElse(p.ntriplesString());
-      Optional<String> xSignScope = getLiteral(mappingGraph, xSubjectMap,
+              .orElse(parent.ntriplesString());
+      Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE));
-      if (xSignScope.isPresent() && !xSignScope.get().equals(signScope)) {
+      if (currentSignScope.isPresent() && !currentSignScope.get().equals(signScope)) {
         throw new IllegalArgumentException(
-            "The signature scope of the subject map " + xSubjectMap.ntriplesString()
+            "The signature scope of the subject map " + currentSubjectMap.ntriplesString()
                 + " is different from the signature scope of the subject map it depends on "
-                + pSubjectMap.ntriplesString());
+                + parentSubjectMap.ntriplesString());
       }
 
-      List<String> xComponents = getAllLiterals(mappingGraph, xSubjectMap,
+      List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
-      List<String> pComponents = getAllLiterals(mappingGraph, pSubjectMap,
+      List<String> pComponents = getAllLiterals(mappingGraph, parentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
-      if (xComponents.size() != pComponents.size()) {
+      if (currentComponents.size() != pComponents.size()) {
         throw new IllegalArgumentException(
-            "The number of signature components of the subject map " + xSubjectMap.ntriplesString()
+            "The number of signature components of the subject map " + currentSubjectMap.ntriplesString()
                 + " is different from the number of signature components of the subject map "
-                + " it depends on : " + pSubjectMap.ntriplesString());
+                + " it depends on : " + parentSubjectMap.ntriplesString());
       }
 
-      String componentString = xComponents.stream()
+      String componentString = currentComponents.stream()
           .map(component -> "/{" + component + "}")
           .collect(Collectors.joining());
-      mappingGraph.add(xSubjectMap,
+      mappingGraph.add(currentSubjectMap,
           rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
           rdf.createIRI(templatePrefix + signScope + componentString));
     }
