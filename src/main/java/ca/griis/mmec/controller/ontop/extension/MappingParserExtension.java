@@ -275,7 +275,7 @@ public class MappingParserExtension {
 
   private void processConversionExpressions(Graph mappingGraph) {
     List<? extends Triple> conversionTriples = mappingGraph.stream(null,
-        rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+        rdf.createIRI(nsTypeIri),
         rdf.createIRI(MMecVocabulary.CONVERSION)).toList();
 
     for (Triple conversionTriple : conversionTriples) {
