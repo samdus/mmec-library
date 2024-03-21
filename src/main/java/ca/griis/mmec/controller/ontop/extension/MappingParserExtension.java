@@ -146,9 +146,10 @@ public class MappingParserExtension {
       BlankNodeOrIRI current = currentTriple.getSubject();
       BlankNodeOrIRI parent = current;
       Optional<? extends Triple> parentTriple;
-      while ((parentTriple = mappingGraph.stream(parent, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
-          null).findFirst())
-              .isPresent()) {
+      while ((parentTriple =
+          mappingGraph.stream(parent, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+              null).findFirst())
+                  .isPresent()) {
         parent = parentTriple.get().getSubject();
       }
 
@@ -175,7 +176,8 @@ public class MappingParserExtension {
           rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
       if (currentComponents.size() != pComponents.size()) {
         throw new IllegalArgumentException(
-            "The number of signature components of the subject map " + currentSubjectMap.ntriplesString()
+            "The number of signature components of the subject map "
+                + currentSubjectMap.ntriplesString()
                 + " is different from the number of signature components of the subject map "
                 + " it depends on : " + parentSubjectMap.ntriplesString());
       }
