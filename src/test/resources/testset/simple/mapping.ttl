@@ -2,7 +2,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rr:  <http://www.w3.org/ns/r2rml#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix mmec: <http://www.griis.ca/projects/mmec/> .
+@prefix mmec: <http://www.griis.ca/ns/mmec#> .
 @prefix tst: <http://www.griis.ca/projects/> .
 
 # TODO: Modifier l'exemple pour qu'il utilise une ontologie et une source plus réalistes.
@@ -41,10 +41,10 @@
 # Classes mappings
 # ****************************************************************************************
 <MappingDefinition>
-    a                  mmec:MappingDefinition ;
-    mmec:OntoRel        'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1' ;
-    mmec:Source         'https://griis.ca/JeDIS' ;
-    mmec:TemplatePrefix 'http://www.griis.ca/projects/' .
+    a                  mmec:mappingDefinition ;
+    mmec:ontoRel        'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1' ;
+    mmec:source         'https://griis.ca/JeDIS' ;
+    mmec:templatePrefix 'http://www.griis.ca/projects/' .
 
 <Conversion:integer:string>
     a mmec:conversion ;

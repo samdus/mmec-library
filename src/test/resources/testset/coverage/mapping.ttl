@@ -2,14 +2,14 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rr:   <http://www.w3.org/ns/r2rml#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix mmec: <http://www.griis.ca/projects/mmec/> .
+@prefix mmec: <http://www.griis.ca/ns/mmec#> .
 @prefix obo:  <http://purl.obolibrary.org/obo/> .
 
 <MappingDefinition>
-    a                  mmec:MappingDefinition ;
-    mmec:OntoRel        'http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437' ;
-    mmec:Source         'https://griis.ca/JeDIS' ;
-    mmec:TemplatePrefix 'http://www.griis.ca/projects/' .
+    a                  mmec:mappingDefinition ;
+    mmec:ontoRel        'http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437' ;
+    mmec:source         'https://griis.ca/JeDIS' ;
+    mmec:templatePrefix 'http://www.griis.ca/projects/' .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Conversions
