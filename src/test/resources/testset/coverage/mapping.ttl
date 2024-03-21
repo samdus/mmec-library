@@ -5,6 +5,12 @@
 @prefix mmec: <http://www.griis.ca/projects/mmec/> .
 @prefix obo:  <http://purl.obolibrary.org/obo/> .
 
+<MappingDefinition>
+    a                  mmec:MappingDefinition ;
+    mmec:OntoRel        'http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437' ;
+    mmec:Source         'https://griis.ca/JeDIS' ;
+    mmec:TemplatePrefix 'http://www.griis.ca/projects/' .
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Conversions
 # ----------------------------------------------------------------------------------------------------------------------
