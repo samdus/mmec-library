@@ -66,4 +66,5 @@ public class MMecVocabulary {
       NAMESPACE + "conversionFunction";
   public static final String CONVERSION_VALIDATION_FUNCTION =
       NAMESPACE + "validationFunction";
+  public static final String SIGNATURE_SUPERSET = NAMESPACE + "signatureSuperset";
 }
