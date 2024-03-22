@@ -234,7 +234,7 @@ public class MappingParserExtension {
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
     List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
         rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
-    List<String> pComponents = getAllLiterals(mappingGraph, parentSubjectMap,
+    List<String> parentComponents = getAllLiterals(mappingGraph, parentSubjectMap,
         rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
 
     if (currentTemplate.isPresent()) {
@@ -262,18 +262,18 @@ public class MappingParserExtension {
       throw new SignatureComponentMissingException(current);
     }
 
-    if (currentComponents.size() != pComponents.size()) {
+    if (currentComponents.size() != parentComponents.size()) {
       throw new SignatureComponentMismatchException(current, parent);
     }
 
     String componentString = currentComponents.stream()
-        .map(component -> "/{" + component + "}")
-        .collect(Collectors.joining());
+        .map(component -> "{" + component + "}")
+        .collect(Collectors.joining("/"));
     String signScopeUrlEncoded = URLEncoder.encode(signScope, StandardCharsets.UTF_8);
 
     mappingGraph.add(currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-        rdf.createIRI(templatePrefix + signScopeUrlEncoded + componentString));
+        rdf.createLiteral(templatePrefix + "/" + signScopeUrlEncoded + "/" + componentString));
     logger.trace(Trace.EXIT_METHOD_0);
   }
 
