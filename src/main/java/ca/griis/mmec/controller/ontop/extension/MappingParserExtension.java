@@ -211,79 +211,69 @@ public class MappingParserExtension {
 
     for (Triple currentTriple : mappingGraph.stream(null, rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP)).toList()) {
-      BlankNodeOrIRI current = currentTriple.getSubject();
-      BlankNodeOrIRI parent = current;
-      Optional<? extends Triple> parentTriple;
-      while ((parentTriple =
-          mappingGraph.stream(parent, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
-              null).findFirst())
-          .isPresent()) {
-        parent = parentTriple.get().getSubject();
-      }
-
-      BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
-          rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
-      BlankNodeOrIRI parentSubjectMap = getObject(mappingGraph, parent,
-          rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
-      String signScope = getLiteral(mappingGraph, parentSubjectMap,
-          rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE))
-          .orElse(parent.ntriplesString());
-      Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
-          rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE));
-      Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
-          rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
-      List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
-          rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
-      List<String> pComponents = getAllLiterals(mappingGraph, parentSubjectMap,
-          rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
-
-      if (currentTemplate.isPresent()) {
-        if (current.equals(parent) && mappingGraph.stream(null,
-            rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), current).findAny().isEmpty()) {
-          if (currentComponents.isEmpty()) {
-            break;
-          } else {
-            logger.warn("The mapping '" + current.ntriplesString() + "' defined " +
-                "a rr:template that will be overwritten by the mmec extension");
-            mappingGraph.remove(currentSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-                null);
-          }
-        } else {
-          throw new IllegalArgumentException(
-              "The mapping '" + current.ntriplesString() + "' has a template while it " +
-                  "depends on another subject map");
-        }
-      }
-
-      if (currentSignScope.isPresent() && !currentSignScope.get().equals(signScope)) {
-        throw new IllegalArgumentException(
-            "The signature scope of the mapping " + current.ntriplesString()
-                + " is different from the signature scope of the mapping it depends on "
-                + parent.ntriplesString());
-      }
-
-      if (currentComponents.isEmpty()) {
-        throw new IllegalArgumentException(
-            "The mapping '" + current.ntriplesString() + "' has no signature components");
-      }
-
-      if (currentComponents.size() != pComponents.size()) {
-        throw new IllegalArgumentException(
-            "The number of signature components of the mapping '"
-                + current.ntriplesString()
-                + "' is different from the number of signature components of mapping "
-                + " it depends on : " + parent.ntriplesString());
-      }
-
-      String componentString = currentComponents.stream()
-          .map(component -> "/{" + component + "}")
-          .collect(Collectors.joining());
-      String signScopeUrlEncoded = URLEncoder.encode(signScope, StandardCharsets.UTF_8);
-
-      mappingGraph.add(currentSubjectMap,
-          rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-          rdf.createIRI(templatePrefix + signScopeUrlEncoded + componentString));
+      generateTemplate(mappingGraph, templatePrefix, currentTriple.getSubject());
     }
+    logger.trace(Trace.EXIT_METHOD_0);
+  }
+
+  protected void generateTemplate(Graph mappingGraph, String templatePrefix,
+      BlankNodeOrIRI current) {
+    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, templatePrefix, current);
+
+    BlankNodeOrIRI parent = getParentRoot(mappingGraph, current);
+    BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
+    BlankNodeOrIRI parentSubjectMap = getObject(mappingGraph, parent,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
+    String signScope = getLiteral(mappingGraph, parentSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE))
+        .orElse(parent.ntriplesString());
+    Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE));
+    Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
+        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
+    List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
+    List<String> pComponents = getAllLiterals(mappingGraph, parentSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
+
+    if (currentTemplate.isPresent()) {
+      if (current.equals(parent) &&
+          mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), current)
+              .findAny().isEmpty()) {
+        if (currentComponents.isEmpty()) {
+          return;
+        } else {
+          logger.warn("The mapping '" + current.ntriplesString() + "' defined " +
+              "a rr:template that will be overwritten by the mmec extension");
+          mappingGraph.remove(currentSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+              null);
+        }
+      } else {
+        throw new SubsetHasTemplateException(current);
+      }
+    }
+
+    if (currentSignScope.isPresent() && !currentSignScope.get().equals(signScope)) {
+      throw new SignatureScopeMismatchException(current);
+    }
+
+    if (currentComponents.isEmpty()) {
+      throw new SignatureComponentMissingException(current);
+    }
+
+    if (currentComponents.size() != pComponents.size()) {
+      throw new SignatureComponentMismatchException(current, parent);
+    }
+
+    String componentString = currentComponents.stream()
+        .map(component -> "/{" + component + "}")
+        .collect(Collectors.joining());
+    String signScopeUrlEncoded = URLEncoder.encode(signScope, StandardCharsets.UTF_8);
+
+    mappingGraph.add(currentSubjectMap,
+        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+        rdf.createIRI(templatePrefix + signScopeUrlEncoded + componentString));
     logger.trace(Trace.EXIT_METHOD_0);
   }
 
@@ -463,5 +453,80 @@ public class MappingParserExtension {
         .map(term -> (Literal) term)
         .map(Literal::getLexicalForm)
         .toList();
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param current «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Obtient le parent le plus haut dans la hierarchie de superset
+   * @param mappingGraph Le graphe d'arrimage
+   * @param current Le noeud courant
+   * @return Le prochain noeud sans parent dans la chaîne de subsets
+   */
+  private BlankNodeOrIRI getParentRoot(Graph mappingGraph, BlankNodeOrIRI current) {
+    Optional<BlankNodeOrIRI> parent = getObject(mappingGraph, current,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS));
+    if (parent.isPresent()) {
+      return getParentRoot(mappingGraph, parent.get());
+    }
+    return current;
+  }
+
+  public static class IllegalMappingException extends IllegalStateException {
+    private final BlankNodeOrIRI invalidNode;
+
+    public IllegalMappingException(BlankNodeOrIRI invalidNode, String reason) {
+      super(String.format("The mapping '%s' is invalid: %s", getNodeName(invalidNode), reason));
+      this.invalidNode = invalidNode;
+    }
+
+    protected static String getNodeName(BlankNodeOrIRI current) {
+      return current.ntriplesString();
+    }
+
+    public BlankNodeOrIRI getInvalidNode() {
+      return invalidNode;
+    }
+  }
+
+
+  public static class SubsetHasTemplateException extends IllegalMappingException {
+    public SubsetHasTemplateException(BlankNodeOrIRI invalidNode) {
+      super(invalidNode, "it has a template while it depends on another subject map.");
+    }
+  }
+
+
+  public static class SignatureScopeMismatchException extends IllegalMappingException {
+    public SignatureScopeMismatchException(BlankNodeOrIRI invalidNode) {
+      super(invalidNode, "it has a different signature scope than the one it depends on.");
+    }
+  }
+
+
+  public static class SignatureComponentMismatchException extends IllegalMappingException {
+    private final BlankNodeOrIRI parentNode;
+
+    public SignatureComponentMismatchException(BlankNodeOrIRI invalidNode,
+        BlankNodeOrIRI parentNode) {
+      super(invalidNode, String.format(
+          "it has a different number of signature components than the one it depends on (%s).",
+          getNodeName(parentNode)));
+      this.parentNode = parentNode;
+    }
+
+    public BlankNodeOrIRI getParentNode() {
+      return parentNode;
+    }
+  }
+
+
+  public static class SignatureComponentMissingException extends IllegalMappingException {
+    public SignatureComponentMissingException(BlankNodeOrIRI current) {
+      super(current, "it has no signature components.");
+    }
   }
 }

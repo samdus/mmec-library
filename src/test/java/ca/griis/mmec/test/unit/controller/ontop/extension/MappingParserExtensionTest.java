@@ -14,13 +14,13 @@ import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.model.MMecTriplesMap;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import eu.optique.r2rml.api.model.R2RMLVocabulary;
 import eu.optique.r2rml.api.model.TriplesMap;
 import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
 import it.unibz.inf.ontop.model.type.TypeFactory;
 import java.util.Collection;
 import java.util.stream.Collectors;
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 import org.apache.commons.rdf.rdf4j.RDF4JBlankNode;
@@ -60,12 +60,14 @@ import org.mockito.Mockito;
  */
 public class MappingParserExtensionTest {
 
+  public static final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+  public static final String mappingTemplatePrefix = "http://www.example.com/templatePrefix";
   private final MMecMappingExtension mappingExtension;
   private final SQLPPMappingFactory ppMappingFactory;
   private final RDF4J rdf;
   private final TypeFactory typeFactory;
   private final MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory;
-  private Graph mappingGraphUnderTest;
+  private Graph testGraph;
 
   public MappingParserExtensionTest() {
     mappingExtension = Mockito.mock(MMecMappingExtension.class);
@@ -78,26 +80,25 @@ public class MappingParserExtensionTest {
 
   @BeforeEach
   public void setUp() {
-    mappingGraphUnderTest = rdf.createGraph();
+    testGraph = rdf.createGraph();
     RDF4JBlankNode mappingDefinitionNode = rdf.createBlankNode();
 
-    mappingGraphUnderTest.add(mappingDefinitionNode,
-        rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+    testGraph.add(mappingDefinitionNode,
+        rdf.createIRI(nsTypeIri),
         rdf.createIRI(MMecVocabulary.MAPPING_DEFINITION));
-    mappingGraphUnderTest.add(mappingDefinitionNode,
+    testGraph.add(mappingDefinitionNode,
         rdf.createIRI(MMecVocabulary.MAPPING_ONTOREL),
         rdf.createIRI("http://www.example.com/ontorel"));
-    mappingGraphUnderTest.add(mappingDefinitionNode,
+    testGraph.add(mappingDefinitionNode,
         rdf.createIRI(MMecVocabulary.MAPPING_SOURCE),
         rdf.createIRI("http://www.example.com/source"));
-    mappingGraphUnderTest.add(mappingDefinitionNode,
+    testGraph.add(mappingDefinitionNode,
         rdf.createIRI(MMecVocabulary.MAPPING_TEMPLATE_PREFIX),
-        rdf.createLiteral("http://www.example.com/templatePrefix"));
+        rdf.createLiteral(mappingTemplatePrefix));
   }
 
   @Test
   public void generateTemplatesTestIgnoredTemplateWhenDefinedWithoutMMec() {
-    // Given
     MappingParserExtensionTestImpl mappingParser =
         new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
             sqlDbFunctionSymbolFactory);
@@ -107,47 +108,135 @@ public class MappingParserExtensionTest {
     RDF4JBlankNode notExtendedMappingExpression = rdf.createBlankNode(
         "notExtendedMappingExpression");
     RDF4JBlankNode subjectMap = rdf.createBlankNode("subjectMap");
-    mappingGraphUnderTest.add(notExtendedMappingExpression,
-        rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+    testGraph.add(notExtendedMappingExpression,
+        rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
 
-    mappingGraphUnderTest.add(subjectMap,
-        rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+    testGraph.add(subjectMap,
+        rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
-    mappingGraphUnderTest.add(subjectMap,
-        rdf.createIRI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+    testGraph.add(subjectMap,
+        rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
     RDF4JTriple templateTriple = rdf.createTriple(subjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
         rdf.createLiteral("http://www.example.com/anyTemplate"));
-    mappingGraphUnderTest.add(templateTriple);
+    testGraph.add(templateTriple);
 
-    mappingGraphUnderTest.add(notExtendedMappingExpression,
+    testGraph.add(notExtendedMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    // When
-    mappingParser.generateTemplates_pub(mappingGraphUnderTest, ImmutableMap.of());
+    mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+        notExtendedMappingExpression);
 
-    // Then
-    // The original template should be present and be the only one
+    // The original template should still be present and be the only one
     Assertions.assertEquals(
-        mappingGraphUnderTest.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
+        testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
             .collect(Collectors.toList()),
         ImmutableList.of(templateTriple));
   }
 
   @Test
-  public void generateTemplatesThrowsWhenDefinedWithoutMMEcButIsSuperset() {
-    Assertions.fail("Not implemented test: " +
-        "generateTemplatesThrowsWhenDefinedWithoutMMEcButIsSuperset");
+  public void generateTemplatesThrowsWhenDefinedWithoutMMEcButHasSuperset() {
+    MappingParserExtensionTestImpl mappingParser =
+        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
+            sqlDbFunctionSymbolFactory);
+
+    // The mapping doesn't use any mmec extensions
+    RDF4JBlankNode notExtendedMappingExpression = rdf.createBlankNode(
+        "notExtendedMappingExpression");
+    RDF4JBlankNode subjectMap = rdf.createBlankNode("subjectMap");
+    testGraph.add(notExtendedMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(subjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(subjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+
+    RDF4JTriple templateTriple = rdf.createTriple(subjectMap,
+        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+        rdf.createLiteral("http://www.example.com/anyTemplate"));
+    testGraph.add(templateTriple);
+
+    testGraph.add(notExtendedMappingExpression,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        subjectMap);
+
+    // The mapping is referenced by another mapping using an mmec extension
+    RDF4JBlankNode mappingDefinedAsSubset = rdf.createBlankNode(
+        "mappingDefinedAsSubset");
+    testGraph.add(mappingDefinedAsSubset,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+    testGraph.add(mappingDefinedAsSubset, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+        notExtendedMappingExpression);
+
+    Assertions.assertThrows(MappingParserExtension.SubsetHasTemplateException.class, () ->
+        mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+            notExtendedMappingExpression));
   }
 
   @Test
   public void generateTemplatesThrowsWhenSignatureScopeIsDefinedButInConflict() {
-    Assertions.fail("Not implemented test: " +
-        "generateTemplatesThrowsWhenSignatureScopeIsDefinedButInConflict");
+    MappingParserExtensionTestImpl mappingParser =
+        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
+            sqlDbFunctionSymbolFactory);
+
+    String childSignatureScope = "childSignatureScope";
+    String parentSignatureScope = "parentSignatureScope";
+
+    // The parent mapping is defined using the first signature scope
+    RDF4JBlankNode parentMappingExpression = rdf.createBlankNode(
+        "parentMappingExpression");
+    RDF4JBlankNode parentSubjectMap = rdf.createBlankNode("parentSubjectMap");
+    testGraph.add(parentMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(parentSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(parentSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+    testGraph.add(parentSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+        rdf.createLiteral(childSignatureScope));
+    testGraph.add(parentMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
+
+    // The child mapping is defined using the second signature scope
+    RDF4JBlankNode childMappingExpression = rdf.createBlankNode(
+        "notExtendedMappingExpression");
+    RDF4JBlankNode childSubjectMap = rdf.createBlankNode("childSubjectMap");
+    testGraph.add(childMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(childSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(childSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+    testGraph.add(childSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+        rdf.createLiteral(parentSignatureScope));
+    testGraph.add(childMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        childSubjectMap);
+
+    testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+        parentMappingExpression);
+
+    Assertions.assertThrows(MappingParserExtension.SignatureScopeMismatchException.class, () ->
+        mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+            childMappingExpression));
   }
 
   @Test
@@ -192,6 +281,58 @@ public class MappingParserExtensionTest {
         "generateTemplatesWorksWithMultipleAttributeSignatureComponent");
   }
 
+  @Test
+  public void generateTemplatesWorksWhenSignatureScopeIsDefinedAndSameAsParent() {
+    MappingParserExtensionTestImpl mappingParser =
+        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
+            sqlDbFunctionSymbolFactory);
+
+    String childSignatureScope = "childSignatureScope";
+    String parentSignatureScope = childSignatureScope;
+
+    // The parent mapping is defined using the first signature scope
+    RDF4JBlankNode parentMappingExpression = rdf.createBlankNode(
+        "parentMappingExpression");
+    RDF4JBlankNode parentSubjectMap = rdf.createBlankNode("parentSubjectMap");
+    testGraph.add(parentMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(parentSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(parentSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+    testGraph.add(parentSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+        rdf.createLiteral(childSignatureScope));
+
+    // The child mapping is defined using the second signature scope
+    RDF4JBlankNode childMappingExpression = rdf.createBlankNode(
+        "notExtendedMappingExpression");
+    RDF4JBlankNode childSubjectMap = rdf.createBlankNode("childSubjectMap");
+    testGraph.add(childMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(childSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(childSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+    testGraph.add(childSubjectMap,
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+        rdf.createLiteral(parentSignatureScope));
+
+    testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+        parentMappingExpression);
+
+    throw new RuntimeException("Not completely implemented test: " +
+        "generateTemplatesWorksWhenSignatureScopeIsDefinedAndSameAsParent");
+  }
+
   // A class that expose protected methods of MappingParserExtension for the tests
   private static class MappingParserExtensionTestImpl extends MappingParserExtension {
     public MappingParserExtensionTestImpl(TypeFactory typeFactory,
@@ -201,9 +342,9 @@ public class MappingParserExtensionTest {
       super(typeFactory, mappingExtension, ppMappingFactory, rdf, sqlDbFunctionSymbolFactory);
     }
 
-    public void generateTemplates_pub(Graph mappingGraph,
-        ImmutableMap<String, String> prefixes) {
-      super.generateTemplates(mappingGraph, prefixes);
+    public void generateTemplate_pub(Graph mappingGraph, String templatePrefix,
+        BlankNodeOrIRI current) {
+      super.generateTemplate(mappingGraph, templatePrefix, current);
     }
 
     public void processSubSetExpressions_pub(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
