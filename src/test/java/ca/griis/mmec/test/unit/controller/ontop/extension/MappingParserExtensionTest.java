@@ -178,8 +178,8 @@ public class MappingParserExtensionTest {
     testGraph.add(mappingDefinedAsSubset, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
         notExtendedMappingExpression);
 
-    Assertions.assertThrows(MappingParserExtension.SubsetHasTemplateException.class, () ->
-        mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+    Assertions.assertThrows(MappingParserExtension.SubsetHasTemplateException.class,
+        () -> mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
             notExtendedMappingExpression));
   }
 
@@ -235,8 +235,8 @@ public class MappingParserExtensionTest {
     testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
         parentMappingExpression);
 
-    Assertions.assertThrows(MappingParserExtension.SignatureScopeMismatchException.class, () ->
-        mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+    Assertions.assertThrows(MappingParserExtension.SignatureScopeMismatchException.class,
+        () -> mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
             childMappingExpression));
   }
 
@@ -289,8 +289,8 @@ public class MappingParserExtensionTest {
     testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
         parentMappingExpression);
 
-    Assertions.assertThrows(MappingParserExtension.SignatureComponentMismatchException.class, () ->
-        mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+    Assertions.assertThrows(MappingParserExtension.SignatureComponentMismatchException.class,
+        () -> mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
             childMappingExpression));
   }
 
@@ -316,8 +316,8 @@ public class MappingParserExtensionTest {
     testGraph.add(mappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    Assertions.assertThrows(MappingParserExtension.SignatureComponentMissingException.class, () ->
-        mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+    Assertions.assertThrows(MappingParserExtension.SignatureComponentMissingException.class,
+        () -> mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
             mappingExpression));
   }
 
@@ -631,6 +631,96 @@ public class MappingParserExtensionTest {
 
     Assertions.assertEquals(expectedTemplate,
         testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
+            .findAny().map(triple -> ((Literal) triple.getObject()).getLexicalForm())
+            .orElseThrow());
+  }
+
+  @Test
+  public void generateTemplateGeneratesCompatibleSignatureWithSignatureSuperSets() {
+    MappingParserExtensionTestImpl mappingParser =
+        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
+            sqlDbFunctionSymbolFactory);
+
+    String superSetMappingExpressionNodeName = "SuperSetMappingExpression";
+    String signatureScope = "_%3A" + superSetMappingExpressionNodeName;
+    String firstSignComponent1 = "firstSignComponent1";
+    String firstSignComponent2 = "firstSignComponent2";
+    String firstExpectedTemplate = String.format("%s/%s/{%s}/{%s}", mappingTemplatePrefix,
+        signatureScope,
+        firstSignComponent1, firstSignComponent2);
+    String secondSignComponent1 = "firstSignComponent1";
+    String secondSignComponent2 = "firstSignComponent2";
+    String secondExpectedTemplate = String.format("%s/%s/{%s}/{%s}", mappingTemplatePrefix,
+        signatureScope,
+        secondSignComponent1, secondSignComponent2);
+
+    RDF4JBlankNode superSetMappingExpression = rdf.createBlankNode(
+        superSetMappingExpressionNodeName);
+    testGraph.add(superSetMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SUPERSET));
+
+    RDF4JBlankNode firstMappingExpression = rdf.createBlankNode(
+        "firstMappingExpression");
+    RDF4JBlankNode firstSubjectMap = rdf.createBlankNode("firstSubjectMap");
+    testGraph.add(firstMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(firstSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(firstSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+
+    testGraph.add(firstSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+        rdf.createLiteral(firstSignComponent1));
+    testGraph.add(firstSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+        rdf.createLiteral(firstSignComponent2));
+    testGraph.add(firstMappingExpression,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        firstSubjectMap);
+
+    testGraph.add(firstMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+        superSetMappingExpression);
+
+    RDF4JBlankNode secondMappingExpression = rdf.createBlankNode(
+        "secondMappingExpression");
+    RDF4JBlankNode secondSubjectMap = rdf.createBlankNode("secondSubjectMap");
+    testGraph.add(secondMappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(secondSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(secondSubjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+
+    testGraph.add(secondSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+        rdf.createLiteral(secondSignComponent1));
+    testGraph.add(secondSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+        rdf.createLiteral(secondSignComponent2));
+    testGraph.add(secondMappingExpression,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        secondSubjectMap);
+
+    testGraph.add(secondMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+        superSetMappingExpression);
+
+    mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+        firstMappingExpression);
+    mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
+        secondMappingExpression);
+
+    Assertions.assertEquals(firstExpectedTemplate,
+        testGraph.stream(firstSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
+            .findAny().map(triple -> ((Literal) triple.getObject()).getLexicalForm())
+            .orElseThrow());
+    Assertions.assertEquals(secondExpectedTemplate,
+        testGraph.stream(firstSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
             .findAny().map(triple -> ((Literal) triple.getObject()).getLexicalForm())
             .orElseThrow());
   }

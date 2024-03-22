@@ -129,7 +129,7 @@ public class MappingParserExtension {
    * @return «Return description»
    *
    * @brief @~french Ajoute les informations de l'arrimage R2RML étendu aux expressions d'arrimage
-   *                 Ontop.
+   *        Ontop.
    * @param mappingGraph Le graphe d'arrimage.
    * @param tripleMaps Les triplets d'arrimage importés du graphe.
    * @param sourceMappings Les expressions d'arrimage déduites converties à partir des triplets.
@@ -149,7 +149,7 @@ public class MappingParserExtension {
     processConversionExpressions(mappingGraph);
 
     ImmutableList<SQLPPTriplesMap> extendedSourceMapping = mmecSourceMappings.stream().map(
-            SQLPPTriplesMap.class::cast)
+        SQLPPTriplesMap.class::cast)
         .collect(ImmutableCollectors.toList());
 
     return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
@@ -220,17 +220,16 @@ public class MappingParserExtension {
       BlankNodeOrIRI current) {
     logger.trace(Trace.ENTER_METHOD_3, mappingGraph, templatePrefix, current);
 
-    BlankNodeOrIRI parent = getParentRoot(mappingGraph, current);
-    BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
+    final BlankNodeOrIRI parent = getParentRoot(mappingGraph, current);
+    final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
     final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parent,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
     final Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
-    Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
         rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE));
-    Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
+    final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
-    List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
+    final List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
         rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
 
     final String signScope = parentSubjectMap
@@ -241,15 +240,16 @@ public class MappingParserExtension {
         .map(subjectMap -> getAllLiterals(mappingGraph, subjectMap,
             rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT)))
         .orElse(List.of());
+
     if (currentTemplate.isPresent()) {
-      if (current.equals(parent) &&
-          mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), current)
+      if (current.equals(parent)
+          && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), current)
               .findAny().isEmpty()) {
         if (currentComponents.isEmpty()) {
           return;
         } else {
-          logger.warn("The mapping '" + current.ntriplesString() + "' defined " +
-              "a rr:template that will be overwritten by the mmec extension");
+          logger.warn("The mapping '" + current.ntriplesString() + "' defined "
+              + "a rr:template that will be overwritten by the mmec extension");
           mappingGraph.remove(currentSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
               null);
         }
@@ -272,10 +272,10 @@ public class MappingParserExtension {
       throw new SignatureComponentMismatchException(current, parent);
     }
 
-    String componentString = currentComponents.stream()
+    final String componentString = currentComponents.stream()
         .map(component -> "{" + component + "}")
         .collect(Collectors.joining("/"));
-    String signScopeUrlEncoded = URLEncoder.encode(signScope, StandardCharsets.UTF_8);
+    final String signScopeUrlEncoded = URLEncoder.encode(signScope, StandardCharsets.UTF_8);
 
     mappingGraph.add(currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
@@ -290,7 +290,7 @@ public class MappingParserExtension {
    * @param sourceMappings «Parameter description»
    *
    * @brief @~french Associe les expressions d'arrimage aux expressions qui sont déclarés comme
-   *                 leur sous-ensemble.
+   *        leur sous-ensemble.
    * @param mappingGraph Le graphe d'arrimage.
    * @param tripleMaps Les triplets d'arrimage importés du graphe.
    * @param sourceMappings Les expressions d'arrimage déduites converties à partir des triplets.
@@ -310,7 +310,8 @@ public class MappingParserExtension {
                     tripleMaps.stream()
                         .filter(triple -> triple.getNode().equals(axiom.getSubject()))
                         .findFirst().orElseThrow(),
-                    tripleMaps.stream().filter(triple -> triple.getNode().equals(axiom.getObject()))
+                    tripleMaps.stream().filter(
+                        triple -> triple.getNode().equals(axiom.getObject()))
                         .findFirst().orElseThrow()))
             .collect(Collectors.groupingBy(ImmutablePair::getRight,
                 Collectors.mapping(ImmutablePair::getLeft, Collectors.toList())));
@@ -318,13 +319,13 @@ public class MappingParserExtension {
     hasSubset.forEach(
         (supersetMapping, subsetMappingList) -> subsetMappingList.forEach(subsetMapping -> {
           MMecTriplesMap superSetSourceMapping = sourceMappings.stream().filter(
-                  sourceMapping -> sourceMapping.getId()
-                      .equals(String.format("mapping-%s", supersetMapping.hashCode())))
+              sourceMapping -> sourceMapping.getId()
+                  .equals(String.format("mapping-%s", supersetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
           MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
-                  sourceMapping -> sourceMapping.getId()
-                      .equals(String.format("mapping-%s", subsetMapping.hashCode())))
+              sourceMapping -> sourceMapping.getId()
+                  .equals(String.format("mapping-%s", subsetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
 
@@ -348,7 +349,7 @@ public class MappingParserExtension {
 
     for (Triple conversionTriple : conversionTriples) {
       DBTermType declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
-              rdf.createIRI(MMecVocabulary.CONVERSION_INPUT_TYPE), null)
+          rdf.createIRI(MMecVocabulary.CONVERSION_INPUT_TYPE), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -357,7 +358,7 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       DBTermType declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
-              rdf.createIRI(MMecVocabulary.CONVERSION_OUTPUT_TYPE), null)
+          rdf.createIRI(MMecVocabulary.CONVERSION_OUTPUT_TYPE), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -366,8 +367,8 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction = mappingGraph.stream(
-              conversionTriple.getSubject(),
-              rdf.createIRI(MMecVocabulary.CONVERSION_FUNCTION), null)
+          conversionTriple.getSubject(),
+          rdf.createIRI(MMecVocabulary.CONVERSION_FUNCTION), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -376,8 +377,8 @@ public class MappingParserExtension {
               functionName, declaredInputType, declaredOutputType))
           .findFirst();
       Optional<DBBooleanFunctionSymbol> declaredValidationFunction = mappingGraph.stream(
-              conversionTriple.getSubject(),
-              rdf.createIRI(MMecVocabulary.CONVERSION_VALIDATION_FUNCTION), null)
+          conversionTriple.getSubject(),
+          rdf.createIRI(MMecVocabulary.CONVERSION_VALIDATION_FUNCTION), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
