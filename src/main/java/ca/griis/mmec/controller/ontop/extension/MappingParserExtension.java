@@ -13,6 +13,9 @@
 
 package ca.griis.mmec.controller.ontop.extension;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
@@ -32,6 +35,8 @@ import it.unibz.inf.ontop.spec.mapping.PrefixManager;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -62,9 +67,8 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *        Sert à étendre le modèle interne avec les fonctions R2RML étendues.
  * @par Détails
  *      L'arrimage R2RML étendu permet de spécifier les signatures de classes de façon à réduire les
- *      erreurs liées à l'individuation et améliorer la qualité de celle-ci.
- *
- *      En particulier, il s'agit d'inclure des triplets pour spécifier
+ *      erreurs liées à l'individuation et améliorer la qualité de celle-ci. Elle permet aussi de
+ *      spécifier des fonctions de conversion de type pour les valeurs littérales.
  * @par Modèle
  *      S.O.
  * @par Conception
@@ -76,13 +80,15 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      2023-09-05 [SD] - Implémentation initiale.
  *
  * @par Tâches
- * @todo 2023-09-06 [SD] - Faire la conception.
+ *      S.O.
  */
 public class MappingParserExtension {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MappingParserExtension.class);
   private final MMecMappingExtension mappingExtension;
   private final SQLPPMappingFactory ppMappingFactory;
   private final RDF4J rdf;
-  private final DBTypeFactory dbTypeFactory;
+  private final TypeFactory typeFactory;
   private final MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory;
 
   private static final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
@@ -91,11 +97,62 @@ public class MappingParserExtension {
   public MappingParserExtension(TypeFactory typeFactory, MMecMappingExtension mappingExtension,
       SQLPPMappingFactory ppMappingFactory, RDF4J rdf,
       MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory) {
+    this.typeFactory = typeFactory;
     this.mappingExtension = mappingExtension;
     this.ppMappingFactory = ppMappingFactory;
     this.rdf = rdf;
-    this.dbTypeFactory = typeFactory.getDBTypeFactory();
     this.sqlDbFunctionSymbolFactory = sqlDbFunctionSymbolFactory;
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param prefixes «Parameter description»
+   *
+   * @brief @~french Prétraitement du graphe d'arrimage avant la génération des PPMapping.
+   * @param mappingGraph Le graphe d'arrimage.
+   * @param prefixes Les préfixes de l'arrimage.
+   */
+  public void updateMappingGraphBeforeParse(Graph mappingGraph,
+      ImmutableMap<String, String> prefixes) {
+    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);
+    generateTemplates(mappingGraph, prefixes);
+    logger.trace(Trace.EXIT_METHOD_0);
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param tripleMaps «Parameter description»
+   * @param sourceMappings «Parameter description»
+   * @param prefixManager «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Ajoute les informations de l'arrimage R2RML étendu aux expressions d'arrimage
+   *                 Ontop.
+   * @param mappingGraph Le graphe d'arrimage.
+   * @param tripleMaps Les triplets d'arrimage importés du graphe.
+   * @param sourceMappings Les expressions d'arrimage déduites converties à partir des triplets.
+   * @param prefixManager Le gestionnaire de préfixes.
+   * @return Le mapping mMEc.
+   *
+   * @par Tâches
+   *      S.O.
+   */
+  public SQLPPMapping getExtendedMapping(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
+      ImmutableList<SQLPPTriplesMap> sourceMappings, PrefixManager prefixManager) {
+    logger.trace(Trace.ENTER_METHOD_4, mappingGraph, tripleMaps, sourceMappings, prefixManager);
+    ImmutableList<MMecTriplesMap> mmecSourceMappings =
+        sourceMappings.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
+
+    processSubSetExpressions(mappingGraph, tripleMaps, mmecSourceMappings);
+    processConversionExpressions(mappingGraph);
+
+    ImmutableList<SQLPPTriplesMap> extendedSourceMapping = mmecSourceMappings.stream().map(
+            SQLPPTriplesMap.class::cast)
+        .collect(ImmutableCollectors.toList());
+
+    return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
   }
 
   /**
@@ -107,37 +164,48 @@ public class MappingParserExtension {
    *        étendues.
    * @par Details
    *      Pour chaque triplet <x, a, rr:TriplesMap> dans le graphe :
-   *      p := x
-   *      Jusqu'à ce qu'il n'existe pas de triplet <p, mmec:subsets, y> dans le graphe :
-   *      p := y
-   *      Obtenir <x, rr:subjectMap, xSubjectMap>
-   *      Obtenir <p, rr:subjectMap, pSubjectMap>
-   *      S'il existe un triplet <pSubjectMap, mmec:signatudeScope, pSignScope> dans le graphe :
-   *      signScope := pSignScope
-   *      Sinon :
-   *      signScope := p.ntriplesString()
-   *      S'il existe un triplet <xSubjectMap, mmec:signatudeScope, xSignScope> dans le graphe,
-   *      avec xSignScope <> signScope :
-   *      Lancer une exception
-   *      Si le nombre de triplets <xSubjectMap, mmec:signComponent, ANY> est différent
-   *      du nombre de triplets <pSubjectMap, mmec:signComponent, ANY>
-   *      Lancer une exception
-   *      Obtenir <mappingDef, mmec:templatePrefix, templatePrefix>
-   *      componentString := Former une chaîne de caractère à partir des triplets
-   *      <pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
-   *      Ajouter un triplet <xSubjectMap, rr:template, templatePrefix+signScope+componentString>
+   *        p := x
+   *        Jusqu'à ce qu'il n'existe pas de triplet <p, mmec:subsets, y> dans le graphe :
+   *          p := y
+   *        Obtenir <x, rr:subjectMap, xSubjectMap>
+   *        Obtenir <p, rr:subjectMap, pSubjectMap>
+   *        S'il existe <xSubjectMap, rr:template, xTemplate>
+   *          S'il existe <ANY, mmec:subsets, x> ou si p <> x :
+   *            Lancer une exception
+   *          Sinon Si le mapping ne défini pas ses composants de signatures
+   *            Passer au triplet suivant
+   *          Sinon
+   *            Lancer un avertissement
+   *            Retirer le triplet <xSubjectMap, rr:template, xTemplate>
+   *        S'il existe un triplet <pSubjectMap, mmec:signatudeScope, pSignScope> dans le graphe :
+   *          signScope := pSignScope
+   *        Sinon :
+   *          signScope := p.ntriplesString()
+   *        S'il existe un triplet <xSubjectMap, mmec:signatudeScope, xSignScope> dans le graphe,
+   *            avec xSignScope <> signScope :
+   *          Lancer une exception
+   *        Si le nombre de triplets <xSubjectMap, mmec:signComponent, ANY> est différent
+   *            du nombre de triplets <pSubjectMap, mmec:signComponent, ANY>
+   *          Lancer une exception
+   *        Obtenir <mappingDef, mmec:templatePrefix, templatePrefix>
+   *        componentString := Former une chaîne de caractère à partir des triplets
+   *            <pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
+   *        Ajouter un triplet <xSubjectMap, rr:template, templatePrefix+signScope+componentString>
    *      --
-   *      Note : Si p correspond à un mmec:SignatureSuperSet, il est possible que le pSubjectMap
-   *      n'existe pas, mais le traitement reste valide.
+   *      Notes :
+   *        - Si p correspond à un mmec:SignatureSuperSet, il est possible que le pSubjectMap
+   *          n'existe pas, mais le traitement reste valide.
+   *        - La chaîne de caractère générée pour signScope doit être encodée pour un URL
    * @param mappingGraph Le graphe d'arrimage.
-   * @param prefixes Les préfixes de l'ontologie.
+   * @param prefixes Les préfixes de l'arrimage.
    *
    * @par Tâches
-   *      2024-03-21 [SD] - Remplacer x et p par des noms plus significatifs
    *      2024-03-21 [SD] - Tester cette méthode.
    */
-  public void updateMappingGraphBeforeParse(Graph mappingGraph,
+  protected void generateTemplates(Graph mappingGraph,
       ImmutableMap<String, String> prefixes) {
+    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);
+
     String templatePrefix = getLiteral(mappingGraph, null,
         rdf.createIRI(MMecVocabulary.MAPPING_TEMPLATE_PREFIX)).orElseThrow();
 
@@ -149,7 +217,7 @@ public class MappingParserExtension {
       while ((parentTriple =
           mappingGraph.stream(parent, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
               null).findFirst())
-                  .isPresent()) {
+          .isPresent()) {
         parent = parentTriple.get().getSubject();
       }
 
@@ -157,38 +225,66 @@ public class MappingParserExtension {
           rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
       BlankNodeOrIRI parentSubjectMap = getObject(mappingGraph, parent,
           rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
-
       String signScope = getLiteral(mappingGraph, parentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE))
-              .orElse(parent.ntriplesString());
+          .orElse(parent.ntriplesString());
       Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE));
-      if (currentSignScope.isPresent() && !currentSignScope.get().equals(signScope)) {
-        throw new IllegalArgumentException(
-            "The signature scope of the subject map " + currentSubjectMap.ntriplesString()
-                + " is different from the signature scope of the subject map it depends on "
-                + parentSubjectMap.ntriplesString());
-      }
-
+      Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
+          rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
       List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
       List<String> pComponents = getAllLiterals(mappingGraph, parentSubjectMap,
           rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
+
+      if (currentTemplate.isPresent()) {
+        if (current.equals(parent) && mappingGraph.stream(null,
+            rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), current).findAny().isEmpty()) {
+          if (currentComponents.isEmpty()) {
+            break;
+          } else {
+            logger.warn("The mapping '" + current.ntriplesString() + "' defined " +
+                "a rr:template that will be overwritten by the mmec extension");
+            mappingGraph.remove(currentSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+                null);
+          }
+        } else {
+          throw new IllegalArgumentException(
+              "The mapping '" + current.ntriplesString() + "' has a template while it " +
+                  "depends on another subject map");
+        }
+      }
+
+      if (currentSignScope.isPresent() && !currentSignScope.get().equals(signScope)) {
+        throw new IllegalArgumentException(
+            "The signature scope of the mapping " + current.ntriplesString()
+                + " is different from the signature scope of the mapping it depends on "
+                + parent.ntriplesString());
+      }
+
+      if (currentComponents.isEmpty()) {
+        throw new IllegalArgumentException(
+            "The mapping '" + current.ntriplesString() + "' has no signature components");
+      }
+
       if (currentComponents.size() != pComponents.size()) {
         throw new IllegalArgumentException(
-            "The number of signature components of the subject map "
-                + currentSubjectMap.ntriplesString()
-                + " is different from the number of signature components of the subject map "
-                + " it depends on : " + parentSubjectMap.ntriplesString());
+            "The number of signature components of the mapping '"
+                + current.ntriplesString()
+                + "' is different from the number of signature components of mapping "
+                + " it depends on : " + parent.ntriplesString());
       }
 
       String componentString = currentComponents.stream()
           .map(component -> "/{" + component + "}")
           .collect(Collectors.joining());
+      String signScopeUrlEncoded = URLEncoder.encode(signScope, StandardCharsets.UTF_8);
+
       mappingGraph.add(currentSubjectMap,
-          rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
-          rdf.createIRI(templatePrefix + signScope + componentString));
+          rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+          rdf.createIRI(templatePrefix + signScopeUrlEncoded + componentString));
     }
+    logger.trace(Trace.EXIT_METHOD_0);
   }
 
   /**
@@ -196,78 +292,37 @@ public class MappingParserExtension {
    * @param mappingGraph «Parameter description»
    * @param tripleMaps «Parameter description»
    * @param sourceMappings «Parameter description»
-   * @param prefixManager «Parameter description»
-   * @return «Return description»
    *
-   * @brief @~french «Description de la méthode»
-   * @param mappingGraph «Description du paramètre»
-   * @param tripleMaps «Description du paramètre»
-   * @param sourceMappings «Description du paramètre»
-   * @param prefixManager «Description du paramètre»
-   * @return «Description du retour»
-   *
-   * @par Tâches
-   *      S.O.
+   * @brief @~french Associe les expressions d'arrimage aux expressions qui sont déclarés comme
+   *                 leur sous-ensemble.
+   * @param mappingGraph Le graphe d'arrimage.
+   * @param tripleMaps Les triplets d'arrimage importés du graphe.
+   * @param sourceMappings Les expressions d'arrimage déduites converties à partir des triplets.
    */
-  public SQLPPMapping getExtendedMapping(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
-      ImmutableList<SQLPPTriplesMap> sourceMappings, PrefixManager prefixManager) {
-    ImmutableList<SQLPPTriplesMap> extendedSourceMapping = getTriplesMap(mappingGraph, tripleMaps,
-        sourceMappings);
-    return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
-  }
-
-  /**
-   * @brief @~english «Description of the function»
-   * @param mappingGraph «Parameter description»
-   * @param tripleMaps «Parameter description»
-   * @param mapping «Parameter description»
-   *
-   * @brief @~french Ajoute les informations de l'arrimage R2RML étendu aux expressions d'arrimage
-   *        Ontop.
-   * @par Details
-   *      TODO: Faire la conception de l'extension
-   * @param mappingGraph Le graphe original de l'arrimage.
-   * @param tripleMaps Les triplets d'arrimage importés du graphe
-   * @param mapping Les expressions d'arrimage déduites converties à partir des triplets
-   *
-   * @par Tâches
-   *      S.O.
-   */
-  private ImmutableList<SQLPPTriplesMap> getTriplesMap(Graph mappingGraph,
-      Collection<TriplesMap> tripleMaps, ImmutableList<SQLPPTriplesMap> mapping) {
-    ImmutableList<MMecTriplesMap> sourceMappings =
-        mapping.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
-
-    processSubSetExpressions(mappingGraph, tripleMaps, sourceMappings);
-    processConversionExpressions(mappingGraph);
-
-    return sourceMappings.stream().map(SQLPPTriplesMap.class::cast)
-        .collect(ImmutableCollectors.toList());
-  }
-
-  private void processSubSetExpressions(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
+  protected void processSubSetExpressions(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
       ImmutableList<MMecTriplesMap> sourceMappings) {
+    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, tripleMaps, sourceMappings);
     Map<TriplesMap, List<TriplesMap>> hasSubset =
         mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), null).map(
-            axiom -> new ImmutablePair<>(
-                tripleMaps.stream()
-                    .filter(triple -> triple.getNode().equals(axiom.getSubject()))
-                    .findFirst().orElseThrow(),
-                tripleMaps.stream().filter(triple -> triple.getNode().equals(axiom.getObject()))
-                    .findFirst().orElseThrow()))
+                axiom -> new ImmutablePair<>(
+                    tripleMaps.stream()
+                        .filter(triple -> triple.getNode().equals(axiom.getSubject()))
+                        .findFirst().orElseThrow(),
+                    tripleMaps.stream().filter(triple -> triple.getNode().equals(axiom.getObject()))
+                        .findFirst().orElseThrow()))
             .collect(Collectors.groupingBy(ImmutablePair::getRight,
                 Collectors.mapping(ImmutablePair::getLeft, Collectors.toList())));
 
     hasSubset.forEach(
         (supersetMapping, subsetMappingList) -> subsetMappingList.forEach(subsetMapping -> {
           MMecTriplesMap superSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", supersetMapping.hashCode())))
+                  sourceMapping -> sourceMapping.getId()
+                      .equals(String.format("mapping-%s", supersetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
           MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", subsetMapping.hashCode())))
+                  sourceMapping -> sourceMapping.getId()
+                      .equals(String.format("mapping-%s", subsetMapping.hashCode())))
               .findFirst()
               .orElseThrow();
 
@@ -275,14 +330,23 @@ public class MappingParserExtension {
         }));
   }
 
-  private void processConversionExpressions(Graph mappingGraph) {
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   *
+   * @brief @~french Traite les expressions de conversion.
+   * @param mappingGraph Le graphe d'arrimage.
+   */
+  protected void processConversionExpressions(Graph mappingGraph) {
+    logger.trace(Trace.ENTER_METHOD_1, mappingGraph);
     List<? extends Triple> conversionTriples = mappingGraph.stream(null,
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(MMecVocabulary.CONVERSION)).toList();
+    DBTypeFactory dbTypeFactory = typeFactory.getDBTypeFactory();
 
     for (Triple conversionTriple : conversionTriples) {
       DBTermType declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_INPUT_TYPE), null)
+              rdf.createIRI(MMecVocabulary.CONVERSION_INPUT_TYPE), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -291,7 +355,7 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       DBTermType declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_OUTPUT_TYPE), null)
+              rdf.createIRI(MMecVocabulary.CONVERSION_OUTPUT_TYPE), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -300,8 +364,8 @@ public class MappingParserExtension {
           .findFirst()
           .orElseThrow();
       Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction = mappingGraph.stream(
-          conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_FUNCTION), null)
+              conversionTriple.getSubject(),
+              rdf.createIRI(MMecVocabulary.CONVERSION_FUNCTION), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -310,8 +374,8 @@ public class MappingParserExtension {
               functionName, declaredInputType, declaredOutputType))
           .findFirst();
       Optional<DBBooleanFunctionSymbol> declaredValidationFunction = mappingGraph.stream(
-          conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_VALIDATION_FUNCTION), null)
+              conversionTriple.getSubject(),
+              rdf.createIRI(MMecVocabulary.CONVERSION_VALIDATION_FUNCTION), null)
           .map(Triple::getObject)
           .filter(term -> term instanceof Literal)
           .map(Literal.class::cast)
@@ -326,6 +390,8 @@ public class MappingParserExtension {
               declaredConversionFunction,
               declaredValidationFunction));
     }
+
+    logger.trace(Trace.EXIT_METHOD_0);
   }
 
   /**
@@ -341,8 +407,9 @@ public class MappingParserExtension {
    * @param predicate Le prédicat du triplet.
    * @return L'objet du triplet, s'il s'agit d'un BlankNodeOrIRI
    */
-  private Optional<BlankNodeOrIRI> getObject(Graph mappingGraph, BlankNodeOrIRI subject,
+  private static Optional<BlankNodeOrIRI> getObject(Graph mappingGraph, BlankNodeOrIRI subject,
       IRI predicate) {
+    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
     return mappingGraph.stream(subject, predicate, null)
         .map(Triple::getObject)
         .filter(term -> term instanceof BlankNodeOrIRI)
@@ -363,7 +430,9 @@ public class MappingParserExtension {
    * @param predicate Le prédicat du triplet.
    * @return La forme lexicale de la valeur littérale d'un triplet.
    */
-  private Optional<String> getLiteral(Graph mappingGraph, BlankNodeOrIRI subject, IRI predicate) {
+  private static Optional<String> getLiteral(Graph mappingGraph, BlankNodeOrIRI subject,
+      IRI predicate) {
+    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
     return mappingGraph.stream(subject, predicate, null)
         .map(Triple::getObject)
         .filter(term -> term instanceof Literal)
@@ -385,7 +454,9 @@ public class MappingParserExtension {
    * @param predicate Le prédicat des triplets.
    * @return Une liste de la forme lexicale de la valeur littérale des triplets.
    */
-  private List<String> getAllLiterals(Graph mappingGraph, BlankNodeOrIRI subject, IRI predicate) {
+  private static List<String> getAllLiterals(Graph mappingGraph, BlankNodeOrIRI subject,
+      IRI predicate) {
+    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
     return mappingGraph.stream(subject, predicate, null)
         .map(Triple::getObject)
         .filter(term -> term instanceof Literal)
