@@ -164,38 +164,38 @@ public class MappingParserExtension {
    *        étendues.
    * @par Details
    *      Pour chaque triplet <x, a, rr:TriplesMap> dans le graphe :
-   *        p := x
-   *        Jusqu'à ce qu'il n'existe pas de triplet <p, mmec:subsets, y> dans le graphe :
-   *          p := y
-   *        Obtenir <x, rr:subjectMap, xSubjectMap>
-   *        Obtenir <p, rr:subjectMap, pSubjectMap>
-   *        S'il existe <xSubjectMap, rr:template, xTemplate>
-   *          S'il existe <ANY, mmec:subsets, x> ou si p <> x :
-   *            Lancer une exception
-   *          Sinon Si le mapping ne défini pas ses composants de signatures
-   *            Passer au triplet suivant
-   *          Sinon
-   *            Lancer un avertissement
-   *            Retirer le triplet <xSubjectMap, rr:template, xTemplate>
-   *        S'il existe un triplet <pSubjectMap, mmec:signatudeScope, pSignScope> dans le graphe :
-   *          signScope := pSignScope
-   *        Sinon :
-   *          signScope := p.ntriplesString()
-   *        S'il existe un triplet <xSubjectMap, mmec:signatudeScope, xSignScope> dans le graphe,
-   *            avec xSignScope <> signScope :
-   *          Lancer une exception
-   *        Si le nombre de triplets <xSubjectMap, mmec:signComponent, ANY> est différent
-   *            du nombre de triplets <pSubjectMap, mmec:signComponent, ANY>
-   *          Lancer une exception
-   *        Obtenir <mappingDef, mmec:templatePrefix, templatePrefix>
-   *        componentString := Former une chaîne de caractère à partir des triplets
-   *            <pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
-   *        Ajouter un triplet <xSubjectMap, rr:template, templatePrefix+signScope+componentString>
+   *      __p := x
+   *      __Jusqu'à ce qu'il n'existe pas de triplet <p, mmec:subsets, y> dans le graphe :
+   *      ____p := y
+   *      __Obtenir <x, rr:subjectMap, xSubjectMap>
+   *      __Obtenir <p, rr:subjectMap, pSubjectMap>
+   *      __S'il existe <xSubjectMap, rr:template, xTemplate>
+   *      ____S'il existe <ANY, mmec:subsets, x> ou si p <> x :
+   *      ______Lancer une exception
+   *      ____Sinon Si le mapping ne défini pas ses composants de signatures
+   *      ______Passer au triplet suivant
+   *      ____Sinon
+   *      ______Lancer un avertissement
+   *      ______Retirer le triplet <xSubjectMap, rr:template, xTemplate>
+   *      __S'il existe un triplet <pSubjectMap, mmec:signatudeScope, pSignScope> dans le graphe :
+   *      ____signScope := pSignScope
+   *      __Sinon :
+   *      ____signScope := p.ntriplesString()
+   *      __S'il existe un triplet <xSubjectMap, mmec:signatudeScope, xSignScope> dans le graphe,
+   *      ______avec xSignScope <> signScope :
+   *      ____Lancer une exception
+   *      __Si le nombre de triplets <xSubjectMap, mmec:signComponent, ANY> est différent
+   *      ______du nombre de triplets <pSubjectMap, mmec:signComponent, ANY>
+   *      ____Lancer une exception
+   *      __Obtenir <mappingDef, mmec:templatePrefix, templatePrefix>
+   *      __componentString := Former une chaîne de caractère à partir des triplets
+   *      ______<pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
+   *      __Ajouter un triplet <xSubjectMap, rr:template, templatePrefix+signScope+componentString>
    *      --
    *      Notes :
-   *        - Si p correspond à un mmec:SignatureSuperSet, il est possible que le pSubjectMap
-   *          n'existe pas, mais le traitement reste valide.
-   *        - La chaîne de caractère générée pour signScope doit être encodée pour un URL
+   *      - Si p correspond à un mmec:SignatureSuperSet, il est possible que le pSubjectMap
+   *      n'existe pas, mais le traitement reste valide.
+   *      - La chaîne de caractère générée pour signScope doit être encodée pour un URL
    * @param mappingGraph Le graphe d'arrimage.
    * @param prefixes Les préfixes de l'arrimage.
    *
