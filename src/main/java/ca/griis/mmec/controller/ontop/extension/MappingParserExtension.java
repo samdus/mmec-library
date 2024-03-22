@@ -223,20 +223,24 @@ public class MappingParserExtension {
     BlankNodeOrIRI parent = getParentRoot(mappingGraph, current);
     BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
-    BlankNodeOrIRI parentSubjectMap = getObject(mappingGraph, parent,
-        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
-    String signScope = getLiteral(mappingGraph, parentSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE))
-        .orElse(parent.ntriplesString());
+    final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parent,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
+    final Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
     Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
         rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE));
     Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
     List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
         rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
-    List<String> parentComponents = getAllLiterals(mappingGraph, parentSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
 
+    final String signScope = parentSubjectMap
+        .flatMap(subjectMap -> getLiteral(mappingGraph, subjectMap,
+            rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE)))
+        .orElse(parent.ntriplesString());
+    final List<String> parentComponents = parentSubjectMap
+        .map(subjectMap -> getAllLiterals(mappingGraph, subjectMap,
+            rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT)))
+        .orElse(List.of());
     if (currentTemplate.isPresent()) {
       if (current.equals(parent) &&
           mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), current)
@@ -262,7 +266,9 @@ public class MappingParserExtension {
       throw new SignatureComponentMissingException(current);
     }
 
-    if (currentComponents.size() != parentComponents.size()) {
+    if (mappingGraph.stream(parent, rdf.createIRI(nsTypeIri),
+        rdf.createIRI(MMecVocabulary.SIGNATURE_SUPERSET)).findAny().isEmpty()
+        && currentComponents.size() != parentComponents.size()) {
       throw new SignatureComponentMismatchException(current, parent);
     }
 
@@ -293,7 +299,13 @@ public class MappingParserExtension {
       ImmutableList<MMecTriplesMap> sourceMappings) {
     logger.trace(Trace.ENTER_METHOD_3, mappingGraph, tripleMaps, sourceMappings);
     Map<TriplesMap, List<TriplesMap>> hasSubset =
-        mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), null).map(
+        mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), null)
+            .filter(axiom ->
+            // If the superset is a SIGNATURE_SUPERSET, it's not required in the hasSubset Map
+            mappingGraph.stream((BlankNodeOrIRI) axiom.getObject(), rdf.createIRI(nsTypeIri),
+                rdf.createIRI(MMecVocabulary.SIGNATURE_SUPERSET))
+                .findAny().isEmpty())
+            .map(
                 axiom -> new ImmutablePair<>(
                     tripleMaps.stream()
                         .filter(triple -> triple.getNode().equals(axiom.getSubject()))
