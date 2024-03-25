@@ -11,7 +11,7 @@
  * @brief @~english MappingParserExtension object implementation.
  */
 
-package ca.griis.mmec.controller.ontop.extension;
+package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
@@ -227,7 +227,7 @@ public class MappingParserExtension {
     final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parent,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
     final Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE));
+        rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE));
     final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
     final List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
@@ -235,7 +235,7 @@ public class MappingParserExtension {
 
     final String signScope = parentSubjectMap
         .flatMap(subjectMap -> getLiteral(mappingGraph, subjectMap,
-            rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE)))
+            rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE)))
         .orElse(parent.ntriplesString());
     final List<String> parentComponents = parentSubjectMap
         .map(subjectMap -> getAllLiterals(mappingGraph, subjectMap,

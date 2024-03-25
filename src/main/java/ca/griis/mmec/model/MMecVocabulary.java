@@ -52,7 +52,7 @@ public class MMecVocabulary {
 
 
   // Signatures
-  public static final String SIGNATURE_SCOPE = NAMESPACE + "signatureScope";
+  public static final String SIGNATURE_NAMESPACE = NAMESPACE + "signatureNamespace";
   public static final String SIGNATURE_COMPONENT = NAMESPACE + "signatureComponent";
   public static final String SIGNATURE_SUBSETS = NAMESPACE + "subsets";
 

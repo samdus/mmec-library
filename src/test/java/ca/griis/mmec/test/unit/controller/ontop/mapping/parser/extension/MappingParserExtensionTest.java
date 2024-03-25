@@ -6,9 +6,9 @@
  * @brief @~french Implémentation de la classe MappingParserExtensionTest.
  * @brief @~english MappingParserExtensionTest class implementation.
  */
-package ca.griis.mmec.test.unit.controller.ontop.extension;
+package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension;
 
-import ca.griis.mmec.controller.ontop.extension.MappingParserExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.model.MMecTriplesMap;
@@ -207,7 +207,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
     testGraph.add(parentSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+        rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(childSignatureScope));
     testGraph.add(parentMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         parentSubjectMap);
@@ -227,7 +227,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
     testGraph.add(childSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+        rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(childMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         childSubjectMap);
@@ -389,7 +389,7 @@ public class MappingParserExtensionTest {
 
     testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent));
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(signatureScope));
     testGraph.add(mappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -433,7 +433,7 @@ public class MappingParserExtensionTest {
 
     testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
         rdf.createLiteral(parentSignComponent));
-    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(parentMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -501,7 +501,7 @@ public class MappingParserExtensionTest {
 
     testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
         rdf.createLiteral(parentSignComponent));
-    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(parentMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -524,7 +524,7 @@ public class MappingParserExtensionTest {
 
     testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
         rdf.createLiteral(childSignComponent));
-    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(childMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -567,7 +567,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(signatureScope));
     testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent));
@@ -612,7 +612,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_SCOPE),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
         rdf.createLiteral(signatureScope));
     testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent1));

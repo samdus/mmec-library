@@ -15,7 +15,7 @@
 
 package it.unibz.inf.ontop.spec.mapping.parser.impl;
 
-import ca.griis.mmec.controller.ontop.extension.MappingParserExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
