@@ -1,0 +1,26 @@
+?cls	?def	?xrefs
+<http://purl.obolibrary.org/obo/PATO_0000001>	"A dependent entity that inheres in a bearer by virtue of how the bearer is related to other entities"	
+<http://purl.obolibrary.org/obo/BFO_0000017>	"A specifically dependent continuant  that inheres in continuant  entities and are not exhibited in full at every time in which it inheres in an entity or group of entities. The exhibition or actualization of a realizable entity is a particular manifestation, functioning or process that occurs under certain circumstances."@en	
+<http://purl.obolibrary.org/obo/BFO_0000002>	"An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts."@en	
+<http://purl.obolibrary.org/obo/GO_0008150>	"A process that emerges from two or more causally-connected macromolecular activities and has evolved to achieve a biological objective."	"Wikipedia:Biological_process"
+<http://purl.obolibrary.org/obo/BFO_0000016>		
+<http://purl.obolibrary.org/obo/GO_0003674>	"A molecular process that can be carried out by the action of a single macromolecular machine, usually via direct physical interactions with other molecular entities. Function in this sense denotes an action, or activity, that a gene product (or a complex) performs."	
+<http://purl.obolibrary.org/obo/BFO_0000034>		
+<http://purl.obolibrary.org/obo/IAO_0000102>	"Data about an ontology part is a data item about a part of an ontology, for example a term"@en	
+<http://purl.obolibrary.org/obo/BFO_0000023>	"A realizable entity  the manifestation of which brings about some result or end that is not essential to a continuant  in virtue of the kind of thing that it is but that can be served or participated in by that kind of continuant  in some kinds of natural, social or institutional contexts."@en	
+<http://purl.obolibrary.org/obo/IAO_0000225>	"The reason for which a term has been deprecated. The allowed values come from an enumerated list of predefined terms. See the specification of these instances for more detailed definitions of each enumerated value."@en	
+<http://purl.obolibrary.org/obo/BFO_0000020>	"b is a specifically dependent continuant = Def. b is a continuant & there is some independent continuant c which is not a spatial region and which is such that b s-depends_on c at every time t during the course of b’s existence. (axiom label in BFO2 Reference: [050-003])"@en	
+<http://purl.obolibrary.org/obo/IAO_0000027>	"An information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements."@en	
+<http://purl.obolibrary.org/obo/BFO_0000004>	"b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])"@en	
+<http://purl.obolibrary.org/obo/MMEC_0000000>		
+<http://purl.obolibrary.org/obo/BFO_0000019>		
+<http://purl.obolibrary.org/obo/GO_0016301>	"Catalysis of the transfer of a phosphate group, usually from ATP, to a substrate molecule."	"Reactome:R-HSA-6788855 Reactome:R-HSA-6788867"
+<http://purl.obolibrary.org/obo/BFO_0000003>	"An entity that has temporal parts and that happens, unfolds or develops through time."@en	
+<http://purl.obolibrary.org/obo/GO_0008150>	"A biological process is the execution of a genetically-encoded biological module or program. It consists of all the steps required to achieve the specific biological objective of the module. A biological process is accomplished by a particular set of molecular functions carried out by specific gene products (or macromolecular complexes), often in a highly regulated manner and in a particular temporal sequence."	"Wikipedia:Biological_process"
+<http://purl.obolibrary.org/obo/BFO_0000001>		
+<http://purl.obolibrary.org/obo/IAO_0000078>	"The curation status of the term. The allowed values come from an enumerated list of predefined terms. See the specification of these instances for more detailed definitions of each enumerated value."@en	
+<http://purl.obolibrary.org/obo/IAO_0000030>	"A generically dependent continuant that is about some thing."@en	
+<http://purl.obolibrary.org/obo/BFO_0000040>	"An independent continuant that is spatially extended whose identity is independent of that of other entities and can be maintained through time."@en	
+<http://purl.obolibrary.org/obo/BFO_0000015>	"p is a process = Def. p is an occurrent that has temporal proper parts and for some time t, p s-depends_on some material entity at t. (axiom label in BFO2 Reference: [083-003])"@en	
+<http://purl.obolibrary.org/obo/BFO_0000031>	"b is a generically dependent continuant = Def. b is a continuant that g-depends_on one or more other entities. (axiom label in BFO2 Reference: [074-001])"@en	
+<http://purl.obolibrary.org/obo/IAO_0000409>	"A denotator type indicates how a term should be interpreted from an ontological perspective."@en	
