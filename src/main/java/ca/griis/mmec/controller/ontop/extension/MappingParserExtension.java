@@ -80,7 +80,8 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      2023-09-05 [SD] - Implémentation initiale.
  *
  * @par Tâches
- *      S.O.
+ *      2024-03-25 [SD] - Découpler les traitements en créant une classe spécifique pour chaque
+ *      traitement et utiliser une liste de prétraitement et de post-traitement.
  */
 public class MappingParserExtension {
   private static final GriisLogger logger =
@@ -505,20 +506,17 @@ public class MappingParserExtension {
     }
   }
 
-
   public static class SubsetHasTemplateException extends IllegalMappingException {
     public SubsetHasTemplateException(BlankNodeOrIRI invalidNode) {
       super(invalidNode, "it has a template while it depends on another subject map.");
     }
   }
 
-
   public static class SignatureScopeMismatchException extends IllegalMappingException {
     public SignatureScopeMismatchException(BlankNodeOrIRI invalidNode) {
       super(invalidNode, "it has a different signature scope than the one it depends on.");
     }
   }
-
 
   public static class SignatureComponentMismatchException extends IllegalMappingException {
     private final BlankNodeOrIRI parentNode;

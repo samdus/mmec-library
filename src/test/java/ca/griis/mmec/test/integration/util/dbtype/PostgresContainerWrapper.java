@@ -62,7 +62,6 @@ public class PostgresContainerWrapper implements Closeable {
   private static PostgresContainerWrapper instance;
   private static final String ontorelcatLdmImageName =
       "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm:0.0.1";
-  private static final Integer hostPort = 25432;
   private final DockerImageName ontorelcatLdmImage = DockerImageName.parse(ontorelcatLdmImageName)
       .asCompatibleSubstituteFor("postgres");
   private final PostgreSQLContainer<?> container = new PostgreSQLContainer<>(ontorelcatLdmImage);
@@ -75,9 +74,6 @@ public class PostgresContainerWrapper implements Closeable {
         .withStartupTimeout(Duration.of(300, ChronoUnit.SECONDS));
     container.setWaitStrategy(waitStrategy);
     container.waitingFor(waitStrategy);
-    container.withCreateContainerCmdModifier(
-        createContainerCmd -> createContainerCmd.withHostConfig(new HostConfig().withPortBindings(
-            new PortBinding(Ports.Binding.bindPort(hostPort), new ExposedPort(5432)))));
     container.withCopyFileToContainer(MountableFile.forClasspathResource("testset/"),
         "/docker-entrypoint-initdb.d/");
     container.start();
