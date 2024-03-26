@@ -41,30 +41,34 @@ package ca.griis.mmec.model;
  *      S.O.
  */
 public class MMecVocabulary {
-  // Namespace
-  public static final String NAMESPACE = "http://www.griis.ca/ns/mmec#";
+  private static final String BASE = "http://www.griis.ca/ns/mmec#";
 
   // Headers
-  public static final String MAPPING_DEFINITION = NAMESPACE + "mappingDefinition";
-  public static final String MAPPING_ONTOREL = NAMESPACE + "ontorel";
-  public static final String MAPPING_SOURCE = NAMESPACE + "source";
-  public static final String MAPPING_TEMPLATE_PREFIX = NAMESPACE + "templatePrefix";
-
+  public static final String C_MAPPING_HEADER = BASE + "MappingHeader";
+  public static final String C_ONTOREL = BASE + "OntoRel";
+  public static final String C_DATA_SOURCE = BASE + "DataSource";
+  public static final String P_MAPPING_ONTOREL = BASE + "ontorel";
+  public static final String P_MAPPING_SOURCE = BASE + "source";
+  public static final String P_MAPPING_TEMPLATE_PREFIX = BASE + "templatePrefix";
 
   // Signatures
-  public static final String SIGNATURE_NAMESPACE = NAMESPACE + "signatureNamespace";
-  public static final String SIGNATURE_COMPONENT = NAMESPACE + "signatureComponent";
-  public static final String SIGNATURE_SUBSETS = NAMESPACE + "subsets";
+  public static final String C_SIGNATURE_SUPERSET = BASE + "SignatureSuperset";
+  public static final String P_SIGNATURE_NAMESPACE = BASE + "signatureNamespace";
+  public static final String P_SIGNATURE_COMPONENT = BASE + "signatureComponent";
+  public static final String P_SIGNATURE_SUBSETS = BASE + "subsets";
 
   // Type conversions
-  public static final String CONVERSION = NAMESPACE + "conversion";
-  public static final String CONVERSION_INPUT_TYPE =
-      NAMESPACE + "conversionInputType";
-  public static final String CONVERSION_OUTPUT_TYPE =
-      NAMESPACE + "conversionOutputType";
-  public static final String CONVERSION_FUNCTION =
-      NAMESPACE + "conversionFunction";
-  public static final String CONVERSION_VALIDATION_FUNCTION =
-      NAMESPACE + "validationFunction";
-  public static final String SIGNATURE_SUPERSET = NAMESPACE + "signatureSuperset";
+  public static final String C_CONVERSION = BASE + "Conversion";
+  public static final String C_SQL_FUNCTION = BASE + "SQLFunction";
+  public static final String C_SQL_TYPE = BASE + "SQLType";
+  public static final String P_CONVERSION_INPUT_TYPE =
+      BASE + "conversionInputType";
+  public static final String P_CONVERSION_OUTPUT_TYPE =
+      BASE + "conversionOutputType";
+  public static final String P_CONVERSION_FUNCTION =
+      BASE + "conversionFunction";
+  public static final String P_CONVERSION_VERIFICATION_FUNCTION =
+      BASE + "verificationFunction";
+  public static final String P_SQL_QUALIFIED_IDENTIFIER =
+      BASE + "qualifiedIdentifier";
 }

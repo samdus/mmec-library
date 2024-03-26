@@ -29,7 +29,6 @@ import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
 import it.unibz.inf.ontop.model.type.DBTermType;
-import it.unibz.inf.ontop.model.type.DBTypeFactory;
 import it.unibz.inf.ontop.model.type.TypeFactory;
 import it.unibz.inf.ontop.spec.mapping.PrefixManager;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
@@ -80,8 +79,9 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      2023-09-05 [SD] - Implémentation initiale.
  *
  * @par Tâches
- *      2024-03-25 [SD] - Découpler les traitements en créant une classe spécifique pour chaque
- *      traitement et utiliser une liste de prétraitement et de post-traitement.
+ * @todo 2024-03-25 [SD] - Découpler les traitements en créant une classe spécifique pour
+ *       chaque traitement et utiliser une liste de prétraitement
+ *       et de post-traitement.
  */
 public class MappingParserExtension {
   private static final GriisLogger logger =
@@ -208,7 +208,8 @@ public class MappingParserExtension {
     logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);
 
     String templatePrefix = getLiteral(mappingGraph, null,
-        rdf.createIRI(MMecVocabulary.MAPPING_TEMPLATE_PREFIX)).orElseThrow();
+        rdf.createIRI(MMecVocabulary.P_MAPPING_TEMPLATE_PREFIX)).orElseThrow(
+            NoMappingTemplatePrefixException::new);
 
     for (Triple currentTriple : mappingGraph.stream(null, rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP)).toList()) {
@@ -223,28 +224,29 @@ public class MappingParserExtension {
 
     final BlankNodeOrIRI parent = getParentRoot(mappingGraph, current);
     final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
-        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow();
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow(
+            () -> new SignatureWithoutSubjectMapException(current));
     final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parent,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
     final Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE));
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE));
     final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
     final List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT));
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT));
 
     final String signScope = parentSubjectMap
         .flatMap(subjectMap -> getLiteral(mappingGraph, subjectMap,
-            rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE)))
+            rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE)))
         .orElse(parent.ntriplesString());
     final List<String> parentComponents = parentSubjectMap
         .map(subjectMap -> getAllLiterals(mappingGraph, subjectMap,
-            rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT)))
+            rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT)))
         .orElse(List.of());
 
     if (currentTemplate.isPresent()) {
       if (current.equals(parent)
-          && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), current)
+          && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
               .findAny().isEmpty()) {
         if (currentComponents.isEmpty()) {
           return;
@@ -268,7 +270,7 @@ public class MappingParserExtension {
     }
 
     if (mappingGraph.stream(parent, rdf.createIRI(nsTypeIri),
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SUPERSET)).findAny().isEmpty()
+        rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET)).findAny().isEmpty()
         && currentComponents.size() != parentComponents.size()) {
       throw new SignatureComponentMismatchException(current, parent);
     }
@@ -300,20 +302,20 @@ public class MappingParserExtension {
       ImmutableList<MMecTriplesMap> sourceMappings) {
     logger.trace(Trace.ENTER_METHOD_3, mappingGraph, tripleMaps, sourceMappings);
     Map<TriplesMap, List<TriplesMap>> hasSubset =
-        mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS), null)
+        mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), null)
             .filter(axiom ->
             // If the superset is a SIGNATURE_SUPERSET, it's not required in the hasSubset Map
             mappingGraph.stream((BlankNodeOrIRI) axiom.getObject(), rdf.createIRI(nsTypeIri),
-                rdf.createIRI(MMecVocabulary.SIGNATURE_SUPERSET))
+                rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET))
                 .findAny().isEmpty())
             .map(
                 axiom -> new ImmutablePair<>(
                     tripleMaps.stream()
                         .filter(triple -> triple.getNode().equals(axiom.getSubject()))
-                        .findFirst().orElseThrow(),
+                        .findFirst().orElseThrow(/* TODO: Créer une exception */),
                     tripleMaps.stream().filter(
                         triple -> triple.getNode().equals(axiom.getObject()))
-                        .findFirst().orElseThrow()))
+                        .findFirst().orElseThrow(/* TODO: Créer une exception */)))
             .collect(Collectors.groupingBy(ImmutablePair::getRight,
                 Collectors.mapping(ImmutablePair::getLeft, Collectors.toList())));
 
@@ -323,15 +325,16 @@ public class MappingParserExtension {
               sourceMapping -> sourceMapping.getId()
                   .equals(String.format("mapping-%s", supersetMapping.hashCode())))
               .findFirst()
-              .orElseThrow();
+              .orElseThrow(/* TODO: Créer une exception */);
           MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
               sourceMapping -> sourceMapping.getId()
                   .equals(String.format("mapping-%s", subsetMapping.hashCode())))
               .findFirst()
-              .orElseThrow();
+              .orElseThrow(/* TODO: Créer une exception */);
 
           superSetSourceMapping.addSubset(subSetSourceMapping);
         }));
+    logger.trace(Trace.EXIT_METHOD_0);
   }
 
   /**
@@ -345,57 +348,62 @@ public class MappingParserExtension {
     logger.trace(Trace.ENTER_METHOD_1, mappingGraph);
     List<? extends Triple> conversionTriples = mappingGraph.stream(null,
         rdf.createIRI(nsTypeIri),
-        rdf.createIRI(MMecVocabulary.CONVERSION)).toList();
-    DBTypeFactory dbTypeFactory = typeFactory.getDBTypeFactory();
+        rdf.createIRI(MMecVocabulary.C_CONVERSION)).toList();
 
     for (Triple conversionTriple : conversionTriples) {
-      DBTermType declaredInputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_INPUT_TYPE), null)
-          .map(Triple::getObject)
-          .filter(term -> term instanceof Literal)
-          .map(Literal.class::cast)
-          .map(Literal::getLexicalForm)
-          .map(dbTypeFactory::getDBTermType)
-          .findFirst()
-          .orElseThrow();
-      DBTermType declaredOutputType = mappingGraph.stream(conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_OUTPUT_TYPE), null)
-          .map(Triple::getObject)
-          .filter(term -> term instanceof Literal)
-          .map(Literal.class::cast)
-          .map(Literal::getLexicalForm)
-          .map(dbTypeFactory::getDBTermType)
-          .findFirst()
-          .orElseThrow();
-      Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction = mappingGraph.stream(
+      DBTermType declaredInputType = getObjectsQualifiedIdentifier(mappingGraph,
           conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_FUNCTION), null)
-          .map(Triple::getObject)
-          .filter(term -> term instanceof Literal)
-          .map(Literal.class::cast)
-          .map(Literal::getLexicalForm)
-          .map(functionName -> sqlDbFunctionSymbolFactory.createMMecConversionFunctionSymbol(
-              functionName, declaredInputType, declaredOutputType))
-          .findFirst();
-      Optional<DBBooleanFunctionSymbol> declaredValidationFunction = mappingGraph.stream(
+          rdf.createIRI(MMecVocabulary.P_CONVERSION_INPUT_TYPE))
+              .map(typeFactory.getDBTypeFactory()::getDBTermType)
+              .orElseThrow(
+                  () -> new ConversionWithoutInputTypeException(conversionTriple.getSubject()));
+      DBTermType declaredOutputType = getObjectsQualifiedIdentifier(mappingGraph,
           conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.CONVERSION_VALIDATION_FUNCTION), null)
-          .map(Triple::getObject)
-          .filter(term -> term instanceof Literal)
-          .map(Literal.class::cast)
-          .map(Literal::getLexicalForm)
-          .map(functionName -> sqlDbFunctionSymbolFactory
-              .createMMecConversionValidationFunctionSymbol(functionName,
-                  declaredInputType, declaredOutputType))
-          .findFirst();
+          rdf.createIRI(MMecVocabulary.P_CONVERSION_OUTPUT_TYPE))
+              .map(typeFactory.getDBTypeFactory()::getDBTermType)
+              .orElseThrow(
+                  () -> new ConversionWithoutOutputTypeException(conversionTriple.getSubject()));
+      Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction =
+          getObjectsQualifiedIdentifier(mappingGraph, conversionTriple.getSubject(),
+              rdf.createIRI(MMecVocabulary.P_CONVERSION_FUNCTION))
+                  .map(
+                      functionName -> sqlDbFunctionSymbolFactory.createMMecConversionFunctionSymbol(
+                          functionName, declaredInputType, declaredOutputType));
+      Optional<DBBooleanFunctionSymbol> declaredValidationFunction = getObjectsQualifiedIdentifier(
+          mappingGraph, conversionTriple.getSubject(),
+          rdf.createIRI(MMecVocabulary.P_CONVERSION_VERIFICATION_FUNCTION))
+              .map(functionName -> sqlDbFunctionSymbolFactory
+                  .createMMecConversionValidationFunctionSymbol(functionName,
+                      declaredInputType, declaredOutputType));
 
       mappingExtension.addMappingConversion(
           new MMecMappingConversion(declaredInputType, declaredOutputType,
-              declaredConversionFunction,
-              declaredValidationFunction));
+              declaredConversionFunction, declaredValidationFunction));
     }
 
     logger.trace(Trace.EXIT_METHOD_0);
+  }
+
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param subject «Parameter description»
+   * @param predicate «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Obtenir l'identifiant qualifié de l'objet d'un triplet.
+   * @param mappingGraph Le graphe duquel extraire le triplet.
+   * @param subject Le sujet du triplet.
+   * @param predicate Le prédicat du triplet.
+   * @return L'identifiant qualifié de l'objet du triplet.
+   */
+  private Optional<String> getObjectsQualifiedIdentifier(Graph mappingGraph, BlankNodeOrIRI subject,
+      IRI predicate) {
+    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
+    return getObject(mappingGraph, subject, predicate)
+        .flatMap(type -> getLiteral(mappingGraph, type,
+            rdf.createIRI(MMecVocabulary.P_SQL_QUALIFIED_IDENTIFIER)));
   }
 
   /**
@@ -481,8 +489,9 @@ public class MappingParserExtension {
    * @return Le prochain noeud sans parent dans la chaîne de subsets
    */
   private BlankNodeOrIRI getParentRoot(Graph mappingGraph, BlankNodeOrIRI current) {
+    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, current);
     Optional<BlankNodeOrIRI> parent = getObject(mappingGraph, current,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS));
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS));
     if (parent.isPresent()) {
       return getParentRoot(mappingGraph, parent.get());
     }
@@ -506,17 +515,20 @@ public class MappingParserExtension {
     }
   }
 
+
   public static class SubsetHasTemplateException extends IllegalMappingException {
     public SubsetHasTemplateException(BlankNodeOrIRI invalidNode) {
       super(invalidNode, "it has a template while it depends on another subject map.");
     }
   }
 
+
   public static class SignatureScopeMismatchException extends IllegalMappingException {
     public SignatureScopeMismatchException(BlankNodeOrIRI invalidNode) {
       super(invalidNode, "it has a different signature scope than the one it depends on.");
     }
   }
+
 
   public static class SignatureComponentMismatchException extends IllegalMappingException {
     private final BlankNodeOrIRI parentNode;
@@ -538,6 +550,52 @@ public class MappingParserExtension {
   public static class SignatureComponentMissingException extends IllegalMappingException {
     public SignatureComponentMissingException(BlankNodeOrIRI current) {
       super(current, "it has no signature components.");
+    }
+  }
+
+
+  private static class SignatureWithoutSubjectMapException extends IllegalMappingException {
+    public SignatureWithoutSubjectMapException(
+        BlankNodeOrIRI current) {
+      super(current, "it has no subject map.");
+    }
+  }
+
+
+  private static class NoMappingTemplatePrefixException extends IllegalStateException {
+    public NoMappingTemplatePrefixException() {
+      super("The mapping header is invalid: The mapping header must define a template prefix.");
+    }
+  }
+
+
+  private static class InvalidConversionException extends IllegalStateException {
+    private final BlankNodeOrIRI conversionTriple;
+
+    public InvalidConversionException(
+        BlankNodeOrIRI conversionTriple, String reason) {
+      super(String.format("The conversion '%s' is invalid: %s", conversionTriple, reason));
+      this.conversionTriple = conversionTriple;
+    }
+
+    public BlankNodeOrIRI getConversionTriple() {
+      return conversionTriple;
+    }
+  }
+
+
+  private static class ConversionWithoutInputTypeException extends InvalidConversionException {
+    public ConversionWithoutInputTypeException(
+        BlankNodeOrIRI subject) {
+      super(subject, "it doesn't have a valid input type.");
+    }
+  }
+
+
+  private static class ConversionWithoutOutputTypeException extends InvalidConversionException {
+    public ConversionWithoutOutputTypeException(
+        BlankNodeOrIRI subject) {
+      super(subject, "it doesn't have a valid output type.");
     }
   }
 }

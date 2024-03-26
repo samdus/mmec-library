@@ -1,35 +1,59 @@
-@prefix isc:  <http://resource.geosciml.org/classifier/ics/ischart/> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rr:   <http://www.w3.org/ns/r2rml#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix mmec: <http://www.griis.ca/ns/mmec#> .
 @prefix obo:  <http://purl.obolibrary.org/obo/> .
 
-<MappingDefinition>
-    a                  mmec:mappingDefinition ;
-    mmec:ontoRel        'http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437' ;
-    mmec:source         'https://griis.ca/JeDIS' ;
+<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437>
+    a mmec:OntoRel .
+
+<https://griis.ca/JeDIS>
+    a mmec:DataSource .
+
+<MappingHeader>
+    a                   mmec:MappingHeader ;
+    mmec:ontorel        <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437> ;
+    mmec:source         <https://griis.ca/JeDIS> ;
     mmec:templatePrefix 'http://www.griis.ca/projects/' .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Conversions
 # ----------------------------------------------------------------------------------------------------------------------
+<sqlText>
+    a                        mmec:SQLType ;
+    mmec:qualifiedIdentifier "text" .
+
+<sqlVarchar>
+    a                        mmec:SQLType ;
+    mmec:qualifiedIdentifier "varchar" .
+
+<bwString>
+    a                        mmec:SQLType ;
+    mmec:qualifiedIdentifier "\"BW\".\"string\"" .
+
+<convertTextToBWString>
+    a                        mmec:SQLFunction ;
+    mmec:qualifiedIdentifier "convertTextToBWString" .
+
+<v_convertTextToBWString>
+    a                        mmec:SQLFunction ;
+    mmec:qualifiedIdentifier "v_convertTextToBWString" .
+
 <Conversion:TEXT:string>
-    a                         mmec:conversion ;
-    mmec:conversionInputType  "text" ;
-    mmec:conversionOutputType "\"BW\".\"string\"" ;
-    mmec:conversionFunction   "convertTextToBWString" ;
-    mmec:validationFunction   "v_convertTextToBWString" .
+    a                         mmec:Conversion ;
+    mmec:conversionInputType  <sqlText> ;
+    mmec:conversionOutputType <bwString> ;
+    mmec:conversionFunction   <convertTextToBWString> ;
+    mmec:verificationFunction <v_convertTextToBWString> .
+
 <Conversion:VARCHAR:string>
-    a                         mmec:conversion ;
-    mmec:conversionInputType  "varchar" ;
-    mmec:conversionOutputType "\"BW\".\"string\"" .
+    a                         mmec:Conversion ;
+    mmec:conversionInputType  <sqlVarchar> ;
+    mmec:conversionOutputType <bwString> .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Arrimage des différents cas d'exemple
 # ----------------------------------------------------------------------------------------------------------------------
-#
-# NOTE: Avec l'extension, les rr:template seront engendrés automatiquement
 
 # **** Arrimage simple ****
 
@@ -37,24 +61,24 @@
 
 # "HBW_0000022"@human name
 <Mapping:HBW_0000022>
-    a                     rr:TriplesMap ;
-    rr:logicalTable       [ a           rr:R2RMLView ;
-                            rr:sqlQuery "SELECT \"PRENOM\", \"NOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
-    rr:subjectMap         [ a           rr:SubjectMap, rr:TermMap ;
-                            rr:class    obo:HBW_0000022 ;
-                            mmec:signatureComponent "\"PRENOM\"", "\"NOM\"" ;
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "SELECT \"PRENOM\", \"NOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000022 ;
+                      mmec:signatureComponent "\"PRENOM\"", "\"NOM\"" ;
 #                            rr:template "http://purl.obolibrary.org/obo/HBW_0000022/{\"PRENOM\"}/{\"NOM\"}" ;
-                            rr:termType rr:IRI ] .
+                      rr:termType             rr:IRI ] .
 
 # "IAO_0020015"@personal name
 <Mapping:IAO_0020015>
-    a                     rr:TriplesMap ;
-    rr:logicalTable       [ a           rr:R2RMLView ;
-                            rr:sqlQuery "SELECT \"PRENOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
-    rr:subjectMap         [ a           rr:SubjectMap, rr:TermMap ;
-                            rr:class    obo:IAO_0020015 ;
-                            rr:template "http://purl.obolibrary.org/obo/IAO_0020015/{\"PRENOM\"}" ;
-                            rr:termType rr:IRI ] .
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery "SELECT \"PRENOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
+                      rr:class    obo:IAO_0020015 ;
+                      rr:template "http://purl.obolibrary.org/obo/IAO_0020015/{\"PRENOM\"}" ;
+                      rr:termType rr:IRI ] .
 
 # "IAO_0020017"@family name
 <Mapping:IAO_0020017>

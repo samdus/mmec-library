@@ -40,19 +40,27 @@
 # ****************************************************************************************
 # Classes mappings
 # ****************************************************************************************
-<MappingDefinition>
-    a                   mmec:mappingDefinition ;
-    mmec:ontoRel        'https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1' ;
-    mmec:source         'https://griis.ca/JeDIS' ;
+<https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1>
+    a mmec:OntoRel .
+
+<https://griis.ca/JeDIS>
+    a mmec:DataSource .
+
+<MappingHeader>
+    a                   mmec:MappingHeader ;
+    mmec:ontorel        <https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1> ;
+    mmec:source         <https://griis.ca/JeDIS> ;
     mmec:templatePrefix 'http://www.griis.ca/projects/' .
 
 <Conversion:integer:string>
-    a                         mmec:conversion ;
-    mmec:conversionInputType  "integer" ;
-    mmec:conversionOutputType "\"BW\".\"string\"" .
+    a                         mmec:Conversion ;
+    mmec:conversionInputType  [ a                        mmec:SQLType ;
+                                mmec:qualifiedIdentifier "integer" ] ;
+    mmec:conversionOutputType [ a                        mmec:SQLType ;
+                                mmec:qualifiedIdentifier "\"BW\".\"string\"" ] .
 
 <Mapping:SharedSignature1>
-    a mmec:signatureSuperset .
+    a mmec:SignatureSuperset .
 
 <Mapping:tst>
     a               rr:TriplesMap ;
@@ -82,7 +90,7 @@
     mmec:subsets    <Mapping:tst> .
 
 <Mapping:tst1C0004XUnionOf>
-    a mmec:signatureSuperset .
+    a mmec:SignatureSuperset .
 
 <Mapping:tst2>
     a               rr:TriplesMap ;

@@ -8,9 +8,9 @@
  */
 package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension;
 
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
 import ca.griis.mmec.model.MMecTriplesMap;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
@@ -82,19 +82,13 @@ public class MappingParserExtensionTest {
   @BeforeEach
   public void setUp() {
     testGraph = rdf.createGraph();
-    RDF4JBlankNode mappingDefinitionNode = rdf.createBlankNode();
+    RDF4JBlankNode mappingHeaderNode = rdf.createBlankNode();
 
-    testGraph.add(mappingDefinitionNode,
+    testGraph.add(mappingHeaderNode,
         rdf.createIRI(nsTypeIri),
-        rdf.createIRI(MMecVocabulary.MAPPING_DEFINITION));
-    testGraph.add(mappingDefinitionNode,
-        rdf.createIRI(MMecVocabulary.MAPPING_ONTOREL),
-        rdf.createIRI("http://www.example.com/ontorel"));
-    testGraph.add(mappingDefinitionNode,
-        rdf.createIRI(MMecVocabulary.MAPPING_SOURCE),
-        rdf.createIRI("http://www.example.com/source"));
-    testGraph.add(mappingDefinitionNode,
-        rdf.createIRI(MMecVocabulary.MAPPING_TEMPLATE_PREFIX),
+        rdf.createIRI(MMecVocabulary.C_MAPPING_HEADER));
+    testGraph.add(mappingHeaderNode,
+        rdf.createIRI(MMecVocabulary.P_MAPPING_TEMPLATE_PREFIX),
         rdf.createLiteral(mappingTemplatePrefix));
   }
 
@@ -175,7 +169,7 @@ public class MappingParserExtensionTest {
     testGraph.add(mappingDefinedAsSubset,
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
-    testGraph.add(mappingDefinedAsSubset, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+    testGraph.add(mappingDefinedAsSubset, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         notExtendedMappingExpression);
 
     Assertions.assertThrows(MappingParserExtension.SubsetHasTemplateException.class,
@@ -207,7 +201,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
     testGraph.add(parentSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(childSignatureScope));
     testGraph.add(parentMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         parentSubjectMap);
@@ -227,12 +221,12 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
     testGraph.add(childSubjectMap,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(childMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         childSubjectMap);
 
-    testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+    testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         parentMappingExpression);
 
     Assertions.assertThrows(MappingParserExtension.SignatureScopeMismatchException.class,
@@ -260,7 +254,7 @@ public class MappingParserExtensionTest {
     testGraph.add(parentSubjectMap,
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
-    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral("ParentComponent1"));
     testGraph.add(parentMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         parentSubjectMap);
@@ -279,14 +273,14 @@ public class MappingParserExtensionTest {
     testGraph.add(childSubjectMap,
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
-    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral("ChildComponent1"));
-    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral("ChildComponent2"));
     testGraph.add(childMappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         childSubjectMap);
 
-    testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+    testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         parentMappingExpression);
 
     Assertions.assertThrows(MappingParserExtension.SignatureComponentMismatchException.class,
@@ -347,7 +341,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
         originalTemplateLiteral);
 
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral("signComponent"));
     testGraph.add(mappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -387,9 +381,9 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent));
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(signatureScope));
     testGraph.add(mappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -431,9 +425,9 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(parentSignComponent));
-    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(parentMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -454,13 +448,13 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(childSignComponent));
     testGraph.add(childMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         childSubjectMap);
     testGraph.add(childMappingExpression,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         parentMappingExpression);
 
     mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
@@ -499,9 +493,9 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(parentSignComponent));
-    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+    testGraph.add(parentSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(parentMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -522,15 +516,15 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(childSignComponent));
-    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+    testGraph.add(childSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(parentSignatureScope));
     testGraph.add(childMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         childSubjectMap);
     testGraph.add(childMappingExpression,
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         parentMappingExpression);
 
     mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
@@ -567,9 +561,9 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(signatureScope));
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent));
     testGraph.add(mappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -612,15 +606,15 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_NAMESPACE),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE),
         rdf.createLiteral(signatureScope));
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent1));
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent2));
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent3));
-    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(signComponent4));
     testGraph.add(mappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
@@ -658,7 +652,7 @@ public class MappingParserExtensionTest {
         superSetMappingExpressionNodeName);
     testGraph.add(superSetMappingExpression,
         rdf.createIRI(nsTypeIri),
-        rdf.createIRI(MMecVocabulary.SIGNATURE_SUPERSET));
+        rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET));
 
     RDF4JBlankNode firstMappingExpression = rdf.createBlankNode(
         "firstMappingExpression");
@@ -674,15 +668,15 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(firstSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(firstSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(firstSignComponent1));
-    testGraph.add(firstSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(firstSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(firstSignComponent2));
     testGraph.add(firstMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         firstSubjectMap);
 
-    testGraph.add(firstMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+    testGraph.add(firstMappingExpression, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         superSetMappingExpression);
 
     RDF4JBlankNode secondMappingExpression = rdf.createBlankNode(
@@ -699,15 +693,15 @@ public class MappingParserExtensionTest {
         rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
 
-    testGraph.add(secondSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(secondSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(secondSignComponent1));
-    testGraph.add(secondSubjectMap, rdf.createIRI(MMecVocabulary.SIGNATURE_COMPONENT),
+    testGraph.add(secondSubjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
         rdf.createLiteral(secondSignComponent2));
     testGraph.add(secondMappingExpression,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         secondSubjectMap);
 
-    testGraph.add(secondMappingExpression, rdf.createIRI(MMecVocabulary.SIGNATURE_SUBSETS),
+    testGraph.add(secondMappingExpression, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         superSetMappingExpression);
 
     mappingParser.generateTemplate_pub(testGraph, mappingTemplatePrefix,
