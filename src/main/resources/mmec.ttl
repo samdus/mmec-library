@@ -1,0 +1,358 @@
+@prefix : <http://www.griis.ca/ns/mmec#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix r2rml: <http://www.w3.org/ns/r2rml#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://www.griis.ca/ns/mmec#> .
+
+<http://www.griis.ca/ns/mmec#> rdf:type owl:Ontology ;
+                                owl:imports r2rml: ;
+                                dcterms:creator <https://orcid.org/0000-0002-7475-7933> ;
+                                dcterms:description "Mapping Model - Vocabulary"@en ,
+                                                    "Modèle de Mise en correspondance - Vocabulaire"@fr ;
+                                dcterms:modified "2024-03-25"^^xsd:date ;
+                                dcterms:title "MMec vocabulary"@en ,
+                                              "Vocabulaire pour MMec"@fr ;
+                                vann:preferredNamespacePrefix "mmec" ;
+                                vann:preferredNamespaceUri "http://www.griis.ca/ns/mmec#" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.griis.ca/ns/mmec#conversionFunction
+:conversionFunction rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:domain :Conversion ;
+                    rdfs:range :SQLFunction ;
+                    rdfs:comment "a relation between an instance of conversion and the SQL function used for the conversion."@en-ca ,
+                                 "une relation entre une instance de conversion la fonction SQL servant à la conversion."@fr-ca ;
+                    rdfs:label "A pour fonction de conversion"@fr-ca ,
+                               "Has conversion function"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#conversionInputType
+:conversionInputType rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain :Conversion ;
+                     rdfs:range :SQLType ;
+                     rdfs:comment "a relation between a conversion instance and the input SQL type"@en-ca ,
+                                  "une relation entre une instance de conversion et le type de départ de la conversion."@fr-ca ;
+                     rdfs:label "A pour type d'intrant"@fr-ca ,
+                                "Has input type"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#conversionOutputType
+:conversionOutputType rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain :Conversion ;
+                      rdfs:range :SQLType ;
+                      rdfs:comment "a relation between a conversion instance and the output SQL type"@en-ca ,
+                                   "une relation entre une instance de conversion et le type de sortie de la conversion."@fr-ca ;
+                      rdfs:label "A pour type de sortie"@fr-ca ,
+                                 "Has output type"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#ontorel
+:ontorel rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:domain :MappingHeader ;
+         rdfs:range :OntoRel ;
+         rdfs:comment "a relation between a mapping header instance and the mapping OntoRel."@en-ca ,
+                      "une relation entre une instance d'entête d'arrimage et l'OntoRel de l'arrimage."@fr-ca ;
+         rdfs:label "A pour OntoRel"@fr-ca ,
+                    "Has OntoRel"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#source
+:source rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdfs:domain :MappingHeader ;
+        rdfs:range :DataSource ;
+        rdfs:comment "a relation between a mapping header instance and the mapped data source."@en-ca ,
+                     "une relation entre une instance d'entête d'arrimage et la source de données de l'arrimage."@fr-ca ;
+        rdfs:label "A pour source de données"@fr-ca ,
+                   "Has DataSource"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#subsets
+:subsets rdf:type owl:ObjectProperty ,
+                  owl:TransitiveProperty ,
+                  owl:ReflexiveProperty ;
+         rdfs:domain :Signature ;
+         rdfs:range :Signature ;
+         rdfs:comment """a relation between a child signature expression and a parent signature expression. The set of individuals represented by the child expression is a subset of the individuals represented by the parent expression.
+
+This relation ensures that, for a mapping expression that includes a parent signature, it is not necessary to include child signatures. All signatures linked by a subset relationship have the same namespace and the same number of components."""@en-ca ,
+                      """une relation entre une expression de signature enfant et une expression de signature parent. L'ensemble des particuliers représentés par l'expression enfant est un sous-ensemble des particuliers représentés par l'expression parent.
+
+Cette relation fait en sorte que, pour une expression d'arrimage incluant une signature parent, il ne soit pas nécessaire d'inclure les signatures enfants. Toutes signatures liées par une relation de sous-ensemble ont le même espace de nom et le même nombre de composants."""@fr-ca ;
+         rdfs:label "Est un sous-ensemble de"@fr-ca ,
+                    "Subsets"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#verificationFunction
+:verificationFunction rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain :Conversion ;
+                      rdfs:range :SQLFunction ;
+                      rdfs:comment "a relation between a conversion instance and the SQL function used to check whether the input is convertible to the output type."@en-ca ,
+                                   "une relation entre une instance de conversion la fonction SQL servant à verification si l'entrée est bien convertible vers le type de sortie."@fr-ca ;
+                      rdfs:label "A pour fonction de vérification"@fr-ca ,
+                                 "Has verification function"@en-ca .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.griis.ca/ns/mmec#qualifiedIdentifier
+:qualifiedIdentifier rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:domain :SQLObject ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "a relation between an SQL object instance and a xsd:string that represents its qualified identifier."@en-ca ,
+                                  "une relation entre une instance d'objet SQL et un xsd:string représentant son identifiant qualifié."@fr-ca ;
+                     rdfs:label "A pour identifiant qualifié"@fr-ca ,
+                                "Has qualified identifier"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#signatureComponent
+:signatureComponent rdf:type owl:DatatypeProperty ;
+                    rdfs:domain r2rml:SubjectMap ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "a relation between a SubjectMap and a xsd:string that represents a component of the signature."@en-ca ,
+                                 "une relation entre un SubjectMap et un xsd:string représentant un composant de signature."@fr-ca ;
+                    rdfs:label "A comme composant"@fr-ca ,
+                               "Has component"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#signatureNamespace
+:signatureNamespace rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain r2rml:SubjectMap ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment """a relation between a SubjectMap and a xsd:string that represents the namespace of the signature.
+
+Individuation functions are defined in such a way that two individual identifiers cannot be equal if they have not been generated using the same signature namespace."""@en-ca ,
+                                 """une relation entre un SubjectMap et un xsd:string représentant l'espace de nom de la signature.
+
+Les fonctions d'individuation sont définies de telle sorte que deux identifiants de particulier ne peuvent être égaux s'ils n'ont pas été engendrés à l'aide du même espace de nom de signature."""@fr-ca ;
+                    rdfs:label "A comme espace de nom de signature"@fr-ca ,
+                               "Has signature namespace"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#templatePrefix
+:templatePrefix rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :MappingHeader ;
+                rdfs:range xsd:string ;
+                rdfs:comment "a relation between a mapping header instance and a xsd:string that represents the prefix of the templates that will be generated by mMec."@en-ca ,
+                             "une relation entre une instance d'entête d'arrimage et un xsd:string représentant le préfixe des templates qui seront générés par mMec."@fr-ca ;
+                rdfs:label "A comme préfixe de template"@fr-ca ,
+                           "Has template prefix"@en-ca .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.griis.ca/ns/mmec#Conversion
+:Conversion rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :conversionInputType ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :SQLType
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :conversionOutputType ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :SQLType
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :conversionFunction ;
+                              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :SQLFunction
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :verificationFunction ;
+                              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :SQLFunction
+                            ] ;
+            rdfs:comment """Definition of a conversion between two SQL types. When mMec generates a mapping expression for a data axiom, it ensures that the type of the column selected to generate the value corresponds to the type almost used by the OntoRel for this axiom. If the type is different, mMec will use the conversion specified for the column type (conversionInputType) and the OntoRel type (conversionOutputType).
+
+If a conversion function (conversionFunction) is specified, it will be used to perform the conversion. Otherwise, it will be a simple type coercion.
+
+If a verification function (verificationFunction) is specified, it will be added as a restriction to the mapping expression. Otherwise, it is assumed that conversion is always possible and, therefore, no restriction is necessary."""@en-ca ,
+                         """Définition d'une conversion entre deux types SQL. Lorsque mMec engendre une expression d'arrimage pour un axiome de données, il s'assure que le type de la colonne sélectionnée pour engendrer la valeur correspond au type presque par l'OntoRel pour cet axiome. Si le type est différent, mMec utilisera la conversion spécifiée pour le type de la colonne (conversionInputType) et le type de l'OntoRel (conversionOutputType).
+
+Si une fonction de conversion (conversionFunction) est spécifiée, celle-ci sera utilisée pour effectuer la conversion. Sinon, il s'agira d'une simple coercition de type.
+
+Si une fonction de vérification (verificationFunction) est spécifiée, celle-ci sera ajoutée comme restriction à l'expression d'arrimage. Sinon, on présume que la conversion est toujours possible et, donc, qu'aucune restriction n'est nécessaire."""@fr-ca ;
+            rdfs:label "Conversion"@en-ca ,
+                       "Conversion"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#DataSource
+:DataSource rdf:type owl:Class ;
+            rdfs:comment "Data source on which the mapping is based."@en-ca ,
+                         "Source de données à la base de l'arrimage."@fr-ca ;
+            rdfs:label "DataSource"@en-ca ,
+                       "Source de données"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#MMecSignature
+:MMecSignature rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( r2rml:TriplesMap
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty r2rml:subjectMap ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass [ owl:intersectionOf ( r2rml:SubjectMap
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty :signatureComponent ;
+                                                                                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                 owl:onDataRange xsd:string
+                                                                                               ]
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty :signatureNamespace ;
+                                                                                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                 owl:onDataRange xsd:string
+                                                                                               ]
+                                                                                             ) ;
+                                                                          rdf:type owl:Class
+                                                                        ]
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Signature ;
+               rdfs:comment """Signature définie à l'aide de l'extension mMec.
+
+Une signature définie à l'aide de l'extension mMec se verra assigné un rr:template à partir de l'espace de nom et des composants de signatures qui sont définis dans le rr:subjectMap associé à celle-ci."""@fr-ca ,
+                            """Signature using the mMec extension.
+
+A signature defined using the mMec extension will have an rr:template defined from the namespace and signature components defined in the associated rr:subjectMap."""@en-ca ;
+               rdfs:label "MMec Signature"@en-ca ,
+                          "Signature mMec"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#MappingHeader
+:MappingHeader rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :ontorel ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :OntoRel
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :source ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :DataSource
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :templatePrefix ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] ;
+               rdfs:comment "En-tête d'une définition d'arrimage spécifiant des informations à propos de la conception de l'arrimage."@fr-ca ,
+                            "Header of a mapping definition specifying informations about the mapping conception."@en-ca ;
+               rdfs:label "En-tête d'arrimage"@fr-ca ,
+                          "Mapping header"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#OntoRel
+:OntoRel rdf:type owl:Class ;
+         rdfs:comment "OntoRel de l'arrimage utilisé comme modèle commun de destination."@fr-ca ,
+                      "OntoRel of the mapping that is used as the destination common model."@en-ca ;
+         rdfs:label "OntoRel"@en-ca ,
+                    "OntoRel"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#SQLFunction
+:SQLFunction rdf:type owl:Class ;
+             rdfs:subClassOf :SQLObject ;
+             rdfs:comment "Fonction SQL qui sera accessible par l'artefact d'arrimage lors de l'extraction de données."@fr-ca ,
+                          "SQL function to be accessed by the mapping artifact during data extraction."@en-ca ;
+             rdfs:label "Fonction SQL"@fr-ca ,
+                        "SQL Function"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#SQLObject
+:SQLObject rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:unionOf ( :SQLFunction
+                                               :SQLType
+                                             )
+                               ] ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :qualifiedIdentifier ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:string
+                           ] ;
+           rdfs:comment "Objet SQL qui sera utilisé par l'artefact d'arrimage lors de l'extraction de données."@fr-ca ,
+                        "SQL object to be used by the mapping artifact during data extraction."@en-ca ;
+           rdfs:label "Objet SQL"@fr-ca ,
+                      "SQL Object"@en-ca .
+
+
+###  http://www.griis.ca/ns/mmec#SQLType
+:SQLType rdf:type owl:Class ;
+         rdfs:subClassOf :SQLObject ;
+         rdfs:comment "SQL type to be used by the mapping artifact during data extraction."@en-ca ,
+                      "Type SQL qui sera utilisé par l'artefact d'arrimage lors de l'extraction de données."@fr-ca ;
+         rdfs:label "SQL Type"@en-ca ,
+                    "Type SQL"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#Signature
+:Signature rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:unionOf ( :SignatureSuperset
+                                               r2rml:TriplesMap
+                                             )
+                               ] ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :subsets ;
+                             owl:someValuesFrom :Signature
+                           ] ;
+           rdfs:comment "Expression permettant de faire l'individuation d'un ensemble de particuliers représentés dans la source de données."@fr-ca ,
+                        "Expression used to individuate a set of individuals represented in the data source."@en-ca ;
+           rdfs:label "Signature"@en-ca ,
+                      "Signature"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#SignatureSuperset
+:SignatureSuperset rdf:type owl:Class ;
+                   rdfs:subClassOf :Signature ;
+                   rdfs:comment "Signature defined only by its subsets. It doesn't generate any particulars for a specific class, and has no rr:SubjectMap."@en-ca ,
+                                "Signature définie uniquement selon ses sous-ensembles. Elle n'engendre pas de particulier pour une classe en particulier et ne possède pas de rr:SubjectMap."@fr-ca ;
+                   rdfs:label "Signature superset"@en-ca ,
+                              "Sur-ensemble de signature"@fr-ca .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
