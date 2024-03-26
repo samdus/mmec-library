@@ -14,7 +14,7 @@
     a                   mmec:MappingHeader ;
     mmec:ontorel        <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437> ;
     mmec:source         <https://griis.ca/JeDIS> ;
-    mmec:templatePrefix 'http://www.griis.ca/projects/' .
+    mmec:templatePrefix 'http://www.griis.ca/projects' .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Conversions
@@ -31,20 +31,14 @@
     a                        mmec:SQLType ;
     mmec:qualifiedIdentifier "\"BW\".\"string\"" .
 
-<convertTextToBWString>
-    a                        mmec:SQLFunction ;
-    mmec:qualifiedIdentifier "convertTextToBWString" .
-
-<v_convertTextToBWString>
-    a                        mmec:SQLFunction ;
-    mmec:qualifiedIdentifier "v_convertTextToBWString" .
-
 <Conversion:TEXT:string>
     a                         mmec:Conversion ;
     mmec:conversionInputType  <sqlText> ;
     mmec:conversionOutputType <bwString> ;
-    mmec:conversionFunction   <convertTextToBWString> ;
-    mmec:verificationFunction <v_convertTextToBWString> .
+    mmec:conversionFunction   [ a                        mmec:SQLFunction ;
+                                mmec:qualifiedIdentifier "convertTextToBWString" ] ;
+    mmec:verificationFunction [ a                        mmec:SQLFunction ;
+                                mmec:qualifiedIdentifier "v_convertTextToBWString" ] .
 
 <Conversion:VARCHAR:string>
     a                         mmec:Conversion ;
@@ -67,7 +61,6 @@
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:HBW_0000022 ;
                       mmec:signatureComponent "\"PRENOM\"", "\"NOM\"" ;
-#                            rr:template "http://purl.obolibrary.org/obo/HBW_0000022/{\"PRENOM\"}/{\"NOM\"}" ;
                       rr:termType             rr:IRI ] .
 
 # "IAO_0020015"@personal name
@@ -75,20 +68,20 @@
     a               rr:TriplesMap ;
     rr:logicalTable [ a           rr:R2RMLView ;
                       rr:sqlQuery "SELECT \"PRENOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
-    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
-                      rr:class    obo:IAO_0020015 ;
-                      rr:template "http://purl.obolibrary.org/obo/IAO_0020015/{\"PRENOM\"}" ;
-                      rr:termType rr:IRI ] .
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:IAO_0020015 ;
+                      mmec:signatureComponent "\"PRENOM\"" ;
+                      rr:termType             rr:IRI ] .
 
 # "IAO_0020017"@family name
 <Mapping:IAO_0020017>
     a               rr:TriplesMap ;
     rr:logicalTable [ a           rr:R2RMLView ;
                       rr:sqlQuery "SELECT \"NOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
-    rr:subjectMap   [ a           rr:SubjectMap, rr:TermMap ;
-                      rr:class    obo:IAO_0020017 ;
-                      rr:template "http://purl.obolibrary.org/obo/IAO_0020017/{\"NOM\"}" ;
-                      rr:termType rr:IRI ] .
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:IAO_0020017 ;
+                      mmec:signatureComponent "\"NOM\"" ;
+                      rr:termType             rr:IRI ] .
 
 # -- Propriétés d'objet
 # "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020015"@personal name
