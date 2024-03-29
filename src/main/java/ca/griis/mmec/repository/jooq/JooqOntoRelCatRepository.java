@@ -1,6 +1,6 @@
 package ca.griis.mmec.repository.jooq;
 
-import ca.griis.gen.ontorelcat_ldm.ontorelcat_api_client.Routines;
+import ca.griis.gen.ontorelcat_ldm.ontorelcat_api_relrel.Routines;
 import ca.griis.mmec.repository.OntoRelCatRepository;
 import it.unibz.inf.ontop.injection.CoreSingletons;
 import it.unibz.inf.ontop.injection.OntopSQLCredentialSettings;
