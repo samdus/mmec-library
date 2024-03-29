@@ -3,6 +3,8 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix mmec: <http://www.griis.ca/ns/mmec#> .
 @prefix obo:  <http://purl.obolibrary.org/obo/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437>
     a mmec:OntoRel .
@@ -54,12 +56,14 @@
 # -- Classes
 
 # "HBW_0000022"@human name
+
 <Mapping:HBW_0000022>
     a               rr:TriplesMap ;
     rr:logicalTable [ a           rr:R2RMLView ;
                       rr:sqlQuery "SELECT \"PRENOM\", \"NOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:HBW_0000022 ;
+#                      rr:template "http://purl.obolibrary.org/obo/Mapping:HBW_0000022/{\"PRENOM\"}/{\"NOM\"}" ;
                       mmec:signatureComponent "\"PRENOM\"", "\"NOM\"" ;
                       rr:termType             rr:IRI ] .
 
@@ -74,14 +78,27 @@
                       rr:termType             rr:IRI ] .
 
 # "IAO_0020017"@family name
+# -- Exemple de commentaire de conception
+<Mapping:IAO_0020017_subject>
+    a                       rr:SubjectMap, rr:TermMap ;
+    rr:class                obo:IAO_0020017 ;
+    mmec:signatureComponent "\"NOM\"" ;
+    rr:termType             rr:IRI .
+
 <Mapping:IAO_0020017>
     a               rr:TriplesMap ;
     rr:logicalTable [ a           rr:R2RMLView ;
                       rr:sqlQuery "SELECT \"NOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
-    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
-                      rr:class                obo:IAO_0020017 ;
-                      mmec:signatureComponent "\"NOM\"" ;
-                      rr:termType             rr:IRI ] .
+    rr:subjectMap   <Mapping:IAO_0020017_subject> .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <Mapping:IAO_0020017_subject> ;
+   owl:annotatedProperty mmec:signatureComponent ;
+   owl:annotatedTarget "\"PRENOM\"" ;
+   <http://purl.org/dc/elements/1.1/description> [
+        rdfs:comment "Choix de conception x,y,z" ;
+        rdfs:isDefinedBy "http://www.example.ca/mapping/definition"]
+ ] .
 
 # -- Propriétés d'objet
 # "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020015"@personal name
