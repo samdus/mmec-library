@@ -11,9 +11,8 @@
  * @brief @~english MMecTriplesMap object implementation.
  */
 
-package ca.griis.mmec.model;
+package ca.griis.mmec.controller.ontop.spec.mapping.pp;
 
-import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPpMappingAssertionProvenance;
 import it.unibz.inf.ontop.spec.mapping.TargetAtom;
 import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;

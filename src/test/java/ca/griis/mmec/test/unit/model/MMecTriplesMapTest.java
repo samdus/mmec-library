@@ -12,7 +12,7 @@
  */
 package ca.griis.mmec.test.unit.model;
 
-import ca.griis.mmec.model.MMecTriplesMap;
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

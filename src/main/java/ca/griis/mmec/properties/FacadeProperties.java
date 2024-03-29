@@ -13,7 +13,9 @@
 
 package ca.griis.mmec.properties;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -48,44 +50,22 @@ import java.io.InputStream;
  *      S.O.
  */
 public abstract class FacadeProperties {
-  public abstract String getFacadeStgPath();
-
-  public abstract String getSignatureStgPath();
+  protected abstract URL getFacadeStgUrl();
 
   /**
    * @brief @~english «Description of the method»
    * @return «Return description»
    *
-   * @brief @~french Récupérer le chemin vers le fichier de gabarit des signatures.
-   * @return Chemin vers le fichier de gabarit des signatures.
+   * @brief @~french Ouvrir le stream du gabarit de la façade.
+   * @return Le stream du gabarit de la façade.
    *
    * @note S.O.
    *
    * @par Tâches
    *      S.O.
    */
-  public InputStream getSignatureStgStream() {
-    return getInputStream(getSignatureStgPath());
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @return «Return description»
-   *
-   * @brief @~french Récupérer le chemin vers le fichier de gabarit de la façade.
-   * @return Chemin vers le fichier de gabarit de la façade.
-   *
-   * @note S.O.
-   *
-   * @par Tâches
-   *      S.O.
-   */
-  public InputStream getFacadeStgStream() {
-    return getInputStream(getFacadeStgPath());
-  }
-
-  private InputStream getInputStream(String streamPath) {
-    return FacadeProperties.class.getClassLoader().getResourceAsStream(streamPath);
+  public InputStream getFacadeStgStream() throws IOException {
+    return getFacadeStgUrl().openStream();
   }
 
 }

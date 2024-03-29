@@ -19,7 +19,7 @@ import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
-import ca.griis.mmec.model.MMecTriplesMap;
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;

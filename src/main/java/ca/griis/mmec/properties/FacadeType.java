@@ -16,6 +16,7 @@ package ca.griis.mmec.properties;
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
+import java.net.URL;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -42,19 +43,19 @@ import ca.griis.logger.statuscode.Trace;
  *      2023-11-17 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      S.O.
+ *      TODO 2024-03-29 [SD] - Découpler le type de sgbd et le type de façade.
  */
 public enum FacadeType {
   /**
    * Façade d'arrimage à partir de vues.
    */
-  VIEWS("sql_template/postgres/facade_views.stg");
+  VIEWS("/templates/postgres/views.stg");
 
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(FacadeType.class);
-  private String stgPath;
+  private URL stgUrl;
 
-  FacadeType(String stgPath) {
-    this.stgPath = stgPath;
+  FacadeType(String stgUrl) {
+    this.stgUrl = FacadeType.class.getResource(stgUrl);
   }
 
   /**
@@ -69,8 +70,8 @@ public enum FacadeType {
    * @par Tâches
    *      S.O.
    */
-  public String getStgPath() {
+  public URL getStgUrl() {
     logger.trace(Trace.ENTER_METHOD_0);
-    return stgPath;
+    return stgUrl;
   }
 }

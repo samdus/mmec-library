@@ -14,8 +14,8 @@ import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.FacadeType;
-import ca.griis.mmec.properties.SignatureType;
 import ca.griis.mmec.properties.impl.FacadePropertiesImpl;
+import java.net.URL;
 
 
 /**
@@ -49,8 +49,7 @@ public class FacadePropertiesBuilder {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(FacadePropertiesBuilder.class);
 
-  private String facadeStgPath;
-  private String signatureStgPath;
+  private URL facadeStgUrl;
 
   /**
    * @brief @~english «Description of the method»
@@ -66,9 +65,9 @@ public class FacadePropertiesBuilder {
    * @par Tâches
    *      S.O.
    */
-  public FacadePropertiesBuilder withFacadeStgPath(String facadeStgPath) {
+  public FacadePropertiesBuilder withFacadeStgPath(URL facadeStgPath) {
     logger.trace(Trace.ENTER_METHOD_1, facadeStgPath);
-    this.facadeStgPath = facadeStgPath;
+    this.facadeStgUrl = facadeStgPath;
     logger.trace(Trace.EXIT_METHOD_0);
     return this;
   }
@@ -90,50 +89,7 @@ public class FacadePropertiesBuilder {
    */
   public FacadePropertiesBuilder withFacadeType(FacadeType facadeType) {
     logger.trace(Trace.ENTER_METHOD_1, facadeType);
-    this.facadeStgPath = facadeType.getStgPath();
-    logger.trace(Trace.EXIT_METHOD_0);
-    return this;
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param signatureStgPath «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Indique le chemin vers le fichier de template de la signature.
-   * @param signatureStgPath «Description du paramètre»
-   * @return «Description du retour»
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
-   * @par Tâches
-   *      S.O.
-   */
-  public FacadePropertiesBuilder withSignatureStgPath(String signatureStgPath) {
-    logger.trace(Trace.ENTER_METHOD_1, signatureStgPath);
-    this.signatureStgPath = signatureStgPath;
-    logger.trace(Trace.EXIT_METHOD_0);
-    return this;
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param signatureType «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Indique le chemin vers le fichier de template de la signature, basé sur un
-   *        type de signature prédéfinie.
-   * @param signatureType Type de signature prédéfinie.
-   * @return L'instance du constructeur de la configuration de la façade d'arrimage.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
-   * @par Tâches
-   *      S.O.
-   */
-  public FacadePropertiesBuilder withSignatureType(SignatureType signatureType) {
-    logger.trace(Trace.ENTER_METHOD_1, signatureType);
-    this.signatureStgPath = signatureType.getStgPath();
+    this.facadeStgUrl = facadeType.getStgUrl();
     logger.trace(Trace.EXIT_METHOD_0);
     return this;
   }
@@ -149,7 +105,6 @@ public class FacadePropertiesBuilder {
    */
   public FacadeProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
-
-    return new FacadePropertiesImpl(facadeStgPath, signatureStgPath);
+    return new FacadePropertiesImpl(facadeStgUrl);
   }
 }

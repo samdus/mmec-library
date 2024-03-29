@@ -49,7 +49,9 @@ import java.util.stream.Collectors;
  *      2024-01-30 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      S.O.
+ *    TODO 2024-03-29 [SD] - Retirer l'attribut functionCallTemplate et remplacer le nom de la
+ *                           fonction appelée par individuation_n où n correspond au nombre de
+ *                           propriétés identifiantes.
  */
 public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymbol implements
     RDFTermFunctionSymbol {

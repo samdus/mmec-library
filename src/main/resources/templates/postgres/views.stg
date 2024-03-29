@@ -1,0 +1,79 @@
+/**************************************************************
+Templates utilitaires
+***************************************************************/
+quoted(id) ::= <% "<id>"%>
+instruction_delimitor() ::= <% ";" %>
+tabulation() ::= <% "  " %>
+base_create_view(comment, schema, view_name, columns)::=
+<<
+-- <comment>
+create view <schema:quoted()>.<view_name:quoted()>(
+<tabulation()><columns:first():quoted()><columns:rest():{col |<\n><tabulation()>, <col:quoted()>}>
+)
+<tabulation()>with (security_barrier=true, check_option=cascaded)
+as
+>>
+
+/**************************************************************
+Classes:
+    -- Label pour le commentaire
+    -- Schéma du mapping (où on créé la vue / où on insère)
+    -- Identifiant de la table de classe (identifiant de la vue à créer / identifiant de la table dans laquelle insérer)
+    -- Nom de la colonne correspondant à l'identifiant
+    -- IRI de la classe est utilisé pour générer l'expression, mais n'est pas utilisée dans le template
+***************************************************************/
+class(comment, schema_id, ontorel_table_id, mmec_query_column_id, ontorel_column_id, query)::=
+<<
+<base_create_view(comment, schema_id, ontorel_table_id, [ontorel_column_id])>
+with mmec_query as (
+<tabulation()><query>
+)
+select <mmec_query_column_id:quoted()>
+from mmec_query
+<instruction_delimitor()>
+>>
+
+/**************************************************************
+Object Property:
+    -- Label pour le commentaire
+    -- Schéma du mapping (où on créé la vue / où on insère)
+    -- Identifiant de la table d'Object Property (identifiant de la vue à créer / identifiant de la table dans laquelle
+       insérer)
+    -- Nom de la colonne correspondant à l'identifiant du sujet de l'axiome
+    -- Nom de la colonne correspondant à l'identifiant de l'objet de l'axiome
+    -- IRI de sujet, objet et propriété sont à fournir à ontop pour générer l'expression, mais ne sont pas utilisées
+       dans le template
+***************************************************************/
+object_property(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_object,
+               ontorel_column_id_subject, ontorel_column_id_object, query)::=
+<<
+<base_create_view(comment, schema_id, ontorel_table_id, [ontorel_column_id_subject, ontorel_column_id_object])>
+with mmec_query as (
+<tabulation()><query>
+)
+select <mmec_query_column_id_subject:quoted()>, <mmec_query_column_id_object:quoted()>
+from mmec_query
+<instruction_delimitor()>
+>>
+
+/**************************************************************
+Data Property:
+    -- Schéma du mapping (où on créé la vue / où on insère)
+    -- Identifiant de la table de Data Property (identifiant de la vue à créer / identifiant de la table dans laquelle insérer)
+    -- Nom de la colonne correspondant à l'identifiant du sujet de l'axiome
+    -- Nom de la colonne correspondant à l'objet de l'axiome, ci. la valeur
+    -- IRI de sujet, objet et propriété fournir à ontop pour générer l'expression
+    -- Label pour le commentaire
+***************************************************************/
+data_property(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_object,
+             ontorel_column_column_id_subject, ontorel_column_column_id_object, query)::=
+<<
+<base_create_view(comment, schema_id, ontorel_table_id, [ontorel_column_column_id_subject,
+    ontorel_column_column_id_object])>
+with mmec_query as (
+<tabulation()><query>
+)
+select <mmec_query_column_id_subject:quoted()>, <mmec_query_column_id_object:quoted()>
+from mmec_query
+<instruction_delimitor()>
+>>

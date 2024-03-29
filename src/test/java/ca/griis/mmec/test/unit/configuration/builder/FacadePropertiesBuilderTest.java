@@ -14,11 +14,17 @@ package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.FacadeType;
-import ca.griis.mmec.properties.SignatureType;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -48,36 +54,32 @@ import org.junit.jupiter.api.Test;
  *      S.O.
  */
 public class FacadePropertiesBuilderTest {
+
   @Test
-  public void testCustomFacadeStg() {
-    String expectedFacadeStgPath = "TestFacadeStgPath";
-    String expectedSignatureStgPath = "TestSignatureStgPath";
+  public void testCustomFacadeStg(@TempDir File tempDir)
+      throws IOException, URISyntaxException {
+    URL stgFilePath = Path.of(tempDir.getAbsolutePath(), "TestFacade.stg").toUri().toURL();
+
+    createSampleFile(stgFilePath);
 
     FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
     FacadeProperties actualProperties = builder
-        .withFacadeStgPath(expectedFacadeStgPath)
-        .withSignatureStgPath(expectedSignatureStgPath)
+        .withFacadeStgPath(stgFilePath)
         .build();
 
     Assertions.assertNotNull(actualProperties);
-    Assertions.assertEquals(expectedFacadeStgPath, actualProperties.getFacadeStgPath());
-    Assertions.assertEquals(expectedSignatureStgPath, actualProperties.getSignatureStgPath());
+    Assertions.assertNotNull(actualProperties.getFacadeStgStream());
   }
 
   @Test
-  public void testSetPredefinedFacadeStg() {
-    String expectedFacadeStgPath = FacadeType.VIEWS.getStgPath();
-    String expectedSignatureStgPath = SignatureType.STRING.getStgPath();
-
+  public void testSetPredefinedFacadeStg() throws IOException {
     FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
     FacadeProperties actualProperties = builder
         .withFacadeType(FacadeType.VIEWS)
-        .withSignatureType(SignatureType.STRING)
         .build();
 
     Assertions.assertNotNull(actualProperties);
-    Assertions.assertEquals(expectedFacadeStgPath, actualProperties.getFacadeStgPath());
-    Assertions.assertEquals(expectedSignatureStgPath, actualProperties.getSignatureStgPath());
+    Assertions.assertNotNull(actualProperties.getFacadeStgStream());
   }
 
   @Test
@@ -85,16 +87,23 @@ public class FacadePropertiesBuilderTest {
     FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
     FacadeProperties actualProperties = builder
         .withFacadeType(FacadeType.VIEWS)
-        .withSignatureType(SignatureType.STRING)
         .build();
 
     Assertions.assertNotNull(actualProperties);
     Assertions.assertNotNull(actualProperties.getFacadeStgStream());
-    Assertions.assertNotNull(actualProperties.getSignatureStgStream());
 
     Assertions.assertTrue(actualProperties.getFacadeStgStream().readAllBytes().length > 0,
         "The facade stg stream is empty.");
-    Assertions.assertTrue(actualProperties.getSignatureStgStream().readAllBytes().length > 0,
-        "The signature stg stream is empty.");
+  }
+
+  private static void createSampleFile(URL stgFilePath) throws URISyntaxException {
+    try {
+      File sampleFile = Paths.get(stgFilePath.toURI()).toFile();
+      if (!sampleFile.createNewFile()) {
+        Assertions.fail("Failed to create the sample file.");
+      }
+    } catch (IOException e) {
+      Assertions.fail("Failed to create the sample file.");
+    }
   }
 }

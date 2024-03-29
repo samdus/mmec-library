@@ -13,7 +13,6 @@
 
 package ca.griis.mmec.controller.ontop.spec.mapping.pp;
 
-import ca.griis.mmec.model.MMecTriplesMap;
 import it.unibz.inf.ontop.spec.mapping.TargetAtom;
 import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
 

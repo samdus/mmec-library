@@ -11,7 +11,7 @@ package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension;
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
-import ca.griis.mmec.model.MMecTriplesMap;
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
 import eu.optique.r2rml.api.model.R2RMLVocabulary;

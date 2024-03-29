@@ -10,6 +10,7 @@
 package ca.griis.mmec.properties.impl;
 
 import ca.griis.mmec.properties.FacadeProperties;
+import java.net.URL;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -39,22 +40,15 @@ import ca.griis.mmec.properties.FacadeProperties;
  *      S.O.
  */
 public class FacadePropertiesImpl extends FacadeProperties {
+  private final URL facadeStgUrl;
 
-  private String facadeStgPath;
-  private String signatureStgPath;
-
-  public FacadePropertiesImpl(String facadeStgPath, String signatureStgPath) {
-    this.facadeStgPath = facadeStgPath;
-    this.signatureStgPath = signatureStgPath;
+  public FacadePropertiesImpl(URL facadeStgUrl) {
+    this.facadeStgUrl = facadeStgUrl;
   }
 
   @Override
-  public String getFacadeStgPath() {
-    return facadeStgPath;
+  public URL getFacadeStgUrl() {
+    return facadeStgUrl;
   }
 
-  @Override
-  public String getSignatureStgPath() {
-    return signatureStgPath;
-  }
 }
