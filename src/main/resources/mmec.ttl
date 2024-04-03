@@ -90,6 +90,17 @@ dcterms:title rdf:type owl:AnnotationProperty .
                     "Has OntoRel"@en-ca .
 
 
+###  http://www.griis.ca/ns/mmec#refSubjectMap
+:refSubjectMap rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :RefTriplesMap ;
+               rdfs:range :RefSubjectMap ;
+               rdfs:comment "a relation between a RefTriplesMap and a RefSubjectMap."@en-ca ,
+                            "une relation entre un RefTriplesMap et un RefSubjectMap."@fr-ca ;
+               rdfs:label "A comme RefSubjectMap"@fr-ca ,
+                          "Has RefSubjectMap"@en-ca .
+
+
 ###  http://www.griis.ca/ns/mmec#source
 :source rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf owl:topObjectProperty ;
@@ -291,6 +302,48 @@ A signature defined using the mMec extension will have an rr:template defined fr
                       "OntoRel of the mapping that is used as the destination common model."@en-ca ;
          rdfs:label "OntoRel"@en-ca ,
                     "OntoRel"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#RefSubjectMap
+:RefSubjectMap rdf:type owl:Class ;
+               rdfs:subClassOf r2rml:SubjectMap ;
+               rdfs:comment """Referencing SubjectMap est une SubjectMap qui associe une table logique à une TriplesMap existante. Elle est utilisée pour ajouter des predicateObjectMaps à une signature existante lorsque la logicalTable de la signature ne contient pas toutes les informations nécessaires pour le predicateObjectMap.
+
+Si le Referencing SubjectMap n'a pas de condition de jointure :
+    SELECT * FROM ({requête-enfant}) AS tmp
+    Contrainte : L'ensemble de colonnes de la requête enfant doit être un surensemble de l'ensemble de colonnes de la requête parent. Un renommage peut s'avérer nécessaire.
+
+Si le Referencing SubjectMap comporte au moins une condition de jointure :
+    SELECT * FROM ({requête-enfant}) AS enfant,
+                  ({requête-parent}) AS parent
+            WHERE child.{enfant-colonne1}=parent.{parent-colonne1}
+              AND child.{enfant-colonne2}=parent.{parent-colonne2}
+              AND ...
+    Contrainte : L'ensemble de colonnes de la requête enfant doit être disjoint de l'ensemble de colonnes de la requête parent. Un renommage peut s'avérer nécessaire."""@fr-ca ,
+                            """Referencing SubjectMap is a SubjectMap that associates a logical table with an existing TriplesMap. It is used to add predicateObjectMaps to an existing signature when the signature's logicalTable does not contain all the information required for the predicateObjectMap.
+
+If the Referencing SubjectMap has no join condition:
+    SELECT * FROM ({child-query}) AS tmp
+    Constraint: The child query's column set must be a superset of the parent query's column set. Renaming may be necessary.
+
+If the Referencing SubjectMap contains at least one join condition:
+    SELECT * FROM ({child-query}) AS child,
+                  ({parent-query}) AS parent
+            WHERE child.{child-column1}=parent.{parent-column1}
+              AND child.{child-column2}=parent.{parent-column2}
+              AND ...
+    Constraint: The child query column set must be disjoint from the parent query column set. Renaming may be necessary."""@en-ca ;
+               rdfs:label "RefSubjectMap"@en-ca ,
+                          "RefSubjectMap"@fr-ca .
+
+
+###  http://www.griis.ca/ns/mmec#RefTriplesMap
+:RefTriplesMap rdf:type owl:Class ;
+               rdfs:subClassOf r2rml:TriplesMap ;
+               rdfs:comment "Referencing TriplesMap est un TriplesMap qui fait référence à un RefSubjectMap."@fr-ca ,
+                            "Referencing TriplesMap is a TriplesMap that refers to a RefSubjectMap."@en-ca ;
+               rdfs:label "RefTriplesMap"@en-ca ,
+                          "RefTriplesMap"@fr-ca .
 
 
 ###  http://www.griis.ca/ns/mmec#SQLFunction
