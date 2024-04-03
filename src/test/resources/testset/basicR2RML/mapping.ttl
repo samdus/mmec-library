@@ -1,0 +1,159 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rr:   <http://www.w3.org/ns/r2rml#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix mmec: <http://www.griis.ca/ns/mmec#> .
+@prefix tst:  <http://www.griis.ca/projects/> .
+
+<https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1>
+    a mmec:OntoRel .
+
+<https://griis.ca/JeDIS>
+    a mmec:DataSource .
+
+<MappingHeader>
+    a            mmec:MappingHeader ;
+    mmec:ontorel <https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1> ;
+    mmec:source  <https://griis.ca/JeDIS> .
+
+# ****************************************************************************************
+# Classes mappings
+# ****************************************************************************************
+
+<Mapping:tst>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                        "basicR2RML"."TABLE1"
+                      """ ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    tst:tst ;
+                      rr:template "http://www.griis.ca/projects/tst/{m}" ;
+                      rr:termType rr:IRI ] .
+
+<Mapping:tst:secondsignature>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                        "basicR2RML"."TABLE3"
+                      """ ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    tst:tst ;
+                      rr:template "http://www.griis.ca/projects/tst/{m}" ;
+                      rr:termType rr:IRI ] .
+
+# Définition normale
+<Mapping:tst1SubjectMap>
+    a           rr:SubjectMap ;
+    rr:class    tst:tst1 ;
+    rr:template "http://www.griis.ca/projects/tst/{m}" ;
+    rr:termType rr:IRI .
+
+<Mapping:tst1>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                        "basicR2RML"."TABLE2"
+                      """ ] ;
+    rr:subjectMap   <Mapping:tst1SubjectMap> .
+
+# Définition avec tout prédéfinie
+#<Mapping:tst1>
+#    a               rr:TriplesMap ;
+#    rr:logicalTable [ rr:sqlQuery """
+#                        SELECT "TABLE2"."m", "TABLE2"."n", "TABLE2"."o", "JOIN_TABLE"."domain", "JOIN_TABLE"."range"
+#                        FROM ""basicR2RML".TABLE2"
+#                        LEFT JOIN "basicR2RML"."JOIN_TABLE" ON "JOIN_TABLE"."domain" = "TABLE2"."m"
+#                      """ ] ;
+#    rr:subjectMap   [ a           rr:SubjectMap ;
+#                      rr:class    tst:tst1 ;
+#                      rr:template "http://www.griis.ca/projects/tst/{m}" ;
+#                      rr:termType rr:IRI ] .
+
+<Mapping:tst2>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                        SELECT "m", "n", "o" FROM "basicR2RML"."TABLE2" where "o" < 5
+                      """ ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    tst:tst2 ;
+                      rr:template "http://www.griis.ca/projects/tst1C0004XUnionOf/{n}" ;
+                      rr:termType rr:IRI ] .
+
+<Mapping:tst3>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                        SELECT "m", "n", "o" FROM "basicR2RML"."TABLE2" where "o" >= 5
+                      """ ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    tst:tst3 ;
+                      rr:template "http://www.griis.ca/projects/tst1C0004XUnionOf/{n}" ;
+                      rr:termType rr:IRI ] .
+
+<Mapping:tst1C0004X>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                        SELECT "m", "n", "o" FROM "basicR2RML"."TABLE2"
+                      """ ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    tst:ONTORELA_C0004X ;
+                      rr:template "http://www.griis.ca/projects/tst1C0004X/{m}" ;
+                      rr:termType rr:IRI ] .
+
+# ****************************************************************************************
+# Object Properties mappings
+# ****************************************************************************************
+
+# tsts1 rel tst1C0004X
+<Mapping:tst1_op>
+    a                     rr:TriplesMap ;
+    rr:logicalTable       [ rr:sqlQuery """
+                                SELECT *
+                                FROM (SELECT * FROM "basicR2RML"."JOIN_TABLE") "child"
+                                JOIN (SELECT * FROM "basicR2RML"."TABLE2") "parent"
+                                  ON "child"."domain" = "parent"."m";
+                            """ ] ;
+    rr:subjectMap         <Mapping:tst1SubjectMap> ;
+    rr:predicateObjectMap [ rr:predicate tst:rel ;
+                            rr:objectMap [ a           rr:SubjectMap ;
+                                           rr:class    tst:ONTORELA_C0004X ;
+                                           rr:template "http://www.griis.ca/projects/tst1C0004X/{range}" ;
+                                           rr:termType rr:IRI ] ] .
+
+## Equivalent of mmec's refTriplesMap :
+#<Mapping:tst1_op>
+#    a                     mmec:RefTriplesMap ;
+#    rr:logicalTable       [ rr:tableName """
+#                                "basicR2RML"."JOIN_TABLE"
+#                            """ ] ;
+#    mmec:refSubjectMap    [ rr:parentTriplesMap <Mapping:tst1> ;
+#                            rr:joinCondition    [ rr:child  "domain" ;
+#                                                  rr:parent "m" ] ] ;
+#    rr:predicateObjectMap [ rr:predicate tst:rel ;
+#                            rr:objectMap [ rr:parentTriplesMap <Mapping:tst1C0004X> ;
+#                                           rr:joinCondition    [ rr:child  "range" ;
+#                                                                 rr:parent "m" ] ] ] .
+
+# tst1C0004X rel tst1C0004XUnionOf(tst2)
+<Mapping:tst1C0004X>
+    rr:predicateObjectMap [ rr:predicate tst:rel ;
+                            rr:objectMap [ rr:parentTriplesMap <Mapping:tst2> ;
+                                           rr:joinCondition    [ rr:child  "m" ;
+                                                                 rr:parent "m" ] ] ] .
+
+# tst1C0004X rel tst1C0004XUnionOf(tst3)
+<Mapping:tst1C0004X>
+    rr:predicateObjectMap [ rr:predicate tst:rel ;
+                            rr:objectMap [ rr:parentTriplesMap <Mapping:tst3> ;
+                                           rr:joinCondition    [ rr:child  "m" ;
+                                                                 rr:parent "m" ] ] ] .
+
+# ****************************************************************************************
+# Data Properties mappings
+# ****************************************************************************************
+
+# tst1 has_value xsd:String
+<Mapping:tst1>
+    rr:predicateObjectMap [ rr:predicate tst:has_value ;
+                            rr:objectMap [ a           rr:ObjectMap ;
+                                           rr:column   "o" ;
+                                           rr:datatype xsd:string ] ] .

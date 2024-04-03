@@ -79,6 +79,19 @@ public class PreliminaryTests {
   }
 
   @Test
+  public void testWithoutMMec() throws Exception {
+    R2rmlTester tester = new R2rmlTester(postgresContainerWrapper,
+        Paths.get("src", "test", "resources", "testset", "basicR2RML", "ontology.ttl").toFile(),
+        Paths.get("src", "test", "resources", "testset", "basicR2RML", "mapping.ttl").toFile());
+
+    tester.testGetClassDef("http://www.griis.ca/projects/tst1");
+
+    tester.testGetOPDef("http://www.griis.ca/projects/tst1",
+        "http://www.griis.ca/projects/rel",
+        "http://www.griis.ca/projects/ONTORELA_C0004X");
+  }
+
+  @Test
   public void loadContainter() throws Exception {
     System.out.printf("Simplement mettre un break point ici pour garder le container.%n"
         + "Info du container:%n%s", postgresContainerWrapper.getPropertiesForOntop().toString());

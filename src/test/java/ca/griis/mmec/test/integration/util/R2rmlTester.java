@@ -266,7 +266,17 @@ public class R2rmlTester extends OntopTester {
         "http://www.w3.org/2001/XMLSchema#string");
   }
 
-  private void testGetClassDef(OntopConnection connection, String classIri)
+  public void testGetClassDef(String classIri)
+      throws OntopConnectionException, OntopReformulationException, OBDASpecificationException {
+    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
+      ontopQueryEngine.connect();
+      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
+        testGetClassDef(connection, classIri);
+      }
+    }
+  }
+
+  protected void testGetClassDef(OntopConnection connection, String classIri)
       throws OntopConnectionException, OntopReformulationException {
     try (OntopStatement statement = connection.createStatement()) {
 
@@ -291,7 +301,18 @@ public class R2rmlTester extends OntopTester {
     }
   }
 
-  private void testGetOPDef(OntopConnection connection, String subUri, String opUri, String objUri)
+  public void testGetOPDef(String subUri, String opUri, String objUri)
+      throws OntopConnectionException, OntopReformulationException, OBDASpecificationException {
+    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
+      ontopQueryEngine.connect();
+      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
+        testGetOPDef(connection, subUri, opUri, objUri);
+      }
+    }
+  }
+
+  protected void testGetOPDef(OntopConnection connection, String subUri, String opUri,
+      String objUri)
       throws OntopConnectionException, OntopReformulationException {
     try (OntopStatement statement = connection.createStatement()) {
 
@@ -334,24 +355,17 @@ public class R2rmlTester extends OntopTester {
     }
   }
 
-  private static void printExecutableQuery(OntopStatement statement,
-      RDF4JSelectQuery rdf4JSelectQuery)
-      throws OntopReformulationException {
-    try {
-      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
-          ImmutableMultimap.of());
-      System.out.println(firstExecutableQuery.toString());
-    } catch (Exception e) {
-      if (e.getMessage().contains("IQ: EMPTY")) {
-        System.out.println("Empty mapping");
-      } else {
-        throw e;
+  public void testGetDPDef(String subUri, String dpUri, String dtUri)
+      throws OntopConnectionException, OntopReformulationException, OBDASpecificationException {
+    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
+      ontopQueryEngine.connect();
+      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
+        testGetDPDef(connection, subUri, dpUri, dtUri);
       }
     }
   }
 
-
-  private void testGetDPDef(OntopConnection connection, String subUri, String dpUri, String dtUri)
+  protected void testGetDPDef(OntopConnection connection, String subUri, String dpUri, String dtUri)
       throws OntopConnectionException, OntopReformulationException, OBDASpecificationException {
     try (OntopStatement statement = connection.createStatement()) {
 
@@ -388,6 +402,22 @@ public class R2rmlTester extends OntopTester {
           new ParsedTupleQuery(queryRoot), new MapBindingSet());
 
       printExecutableQuery(statement, rdf4JSelectQuery);
+    }
+  }
+
+  private static void printExecutableQuery(OntopStatement statement,
+      RDF4JSelectQuery rdf4JSelectQuery)
+      throws OntopReformulationException {
+    try {
+      IQ firstExecutableQuery = statement.getExecutableQuery(rdf4JSelectQuery,
+          ImmutableMultimap.of());
+      System.out.println(firstExecutableQuery.toString());
+    } catch (Exception e) {
+      if (e.getMessage().contains("IQ: EMPTY")) {
+        System.out.println("Empty mapping");
+      } else {
+        throw e;
+      }
     }
   }
 

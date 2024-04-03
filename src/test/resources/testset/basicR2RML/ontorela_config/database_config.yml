@@ -1,0 +1,14 @@
+# Default database configurations
+schemaName: simple
+rdbmsName:
+  - postgresql
+owlSqlTypeMapperFilePath: postgresql-owlsqltype_config.yml
+defaultKeyName: uid
+defaultKeyDomainName: uid_domain
+defaultKeyType: TEXT
+defaultAttributeName : value
+defaultAttributeDomaineName: value_domain
+defaultAttributeType: TEXT
+maxIdentifierLength: 60
+languages:
+  - en
