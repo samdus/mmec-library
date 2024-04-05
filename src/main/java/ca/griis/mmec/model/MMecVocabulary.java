@@ -49,11 +49,9 @@ public class MMecVocabulary {
   public static final String C_DATA_SOURCE = BASE + "DataSource";
   public static final String P_MAPPING_ONTOREL = BASE + "ontorel";
   public static final String P_MAPPING_SOURCE = BASE + "source";
-  public static final String P_MAPPING_TEMPLATE_PREFIX = BASE + "templatePrefix";
 
   // Signatures
   public static final String C_SIGNATURE_SUPERSET = BASE + "SignatureSuperset";
-  public static final String P_SIGNATURE_NAMESPACE = BASE + "signatureNamespace";
   public static final String P_SIGNATURE_COMPONENT = BASE + "signatureComponent";
   public static final String P_SIGNATURE_SUBSETS = BASE + "subsets";
 

@@ -79,9 +79,9 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      2023-09-05 [SD] - Implémentation initiale.
  *
  * @par Tâches
- * @todo 2024-03-25 [SD] - Découpler les traitements en créant une classe spécifique pour
- *       chaque traitement et utiliser une liste de prétraitement
- *       et de post-traitement.
+ * todo 2024-03-25 [SD] - Découpler les traitements en créant une classe spécifique pour
+ *                        chaque traitement et utiliser une liste de prétraitement
+ *                        et de post-traitement.
  */
 public class MappingParserExtension {
   private static final GriisLogger logger =
@@ -138,8 +138,6 @@ public class MappingParserExtension {
    * @return Le mapping mMEc.
    *
    * @par Tâches
-   *      TODO 2024-04-04 [SD] - Retirer templatePrefix
-   *      TODO 2024-04-04 [SD] - Retirer urlencode
    *      TODO 2024-04-04 [SD] - Vérifier que l'ordre des composants est garantie
    *      TODO 2024-04-04 [SD] - Faire en sorte que les classes définies pour toutes la hierarchie
    *                             des parents soient ajouté à l'enfant.
@@ -183,20 +181,14 @@ public class MappingParserExtension {
    *      ____Sinon
    *      ______Lancer un avertissement
    *      ______Retirer le triplet <xSubjectMap, rr:template, xTemplate>
-   *      __S'il existe un triplet <pSubjectMap, mmec:signatudeScope, pSignScope> dans le graphe :
-   *      ____signScope := pSignScope
-   *      __Sinon :
-   *      ____signScope := p.ntriplesString()
-   *      __S'il existe un triplet <xSubjectMap, mmec:signatudeScope, xSignScope> dans le graphe,
-   *      ______avec xSignScope <> signScope :
-   *      ____Lancer une exception
+   *      __signScope := IRI de p, s'il s'agit d'un IRI, ntriplesString sinon
+   *      __
    *      __Si le nombre de triplets <xSubjectMap, mmec:signComponent, ANY> est différent
    *      ______du nombre de triplets <pSubjectMap, mmec:signComponent, ANY>
    *      ____Lancer une exception
-   *      __Obtenir <mappingDef, mmec:templatePrefix, templatePrefix>
    *      __componentString := Former une chaîne de caractère à partir des triplets
    *      ______<pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
-   *      __Ajouter un triplet <xSubjectMap, rr:template, templatePrefix+signScope+componentString>
+   *      __Ajouter un triplet <xSubjectMap, rr:template, signScope+componentString>
    *      --
    *      Notes :
    *      - Si p correspond à un mmec:SignatureSuperSet, il est possible que le pSubjectMap
@@ -212,45 +204,39 @@ public class MappingParserExtension {
       ImmutableMap<String, String> prefixes) {
     logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);
 
-    String templatePrefix = getLiteral(mappingGraph, null,
-        rdf.createIRI(MMecVocabulary.P_MAPPING_TEMPLATE_PREFIX)).orElseThrow(
-            NoMappingTemplatePrefixException::new);
-
     for (Triple currentTriple : mappingGraph.stream(null, rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP)).toList()) {
-      generateTemplate(mappingGraph, templatePrefix, currentTriple.getSubject());
+      generateTemplate(mappingGraph, currentTriple.getSubject());
     }
     logger.trace(Trace.EXIT_METHOD_0);
   }
 
-  protected void generateTemplate(Graph mappingGraph, String templatePrefix,
+  protected void generateTemplate(Graph mappingGraph,
       BlankNodeOrIRI current) {
-    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, templatePrefix, current);
+    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, current);
 
-    final BlankNodeOrIRI parent = getParentRoot(mappingGraph, current);
+    final BlankNodeOrIRI parentRoot = getParentRoot(mappingGraph, current);
     final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow(
             () -> new SignatureWithoutSubjectMapException(current));
-    final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parent,
+    final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parentRoot,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
-    final Optional<String> currentSignScope = getLiteral(mappingGraph, currentSubjectMap,
-        rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE));
     final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
     final List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
         rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT));
 
-    final String signScope = parentSubjectMap
-        .flatMap(subjectMap -> getLiteral(mappingGraph, subjectMap,
-            rdf.createIRI(MMecVocabulary.P_SIGNATURE_NAMESPACE)))
-        .orElse(parent.ntriplesString());
+    final String signScope = Optional.of(parentRoot)
+        .filter(parent -> parent instanceof IRI)
+        .map(parent -> ((IRI) parent).getIRIString())
+        .orElse(parentRoot.ntriplesString());
     final List<String> parentComponents = parentSubjectMap
         .map(subjectMap -> getAllLiterals(mappingGraph, subjectMap,
             rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT)))
         .orElse(List.of());
 
     if (currentTemplate.isPresent()) {
-      if (current.equals(parent)
+      if (current.equals(parentRoot)
           && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
               .findAny().isEmpty()) {
         if (currentComponents.isEmpty()) {
@@ -266,28 +252,23 @@ public class MappingParserExtension {
       }
     }
 
-    if (currentSignScope.isPresent() && !currentSignScope.get().equals(signScope)) {
-      throw new SignatureScopeMismatchException(current);
-    }
-
     if (currentComponents.isEmpty()) {
       throw new SignatureComponentMissingException(current);
     }
 
-    if (mappingGraph.stream(parent, rdf.createIRI(nsTypeIri),
+    if (mappingGraph.stream(parentRoot, rdf.createIRI(nsTypeIri),
         rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET)).findAny().isEmpty()
         && currentComponents.size() != parentComponents.size()) {
-      throw new SignatureComponentMismatchException(current, parent);
+      throw new SignatureComponentMismatchException(current, parentRoot);
     }
 
     final String componentString = currentComponents.stream()
         .map(component -> "{" + component + "}")
         .collect(Collectors.joining("/"));
-    final String signScopeUrlEncoded = URLEncoder.encode(signScope, StandardCharsets.UTF_8);
 
     mappingGraph.add(currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-        rdf.createLiteral(templatePrefix + "/" + signScopeUrlEncoded + "/" + componentString));
+        rdf.createLiteral(signScope + "/" + componentString));
     logger.trace(Trace.EXIT_METHOD_0);
   }
 
@@ -528,13 +509,6 @@ public class MappingParserExtension {
   }
 
 
-  public static class SignatureScopeMismatchException extends IllegalMappingException {
-    public SignatureScopeMismatchException(BlankNodeOrIRI invalidNode) {
-      super(invalidNode, "it has a different signature scope than the one it depends on.");
-    }
-  }
-
-
   public static class SignatureComponentMismatchException extends IllegalMappingException {
     private final BlankNodeOrIRI parentNode;
 
@@ -563,13 +537,6 @@ public class MappingParserExtension {
     public SignatureWithoutSubjectMapException(
         BlankNodeOrIRI current) {
       super(current, "it has no subject map.");
-    }
-  }
-
-
-  private static class NoMappingTemplatePrefixException extends IllegalStateException {
-    public NoMappingTemplatePrefixException() {
-      super("The mapping header is invalid: The mapping header must define a template prefix.");
     }
   }
 
