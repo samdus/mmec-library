@@ -93,7 +93,7 @@ dcterms:title rdf:type owl:AnnotationProperty .
 ###  http://www.griis.ca/ns/mmec#refSubjectMap
 :refSubjectMap rdf:type owl:ObjectProperty ,
                         owl:FunctionalProperty ;
-               rdfs:domain :RefTriplesMap ;
+               rdfs:domain r2rml:TriplesMap ;
                rdfs:range :RefSubjectMap ;
                rdfs:comment "a relation between a RefTriplesMap and a RefSubjectMap."@en-ca ,
                             "une relation entre un RefTriplesMap et un RefSubjectMap."@fr-ca ;
@@ -250,11 +250,6 @@ Si une fonction de vérification (verificationFunction) est spécifiée, celle-c
                                                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                                  owl:onDataRange xsd:string
                                                                                                ]
-                                                                                               [ rdf:type owl:Restriction ;
-                                                                                                 owl:onProperty :signatureNamespace ;
-                                                                                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                 owl:onDataRange xsd:string
-                                                                                               ]
                                                                                              ) ;
                                                                           rdf:type owl:Class
                                                                         ]
@@ -284,11 +279,6 @@ A signature defined using the mMec extension will have an rr:template defined fr
                                  owl:onProperty :source ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass :DataSource
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :templatePrefix ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:string
                                ] ;
                rdfs:comment "En-tête d'une définition d'arrimage spécifiant des informations à propos de la conception de l'arrimage."@fr-ca ,
                             "Header of a mapping definition specifying informations about the mapping conception."@en-ca ;
@@ -335,15 +325,6 @@ If the Referencing SubjectMap contains at least one join condition:
     Constraint: The child query column set must be disjoint from the parent query column set. Renaming may be necessary."""@en-ca ;
                rdfs:label "RefSubjectMap"@en-ca ,
                           "RefSubjectMap"@fr-ca .
-
-
-###  http://www.griis.ca/ns/mmec#RefTriplesMap
-:RefTriplesMap rdf:type owl:Class ;
-               rdfs:subClassOf r2rml:TriplesMap ;
-               rdfs:comment "Referencing TriplesMap est un TriplesMap qui fait référence à un RefSubjectMap."@fr-ca ,
-                            "Referencing TriplesMap is a TriplesMap that refers to a RefSubjectMap."@en-ca ;
-               rdfs:label "RefTriplesMap"@en-ca ,
-                          "RefTriplesMap"@fr-ca .
 
 
 ###  http://www.griis.ca/ns/mmec#SQLFunction
