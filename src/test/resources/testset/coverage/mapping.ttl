@@ -1,10 +1,14 @@
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rr:   <http://www.w3.org/ns/r2rml#> .
-@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix mmec: <http://www.griis.ca/ns/mmec#> .
-@prefix obo:  <http://purl.obolibrary.org/obo/> .
-@prefix owl:  <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rr:     <http://www.w3.org/ns/r2rml#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix mmec:   <http://www.griis.ca/ns/mmec#> .
+@prefix obo:    <http://purl.obolibrary.org/obo/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix physio: <http://purl.obolibrary.org/obo/physio.owl#> .
+@prefix dc:     <http://purl.org/dc/elements/1.1/> .
+@prefix :       <http://www.griis.ca/projects> .
+@base <http://www.griis.ca/projects> .
 
 <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437>
     a mmec:OntoRel .
@@ -12,127 +16,368 @@
 <https://griis.ca/JeDIS>
     a mmec:DataSource .
 
-<MappingHeader>
-    a                   mmec:MappingHeader ;
-    mmec:ontorel        <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437> ;
-    mmec:source         <https://griis.ca/JeDIS> ;
-    mmec:templatePrefix 'http://www.griis.ca/projects' .
+:MappingHeader
+    a            mmec:MappingHeader ;
+    mmec:ontorel <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437> ;
+    mmec:source  <https://griis.ca/JeDIS> .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Conversions
 # ----------------------------------------------------------------------------------------------------------------------
-<sqlText>
+:sqlText
     a                        mmec:SQLType ;
     mmec:qualifiedIdentifier "text" .
 
-<sqlVarchar>
+:sqlVarchar
     a                        mmec:SQLType ;
     mmec:qualifiedIdentifier "varchar" .
 
-<bwString>
+:bwString
     a                        mmec:SQLType ;
-    mmec:qualifiedIdentifier "\"BW\".\"string\"" .
+    mmec:qualifiedIdentifier """ "BW"."string" """ .
 
-<Conversion:TEXT:string>
+:Conversion:TEXT:string
     a                         mmec:Conversion ;
-    mmec:conversionInputType  <sqlText> ;
-    mmec:conversionOutputType <bwString> ;
+    mmec:conversionInputType  :sqlText ;
+    mmec:conversionOutputType :bwString ;
     mmec:conversionFunction   [ a                        mmec:SQLFunction ;
                                 mmec:qualifiedIdentifier "convertTextToBWString" ] ;
     mmec:verificationFunction [ a                        mmec:SQLFunction ;
                                 mmec:qualifiedIdentifier "v_convertTextToBWString" ] .
 
-<Conversion:VARCHAR:string>
+:Conversion:VARCHAR:string
     a                         mmec:Conversion ;
-    mmec:conversionInputType  <sqlVarchar> ;
-    mmec:conversionOutputType <bwString> .
+    mmec:conversionInputType  :sqlVarchar ;
+    mmec:conversionOutputType :bwString .
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Arrimage des différents cas d'exemple
 # ----------------------------------------------------------------------------------------------------------------------
 
-# **** Arrimage simple ****
+# **** Cas de base ****
 
 # -- Classes
 
 # "HBW_0000022"@human name
 
-<Mapping:HBW_0000022>
+:HBW_0000022
     a               rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "SELECT \"PRENOM\", \"NOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
+    rr:logicalTable [ rr:tableName """
+                       "EXP"."PERSONNE"
+                      """ ] ;
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:HBW_0000022 ;
-#                      rr:template "http://purl.obolibrary.org/obo/Mapping:HBW_0000022/{\"PRENOM\"}/{\"NOM\"}" ;
-                      mmec:signatureComponent "\"PRENOM\"", "\"NOM\"" ;
+                      mmec:signatureComponent """ "PRENOM" """, """ "NOM" """ ;
                       rr:termType             rr:IRI ] .
 
 # "IAO_0020015"@personal name
-<Mapping:IAO_0020015>
+:IAO_0020015
     a               rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "SELECT \"PRENOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
+    rr:logicalTable [ rr:tableName """
+                       "EXP"."PERSONNE"
+                      """ ] ;
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:IAO_0020015 ;
-                      mmec:signatureComponent "\"PRENOM\"" ;
+                      mmec:signatureComponent """ "PRENOM" """ ;
                       rr:termType             rr:IRI ] .
 
 # "IAO_0020017"@family name
-# -- Exemple de commentaire de conception
-<Mapping:IAO_0020017_subject>
-    a                       rr:SubjectMap, rr:TermMap ;
-    rr:class                obo:IAO_0020017 ;
-    mmec:signatureComponent "\"NOM\"" ;
-    rr:termType             rr:IRI .
 
-<Mapping:IAO_0020017>
+:IAO_0020017
     a               rr:TriplesMap ;
-    rr:logicalTable [ a           rr:R2RMLView ;
-                      rr:sqlQuery "SELECT \"NOM\" FROM \"EXP\".\"PERSONNE\"" ] ;
-    rr:subjectMap   <Mapping:IAO_0020017_subject> .
-
-[ rdf:type owl:Axiom ;
-   owl:annotatedSource <Mapping:IAO_0020017_subject> ;
-   owl:annotatedProperty mmec:signatureComponent ;
-   owl:annotatedTarget "\"PRENOM\"" ;
-   <http://purl.org/dc/elements/1.1/description> [
-        rdfs:comment "Choix de conception x,y,z" ;
-        rdfs:isDefinedBy "http://www.example.ca/mapping/definition"]
- ] .
+    rr:logicalTable [ rr:tableName """
+                       "EXP"."PERSONNE"
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:IAO_0020017 ;
+                      mmec:signatureComponent """ "NOM" """ ;
+                      rr:termType             rr:IRI ] .
 
 # -- Propriétés d'objet
 # "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020015"@personal name
-<Mapping:HBW_0000022>
+:HBW_0000022
     rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
-                            rr:objectMap [ rr:parentTriplesMap <Mapping:IAO_0020015> ;
-                                           rr:joinCondition    [ rr:child  "\"PRENOM\"" ;
-                                                                 rr:parent "\"PRENOM\"" ] ] ] .
+                            rr:objectMap [ rr:parentTriplesMap :IAO_0020015 ] ] .
 
 # "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020017"@family name
-<Mapping:HBW_0000022>
+:HBW_0000022
     rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
-                            rr:objectMap [ rr:parentTriplesMap <Mapping:IAO_0020017> ;
-                                           rr:joinCondition    [ rr:child  "\"NOM\"" ;
-                                                                 rr:parent "\"NOM\"" ] ] ] .
+                            rr:objectMap [ rr:parentTriplesMap :IAO_0020017 ] ] .
 
 # -- Propriétés de données
 # "IAO_0020015"@personal name PHYSIO_0000100@'has value' "PRENOM"
-<Mapping:IAO_0020015>
+:IAO_0020015
     rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
-                            rr:objectMap [ rr:column   "\"PRENOM\"" ;
+                            rr:objectMap [ rr:column   """ "PRENOM" """ ;
                                            rr:datatype xsd:string ] ] .
 
 # "IAO_0020017"@family name 'has value' "NOM"
-<Mapping:IAO_0020017>
+:IAO_0020017
     rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
-                            rr:objectMap [ rr:column   "\"NOM\"" ;
+                            rr:objectMap [ rr:column   """ "NOM" """ ;
                                            rr:datatype xsd:string ] ] .
 
-# **** Héritage simple ****
+# **** Héritage de base ****
 # Aucune définition supplémentaire requise, puisque l'héritage simple est généré automatiquement.
+
+# **** Héritage par disjonction ****
+
+# **** Héritage avec chevauchement ****
+
+# NCBITaxon_9606@Homo sapiens
+:NCBITaxon_9606
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                        "EXP"."PERSONNE"
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:NCBITaxon_9606 ;
+                      mmec:signatureComponent """ "ID_PERSONNE_EXT" """ ;
+                      rr:termType             rr:IRI ] .
+
+# HBW_0000007@Patient
+:HBW_0000007
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a            rr:R2RMLView ;
+                      rr:tableName """ "EXP"."PATIENT" """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap ;
+                      rr:class                obo:HBW_0000007 ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ;
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets    :NCBITaxon_9606 .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :HBW_0000007 ;
+   owl:annotatedProperty  mmec:subsets ;
+   owl:annotatedTarget :NCBITaxon_9606 ;
+   dc:description [
+        rdfs:comment """ Tous les patients représentés dans la table PATIENT sont des humains.
+                         Par ailleurs, l'identifiant de patient correspond à un identifiant de personne. Donc, la
+                         signature :HBW_0000007 est un sous-ensemble de la signature :NCBITaxon_9606.
+                     """ ;
+   ]
+ ] .
+
+# HBW_0000008@health care provider
+:HBW_0000008
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a            rr:R2RMLView ;
+                      rr:tableName """ "EXP"."MEDECIN" """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap ;
+                      rr:class                obo:HBW_0000008 ;
+                      mmec:signatureComponent """ "ID_MEDECIN_EXT" """ ;
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets    :NCBITaxon_9606 .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :HBW_0000008 ;
+   owl:annotatedProperty  mmec:subsets ;
+   owl:annotatedTarget :NCBITaxon_9606 ;
+   dc:description [
+        rdfs:comment """L'identifiant de medecin correspond à un identifiant de personne. Donc, la signature
+                        :HBW_0000008 est un sous-ensemble de la signature :NCBITaxon_9606.
+                     """ ;
+   ]
+ ] .
 
 # **** Héritage multiple ****
 
+# **** Classe à signatures multiples ****
+
+# **** Individuation d'une conjonction ****
+# Classes
+
+# HBW_0000007@Patient
+# Lorsque la personne responsable de l'arrimage traite un nouvel axiome de l'OntoRel, il est possible qu'elle réalise
+# qu'une définition n'était pas complète. C'est probablement le cas ici, puisqu'il est probable que le cas des patients
+# non identifiés n'a pas été pris en compte dans la documentation de la source de données. Il est donc nécessaire de
+# compléter la définition de la classe HBW_0000007@Patient pour inclure les patients non identifiés.
+
+# HBW_0000007@Patient (not yet identified)
+<HBW_0000007_noidyet:subject>
+    a                       rr:SubjectMap, rr:TermMap ;
+    rr:class                obo:HBW_0000007 ;
+    rr:class                obo:NCBITaxon_9606 ;
+    mmec:signatureComponent """ "ID_PATIENT_UUID" """ ;
+    rr:termType             rr:IRI .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <HBW_0000007_noidyet:subject> ;
+   owl:annotatedProperty rr:class ;
+   owl:annotatedTarget obo:HBW_0000007 ;
+   dc:description [
+        rdfs:comment "Certains patients ne sont pas encore identifiés (DOSSIER.ID_PATIENT is null)." ;
+   ]
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource <HBW_0000007_noidyet:subject> ;
+   owl:annotatedProperty rr:class ;
+   owl:annotatedTarget obo:NCBITaxon_9606 ;
+   dc:description [
+        rdfs:comment "Tous les patients représentés dans la table DOSSIER sont des humains." ;
+   ]
+ ] .
+
+# Note: il ne s'agit pas d'un subset de :NCBITaxon_9606, puisque les composants de la signature ne sont pas compatibles.
+:HBW_0000007_not_identified
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                       select "ID_PATIENT_UUID"
+                       from "EXP"."DOSSIER"
+                       where "ID_PATIENT" is null
+                      """ ] ;
+    rr:subjectMap   <HBW_0000007_noidyet:subject> .
+
+# HBW_0000006@medical record identifier
+:HBW_0000006
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                        "EXP"."DOSSIER"
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000006 ;
+                      mmec:signatureComponent """ "ID_PATIENT_UUID" """ ;
+                      rr:termType             rr:IRI ] .
+
+# ONTORELA_C4d0c3f45@(health care record and (is about exactly 1 patient))
+:ONTORELA_C4d0c3f45
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                        "EXP"."DOSSIER"
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                physio:ONTORELA_C4d0c3f45 ;
+                      mmec:signatureComponent """ "ID_PATIENT_UUID" """ ;
+                      rr:termType             rr:IRI ] .
+
+# Propriétés d'objet
+# HBW_0000006@medical record identifier IAO_0000136@'is about' ONTORELA_C4d0c3f45@(health care record and (is about exactly 1 patient))
+:HBW_0000006
+    rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
+                            rr:objectMap [ rr:parentTriplesMap :ONTORELA_C4d0c3f45 ] ] .
+
+# ONTORELA_C4d0c3f45@(health care record and (is about exactly 1 patient)) IAO_0000136@'is about' HBW_0000007@Patient
+:ONTORELA_C4d0c3f45
+    rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000007 ;
+                                           rr:joinCondition    [ rr:child  """ "ID_PATIENT_UUID" """ ;
+                                                                 rr:parent """ "ID_PATIENT_EXT" """ ] ] ] .
+
+:ONTORELA_C4d0c3f45
+    rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000007_not_identified ] ] .
+
+# **** Individuation d'une disjonction ****
+
+# **** Individuation d'une conjonction de disjonction ****
+
+# HBW_0000012@physiological evaluation
+:HBW_0000012_poids
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                        select "ID_PATIENT_EXT"
+                        from "EXP"."PATIENT"
+                        where "POIDS" is not null
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000012 ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ;
+                      rr:termType             rr:IRI ] .
+
+# **** Arrimage d'une propriété définie sur un parent ****
+
+# **** Arrimage lors d'un sous-typage de propriété ****
+
+# **** Inférence d'arrimage ****
+
+# **** Propriété définie à l'aide d'une jointure ****
+
+#"HBW_0000013"@physiological evaluation from health care provider
+:HBW_0000013_poids
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                        select "ID_PATIENT_EXT"
+                        from "EXP"."PATIENT"
+                        where "POIDS" is not null
+                          and exists (
+                            select 1
+                            from "EXP"."MEDECIN_TRAITANT"
+                            where "MEDECIN_TRAITANT"."ID_PATIENT_EXT" = "PATIENT"."ID_PATIENT_EXT"
+                        )
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000013 ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ;
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets    :HBW_0000012_poids .
+
+# HBW_0000008@health care provider a déjà été arrimé pour la figure "Héritage avec chevauchement"
+
+# "HBW_0000013"@physiological evaluation from health care provider "PHYSIO_0000089@has evaluant" "HBW_0000008"@
+# health care provider
+:HBW_0000013_poids_medecin
+    a                     rr:TriplesMap ;
+    rr:logicalTable       [ rr:tableName """
+                                "EXP"."MEDECIN_TRAITANT"
+                            """ ] ;
+    mmec:refSubjectMap    [ rr:parentTriplesMap :HBW_0000013_poids ;
+                            rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
+                                                  rr:parent """ "ID_PATIENT_EXT" """ ] ] ;
+    rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000089 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000008 ;
+                                           rr:joinCondition    [ rr:child  """ "ID_MEDECIN_EXT" """ ;
+                                                                 rr:parent """ "ID_MEDECIN_EXT" """ ] ] ] .
+
+# **** Arrimages non illustré dans les figures ****
+:HBW_0000012_taille
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                        select "ID_PATIENT_EXT"
+                        from "EXP"."PATIENT"
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000012 ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ;
+                      rr:termType             rr:IRI ] .
+
+:HBW_0000013_taille
+    a               rr:TriplesMap ;
+    rr:logicalTable [ a           rr:R2RMLView ;
+                      rr:sqlQuery """
+                        select "ID_PATIENT_EXT"
+                        from "EXP"."PATIENT"
+                        where "TAILLE" is not null
+                          and exists (
+                            select 1
+                            from "EXP"."MEDECIN_TRAITANT"
+                            where "MEDECIN_TRAITANT"."ID_PATIENT_EXT" = "PATIENT"."ID_PATIENT_EXT"
+                        )
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000013 ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ;
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets    :HBW_0000012_taille .
+
+# "HBW_0000013"@physiological evaluation from health care provider "PHYSIO_0000089@has evaluant" "HBW_0000008"@
+# health care provider
+:HBW_0000013_taille_medecin
+    a                     rr:TriplesMap ;
+    rr:logicalTable       [ rr:tableName """
+                                "EXP"."MEDECIN_TRAITANT"
+                            """ ] ;
+    mmec:refSubjectMap    [ rr:parentTriplesMap :HBW_0000013_taille ;
+                            rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
+                                                  rr:parent """ "ID_PATIENT_EXT" """ ] ] ;
+    rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000089 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000008 ;
+                                           rr:joinCondition    [ rr:child  """ "ID_MEDECIN_EXT" """ ;
+                                                                 rr:parent """ "ID_MEDECIN_EXT" """ ] ] ] .
 
 # ----------------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------
@@ -143,7 +388,7 @@
 # ----------------------------------------------------------------------------------------------------------------
 #
 ## health care record
-#<Mapping:healthCareRecord>
+#<healthCareRecord>
 #    a               rr:TriplesMap ;
 #    rr:logicalTable [ a           rr:R2RMLView ;
 #                      rr:sqlQuery "SELECT \"ID_PATIENT_UUID\" FROM \"EXP\".\"DOSSIER\"" ] ;
@@ -153,7 +398,7 @@
 #                      rr:termType rr:IRI ] .
 #
 ## ONTORELA_C002aX (health care record and (is about exactly 1 patient))
-#<Mapping:ONTORELA_C002aX>
+#<ONTORELA_C002aX>
 #    a               rr:TriplesMap ;
 #    rr:logicalTable [ a rr:R2RMLView ;
 #                      rr:sqlQuery
@@ -162,10 +407,10 @@
 #                      rr:class    <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C4d0c3f45> ;
 #                      rr:template "http://purl.obolibrary.org/obo/ONTORELA_C002aX/{\"prenom\"}" ;
 #                      rr:termType rr:IRI ] ;
-#    mmec:subsets    <Mapping:healthCareRecord> .
+#    mmec:subsets    <healthCareRecord> .
 #
 ## Homo sapiens patients
-#<Mapping:HomoSapiensPatients>
+#<HomoSapiensPatients>
 #    a               rr:TriplesMap ;
 #    rr:logicalTable [ a           rr:R2RMLView ;
 #                      rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\"" ] ;
@@ -176,7 +421,7 @@
 #                      rr:termType rr:IRI ] .
 #
 ## scalar measurement datum
-#<Mapping:IAO_0000032>
+#<IAO_0000032>
 #    a               rr:TriplesMap ;
 #    rr:logicalTable [ a           rr:R2RMLView ;
 #                      rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\" where \"TAILLE\" is not null" ] ;
@@ -186,7 +431,7 @@
 #                      rr:termType rr:IRI ] .
 #
 ## weight measurement datum
-#<Mapping:HBW_0000026>
+#<HBW_0000026>
 #    a               rr:TriplesMap ;
 #    rr:logicalTable [ a           rr:R2RMLView ;
 #                      rr:sqlQuery "select \"ID_PATIENT_EXT\" from \"EXP\".\"PATIENT\" where \"POIDS\" is not null" ] ;
@@ -196,7 +441,7 @@
 #                      rr:termType rr:IRI ] .
 #
 ## measurement unit label
-#<Mapping:IAO_0000003>
+#<IAO_0000003>
 #    a               rr:TriplesMap ;
 #    rr:logicalTable [ a rr:R2RMLView ;
 #                      rr:sqlQuery
@@ -207,7 +452,7 @@
 #                      rr:termType rr:IRI ] .
 #
 ## weight unit
-#<Mapping:HBW_0000003>
+#<HBW_0000003>
 #    a               rr:TriplesMap ;
 #    rr:logicalTable [ a rr:R2RMLView ;
 #                      rr:sqlQuery
@@ -221,16 +466,16 @@
 ## Object Properties
 ## ----------------------------------------------------------------------------------------------------------------------
 ## 'scalar measurement datum' 'has measurement unit label' 'measurement unit label'
-#<Mapping:IAO_0000032>
+#<IAO_0000032>
 #    rr:predicateObjectMap [ rr:predicate obo:IAO_0000039 ;
-#                            rr:objectMap [ rr:parentTriplesMap <Mapping:IAO_0000003> ;
+#                            rr:objectMap [ rr:parentTriplesMap <IAO_0000003> ;
 #                                           rr:joinCondition    [ rr:child  "\"ID_PATIENT_EXT\"" ;
 #                                                                 rr:parent "\"ID_PATIENT_EXT\"" ] ] ] .
 #
 ## 'scalar measurement datum' 'has measurement unit label' 'measurement unit label'
-#<Mapping:HBW_0000026>
+#<HBW_0000026>
 #    rr:predicateObjectMap [ rr:predicate obo:IAO_0000039 ;
-#                            rr:objectMap [ rr:parentTriplesMap <Mapping:HBW_0000003> ;
+#                            rr:objectMap [ rr:parentTriplesMap <HBW_0000003> ;
 #                                           rr:joinCondition    [ rr:child  "\"ID_PATIENT_EXT\"" ;
 #                                                                 rr:parent "\"ID_PATIENT_EXT\"" ] ] ] .
 #
@@ -238,13 +483,13 @@
 ## Data Properties
 ## ----------------------------------------------------------------------------------------------------------------------
 ## measurement unit label 'has value' 'cm'
-#<Mapping:IAO_0000003>
+#<IAO_0000003>
 #    rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
 #                            rr:objectMap [ rr:column   "label" ;
 #                                           rr:datatype xsd:string ] ] .
 #
 ## weight unit 'has value' 'kg'
-#<Mapping:HBW_0000003>
+#<HBW_0000003>
 #    rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
 #                            rr:objectMap [ rr:column   "label" ;
 #                                           rr:datatype xsd:string ] ] .
