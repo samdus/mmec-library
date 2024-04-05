@@ -1033,6 +1033,16 @@ Werner suggests a solution based on &quot;Magnitudes&quot; a proposal for which 
     
 
 
+    <!-- http://purl.obolibrary.org/obo/PHYSIO_0000089 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/PHYSIO_0000089">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
+        <rdfs:comment>A has participant property in a evaluation process where the participant does evaluate</rdfs:comment>
+        <rdfs:label xml:lang="en">has evaluant</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/RO_0000052 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0000052">
@@ -1373,16 +1383,6 @@ A mereological relationship or a topological relationship
         <obo:RO_0001900 rdf:resource="http://purl.obolibrary.org/obo/RO_0001901"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
         <rdfs:label xml:lang="en">has member</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089 -->
-
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
-        <rdfs:comment>A has participant property in a evaluation process where the participant does evaluate</rdfs:comment>
-        <rdfs:label xml:lang="en">has evaluant</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -2266,7 +2266,7 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/PHYSIO_0000089"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
@@ -2285,7 +2285,7 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HBW_0000012"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/PHYSIO_0000089"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/PHYSIO_0000089"/>
                         <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                         <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HBW_0000008"/>
                     </owl:Restriction>
