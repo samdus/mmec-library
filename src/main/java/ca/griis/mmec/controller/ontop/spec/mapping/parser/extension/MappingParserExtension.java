@@ -138,7 +138,12 @@ public class MappingParserExtension {
    * @return Le mapping mMEc.
    *
    * @par Tâches
-   *      S.O.
+   *      TODO 2024-04-04 [SD] - Retirer templatePrefix
+   *      TODO 2024-04-04 [SD] - Retirer urlencode
+   *      TODO 2024-04-04 [SD] - Vérifier que l'ordre des composants est garantie
+   *      TODO 2024-04-04 [SD] - Faire en sorte que les classes définies pour toutes la hierarchie
+   *                             des parents soient ajouté à l'enfant.
+   *      TODO 2024-04-04 [SD] - Ajouter le traitement pour les refSubjectMap
    */
   public SQLPPMapping getExtendedMapping(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
       ImmutableList<SQLPPTriplesMap> sourceMappings, PrefixManager prefixManager) {
