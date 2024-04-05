@@ -26,7 +26,7 @@
                       """ ] ;
     rr:subjectMap   [ a           rr:SubjectMap ;
                       rr:class    tst:tst ;
-                      rr:template "http://www.griis.ca/projects/tst/{m}" ;
+                      rr:template "_:{m}" ;
                       rr:termType rr:IRI ] .
 
 <Mapping:tst:secondsignature>
@@ -36,14 +36,14 @@
                       """ ] ;
     rr:subjectMap   [ a           rr:SubjectMap ;
                       rr:class    tst:tst ;
-                      rr:template "http://www.griis.ca/projects/tst/{m}" ;
+                      rr:template "_:{m}" ;
                       rr:termType rr:IRI ] .
 
 # Définition normale
 <Mapping:tst1SubjectMap>
     a           rr:SubjectMap ;
     rr:class    tst:tst1 ;
-    rr:template "http://www.griis.ca/projects/tst/{m}" ;
+    rr:template "_:{m}" ;
     rr:termType rr:IRI .
 
 <Mapping:tst1>
@@ -52,19 +52,6 @@
                         "basicR2RML"."TABLE2"
                       """ ] ;
     rr:subjectMap   <Mapping:tst1SubjectMap> .
-
-# Définition avec tout prédéfinie
-#<Mapping:tst1>
-#    a               rr:TriplesMap ;
-#    rr:logicalTable [ rr:sqlQuery """
-#                        SELECT "TABLE2"."m", "TABLE2"."n", "TABLE2"."o", "JOIN_TABLE"."domain", "JOIN_TABLE"."range"
-#                        FROM ""basicR2RML".TABLE2"
-#                        LEFT JOIN "basicR2RML"."JOIN_TABLE" ON "JOIN_TABLE"."domain" = "TABLE2"."m"
-#                      """ ] ;
-#    rr:subjectMap   [ a           rr:SubjectMap ;
-#                      rr:class    tst:tst1 ;
-#                      rr:template "http://www.griis.ca/projects/tst/{m}" ;
-#                      rr:termType rr:IRI ] .
 
 <Mapping:tst2>
     a               rr:TriplesMap ;
@@ -119,7 +106,7 @@
                                            rr:template "http://www.griis.ca/projects/tst1C0004X/{range}" ;
                                            rr:termType rr:IRI ] ] .
 
-## Equivalent of mmec's refTriplesMap :
+## Equivalent of mmec's RefTriplesMap :
 #<Mapping:tst1_op>
 #    a                     mmec:RefTriplesMap ;
 #    rr:logicalTable       [ rr:tableName """

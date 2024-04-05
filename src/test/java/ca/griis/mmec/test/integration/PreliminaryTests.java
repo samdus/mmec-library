@@ -93,7 +93,7 @@ public class PreliminaryTests {
 
   @Test
   public void loadContainter() throws Exception {
-    System.out.printf("Simplement mettre un break point ici pour garder le container.%n"
-        + "Info du container:%n%s", postgresContainerWrapper.getPropertiesForOntop().toString());
+    System.out.println(String.format("Info du container:\n%s", postgresContainerWrapper.getPropertiesForOntop().toString()));
+    System.out.println("Simplement mettre un break point ici pour garder le container.");
   }
 }
