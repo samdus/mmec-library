@@ -3,22 +3,18 @@
  * @copyright @@GRIIS_COPYRIGHT@@
  * @licence @@GRIIS_LICENCE@@
  * @version @@GRIIS_VERSION@@
- * @brief @~french Implémentation de la classe MappingParserExtensionTest.
- * @brief @~english MappingParserExtensionTest class implementation.
+ * @brief @~french Implémentation de la classe MMecParserTemplatesExtensionTest.
+ * @brief @~english MMecParserTemplatesExtensionTest class implementation.
  */
-package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension;
+package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension.before;
 
-import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
-import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
-import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureComponentMismatchException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureComponentMissingException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SubsetHasTemplateException;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
 import eu.optique.r2rml.api.model.R2RMLVocabulary;
-import eu.optique.r2rml.api.model.TriplesMap;
-import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
-import it.unibz.inf.ontop.model.type.TypeFactory;
-import java.util.Collection;
 import java.util.stream.Collectors;
 import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.Graph;
@@ -31,52 +27,16 @@ import org.apache.commons.rdf.rdf4j.RDF4JTriple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-/**
- * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details
- *      «Detailed description of the component (optional)»
- * @par Model
- *      «Model (Abstract, automation, etc.) (optional)»
- * @par Conception
- *      «Conception description (criteria and constraints) (optional)»
- * @par Limits
- *      «Limits description (optional)»
- *
- * @brief @~french Tests pour la classe MappingParserExtension.
- * @par Détails
- *      S.O.
- * @par Modèle
- *      S.O.
- * @par Conception
- *      S.O.
- * @par Limites
- *      S.O.
- *
- * @par Historique
- *      2024-01-31 [SD] - Implémentation initiale<br>
- *
- * @par Tâches
- * @todo 2024-03-22 [SD] - Écrire les tests pour le traîtement des conversions.
- * @todo 2024-03-22 [SD] - Écrire les tests pour le traîtement des subsets.
- */
-public class MappingParserExtensionTest {
+public class MMecParserTemplatesExtensionTest {
   public static final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
-  private final MMecMappingExtension mappingExtension;
-  private final SQLPPMappingFactory ppMappingFactory;
   private final RDF4J rdf;
-  private final TypeFactory typeFactory;
-  private final MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory;
   private Graph testGraph;
+  private MMecParserTemplatesExtensionTestImpl mappingParser;
 
-  public MappingParserExtensionTest() {
-    mappingExtension = Mockito.mock(MMecMappingExtension.class);
-    ppMappingFactory = Mockito.mock(SQLPPMappingFactory.class);
-    typeFactory = Mockito.mock(TypeFactory.class);
-    sqlDbFunctionSymbolFactory = Mockito.mock(MMecPostgreSqlDbFunctionSymbolFactory.class);
-    // Not mocking rdf should not be a problem and it simplifies the tests
+  public MMecParserTemplatesExtensionTest() {
     rdf = new RDF4J();
+    mappingParser = new MMecParserTemplatesExtensionTestImpl(rdf);
   }
 
   @BeforeEach
@@ -86,9 +46,8 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateTestPreserveTemplateWhenDefinedWithoutMMec() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
+    MMecParserTemplatesExtensionTestImpl mappingParser =
+        new MMecParserTemplatesExtensionTestImpl(rdf);
 
     // The mapping doesn't use any mmec extension and is not referenced by any other mapping using
     // mmec extensions
@@ -115,7 +74,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    mappingParser.generateTemplate_pub(testGraph, notExtendedMappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, notExtendedMappingExpression);
 
     // The original template should still be present and be the only one
     Assertions.assertEquals(
@@ -126,10 +85,6 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateThrowsWhenDefinedWithoutMMEcButHasSuperset() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     // The mapping doesn't use any mmec extensions
     RDF4JBlankNode notExtendedMappingExpression = rdf.createBlankNode(
         "notExtendedMappingExpression");
@@ -163,16 +118,12 @@ public class MappingParserExtensionTest {
     testGraph.add(mappingDefinedAsSubset, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         notExtendedMappingExpression);
 
-    Assertions.assertThrows(MappingParserExtension.SubsetHasTemplateException.class,
-        () -> mappingParser.generateTemplate_pub(testGraph, notExtendedMappingExpression));
+    Assertions.assertThrows(SubsetHasTemplateException.class,
+        () -> mappingParser.generateTemplates_pub(testGraph, notExtendedMappingExpression));
   }
 
   @Test
   public void generateTemplateThrowsWhenTheNumberOfSignatureComponentsIsNotEqualWithSupersets() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     // The parent mapping has one component
     RDF4JBlankNode parentMappingExpression = rdf.createBlankNode(
         "parentMappingExpression");
@@ -216,16 +167,12 @@ public class MappingParserExtensionTest {
     testGraph.add(childMappingExpression, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         parentMappingExpression);
 
-    Assertions.assertThrows(MappingParserExtension.SignatureComponentMismatchException.class,
-        () -> mappingParser.generateTemplate_pub(testGraph, childMappingExpression));
+    Assertions.assertThrows(SignatureComponentMismatchException.class,
+        () -> mappingParser.generateTemplates_pub(testGraph, childMappingExpression));
   }
 
   @Test
   public void generateTemplateThrowsWhenDefinedWithoutSignatureComponents() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     RDF4JBlankNode mappingExpression = rdf.createBlankNode(
         "parentMappingExpression");
     RDF4JBlankNode subjectMap = rdf.createBlankNode("subjectMap");
@@ -242,16 +189,12 @@ public class MappingParserExtensionTest {
     testGraph.add(mappingExpression, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    Assertions.assertThrows(MappingParserExtension.SignatureComponentMissingException.class,
-        () -> mappingParser.generateTemplate_pub(testGraph, mappingExpression));
+    Assertions.assertThrows(SignatureComponentMissingException.class,
+        () -> mappingParser.generateTemplates_pub(testGraph, mappingExpression));
   }
 
   @Test
   public void generateTemplateReplaceExistingTemplatesWhenDefinedUsingExtensionComponent() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     // The mapping has a template and a signatureComponent
     RDF4JBlankNode mappingExpression = rdf.createBlankNode(
         "mappingExpression");
@@ -278,7 +221,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    mappingParser.generateTemplate_pub(testGraph, mappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, mappingExpression);
 
     // The original template has been replaced
     Assertions.assertTrue(testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
@@ -289,10 +232,6 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateWithoutSupersetUsesSignatureIriAsSignatureScope() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     String signatureIRI = "https://www.example.com/signature/sign1";
     String signComponent = "signComponent";
     String expectedTemplate = String.format("%s/{%s}", signatureIRI, signComponent);
@@ -315,7 +254,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    mappingParser.generateTemplate_pub(testGraph, mappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, mappingExpression);
 
     Assertions.assertEquals(expectedTemplate,
         testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
@@ -325,10 +264,6 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateUsesSupersetIRIAsSignatureScope() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     String parentSignatureIri = "https://www.example.com/signature/parent";
     String parentSignComponent = "parentSignComponent";
     String childSignComponent = "childSignComponent";
@@ -375,7 +310,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         parentMappingExpression);
 
-    mappingParser.generateTemplate_pub(testGraph, childMappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, childMappingExpression);
 
     Assertions.assertEquals(expectedTemplate,
         testGraph.stream(childSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
@@ -385,10 +320,6 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateWorksWithBlankNode() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     String blankNodeName = "signature";
     String signatureIri = String.format("_:%s", blankNodeName);
     String signComponent = "signComponent";
@@ -412,7 +343,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    mappingParser.generateTemplate_pub(testGraph, mappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, mappingExpression);
 
     Assertions.assertEquals(expectedTemplate,
         testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
@@ -422,10 +353,6 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateWorksWithSingleAttributeSignatureComponent() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     String signatureIri = "https://www.example.com/signature";
     String signComponent = "signComponent";
     String expectedTemplate = String.format("%s/{%s}", signatureIri, signComponent);
@@ -448,7 +375,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    mappingParser.generateTemplate_pub(testGraph, mappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, mappingExpression);
 
     Assertions.assertEquals(expectedTemplate,
         testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
@@ -458,10 +385,6 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateWorksWithMultipleAttributeSignatureComponent() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     String signatureIri = "https://www.example.com/signature";
     String signComponent1 = "signComponent1";
     String signComponent2 = "signComponent2";
@@ -494,7 +417,7 @@ public class MappingParserExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    mappingParser.generateTemplate_pub(testGraph, mappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, mappingExpression);
 
     Assertions.assertEquals(expectedTemplate,
         testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
@@ -504,10 +427,6 @@ public class MappingParserExtensionTest {
 
   @Test
   public void generateTemplateGeneratesCompatibleSignatureWithSignatureSuperSets() {
-    MappingParserExtensionTestImpl mappingParser =
-        new MappingParserExtensionTestImpl(typeFactory, mappingExtension, ppMappingFactory, rdf,
-            sqlDbFunctionSymbolFactory);
-
     String superSetMappingIri = "https://www.example.com/superSetMapping";
     String firstSignComponent1 = "firstSignComponent1";
     String firstSignComponent2 = "firstSignComponent2";
@@ -549,7 +468,8 @@ public class MappingParserExtensionTest {
     testGraph.add(firstMappingExpression, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         superSetMappingExpression);
 
-    RDF4JIRI secondMappingExpression = rdf.createIRI("http://www.example.com/secondMappingExpression");
+    RDF4JIRI secondMappingExpression = rdf.createIRI(
+        "http://www.example.com/secondMappingExpression");
     RDF4JBlankNode secondSubjectMap = rdf.createBlankNode("secondSubjectMap");
     testGraph.add(secondMappingExpression,
         rdf.createIRI(nsTypeIri),
@@ -573,8 +493,8 @@ public class MappingParserExtensionTest {
     testGraph.add(secondMappingExpression, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
         superSetMappingExpression);
 
-    mappingParser.generateTemplate_pub(testGraph, firstMappingExpression);
-    mappingParser.generateTemplate_pub(testGraph, secondMappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, firstMappingExpression);
+    mappingParser.generateTemplates_pub(testGraph, secondMappingExpression);
 
     Assertions.assertEquals(firstExpectedTemplate,
         testGraph.stream(firstSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
@@ -587,26 +507,14 @@ public class MappingParserExtensionTest {
   }
 
   // A class that expose protected methods of MappingParserExtension for the tests
-  private static class MappingParserExtensionTestImpl extends MappingParserExtension {
-    public MappingParserExtensionTestImpl(TypeFactory typeFactory,
-        MMecMappingExtension mappingExtension,
-        SQLPPMappingFactory ppMappingFactory, RDF4J rdf,
-        MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory) {
-      super(typeFactory, mappingExtension, ppMappingFactory, rdf, sqlDbFunctionSymbolFactory);
+  private static class MMecParserTemplatesExtensionTestImpl extends MMecParserTemplatesExtension {
+    public MMecParserTemplatesExtensionTestImpl(RDF4J rdf) {
+      super(rdf);
     }
 
-    public void generateTemplate_pub(Graph mappingGraph,
+    public void generateTemplates_pub(Graph mappingGraph,
         BlankNodeOrIRI current) {
-      super.generateTemplate(mappingGraph, current);
-    }
-
-    public void processSubSetExpressions_pub(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
-        ImmutableList<MMecTriplesMap> sourceMappings) {
-      super.processSubSetExpressions(mappingGraph, tripleMaps, sourceMappings);
-    }
-
-    public void processConversionExpressions_pub(Graph mappingGraph) {
-      super.processConversionExpressions(mappingGraph);
+      super.generateTemplates(mappingGraph, current);
     }
   }
 }

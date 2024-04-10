@@ -16,39 +16,23 @@ package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension;
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
-import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSqlDbFunctionSymbolFactory;
-import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
-import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.after.MMecParserSubsetsExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtension;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
-import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import eu.optique.r2rml.api.model.R2RMLVocabulary;
 import eu.optique.r2rml.api.model.TriplesMap;
 import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
-import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
-import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
-import it.unibz.inf.ontop.model.type.DBTermType;
-import it.unibz.inf.ontop.model.type.TypeFactory;
 import it.unibz.inf.ontop.spec.mapping.PrefixManager;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 import javax.inject.Inject;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.Graph;
-import org.apache.commons.rdf.api.IRI;
-import org.apache.commons.rdf.api.Literal;
-import org.apache.commons.rdf.api.Triple;
-import org.apache.commons.rdf.rdf4j.RDF4J;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -61,8 +45,8 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Étend le R2RMLMappingParser avec un prétraitement du graphe d'arrimage et un
- *        traitement avant la génération des PPMapping.
+ * @brief @~french Étend le R2RMLMappingParser avec des prétraitements du graphe d'arrimage et des
+ *        traitements avant la génération des PPMapping.
  *        Sert à étendre le modèle interne avec les fonctions R2RML étendues.
  * @par Détails
  *      L'arrimage R2RML étendu permet de spécifier les signatures de classes de façon à réduire les
@@ -79,30 +63,24 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      2023-09-05 [SD] - Implémentation initiale.
  *
  * @par Tâches
- * todo 2024-03-25 [SD] - Découpler les traitements en créant une classe spécifique pour
- *                        chaque traitement et utiliser une liste de prétraitement
- *                        et de post-traitement.
+ *      S.O.
  */
 public class MappingParserExtension {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(MappingParserExtension.class);
-  private final MMecMappingExtension mappingExtension;
   private final SQLPPMappingFactory ppMappingFactory;
-  private final RDF4J rdf;
-  private final TypeFactory typeFactory;
-  private final MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory;
-
-  private static final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+  private final List<MappingExtendedBeforeParsing> beforeParsingExtensions;
+  private final List<MappingExtendedAfterParsing> afterParsingExtensions;
 
   @Inject
-  public MappingParserExtension(TypeFactory typeFactory, MMecMappingExtension mappingExtension,
-      SQLPPMappingFactory ppMappingFactory, RDF4J rdf,
-      MMecPostgreSqlDbFunctionSymbolFactory sqlDbFunctionSymbolFactory) {
-    this.typeFactory = typeFactory;
-    this.mappingExtension = mappingExtension;
+  public MappingParserExtension(SQLPPMappingFactory ppMappingFactory,
+      MMecParserRefSubjectMapExtension refSubjectMapExtension,
+      MMecParserTemplatesExtension templatesExtension,
+      MMecParserConversionExtension conversionExtension,
+      MMecParserSubsetsExtension subsetsExtension) {
     this.ppMappingFactory = ppMappingFactory;
-    this.rdf = rdf;
-    this.sqlDbFunctionSymbolFactory = sqlDbFunctionSymbolFactory;
+    this.beforeParsingExtensions = ImmutableList.of(refSubjectMapExtension, templatesExtension);
+    this.afterParsingExtensions = ImmutableList.of(conversionExtension, subsetsExtension);
   }
 
   /**
@@ -117,7 +95,11 @@ public class MappingParserExtension {
   public void updateMappingGraphBeforeParse(Graph mappingGraph,
       ImmutableMap<String, String> prefixes) {
     logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);
-    generateTemplates(mappingGraph, prefixes);
+
+    for (MappingExtendedBeforeParsing extension : beforeParsingExtensions) {
+      extension.updateGraph(mappingGraph, prefixes);
+    }
+
     logger.trace(Trace.EXIT_METHOD_0);
   }
 
@@ -136,12 +118,6 @@ public class MappingParserExtension {
    * @param sourceMappings Les expressions d'arrimage déduites converties à partir des triplets.
    * @param prefixManager Le gestionnaire de préfixes.
    * @return Le mapping mMEc.
-   *
-   * @par Tâches
-   *      TODO 2024-04-04 [SD] - Vérifier que l'ordre des composants est garantie
-   *      TODO 2024-04-04 [SD] - Faire en sorte que les classes définies pour toutes la hierarchie
-   *                             des parents soient ajouté à l'enfant.
-   *      TODO 2024-04-04 [SD] - Ajouter le traitement pour les refSubjectMap
    */
   public SQLPPMapping getExtendedMapping(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
       ImmutableList<SQLPPTriplesMap> sourceMappings, PrefixManager prefixManager) {
@@ -149,425 +125,15 @@ public class MappingParserExtension {
     ImmutableList<MMecTriplesMap> mmecSourceMappings =
         sourceMappings.stream().map(MMecTriplesMap::new).collect(ImmutableCollectors.toList());
 
-    processSubSetExpressions(mappingGraph, tripleMaps, mmecSourceMappings);
-    processConversionExpressions(mappingGraph);
+    for (MappingExtendedAfterParsing extension : afterParsingExtensions) {
+      extension.parse(mappingGraph, tripleMaps, mmecSourceMappings);
+    }
 
     ImmutableList<SQLPPTriplesMap> extendedSourceMapping = mmecSourceMappings.stream().map(
-        SQLPPTriplesMap.class::cast)
+            SQLPPTriplesMap.class::cast)
         .collect(ImmutableCollectors.toList());
 
     return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);
   }
 
-  /**
-   * @brief @~english «Description of the function»
-   * @param mappingGraph «Parameter description»
-   * @param prefixes «Parameter description»
-   *
-   * @brief @~french Ajoute les triplets rr:template en concordance avec les fonctions R2RML
-   *        étendues.
-   * @par Details
-   *      Pour chaque triplet <x, a, rr:TriplesMap> dans le graphe :
-   *      __p := x
-   *      __Jusqu'à ce qu'il n'existe pas de triplet <p, mmec:subsets, y> dans le graphe :
-   *      ____p := y
-   *      __Obtenir <x, rr:subjectMap, xSubjectMap>
-   *      __Obtenir <p, rr:subjectMap, pSubjectMap>
-   *      __S'il existe <xSubjectMap, rr:template, xTemplate>
-   *      ____S'il existe <ANY, mmec:subsets, x> ou si p <> x :
-   *      ______Lancer une exception
-   *      ____Sinon Si le mapping ne défini pas ses composants de signatures
-   *      ______Passer au triplet suivant
-   *      ____Sinon
-   *      ______Lancer un avertissement
-   *      ______Retirer le triplet <xSubjectMap, rr:template, xTemplate>
-   *      __signScope := IRI de p, s'il s'agit d'un IRI, ntriplesString sinon
-   *      __
-   *      __Si le nombre de triplets <xSubjectMap, mmec:signComponent, ANY> est différent
-   *      ______du nombre de triplets <pSubjectMap, mmec:signComponent, ANY>
-   *      ____Lancer une exception
-   *      __componentString := Former une chaîne de caractère à partir des triplets
-   *      ______<pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
-   *      __Ajouter un triplet <xSubjectMap, rr:template, signScope+componentString>
-   *      --
-   *      Notes :
-   *      - Si p correspond à un mmec:SignatureSuperSet, il est possible que le pSubjectMap
-   *      n'existe pas, mais le traitement reste valide.
-   *      - La chaîne de caractère générée pour signScope doit être encodée pour un URL
-   * @param mappingGraph Le graphe d'arrimage.
-   * @param prefixes Les préfixes de l'arrimage.
-   *
-   * @par Tâches
-   *      2024-03-21 [SD] - Tester cette méthode.
-   */
-  protected void generateTemplates(Graph mappingGraph,
-      ImmutableMap<String, String> prefixes) {
-    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);
-
-    for (Triple currentTriple : mappingGraph.stream(null, rdf.createIRI(nsTypeIri),
-        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP)).toList()) {
-      generateTemplate(mappingGraph, currentTriple.getSubject());
-    }
-    logger.trace(Trace.EXIT_METHOD_0);
-  }
-
-  protected void generateTemplate(Graph mappingGraph,
-      BlankNodeOrIRI current) {
-    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, current);
-
-    final BlankNodeOrIRI parentRoot = getParentRoot(mappingGraph, current);
-    final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
-        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow(
-            () -> new SignatureWithoutSubjectMapException(current));
-    final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parentRoot,
-        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
-    final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
-        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
-    final List<String> currentComponents = getAllLiterals(mappingGraph, currentSubjectMap,
-        rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT));
-
-    final String signScope = Optional.of(parentRoot)
-        .filter(parent -> parent instanceof IRI)
-        .map(parent -> ((IRI) parent).getIRIString())
-        .orElse(parentRoot.ntriplesString());
-    final List<String> parentComponents = parentSubjectMap
-        .map(subjectMap -> getAllLiterals(mappingGraph, subjectMap,
-            rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT)))
-        .orElse(List.of());
-
-    if (currentTemplate.isPresent()) {
-      if (current.equals(parentRoot)
-          && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
-              .findAny().isEmpty()) {
-        if (currentComponents.isEmpty()) {
-          return;
-        } else {
-          logger.warn("The mapping '" + current.ntriplesString() + "' defined "
-              + "a rr:template that will be overwritten by the mmec extension");
-          mappingGraph.remove(currentSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-              null);
-        }
-      } else {
-        throw new SubsetHasTemplateException(current);
-      }
-    }
-
-    if (currentComponents.isEmpty()) {
-      throw new SignatureComponentMissingException(current);
-    }
-
-    if (mappingGraph.stream(parentRoot, rdf.createIRI(nsTypeIri),
-        rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET)).findAny().isEmpty()
-        && currentComponents.size() != parentComponents.size()) {
-      throw new SignatureComponentMismatchException(current, parentRoot);
-    }
-
-    final String componentString = currentComponents.stream()
-        .map(component -> "{" + component + "}")
-        .collect(Collectors.joining("/"));
-
-    mappingGraph.add(currentSubjectMap,
-        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-        rdf.createLiteral(signScope + "/" + componentString));
-    logger.trace(Trace.EXIT_METHOD_0);
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
-   * @param tripleMaps «Parameter description»
-   * @param sourceMappings «Parameter description»
-   *
-   * @brief @~french Associe les expressions d'arrimage aux expressions qui sont déclarés comme
-   *        leur sous-ensemble.
-   * @param mappingGraph Le graphe d'arrimage.
-   * @param tripleMaps Les triplets d'arrimage importés du graphe.
-   * @param sourceMappings Les expressions d'arrimage déduites converties à partir des triplets.
-   */
-  protected void processSubSetExpressions(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
-      ImmutableList<MMecTriplesMap> sourceMappings) {
-    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, tripleMaps, sourceMappings);
-    Map<TriplesMap, List<TriplesMap>> hasSubset =
-        mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), null)
-            .filter(axiom ->
-            // If the superset is a SIGNATURE_SUPERSET, it's not required in the hasSubset Map
-            mappingGraph.stream((BlankNodeOrIRI) axiom.getObject(), rdf.createIRI(nsTypeIri),
-                rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET))
-                .findAny().isEmpty())
-            .map(
-                axiom -> new ImmutablePair<>(
-                    tripleMaps.stream()
-                        .filter(triple -> triple.getNode().equals(axiom.getSubject()))
-                        .findFirst().orElseThrow(/* TODO: Créer une exception */),
-                    tripleMaps.stream().filter(
-                        triple -> triple.getNode().equals(axiom.getObject()))
-                        .findFirst().orElseThrow(/* TODO: Créer une exception */)))
-            .collect(Collectors.groupingBy(ImmutablePair::getRight,
-                Collectors.mapping(ImmutablePair::getLeft, Collectors.toList())));
-
-    hasSubset.forEach(
-        (supersetMapping, subsetMappingList) -> subsetMappingList.forEach(subsetMapping -> {
-          MMecTriplesMap superSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", supersetMapping.hashCode())))
-              .findFirst()
-              .orElseThrow(/* TODO: Créer une exception */);
-          MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
-              sourceMapping -> sourceMapping.getId()
-                  .equals(String.format("mapping-%s", subsetMapping.hashCode())))
-              .findFirst()
-              .orElseThrow(/* TODO: Créer une exception */);
-
-          superSetSourceMapping.addSubset(subSetSourceMapping);
-        }));
-    logger.trace(Trace.EXIT_METHOD_0);
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
-   *
-   * @brief @~french Traite les expressions de conversion.
-   * @param mappingGraph Le graphe d'arrimage.
-   */
-  protected void processConversionExpressions(Graph mappingGraph) {
-    logger.trace(Trace.ENTER_METHOD_1, mappingGraph);
-    List<? extends Triple> conversionTriples = mappingGraph.stream(null,
-        rdf.createIRI(nsTypeIri),
-        rdf.createIRI(MMecVocabulary.C_CONVERSION)).toList();
-
-    for (Triple conversionTriple : conversionTriples) {
-      DBTermType declaredInputType = getObjectsQualifiedIdentifier(mappingGraph,
-          conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.P_CONVERSION_INPUT_TYPE))
-              .map(typeFactory.getDBTypeFactory()::getDBTermType)
-              .orElseThrow(
-                  () -> new ConversionWithoutInputTypeException(conversionTriple.getSubject()));
-      DBTermType declaredOutputType = getObjectsQualifiedIdentifier(mappingGraph,
-          conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.P_CONVERSION_OUTPUT_TYPE))
-              .map(typeFactory.getDBTypeFactory()::getDBTermType)
-              .orElseThrow(
-                  () -> new ConversionWithoutOutputTypeException(conversionTriple.getSubject()));
-      Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction =
-          getObjectsQualifiedIdentifier(mappingGraph, conversionTriple.getSubject(),
-              rdf.createIRI(MMecVocabulary.P_CONVERSION_FUNCTION))
-                  .map(
-                      functionName -> sqlDbFunctionSymbolFactory.createMMecConversionFunctionSymbol(
-                          functionName, declaredInputType, declaredOutputType));
-      Optional<DBBooleanFunctionSymbol> declaredValidationFunction = getObjectsQualifiedIdentifier(
-          mappingGraph, conversionTriple.getSubject(),
-          rdf.createIRI(MMecVocabulary.P_CONVERSION_VERIFICATION_FUNCTION))
-              .map(functionName -> sqlDbFunctionSymbolFactory
-                  .createMMecConversionValidationFunctionSymbol(functionName,
-                      declaredInputType, declaredOutputType));
-
-      mappingExtension.addMappingConversion(
-          new MMecMappingConversion(declaredInputType, declaredOutputType,
-              declaredConversionFunction, declaredValidationFunction));
-    }
-
-    logger.trace(Trace.EXIT_METHOD_0);
-  }
-
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
-   * @param subject «Parameter description»
-   * @param predicate «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Obtenir l'identifiant qualifié de l'objet d'un triplet.
-   * @param mappingGraph Le graphe duquel extraire le triplet.
-   * @param subject Le sujet du triplet.
-   * @param predicate Le prédicat du triplet.
-   * @return L'identifiant qualifié de l'objet du triplet.
-   */
-  private Optional<String> getObjectsQualifiedIdentifier(Graph mappingGraph, BlankNodeOrIRI subject,
-      IRI predicate) {
-    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
-    return getObject(mappingGraph, subject, predicate)
-        .flatMap(type -> getLiteral(mappingGraph, type,
-            rdf.createIRI(MMecVocabulary.P_SQL_QUALIFIED_IDENTIFIER)));
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
-   * @param subject «Parameter description»
-   * @param predicate «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Obtenir l'objet BlankNodeOrIRI d'un triplet.
-   * @param mappingGraph Le graphe duquel extraire le triplet.
-   * @param subject Le sujet du triplet.
-   * @param predicate Le prédicat du triplet.
-   * @return L'objet du triplet, s'il s'agit d'un BlankNodeOrIRI
-   */
-  private static Optional<BlankNodeOrIRI> getObject(Graph mappingGraph, BlankNodeOrIRI subject,
-      IRI predicate) {
-    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
-    return mappingGraph.stream(subject, predicate, null)
-        .map(Triple::getObject)
-        .filter(term -> term instanceof BlankNodeOrIRI)
-        .map(term -> (BlankNodeOrIRI) term)
-        .findFirst();
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
-   * @param subject «Parameter description»
-   * @param predicate «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Obtenir la forme lexicale de la valeur littérale d'un triplet.
-   * @param mappingGraph Le graphe duquel extraire le triplet.
-   * @param subject Le sujet du triplet.
-   * @param predicate Le prédicat du triplet.
-   * @return La forme lexicale de la valeur littérale d'un triplet.
-   */
-  private static Optional<String> getLiteral(Graph mappingGraph, BlankNodeOrIRI subject,
-      IRI predicate) {
-    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
-    return mappingGraph.stream(subject, predicate, null)
-        .map(Triple::getObject)
-        .filter(term -> term instanceof Literal)
-        .map(term -> (Literal) term)
-        .map(Literal::getLexicalForm)
-        .findFirst();
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
-   * @param subject «Parameter description»
-   * @param predicate «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Obtenir la forme lexicale de la valeur littérale de tous les triplets.
-   * @param mappingGraph Le graphe duquel extraire le triplet.
-   * @param subject Le sujet des triplets.
-   * @param predicate Le prédicat des triplets.
-   * @return Une liste de la forme lexicale de la valeur littérale des triplets.
-   */
-  private static List<String> getAllLiterals(Graph mappingGraph, BlankNodeOrIRI subject,
-      IRI predicate) {
-    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
-    return mappingGraph.stream(subject, predicate, null)
-        .map(Triple::getObject)
-        .filter(term -> term instanceof Literal)
-        .map(term -> (Literal) term)
-        .map(Literal::getLexicalForm)
-        .toList();
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
-   * @param current «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Obtient le parent le plus haut dans la hierarchie de superset
-   * @param mappingGraph Le graphe d'arrimage
-   * @param current Le noeud courant
-   * @return Le prochain noeud sans parent dans la chaîne de subsets
-   */
-  private BlankNodeOrIRI getParentRoot(Graph mappingGraph, BlankNodeOrIRI current) {
-    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, current);
-    Optional<BlankNodeOrIRI> parent = getObject(mappingGraph, current,
-        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS));
-    if (parent.isPresent()) {
-      return getParentRoot(mappingGraph, parent.get());
-    }
-    return current;
-  }
-
-  public static class IllegalMappingException extends IllegalStateException {
-    private final BlankNodeOrIRI invalidNode;
-
-    public IllegalMappingException(BlankNodeOrIRI invalidNode, String reason) {
-      super(String.format("The mapping '%s' is invalid: %s", getNodeName(invalidNode), reason));
-      this.invalidNode = invalidNode;
-    }
-
-    protected static String getNodeName(BlankNodeOrIRI current) {
-      return current.ntriplesString();
-    }
-
-    public BlankNodeOrIRI getInvalidNode() {
-      return invalidNode;
-    }
-  }
-
-
-  public static class SubsetHasTemplateException extends IllegalMappingException {
-    public SubsetHasTemplateException(BlankNodeOrIRI invalidNode) {
-      super(invalidNode, "it has a template while it depends on another subject map.");
-    }
-  }
-
-
-  public static class SignatureComponentMismatchException extends IllegalMappingException {
-    private final BlankNodeOrIRI parentNode;
-
-    public SignatureComponentMismatchException(BlankNodeOrIRI invalidNode,
-        BlankNodeOrIRI parentNode) {
-      super(invalidNode, String.format(
-          "it has a different number of signature components than the one it depends on (%s).",
-          getNodeName(parentNode)));
-      this.parentNode = parentNode;
-    }
-
-    public BlankNodeOrIRI getParentNode() {
-      return parentNode;
-    }
-  }
-
-
-  public static class SignatureComponentMissingException extends IllegalMappingException {
-    public SignatureComponentMissingException(BlankNodeOrIRI current) {
-      super(current, "it has no signature components.");
-    }
-  }
-
-
-  private static class SignatureWithoutSubjectMapException extends IllegalMappingException {
-    public SignatureWithoutSubjectMapException(
-        BlankNodeOrIRI current) {
-      super(current, "it has no subject map.");
-    }
-  }
-
-
-  private static class InvalidConversionException extends IllegalStateException {
-    private final BlankNodeOrIRI conversionTriple;
-
-    public InvalidConversionException(
-        BlankNodeOrIRI conversionTriple, String reason) {
-      super(String.format("The conversion '%s' is invalid: %s", conversionTriple, reason));
-      this.conversionTriple = conversionTriple;
-    }
-
-    public BlankNodeOrIRI getConversionTriple() {
-      return conversionTriple;
-    }
-  }
-
-
-  private static class ConversionWithoutInputTypeException extends InvalidConversionException {
-    public ConversionWithoutInputTypeException(
-        BlankNodeOrIRI subject) {
-      super(subject, "it doesn't have a valid input type.");
-    }
-  }
-
-
-  private static class ConversionWithoutOutputTypeException extends InvalidConversionException {
-    public ConversionWithoutOutputTypeException(
-        BlankNodeOrIRI subject) {
-      super(subject, "it doesn't have a valid output type.");
-    }
-  }
 }
