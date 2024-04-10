@@ -19,7 +19,7 @@ import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingExten
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.InvalidRefSubjectMapException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.JoinConditionWithoutChildColumnException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.JoinConditionWithoutParentColumnException;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.LogicalTableWithoutSqlQueryNorSqlQueryException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.LogicalTableWithoutSqlQueryNorTableNameException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.RefSubjectMapWithoutParentTriplesMapException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureWithoutLogicalTableException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureWithoutSubjectMapException;
@@ -119,12 +119,8 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
    *     __ajouter un triplet <child, rr:subjectMap, parentSubjectMap>
    *     __Si parentSubsets existe :
    *     ____ajouter un triplet <child, mmec:subsets, parentSubsets>
-   *
    * @param mappingGraph Graph d'arrimage.
    * @param prefixes Préfixes de l'arrimage.
-   *
-   * @par Tâches
-   *    TODO: 2024-04-04 [SD] - Tester la méthode
    */
   @Override
   public void updateGraph(Graph mappingGraph, ImmutableMap<String, String> prefixes) {
@@ -143,6 +139,17 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
     logger.trace(Trace.EXIT_METHOD_0);
   }
 
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param child «Parameter description»
+   * @param childRefSubjectMap «Parameter description»
+   *
+   * @brief @~french Traitement d'un seul RefSubjectMap.
+   * @param mappingGraph Graph d'arrimage.
+   * @param child Référence du sujet enfant.
+   * @param childRefSubjectMap Référence du sujet enfant.
+   */
   protected void processRefSubjectMap(Graph mappingGraph, BlankNodeOrIRI child,
       BlankNodeOrIRI childRefSubjectMap) {
     logger.trace(Trace.ENTER_METHOD_2, mappingGraph, child);
@@ -179,10 +186,10 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
     final String parentSqlQuery = maybeParentSqlQuery
         .orElseGet(() -> "SELECT * FROM " +
             parentTable.orElseThrow(
-                () -> new LogicalTableWithoutSqlQueryNorSqlQueryException(parentLogicalTable)));
+                () -> new LogicalTableWithoutSqlQueryNorTableNameException(parentLogicalTable)));
     final String childSqlQuery = maybeChildSqlQuery.orElseGet(() -> "SELECT * FROM " +
         childTable.orElseThrow(
-            () -> new LogicalTableWithoutSqlQueryNorSqlQueryException(childLogicalTable)));
+            () -> new LogicalTableWithoutSqlQueryNorTableNameException(childLogicalTable)));
 
     final String query;
     if (joinConditions.isEmpty()) {
@@ -196,9 +203,10 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
             String parentColumn = getLiteral(mappingGraph, condition,
                 rdf.createIRI(R2RMLVocabulary.PROP_PARENT))
                 .orElseThrow(() -> new JoinConditionWithoutParentColumnException(condition));
-            return childColumn + " = " + parentColumn;
+            return String.format("child.%s = parent.%s", childColumn, parentColumn);
           })
-          .collect(Collectors.joining(" AND "));
+          .collect(Collectors.joining("\n    AND "));
+
       query = "SELECT *\n"
           + "FROM (" + childSqlQuery + ") AS child\n"
           + "JOIN (" + parentSqlQuery + ") AS parent\n"
@@ -206,7 +214,7 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
     }
 
     RDF4JBlankNode newLogicalTable = rdf.createBlankNode();
-    mappingGraph.remove(child, rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), childLogicalTable);
+    mappingGraph.remove(child, rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), childLogicalTable);
     mappingGraph.add(child, rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), newLogicalTable);
     mappingGraph.add(newLogicalTable, rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW));

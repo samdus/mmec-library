@@ -41,8 +41,8 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
  * @par Tâches
  *      S.O.
  */
-public class LogicalTableWithoutSqlQueryNorSqlQueryException extends IllegalMappingException {
-  public LogicalTableWithoutSqlQueryNorSqlQueryException(BlankNodeOrIRI invalidNode) {
+public class LogicalTableWithoutSqlQueryNorTableNameException extends IllegalMappingException {
+  public LogicalTableWithoutSqlQueryNorTableNameException(BlankNodeOrIRI invalidNode) {
     super(invalidNode, "it has a logical table without rr:sqlQuery nor rr:tableName");
   }
 }

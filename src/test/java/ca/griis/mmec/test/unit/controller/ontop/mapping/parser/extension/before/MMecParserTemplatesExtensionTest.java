@@ -36,12 +36,12 @@ public class MMecParserTemplatesExtensionTest {
 
   public MMecParserTemplatesExtensionTest() {
     rdf = new RDF4J();
-    mappingParser = new MMecParserTemplatesExtensionTestImpl(rdf);
   }
 
   @BeforeEach
   public void setUp() {
     testGraph = rdf.createGraph();
+    mappingParser = new MMecParserTemplatesExtensionTestImpl(rdf);
   }
 
   @Test
