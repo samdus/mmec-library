@@ -296,7 +296,18 @@ A signature defined using the mMec extension will have an rr:template defined fr
 
 ###  http://www.griis.ca/ns/mmec#RefSubjectMap
 :RefSubjectMap rdf:type owl:Class ;
-               rdfs:subClassOf r2rml:SubjectMap ;
+               rdfs:subClassOf r2rml:RefObjectMap ,
+                               r2rml:SubjectMap ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty r2rml:joinCondition ;
+                                 owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                 owl:onClass r2rml:Join
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty r2rml:parentTriplesMap ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass r2rml:TriplesMap
+                               ] ;
                rdfs:comment """Referencing SubjectMap est une SubjectMap qui associe une table logique à une TriplesMap existante. Elle est utilisée pour ajouter des predicateObjectMaps à une signature existante lorsque la logicalTable de la signature ne contient pas toutes les informations nécessaires pour le predicateObjectMap.
 
 Si le Referencing SubjectMap n'a pas de condition de jointure :

@@ -52,8 +52,10 @@ public class MMecVocabulary {
 
   // Signatures
   public static final String C_SIGNATURE_SUPERSET = BASE + "SignatureSuperset";
+  public static final String C_REF_SUBJECT_MAP = BASE + "RefSubjectMap";
   public static final String P_SIGNATURE_COMPONENT = BASE + "signatureComponent";
   public static final String P_SIGNATURE_SUBSETS = BASE + "subsets";
+  public static final String P_REF_SUBJECT_MAP = BASE + "refSubjectMap";
 
   // Type conversions
   public static final String C_CONVERSION = BASE + "Conversion";
