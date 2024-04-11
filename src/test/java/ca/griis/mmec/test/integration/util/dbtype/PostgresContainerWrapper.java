@@ -57,7 +57,7 @@ public class PostgresContainerWrapper implements Closeable {
       PostgresContainerWrapper.class);
   private static PostgresContainerWrapper instance;
   private static final String ontorelcatLdmImageName =
-      "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm:0.0.1";
+      "archive.griis.usherbrooke.ca:5004/ontorelcat-ldm:0.0.2-dev";
   private final DockerImageName ontorelcatLdmImage = DockerImageName.parse(ontorelcatLdmImageName)
       .asCompatibleSubstituteFor("postgres");
   private final PostgreSQLContainer<?> container = new PostgreSQLContainer<>(ontorelcatLdmImage);
@@ -78,7 +78,17 @@ public class PostgresContainerWrapper implements Closeable {
     hikariConfig.setUsername(container.getUsername());
     hikariConfig.setPassword(container.getPassword());
     hikariConfig.setDriverClassName(getDriverName());
-    hikariDataSource = new HikariDataSource(hikariConfig);
+
+    try {
+      hikariDataSource = new HikariDataSource(hikariConfig);
+    } catch (Exception e) {
+      if (container.isRunning()) {
+        container.stop();
+      }
+      logger.error("Failed to connect to the TestContainer. Container logs :\n"
+          + container.getLogs());
+      throw e;
+    }
   }
 
   /**
