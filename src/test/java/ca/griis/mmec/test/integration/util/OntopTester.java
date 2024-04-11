@@ -59,7 +59,7 @@ public abstract class OntopTester {
     }
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
     MappingProperties mappingProperties = new MappingPropertiesBuilder()
-        .setOntoRelId("OntoRelCat_simple").build();
+        .setOntoRelId("9c9563e2-a24e-41f3-945c-64403d119d52").build();
     FacadeProperties facadeProperties = new FacadePropertiesBuilder().build();
 
     configuration = new MMecConfiguration.MMecConfigurationBuilder()
