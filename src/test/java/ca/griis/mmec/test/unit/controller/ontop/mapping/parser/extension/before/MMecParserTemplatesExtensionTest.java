@@ -27,6 +27,8 @@ import org.apache.commons.rdf.rdf4j.RDF4JTriple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.semanticweb.owlapi.vocab.DublinCoreVocabulary;
+import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
 public class MMecParserTemplatesExtensionTest {
   public static final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
@@ -504,6 +506,75 @@ public class MMecParserTemplatesExtensionTest {
         testGraph.stream(firstSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE), null)
             .findAny().map(triple -> ((Literal) triple.getObject()).getLexicalForm())
             .orElseThrow());
+  }
+
+  @Test
+  public void testAddsMMecAsTemplateSource() {
+    RDF4JBlankNode mappingExpression = rdf.createBlankNode(
+        "mappingExpression");
+    RDF4JBlankNode subjectMap = rdf.createBlankNode("subjectMap");
+    testGraph.add(mappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(subjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
+        rdf.createLiteral("signComponent"));
+    testGraph.add(mappingExpression,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        subjectMap);
+
+    Assertions.assertFalse(mappingParser.hasMMecAsTemplateSource(testGraph, subjectMap));
+
+    mappingParser.generateTemplates_pub(testGraph, mappingExpression);
+
+    Assertions.assertTrue(mappingParser.hasMMecAsTemplateSource(testGraph, subjectMap));
+  }
+
+  @Test
+  public void testIgnoreWhenAsAlreadyMMecasTemplateSource() {
+    // The mapping has a template and a signatureComponent
+    RDF4JBlankNode mappingExpression = rdf.createBlankNode(
+        "mappingExpression");
+    RDF4JBlankNode subjectMap = rdf.createBlankNode("subjectMap");
+    testGraph.add(mappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    testGraph.add(subjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_SUBJECT_MAP));
+    testGraph.add(subjectMap,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TERM_MAP));
+
+    RDF4JLiteral originalTemplateLiteral = rdf.createLiteral("http://www.example.com/anyTemplate");
+    testGraph.add(subjectMap,
+        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+        originalTemplateLiteral);
+
+    testGraph.add(subjectMap, rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT),
+        rdf.createLiteral("signComponent"));
+    testGraph.add(mappingExpression,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        subjectMap);
+
+    RDF4JBlankNode sourceAnnotation = rdf.createBlankNode();
+    testGraph.add(sourceAnnotation, rdf.createIRI(nsTypeIri), OWLRDFVocabulary.OWL_AXIOM.getIRI());
+    testGraph.add(sourceAnnotation, OWLRDFVocabulary.OWL_ANNOTATED_SOURCE.getIRI(), subjectMap);
+    testGraph.add(sourceAnnotation, OWLRDFVocabulary.OWL_ANNOTATED_PROPERTY.getIRI(),
+        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
+    testGraph.add(sourceAnnotation, DublinCoreVocabulary.SOURCE.getIRI(),
+        rdf.createIRI(MMecVocabulary.NS_MMEC));
+
+    mappingParser.generateTemplates_pub(testGraph, mappingExpression);
+
+    // The original template is still there
+    Assertions.assertTrue(testGraph.stream(subjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+        originalTemplateLiteral).findAny().isPresent());
   }
 
   // A class that expose protected methods of MappingParserExtension for the tests

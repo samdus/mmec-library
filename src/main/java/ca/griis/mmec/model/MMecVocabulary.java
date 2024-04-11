@@ -38,37 +38,38 @@ package ca.griis.mmec.model;
  *      2024-03-21 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      S.O.
+ *      TODO 2024-04-11 [SD] - Cette classe gagnerait à être un enum
+ *                             Prendre exemple sur org.semanticweb.owlapi.vocab.DublinCoreVocabulary
  */
 public class MMecVocabulary {
-  private static final String BASE = "http://www.griis.ca/ns/mmec#";
+  public static final String NS_MMEC = "http://www.griis.ca/ns/mmec#";
 
   // Headers
-  public static final String C_MAPPING_HEADER = BASE + "MappingHeader";
-  public static final String C_ONTOREL = BASE + "OntoRel";
-  public static final String C_DATA_SOURCE = BASE + "DataSource";
-  public static final String P_MAPPING_ONTOREL = BASE + "ontorel";
-  public static final String P_MAPPING_SOURCE = BASE + "source";
+  public static final String C_MAPPING_HEADER = NS_MMEC + "MappingHeader";
+  public static final String C_ONTOREL = NS_MMEC + "OntoRel";
+  public static final String C_DATA_SOURCE = NS_MMEC + "DataSource";
+  public static final String P_MAPPING_ONTOREL = NS_MMEC + "ontorel";
+  public static final String P_MAPPING_SOURCE = NS_MMEC + "source";
 
   // Signatures
-  public static final String C_SIGNATURE_SUPERSET = BASE + "SignatureSuperset";
-  public static final String C_REF_SUBJECT_MAP = BASE + "RefSubjectMap";
-  public static final String P_SIGNATURE_COMPONENT = BASE + "signatureComponent";
-  public static final String P_SIGNATURE_SUBSETS = BASE + "subsets";
-  public static final String P_REF_SUBJECT_MAP = BASE + "refSubjectMap";
+  public static final String C_SIGNATURE_SUPERSET = NS_MMEC + "SignatureSuperset";
+  public static final String C_REF_SUBJECT_MAP = NS_MMEC + "RefSubjectMap";
+  public static final String P_SIGNATURE_COMPONENT = NS_MMEC + "signatureComponent";
+  public static final String P_SIGNATURE_SUBSETS = NS_MMEC + "subsets";
+  public static final String P_REF_SUBJECT_MAP = NS_MMEC + "refSubjectMap";
 
   // Type conversions
-  public static final String C_CONVERSION = BASE + "Conversion";
-  public static final String C_SQL_FUNCTION = BASE + "SQLFunction";
-  public static final String C_SQL_TYPE = BASE + "SQLType";
+  public static final String C_CONVERSION = NS_MMEC + "Conversion";
+  public static final String C_SQL_FUNCTION = NS_MMEC + "SQLFunction";
+  public static final String C_SQL_TYPE = NS_MMEC + "SQLType";
   public static final String P_CONVERSION_INPUT_TYPE =
-      BASE + "conversionInputType";
+      NS_MMEC + "conversionInputType";
   public static final String P_CONVERSION_OUTPUT_TYPE =
-      BASE + "conversionOutputType";
+      NS_MMEC + "conversionOutputType";
   public static final String P_CONVERSION_FUNCTION =
-      BASE + "conversionFunction";
+      NS_MMEC + "conversionFunction";
   public static final String P_CONVERSION_VERIFICATION_FUNCTION =
-      BASE + "verificationFunction";
+      NS_MMEC + "verificationFunction";
   public static final String P_SQL_QUALIFIED_IDENTIFIER =
-      BASE + "qualifiedIdentifier";
+      NS_MMEC + "qualifiedIdentifier";
 }

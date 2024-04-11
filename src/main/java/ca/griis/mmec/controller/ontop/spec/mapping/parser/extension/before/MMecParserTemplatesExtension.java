@@ -32,6 +32,9 @@ import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.Triple;
 import org.apache.commons.rdf.rdf4j.RDF4J;
+import org.apache.commons.rdf.rdf4j.RDF4JBlankNode;
+import org.semanticweb.owlapi.vocab.DublinCoreVocabulary;
+import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -60,9 +63,12 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      2024-03-22 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      TODO 2024-04-04 [SD] - Vérifier que l'ordre des composants est garantie
+ *      TODO 2024-04-04 [SD] - Vérifier que l'ordre des composants est garantie.
  *      TODO 2024-04-04 [SD] - Faire en sorte que les classes définies pour toutes la hierarchie
  *                             des parents soient ajouté à l'enfant.
+ *      TODO 2024-04-11 [SD] - Ajuster la vérification des composants de signature pour les
+ *                             parents. Ça ne fonctionne SignatureSuperSet, parce qu'un superset n'a
+ *                             pas de composants, donc tout ses enfants seront considérés valide.
  */
 public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
   private static final GriisLogger logger =
@@ -88,6 +94,8 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
    *      __Obtenir <x, rr:subjectMap, xSubjectMap>
    *      __Obtenir <p, rr:subjectMap, pSubjectMap>
    *      __S'il existe <xSubjectMap, rr:template, xTemplate>
+   *      ____Si xTemplate est annoté avec http://purl.org/dc/terms/source mmec:
+   *      ______Passer au triplet suivant
    *      ____S'il existe <ANY, mmec:subsets, x> ou si p <> x :
    *      ______Lancer une exception
    *      ____Sinon Si le mapping ne défini pas ses composants de signatures
@@ -103,6 +111,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
    *      __componentString := Former une chaîne de caractère à partir des triplets
    *      ______<pSubjectMap, mmec:signComponent, c> en utilisant l'expression "/{" + c + "}"
    *      __Ajouter un triplet <xSubjectMap, rr:template, signScope+componentString>
+   *      __Ajouter un owl:Axiom pour annoter le rr:template avec http://purl.org/dc/terms/source
    *      --
    *      Notes :
    *      - Si p correspond à un mmec:SignatureSuperSet, il est possible que le pSubjectMap
@@ -119,6 +128,29 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
       generateTemplates(mappingGraph, currentTriple.getSubject());
     }
     logger.trace(Trace.EXIT_METHOD_0);
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param currentSubjectMap «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Vérifie si le subjectMap a déjà mmec:source annoté
+   * @param mappingGraph Le graphe d'arrimage
+   * @param currentSubjectMap Le subjectMap à vérifier
+   * @return Vrai si le subjectMap a déjà mmec:source annoté
+   */
+  public boolean hasMMecAsTemplateSource(Graph mappingGraph, BlankNodeOrIRI currentSubjectMap) {
+    return mappingGraph
+        .stream(null, OWLRDFVocabulary.OWL_ANNOTATED_SOURCE.getIRI(), currentSubjectMap)
+        .map(Triple::getSubject)
+        .flatMap(sourceAnnotation ->
+            mappingGraph.stream(sourceAnnotation,
+                DublinCoreVocabulary.SOURCE.getIRI(),
+                rdf.createIRI(MMecVocabulary.NS_MMEC)))
+        .findAny()
+        .isPresent();
   }
 
   /**
@@ -154,7 +186,9 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
         .orElse(List.of());
 
     if (currentTemplate.isPresent()) {
-      if (current.equals(parentRoot)
+      if (hasMMecAsTemplateSource(mappingGraph, currentSubjectMap)) {
+        return;
+      } else if (current.equals(parentRoot)
           && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
           .findAny().isEmpty()) {
         if (currentComponents.isEmpty()) {
@@ -187,6 +221,8 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
     mappingGraph.add(currentSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
         rdf.createLiteral(signScope + "/" + componentString));
+    addMMecAsTemplateSource(mappingGraph, currentSubjectMap);
+
     logger.trace(Trace.EXIT_METHOD_0);
   }
 
@@ -209,5 +245,31 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
       return getParentRoot(mappingGraph, parent.get());
     }
     return current;
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param currentSubjectMap «Parameter description»
+   *
+   * @brief @~french Ajoute un owl:Axiom pour annoter le rr:template avec
+   *                 http://purl.org/dc/terms/source
+   * @param mappingGraph Le graphe d'arrimage
+   * @param currentSubjectMap Le subjectMap à annoter
+   */
+  private void addMMecAsTemplateSource(Graph mappingGraph, BlankNodeOrIRI currentSubjectMap) {
+    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, currentSubjectMap);
+
+    RDF4JBlankNode sourceAnnotation = rdf.createBlankNode();
+    mappingGraph.add(sourceAnnotation, rdf.createIRI(nsTypeIri),
+        OWLRDFVocabulary.OWL_AXIOM.getIRI());
+    mappingGraph.add(sourceAnnotation, OWLRDFVocabulary.OWL_ANNOTATED_SOURCE.getIRI(),
+        currentSubjectMap);
+    mappingGraph.add(sourceAnnotation, OWLRDFVocabulary.OWL_ANNOTATED_PROPERTY.getIRI(),
+        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE));
+    mappingGraph.add(sourceAnnotation, DublinCoreVocabulary.SOURCE.getIRI(),
+        rdf.createIRI(MMecVocabulary.NS_MMEC));
+
+    logger.trace(Trace.EXIT_METHOD_0);
   }
 }
