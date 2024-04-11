@@ -97,7 +97,16 @@
 # "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020015"@personal name
 :HBW_0000022
     rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
-                            rr:objectMap [ rr:parentTriplesMap :IAO_0020015 ] ] .
+                            rr:objectMap [ rr:parentTriplesMap :IAO_0020015 ;
+                                           rr:joinCondition    [ rr:child  """ "PRENOM" """ ;
+                                                                 rr:parent """ "PRENOM" """ ] ] ] .
+
+# "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020017"@family name
+:HBW_0000022
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :IAO_0020017 ;
+                                           rr:joinCondition    [ rr:child  """ "NOM" """ ;
+                                                                 rr:parent """ "NOM" """ ] ] ] .
 
 # "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020017"@family name
 :HBW_0000022
@@ -226,7 +235,7 @@
                       rr:sqlQuery """
                        select "ID_PATIENT_UUID"
                        from "EXP"."DOSSIER"
-                       where "ID_PATIENT" is null
+                       where "ID_PATIENT_EXT" is null
                       """ ] ;
     rr:subjectMap   <HBW_0000007_noidyet:subject> .
 
@@ -256,7 +265,9 @@
 # HBW_0000006@medical record identifier IAO_0000136@'is about' ONTORELA_C4d0c3f45@(health care record and (is about exactly 1 patient))
 :HBW_0000006
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
-                            rr:objectMap [ rr:parentTriplesMap :ONTORELA_C4d0c3f45 ] ] .
+                            rr:objectMap [ rr:parentTriplesMap :ONTORELA_C4d0c3f45 ;
+                                           rr:joinCondition    [ rr:child  """ "ID_PATIENT_UUID" """ ;
+                                                                 rr:parent """ "ID_PATIENT_UUID" """ ] ] ] .
 
 # ONTORELA_C4d0c3f45@(health care record and (is about exactly 1 patient)) IAO_0000136@'is about' HBW_0000007@Patient
 :ONTORELA_C4d0c3f45
@@ -267,7 +278,9 @@
 
 :ONTORELA_C4d0c3f45
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
-                            rr:objectMap [ rr:parentTriplesMap :HBW_0000007_not_identified ] ] .
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000007_not_identified ;
+                                           rr:joinCondition    [ rr:child  """ "ID_PATIENT_UUID" """ ;
+                                                                 rr:parent """ "ID_PATIENT_UUID" """ ] ] ] .
 
 # **** Individuation d'une disjonction ****
 
