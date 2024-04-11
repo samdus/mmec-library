@@ -553,22 +553,11 @@ public class MMecMappingAssertionUnion {
         return;
       }
 
-      removeSubsets(conjunctiveIqs, newCiq);
+      Iterators.removeIf(iterator,
+          potentialSubSet -> newCiq.getProvenance().getMmecTriplesMap().getSubsetList()
+              .contains(potentialSubSet.getProvenance().getMmecTriplesMap()));
     }
     conjunctiveIqs.add(newCiq);
-  }
-
-  /**
-   * @brief @~english Remove any rule that are subset of the new rule
-   * @param newCiq The new rule being added
-   *
-   * @brief @~french Supprime toute règle qui est un sous-ensemble de la nouvelle règle
-   * @param newCiq La nouvelle règle en ajout
-   */
-  private void removeSubsets(List<ConjunctiveIQ> conjunctiveIqs, ConjunctiveIQ newCiq) {
-    Iterators.removeIf(conjunctiveIqs.iterator(),
-        potentialSubSet -> newCiq.getProvenance().getMmecTriplesMap().getSubsetList()
-            .contains(potentialSubSet.getProvenance().getMmecTriplesMap()));
   }
 
   /**
