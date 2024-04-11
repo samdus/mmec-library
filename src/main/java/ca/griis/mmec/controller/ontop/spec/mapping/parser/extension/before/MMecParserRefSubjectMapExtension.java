@@ -83,45 +83,46 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
    *        du parent, en copiant les attributs du subjectMap du parent et en ajoutant les
    *        éventuels mmec:subsets du parent.
    * @par Details
-   *     Pour chaque triplet <child, mmec:refSubjectMap, childRefSubjectMap> dans le graphe :
-   *     __Obtenir le triplet <childRefSubjectMap, rr:parentTriplesMap, parentTriplesMap>
-   *     __Obtenir le triplet <parentTriplesMap, rr:subjectMap, parentSubjectMap>
-   *     __Obtenir le triplet <parentTriplesMap, mmec:subsets, parentSubsets>
-   *     __Obtenir le triplet <parentTriplesMap, rr:logicalTable, parentLogicalTable>
-   *     __Obtenir le triplet <parentLogicalTable, rr:sqlQuery, parentSqlQuery>
-   *     __Obtenir le triplet <parentLogicalTable, rr:tableName, parentTable>
-   *     __Obtenir le triplet <child, rr:logicalTable, childLogicalTable>
-   *     __Obtenir le triplet <childLogicalTable, rr:sqlQuery, childSqlQuery>
-   *     __Obtenir le triplet <childLogicalTable, rr:tableName, childTable>
-   *     __Obtenir les triplets <childRefSubjectMap, rr:joinCondition, {joinConditions}>
-   *     __
-   *     __Si la valeur parentSqlQuery n'existe pas :
-   *     ____parentSqlQuery = "SELECT * FROM " + parentTable
-   *     __
-   *     __Si la valeur childSqlQuery n'existe pas :
-   *     ____childSqlQuery = "SELECT * FROM " + childTable
-   *     __
-   *     __Si joinConditions est vide :
-   *     ____query = "SELECT * FROM (" + childSqlQuery + ") AS tmp"
-   *     __Sinon :
-   *     ____Pour chaque condition dans joinConditions :
-   *     ______Obtenir le triplet <condition, rr:child, childColumn>
-   *     ______Obtenir le triplet <condition, rr:parent, parentColumn>
-   *     ______Ajout à joinConditionString, séparé par un "AND" : childColumn + " = " + parentColumn
-   *     ________Sauf si tous les couples (childColumn, parentColumn) sont identiques, alors
-   *     ________utiliser "USING" au lieu de "ON"
-   *     ____query = "SELECT *
-   *     _____________FROM (" + childSqlQuery + ") AS child
-   *     _____________JOIN (" + parentSqlQuery + ") AS parent
-   *     _______________" + joinConditionString
-   *     __
-   *     __retirer le triplet <child, rr:logicalTable, childLogicalTable>
-   *     __ajouter un triplet <child, rr:logicalTable, newLogicalTable>
-   *     __ajouter un triplet <newLogicalTable, rdf:type, rr:R2RMLView>
-   *     __ajouter un triplet <newLogicalTable, rr:sqlQuery, query>
-   *     __ajouter un triplet <child, rr:subjectMap, parentSubjectMap>
-   *     __Si parentSubsets existe :
-   *     ____ajouter un triplet <child, mmec:subsets, parentSubsets>
+   *      Pour chaque triplet <child, mmec:refSubjectMap, childRefSubjectMap> dans le graphe :
+   *      __Obtenir le triplet <childRefSubjectMap, rr:parentTriplesMap, parentTriplesMap>
+   *      __Obtenir le triplet <parentTriplesMap, rr:subjectMap, parentSubjectMap>
+   *      __Obtenir le triplet <parentTriplesMap, mmec:subsets, parentSubsets>
+   *      __Obtenir le triplet <parentTriplesMap, rr:logicalTable, parentLogicalTable>
+   *      __Obtenir le triplet <parentLogicalTable, rr:sqlQuery, parentSqlQuery>
+   *      __Obtenir le triplet <parentLogicalTable, rr:tableName, parentTable>
+   *      __Obtenir le triplet <child, rr:logicalTable, childLogicalTable>
+   *      __Obtenir le triplet <childLogicalTable, rr:sqlQuery, childSqlQuery>
+   *      __Obtenir le triplet <childLogicalTable, rr:tableName, childTable>
+   *      __Obtenir les triplets <childRefSubjectMap, rr:joinCondition, {joinConditions}>
+   *      __
+   *      __Si la valeur parentSqlQuery n'existe pas :
+   *      ____parentSqlQuery = "SELECT * FROM " + parentTable
+   *      __
+   *      __Si la valeur childSqlQuery n'existe pas :
+   *      ____childSqlQuery = "SELECT * FROM " + childTable
+   *      __
+   *      __Si joinConditions est vide :
+   *      ____query = "SELECT * FROM (" + childSqlQuery + ") AS tmp"
+   *      __Sinon :
+   *      ____Pour chaque condition dans joinConditions :
+   *      ______Obtenir le triplet <condition, rr:child, childColumn>
+   *      ______Obtenir le triplet <condition, rr:parent, parentColumn>
+   *      ______Ajout à joinConditionString, séparé par un "AND" : childColumn + " = " +
+   *      parentColumn
+   *      ________Sauf si tous les couples (childColumn, parentColumn) sont identiques, alors
+   *      ________utiliser "USING" au lieu de "ON"
+   *      ____query = "SELECT *
+   *      _____________FROM (" + childSqlQuery + ") AS child
+   *      _____________JOIN (" + parentSqlQuery + ") AS parent
+   *      _______________" + joinConditionString
+   *      __
+   *      __retirer le triplet <child, rr:logicalTable, childLogicalTable>
+   *      __ajouter un triplet <child, rr:logicalTable, newLogicalTable>
+   *      __ajouter un triplet <newLogicalTable, rdf:type, rr:R2RMLView>
+   *      __ajouter un triplet <newLogicalTable, rr:sqlQuery, query>
+   *      __ajouter un triplet <child, rr:subjectMap, parentSubjectMap>
+   *      __Si parentSubsets existe :
+   *      ____ajouter un triplet <child, mmec:subsets, parentSubsets>
    * @param mappingGraph Graph d'arrimage.
    * @param prefixes Préfixes de l'arrimage.
    */
@@ -159,28 +160,28 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
 
     final BlankNodeOrIRI parentTriplesMap = getObject(mappingGraph, childRefSubjectMap,
         rdf.createIRI(R2RMLVocabulary.PROP_PARENT_TRIPLES_MAP))
-        .orElseThrow(() -> new RefSubjectMapWithoutParentTriplesMapException(child));
+            .orElseThrow(() -> new RefSubjectMapWithoutParentTriplesMapException(child));
     final BlankNodeOrIRI parentSubjectMap = getObject(mappingGraph, parentTriplesMap,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP))
-        .orElseThrow(() -> new SignatureWithoutSubjectMapException(parentTriplesMap));
+            .orElseThrow(() -> new SignatureWithoutSubjectMapException(parentTriplesMap));
     final Optional<BlankNodeOrIRI> parentSubsets = getObject(mappingGraph, parentTriplesMap,
         rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS));
     final BlankNodeOrIRI parentLogicalTable = getObject(mappingGraph, parentTriplesMap,
         rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE))
-        .orElseThrow(() -> new SignatureWithoutLogicalTableException(parentTriplesMap));
+            .orElseThrow(() -> new SignatureWithoutLogicalTableException(parentTriplesMap));
     final Optional<String> maybeParentSqlQuery = getLiteral(mappingGraph, parentLogicalTable,
         rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY));
     final Optional<String> parentTable = getLiteral(mappingGraph, parentLogicalTable,
         rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME));
     final BlankNodeOrIRI childLogicalTable = getObject(mappingGraph, child,
         rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE))
-        .orElseThrow(() -> new SignatureWithoutLogicalTableException(child));
+            .orElseThrow(() -> new SignatureWithoutLogicalTableException(child));
     final Optional<String> maybeChildSqlQuery = getLiteral(mappingGraph, childLogicalTable,
         rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY));
     final Optional<String> childTable = getLiteral(mappingGraph, childLogicalTable,
         rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME));
     final List<BlankNodeOrIRI> joinConditions = mappingGraph.stream(childRefSubjectMap,
-            rdf.createIRI(R2RMLVocabulary.PROP_JOIN_CONDITION), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_JOIN_CONDITION), null)
         .map(Triple::getObject)
         .filter(o -> o instanceof BlankNodeOrIRI)
         .map(o -> (BlankNodeOrIRI) o)
@@ -207,10 +208,10 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
           .map(condition -> {
             String childColumn = getLiteral(mappingGraph, condition,
                 rdf.createIRI(R2RMLVocabulary.PROP_CHILD))
-                .orElseThrow(() -> new JoinConditionWithoutChildColumnException(condition));
+                    .orElseThrow(() -> new JoinConditionWithoutChildColumnException(condition));
             String parentColumn = getLiteral(mappingGraph, condition,
                 rdf.createIRI(R2RMLVocabulary.PROP_PARENT))
-                .orElseThrow(() -> new JoinConditionWithoutParentColumnException(condition));
+                    .orElseThrow(() -> new JoinConditionWithoutParentColumnException(condition));
             return Pair.of(childColumn.trim(), parentColumn.trim());
           }).toList();
 

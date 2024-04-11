@@ -39,7 +39,7 @@ package ca.griis.mmec.model;
  *
  * @par Tâches
  *      TODO 2024-04-11 [SD] - Cette classe gagnerait à être un enum
- *                             Prendre exemple sur org.semanticweb.owlapi.vocab.DublinCoreVocabulary
+ *      Prendre exemple sur org.semanticweb.owlapi.vocab.DublinCoreVocabulary
  */
 public class MMecVocabulary {
   public static final String NS_MMEC = "http://www.griis.ca/ns/mmec#";

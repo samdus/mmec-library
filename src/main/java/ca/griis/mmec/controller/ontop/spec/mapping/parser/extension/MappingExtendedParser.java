@@ -76,7 +76,8 @@ public abstract class MappingExtendedParser {
    * @param predicate Le prédicat du triplet.
    * @return L'identifiant qualifié de l'objet du triplet.
    */
-  protected Optional<String> getObjectsQualifiedIdentifier(Graph mappingGraph, BlankNodeOrIRI subject,
+  protected Optional<String> getObjectsQualifiedIdentifier(Graph mappingGraph,
+      BlankNodeOrIRI subject,
       IRI predicate) {
     logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);
     return getObject(mappingGraph, subject, predicate)

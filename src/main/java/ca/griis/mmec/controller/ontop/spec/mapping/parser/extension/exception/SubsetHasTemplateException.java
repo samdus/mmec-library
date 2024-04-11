@@ -26,7 +26,7 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
  *      «Limits description (optional)»
  *
  * @brief @~french Exception levée lorsqu'un arrimage est déclaré comme un sous-ensemble, mais
- *                 définit son propre template.
+ *        définit son propre template.
  * @par Détails
  *      S.O.
  * @par Modèle

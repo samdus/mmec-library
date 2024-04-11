@@ -26,7 +26,7 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
  *      «Limits description (optional)»
  *
  * @brief @~french Exception lancée lorsqu'un refSubjectMap a une valeur qui n'est pas un IRI ou un
- *                 nœud anonyme.
+ *        nœud anonyme.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -42,7 +42,7 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
  * @par Tâches
  *      S.O.
  */
-public class InvalidRefSubjectMapException  extends IllegalMappingException {
+public class InvalidRefSubjectMapException extends IllegalMappingException {
   public InvalidRefSubjectMapException(BlankNodeOrIRI current) {
     super(current, "range of mmec:refSubjectMap must be an IRI or a Blank node");
   }

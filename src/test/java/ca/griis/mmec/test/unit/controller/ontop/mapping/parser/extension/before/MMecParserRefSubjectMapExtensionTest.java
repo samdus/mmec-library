@@ -45,7 +45,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser = new MMecParserRefSubjectMapExtensionTestImpl(rdf);
   }
 
-  //  Test de l'exception RefSubjectMapWithoutParentTriplesMapException
+  // Test de l'exception RefSubjectMapWithoutParentTriplesMapException
 
   @Test
   public void testRefSubjectMapWithoutParentTriplesMapException() {
@@ -477,7 +477,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -562,7 +562,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -647,7 +647,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -732,7 +732,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -838,7 +838,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -907,7 +907,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -975,7 +975,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -1045,7 +1045,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     testGraph.stream(childMapping,
-            rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentSubsets)
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentSubsets)
         .findAny()
         .ifPresentOrElse(
             subset -> {
@@ -1120,7 +1120,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -1223,7 +1223,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();

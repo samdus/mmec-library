@@ -41,7 +41,7 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
  * @par Tâches
  *      S.O.
  */
-public class SignatureComponentMissingException  extends IllegalMappingException {
+public class SignatureComponentMissingException extends IllegalMappingException {
   public SignatureComponentMissingException(BlankNodeOrIRI current) {
     super(current, "it has no signature components.");
   }

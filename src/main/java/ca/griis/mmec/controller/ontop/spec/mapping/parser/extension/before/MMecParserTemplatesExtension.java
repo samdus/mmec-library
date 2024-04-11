@@ -48,7 +48,7 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
  *      «Limits description (optional)»
  *
  * @brief @~french Extension de l'arrimage qui permet d'engendrer des templates à partir des
- *                 composants de signature en tenant compte des relations subsets.
+ *        composants de signature en tenant compte des relations subsets.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -65,10 +65,10 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
  * @par Tâches
  *      TODO 2024-04-04 [SD] - Vérifier que l'ordre des composants est garantie.
  *      TODO 2024-04-04 [SD] - Faire en sorte que les classes définies pour toutes la hierarchie
- *                             des parents soient ajouté à l'enfant.
+ *      des parents soient ajouté à l'enfant.
  *      TODO 2024-04-11 [SD] - Ajuster la vérification des composants de signature pour les
- *                             parents. Ça ne fonctionne SignatureSuperSet, parce qu'un superset n'a
- *                             pas de composants, donc tout ses enfants seront considérés valide.
+ *      parents. Ça ne fonctionne SignatureSuperSet, parce qu'un superset n'a
+ *      pas de composants, donc tout ses enfants seront considérés valide.
  */
 public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
   private static final GriisLogger logger =
@@ -145,10 +145,9 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
     return mappingGraph
         .stream(null, OWLRDFVocabulary.OWL_ANNOTATED_SOURCE.getIRI(), currentSubjectMap)
         .map(Triple::getSubject)
-        .flatMap(sourceAnnotation ->
-            mappingGraph.stream(sourceAnnotation,
-                DublinCoreVocabulary.SOURCE.getIRI(),
-                rdf.createIRI(MMecVocabulary.NS_MMEC)))
+        .flatMap(sourceAnnotation -> mappingGraph.stream(sourceAnnotation,
+            DublinCoreVocabulary.SOURCE.getIRI(),
+            rdf.createIRI(MMecVocabulary.NS_MMEC)))
         .findAny()
         .isPresent();
   }
@@ -168,7 +167,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
     final BlankNodeOrIRI parentRoot = getParentRoot(mappingGraph, current);
     final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow(
-        () -> new SignatureWithoutSubjectMapException(current));
+            () -> new SignatureWithoutSubjectMapException(current));
     final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parentRoot,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
     final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
@@ -190,7 +189,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
         return;
       } else if (current.equals(parentRoot)
           && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
-          .findAny().isEmpty()) {
+              .findAny().isEmpty()) {
         if (currentComponents.isEmpty()) {
           return;
         } else {
@@ -253,7 +252,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
    * @param currentSubjectMap «Parameter description»
    *
    * @brief @~french Ajoute un owl:Axiom pour annoter le rr:template avec
-   *                 http://purl.org/dc/terms/source
+   *        http://purl.org/dc/terms/source
    * @param mappingGraph Le graphe d'arrimage
    * @param currentSubjectMap Le subjectMap à annoter
    */

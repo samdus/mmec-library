@@ -17,7 +17,6 @@ import ca.griis.mmec.properties.FacadeType;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;

@@ -12,8 +12,6 @@
  */
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension;
 
-import ca.griis.logger.GriisLogger;
-import ca.griis.logger.GriisLoggerFactory;
 import com.google.common.collect.ImmutableMap;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.rdf4j.RDF4J;
@@ -30,7 +28,7 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      «Limits description (optional)»
  *
  * @brief @~french Classe servant à ajouter des traîtements du graphe de mapping avant
- *                 le traitement standard.
+ *        le traitement standard.
  * @par Détails
  *      S.O.
  * @par Modèle

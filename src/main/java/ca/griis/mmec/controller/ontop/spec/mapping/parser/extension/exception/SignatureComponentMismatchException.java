@@ -26,7 +26,7 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
  *      «Limits description (optional)»
  *
  * @brief @~french Exception lancée lorsqu'un nœud a un nombre de composants de signature différent
- *                 de celui duquel il dépend par la relation subsets.
+ *        de celui duquel il dépend par la relation subsets.
  * @par Détails
  *      S.O.
  * @par Modèle

@@ -19,7 +19,6 @@ import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecPostgreSq
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingExtendedAfterParsing;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.ConversionWithoutInputTypeException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.ConversionWithoutOutputTypeException;
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
@@ -105,27 +104,27 @@ public class MMecParserConversionExtension extends MappingExtendedAfterParsing {
       DBTermType declaredInputType = getObjectsQualifiedIdentifier(mappingGraph,
           conversionTriple.getSubject(),
           rdf.createIRI(MMecVocabulary.P_CONVERSION_INPUT_TYPE))
-          .map(typeFactory.getDBTypeFactory()::getDBTermType)
-          .orElseThrow(
-              () -> new ConversionWithoutInputTypeException(conversionTriple.getSubject()));
+              .map(typeFactory.getDBTypeFactory()::getDBTermType)
+              .orElseThrow(
+                  () -> new ConversionWithoutInputTypeException(conversionTriple.getSubject()));
       DBTermType declaredOutputType = getObjectsQualifiedIdentifier(mappingGraph,
           conversionTriple.getSubject(),
           rdf.createIRI(MMecVocabulary.P_CONVERSION_OUTPUT_TYPE))
-          .map(typeFactory.getDBTypeFactory()::getDBTermType)
-          .orElseThrow(
-              () -> new ConversionWithoutOutputTypeException(conversionTriple.getSubject()));
+              .map(typeFactory.getDBTypeFactory()::getDBTermType)
+              .orElseThrow(
+                  () -> new ConversionWithoutOutputTypeException(conversionTriple.getSubject()));
       Optional<DBTypeConversionFunctionSymbol> declaredConversionFunction =
           getObjectsQualifiedIdentifier(mappingGraph, conversionTriple.getSubject(),
               rdf.createIRI(MMecVocabulary.P_CONVERSION_FUNCTION))
-              .map(
-                  functionName -> sqlDbFunctionSymbolFactory.createMMecConversionFunctionSymbol(
-                      functionName, declaredInputType, declaredOutputType));
+                  .map(
+                      functionName -> sqlDbFunctionSymbolFactory.createMMecConversionFunctionSymbol(
+                          functionName, declaredInputType, declaredOutputType));
       Optional<DBBooleanFunctionSymbol> declaredValidationFunction = getObjectsQualifiedIdentifier(
           mappingGraph, conversionTriple.getSubject(),
           rdf.createIRI(MMecVocabulary.P_CONVERSION_VERIFICATION_FUNCTION))
-          .map(functionName -> sqlDbFunctionSymbolFactory
-              .createMMecConversionValidationFunctionSymbol(functionName,
-                  declaredInputType, declaredOutputType));
+              .map(functionName -> sqlDbFunctionSymbolFactory
+                  .createMMecConversionValidationFunctionSymbol(functionName,
+                      declaredInputType, declaredOutputType));
 
       mappingExtension.addMappingConversion(
           new MMecMappingConversion(declaredInputType, declaredOutputType,

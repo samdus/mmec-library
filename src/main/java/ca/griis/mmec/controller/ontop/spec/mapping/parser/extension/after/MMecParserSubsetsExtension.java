@@ -43,7 +43,7 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      «Limits description (optional)»
  *
  * @brief @~french Extension de l'arrimage qui permet d'associer les expressions d'arrimage aux
- *                 expressions qui sont déclarés comme leur sous-ensemble.
+ *        expressions qui sont déclarés comme leur sous-ensemble.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -88,17 +88,17 @@ public class MMecParserSubsetsExtension extends MappingExtendedAfterParsing {
     Map<TriplesMap, List<TriplesMap>> hasSubset =
         mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), null)
             .filter(axiom ->
-                // If the superset is a SIGNATURE_SUPERSET, it's not required in the hasSubset Map
-                mappingGraph.stream((BlankNodeOrIRI) axiom.getObject(), rdf.createIRI(nsTypeIri),
-                        rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET))
-                    .findAny().isEmpty())
+            // If the superset is a SIGNATURE_SUPERSET, it's not required in the hasSubset Map
+            mappingGraph.stream((BlankNodeOrIRI) axiom.getObject(), rdf.createIRI(nsTypeIri),
+                rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET))
+                .findAny().isEmpty())
             .map(
                 axiom -> new ImmutablePair<>(
                     tripleMaps.stream()
                         .filter(triple -> triple.getNode().equals(axiom.getSubject()))
                         .findFirst().orElseThrow(/* TODO: Créer une exception */),
                     tripleMaps.stream().filter(
-                            triple -> triple.getNode().equals(axiom.getObject()))
+                        triple -> triple.getNode().equals(axiom.getObject()))
                         .findFirst().orElseThrow(/* TODO: Créer une exception */)))
             .collect(Collectors.groupingBy(ImmutablePair::getRight,
                 Collectors.mapping(ImmutablePair::getLeft, Collectors.toList())));
@@ -106,13 +106,13 @@ public class MMecParserSubsetsExtension extends MappingExtendedAfterParsing {
     hasSubset.forEach(
         (supersetMapping, subsetMappingList) -> subsetMappingList.forEach(subsetMapping -> {
           MMecTriplesMap superSetSourceMapping = sourceMappings.stream().filter(
-                  sourceMapping -> sourceMapping.getId()
-                      .equals(String.format("mapping-%s", supersetMapping.hashCode())))
+              sourceMapping -> sourceMapping.getId()
+                  .equals(String.format("mapping-%s", supersetMapping.hashCode())))
               .findFirst()
               .orElseThrow(/* TODO: Créer une exception */);
           MMecTriplesMap subSetSourceMapping = sourceMappings.stream().filter(
-                  sourceMapping -> sourceMapping.getId()
-                      .equals(String.format("mapping-%s", subsetMapping.hashCode())))
+              sourceMapping -> sourceMapping.getId()
+                  .equals(String.format("mapping-%s", subsetMapping.hashCode())))
               .findFirst()
               .orElseThrow(/* TODO: Créer une exception */);
 

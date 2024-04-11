@@ -55,7 +55,7 @@ import ca.griis.mmec.properties.MappingProperties;
  *      le type de façade (vues, vues matérialisées, alimentation, etc.).
  *      4. Sorties
  *      - mmecFacade :: Une chaîne de caractère correspondant à la façade qui pourra être installée
- *                      sur la source de données
+ *      sur la source de données
  *      5. Hypothèses
  *      - Les paramètres de configuration sont valides.
  *      6. Contraintes

@@ -31,7 +31,7 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  *      «Limits description (optional)»
  *
  * @brief @~french Interface servant à ajouter des traîtements au mapping après
- *                 le traitement standard.
+ *        le traitement standard.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -49,10 +49,10 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  */
 public abstract class MappingExtendedAfterParsing extends MappingExtendedParser {
 
-    protected MappingExtendedAfterParsing(RDF4J rdf) {
-        super(rdf);
-    }
+  protected MappingExtendedAfterParsing(RDF4J rdf) {
+    super(rdf);
+  }
 
-    public abstract void parse(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
-        ImmutableList<MMecTriplesMap> sourceMappings);
+  public abstract void parse(Graph mappingGraph, Collection<TriplesMap> tripleMaps,
+      ImmutableList<MMecTriplesMap> sourceMappings);
 }

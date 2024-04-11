@@ -130,7 +130,7 @@ public class MappingParserExtension {
     }
 
     ImmutableList<SQLPPTriplesMap> extendedSourceMapping = mmecSourceMappings.stream().map(
-            SQLPPTriplesMap.class::cast)
+        SQLPPTriplesMap.class::cast)
         .collect(ImmutableCollectors.toList());
 
     return ppMappingFactory.createSQLPreProcessedMapping(extendedSourceMapping, prefixManager);

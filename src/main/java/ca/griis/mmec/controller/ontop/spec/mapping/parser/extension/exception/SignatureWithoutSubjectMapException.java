@@ -24,7 +24,6 @@ import org.apache.commons.rdf.api.BlankNodeOrIRI;
  *      «Conception description (criteria and constraints) (optional)»
  * @par Limits
  *      «Limits description (optional)»
- *s
  * @brief @~french Exception lancée lorsqu'une signature est sans subjectMap.
  * @par Détails
  *      S.O.
