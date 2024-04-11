@@ -215,7 +215,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
     }
 
     final String componentString = currentComponents.stream()
-        .map(component -> "{" + component + "}")
+        .map(component -> "{" + component.trim() + "}")
         .collect(Collectors.joining("/"));
 
     mappingGraph.add(currentSubjectMap,

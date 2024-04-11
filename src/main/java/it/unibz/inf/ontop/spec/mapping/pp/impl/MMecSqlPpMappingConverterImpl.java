@@ -81,12 +81,12 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
       SQLPPTriplesMap mappingAssertion, QuotedIDFactory idFactory,
       ImmutableMap<QuotedID, T> lookup) {
     Function<Variable, Optional<T>> standard =
-        v -> Optional.ofNullable(lookup.get(idFactory.createAttributeID(v.getName())));
+        v -> Optional.ofNullable(lookup.get(idFactory.createAttributeID(v.getName().trim())));
 
     if (mappingAssertion instanceof OntopNativeSQLPPTriplesMap) {
       QuotedIDFactory rawIdFactory = new RawQuotedIDFactory(idFactory);
       return v -> Optional.ofNullable(
-          standard.apply(v).orElse(lookup.get(rawIdFactory.createAttributeID(v.getName()))));
+          standard.apply(v).orElse(lookup.get(rawIdFactory.createAttributeID(v.getName().trim()))));
     } else {
       return standard;
     }

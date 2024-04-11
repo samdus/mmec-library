@@ -308,32 +308,48 @@ A signature defined using the mMec extension will have an rr:template defined fr
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass r2rml:TriplesMap
                                ] ;
-               rdfs:comment """Referencing SubjectMap est une SubjectMap qui associe une table logique à une TriplesMap existante. Elle est utilisée pour ajouter des predicateObjectMaps à une signature existante lorsque la logicalTable de la signature ne contient pas toutes les informations nécessaires pour le predicateObjectMap.
+               rdfs:comment """Referencing SubjectMap est un SubjectMap qui associe une table logique à un TriplesMap existant. Il est utilisé pour ajouter des predicateObjectMaps à une signature existante lorsque le logicalTable de la signature ne contient pas toutes les informations requises pour le predicateObjectMap.
 
-Si le Referencing SubjectMap n'a pas de condition de jointure :
-    SELECT * FROM ({requête-enfant}) AS tmp
-    Contrainte : L'ensemble de colonnes de la requête enfant doit être un surensemble de l'ensemble de colonnes de la requête parent. Un renommage peut s'avérer nécessaire.
+Si le Referencing SubjectMap n'a pas de condition de jointure :
+     SELECT * FROM ({child-query}) AS tmp
+     Contrainte : l'ensemble de colonnes de la requête enfant doit être un sur-ensemble de l'ensemble de colonnes de la requête parent. Renommer peut être nécessaire.
 
-Si le Referencing SubjectMap comporte au moins une condition de jointure :
-    SELECT * FROM ({requête-enfant}) AS enfant,
-                  ({requête-parent}) AS parent
-            WHERE child.{enfant-colonne1}=parent.{parent-colonne1}
-              AND child.{enfant-colonne2}=parent.{parent-colonne2}
-              AND ...
-    Contrainte : L'ensemble de colonnes de la requête enfant doit être disjoint de l'ensemble de colonnes de la requête parent. Un renommage peut s'avérer nécessaire."""@fr-ca ,
+Si le Referencing SubjectMap contient au moins une condition de jointure et qu'au moins une des conditions de jointure a un nom de colonne différent pour l'enfant et le parent :
+     SELECT * 
+     FROM ({child-query}) AS enfant
+         JOIN ({parent-query}) EN TANT QUE parent
+             SUR enfant.{child-column1}=parent.{parent-column1}
+                 ET enfant.{child-column2}=parent.{parent-column2}
+                 ET ...
+     Contrainte : l'ensemble de colonnes de requête enfant doit être disjoint de l'ensemble de colonnes de requête parent. Renommer peut être nécessaire.
+
+Si le Referencing SubjectMap contient au moins une condition de jointure et que toutes les conditions de jointure utilisent les mêmes noms de colonnes pour l'enfant et le parent :
+     SELECT * 
+     FROM ({child-query}) AS enfant
+         JOIN ({parent-query}) EN TANT QUE parent
+             USING({colonne-enfant1}, {colonne-enfant2}, ...)
+     Contrainte : L'ensemble de colonnes de requête enfant doit être disjoint de l'ensemble de colonnes de requête parent pour chaque colonne non utilisée dans USING. Renommer peut être nécessaire."""@fr-ca ,
                             """Referencing SubjectMap is a SubjectMap that associates a logical table with an existing TriplesMap. It is used to add predicateObjectMaps to an existing signature when the signature's logicalTable does not contain all the information required for the predicateObjectMap.
 
 If the Referencing SubjectMap has no join condition:
     SELECT * FROM ({child-query}) AS tmp
     Constraint: The child query's column set must be a superset of the parent query's column set. Renaming may be necessary.
 
-If the Referencing SubjectMap contains at least one join condition:
-    SELECT * FROM ({child-query}) AS child,
-                  ({parent-query}) AS parent
-            WHERE child.{child-column1}=parent.{parent-column1}
-              AND child.{child-column2}=parent.{parent-column2}
-              AND ...
-    Constraint: The child query column set must be disjoint from the parent query column set. Renaming may be necessary."""@en-ca ;
+If the Referencing SubjectMap contains at least one join condition and at least one of the join conditions has a different column name for the child and the parent :
+    SELECT * 
+    FROM ({child-query}) AS child
+        JOIN ({parent-query}) AS parent
+            ON child.{child-column1}=parent.{parent-column1}
+                AND child.{child-column2}=parent.{parent-column2}
+                AND ...
+    Constraint: The child query column set must be disjoint from the parent query column set. Renaming may be necessary.
+
+If the Referencing SubjectMap contains at least one join condition and all the join conditions use the same column names for the child and the parent :
+    SELECT * 
+    FROM ({child-query}) AS child
+        JOIN ({parent-query}) AS parent
+            USING({child-column1}, {child-column2}, ...)
+    Constraint: The child query column set must be disjoint from the parent query column set for every column not used in the USING. Renaming may be necessary."""@en-ca ;
                rdfs:label "RefSubjectMap"@en-ca ,
                           "RefSubjectMap"@fr-ca .
 

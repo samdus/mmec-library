@@ -1054,6 +1054,194 @@ public class MMecParserRefSubjectMapExtensionTest {
             () -> Assertions.fail("Child mapping should have a reference to the parent subsets."));
   }
 
+  @Test
+  public void testUsesUsingWhenJoinWithSameColumnName() {
+    String parentTableName = "parentTableName";
+    String childTableName = "childTableName";
+    String childColumn1 = "childColumn1";
+    String parentColumn1 = childColumn1;
+
+    String expectedQuery = String.format(
+        """
+            SELECT *
+            FROM (SELECT * FROM %s) AS child
+            JOIN (SELECT * FROM %s) AS parent
+              USING (%s)""",
+        childTableName, parentTableName, childColumn1);
+
+    RDF4JIRI parentMapping = rdf.createIRI("http://parentMapping");
+
+    testGraph.add(parentMapping,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+    BlankNodeOrIRI parentLogicalTable = rdf.createBlankNode("parentLogicalTable");
+    testGraph.add(parentLogicalTable,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW));
+    testGraph.add(parentLogicalTable,
+        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME),
+        rdf.createLiteral(parentTableName));
+    testGraph.add(parentMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),
+        parentLogicalTable);
+    BlankNodeOrIRI parentSubjectMap = rdf.createBlankNode("parentSubjectMap");
+    testGraph.add(parentMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
+
+    RDF4JIRI childMapping = rdf.createIRI("http://childMapping");
+    testGraph.add(childMapping,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+    BlankNodeOrIRI childLogicalTable = rdf.createBlankNode("childLogicalTable");
+    testGraph.add(childLogicalTable,
+        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME),
+        rdf.createLiteral(childTableName));
+    testGraph.add(childMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),
+        childLogicalTable);
+    BlankNodeOrIRI childRefSubjectMap = rdf.createBlankNode("childRefSubjectMap");
+    testGraph.add(childRefSubjectMap,
+        rdf.createIRI(R2RMLVocabulary.PROP_PARENT_TRIPLES_MAP),
+        parentMapping);
+
+    RDF4JBlankNode joinCondition1 = rdf.createBlankNode("joinCondition1");
+    testGraph.add(joinCondition1, rdf.createIRI(R2RMLVocabulary.PROP_CHILD),
+        rdf.createLiteral(childColumn1));
+    testGraph.add(joinCondition1, rdf.createIRI(R2RMLVocabulary.PROP_PARENT),
+        rdf.createLiteral(parentColumn1));
+    testGraph.add(childRefSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_JOIN_CONDITION),
+        joinCondition1);
+
+    testGraph.add(childMapping,
+        rdf.createIRI(MMecVocabulary.P_REF_SUBJECT_MAP),
+        childRefSubjectMap);
+
+    mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
+
+    List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        .map(Triple::getObject)
+        .map(BlankNodeOrIRI.class::cast)
+        .toList();
+
+    Assertions.assertEquals(1, newLogicalTable.size());
+
+    testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
+        .map(Triple::getObject)
+        .filter(RDF4JLiteral.class::isInstance)
+        .map(RDF4JLiteral.class::cast)
+        .map(RDF4JLiteral::getLexicalForm)
+        .findAny()
+        .ifPresentOrElse(
+            actualQuery -> Assertions.assertEquals(expectedQuery, actualQuery),
+            () -> Assertions.fail(String.format("Logical table %s should have a SQL query.",
+                newLogicalTable.get(0))));
+  }
+
+  @Test
+  public void testUsesUsingWhenJoinWithSameColumnNameMultiple() {
+    String parentTableName = "parentTableName";
+    String childTableName = "childTableName";
+    String childColumn1 = "childColumn1";
+    String childColumn2 = "childColumn2";
+    String childColumn3 = "childColumn3";
+    String parentColumn1 = childColumn1;
+    String parentColumn2 = childColumn2;
+    String parentColumn3 = childColumn3;
+
+    String expectedQuery = String.format(
+        """
+            SELECT *
+            FROM (SELECT * FROM %s) AS child
+            JOIN (SELECT * FROM %s) AS parent
+              USING (%s, %s, %s)""",
+        childTableName, parentTableName, childColumn1, childColumn2, childColumn3);
+
+    RDF4JIRI parentMapping = rdf.createIRI("http://parentMapping");
+
+    testGraph.add(parentMapping,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+    BlankNodeOrIRI parentLogicalTable = rdf.createBlankNode("parentLogicalTable");
+    testGraph.add(parentLogicalTable,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW));
+    testGraph.add(parentLogicalTable,
+        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME),
+        rdf.createLiteral(parentTableName));
+    testGraph.add(parentMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),
+        parentLogicalTable);
+    BlankNodeOrIRI parentSubjectMap = rdf.createBlankNode("parentSubjectMap");
+    testGraph.add(parentMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
+
+    RDF4JIRI childMapping = rdf.createIRI("http://childMapping");
+    testGraph.add(childMapping,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+    BlankNodeOrIRI childLogicalTable = rdf.createBlankNode("childLogicalTable");
+    testGraph.add(childLogicalTable,
+        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME),
+        rdf.createLiteral(childTableName));
+    testGraph.add(childMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),
+        childLogicalTable);
+    BlankNodeOrIRI childRefSubjectMap = rdf.createBlankNode("childRefSubjectMap");
+    testGraph.add(childRefSubjectMap,
+        rdf.createIRI(R2RMLVocabulary.PROP_PARENT_TRIPLES_MAP),
+        parentMapping);
+
+    RDF4JBlankNode joinCondition1 = rdf.createBlankNode("joinCondition1");
+    RDF4JBlankNode joinCondition2 = rdf.createBlankNode("joinCondition2");
+    RDF4JBlankNode joinCondition3 = rdf.createBlankNode("joinCondition3");
+    testGraph.add(joinCondition1, rdf.createIRI(R2RMLVocabulary.PROP_CHILD),
+        rdf.createLiteral(childColumn1));
+    testGraph.add(joinCondition1, rdf.createIRI(R2RMLVocabulary.PROP_PARENT),
+        rdf.createLiteral(parentColumn1));
+    testGraph.add(joinCondition2, rdf.createIRI(R2RMLVocabulary.PROP_CHILD),
+        rdf.createLiteral(childColumn2));
+    testGraph.add(joinCondition2, rdf.createIRI(R2RMLVocabulary.PROP_PARENT),
+        rdf.createLiteral(parentColumn2));
+    testGraph.add(joinCondition3, rdf.createIRI(R2RMLVocabulary.PROP_CHILD),
+        rdf.createLiteral(childColumn3));
+    testGraph.add(joinCondition3, rdf.createIRI(R2RMLVocabulary.PROP_PARENT),
+        rdf.createLiteral(parentColumn3));
+    testGraph.add(childRefSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_JOIN_CONDITION),
+        joinCondition1);
+    testGraph.add(childRefSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_JOIN_CONDITION),
+        joinCondition2);
+    testGraph.add(childRefSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_JOIN_CONDITION),
+        joinCondition3);
+
+    testGraph.add(childMapping,
+        rdf.createIRI(MMecVocabulary.P_REF_SUBJECT_MAP),
+        childRefSubjectMap);
+
+    mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
+
+    List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+        .map(Triple::getObject)
+        .map(BlankNodeOrIRI.class::cast)
+        .toList();
+
+    Assertions.assertEquals(1, newLogicalTable.size());
+
+    testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
+        .map(Triple::getObject)
+        .filter(RDF4JLiteral.class::isInstance)
+        .map(RDF4JLiteral.class::cast)
+        .map(RDF4JLiteral::getLexicalForm)
+        .findAny()
+        .ifPresentOrElse(
+            actualQuery -> Assertions.assertEquals(expectedQuery, actualQuery),
+            () -> Assertions.fail(String.format("Logical table %s should have a SQL query.",
+                newLogicalTable.get(0))));
+  }
+
 
   private static class MMecParserRefSubjectMapExtensionTestImpl
       extends MMecParserRefSubjectMapExtension {

@@ -107,12 +107,6 @@
                             rr:objectMap [ rr:parentTriplesMap :IAO_0020017 ;
                                            rr:joinCondition    [ rr:child  """ "NOM" """ ;
                                                                  rr:parent """ "NOM" """ ] ] ] .
-
-# "HBW_0000022"@human name BFO_0000051@'has part' "IAO_0020017"@family name
-:HBW_0000022
-    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
-                            rr:objectMap [ rr:parentTriplesMap :IAO_0020017 ] ] .
-
 # -- Propriétés de données
 # "IAO_0020015"@personal name PHYSIO_0000100@'has value' "PRENOM"
 :IAO_0020015

@@ -30,6 +30,7 @@ import eu.optique.r2rml.api.model.R2RMLVocabulary;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.Triple;
@@ -62,7 +63,7 @@ import org.apache.commons.rdf.rdf4j.RDF4JBlankNode;
  *      2024-04-03 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      S.O.
+ *      TODO 2024-04-11 [SD] - Faire en sorte que l'enfant soit déclaré comme un subset du parent
  */
 public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsing {
   private static final GriisLogger logger =
@@ -107,10 +108,12 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
    *     ______Obtenir le triplet <condition, rr:child, childColumn>
    *     ______Obtenir le triplet <condition, rr:parent, parentColumn>
    *     ______Ajout à joinConditionString, séparé par un "AND" : childColumn + " = " + parentColumn
+   *     ________Sauf si tous les couples (childColumn, parentColumn) sont identiques, alors
+   *     ________utiliser "USING" au lieu de "ON"
    *     ____query = "SELECT *
    *     _____________FROM (" + childSqlQuery + ") AS child
    *     _____________JOIN (" + parentSqlQuery + ") AS parent
-   *     _______________ON " + joinConditionString
+   *     _______________" + joinConditionString
    *     __
    *     __retirer le triplet <child, rr:logicalTable, childLogicalTable>
    *     __ajouter un triplet <child, rr:logicalTable, newLogicalTable>
@@ -185,17 +188,22 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
 
     final String parentSqlQuery = maybeParentSqlQuery
         .orElseGet(() -> "SELECT * FROM " +
-            parentTable.orElseThrow(
-                () -> new LogicalTableWithoutSqlQueryNorTableNameException(parentLogicalTable)));
+            parentTable
+                .map(String::trim)
+                .orElseThrow(
+                    () -> new LogicalTableWithoutSqlQueryNorTableNameException(
+                        parentLogicalTable)));
     final String childSqlQuery = maybeChildSqlQuery.orElseGet(() -> "SELECT * FROM " +
-        childTable.orElseThrow(
-            () -> new LogicalTableWithoutSqlQueryNorTableNameException(childLogicalTable)));
+        childTable
+            .map(String::trim)
+            .orElseThrow(
+                () -> new LogicalTableWithoutSqlQueryNorTableNameException(childLogicalTable)));
 
     final String query;
     if (joinConditions.isEmpty()) {
       query = "SELECT * FROM (" + childSqlQuery + ") AS tmp";
     } else {
-      String joinConditionString = joinConditions.stream()
+      List<Pair<String, String>> joins = joinConditions.stream()
           .map(condition -> {
             String childColumn = getLiteral(mappingGraph, condition,
                 rdf.createIRI(R2RMLVocabulary.PROP_CHILD))
@@ -203,18 +211,29 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
             String parentColumn = getLiteral(mappingGraph, condition,
                 rdf.createIRI(R2RMLVocabulary.PROP_PARENT))
                 .orElseThrow(() -> new JoinConditionWithoutParentColumnException(condition));
-            return String.format("child.%s = parent.%s", childColumn, parentColumn);
-          })
-          .collect(Collectors.joining("\n    AND "));
+            return Pair.of(childColumn.trim(), parentColumn.trim());
+          }).toList();
+
+      String joinConditionString;
+      if (joins.stream().allMatch(pair -> pair.getLeft().equals(pair.getRight()))) {
+        joinConditionString = String.format("USING (%s)",
+            joins.stream().map(Pair::getLeft).collect(Collectors.joining(", ")));
+      } else {
+        joinConditionString = String.format("ON %s",
+            joins.stream()
+                .map(pair -> String.format("child.%s = parent.%s", pair.getLeft(), pair.getRight()))
+                .collect(Collectors.joining("\n    AND ")));
+      }
 
       query = "SELECT *\n"
           + "FROM (" + childSqlQuery + ") AS child\n"
           + "JOIN (" + parentSqlQuery + ") AS parent\n"
-          + "  ON " + joinConditionString;
+          + "  " + joinConditionString;
     }
 
     RDF4JBlankNode newLogicalTable = rdf.createBlankNode();
-    mappingGraph.remove(child, rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), childLogicalTable);
+    mappingGraph.remove(child, rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),
+        childLogicalTable);
     mappingGraph.add(child, rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), newLogicalTable);
     mappingGraph.add(newLogicalTable, rdf.createIRI(nsTypeIri),
         rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW));
@@ -223,7 +242,8 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
     mappingGraph.add(child, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP), parentSubjectMap);
 
     if (parentSubsets.isPresent()) {
-      mappingGraph.add(child, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentSubsets.get());
+      mappingGraph.add(child, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
+          parentSubsets.get());
     }
 
     logger.trace(Trace.EXIT_METHOD_0);

@@ -69,7 +69,8 @@ public class R2rmlTester extends OntopTester {
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
-        testFigure1(connection);
+        testFigureCasDeBase(connection);
+        testPourLaFigureProprieteDefinieALAideDUneJointure(connection);
       }
     }
   }
@@ -218,10 +219,10 @@ public class R2rmlTester extends OntopTester {
     }
   }
 
-  private void testFigure1(OntopConnection connection)
+  private void testFigureCasDeBase(OntopConnection connection)
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
     System.out.println("*********************************************");
-    System.out.println("Tests pour la figure 1");
+    System.out.println("Tests pour la figure: Cas de base");
     System.out.println("*********************************************");
     System.out.println();
 
@@ -264,6 +265,33 @@ public class R2rmlTester extends OntopTester {
     testGetDPDef(connection, "http://purl.obolibrary.org/obo/IAO_0020017",
         "http://purl.obolibrary.org/obo/PHYSIO_0000100",
         "http://www.w3.org/2001/XMLSchema#string");
+  }
+
+  public void testPourLaFigureProprieteDefinieALAideDUneJointure(OntopConnection connection)
+      throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
+    System.out.println("*********************************************");
+    System.out.println("Tests pour la figure: Propriété définie à l'aide d'une jointure");
+    System.out.println("*********************************************");
+    System.out.println();
+
+    System.out.println("---------------------------------------------");
+    System.out.println("Classes");
+    System.out.println("---------------------------------------------");
+    System.out.println("Expression pour engendrer la classe HBW_0000013@physiological"
+        + " evaluation from health care provider :");
+    testGetClassDef(connection, "http://purl.obolibrary.org/obo/HBW_0000013");
+
+    System.out.println("Expression pour engendrer la classe HBW_0000008@health care provider :");
+    testGetClassDef(connection, "http://purl.obolibrary.org/obo/HBW_0000008");
+
+    System.out.println("---------------------------------------------");
+    System.out.println("Object Properties");
+    System.out.println("---------------------------------------------");
+    System.out.println("HBW_0000013@physiological evaluation from health care provider"
+        + " PHYSIO_0000089@has evaluant HBW_0000008@health care provider");
+    testGetOPDef(connection, "http://purl.obolibrary.org/obo/HBW_0000013",
+        "http://purl.obolibrary.org/obo/PHYSIO_0000089",
+        "http://purl.obolibrary.org/obo/HBW_0000008");
   }
 
   public void testGetClassDef(String classIri)
