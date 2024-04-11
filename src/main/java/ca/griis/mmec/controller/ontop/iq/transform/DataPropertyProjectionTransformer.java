@@ -117,7 +117,10 @@ public class DataPropertyProjectionTransformer
                   "Cannot get the type of the data property's substitution variable."));
           ImmutableTerm valueTerm;
 
-          if (targetType.getName().compareToIgnoreCase(variableType.getName()) == 0) {
+          if ((targetType.getName().contains("\"") && targetType.getName().equals(
+              variableType.getName()))
+              || (!targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
+                  variableType.getName()) == 0)) {
             valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
                 variable);
           } else {
