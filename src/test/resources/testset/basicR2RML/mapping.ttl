@@ -4,16 +4,16 @@
 @prefix mmec: <http://www.griis.ca/ns/mmec#> .
 @prefix tst:  <http://www.griis.ca/projects/> .
 
-<https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1>
-    a mmec:OntoRel .
-
-<https://griis.ca/JeDIS>
-    a mmec:DataSource .
-
-<MappingHeader>
-    a            mmec:MappingHeader ;
-    mmec:ontorel <https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1> ;
-    mmec:source  <https://griis.ca/JeDIS> .
+#<https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1>
+#    a mmec:OntoRel .
+#
+#<https://griis.ca/JeDIS>
+#    a mmec:DataSource .
+#
+#<MappingHeader>
+#    a            mmec:MappingHeader ;
+#    mmec:ontorel <https://griis.ca/PARS3-P4:v2.1/PARS3:v1.1> ;
+#    mmec:source  <https://griis.ca/JeDIS> .
 
 # ****************************************************************************************
 # Classes mappings
@@ -48,8 +48,8 @@
 
 <Mapping:tst1>
     a               rr:TriplesMap ;
-    rr:logicalTable [ rr:tableName """
-                        "basicR2RML"."TABLE2"
+    rr:logicalTable [ rr:sqlQuery """
+                        SELECT "m", \"o\"::\"BW\".\"STRING\" \"o\" FROM "basicR2RML"."TABLE2"
                       """ ] ;
     rr:subjectMap   <Mapping:tst1SubjectMap> .
 
