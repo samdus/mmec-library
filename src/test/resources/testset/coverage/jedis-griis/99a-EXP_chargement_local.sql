@@ -1,0 +1,11 @@
+--  psql -h localhost -p 15432 -U postgres -f src/test/resources/testset/coverage/jedis-griis/99a-EXP_chargement_local.sql
+\copy "EXP"."PATIENT" from 'src/test/resources/testset/coverage/jedis-griis/dataset/PATIENT.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."DOSSIER" from 'src/test/resources/testset/coverage/jedis-griis/dataset/MEDICAL_RECORD.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDECIN" from 'src/test/resources/testset/coverage/jedis-griis/dataset/CLINICIAN.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDECIN_TRAITANT" from 'src/test/resources/testset/coverage/jedis-griis/dataset/TREATING_CLINICIAN.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."LABORATOIRE" from 'src/test/resources/testset/coverage/jedis-griis/dataset/LABORATORY.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."CLASSE_MEDICAMENT" from 'src/test/resources/testset/coverage/jedis-griis/dataset/DRUG_CATEGORY.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDICAMENT" from 'src/test/resources/testset/coverage/jedis-griis/dataset/DRUG.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."PRESCRIPTION" from 'src/test/resources/testset/coverage/jedis-griis/dataset/PRESCRIPTION.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."CONSULTATION" from 'src/test/resources/testset/coverage/jedis-griis/dataset/CONSULTATION.tsv' (format csv, delimiter E'\t', header) ;
+\copy "EXP"."MEDICATION_SP" from 'src/test/resources/testset/coverage/jedis-griis/dataset/DECLARATION.tsv' (format csv, delimiter E'\t', header) ;
