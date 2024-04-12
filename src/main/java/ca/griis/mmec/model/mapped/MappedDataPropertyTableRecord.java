@@ -13,7 +13,7 @@
 
 package ca.griis.mmec.model.mapped;
 
-import ca.griis.mmec.model.MappedOntoRelTable;
+import ca.griis.mmec.model.ontorel.DataPropertyTable;
 import java.util.Optional;
 
 /**
@@ -59,4 +59,15 @@ public record MappedDataPropertyTableRecord(
     String mmecQueryValueColumnId
 )
     implements MappedDataPropertyTable {
+  public MappedDataPropertyTableRecord(DataPropertyTable dataPropertyTableRecord, String schema,
+      Optional<String> mmecQuery, String mmecQuerySubjectColumnId, String mmecQueryValueColumnId) {
+    this(dataPropertyTableRecord.tableName(), dataPropertyTableRecord.label(),
+        dataPropertyTableRecord.iriSubject(),
+        dataPropertyTableRecord.iriPredicate(), dataPropertyTableRecord.iriValue(),
+        dataPropertyTableRecord.ontorelSubjectColumnId(),
+        dataPropertyTableRecord.ontorelSubjectColumnType(),
+        dataPropertyTableRecord.ontorelValueColumnId(),
+        dataPropertyTableRecord.ontorelValueColumnType(), schema, mmecQuery,
+        mmecQuerySubjectColumnId, mmecQueryValueColumnId);
+  }
 }

@@ -13,7 +13,7 @@
 
 package ca.griis.mmec.model.mapped;
 
-import ca.griis.mmec.model.ontorel.ClassTableRecord;
+import ca.griis.mmec.model.ontorel.ClassTable;
 import java.util.Optional;
 
 /**
@@ -53,7 +53,7 @@ public record MappedClassTableRecord(
     Optional<String> mmecQuery,
     String mmecQueryColumnId)
     implements MappedClassTable {
-  public MappedClassTableRecord(ClassTableRecord classTableRecord, String schema,
+  public MappedClassTableRecord(ClassTable classTableRecord, String schema,
       Optional<String> mmecQuery, String mmecQueryColumnId) {
     this(classTableRecord.tableName(), classTableRecord.label(), classTableRecord.iri(),
         classTableRecord.ontorelColumnId(), classTableRecord.ontorelColumnType(), schema, mmecQuery,

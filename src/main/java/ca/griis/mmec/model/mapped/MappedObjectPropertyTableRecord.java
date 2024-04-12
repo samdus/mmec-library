@@ -13,6 +13,7 @@
 
 package ca.griis.mmec.model.mapped;
 
+import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
 import java.util.Optional;
 
 /**
@@ -57,4 +58,15 @@ public record MappedObjectPropertyTableRecord(
     String mmecQuerySubjectColumnId,
     String mmecQueryObjectColumnId)
     implements MappedObjectPropertyTable {
+  public MappedObjectPropertyTableRecord(ObjectPropertyTable objectPropertyTableRecord,
+      String schema,
+      Optional<String> mmecQuery, String mmecQuerySubjectColumnId, String mmecQueryObjectColumnId) {
+    this(objectPropertyTableRecord.tableName(), objectPropertyTableRecord.label(),
+        objectPropertyTableRecord.iriSubject(), objectPropertyTableRecord.iriPredicate(),
+        objectPropertyTableRecord.iriObject(), objectPropertyTableRecord.ontorelSubjectColumnId(),
+        objectPropertyTableRecord.ontorelSubjectColumnType(),
+        objectPropertyTableRecord.ontorelObjectColumnId(),
+        objectPropertyTableRecord.ontorelObjectColumnType(), schema, mmecQuery,
+        mmecQuerySubjectColumnId, mmecQueryObjectColumnId);
+  }
 }
