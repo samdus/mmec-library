@@ -14,9 +14,9 @@
 package ca.griis.mmec.test.unit.view.st;
 
 import ca.griis.mmec.model.MappedClassTable;
-import ca.griis.mmec.model.MappedDPTable;
-import ca.griis.mmec.model.MappedOPTable;
+import ca.griis.mmec.model.MappedDpTable;
 import ca.griis.mmec.model.MappedOntoRelTable;
+import ca.griis.mmec.model.MappedOpTable;
 import ca.griis.mmec.view.st.StMappedOntoRelTableView;
 import java.io.File;
 import java.net.URL;
@@ -42,7 +42,7 @@ public class StMappedOntoRelTableViewTest {
         "comment",
         "mmecQuery",
         "mmecQueryColumnId");
-    MappedOPTable mappedOPTable = new MappedOPTable(
+    MappedOpTable mappedOPTable = new MappedOpTable(
         "schema",
         "tableName",
         "ontorelSubjectColumnId",
@@ -51,7 +51,7 @@ public class StMappedOntoRelTableViewTest {
         "mmecQuery",
         "mmecQuerySubjectColumnId",
         "mmecQueryObjectColumnId");
-    MappedDPTable mappedDPTable = new MappedDPTable(
+    MappedDpTable mappedDPTable = new MappedDpTable(
         "schema",
         "tableName",
         "ontorelSubjectColumnId",
@@ -185,10 +185,10 @@ public class StMappedOntoRelTableViewTest {
 
     if (mappedOntoRelTable instanceof MappedClassTable) {
       actual = stMappedOntoRelTableView.getExpression((MappedClassTable) mappedOntoRelTable);
-    } else if (mappedOntoRelTable instanceof MappedOPTable) {
-      actual = stMappedOntoRelTableView.getExpression((MappedOPTable) mappedOntoRelTable);
-    } else if (mappedOntoRelTable instanceof MappedDPTable) {
-      actual = stMappedOntoRelTableView.getExpression((MappedDPTable) mappedOntoRelTable);
+    } else if (mappedOntoRelTable instanceof MappedOpTable) {
+      actual = stMappedOntoRelTableView.getExpression((MappedOpTable) mappedOntoRelTable);
+    } else if (mappedOntoRelTable instanceof MappedDpTable) {
+      actual = stMappedOntoRelTableView.getExpression((MappedDpTable) mappedOntoRelTable);
     } else {
       Assertions.fail("Unknown MappedOntoRelTable type");
     }

@@ -24,7 +24,7 @@ package ca.griis.mmec.model;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Table d'OntoRel représentant un axiome de classe qui a été arrimée.
+ * @brief @~french Table d'OntoRel représentant un axiome de données qui a été arrimée.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -40,14 +40,14 @@ package ca.griis.mmec.model;
  * @par Tâches
  *      S.O.
  */
-public record MappedOPTable (
+public record MappedDpTable (
     String schema,
     String tableName,
     String ontorelSubjectColumnId,
-    String ontorelObjectColumnId,
+    String ontorelValueColumnId,
     String comment,
     String mmecQuery,
     String mmecQuerySubjectColumnId,
-    String mmecQueryObjectColumnId)
+    String mmecQueryValueColumnId)
     implements MappedOntoRelTable {
 }

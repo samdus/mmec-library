@@ -190,14 +190,14 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
         .toList();
 
     final String parentSqlQuery = maybeParentSqlQuery
-        .orElseGet(() -> "SELECT * FROM " +
-            parentTable
+        .orElseGet(() -> "SELECT * FROM "
+            + parentTable
                 .map(String::trim)
                 .orElseThrow(
                     () -> new LogicalTableWithoutSqlQueryNorTableNameException(
                         parentLogicalTable)));
-    final String childSqlQuery = maybeChildSqlQuery.orElseGet(() -> "SELECT * FROM " +
-        childTable
+    final String childSqlQuery = maybeChildSqlQuery.orElseGet(() -> "SELECT * FROM "
+        + childTable
             .map(String::trim)
             .orElseThrow(
                 () -> new LogicalTableWithoutSqlQueryNorTableNameException(childLogicalTable)));

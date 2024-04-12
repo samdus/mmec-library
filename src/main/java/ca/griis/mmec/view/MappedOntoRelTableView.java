@@ -14,8 +14,8 @@
 package ca.griis.mmec.view;
 
 import ca.griis.mmec.model.MappedClassTable;
-import ca.griis.mmec.model.MappedDPTable;
-import ca.griis.mmec.model.MappedOPTable;
+import ca.griis.mmec.model.MappedDpTable;
+import ca.griis.mmec.model.MappedOpTable;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -47,7 +47,7 @@ import ca.griis.mmec.model.MappedOPTable;
 public interface MappedOntoRelTableView {
   String getExpression(MappedClassTable mappedClassTable);
 
-  String getExpression(MappedOPTable mappedOPTable);
+  String getExpression(MappedOpTable mappedOpTable);
 
-  String getExpression(MappedDPTable mappedDPTable);
+  String getExpression(MappedDpTable mappedDpTable);
 }

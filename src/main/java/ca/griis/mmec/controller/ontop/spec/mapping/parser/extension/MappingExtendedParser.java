@@ -57,7 +57,7 @@ public abstract class MappingExtendedParser {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(MappingExtendedParser.class);
 
-  protected final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+  protected static final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
   protected final RDF4J rdf;
 
   protected MappingExtendedParser(RDF4J rdf) {

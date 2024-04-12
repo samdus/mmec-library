@@ -17,7 +17,6 @@ import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingExtendedAfterParsing;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
@@ -63,7 +62,7 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  */
 public class MMecParserSubsetsExtension extends MappingExtendedAfterParsing {
   private static final GriisLogger logger =
-      GriisLoggerFactory.getLogger(MMecParserRefSubjectMapExtension.class);
+      GriisLoggerFactory.getLogger(MMecParserSubsetsExtension.class);
 
   @Inject
   public MMecParserSubsetsExtension(RDF4J rdf) {
