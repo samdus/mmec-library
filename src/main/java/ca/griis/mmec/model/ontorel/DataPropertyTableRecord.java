@@ -49,7 +49,9 @@ public record DataPropertyTableRecord(
     String iriPredicate,
     String iriValue,
     String ontorelSubjectColumnId,
-    String ontorelValueColumnId
+    String ontorelSubjectColumnType,
+    String ontorelValueColumnId,
+    String ontorelValueColumnType
 )
     implements DataPropertyTable {
 }

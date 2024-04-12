@@ -13,6 +13,8 @@
 
 package ca.griis.mmec.model;
 
+import java.util.Optional;
+
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
  * @par Details
@@ -43,5 +45,5 @@ package ca.griis.mmec.model;
 public interface MappedOntoRelTable extends OntoRelTable {
   String schema();
 
-  String mmecQuery();
+  Optional<String> mmecQuery();
 }

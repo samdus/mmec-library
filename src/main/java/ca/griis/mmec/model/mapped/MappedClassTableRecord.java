@@ -13,6 +13,9 @@
 
 package ca.griis.mmec.model.mapped;
 
+import ca.griis.mmec.model.ontorel.ClassTableRecord;
+import java.util.Optional;
+
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
  * @par Details
@@ -45,8 +48,15 @@ public record MappedClassTableRecord(
     String label,
     String iri,
     String ontorelColumnId,
+    String ontorelColumnType,
     String schema,
-    String mmecQuery,
+    Optional<String> mmecQuery,
     String mmecQueryColumnId)
     implements MappedClassTable {
+  public MappedClassTableRecord(ClassTableRecord classTableRecord, String schema,
+      Optional<String> mmecQuery, String mmecQueryColumnId) {
+    this(classTableRecord.tableName(), classTableRecord.label(), classTableRecord.iri(),
+        classTableRecord.ontorelColumnId(), classTableRecord.ontorelColumnType(), schema, mmecQuery,
+        mmecQueryColumnId);
+  }
 }

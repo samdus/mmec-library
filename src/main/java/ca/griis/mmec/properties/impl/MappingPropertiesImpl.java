@@ -39,14 +39,21 @@ import ca.griis.mmec.properties.MappingProperties;
  *      S.O.
  */
 public class MappingPropertiesImpl extends MappingProperties {
-  private String ontoRelId;
+  private final String ontoRelId;
+  private final String mappingSchema;
 
-  public MappingPropertiesImpl(String ontoRelId) {
+  public MappingPropertiesImpl(String ontoRelId, String mappingSchema) {
     this.ontoRelId = ontoRelId;
+    this.mappingSchema = mappingSchema;
   }
 
   @Override
   public String getOntoRelId() {
     return ontoRelId;
+  }
+
+  @Override
+  public String getMappingSchema() {
+    return mappingSchema;
   }
 }

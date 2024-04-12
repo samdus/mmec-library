@@ -47,6 +47,8 @@ public record ObjectPropertyTableRecord(
     String iriPredicate,
     String iriObject,
     String ontorelSubjectColumnId,
-    String ontorelObjectColumnId)
+    String ontorelSubjectColumnType,
+    String ontorelObjectColumnId,
+    String ontorelObjectColumnType)
     implements ObjectPropertyTable {
 }

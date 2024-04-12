@@ -46,6 +46,7 @@ public record ClassTableRecord(
     String tableName,
     String label,
     String iri,
-    String ontorelColumnId)
+    String ontorelColumnId,
+    String ontorelColumnType)
     implements ClassTable {
 }

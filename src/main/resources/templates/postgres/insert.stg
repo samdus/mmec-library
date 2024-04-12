@@ -26,7 +26,7 @@ Classes:
     -- Nom de la colonne correspondant à l'identifiant
     -- IRI de la classe est utilisé pour générer l'expression, mais n'est pas utilisée dans le template
 ***************************************************************/
-class(comment, schema_id, ontorel_table_id, mmec_query_column_id, ontorel_column_id, query)::=
+class(comment, schema_id, ontorel_table_id, mmec_query_column_id, ontorel_column_id, ontorel_column_type, query)::=
 <<
 <base_insert(comment, schema_id, ontorel_table_id, [ontorel_column_id])>
 with mmec_query as (
@@ -35,6 +35,14 @@ with mmec_query as (
 select <mmec_query_column_id:quoted()>
 from mmec_query
 <instruction_delimitor()>
+>>
+
+class_empty(comment, schema_id, ontorel_table_id, mmec_query_column_id, ontorel_column_id, ontorel_column_type, query)::=
+<<
+/*
+<comment>
+Empty mapping: insert not required
+*/
 >>
 
 /**************************************************************
@@ -49,7 +57,8 @@ Object Property:
        dans le template
 ***************************************************************/
 object_property(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_object,
-               ontorel_column_id_subject, ontorel_column_id_object, query)::=
+                ontorel_column_id_subject, ontorel_column_type_subject, ontorel_column_id_object,
+                ontorel_column_type_object, query)::=
 <<
 <base_insert(comment, schema_id, ontorel_table_id, [ontorel_column_id_subject, ontorel_column_id_object])>
 with mmec_query as (
@@ -58,6 +67,16 @@ with mmec_query as (
 select <mmec_query_column_id_subject:quoted()>, <mmec_query_column_id_object:quoted()>
 from mmec_query
 <instruction_delimitor()>
+>>
+
+object_property_empty(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_object,
+                ontorel_column_id_subject, ontorel_column_type_subject, ontorel_column_id_object,
+                ontorel_column_type_object, query)::=
+<<
+/*
+<comment>
+Empty mapping: insert not required
+*/
 >>
 
 /**************************************************************
@@ -70,7 +89,8 @@ Data Property:
     -- Label pour le commentaire
 ***************************************************************/
 data_property(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_value,
-             ontorel_column_id_subject, ontorel_column_id_value, query)::=
+             ontorel_column_id_subject, ontorel_column_type_subject,  ontorel_column_id_value,
+             ontorel_column_type_value, query)::=
 <<
 <base_insert(comment, schema_id, ontorel_table_id, [ontorel_column_id_subject,
     ontorel_column_id_value])>
@@ -80,4 +100,14 @@ with mmec_query as (
 select <mmec_query_column_id_subject:quoted()>, <mmec_query_column_id_value:quoted()>
 from mmec_query
 <instruction_delimitor()>
+>>
+
+data_property_empty(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_value,
+             ontorel_column_id_subject, ontorel_column_type_subject,  ontorel_column_id_value,
+             ontorel_column_type_value, query)::=
+<<
+/*
+<comment>
+Empty mapping: insert not required
+*/
 >>

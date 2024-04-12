@@ -14,6 +14,7 @@
 package ca.griis.mmec.model.mapped;
 
 import ca.griis.mmec.model.MappedOntoRelTable;
+import java.util.Optional;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -49,9 +50,11 @@ public record MappedDataPropertyTableRecord(
     String iriPredicate,
     String iriValue,
     String ontorelSubjectColumnId,
+    String ontorelSubjectColumnType,
     String ontorelValueColumnId,
+    String ontorelValueColumnType,
     String schema,
-    String mmecQuery,
+    Optional<String> mmecQuery,
     String mmecQuerySubjectColumnId,
     String mmecQueryValueColumnId
 )

@@ -51,6 +51,7 @@ public class MappingPropertiesBuilder {
       GriisLoggerFactory.getLogger(MappingPropertiesBuilder.class);
 
   private String ontoRelId;
+  private String mappingSchema;
 
   /**
    * @brief @~english «Description of the function»
@@ -64,15 +65,24 @@ public class MappingPropertiesBuilder {
   public MappingProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new MappingPropertiesImpl(ontoRelId);
+    return new MappingPropertiesImpl(ontoRelId, mappingSchema);
   }
 
   public String getOntoRelId() {
     return ontoRelId;
   }
 
+  public String getMappingSchema() {
+    return mappingSchema;
+  }
+
   public MappingPropertiesBuilder setOntoRelId(String ontoRelId) {
     this.ontoRelId = ontoRelId;
+    return this;
+  }
+
+  public MappingPropertiesBuilder setMappingSchema(String mappingSchema) {
+    this.mappingSchema = mappingSchema;
     return this;
   }
 }

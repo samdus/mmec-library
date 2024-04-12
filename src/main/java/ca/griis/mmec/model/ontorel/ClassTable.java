@@ -44,5 +44,6 @@ import ca.griis.mmec.model.OntoRelTable;
  */
 public interface ClassTable extends OntoRelTable {
   String ontorelColumnId();
+  String ontorelColumnType();
   String iri();
 }

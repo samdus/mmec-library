@@ -13,6 +13,7 @@
 
 package ca.griis.mmec.view.st;
 
+import ca.griis.mmec.model.MappedOntoRelTable;
 import ca.griis.mmec.model.mapped.MappedClassTableRecord;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
 import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
@@ -49,8 +50,11 @@ import org.stringtemplate.v4.STGroup;
  */
 public class StMappedOntoRelTableView implements MappedOntoRelTableView {
   public static final String classTemplateName = "class";
+  private static final String emptyClassTemplateName = "class_empty";
   public static final String opTemplateName = "object_property";
+  public static final String emptyOpTemplateName = "object_property_empty";
   public static final String dpTemplateName = "data_property";
+  public static final String emptyDpTemplateName = "data_property_empty";
 
   STGroup group;
 
@@ -60,21 +64,23 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
 
   @Override
   public String getExpression(MappedClassTableRecord mappedClassTable) {
-    ST st = group.getInstanceOf(classTemplateName);
+    ST st = initialiseStWithQueryIfPresent(mappedClassTable, classTemplateName,
+        emptyClassTemplateName);
 
     st.add("comment", mappedClassTable.label());
     st.add("schema_id", mappedClassTable.schema());
     st.add("ontorel_table_id", mappedClassTable.tableName());
     st.add("mmec_query_column_id", mappedClassTable.mmecQueryColumnId());
     st.add("ontorel_column_id", mappedClassTable.ontorelColumnId());
-    st.add("query", mappedClassTable.mmecQuery());
+    st.add("ontorel_column_type", mappedClassTable.ontorelColumnType());
 
     return st.render();
   }
 
   @Override
   public String getExpression(MappedObjectPropertyTableRecord mappedObjectPropertyTable) {
-    ST st = group.getInstanceOf(opTemplateName);
+    ST st = initialiseStWithQueryIfPresent(mappedObjectPropertyTable, opTemplateName,
+        emptyOpTemplateName);
 
     st.add("comment", mappedObjectPropertyTable.label());
     st.add("schema_id", mappedObjectPropertyTable.schema());
@@ -82,15 +88,17 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
     st.add("mmec_query_column_id_subject", mappedObjectPropertyTable.mmecQuerySubjectColumnId());
     st.add("mmec_query_column_id_object", mappedObjectPropertyTable.mmecQueryObjectColumnId());
     st.add("ontorel_column_id_subject", mappedObjectPropertyTable.ontorelSubjectColumnId());
+    st.add("ontorel_column_type_subject", mappedObjectPropertyTable.ontorelSubjectColumnType());
     st.add("ontorel_column_id_object", mappedObjectPropertyTable.ontorelObjectColumnId());
-    st.add("query", mappedObjectPropertyTable.mmecQuery());
+    st.add("ontorel_column_type_object", mappedObjectPropertyTable.ontorelObjectColumnType());
 
     return st.render();
   }
 
   @Override
   public String getExpression(MappedDataPropertyTableRecord mappedDataPropertyTable) {
-    ST st = group.getInstanceOf(dpTemplateName);
+    ST st = initialiseStWithQueryIfPresent(mappedDataPropertyTable, dpTemplateName,
+        emptyDpTemplateName);
 
     st.add("comment", mappedDataPropertyTable.label());
     st.add("schema_id", mappedDataPropertyTable.schema());
@@ -98,9 +106,22 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
     st.add("mmec_query_column_id_subject", mappedDataPropertyTable.mmecQuerySubjectColumnId());
     st.add("mmec_query_column_id_value", mappedDataPropertyTable.mmecQueryValueColumnId());
     st.add("ontorel_column_id_subject", mappedDataPropertyTable.ontorelSubjectColumnId());
+    st.add("ontorel_column_type_subject", mappedDataPropertyTable.ontorelSubjectColumnType());
     st.add("ontorel_column_id_value", mappedDataPropertyTable.ontorelValueColumnId());
-    st.add("query", mappedDataPropertyTable.mmecQuery());
+    st.add("ontorel_column_type_value", mappedDataPropertyTable.ontorelValueColumnType());
 
     return st.render();
+  }
+
+  private ST initialiseStWithQueryIfPresent(MappedOntoRelTable mappedOntoRelTable, String template,
+      String emptyTemplate) {
+    ST st;
+    if (mappedOntoRelTable.mmecQuery().isPresent()) {
+      st = group.getInstanceOf(template);
+      st.add("query", mappedOntoRelTable.mmecQuery().get());
+    } else {
+      st = group.getInstanceOf(emptyTemplate);
+    }
+    return st;
   }
 }

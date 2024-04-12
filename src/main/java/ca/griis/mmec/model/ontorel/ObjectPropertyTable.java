@@ -51,5 +51,9 @@ public interface ObjectPropertyTable extends OntoRelTable {
 
   String ontorelSubjectColumnId();
 
+  String ontorelSubjectColumnType();
+
   String ontorelObjectColumnId();
+
+  String ontorelObjectColumnType();
 }
