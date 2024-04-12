@@ -995,6 +995,62 @@ public class MMecParserRefSubjectMapExtensionTest {
   }
 
   @Test
+  public void testChildIsDefinedAsParentSubset() {
+    String parentTableName = "parentTableName";
+    String childTableName = "childTableName";
+
+    RDF4JIRI parentMapping = rdf.createIRI("http://parentMapping");
+
+    testGraph.add(parentMapping,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+    BlankNodeOrIRI parentLogicalTable = rdf.createBlankNode("parentLogicalTable");
+    testGraph.add(parentLogicalTable,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW));
+    testGraph.add(parentLogicalTable,
+        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME),
+        rdf.createLiteral(parentTableName));
+    testGraph.add(parentMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),
+        parentLogicalTable);
+    BlankNodeOrIRI parentSubjectMap = rdf.createBlankNode("parentSubjectMap");
+    testGraph.add(parentMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
+
+    RDF4JIRI childMapping = rdf.createIRI("http://childMapping");
+    testGraph.add(childMapping,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+    BlankNodeOrIRI childLogicalTable = rdf.createBlankNode("childLogicalTable");
+    testGraph.add(childLogicalTable,
+        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME),
+        rdf.createLiteral(childTableName));
+    testGraph.add(childMapping,
+        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),
+        childLogicalTable);
+    BlankNodeOrIRI childRefSubjectMap = rdf.createBlankNode("childRefSubjectMap");
+    testGraph.add(childRefSubjectMap,
+        rdf.createIRI(R2RMLVocabulary.PROP_PARENT_TRIPLES_MAP),
+        parentMapping);
+    testGraph.add(childMapping,
+        rdf.createIRI(MMecVocabulary.P_REF_SUBJECT_MAP),
+        childRefSubjectMap);
+
+    mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
+
+    testGraph.stream(childMapping,
+        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentMapping)
+        .findAny()
+        .ifPresentOrElse(
+            subset -> {
+              // Test is successful
+            },
+            () -> Assertions.fail("processRefSubjectMap must assert <Child subsets Parent>."));
+  }
+
+  @Test
   public void testAddParentSubsets() {
     String parentTableName = "parentTableName";
     String childTableName = "childTableName";

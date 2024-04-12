@@ -63,7 +63,7 @@ import org.apache.commons.rdf.rdf4j.RDF4JBlankNode;
  *      2024-04-03 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      TODO 2024-04-11 [SD] - Faire en sorte que l'enfant soit déclaré comme un subset du parent
+ *      S.O.
  */
 public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsing {
   private static final GriisLogger logger =
@@ -121,6 +121,7 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
    *      __ajouter un triplet <newLogicalTable, rdf:type, rr:R2RMLView>
    *      __ajouter un triplet <newLogicalTable, rr:sqlQuery, query>
    *      __ajouter un triplet <child, rr:subjectMap, parentSubjectMap>
+   *      __ajouter un triplet <child, mmec:subsets, parentTriplesMap>
    *      __Si parentSubsets existe :
    *      ____ajouter un triplet <child, mmec:subsets, parentSubsets>
    * @param mappingGraph Graph d'arrimage.
@@ -241,6 +242,7 @@ public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsi
     mappingGraph.add(newLogicalTable, rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY),
         rdf.createLiteral(query));
     mappingGraph.add(child, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP), parentSubjectMap);
+    mappingGraph.add(child, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentTriplesMap);
 
     if (parentSubsets.isPresent()) {
       mappingGraph.add(child, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),
