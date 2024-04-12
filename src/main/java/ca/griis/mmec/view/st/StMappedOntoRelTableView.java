@@ -13,9 +13,9 @@
 
 package ca.griis.mmec.view.st;
 
-import ca.griis.mmec.model.MappedClassTable;
-import ca.griis.mmec.model.MappedDpTable;
-import ca.griis.mmec.model.MappedOpTable;
+import ca.griis.mmec.model.mapped.MappedClassTableRecord;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
 import ca.griis.mmec.view.MappedOntoRelTableView;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
@@ -59,10 +59,10 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
   }
 
   @Override
-  public String getExpression(MappedClassTable mappedClassTable) {
+  public String getExpression(MappedClassTableRecord mappedClassTable) {
     ST st = group.getInstanceOf(classTemplateName);
 
-    st.add("comment", mappedClassTable.comment());
+    st.add("comment", mappedClassTable.label());
     st.add("schema_id", mappedClassTable.schema());
     st.add("ontorel_table_id", mappedClassTable.tableName());
     st.add("mmec_query_column_id", mappedClassTable.mmecQueryColumnId());
@@ -73,33 +73,33 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
   }
 
   @Override
-  public String getExpression(MappedOpTable mappedOpTable) {
+  public String getExpression(MappedObjectPropertyTableRecord mappedObjectPropertyTable) {
     ST st = group.getInstanceOf(opTemplateName);
 
-    st.add("comment", mappedOpTable.comment());
-    st.add("schema_id", mappedOpTable.schema());
-    st.add("ontorel_table_id", mappedOpTable.tableName());
-    st.add("mmec_query_column_id_subject", mappedOpTable.mmecQuerySubjectColumnId());
-    st.add("mmec_query_column_id_object", mappedOpTable.mmecQueryObjectColumnId());
-    st.add("ontorel_column_id_subject", mappedOpTable.ontorelSubjectColumnId());
-    st.add("ontorel_column_id_object", mappedOpTable.ontorelObjectColumnId());
-    st.add("query", mappedOpTable.mmecQuery());
+    st.add("comment", mappedObjectPropertyTable.label());
+    st.add("schema_id", mappedObjectPropertyTable.schema());
+    st.add("ontorel_table_id", mappedObjectPropertyTable.tableName());
+    st.add("mmec_query_column_id_subject", mappedObjectPropertyTable.mmecQuerySubjectColumnId());
+    st.add("mmec_query_column_id_object", mappedObjectPropertyTable.mmecQueryObjectColumnId());
+    st.add("ontorel_column_id_subject", mappedObjectPropertyTable.ontorelSubjectColumnId());
+    st.add("ontorel_column_id_object", mappedObjectPropertyTable.ontorelObjectColumnId());
+    st.add("query", mappedObjectPropertyTable.mmecQuery());
 
     return st.render();
   }
 
   @Override
-  public String getExpression(MappedDpTable mappedDpTable) {
+  public String getExpression(MappedDataPropertyTableRecord mappedDataPropertyTable) {
     ST st = group.getInstanceOf(dpTemplateName);
 
-    st.add("comment", mappedDpTable.comment());
-    st.add("schema_id", mappedDpTable.schema());
-    st.add("ontorel_table_id", mappedDpTable.tableName());
-    st.add("mmec_query_column_id_subject", mappedDpTable.mmecQuerySubjectColumnId());
-    st.add("mmec_query_column_id_value", mappedDpTable.mmecQueryValueColumnId());
-    st.add("ontorel_column_id_subject", mappedDpTable.ontorelSubjectColumnId());
-    st.add("ontorel_column_id_value", mappedDpTable.ontorelValueColumnId());
-    st.add("query", mappedDpTable.mmecQuery());
+    st.add("comment", mappedDataPropertyTable.label());
+    st.add("schema_id", mappedDataPropertyTable.schema());
+    st.add("ontorel_table_id", mappedDataPropertyTable.tableName());
+    st.add("mmec_query_column_id_subject", mappedDataPropertyTable.mmecQuerySubjectColumnId());
+    st.add("mmec_query_column_id_value", mappedDataPropertyTable.mmecQueryValueColumnId());
+    st.add("ontorel_column_id_subject", mappedDataPropertyTable.ontorelSubjectColumnId());
+    st.add("ontorel_column_id_value", mappedDataPropertyTable.ontorelValueColumnId());
+    st.add("query", mappedDataPropertyTable.mmecQuery());
 
     return st.render();
   }

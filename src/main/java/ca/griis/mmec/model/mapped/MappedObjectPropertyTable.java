@@ -7,11 +7,15 @@
  *
  * @version @@GRIIS_VERSION@@
  *
- * @brief @~french Implémentation de la classe MappedClassTable.
- * @brief @~english MappedClassTable class implementation.
+ * @brief @~french Implémentation de l'interface MappedTablePropertyTable.
+ * @brief @~english MappedTablePropertyTable interface implementation.
  */
 
-package ca.griis.mmec.model;
+package ca.griis.mmec.model.mapped;
+
+import ca.griis.mmec.model.MappedOntoRelTable;
+import ca.griis.mmec.model.ontorel.DataPropertyTable;
+import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -24,7 +28,7 @@ package ca.griis.mmec.model;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Table d'OntoRel représentant un axiome de classe qui a été arrimée.
+ * @brief @~french Interface pour une table de propriété de donnée d'OntoRel qui a été arrimé.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -40,14 +44,8 @@ package ca.griis.mmec.model;
  * @par Tâches
  *      S.O.
  */
-public record MappedOpTable (
-    String schema,
-    String tableName,
-    String ontorelSubjectColumnId,
-    String ontorelObjectColumnId,
-    String comment,
-    String mmecQuery,
-    String mmecQuerySubjectColumnId,
-    String mmecQueryObjectColumnId)
-    implements MappedOntoRelTable {
+public interface MappedObjectPropertyTable extends ObjectPropertyTable, MappedOntoRelTable {
+  String mmecQuerySubjectColumnId();
+
+  String mmecQueryObjectColumnId();
 }

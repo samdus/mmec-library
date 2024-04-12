@@ -11,7 +11,9 @@
  * @brief @~english MappedClassTable class implementation.
  */
 
-package ca.griis.mmec.model;
+package ca.griis.mmec.model.mapped;
+
+import ca.griis.mmec.model.MappedOntoRelTable;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -24,7 +26,7 @@ package ca.griis.mmec.model;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Table d'OntoRel représentant un axiome de données qui a été arrimée.
+ * @brief @~french Table d'OntoRel représentant un axiome de classe qui a été arrimée.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -40,14 +42,17 @@ package ca.griis.mmec.model;
  * @par Tâches
  *      S.O.
  */
-public record MappedDpTable (
-    String schema,
+public record MappedObjectPropertyTableRecord(
     String tableName,
+    String label,
+    String iriSubject,
+    String iriPredicate,
+    String iriObject,
     String ontorelSubjectColumnId,
-    String ontorelValueColumnId,
-    String comment,
+    String ontorelObjectColumnId,
+    String schema,
     String mmecQuery,
     String mmecQuerySubjectColumnId,
-    String mmecQueryValueColumnId)
-    implements MappedOntoRelTable {
+    String mmecQueryObjectColumnId)
+    implements MappedObjectPropertyTable {
 }

@@ -7,15 +7,11 @@
  *
  * @version @@GRIIS_VERSION@@
  *
- * @brief @~french Implémentation de la classe MappedOntoRelTableView.
- * @brief @~english MappedOntoRelTableView class implementation.
+ * @brief @~french Implémentation de la classe MappedClassTable.
+ * @brief @~english MappedClassTable class implementation.
  */
 
-package ca.griis.mmec.view;
-
-import ca.griis.mmec.model.mapped.MappedClassTableRecord;
-import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
-import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
+package ca.griis.mmec.model.ontorel;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -28,7 +24,7 @@ import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Vues servant à obtenir les expressions des différentes tables d'OntoRel arrimées.
+ * @brief @~french Table d'OntoRel représentant un axiome de classe.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -44,10 +40,13 @@ import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
  * @par Tâches
  *      S.O.
  */
-public interface MappedOntoRelTableView {
-  String getExpression(MappedClassTableRecord mappedClassTable);
-
-  String getExpression(MappedObjectPropertyTableRecord mappedObjectPropertyTable);
-
-  String getExpression(MappedDataPropertyTableRecord mappedDataPropertyTable);
+public record ObjectPropertyTableRecord(
+    String tableName,
+    String label,
+    String iriSubject,
+    String iriPredicate,
+    String iriObject,
+    String ontorelSubjectColumnId,
+    String ontorelObjectColumnId)
+    implements ObjectPropertyTable {
 }

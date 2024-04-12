@@ -31,6 +31,7 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
   public Optional<DBTermType> getSqlType(String ontoRelId, String typeIri) throws SQLException {
     try (Connection connection = LocalJDBCConnectionUtils.createConnection(settings)) {
       // TODO: Support dynamic dialect
+      // TODO: Ajouter le DSLContext dans le module Guice
       DSLContext context = DSL.using(connection, SQLDialect.POSTGRES);
       String sqlType = Routines.getSqlTypeByIri(context.configuration(), ontoRelId, typeIri);
 

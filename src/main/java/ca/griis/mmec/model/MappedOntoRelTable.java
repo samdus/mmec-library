@@ -40,12 +40,8 @@ package ca.griis.mmec.model;
  * @par Tâches
  *      S.O.
  */
-public interface MappedOntoRelTable {
+public interface MappedOntoRelTable extends OntoRelTable {
   String schema();
-
-  String tableName();
-
-  String comment();
 
   String mmecQuery();
 }
