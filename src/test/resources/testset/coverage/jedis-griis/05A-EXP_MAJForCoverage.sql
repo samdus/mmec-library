@@ -144,9 +144,6 @@ alter table "EXP"."PATIENT"
         "SEXE" is null or ("SEXE_BIO" is null and "IDENTITE_GENRE" is null)
         );
 
-select distinct "SEXE"
-from "EXP"."PATIENT";
-
 -- On représente 15 cas de figure pour les combinaisons de sexe et d'identité de genre
 -- On va considérer que les autres patients ont une valeur indistinguable pour le moment
 with "sexe_m_identite_inconnue" as (select *, null as "S_OU_G", 'M' "S", null "G"
@@ -271,8 +268,7 @@ set "CODE_VULN_1" = echantillon."CODE_VULN_1",
     "CODE_VULN_2" = echantillon."CODE_VULN_2",
     "CODE_VULN_3" = echantillon."CODE_VULN_3"
 from echantillon
-where "PATIENT"."ID_PATIENT_EXT" = echantillon."ID_PATIENT_EXT"
-returning "PATIENT"."ID_PATIENT_EXT", "PATIENT"."CODE_VULN_1", "PATIENT"."CODE_VULN_2", "PATIENT"."CODE_VULN_3";
+where "PATIENT"."ID_PATIENT_EXT" = echantillon."ID_PATIENT_EXT";
 
 -- Requête pour obtenir l'IMC des patients ou les patients obèses
 -- with patient_imc AS (select "ID_PATIENT_EXT", "POIDS", "TAILLE", "POIDS" / ("TAILLE" / 100 * "TAILLE" / 100) as "IMC"
