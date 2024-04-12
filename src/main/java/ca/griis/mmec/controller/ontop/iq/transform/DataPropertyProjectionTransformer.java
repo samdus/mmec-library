@@ -111,16 +111,17 @@ public class DataPropertyProjectionTransformer
           Variable variable = term.getVariables().stream().findFirst().orElseThrow(
               () -> new DataPropertyProjectionTransformerException(tree,
                   "Cannot get the variable from the data property's substitution."));
-          DBTermType variableType = (DBTermType) typeExtractor.extractSingleTermType(variable, tree)
+          DBTermType variableType = typeExtractor.extractSingleTermType(variable, child)
               .filter(termType -> termType instanceof DBTermType)
+              .map(termType -> (DBTermType) termType)
               .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
                   "Cannot get the type of the data property's substitution variable."));
           ImmutableTerm valueTerm;
 
-          if ((targetType.getName().contains("\"") && targetType.getName().equals(
-              variableType.getName()))
-              || (!targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
-                  variableType.getName()) == 0)) {
+          if (targetType.getName().contains("\"") && targetType.getName().equals(
+              variableType.getName())
+              || !targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
+                  variableType.getName()) == 0) {
             valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
                 variable);
           } else {

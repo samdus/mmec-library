@@ -422,7 +422,7 @@ public class DataPropertyProjectionTransformerTest {
     Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
         Optional.of(targetType));
     Mockito.when(term.getVariables()).thenReturn(substitutionTermVariables);
-    Mockito.when(typeExtractor.extractSingleTermType(originalVariable, iqTree)).thenReturn(
+    Mockito.when(typeExtractor.extractSingleTermType(originalVariable, childTree)).thenReturn(
         Optional.of(variableType));
     Mockito.when(variableType.getName()).thenReturn(variableTypeName);
     Mockito.when(targetType.getName()).thenReturn(targetTypeName);
