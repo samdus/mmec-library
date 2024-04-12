@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MappedClassTable.
  * @brief @~english MappedClassTable class implementation.
  */
+
 package ca.griis.mmec.model;
 
 /**

@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecParserRefSubjectMapExtensionTest.
  * @brief @~english MMecParserRefSubjectMapExtensionTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension.before;
 
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtension;

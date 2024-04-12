@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe JoinConditionWithoutChildColumn.
  * @brief @~english JoinConditionWithoutChildColumn class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception;
 
 import org.apache.commons.rdf.api.BlankNodeOrIRI;

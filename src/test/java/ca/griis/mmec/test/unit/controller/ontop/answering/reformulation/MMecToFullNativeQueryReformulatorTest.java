@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecToFullNativeQueryReformulatorTest.
  * @brief @~english MMecToFullNativeQueryReformulatorTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.controller.ontop.answering.reformulation;
 
 import ca.griis.mmec.controller.ontop.answering.reformulation.MMecToFullNativeQueryReformulator;

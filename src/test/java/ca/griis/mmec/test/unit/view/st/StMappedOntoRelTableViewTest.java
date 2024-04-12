@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe StMappedOntoRelTableViewTest.
  * @brief @~english StMappedOntoRelTableViewTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.view.st;
 
 import ca.griis.mmec.model.MappedClassTable;

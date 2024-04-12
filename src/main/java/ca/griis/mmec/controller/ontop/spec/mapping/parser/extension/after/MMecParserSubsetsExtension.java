@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecParserSubsetsExtension.
  * @brief @~english MMecParserSubsetsExtension class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.after;
 
 import ca.griis.logger.GriisLogger;

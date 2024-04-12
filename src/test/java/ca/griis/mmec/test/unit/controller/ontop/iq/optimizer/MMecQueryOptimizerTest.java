@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecQueryOptimizerTest.
  * @brief @~english MMecQueryOptimizerTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.controller.ontop.iq.optimizer;
 
 import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;

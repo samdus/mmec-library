@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MappedOntoRelTable.
  * @brief @~english MappedOntoRelTable class implementation.
  */
+
 package ca.griis.mmec.model;
 
 /**

@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de l'interface IMappingParserExtensionBefore.
  * @brief @~english IMappingParserExtensionBefore interface implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension;
 
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;

@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecTemplatesExtension.
  * @brief @~english MMecTemplatesExtension class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before;
 
 import ca.griis.logger.GriisLogger;

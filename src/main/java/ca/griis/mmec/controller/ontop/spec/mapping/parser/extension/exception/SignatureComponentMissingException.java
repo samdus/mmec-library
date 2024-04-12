@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe SignatureComponentMissingException.
  * @brief @~english SignatureComponentMissingException class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception;
 
 import org.apache.commons.rdf.api.BlankNodeOrIRI;

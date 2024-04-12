@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe FacadePropertiesBuilderTest.
  * @brief @~english FacadePropertiesBuilderTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.FacadeProperties;

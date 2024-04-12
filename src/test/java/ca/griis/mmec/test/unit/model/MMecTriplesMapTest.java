@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MMecTriplesMapTest.
  * @brief @~english MMecTriplesMapTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.model;
 
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;

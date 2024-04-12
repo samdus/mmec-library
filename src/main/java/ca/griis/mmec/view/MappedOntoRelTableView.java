@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MappedOntoRelTableView.
  * @brief @~english MappedOntoRelTableView class implementation.
  */
+
 package ca.griis.mmec.view;
 
 import ca.griis.mmec.model.MappedClassTable;

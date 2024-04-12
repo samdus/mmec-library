@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MappingExtendedAfterParsing.
  * @brief @~english MappingExtendedAfterParsing class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension;
 
 import com.google.common.collect.ImmutableMap;

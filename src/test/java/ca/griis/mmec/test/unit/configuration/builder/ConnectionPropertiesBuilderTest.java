@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe ConnectionConfigurationBuilderTest.
  * @brief @~english ConnectionConfigurationBuilderTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.ConnectionProperties;

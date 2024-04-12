@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe MappingExtendedParser.
  * @brief @~english MappingExtendedParser class implementation.
  */
+
 package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension;
 
 import ca.griis.logger.GriisLogger;

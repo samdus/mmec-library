@@ -6,6 +6,7 @@
  * @brief @~french Implémentation de la classe MMecTermFactoryTest.
  * @brief @~english MMecTermFactoryTest class implementation.
  */
+
 package ca.griis.mmec.test.unit.controller.ontop.model.term;
 
 import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;

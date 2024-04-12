@@ -10,6 +10,7 @@
  * @brief @~french Implémentation de la classe StView.
  * @brief @~english StView class implementation.
  */
+
 package ca.griis.mmec.view.st;
 
 import ca.griis.mmec.model.MappedClassTable;
