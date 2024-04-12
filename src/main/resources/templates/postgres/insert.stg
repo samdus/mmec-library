@@ -1,5 +1,5 @@
 /**************************************************************
-Patrons de génération de vues pour un mapping mMec
+Patrons de génération d'insert pour un mapping mMec
 ***************************************************************/
 
 /**************************************************************
@@ -8,16 +8,14 @@ Templates utilitaires
 quoted(id) ::= <%"<id>"%>
 instruction_delimitor() ::= <%;%>
 tabulation() ::= <%  %>
-base_create_view(comment, schema, view_name, columns)::=
+base_insert(comment, schema, table_name, columns)::=
 <<
 /*
 <comment>
 */
-create view <schema:quoted()>.<view_name:quoted()>(
+insert into <schema:quoted()>.<table_name:quoted()>(
 <tabulation()><first(columns):quoted()><rest(columns):{col |,<\n><tabulation()><col:quoted()>}>
 )
-<tabulation()>with (security_barrier=true, check_option=cascaded)
-as
 >>
 
 /**************************************************************
@@ -30,7 +28,7 @@ Classes:
 ***************************************************************/
 class(comment, schema_id, ontorel_table_id, mmec_query_column_id, ontorel_column_id, query)::=
 <<
-<base_create_view(comment, schema_id, ontorel_table_id, [ontorel_column_id])>
+<base_insert(comment, schema_id, ontorel_table_id, [ontorel_column_id])>
 with mmec_query as (
 <tabulation()><query>
 )
@@ -53,7 +51,7 @@ Object Property:
 object_property(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_object,
                ontorel_column_id_subject, ontorel_column_id_object, query)::=
 <<
-<base_create_view(comment, schema_id, ontorel_table_id, [ontorel_column_id_subject, ontorel_column_id_object])>
+<base_insert(comment, schema_id, ontorel_table_id, [ontorel_column_id_subject, ontorel_column_id_object])>
 with mmec_query as (
 <tabulation()><query>
 )
@@ -74,7 +72,7 @@ Data Property:
 data_property(comment, schema_id, ontorel_table_id, mmec_query_column_id_subject, mmec_query_column_id_value,
              ontorel_column_id_subject, ontorel_column_id_value, query)::=
 <<
-<base_create_view(comment, schema_id, ontorel_table_id, [ontorel_column_id_subject,
+<base_insert(comment, schema_id, ontorel_table_id, [ontorel_column_id_subject,
     ontorel_column_id_value])>
 with mmec_query as (
 <tabulation()><query>
