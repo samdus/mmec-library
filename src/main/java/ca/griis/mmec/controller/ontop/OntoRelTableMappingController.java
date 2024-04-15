@@ -7,8 +7,8 @@
  *
  * @version @@GRIIS_VERSION@@
  *
- * @brief @~french Implémentation de la classe OntoRelTableMapper.
- * @brief @~english OntoRelTableMapper class implementation.
+ * @brief @~french Implémentation de la classe OntoRelTableMappingController.
+ * @brief @~english OntoRelTableMappingController class implementation.
  */
 
 package ca.griis.mmec.controller.ontop;
@@ -75,8 +75,9 @@ import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
  * @par Tâches
  *      TODO 2024-04-12 [SD] - Tester la classe<br>
  */
-public class OntoRelTableMapper {
-  private static final GriisLogger logger = GriisLoggerFactory.getLogger(OntoRelTableMapper.class);
+public class OntoRelTableMappingController {
+  private static final GriisLogger logger = GriisLoggerFactory.getLogger(
+      OntoRelTableMappingController.class);
 
   private final MappingProperties mappingProperties;
   private final RDF4JQueryFactory factrdf4JQueryFactory;
@@ -90,7 +91,7 @@ public class OntoRelTableMapper {
   private static final String dpValColumnName = "val";
 
   @Inject
-  public OntoRelTableMapper(MappingProperties mappingProperties,
+  public OntoRelTableMappingController(MappingProperties mappingProperties,
       RDF4JQueryFactory factrdf4JQueryFactory) {
     this.mappingProperties = mappingProperties;
     this.factrdf4JQueryFactory = factrdf4JQueryFactory;
