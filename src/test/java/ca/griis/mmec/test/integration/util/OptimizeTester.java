@@ -53,7 +53,6 @@ public class OptimizeTester extends OntopTester {
     super(postgresContainerWrapper, ontologyFile, mappingFile);
   }
 
-  @Override
   public void runTest() throws Exception {
     try (Connection connection = LocalJDBCConnectionUtils.createConnection(
         configuration.getSettings())) {

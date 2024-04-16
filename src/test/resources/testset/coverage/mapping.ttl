@@ -7,8 +7,8 @@
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix physio: <http://purl.obolibrary.org/obo/physio.owl#> .
 @prefix dc:     <http://purl.org/dc/elements/1.1/> .
-@prefix :       <http://www.griis.ca/projects> .
-@base <http://www.griis.ca/projects> .
+@prefix :       <http://www.griis.ca/projects#> .
+@base <http://www.griis.ca/projects#> .
 
 <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437>
     a mmec:OntoRel .

@@ -28,25 +28,25 @@ import java.util.Hashtable;
 import java.util.Properties;
 import java.util.stream.Stream;
 
-public abstract class OntopTester {
-  protected final MMecConfiguration configuration;
-  protected final CoreSingletons coreSingletons;
-  protected final SubstitutionFactory substitutionFactory;
-  protected final IntermediateQueryFactory iqFactory;
-  protected final TranslationFactory translationFactory;
-  protected final AtomFactory atomFactory;
-  protected final TermFactory termFactory;
-  protected final QueryRewriter queryRewriter;
-  protected final GeneralStructuralAndSemanticIQOptimizer generalOptimizer;
-  protected final QueryPlanner queryPlanner;
-  protected final NativeQueryGenerator nativeQueryGenerator;
-  protected final NotYetTypedEqualityTransformer notYetTypedEqualityTransformer;
-  protected final NotYetTypedBinaryMathOperationTransformer notYetTypedBinaryMathOperationTransformer;
-  protected final SQLQueryParser sqlQueryParser;
-  protected final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
-  protected final SQLMappingExtractor mappingExtractor;
-  protected final File mappingFile;
-  protected static final String injectionConfigurationFile = "defaultConfiguration.properties";
+public class OntopTester {
+  public final MMecConfiguration configuration;
+  public final CoreSingletons coreSingletons;
+  public final SubstitutionFactory substitutionFactory;
+  public final IntermediateQueryFactory iqFactory;
+  public final TranslationFactory translationFactory;
+  public final AtomFactory atomFactory;
+  public final TermFactory termFactory;
+  public final QueryRewriter queryRewriter;
+  public final GeneralStructuralAndSemanticIQOptimizer generalOptimizer;
+  public final QueryPlanner queryPlanner;
+  public final NativeQueryGenerator nativeQueryGenerator;
+  public final NotYetTypedEqualityTransformer notYetTypedEqualityTransformer;
+  public final NotYetTypedBinaryMathOperationTransformer notYetTypedBinaryMathOperationTransformer;
+  public final SQLQueryParser sqlQueryParser;
+  public final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
+  public final SQLMappingExtractor mappingExtractor;
+  public final File mappingFile;
+  public static final String injectionConfigurationFile = "defaultConfiguration.properties";
 
   public OntopTester(PostgresContainerWrapper postgresContainerWrapper, File ontologyFile,
       File mappingFile) {
@@ -58,6 +58,7 @@ public abstract class OntopTester {
       System.err.println(e.getMessage());
     }
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
+    //TODO: Ajouter un fichier de paramètre dans chaque testset
     MappingProperties mappingProperties = new MappingPropertiesBuilder()
         .setOntoRelId("9c9563e2-a24e-41f3-945c-64403d119d52").build();
     FacadeProperties facadeProperties = new FacadePropertiesBuilder().build();
@@ -93,8 +94,6 @@ public abstract class OntopTester {
         translationFactory.create(postgresContainerWrapper.getDBParameters(coreSingletons));
     sqlQueryParser = new SQLQueryParser(coreSingletons);
   }
-
-  public abstract void runTest() throws Exception;
 
   private Properties getInjectionConfigurationProperties() throws IOException {
     Properties prop = new Properties();

@@ -57,7 +57,6 @@ public class R2rmlTester extends OntopTester {
     super(postgresContainerWrapper, ontologyFile, mappingFile);
   }
 
-  @Override
   public void runTest() throws Exception {
     // String withAutomaticInjectors = testWithAutomaticInjector();
     // System.out.println(withAutomaticInjectors);
@@ -256,7 +255,7 @@ public class R2rmlTester extends OntopTester {
     System.out.println("---------------------------------------------");
     System.out.println("DataProperties");
     System.out.println("---------------------------------------------");
-    System.out.println("\"IAO_0020015\"@personal name PHYSIO_0000100@'has value' \"PRENOM\"");
+    System.out.println("\"IAO_0020015\"@personal name PHYSIO_0000100@'has value' string");
     testGetDPDef(connection, "http://purl.obolibrary.org/obo/IAO_0020015",
         "http://purl.obolibrary.org/obo/PHYSIO_0000100",
         "http://www.w3.org/2001/XMLSchema#string");
