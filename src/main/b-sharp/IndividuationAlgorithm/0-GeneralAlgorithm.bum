@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.comment="Algorithme à haut niveau" org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="sign ≔ ∅" org.eventb.core.label="init_sign"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="subsets ≔ ∅" org.eventb.core.label="init_subsets"/>
+    </org.eventb.core.event>
+    <org.eventb.core.seesContext name="(" org.eventb.core.target="1-MappingContext"/>
+    <org.eventb.core.variable name=")" org.eventb.core.comment="l'ensemble des signatures définies" org.eventb.core.identifier="sign"/>
+    <org.eventb.core.invariant name="*" org.eventb.core.comment="un sous-ensemble des signatures possibles" org.eventb.core.label="type_sign" org.eventb.core.predicate="sign ∈ ℙ(S)"/>
+    <org.eventb.core.variable name="+" org.eventb.core.comment="la relation de sous-ensemble entre des signatures" org.eventb.core.identifier="subsets"/>
+    <org.eventb.core.invariant name="," org.eventb.core.comment="fonction partielle des signatures possibles vers l'ensemble des signatures dont elles sont le sous-ensemble" org.eventb.core.label="type_subsets" org.eventb.core.predicate="subsets ∈ S ⇸ ℙ(S)"/>
+    <org.eventb.core.invariant name="-" org.eventb.core.comment="un sous-ensemble est une signature définie" org.eventb.core.label="inv_subsets_domIsDefinedSign" org.eventb.core.predicate="dom(subsets) ⊆ sign"/>
+    <org.eventb.core.invariant name="." org.eventb.core.comment="une signature sur-ensemble doit être une signature définie" org.eventb.core.label="inv_subsets_ranIsDefinedSign" org.eventb.core.predicate="∀s · s ∈ ran(subsets) ⇒ s ⊆ sign"/>
+    <org.eventb.core.invariant name="/" org.eventb.core.comment="un particulier est identifié par une et une seule signature, sauf si les signatures sont en relation subsets" org.eventb.core.label="inv_sign_disjointe" org.eventb.core.predicate="∀s1,s2,e1,e2 · {s1,s2} ⊆ sign ∧ e1 = sign_expression(s1) ∧ e2 = sign_expression(s2) ⇒ s1 ∉ sign_overlap(s2) ∨ s1 ∈ subsets(s2) ∨ s2 ∈ subsets(s1)"/>
+</org.eventb.core.machineFile>

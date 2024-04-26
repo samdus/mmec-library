@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="g≔∅" org.eventb.core.label="ini_0"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="r≔1" org.eventb.core.label="ini_1"/>
+    </org.eventb.core.event>
+    <org.eventb.core.refinesMachine name="(" org.eventb.core.target="0-InitialModelMachine"/>
+    <org.eventb.core.variable name=")" org.eventb.core.identifier="r"/>
+    <org.eventb.core.invariant name="*" org.eventb.core.label="inv1_1" org.eventb.core.predicate="r ∈ 1‥n+1"/>
+    <org.eventb.core.variable name="+" org.eventb.core.identifier="g"/>
+    <org.eventb.core.invariant name="," org.eventb.core.label="inv1_2" org.eventb.core.predicate="g = (1‥r−1)◁f"/>
+    <org.eventb.core.variant name="-" org.eventb.core.expression="n+1−r" org.eventb.core.label="vrn1"/>
+    <org.eventb.core.seesContext name="." org.eventb.core.target="0-InitialModelContext"/>
+    <org.eventb.core.event name="/" org.eventb.core.convergence="1" org.eventb.core.extended="false" org.eventb.core.label="receive">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r ≤ n"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="g ≔ g ∪ { r ↦ f(r) }" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="r ≔ r + 1" org.eventb.core.label="act2"/>
+        <org.eventb.core.refinesEvent name="*" org.eventb.core.target="receive"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="0" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="final">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r=n+1"/>
+        <org.eventb.core.refinesEvent name="(" org.eventb.core.target="final"/>
+    </org.eventb.core.event>
+</org.eventb.core.machineFile>

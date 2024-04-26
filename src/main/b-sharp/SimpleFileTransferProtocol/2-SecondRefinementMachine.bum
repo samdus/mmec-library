@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="g ≔ ∅" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="s ≔ 1" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="r ≔ 1" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="d :∈ D " org.eventb.core.label="act4"/>
+    </org.eventb.core.event>
+    <org.eventb.core.refinesMachine name="(" org.eventb.core.target="1-FirstRefinementMachine"/>
+    <org.eventb.core.variable name=")" org.eventb.core.identifier="g"/>
+    <org.eventb.core.variable name="*" org.eventb.core.identifier="s"/>
+    <org.eventb.core.invariant name="+" org.eventb.core.label="inv2_1" org.eventb.core.predicate="s≤n+1"/>
+    <org.eventb.core.invariant name="," org.eventb.core.label="inv2_2" org.eventb.core.predicate="s ∈ r‥r+1"/>
+    <org.eventb.core.invariant name="-" org.eventb.core.label="inv2_3" org.eventb.core.predicate="s=r+1 ⇒ d=f(r)"/>
+    <org.eventb.core.variable name="." org.eventb.core.identifier="r"/>
+    <org.eventb.core.variable name="/" org.eventb.core.identifier="d"/>
+    <org.eventb.core.variant name="0" org.eventb.core.expression="r+1−s" org.eventb.core.label="variant2"/>
+    <org.eventb.core.event name="1" org.eventb.core.convergence="1" org.eventb.core.extended="false" org.eventb.core.label="send">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="s=r"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="r≠n+1"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="d≔f(s)" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="s≔s+1" org.eventb.core.label="act2"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="2" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="receive">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="s=r+1"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="g ≔ g ∪ {r ↦ d }" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="r ≔ r + 1" org.eventb.core.label="act2"/>
+        <org.eventb.core.refinesEvent name="*" org.eventb.core.target="receive"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="3" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="final">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r = n + 1"/>
+        <org.eventb.core.refinesEvent name="(" org.eventb.core.target="final"/>
+    </org.eventb.core.event>
+    <org.eventb.core.seesContext name="4" org.eventb.core.target="0-InitialModelContext"/>
+</org.eventb.core.machineFile>
