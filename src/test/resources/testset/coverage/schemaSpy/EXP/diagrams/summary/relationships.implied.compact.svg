@@ -208,18 +208,18 @@
 <polygon fill="none" stroke="#000000" points="451.5,-711.7 451.5,-734.7 578.5,-734.7 578.5,-711.7 451.5,-711.7"/>
 <text text-anchor="start" x="456.5" y="-720.3" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00" fill="#000000">DOSSIER</text>
 <text text-anchor="start" x="543.5437" y="-719.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">[table]</text>
-<polygon fill="#ffffff" stroke="transparent" points="451.5,-689.7 451.5,-711.7 578.5,-711.7 578.5,-689.7 451.5,-689.7"/>
 <polygon fill="none" stroke="#000000" points="451.5,-689.7 451.5,-711.7 578.5,-711.7 578.5,-689.7 451.5,-689.7"/>
+<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="456.5" y="-706.7"/>
 <text text-anchor="start" x="471.5" y="-696.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">ID_PATIENT_UUID</text>
 <polygon fill="none" stroke="#000000" points="451.5,-667.7 451.5,-689.7 578.5,-689.7 578.5,-667.7 451.5,-667.7"/>
-<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="456.5" y="-684.7"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="456.5" y="-684.7"/>
 <text text-anchor="start" x="471.5" y="-674.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">ID_PATIENT_EXT</text>
 <polygon fill="#ffffff" stroke="transparent" points="451.5,-648.7 451.5,-667.7 497.5,-667.7 497.5,-648.7 451.5,-648.7"/>
 <polygon fill="none" stroke="#000000" points="451.5,-648.7 451.5,-667.7 497.5,-667.7 497.5,-648.7 451.5,-648.7"/>
 <text text-anchor="start" x="454.5" y="-654.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">&lt; 1</text>
 <polygon fill="#ffffff" stroke="transparent" points="497.5,-648.7 497.5,-667.7 553.5,-667.7 553.5,-648.7 497.5,-648.7"/>
 <polygon fill="none" stroke="#000000" points="497.5,-648.7 497.5,-667.7 553.5,-667.7 553.5,-648.7 497.5,-648.7"/>
-<text text-anchor="start" x="511.9956" y="-654.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">29 rows</text>
+<text text-anchor="start" x="511.9956" y="-654.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">30 rows</text>
 <polygon fill="#ffffff" stroke="transparent" points="553.5,-648.7 553.5,-667.7 578.5,-667.7 578.5,-648.7 553.5,-648.7"/>
 <polygon fill="none" stroke="#000000" points="553.5,-648.7 553.5,-667.7 578.5,-667.7 578.5,-648.7 553.5,-648.7"/>
 <text text-anchor="start" x="569.3862" y="-654.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000"> &#160;</text>
@@ -255,10 +255,9 @@
 <!-- DOSSIER&#45;&gt;PATIENT -->
 <g id="edge3" class="edge">
 <title>DOSSIER:w&#45;&gt;PATIENT:e</title>
-<path fill="none" stroke="#000000" d="M440.9737,-677.9076C346.9313,-662.7006 483.9798,-433.7 373.5,-433.7"/>
-<polygon fill="#000000" stroke="#000000" points="451.0025,-674.6512 450.402,-682.6287 448.8065,-682.5085 449.4071,-674.5311 451.0025,-674.6512"/>
-<polyline fill="none" stroke="#000000" points="451.5,-678.7 447.5113,-678.3997 "/>
-<ellipse fill="none" stroke="#000000" cx="444.3203" cy="-678.1595" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#000000" d="M437.1213,-677.1355C350.7579,-656.2696 482.4175,-433.7 373.5,-433.7"/>
+<polygon fill="#000000" stroke="#000000" points="443.5469,-677.8346 451.1106,-682.2789 447.5235,-678.2673 451.5,-678.7 451.5,-678.7 451.5,-678.7 447.5235,-678.2673 451.8894,-675.1211 443.5469,-677.8346 443.5469,-677.8346"/>
+<ellipse fill="none" stroke="#000000" cx="440.3657" cy="-677.4884" rx="3.2" ry="3.2"/>
 </g>
 <!-- PRESCRIPTION -->
 <g id="node5" class="node">

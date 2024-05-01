@@ -164,7 +164,7 @@
 <text text-anchor="start" x="476" y="-43.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">&lt; 1</text>
 <polygon fill="#ffffff" stroke="transparent" points="502,-37.7 502,-56.7 550,-56.7 550,-37.7 502,-37.7"/>
 <polygon fill="none" stroke="#000000" points="502,-37.7 502,-56.7 550,-56.7 550,-37.7 502,-37.7"/>
-<text text-anchor="start" x="508.4956" y="-43.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">29 rows</text>
+<text text-anchor="start" x="508.4956" y="-43.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">30 rows</text>
 <polygon fill="#ffffff" stroke="transparent" points="550,-37.7 550,-56.7 566,-56.7 566,-37.7 550,-37.7"/>
 <polygon fill="none" stroke="#000000" points="550,-37.7 550,-56.7 566,-56.7 566,-37.7 550,-37.7"/>
 <text text-anchor="start" x="556.8862" y="-43.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000"> &#160;</text>
@@ -174,10 +174,9 @@
 <!-- DOSSIER&#45;&gt;PATIENT -->
 <g id="edge3" class="edge">
 <title>DOSSIER:w&#45;&gt;PATIENT:e</title>
-<path fill="none" stroke="#000000" d="M462.5592,-67.0204C445.4036,-71.9535 442.962,-90.0302 431,-109.7 402.1894,-157.0748 445.9475,-227.7 390.5,-227.7"/>
-<polygon fill="#000000" stroke="#000000" points="471.7044,-61.832 472.7082,-69.7688 471.1209,-69.9695 470.1171,-62.0328 471.7044,-61.832"/>
-<polyline fill="none" stroke="#000000" points="473,-65.7 469.0316,-66.2019 "/>
-<ellipse fill="none" stroke="#000000" cx="465.8569" cy="-66.6034" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#000000" d="M458.5969,-68.5047C444.9355,-74.9495 441.9743,-91.6543 431,-109.7 402.1894,-157.0748 445.9475,-227.7 390.5,-227.7"/>
+<polygon fill="#000000" stroke="#000000" points="465.1475,-67.2292 473.6881,-69.2336 469.0737,-66.4646 473,-65.7 473,-65.7 473,-65.7 469.0737,-66.4646 472.3119,-62.1664 465.1475,-67.2292 465.1475,-67.2292"/>
+<ellipse fill="none" stroke="#000000" cx="462.0065" cy="-67.8408" rx="3.2" ry="3.2"/>
 </g>
 <!-- LABORATOIRE -->
 <g id="node5" class="node">

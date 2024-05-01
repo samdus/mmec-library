@@ -1,382 +1,382 @@
 <?xml version="1.0" encoding="UTF-8"?><database name="test" schema="ontorelcat_pri" type="PostgreSQL - 15.3 (Debian 15.3-1.pgdg120+1)">
    <tables>
-      <table name="Definition" numRows="4" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+      <table name="Definition" numRows="69" remarks="Provides definitions for OntoRel entities in multiple languages, associating each definition with an entity IRI and language code." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <parent column="iri" foreignKey="Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="iri" foreignKey="Definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="code" nullable="false" remarks="" size="2" type="varchar" typeCode="12">
-            <parent column="code" foreignKey="Definition_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_Codes"/>
+            <parent column="code" foreignKey="Definition_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_codes"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="value" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
          <primaryKey column="code" sequenceNumberInPK="3"/>
-         <index name="Definition_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Definition_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
             <column ascending="true" name="code"/>
          </index>
       </table>
-      <table name="Label" numRows="4" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+      <table name="Label" numRows="116" remarks="Holds labels for various OntoRel entities, facilitating multilingual support by mapping each label to its entity IRI and language code." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <parent column="iri" foreignKey="Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="iri" foreignKey="Label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="code" nullable="false" remarks="" size="2" type="varchar" typeCode="12">
-            <parent column="code" foreignKey="Label_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_Codes"/>
+            <parent column="code" foreignKey="Label_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_codes"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="value" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
          <primaryKey column="code" sequenceNumberInPK="3"/>
-         <index name="Label_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Label_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
             <column ascending="true" name="code"/>
          </index>
       </table>
-      <table name="Languages_Codes" numRows="184" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="" size="2" type="varchar" typeCode="12">
-            <child column="code" foreignKey="Definition_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Definition"/>
-            <child column="code" foreignKey="Label_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Label"/>
-            <child column="code" foreignKey="Ontology_Label_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology_Label"/>
-            <child column="code" foreignKey="Ontorel_Schema_Definition_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Schema_Definition"/>
+      <table name="Languages_codes" numRows="184" remarks="Stores ISO 639-1 language codes and their corresponding  language names. Each row contains a unique language code and the name of the language represented by that code." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="code" foreignKey="Definition_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Definition"/>
+            <child column="code" foreignKey="Label_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Label"/>
+            <child column="code" foreignKey="Ontology_label_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology_label"/>
+            <child column="code" foreignKey="Ontorel_schema_definition_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_schema_definition"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="language" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="language" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <primaryKey column="code" sequenceNumberInPK="1"/>
-         <index name="languages_codes_ck0" unique="true">
+         <index name="Languages_codes_cc0" unique="true">
             <column ascending="true" name="code"/>
          </index>
       </table>
-      <table name="Onto_Class" numRows="7" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Onto_Class_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Axiom"/>
-            <child column="ontorel_id" foreignKey="Onto_Class_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Inheritance"/>
-            <child column="ontorel_id" foreignKey="Onto_Data_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Axiom"/>
-            <parent column="ontorel_id" foreignKey="Onto_Class_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+      <table name="Onto_class" numRows="65" remarks="Defines the classes within the OntoRel model, including their origin type and relationships to entities." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Onto_class_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_axiom"/>
+            <child column="ontorel_uuid" foreignKey="Onto_class_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_inheritance"/>
+            <child column="ontorel_uuid" foreignKey="Onto_data_axiom_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_axiom"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_class_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <child column="domain_iri" foreignKey="Onto_Class_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Axiom"/>
-            <child column="range_iri" foreignKey="Onto_Class_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Axiom"/>
-            <child column="subclass_iri" foreignKey="Onto_Class_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Inheritance"/>
-            <child column="superclass_iri" foreignKey="Onto_Class_Inheritance_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Inheritance"/>
-            <child column="domain_iri" foreignKey="Onto_Data_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Axiom"/>
-            <parent column="iri" foreignKey="Onto_Class_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="domain_iri" foreignKey="Onto_class_axiom_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_axiom"/>
+            <child column="range_iri" foreignKey="Onto_class_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_axiom"/>
+            <child column="subclass_iri" foreignKey="Onto_class_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_inheritance"/>
+            <child column="superclass_iri" foreignKey="Onto_class_inheritance_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_inheritance"/>
+            <child column="domain_iri" foreignKey="Onto_data_axiom_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_axiom"/>
+            <parent column="iri" foreignKey="Onto_class_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="table_id" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="origin" nullable="true" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;Origin_Class&quot;" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
-         <index name="Onto_Class_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_class_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
          </index>
       </table>
-      <table name="Onto_Class_Axiom" numRows="2" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Class_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
-            <parent column="ontorel_id" foreignKey="Onto_Class_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+      <table name="Onto_class_axiom" numRows="33" remarks="Details the axioms relating classes in the OntoRel model, specifying their domains, ranges, and the nature of their relationships." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_class_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_class_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="domain_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Class_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
+            <parent column="iri" foreignKey="Onto_class_axiom_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="domain_card" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="range_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Class_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
+            <parent column="iri" foreignKey="Onto_class_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="range_card" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="property_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Class_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+            <parent column="iri" foreignKey="Onto_class_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="origin" nullable="true" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;Origin_Axiom&quot;" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="table_id" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="domain_iri" sequenceNumberInPK="2"/>
          <primaryKey column="range_iri" sequenceNumberInPK="3"/>
          <primaryKey column="property_iri" sequenceNumberInPK="4"/>
          <primaryKey column="table_id" sequenceNumberInPK="5"/>
-         <index name="Onto_Class_Axiom_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_class_axiom_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="domain_iri"/>
             <column ascending="true" name="range_iri"/>
             <column ascending="true" name="property_iri"/>
             <column ascending="true" name="table_id"/>
          </index>
       </table>
-      <table name="Onto_Class_Inheritance" numRows="8" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Class_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
+      <table name="Onto_class_inheritance" numRows="69" remarks="Captures the inheritance hierarchy within OntoRel classes, defining superclass-subclass relationships." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_class_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="superclass_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Class_Inheritance_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
+            <parent column="iri" foreignKey="Onto_class_inheritance_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="subclass_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Class_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
+            <parent column="iri" foreignKey="Onto_class_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="superclass_iri" sequenceNumberInPK="2"/>
          <primaryKey column="subclass_iri" sequenceNumberInPK="3"/>
-         <index name="Onto_Class_Inheritance_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_class_inheritance_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="superclass_iri"/>
             <column ascending="true" name="subclass_iri"/>
          </index>
       </table>
-      <table name="Onto_Data_Axiom" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Data_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
-            <parent column="ontorel_id" foreignKey="Onto_Data_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
-            <parent column="ontorel_id" foreignKey="Onto_Data_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
+      <table name="Onto_data_axiom" numRows="8" remarks="Defines axioms for data properties within OntoRel, including their application domains, data types, and cardinality constraints." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_data_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_type"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_data_axiom_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_data_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="domain_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Data_Axiom_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
+            <parent column="iri" foreignKey="Onto_data_axiom_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="domain_card" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="range_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Data_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
+            <parent column="iri" foreignKey="Onto_data_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_type"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="property_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Data_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
+            <parent column="iri" foreignKey="Onto_data_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="origin" nullable="true" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;Origin_Axiom&quot;" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="table_id" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="domain_iri" sequenceNumberInPK="2"/>
          <primaryKey column="range_iri" sequenceNumberInPK="3"/>
          <primaryKey column="property_iri" sequenceNumberInPK="4"/>
          <primaryKey column="table_id" sequenceNumberInPK="5"/>
-         <index name="Onto_Data_Axiom_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_data_axiom_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="domain_iri"/>
             <column ascending="true" name="range_iri"/>
             <column ascending="true" name="property_iri"/>
             <column ascending="true" name="table_id"/>
          </index>
       </table>
-      <table name="Onto_Data_Property" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Onto_Data_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Axiom"/>
-            <child column="ontorel_id" foreignKey="Onto_Data_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Domain"/>
-            <child column="ontorel_id" foreignKey="Onto_Data_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Range"/>
-            <parent column="ontorel_id" foreignKey="Onto_Data_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+      <table name="Onto_data_property" numRows="3" remarks="Defines data properties within the OntoRel model, including their unique identifiers and IRIs, to specify attributes of classes." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Onto_data_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_axiom"/>
+            <child column="ontorel_uuid" foreignKey="Onto_data_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_domain"/>
+            <child column="ontorel_uuid" foreignKey="Onto_data_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_range"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_data_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <child column="property_iri" foreignKey="Onto_Data_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Axiom"/>
-            <child column="property_iri" foreignKey="Onto_Data_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Domain"/>
-            <child column="property_iri" foreignKey="Onto_Data_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Range"/>
-            <parent column="iri" foreignKey="Onto_Data_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="property_iri" foreignKey="Onto_data_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_axiom"/>
+            <child column="property_iri" foreignKey="Onto_data_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_domain"/>
+            <child column="property_iri" foreignKey="Onto_data_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_range"/>
+            <parent column="iri" foreignKey="Onto_data_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
-         <index name="Onto_Data_Property_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_data_property_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
          </index>
       </table>
-      <table name="Onto_Data_Property_Domain" numRows="0" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Data_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
-            <parent column="ontorel_id" foreignKey="Onto_Data_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
+      <table name="Onto_data_property_domain" numRows="1" remarks="Associates data properties with their domain classes defining where each data property can be applied in the OntoRel schema." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_data_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_data_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="class_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Data_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+            <parent column="iri" foreignKey="Onto_data_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="property_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Data_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
+            <parent column="iri" foreignKey="Onto_data_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="class_iri" sequenceNumberInPK="2"/>
          <primaryKey column="property_iri" sequenceNumberInPK="3"/>
-         <index name="Onto_Data_Property_Domain_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_data_property_domain_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="class_iri"/>
             <column ascending="true" name="property_iri"/>
          </index>
       </table>
-      <table name="Onto_Data_Property_Range" numRows="0" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Data_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
-            <parent column="ontorel_id" foreignKey="Onto_Data_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
+      <table name="Onto_data_property_range" numRows="1" remarks="Specifies the range of each data property, linking data properties to the data types they can describe within the OntoRel model." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_data_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_type"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_data_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="datatype_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Data_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
+            <parent column="iri" foreignKey="Onto_data_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_type"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="property_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Data_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
+            <parent column="iri" foreignKey="Onto_data_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="datatype_iri" sequenceNumberInPK="2"/>
          <primaryKey column="property_iri" sequenceNumberInPK="3"/>
-         <index name="Onto_Data_Property_Range_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_data_property_range_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="datatype_iri"/>
             <column ascending="true" name="property_iri"/>
          </index>
       </table>
-      <table name="Onto_Data_Type" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Onto_Data_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Axiom"/>
-            <child column="ontorel_id" foreignKey="Onto_Data_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Range"/>
-            <parent column="ontorel_id" foreignKey="Onto_Data_Type_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+      <table name="Onto_data_type" numRows="6" remarks="Stores the data types used within the OntoRel model, mapping them to SQL data types for database integration." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Onto_data_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_axiom"/>
+            <child column="ontorel_uuid" foreignKey="Onto_data_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_range"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_data_type_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <child column="range_iri" foreignKey="Onto_Data_Axiom_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Axiom"/>
-            <child column="datatype_iri" foreignKey="Onto_Data_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Range"/>
-            <parent column="iri" foreignKey="Onto_Data_Type_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="range_iri" foreignKey="Onto_data_axiom_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_axiom"/>
+            <child column="datatype_iri" foreignKey="Onto_data_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_range"/>
+            <parent column="iri" foreignKey="Onto_data_type_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="table_id" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="sql_type" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;sql_type_name&quot;" typeCode="2001"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="sql_type" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
-         <index name="Onto_Data_Type_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_data_type_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
          </index>
       </table>
-      <table name="Onto_Object_Property" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Onto_Class_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Axiom"/>
-            <child column="ontorel_id" foreignKey="Onto_Object_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Domain"/>
-            <child column="ontorel_id" foreignKey="Onto_Object_Property_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Inheritance"/>
-            <child column="ontorel_id" foreignKey="Onto_Object_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Range"/>
-            <parent column="ontorel_id" foreignKey="Onto_Object_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+      <table name="Onto_object_property" numRows="44" remarks="Details the object properties in OntoRel, including their IDs, IRIs, and associated table references." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Onto_class_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_axiom"/>
+            <child column="ontorel_uuid" foreignKey="Onto_object_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_domain"/>
+            <child column="ontorel_uuid" foreignKey="Onto_object_property_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_inheritance"/>
+            <child column="ontorel_uuid" foreignKey="Onto_object_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_range"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_object_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <child column="property_iri" foreignKey="Onto_Class_Axiom_fk2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class_Axiom"/>
-            <child column="property_iri" foreignKey="Onto_Object_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Domain"/>
-            <child column="subproperty_iri" foreignKey="Onto_Object_Property_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Inheritance"/>
-            <child column="superproperty_iri" foreignKey="Onto_Object_Property_Inheritance_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Inheritance"/>
-            <child column="property_iri" foreignKey="Onto_Object_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Range"/>
-            <parent column="iri" foreignKey="Onto_Object_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="property_iri" foreignKey="Onto_class_axiom_cr2" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class_axiom"/>
+            <child column="property_iri" foreignKey="Onto_object_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_domain"/>
+            <child column="subproperty_iri" foreignKey="Onto_object_property_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_inheritance"/>
+            <child column="superproperty_iri" foreignKey="Onto_object_property_inheritance_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_inheritance"/>
+            <child column="property_iri" foreignKey="Onto_object_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_range"/>
+            <parent column="iri" foreignKey="Onto_object_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="table_id" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
-         <index name="Onto_Object_Property_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_object_property_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
          </index>
       </table>
-      <table name="Onto_Object_Property_Domain" numRows="0" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Object_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
-            <parent column="ontorel_id" foreignKey="Onto_Object_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+      <table name="Onto_object_property_domain" numRows="19" remarks="Associates object properties with their domain classes in the OntoRel model, defining the scope of each property." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_object_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_object_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="class_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Object_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+            <parent column="iri" foreignKey="Onto_object_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="property_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Object_Property_Domain_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+            <parent column="iri" foreignKey="Onto_object_property_domain_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="class_iri" sequenceNumberInPK="2"/>
          <primaryKey column="property_iri" sequenceNumberInPK="3"/>
-         <index name="Onto_Object_Property_Domain_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_object_property_domain_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="class_iri"/>
             <column ascending="true" name="property_iri"/>
          </index>
       </table>
-      <table name="Onto_Object_Property_Inheritance" numRows="0" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Object_Property_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+      <table name="Onto_object_property_inheritance" numRows="0" remarks="Captures inheritance relationships between object properties in OntoRel, facilitating the representation of property hierarchies." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_object_property_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="superproperty_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Object_Property_Inheritance_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+            <parent column="iri" foreignKey="Onto_object_property_inheritance_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="subproperty_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Object_Property_Inheritance_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+            <parent column="iri" foreignKey="Onto_object_property_inheritance_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="superproperty_iri" sequenceNumberInPK="2"/>
          <primaryKey column="subproperty_iri" sequenceNumberInPK="3"/>
-         <index name="Onto_Object_Property_Inheritance_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_object_property_inheritance_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="superproperty_iri"/>
             <column ascending="true" name="subproperty_iri"/>
          </index>
       </table>
-      <table name="Onto_Object_Property_Range" numRows="0" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Onto_Object_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
-            <parent column="ontorel_id" foreignKey="Onto_Object_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+      <table name="Onto_object_property_range" numRows="18" remarks="Defines the range of object properties within the OntoRel model, linking properties to the classes they can relate to." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Onto_object_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
+            <parent column="ontorel_uuid" foreignKey="Onto_object_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="class_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Object_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
+            <parent column="iri" foreignKey="Onto_object_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="property_iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="iri" foreignKey="Onto_Object_Property_Range_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
+            <parent column="iri" foreignKey="Onto_object_property_range_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="class_iri" sequenceNumberInPK="2"/>
          <primaryKey column="property_iri" sequenceNumberInPK="3"/>
-         <index name="Onto_Object_Property_Range_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Onto_object_property_range_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="class_iri"/>
             <column ascending="true" name="property_iri"/>
          </index>
       </table>
-      <table name="Ontology" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Ontology_Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology_Label"/>
-            <parent column="ontorel_id" foreignKey="Ontology_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
+      <table name="Ontology" numRows="1" remarks="Contains metadata for each ontology version within the OntoRel framework, including its identifier, versioning information, and the timestamp of creation or last update." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Ontology_label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology_label"/>
+            <parent column="ontorel_uuid" foreignKey="Ontology_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <child column="iri" foreignKey="Ontology_Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology_Label"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="iri" foreignKey="Ontology_label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology_label"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="file_name" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="alias" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="version" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="create_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
-         <index name="Ontology_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Ontology_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
          </index>
       </table>
-      <table name="Ontology_Label" numRows="0" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Ontology_Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology"/>
+      <table name="Ontology_label" numRows="0" remarks="Stores multilingual labels for ontologies, linking each label to its ontology IRI, language code, and textual value." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Ontology_label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <parent column="iri" foreignKey="Ontology_Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="iri" foreignKey="Ontology_label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="code" nullable="false" remarks="" size="2" type="varchar" typeCode="12">
-            <parent column="code" foreignKey="Ontology_Label_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_Codes"/>
+            <parent column="code" foreignKey="Ontology_label_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_codes"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="value" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
          <primaryKey column="code" sequenceNumberInPK="3"/>
-         <index name="Ontology_Label_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Ontology_label_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
             <column ascending="true" name="code"/>
          </index>
       </table>
-      <table name="Ontorel" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Ontology_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology"/>
-            <child column="ontorel_id" foreignKey="Ontorel_db_Config_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_db_Config"/>
-            <child column="ontorel_id" foreignKey="Ontorel_Entity_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Entity"/>
-            <child column="ontorel_id" foreignKey="Ontorel_Import_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Import"/>
-            <child column="ontorel_id" foreignKey="Ontorel_Schema_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Schema"/>
+      <table name="Ontorel" numRows="1" remarks="Holds the core details of each OntoRel entity including a unique identifier (UUID), version information, and the timestamp marking the generation or last update of the entity." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Ontology_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontology"/>
+            <child column="ontorel_uuid" foreignKey="Ontorel_db_config_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_db_config"/>
+            <child column="ontorel_uuid" foreignKey="Ontorel_entity_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_entity"/>
+            <child column="ontorel_uuid" foreignKey="Ontorel_schema_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_schema"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="version" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="ontorel_generation_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <index name="Ontorel_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+            <column ascending="true" name="ontorel_uuid"/>
          </index>
       </table>
-      <table name="Ontorel_db_Config" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Ontorel_db_Config_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
+      <table name="Ontorel_db_config" numRows="1" remarks="Configurations for OntoRel entities, detailing key names, domains,  SQL types, and various flags for normalization and table generation." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Ontorel_db_config_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="key_name" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="key_domain" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
@@ -389,91 +389,85 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="normalize_datatype" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="normalize_axiom" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="generate_optable" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
-         <index name="Ontorel_db_Config_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
+         <index name="Ontorel_db_config_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
          </index>
       </table>
-      <table name="Ontorel_Entity" numRows="10" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Definition"/>
-            <child column="ontorel_id" foreignKey="Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Label"/>
-            <child column="ontorel_id" foreignKey="Onto_Class_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
-            <child column="ontorel_id" foreignKey="Onto_Data_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
-            <child column="ontorel_id" foreignKey="Onto_Data_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Domain"/>
-            <child column="ontorel_id" foreignKey="Onto_Data_Type_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
-            <child column="ontorel_id" foreignKey="Onto_Object_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
-            <child column="ontorel_id" foreignKey="Onto_Object_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Domain"/>
-            <child column="ontorel_id" foreignKey="Onto_Object_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Range"/>
-            <parent column="ontorel_id" foreignKey="Ontorel_Entity_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
+      <table name="Ontorel_entity" numRows="118" remarks="Stores OntoRel entities identified by a unique ID and their corresponding IRI, linking to the core Ontorel table." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Definition"/>
+            <child column="ontorel_uuid" foreignKey="Label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Label"/>
+            <child column="ontorel_uuid" foreignKey="Onto_class_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
+            <child column="ontorel_uuid" foreignKey="Onto_data_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
+            <child column="ontorel_uuid" foreignKey="Onto_data_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_domain"/>
+            <child column="ontorel_uuid" foreignKey="Onto_data_type_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_type"/>
+            <child column="ontorel_uuid" foreignKey="Onto_object_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
+            <child column="ontorel_uuid" foreignKey="Onto_object_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_domain"/>
+            <child column="ontorel_uuid" foreignKey="Onto_object_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_range"/>
+            <parent column="ontorel_uuid" foreignKey="Ontorel_entity_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;iri&quot;" typeCode="2001">
-            <child column="iri" foreignKey="Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Definition"/>
-            <child column="iri" foreignKey="Label_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Label"/>
-            <child column="iri" foreignKey="Onto_Class_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Class"/>
-            <child column="iri" foreignKey="Onto_Data_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property"/>
-            <child column="class_iri" foreignKey="Onto_Data_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Property_Domain"/>
-            <child column="iri" foreignKey="Onto_Data_Type_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Data_Type"/>
-            <child column="iri" foreignKey="Onto_Object_Property_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property"/>
-            <child column="class_iri" foreignKey="Onto_Object_Property_Domain_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Domain"/>
-            <child column="class_iri" foreignKey="Onto_Object_Property_Range_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_Object_Property_Range"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iri" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="iri" foreignKey="Definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Definition"/>
+            <child column="iri" foreignKey="Label_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Label"/>
+            <child column="iri" foreignKey="Onto_class_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_class"/>
+            <child column="iri" foreignKey="Onto_data_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property"/>
+            <child column="class_iri" foreignKey="Onto_data_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_property_domain"/>
+            <child column="iri" foreignKey="Onto_data_type_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_data_type"/>
+            <child column="iri" foreignKey="Onto_object_property_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property"/>
+            <child column="class_iri" foreignKey="Onto_object_property_domain_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_domain"/>
+            <child column="class_iri" foreignKey="Onto_object_property_range_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Onto_object_property_range"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="iri" sequenceNumberInPK="2"/>
-         <index name="Ontorel_Entity_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Ontorel_entity_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="iri"/>
          </index>
       </table>
-      <table name="Ontorel_Import" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Ontorel_Import_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
-         </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="file_name" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="json" nullable="true" remarks="" size="2147483647" type="jsonb" typeCode="1111"/>
-         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="import_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
-         <index name="Ontorel_Import_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
-         </index>
-         <index name="Ontorel_Import_ck1" unique="true">
-            <column ascending="true" name="import_date"/>
-         </index>
-      </table>
-      <table name="Ontorel_Schema" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <child column="ontorel_id" foreignKey="Ontorel_Schema_Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Schema_Definition"/>
-            <parent column="ontorel_id" foreignKey="Ontorel_Schema_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
+      <table name="Ontorel_schema" numRows="1" remarks="Defines schemas within OntoRel, each associated with a unique OntoRel entity ID and schema name." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <child column="ontorel_uuid" foreignKey="Ontorel_schema_definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_schema_definition"/>
+            <parent column="ontorel_uuid" foreignKey="Ontorel_schema_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="schema_name" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <child column="schema_name" foreignKey="Ontorel_Schema_Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Schema_Definition"/>
+            <child column="schema_name" foreignKey="Ontorel_schema_definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_schema_definition"/>
          </column>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="schema_name" sequenceNumberInPK="2"/>
-         <index name="Ontorel_Schema_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Ontorel_schema_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="schema_name"/>
          </index>
       </table>
-      <table name="Ontorel_Schema_Definition" numRows="1" remarks="" schema="ontorelcat_pri" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_id" nullable="false" remarks="" size="2147483647" type="&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;" typeCode="2001">
-            <parent column="ontorel_id" foreignKey="Ontorel_Schema_Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Schema"/>
+      <table name="Ontorel_schema_definition" numRows="1" remarks="Details definitions within each schema, including language-specific values for schema elements." schema="ontorelcat_pri" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
+            <parent column="ontorel_uuid" foreignKey="Ontorel_schema_definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_schema"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="schema_name" nullable="false" remarks="" size="2147483647" type="varchar" typeCode="12">
-            <parent column="schema_name" foreignKey="Ontorel_Schema_Definition_fk0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_Schema"/>
+            <parent column="schema_name" foreignKey="Ontorel_schema_definition_cr0" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Ontorel_schema"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="code" nullable="false" remarks="" size="2" type="varchar" typeCode="12">
-            <parent column="code" foreignKey="Ontorel_Schema_Definition_fk1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_Codes"/>
+            <parent column="code" foreignKey="Ontorel_schema_definition_cr1" implied="false" onDeleteCascade="false" schema="ontorelcat_pri" table="Languages_codes"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="value" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
-         <primaryKey column="ontorel_id" sequenceNumberInPK="1"/>
+         <primaryKey column="ontorel_uuid" sequenceNumberInPK="1"/>
          <primaryKey column="schema_name" sequenceNumberInPK="2"/>
          <primaryKey column="code" sequenceNumberInPK="3"/>
-         <index name="Ontorel_Schema_Definition_ck0" unique="true">
-            <column ascending="true" name="ontorel_id"/>
+         <index name="Ontorel_schema_definition_cc0" unique="true">
+            <column ascending="true" name="ontorel_uuid"/>
             <column ascending="true" name="schema_name"/>
             <column ascending="true" name="code"/>
          </index>
       </table>
    </tables>
+   <routines>
+      <routine dataAccess="MODIFIES" deterministic="false" name="getshortiri(fulliri character varying)" returnType="character varying" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="fulliri" type="character varying"/>
+         </parameters>
+      </routine>
+   </routines>
 </database>

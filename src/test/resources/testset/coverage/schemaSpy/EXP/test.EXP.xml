@@ -26,16 +26,13 @@
             <column ascending="true" name="ID_CONSULTATION_EXT"/>
          </index>
       </table>
-      <table name="DOSSIER" numRows="29" remarks="" schema="EXP" type="TABLE">
+      <table name="DOSSIER" numRows="30" remarks="" schema="EXP" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ID_PATIENT_UUID" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_PATIENT_EXT" nullable="false" remarks="" size="10" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ID_PATIENT_EXT" nullable="true" remarks="" size="10" type="varchar" typeCode="12">
             <parent column="ID_PATIENT_EXT" foreignKey="DOSSIER_ID_PATIENT_EXT_fkey" implied="false" onDeleteCascade="false" schema="EXP" table="PATIENT"/>
          </column>
-         <primaryKey column="ID_PATIENT_EXT" sequenceNumberInPK="1"/>
+         <primaryKey column="ID_PATIENT_UUID" sequenceNumberInPK="1"/>
          <index name="EXP_DOSSIER_PK" unique="true">
-            <column ascending="true" name="ID_PATIENT_EXT"/>
-         </index>
-         <index name="EXP_DOSSIER_UK1" unique="true">
             <column ascending="true" name="ID_PATIENT_UUID"/>
          </index>
       </table>

@@ -34,7 +34,7 @@
 
 :bwString
     a                        mmec:SQLType ;
-    mmec:qualifiedIdentifier "\"BW\".\"string\"" .
+    mmec:qualifiedIdentifier "\"BW\".\"string_domain\"" .
 
 :Conversion:TEXT:string
     a                         mmec:Conversion ;

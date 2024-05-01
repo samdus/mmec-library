@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Ontorel_Schema_Definition - test.ontorelcat_pri</title>
+        <title>Ontorel_schema_definition - test.ontorelcat_pri</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -74,7 +74,20 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>Ontorel_Schema_Definition</h1><p><span id="recordNumber">1</span> rows</p><br />
+                    <h1>Ontorel_schema_definition</h1><p><span id="recordNumber">1</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Details definitions within each schema, including language-specific values for schema elements.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -110,8 +123,8 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="ontorel_id">ontorel_id</span></td>
-                                    <td>&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;</td>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="ontorel_uuid">ontorel_uuid</span></td>
+                                    <td>varchar</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
                                     <td title=''></td>
@@ -123,8 +136,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Ontorel_Schema_Definition.[ontorel_id, schema_name] references Ontorel_Schema.[ontorel_id, schema_name] via Ontorel_Schema_Definition_fk0"><a href='Ontorel_Schema.html'>Ontorel_Schema</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Ontorel_Schema_Definition_fk0</td>
+                                                <td title="Ontorel_schema_definition.[ontorel_uuid, schema_name] references Ontorel_schema.[ontorel_uuid, schema_name] via Ontorel_schema_definition_cr0"><a href='Ontorel_schema.html'>Ontorel_schema</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Ontorel_schema_definition_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -145,8 +158,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Ontorel_Schema_Definition.[ontorel_id, schema_name] references Ontorel_Schema.[ontorel_id, schema_name] via Ontorel_Schema_Definition_fk0"><a href='Ontorel_Schema.html'>Ontorel_Schema</a><span class='relatedKey'>.schema_name</span></td>
-                                                <td class="constraint detail">Ontorel_Schema_Definition_fk0</td>
+                                                <td title="Ontorel_schema_definition.[ontorel_uuid, schema_name] references Ontorel_schema.[ontorel_uuid, schema_name] via Ontorel_schema_definition_cr0"><a href='Ontorel_schema.html'>Ontorel_schema</a><span class='relatedKey'>.schema_name</span></td>
+                                                <td class="constraint detail">Ontorel_schema_definition_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -167,8 +180,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Ontorel_Schema_Definition.code references Languages_Codes.code via Ontorel_Schema_Definition_fk1"><a href='Languages_Codes.html'>Languages_Codes</a><span class='relatedKey'>.code</span></td>
-                                                <td class="constraint detail">Ontorel_Schema_Definition_fk1</td>
+                                                <td title="Ontorel_schema_definition.code references Languages_codes.code via Ontorel_schema_definition_cr1"><a href='Languages_codes.html'>Languages_codes</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">Ontorel_schema_definition_cr1</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -223,10 +236,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> Ontorel_Schema_Definition_ck0</td>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> Ontorel_schema_definition_cc0</td>
                                     <td>Primary key</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
-                                    <td>ontorel_id + schema_name + code</td>
+                                    <td>ontorel_uuid + schema_name + code</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -251,11 +264,11 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         
-                                        <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/Ontorel_Schema_Definition.1degree.svg" class="diagram" border="0" align="left"></object></a>
+                                        <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/Ontorel_schema_definition.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         
-                                        <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/Ontorel_Schema_Definition.2degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                        <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/Ontorel_schema_definition.2degrees.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                 </div>
                             </div>

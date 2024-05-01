@@ -134,13 +134,12 @@ Voir comment Ontop gère ça, intuitivement on devrait pouvoir ne rien faire de 
 5. Axiome compliquée pour rien -> Paul va y penser
 
 == Import d'une nouvelle version de l'OntoRel
-1. Exécuter OntoRelA en indiquant, à OntoRelA, l'argument: `./humanBodyWeightOntology/ontorela_config`
-2. Modifier le fichier OntoGraph.dot pour retirer le patron `[0-9a-zA-Z]+@`
-3. Importer le fichier OntoGraph.dot dans cas_limites_individuation.graffle en glissant et déposant l'icone du fichier sur l'icone de OmniGraffle dans la barre de tâche.
-4. S'assurer que 1000-BW_OntoRelCat_ins est bien conforme à la version de l'OntoRelCat utilisé dans le projet
-5. Créer une instance de la base de données
-6. Générer la figure schemaSpy à l'aide de la commande: `schemaspy-griis-application -t pgsql11 -dp $PG_DRIVER -vizjs -imageformat svg -host localhost -port 25432 -db test -u test -p test -o ./src/test/resources/testset/coverage/schemaSpy -desc "Documentation de la base de données de couverture." -all -schemaSpec '(?!^information_schema|pg_.+|sys.+).*'`
-7. Importer le fichier "src/test/resources/testset/coverage/schemaSpy/BW/diagrams/summary/relationships.real.large.svg" dans le fichier "cas_limites_individuation.graffle" en glissant et déposant l'icone du fichier dans un nouveau calque.
+. Exécuter OntoRelA en indiquant, à OntoRelA, l'argument: `./humanBodyWeightOntology/ontorela_config`
+. Importer le fichier OntoGraph.dot dans cas_limites_individuation.graffle en glissant et déposant l'icone du fichier sur l'icone de OmniGraffle dans la barre de tâche.
+. S'assurer que 1000-BW_OntoRelCat_ins est bien conforme à la version de l'OntoRelCat utilisé dans le projet
+. Créer une instance de la base de données
+. Générer la figure schemaSpy à l'aide de la commande: `schemaspy-griis-application -t pgsql11 -dp $PG_DRIVER -vizjs -imageformat svg -host localhost -port 15433 -db ontorelcat-ldm -u postgres -p postgres -o ./src/test/resources/testset/coverage/schemaSpy -desc "Documentation de la base de données de couverture." -all -schemaSpec '(?!^information_schema|pg_.+|sys.+).*'`
+. Importer le fichier "src/test/resources/testset/coverage/schemaSpy/BW/diagrams/summary/relationships.real.large.svg" dans le fichier "cas_limites_individuation.graffle" en glissant et déposant l'icone du fichier dans un nouveau calque.
 
 == Références
 L'ontologie de référence a été développée dans le cadre du développement d'OntoRelA: Khnaisser, C., Lavoie, L., Fraikin, B., Barton, A., Dussault, S., Burgun, A., Ethier, J.-F., 2022. Using an ontology to derive a sharable and interoperable relational data model for heterogeneous healthcare data and various applications. Methods Inf Med a-1877-9498. https://doi.org/10.1055/a-1877-9498

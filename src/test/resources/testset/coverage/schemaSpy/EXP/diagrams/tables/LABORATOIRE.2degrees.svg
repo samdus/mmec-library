@@ -113,7 +113,7 @@
 <text text-anchor="start" x="414" y="-407.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">&lt; 1</text>
 <polygon fill="#ffffff" stroke="transparent" points="440,-401.7 440,-420.7 488,-420.7 488,-401.7 440,-401.7"/>
 <polygon fill="none" stroke="#000000" points="440,-401.7 440,-420.7 488,-420.7 488,-401.7 440,-401.7"/>
-<text text-anchor="start" x="446.4956" y="-407.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">29 rows</text>
+<text text-anchor="start" x="446.4956" y="-407.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">30 rows</text>
 <polygon fill="#ffffff" stroke="transparent" points="488,-401.7 488,-420.7 504,-420.7 504,-401.7 488,-401.7"/>
 <polygon fill="none" stroke="#000000" points="488,-401.7 488,-420.7 504,-420.7 504,-401.7 488,-401.7"/>
 <text text-anchor="start" x="494.8862" y="-407.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000"> &#160;</text>
@@ -123,10 +123,9 @@
 <!-- DOSSIER&#45;&gt;PATIENT -->
 <g id="edge2" class="edge">
 <title>DOSSIER:w&#45;&gt;PATIENT:e</title>
-<path fill="none" stroke="#000000" d="M400.2865,-429.3208C370.8972,-427.0802 359.7832,-414.873 335,-391.7 309.0264,-367.4139 330.059,-322.7 294.5,-322.7"/>
-<polygon fill="#000000" stroke="#000000" points="410.342,-425.6742 410.059,-433.6692 408.46,-433.6126 408.743,-425.6176 410.342,-425.6742"/>
-<polyline fill="none" stroke="#000000" points="411,-429.7 407.0025,-429.5585 "/>
-<ellipse fill="none" stroke="#000000" cx="403.8045" cy="-429.4453" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#000000" d="M396.5541,-428.9719C369.9049,-425.998 358.7056,-413.8655 335,-391.7 309.0264,-367.4139 330.059,-322.7 294.5,-322.7"/>
+<polygon fill="#000000" stroke="#000000" points="403.0101,-429.2973 410.8188,-433.2954 407.0051,-429.4986 411,-429.7 411,-429.7 411,-429.7 407.0051,-429.4986 411.1812,-426.1046 403.0101,-429.2973 403.0101,-429.2973"/>
+<ellipse fill="none" stroke="#000000" cx="399.8142" cy="-429.1362" rx="3.2" ry="3.2"/>
 </g>
 <!-- LABORATOIRE -->
 <g id="node4" class="node">

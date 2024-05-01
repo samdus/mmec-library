@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="ontorelcat-ldm" schema="ontorelcat_pub" type="PostgreSQL - 15.3 (Debian 15.3-1.pgdg120+1)">
+   <tables>
+      <table name="Table_Definition_EN" numRows="0" remarks="" schema="ontorelcat_pub" type="VIEW" viewSql=" SELECT DISTINCT &quot;Onto_class&quot;.ontorel_uuid,&#10;    &quot;Onto_class&quot;.table_id,&#10;    COALESCE(&quot;Label&quot;.value, &quot;Onto_class&quot;.iri) AS label,&#10;    'Class'::text AS type&#10;   FROM (ontorelcat_pri.&quot;Onto_class&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; USING (ontorel_uuid, iri))&#10;  WHERE ((&quot;Label&quot;.code)::text = 'en'::text)&#10;UNION ALL&#10; SELECT DISTINCT &quot;Onto_class_axiom&quot;.ontorel_uuid,&#10;    &quot;Onto_class_axiom&quot;.table_id,&#10;    (((((((COALESCE(&quot;Domain_Label&quot;.domain, &quot;Onto_class_axiom&quot;.domain_iri))::text || ' '::text) || (COALESCE(&quot;Property_Label&quot;.property, &quot;Onto_class_axiom&quot;.property_iri))::text) || ' '::text) || (&quot;Onto_class_axiom&quot;.domain_card)::text) || ' '::text) || (COALESCE(&quot;Range_Label&quot;.range, &quot;Onto_class_axiom&quot;.range_iri))::text) AS label,&#10;    'ObjectProperty'::text AS type&#10;   FROM (((ontorelcat_pri.&quot;Onto_class_axiom&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Domain_Label&quot;(ontorel_uuid, domain_iri, code, domain) USING (ontorel_uuid, domain_iri))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Range_Label&quot;(ontorel_uuid, range_iri, code, range) USING (ontorel_uuid, range_iri, code))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Property_Label&quot;(ontorel_uuid, property_iri, code, property) USING (ontorel_uuid, property_iri, code))&#10;  WHERE ((&quot;Domain_Label&quot;.code)::text = 'en'::text)&#10;UNION ALL&#10; SELECT DISTINCT &quot;Onto_data_axiom&quot;.ontorel_uuid,&#10;    &quot;Onto_data_axiom&quot;.table_id,&#10;    (((((((COALESCE(&quot;Domain_Label&quot;.domain, &quot;Onto_data_axiom&quot;.domain_iri))::text || ' '::text) || (COALESCE(&quot;Property_Label&quot;.property, &quot;Onto_data_axiom&quot;.property_iri))::text) || ' '::text) || (&quot;Onto_data_axiom&quot;.domain_card)::text) || ' '::text) || (COALESCE(&quot;Range_Label&quot;.range, &quot;Onto_data_axiom&quot;.range_iri))::text) AS label,&#10;    'DataProperty'::text AS type&#10;   FROM (((ontorelcat_pri.&quot;Onto_data_axiom&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Domain_Label&quot;(ontorel_uuid, domain_iri, code, domain) USING (ontorel_uuid, domain_iri))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Range_Label&quot;(ontorel_uuid, range_iri, code, range) USING (ontorel_uuid, range_iri, code))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Property_Label&quot;(ontorel_uuid, property_iri, code, property) USING (ontorel_uuid, property_iri, code))&#10;  WHERE ((&quot;Domain_Label&quot;.code)::text = 'en'::text)&#10;UNION ALL&#10; SELECT DISTINCT &quot;Onto_data_type&quot;.ontorel_uuid,&#10;    &quot;Onto_data_type&quot;.table_id,&#10;    COALESCE(&quot;Label&quot;.value, &quot;Onto_data_type&quot;.iri) AS label,&#10;    'DataType'::text AS type&#10;   FROM (ontorelcat_pri.&quot;Onto_data_type&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; USING (ontorel_uuid, iri))&#10;  WHERE ((&quot;Onto_data_type&quot;.table_id IS NOT NULL) AND ((&quot;Label&quot;.code)::text = 'en'::text));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="table_id" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="label" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="type" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+      </table>
+      <table name="Table_Definition_FR" numRows="0" remarks="" schema="ontorelcat_pub" type="VIEW" viewSql=" SELECT DISTINCT &quot;Onto_class&quot;.ontorel_uuid,&#10;    &quot;Onto_class&quot;.table_id,&#10;    COALESCE(&quot;Label&quot;.value, &quot;Onto_class&quot;.iri) AS label,&#10;    'Class'::text AS type&#10;   FROM (ontorelcat_pri.&quot;Onto_class&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; USING (ontorel_uuid, iri))&#10;  WHERE ((&quot;Label&quot;.code)::text = 'fr'::text)&#10;UNION ALL&#10; SELECT DISTINCT &quot;Onto_class_axiom&quot;.ontorel_uuid,&#10;    &quot;Onto_class_axiom&quot;.table_id,&#10;    (((((((COALESCE(&quot;Domain_Label&quot;.domain, &quot;Onto_class_axiom&quot;.domain_iri))::text || ' '::text) || (COALESCE(&quot;Property_Label&quot;.property, &quot;Onto_class_axiom&quot;.property_iri))::text) || ' '::text) || (&quot;Onto_class_axiom&quot;.domain_card)::text) || ' '::text) || (COALESCE(&quot;Range_Label&quot;.range, &quot;Onto_class_axiom&quot;.range_iri))::text) AS label,&#10;    'ObjectProperty'::text AS type&#10;   FROM (((ontorelcat_pri.&quot;Onto_class_axiom&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Domain_Label&quot;(ontorel_uuid, domain_iri, code, domain) USING (ontorel_uuid, domain_iri))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Range_Label&quot;(ontorel_uuid, range_iri, code, range) USING (ontorel_uuid, range_iri, code))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Property_Label&quot;(ontorel_uuid, property_iri, code, property) USING (ontorel_uuid, property_iri, code))&#10;  WHERE ((&quot;Domain_Label&quot;.code)::text = 'fr'::text)&#10;UNION ALL&#10; SELECT DISTINCT &quot;Onto_data_axiom&quot;.ontorel_uuid,&#10;    &quot;Onto_data_axiom&quot;.table_id,&#10;    (((((((COALESCE(&quot;Domain_Label&quot;.domain, &quot;Onto_data_axiom&quot;.domain_iri))::text || ' '::text) || (COALESCE(&quot;Property_Label&quot;.property, &quot;Onto_data_axiom&quot;.property_iri))::text) || ' '::text) || (&quot;Onto_data_axiom&quot;.domain_card)::text) || ' '::text) || (COALESCE(&quot;Range_Label&quot;.range, &quot;Onto_data_axiom&quot;.range_iri))::text) AS label,&#10;    'DataProperty'::text AS type&#10;   FROM (((ontorelcat_pri.&quot;Onto_data_axiom&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Domain_Label&quot;(ontorel_uuid, domain_iri, code, domain) USING (ontorel_uuid, domain_iri))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Range_Label&quot;(ontorel_uuid, range_iri, code, range) USING (ontorel_uuid, range_iri, code))&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; &quot;Property_Label&quot;(ontorel_uuid, property_iri, code, property) USING (ontorel_uuid, property_iri, code))&#10;  WHERE ((&quot;Domain_Label&quot;.code)::text = 'fr'::text)&#10;UNION ALL&#10; SELECT DISTINCT &quot;Onto_data_type&quot;.ontorel_uuid,&#10;    &quot;Onto_data_type&quot;.table_id,&#10;    COALESCE(&quot;Label&quot;.value, &quot;Onto_data_type&quot;.iri) AS label,&#10;    'DataType'::text AS type&#10;   FROM (ontorelcat_pri.&quot;Onto_data_type&quot;&#10;     LEFT JOIN ontorelcat_pri.&quot;Label&quot; USING (ontorel_uuid, iri))&#10;  WHERE ((&quot;Onto_data_type&quot;.table_id IS NOT NULL) AND ((&quot;Label&quot;.code)::text = 'fr'::text));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ontorel_uuid" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="table_id" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="label" nullable="true" remarks="" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="type" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+      </table>
+   </tables>
+   <routines>
+      <routine dataAccess="MODIFIES" deterministic="false" name="getshortiri(fulliri character varying)" returnType="character varying" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="fulliri" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_class_axiom_ins(IN i_ontorel_uuid character varying, IN i_domain_iri character varying, IN i_range_iri character varying, IN i_property_iri character varying, IN i_domain_card character varying, IN i_range_card character varying, IN i_origin ontorelcat_pub.&quot;Origin_Axiom&quot;, IN i_table_id character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_domain_iri" type="character varying"/>
+            <parameter mode="IN" name="i_range_iri" type="character varying"/>
+            <parameter mode="IN" name="i_property_iri" type="character varying"/>
+            <parameter mode="IN" name="i_domain_card" type="character varying"/>
+            <parameter mode="IN" name="i_range_card" type="character varying"/>
+            <parameter mode="IN" name="i_origin" type="ontorelcat_pub.&quot;Origin_Axiom&quot;"/>
+            <parameter mode="IN" name="i_table_id" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_class_inheritance_ins(IN i_ontorel_uuid character varying, IN i_subclass_iri character varying, IN i_superclass_iri character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_subclass_iri" type="character varying"/>
+            <parameter mode="IN" name="i_superclass_iri" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_class_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_table_id character varying, IN i_origin ontorelcat_pub.&quot;Origin_Class&quot;)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_table_id" type="character varying"/>
+            <parameter mode="IN" name="i_origin" type="ontorelcat_pub.&quot;Origin_Class&quot;"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_config_db_ins(IN i_ontorel_uuid character varying, IN i_default_key_name character varying, IN i_default_key_domain_name character varying, IN i_default_key_type character varying, IN i_default_attribute_name character varying, IN i_default_attribute_domaine_name character varying, IN i_default_attribute_type character varying, IN i_max_identifier_length integer, IN i_use_iri_as_table_id boolean, IN i_normalize_data_type boolean, IN i_normalize_axiom boolean, IN i_generate_op_table boolean)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_default_key_name" type="character varying"/>
+            <parameter mode="IN" name="i_default_key_domain_name" type="character varying"/>
+            <parameter mode="IN" name="i_default_key_type" type="character varying"/>
+            <parameter mode="IN" name="i_default_attribute_name" type="character varying"/>
+            <parameter mode="IN" name="i_default_attribute_domaine_name" type="character varying"/>
+            <parameter mode="IN" name="i_default_attribute_type" type="character varying"/>
+            <parameter mode="IN" name="i_max_identifier_length" type="integer"/>
+            <parameter mode="IN" name="i_use_iri_as_table_id" type="boolean"/>
+            <parameter mode="IN" name="i_normalize_data_type" type="boolean"/>
+            <parameter mode="IN" name="i_normalize_axiom" type="boolean"/>
+            <parameter mode="IN" name="i_generate_op_table" type="boolean"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_data_axiom_ins(IN i_ontorel_uuid character varying, IN i_domain_iri character varying, IN i_range_iri character varying, IN i_property_iri character varying, IN i_domain_card character varying, IN i_origin ontorelcat_pub.&quot;Origin_Axiom&quot;, IN i_table_id character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_domain_iri" type="character varying"/>
+            <parameter mode="IN" name="i_range_iri" type="character varying"/>
+            <parameter mode="IN" name="i_property_iri" type="character varying"/>
+            <parameter mode="IN" name="i_domain_card" type="character varying"/>
+            <parameter mode="IN" name="i_origin" type="ontorelcat_pub.&quot;Origin_Axiom&quot;"/>
+            <parameter mode="IN" name="i_table_id" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_data_properties_domain_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_property_iri character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_property_iri" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_data_properties_ins(IN i_ontorel_uuid character varying, IN i_iri character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_data_properties_range_ins(IN i_ontorel_uuid character varying, IN i_datatype_iri character varying, IN i_property_iri character varying, IN i_sql_type character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_datatype_iri" type="character varying"/>
+            <parameter mode="IN" name="i_property_iri" type="character varying"/>
+            <parameter mode="IN" name="i_sql_type" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_data_type_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_table_id character varying, IN i_sql_type character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_table_id" type="character varying"/>
+            <parameter mode="IN" name="i_sql_type" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_definition_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_code character varying, IN i_value character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_code" type="character varying"/>
+            <parameter mode="IN" name="i_value" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_label_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_code character varying, IN i_value character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_code" type="character varying"/>
+            <parameter mode="IN" name="i_value" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_object_properties_domain_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_property_iri character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_property_iri" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_object_properties_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_table_id character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_table_id" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_object_properties_range_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_property_iri character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_property_iri" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_object_property_inheritance_ins(IN i_ontorel_uuid character varying, IN i_superproperty_iri character varying, IN i_subproperty_iri character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_superproperty_iri" type="character varying"/>
+            <parameter mode="IN" name="i_subproperty_iri" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="onto_schema_ins(IN i_ontorel_uuid character varying, IN i_schema_name character varying, IN i_code character varying, IN i_value character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_schema_name" type="character varying"/>
+            <parameter mode="IN" name="i_code" type="character varying"/>
+            <parameter mode="IN" name="i_value" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ontology_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_file_name character varying, IN i_alias character varying, IN i_version character varying, IN i_create_date timestamp with time zone)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_file_name" type="character varying"/>
+            <parameter mode="IN" name="i_alias" type="character varying"/>
+            <parameter mode="IN" name="i_version" type="character varying"/>
+            <parameter mode="IN" name="i_create_date" type="timestamp with time zone"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ontology_label_ins(IN i_ontorel_uuid character varying, IN i_iri character varying, IN i_code character varying, IN i_value character varying)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_iri" type="character varying"/>
+            <parameter mode="IN" name="i_code" type="character varying"/>
+            <parameter mode="IN" name="i_value" type="character varying"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ontorel_ins(IN i_ontorel_uuid character varying, IN i_version character varying, IN i_ontorel_generation_date timestamp with time zone)" securityType="INVOKER" type="PROCEDURE">
+         <comment/>
+         <definition language="sql"/>
+         <parameters>
+            <parameter mode="IN" name="i_ontorel_uuid" type="character varying"/>
+            <parameter mode="IN" name="i_version" type="character varying"/>
+            <parameter mode="IN" name="i_ontorel_generation_date" type="timestamp with time zone"/>
+         </parameters>
+      </routine>
+   </routines>
+</database>

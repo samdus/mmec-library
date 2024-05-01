@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Onto_Data_Type - test.ontorelcat_pri</title>
+        <title>Onto_data_type - test.ontorelcat_pri</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -74,7 +74,20 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>Onto_Data_Type</h1><p><span id="recordNumber">1</span> rows</p><br />
+                    <h1>Onto_data_type</h1><p><span id="recordNumber">6</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Stores the data types used within the OntoRel model, mapping them to SQL data types for database integration.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -110,8 +123,8 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="ontorel_id">ontorel_id</span></td>
-                                    <td>&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;</td>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="ontorel_uuid">ontorel_uuid</span></td>
+                                    <td>varchar</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
                                     <td title=''></td>
@@ -119,13 +132,13 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Onto_Data_Axiom.[ontorel_id, range_iri] references Onto_Data_Type.[ontorel_id, iri] via Onto_Data_Axiom_fk1"><a href='Onto_Data_Axiom.html'>Onto_Data_Axiom</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Onto_Data_Axiom_fk1</td>
+                                                <td title="Onto_data_axiom.[ontorel_uuid, range_iri] references Onto_data_type.[ontorel_uuid, iri] via Onto_data_axiom_cr1"><a href='Onto_data_axiom.html'>Onto_data_axiom</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Onto_data_axiom_cr1</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="Onto_Data_Property_Range.[ontorel_id, datatype_iri] references Onto_Data_Type.[ontorel_id, iri] via Onto_Data_Property_Range_fk0"><a href='Onto_Data_Property_Range.html'>Onto_Data_Property_Range</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Onto_Data_Property_Range_fk0</td>
+                                                <td title="Onto_data_property_range.[ontorel_uuid, datatype_iri] references Onto_data_type.[ontorel_uuid, iri] via Onto_data_property_range_cr0"><a href='Onto_data_property_range.html'>Onto_data_property_range</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Onto_data_property_range_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -133,8 +146,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Onto_Data_Type.[ontorel_id, iri] references Ontorel_Entity.[ontorel_id, iri] via Onto_Data_Type_fk0"><a href='Ontorel_Entity.html'>Ontorel_Entity</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Onto_Data_Type_fk0</td>
+                                                <td title="Onto_data_type.[ontorel_uuid, iri] references Ontorel_entity.[ontorel_uuid, iri] via Onto_data_type_cr0"><a href='Ontorel_entity.html'>Ontorel_entity</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Onto_data_type_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -143,7 +156,7 @@
                                 </tr>
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="iri">iri</span></td>
-                                    <td>&quot;ontorelcat_pub&quot;.&quot;iri&quot;</td>
+                                    <td>varchar</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
                                     <td title=''></td>
@@ -151,13 +164,13 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Onto_Data_Axiom.[ontorel_id, range_iri] references Onto_Data_Type.[ontorel_id, iri] via Onto_Data_Axiom_fk1"><a href='Onto_Data_Axiom.html'>Onto_Data_Axiom</a><span class='relatedKey'>.range_iri</span></td>
-                                                <td class="constraint detail">Onto_Data_Axiom_fk1</td>
+                                                <td title="Onto_data_axiom.[ontorel_uuid, range_iri] references Onto_data_type.[ontorel_uuid, iri] via Onto_data_axiom_cr1"><a href='Onto_data_axiom.html'>Onto_data_axiom</a><span class='relatedKey'>.range_iri</span></td>
+                                                <td class="constraint detail">Onto_data_axiom_cr1</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="Onto_Data_Property_Range.[ontorel_id, datatype_iri] references Onto_Data_Type.[ontorel_id, iri] via Onto_Data_Property_Range_fk0"><a href='Onto_Data_Property_Range.html'>Onto_Data_Property_Range</a><span class='relatedKey'>.datatype_iri</span></td>
-                                                <td class="constraint detail">Onto_Data_Property_Range_fk0</td>
+                                                <td title="Onto_data_property_range.[ontorel_uuid, datatype_iri] references Onto_data_type.[ontorel_uuid, iri] via Onto_data_property_range_cr0"><a href='Onto_data_property_range.html'>Onto_data_property_range</a><span class='relatedKey'>.datatype_iri</span></td>
+                                                <td class="constraint detail">Onto_data_property_range_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -165,8 +178,8 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Onto_Data_Type.[ontorel_id, iri] references Ontorel_Entity.[ontorel_id, iri] via Onto_Data_Type_fk0"><a href='Ontorel_Entity.html'>Ontorel_Entity</a><span class='relatedKey'>.iri</span></td>
-                                                <td class="constraint detail">Onto_Data_Type_fk0</td>
+                                                <td title="Onto_data_type.[ontorel_uuid, iri] references Ontorel_entity.[ontorel_uuid, iri] via Onto_data_type_cr0"><a href='Ontorel_entity.html'>Ontorel_entity</a><span class='relatedKey'>.iri</span></td>
+                                                <td class="constraint detail">Onto_data_type_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -192,9 +205,9 @@
                                 </tr>
                                 <tr>
                                     <td><span id="sql_type">sql_type</span></td>
-                                    <td>&quot;ontorelcat_pub&quot;.&quot;sql_type_name&quot;</td>
+                                    <td>varchar</td>
                                     <td>2147483647</td>
-                                    <td title=''></td>
+                                    <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
                                     <td>
@@ -238,10 +251,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> Onto_Data_Type_ck0</td>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> Onto_data_type_cc0</td>
                                     <td>Primary key</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
-                                    <td>ontorel_id + iri</td>
+                                    <td>ontorel_uuid + iri</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -266,11 +279,11 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         
-                                        <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/Onto_Data_Type.1degree.svg" class="diagram" border="0" align="left"></object></a>
+                                        <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/Onto_data_type.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         
-                                        <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/Onto_Data_Type.2degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                        <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/Onto_data_type.2degrees.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                 </div>
                             </div>

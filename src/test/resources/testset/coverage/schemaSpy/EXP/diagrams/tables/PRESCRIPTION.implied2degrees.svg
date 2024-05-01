@@ -152,7 +152,7 @@
 <text text-anchor="start" x="504" y="-560.2184" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">&lt; 1</text>
 <polygon fill="#ffffff" stroke="transparent" points="530,-554.1184 530,-573.1184 578,-573.1184 578,-554.1184 530,-554.1184"/>
 <polygon fill="none" stroke="#000000" points="530,-554.1184 530,-573.1184 578,-573.1184 578,-554.1184 530,-554.1184"/>
-<text text-anchor="start" x="536.4956" y="-560.2184" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">29 rows</text>
+<text text-anchor="start" x="536.4956" y="-560.2184" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">30 rows</text>
 <polygon fill="#ffffff" stroke="transparent" points="578,-554.1184 578,-573.1184 594,-573.1184 594,-554.1184 578,-554.1184"/>
 <polygon fill="none" stroke="#000000" points="578,-554.1184 578,-573.1184 594,-573.1184 594,-554.1184 578,-554.1184"/>
 <text text-anchor="start" x="584.8862" y="-560.2184" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000"> &#160;</text>
@@ -162,10 +162,9 @@
 <!-- DOSSIER&#45;&gt;PATIENT -->
 <g id="edge3" class="edge">
 <title>DOSSIER:w&#45;&gt;PATIENT:e</title>
-<path fill="none" stroke="#000000" d="M490.5179,-581.8141C460.2707,-579.9198 447.8001,-569.0059 424,-544.1184 385.4191,-503.7748 429.322,-429.1184 373.5,-429.1184"/>
-<polygon fill="#000000" stroke="#000000" points="500.3165,-578.0969 500.0842,-586.0935 498.4849,-586.0471 498.7171,-578.0504 500.3165,-578.0969"/>
-<polyline fill="none" stroke="#000000" points="501,-582.1184 497.0017,-582.0023 "/>
-<ellipse fill="none" stroke="#000000" cx="493.803" cy="-581.9094" rx="3.2" ry="3.2"/>
+<path fill="none" stroke="#000000" d="M486.3147,-581.4816C459.0573,-578.8487 446.6668,-567.8208 424,-544.1184 385.4191,-503.7748 429.322,-429.1184 373.5,-429.1184"/>
+<polygon fill="#000000" stroke="#000000" points="493.0075,-581.7718 500.844,-585.7151 497.0038,-581.9451 501,-582.1184 501,-582.1184 501,-582.1184 497.0038,-581.9451 501.156,-578.5218 493.0075,-581.7718 493.0075,-581.7718"/>
+<ellipse fill="none" stroke="#000000" cx="489.8105" cy="-581.6331" rx="3.2" ry="3.2"/>
 </g>
 <!-- LABORATOIRE -->
 <g id="node5" class="node">

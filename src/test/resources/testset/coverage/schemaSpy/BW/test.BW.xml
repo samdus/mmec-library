@@ -170,7 +170,7 @@
       <table name="BFO_0000016" numRows="0" remarks="" schema="BW" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000016_uid" nullable="false" remarks="uid disposition::Default primary key of disposition" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="OGMS_0000031_uid" foreignKey="fk0_OGMS_0000031" implied="false" onDeleteCascade="false" schema="BW" table="OGMS_0000031"/>
-            <parent column="ONTORELA_C2986e108-el0_uid" foreignKey="fk1_BFO_0000016" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
+            <parent column="ONTORELA_C1edc1ccd_uid" foreignKey="fk1_BFO_0000016" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C1edc1ccd"/>
             <parent column="BFO_0000017_uid" foreignKey="fk0_BFO_0000016" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000017"/>
          </column>
          <primaryKey column="BFO_0000016_uid" sequenceNumberInPK="1"/>
@@ -208,8 +208,8 @@
       <table name="BFO_0000019" numRows="0" remarks="" schema="BW" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000019_uid" nullable="false" remarks="uid quality::Default primary key of quality" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="HBW_0000009_uid" foreignKey="fk0_HBW_0000009" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000009"/>
+            <parent column="ONTORELA_C1edc1ccd_uid" foreignKey="fk1_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C1edc1ccd"/>
             <parent column="BFO_0000020_uid" foreignKey="fk0_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000020"/>
-            <parent column="ONTORELA_C2986e108-el0_uid" foreignKey="fk1_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
          </column>
          <primaryKey column="BFO_0000019_uid" sequenceNumberInPK="1"/>
          <index name="key_BFO_0000019" unique="true">
@@ -217,7 +217,7 @@
          </index>
       </table>
       <table name="BFO_0000020" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000020_uid" nullable="false" remarks="uid specifically dependent continuant::Default primary key of specifically dependent continuant" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000020_uid" nullable="false" remarks="uid sdc::Default primary key of sdc" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="BFO_0000017_uid" foreignKey="fk0_BFO_0000017" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000017"/>
             <child column="BFO_0000019_uid" foreignKey="fk0_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000019"/>
             <child column="BFO_0000020_uid" foreignKey="fk0_BFO_0000020_RO_0000059_BFO_0000031" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000020_RO_0000059_BFO_0000031"/>
@@ -230,7 +230,7 @@
          </index>
       </table>
       <table name="BFO_0000020_RO_0000059_BFO_0000031" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000020_uid" nullable="false" remarks="uid specifically dependent continuant::Default primary key of specifically dependent continuant" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000020_uid" nullable="false" remarks="uid sdc::Default primary key of sdc" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="BFO_0000020_uid" foreignKey="fk0_BFO_0000020_RO_0000059_BFO_0000031" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000020"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="BFO_0000031_uid" nullable="false" remarks="uid generically dependent continuant::Default primary key of generically dependent continuant" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
@@ -272,7 +272,7 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="BFO_0000031_uid" nullable="false" remarks="uid generically dependent continuant::Default primary key of generically dependent continuant" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="BFO_0000031_uid" foreignKey="fk0_BFO_0000031_RO_0000058_BFO_0000020" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000031"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="BFO_0000020_uid" nullable="false" remarks="uid specifically dependent continuant::Default primary key of specifically dependent continuant" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="BFO_0000020_uid" nullable="false" remarks="uid sdc::Default primary key of sdc" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="BFO_0000020_uid" foreignKey="fk1_BFO_0000031_RO_0000058_BFO_0000020" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000020"/>
          </column>
          <primaryKey column="BFO_0000031_uid" sequenceNumberInPK="1"/>
@@ -328,7 +328,7 @@
          </index>
       </table>
       <table name="HBW_0000002_PHYSIO_0000100_string" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="HBW_0000002_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="HBW_0000002_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string_domain&quot;" typeCode="2001"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="HBW_0000002_uid" nullable="false" remarks="uid RAMQ vulnerability code::Default primary key of RAMQ vulnerability code" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="HBW_0000002_uid" foreignKey="fk0_HBW_0000002_PHYSIO_0000100_string" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000002"/>
          </column>
@@ -426,7 +426,7 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="HBW_0000006_uid" nullable="false" remarks="uid medical record identifier::Default primary key of medical record identifier" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="HBW_0000006_uid" foreignKey="fk0_HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000006"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ONTORELA_C4d0c3f45_uid" nullable="false" remarks="uid medical record identifier intersectionOf health care record | is about | patient::Default primary key of medical record identifier intersectionOf health care record | is about | patient" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ONTORELA_C4d0c3f45_uid" nullable="false" remarks="uid health care record&#10; and (is about some patient)::Default primary key of health care record&#10; and (is about some patient)" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="ONTORELA_C4d0c3f45_uid" foreignKey="fk1_HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C4d0c3f45"/>
          </column>
          <primaryKey column="HBW_0000006_uid" sequenceNumberInPK="1"/>
@@ -532,7 +532,7 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="HBW_0000012_uid" nullable="false" remarks="uid physiological evaluation::Default primary key of physiological evaluation" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="HBW_0000012_uid" foreignKey="fk0_HBW_0000012_OBI_0000299_ONTORELA_C61c354fb" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000012"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ONTORELA_C61c354fb_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ONTORELA_C61c354fb_uid" nullable="false" remarks="uid data item&#10; and (is about some &#10;    ((disposition or quality)&#10;     and (inheres in some organism)))::Default primary key of data item&#10; and (is about some &#10;    ((disposition or quality)&#10;     and (inheres in some organism)))" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="ONTORELA_C61c354fb_uid" foreignKey="fk1_HBW_0000012_OBI_0000299_ONTORELA_C61c354fb" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C61c354fb"/>
          </column>
          <primaryKey column="HBW_0000012_uid" sequenceNumberInPK="1"/>
@@ -685,7 +685,7 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="HBW_0000026_uid" nullable="false" remarks="uid HBW_0000026::Default primary key of HBW_0000026" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="HBW_0000026_uid" foreignKey="fk0_HBW_0000026_IAO_0000004_decimal" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000026"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="HBW_0000026_IAO_0000004_decimal_IAO_0000004" nullable="false" remarks="has measurement value::null" size="0" type="&quot;BW&quot;.&quot;decimal&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="HBW_0000026_IAO_0000004_decimal_IAO_0000004" nullable="false" remarks="has measurement value::null" size="0" type="&quot;BW&quot;.&quot;decimal_domain&quot;" typeCode="2001"/>
          <primaryKey column="HBW_0000026_uid" sequenceNumberInPK="1"/>
          <primaryKey column="HBW_0000026_IAO_0000004_decimal_IAO_0000004" sequenceNumberInPK="2"/>
          <index name="key_HBW_0000026_IAO_0000004_decimal" unique="true">
@@ -719,7 +719,7 @@
          </index>
       </table>
       <table name="IAO_0000003_PHYSIO_0000100_string" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0000003_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0000003_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string_domain&quot;" typeCode="2001"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="IAO_0000003_uid" nullable="false" remarks="uid measurement unit label::Default primary key of measurement unit label" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="IAO_0000003_uid" foreignKey="fk0_IAO_0000003_PHYSIO_0000100_string" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000003"/>
          </column>
@@ -771,7 +771,7 @@
             <child column="IAO_0000310_uid" foreignKey="fk0_IAO_0000310" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000310"/>
             <child column="IAO_0020000_uid" foreignKey="fk0_IAO_0020000" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0020000"/>
             <child column="IOIO_0000012_uid" foreignKey="fk0_IOIO_0000012" implied="false" onDeleteCascade="false" schema="BW" table="IOIO_0000012"/>
-            <child column="NOYO_0000050_uid" foreignKey="fk1_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000050"/>
+            <child column="NOYO_0000050_uid" foreignKey="fk0_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000050"/>
             <child column="OMRSE_00000204_uid" foreignKey="fk0_OMRSE_00000204" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000204"/>
             <parent column="BFO_0000031_uid" foreignKey="fk0_IAO_0000030" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000031"/>
          </column>
@@ -822,7 +822,7 @@
          </index>
       </table>
       <table name="IAO_0000032_IAO_0000004_double" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="17" id="0" name="IAO_0000032_IAO_0000004_double_IAO_0000004" nullable="false" remarks="has measurement value::null" size="17" type="&quot;BW&quot;.&quot;double&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="17" id="0" name="IAO_0000032_IAO_0000004_double_IAO_0000004" nullable="false" remarks="has measurement value::null" size="17" type="&quot;BW&quot;.&quot;double_domain&quot;" typeCode="2001"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="IAO_0000032_uid" nullable="false" remarks="uid scalar measurement datum::Default primary key of scalar measurement datum" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="IAO_0000032_uid" foreignKey="fk0_IAO_0000032_IAO_0000004_double" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000032"/>
          </column>
@@ -835,7 +835,7 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0000032_uid" nullable="false" remarks="uid scalar measurement datum::Default primary key of scalar measurement datum" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="IAO_0000032_uid" foreignKey="fk0_IAO_0000032_IAO_0000004_Literal" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000032"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="IAO_0000032_IAO_0000004_Literal_IAO_0000004" nullable="false" remarks="has measurement value::null" size="2147483647" type="&quot;BW&quot;.&quot;Literal&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="IAO_0000032_IAO_0000004_Literal_IAO_0000004" nullable="false" remarks="has measurement value::null" size="2147483647" type="&quot;BW&quot;.&quot;Literal_domain&quot;" typeCode="2001"/>
          <primaryKey column="IAO_0000032_uid" sequenceNumberInPK="1"/>
          <primaryKey column="IAO_0000032_IAO_0000004_Literal_IAO_0000004" sequenceNumberInPK="2"/>
          <index name="key_IAO_0000032_IAO_0000004_Literal" unique="true">
@@ -902,7 +902,7 @@
          </index>
       </table>
       <table name="IAO_0000577_PHYSIO_0000100_string" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0000577_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0000577_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string_domain&quot;" typeCode="2001"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="IAO_0000577_uid" nullable="false" remarks="uid centrally registered identifier symbol::Default primary key of centrally registered identifier symbol" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="IAO_0000577_uid" foreignKey="fk0_IAO_0000577_PHYSIO_0000100_string" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000577"/>
          </column>
@@ -950,7 +950,7 @@
          </index>
       </table>
       <table name="IAO_0020015_PHYSIO_0000100_string" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0020015_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0020015_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string_domain&quot;" typeCode="2001"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="IAO_0020015_uid" nullable="false" remarks="uid personal name::Default primary key of personal name" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="IAO_0020015_uid" foreignKey="fk0_IAO_0020015_PHYSIO_0000100_string" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0020015"/>
          </column>
@@ -971,7 +971,7 @@
          </index>
       </table>
       <table name="IAO_0020017_PHYSIO_0000100_string" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string&quot;" typeCode="2001"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100" nullable="false" remarks="has value::null" size="2147483647" type="&quot;BW&quot;.&quot;string_domain&quot;" typeCode="2001"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="IAO_0020017_uid" nullable="false" remarks="uid family name::Default primary key of family name" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="IAO_0020017_uid" foreignKey="fk0_IAO_0020017_PHYSIO_0000100_string" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0020017"/>
          </column>
@@ -1019,7 +1019,7 @@
       </table>
       <table name="NOYO_0000013" numRows="0" remarks="" schema="BW" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="NOYO_0000013_uid" nullable="false" remarks="uid statement::Default primary key of statement" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
-            <child column="NOYO_0000050_uid" foreignKey="fk0_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000050"/>
+            <child column="NOYO_0000050_uid" foreignKey="fk1_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000050"/>
             <parent column="NOYO_0000012_uid" foreignKey="fk0_NOYO_0000013" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000012"/>
          </column>
          <primaryKey column="NOYO_0000013_uid" sequenceNumberInPK="1"/>
@@ -1030,8 +1030,8 @@
       <table name="NOYO_0000050" numRows="0" remarks="" schema="BW" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="NOYO_0000050_uid" nullable="false" remarks="uid birth statement::Default primary key of birth statement" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="NOYO_0000050_uid" foreignKey="fk0_NOYO_0000050_IAO_0000136_NCBITaxon_9606" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000050_IAO_0000136_NCBITaxon_9606"/>
-            <parent column="IAO_0000030_uid" foreignKey="fk1_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000030"/>
-            <parent column="NOYO_0000013_uid" foreignKey="fk0_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000013"/>
+            <parent column="IAO_0000030_uid" foreignKey="fk0_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000030"/>
+            <parent column="NOYO_0000013_uid" foreignKey="fk1_NOYO_0000050" implied="false" onDeleteCascade="false" schema="BW" table="NOYO_0000013"/>
          </column>
          <primaryKey column="NOYO_0000050_uid" sequenceNumberInPK="1"/>
          <index name="key_NOYO_0000050" unique="true">
@@ -1100,8 +1100,8 @@
             <child column="OMRSE_00000210_uid" foreignKey="fk0_OMRSE_00000210" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000210"/>
             <child column="OMRSE_00000211_uid" foreignKey="fk0_OMRSE_00000211" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000211"/>
             <child column="OMRSE_00000212_uid" foreignKey="fk0_OMRSE_00000212" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000212"/>
-            <parent column="IOIO_0000012_uid" foreignKey="fk1_OMRSE_00000209" implied="false" onDeleteCascade="false" schema="BW" table="IOIO_0000012"/>
             <parent column="OMRSE_00000204_uid" foreignKey="fk0_OMRSE_00000209" implied="false" onDeleteCascade="false" schema="BW" table="OMRSE_00000204"/>
+            <parent column="IOIO_0000012_uid" foreignKey="fk1_OMRSE_00000209" implied="false" onDeleteCascade="false" schema="BW" table="IOIO_0000012"/>
          </column>
          <primaryKey column="OMRSE_00000209_uid" sequenceNumberInPK="1"/>
          <index name="key_OMRSE_00000209" unique="true">
@@ -1135,31 +1135,31 @@
             <column ascending="true" name="OMRSE_00000212_uid"/>
          </index>
       </table>
+      <table name="ONTORELA_C1edc1ccd" numRows="0" remarks="" schema="BW" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C1edc1ccd_uid" nullable="false" remarks="uid disposition or quality::Default primary key of disposition or quality" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+            <child column="BFO_0000016_uid" foreignKey="fk1_BFO_0000016" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000016"/>
+            <child column="BFO_0000019_uid" foreignKey="fk1_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000019"/>
+            <child column="ONTORELA_C2986e108_uid" foreignKey="fk0_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108"/>
+            <parent column="Thing_uid" foreignKey="fk0_ONTORELA_C1edc1ccd" implied="false" onDeleteCascade="false" schema="BW" table="Thing"/>
+         </column>
+         <primaryKey column="ONTORELA_C1edc1ccd_uid" sequenceNumberInPK="1"/>
+         <index name="key_ONTORELA_C1edc1ccd" unique="true">
+            <column ascending="true" name="ONTORELA_C1edc1ccd_uid"/>
+         </index>
+      </table>
       <table name="ONTORELA_C2986e108" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid (disposition or quality)&#10; and (inheres in some organism)::Default primary key of (disposition or quality)&#10; and (inheres in some organism)" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="ONTORELA_C2986e108_uid" foreignKey="fk0_ONTORELA_C2986e108_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108_RO_0000052_OBI_0100026"/>
             <child column="ONTORELA_C2986e108_uid" foreignKey="fk1_ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108"/>
-            <parent column="ONTORELA_C2986e108-el0_uid" foreignKey="fk0_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
+            <parent column="ONTORELA_C1edc1ccd_uid" foreignKey="fk0_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C1edc1ccd"/>
          </column>
          <primaryKey column="ONTORELA_C2986e108_uid" sequenceNumberInPK="1"/>
          <index name="key_ONTORELA_C2986e108" unique="true">
             <column ascending="true" name="ONTORELA_C2986e108_uid"/>
          </index>
       </table>
-      <table name="ONTORELA_C2986e108-el0" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108-el0_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
-            <child column="BFO_0000016_uid" foreignKey="fk1_BFO_0000016" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000016"/>
-            <child column="BFO_0000019_uid" foreignKey="fk1_BFO_0000019" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000019"/>
-            <child column="ONTORELA_C2986e108_uid" foreignKey="fk0_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108"/>
-            <parent column="Thing_uid" foreignKey="fk0_ONTORELA_C2986e108-el0" implied="false" onDeleteCascade="false" schema="BW" table="Thing"/>
-         </column>
-         <primaryKey column="ONTORELA_C2986e108-el0_uid" sequenceNumberInPK="1"/>
-         <index name="key_ONTORELA_C2986e108-el0" unique="true">
-            <column ascending="true" name="ONTORELA_C2986e108-el0_uid"/>
-         </index>
-      </table>
       <table name="ONTORELA_C2986e108_RO_0000052_OBI_0100026" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism el disposition | quality" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid (disposition or quality)&#10; and (inheres in some organism)::Default primary key of (disposition or quality)&#10; and (inheres in some organism)" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="ONTORELA_C2986e108_uid" foreignKey="fk0_ONTORELA_C2986e108_RO_0000052_OBI_0100026" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="OBI_0100026_uid" nullable="false" remarks="uid organism::Default primary key of organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
@@ -1173,7 +1173,7 @@
          </index>
       </table>
       <table name="ONTORELA_C4d0c3f45" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C4d0c3f45_uid" nullable="false" remarks="uid medical record identifier intersectionOf health care record | is about | patient::Default primary key of medical record identifier intersectionOf health care record | is about | patient" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C4d0c3f45_uid" nullable="false" remarks="uid health care record&#10; and (is about some patient)::Default primary key of health care record&#10; and (is about some patient)" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="ONTORELA_C4d0c3f45_uid" foreignKey="fk1_HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45"/>
             <child column="ONTORELA_C4d0c3f45_uid" foreignKey="fk0_ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007"/>
             <parent column="HBW_0000004_uid" foreignKey="fk0_ONTORELA_C4d0c3f45" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000004"/>
@@ -1184,7 +1184,7 @@
          </index>
       </table>
       <table name="ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C4d0c3f45_uid" nullable="false" remarks="uid medical record identifier intersectionOf health care record | is about | patient::Default primary key of medical record identifier intersectionOf health care record | is about | patient" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C4d0c3f45_uid" nullable="false" remarks="uid health care record&#10; and (is about some patient)::Default primary key of health care record&#10; and (is about some patient)" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="ONTORELA_C4d0c3f45_uid" foreignKey="fk0_ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C4d0c3f45"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="HBW_0000007_uid" nullable="false" remarks="uid patient::Default primary key of patient" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
@@ -1198,7 +1198,7 @@
          </index>
       </table>
       <table name="ONTORELA_C61c354fb" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C61c354fb_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C61c354fb_uid" nullable="false" remarks="uid data item&#10; and (is about some &#10;    ((disposition or quality)&#10;     and (inheres in some organism)))::Default primary key of data item&#10; and (is about some &#10;    ((disposition or quality)&#10;     and (inheres in some organism)))" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="ONTORELA_C61c354fb_uid" foreignKey="fk1_HBW_0000012_OBI_0000299_ONTORELA_C61c354fb" implied="false" onDeleteCascade="false" schema="BW" table="HBW_0000012_OBI_0000299_ONTORELA_C61c354fb"/>
             <child column="ONTORELA_C61c354fb_uid" foreignKey="fk0_ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108"/>
             <parent column="IAO_0000027_uid" foreignKey="fk0_ONTORELA_C61c354fb" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000027"/>
@@ -1209,10 +1209,10 @@
          </index>
       </table>
       <table name="ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108" numRows="0" remarks="" schema="BW" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C61c354fb_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ONTORELA_C61c354fb_uid" nullable="false" remarks="uid data item&#10; and (is about some &#10;    ((disposition or quality)&#10;     and (inheres in some organism)))::Default primary key of data item&#10; and (is about some &#10;    ((disposition or quality)&#10;     and (inheres in some organism)))" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="ONTORELA_C61c354fb_uid" foreignKey="fk0_ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C61c354fb"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism::Default primary key of physiological evaluation intersectionOf data item | is about | inheres in | disposition | quality | organism intersectionOf disposition | quality | inheres in | organism" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ONTORELA_C2986e108_uid" nullable="false" remarks="uid (disposition or quality)&#10; and (inheres in some organism)::Default primary key of (disposition or quality)&#10; and (inheres in some organism)" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <parent column="ONTORELA_C2986e108_uid" foreignKey="fk1_ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108"/>
          </column>
          <primaryKey column="ONTORELA_C61c354fb_uid" sequenceNumberInPK="1"/>
@@ -1225,7 +1225,7 @@
       <table name="Thing" numRows="0" remarks="" schema="BW" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="Thing_uid" nullable="false" remarks="uid Thing::Default primary key of Thing" size="2147483647" type="&quot;BW&quot;.&quot;uid_domain&quot;" typeCode="2001">
             <child column="BFO_0000001_uid" foreignKey="fk0_BFO_0000001" implied="false" onDeleteCascade="false" schema="BW" table="BFO_0000001"/>
-            <child column="ONTORELA_C2986e108-el0_uid" foreignKey="fk0_ONTORELA_C2986e108-el0" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C2986e108-el0"/>
+            <child column="ONTORELA_C1edc1ccd_uid" foreignKey="fk0_ONTORELA_C1edc1ccd" implied="false" onDeleteCascade="false" schema="BW" table="ONTORELA_C1edc1ccd"/>
          </column>
          <primaryKey column="Thing_uid" sequenceNumberInPK="1"/>
          <index name="key_Thing" unique="true">
@@ -1246,8 +1246,8 @@
             <child column="VO_0000613_uid" foreignKey="fk0_VO_0000613" implied="false" onDeleteCascade="false" schema="BW" table="VO_0000613"/>
             <child column="VO_0004895_uid" foreignKey="fk0_VO_0004895" implied="false" onDeleteCascade="false" schema="BW" table="VO_0004895"/>
             <child column="VO_0004896_uid" foreignKey="fk0_VO_0004896" implied="false" onDeleteCascade="false" schema="BW" table="VO_0004896"/>
-            <parent column="IOIO_0000012_uid" foreignKey="fk1_VO_0001194" implied="false" onDeleteCascade="false" schema="BW" table="IOIO_0000012"/>
             <parent column="IAO_0000109_uid" foreignKey="fk0_VO_0001194" implied="false" onDeleteCascade="false" schema="BW" table="IAO_0000109"/>
+            <parent column="IOIO_0000012_uid" foreignKey="fk1_VO_0001194" implied="false" onDeleteCascade="false" schema="BW" table="IOIO_0000012"/>
          </column>
          <primaryKey column="VO_0001194_uid" sequenceNumberInPK="1"/>
          <index name="key_VO_0001194" unique="true">
@@ -1273,1150 +1273,4 @@
          </index>
       </table>
    </tables>
-   <routines>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000001_BFO_0000050_BFO_0000001_checkParticipationMin(&quot;_BFO_0000001_uid_domain&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000001_BFO_0000050_BFO_0000001"
-      WHERE "BFO_0000001_uid_domain" = "_BFO_0000001_uid_domain"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000001_BFO_0000050_BFO_0000001', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000001_uid_domain" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000002_RO_0000056_BFO_0000003_checkParticipationMin(&quot;_BFO_0000002_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000002_RO_0000056_BFO_0000003"
-      WHERE "BFO_0000002_uid" = "_BFO_0000002_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000002_RO_0000056_BFO_0000003', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000002_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000003_BFO_0000066_BFO_0000004_checkParticipationMin(&quot;_BFO_0000003_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000003_BFO_0000066_BFO_0000004"
-      WHERE "BFO_0000003_uid" = "_BFO_0000003_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000003_BFO_0000066_BFO_0000004', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000003_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000003_RO_0000057_BFO_0000002_checkParticipationMin(&quot;_BFO_0000003_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000003_RO_0000057_BFO_0000002"
-      WHERE "BFO_0000003_uid" = "_BFO_0000003_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000003_RO_0000057_BFO_0000002', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000003_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000004_RO_0000087_BFO_0000023_checkParticipationMin(&quot;_BFO_0000004_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000004_RO_0000087_BFO_0000023"
-      WHERE "BFO_0000004_uid" = "_BFO_0000004_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000004_RO_0000087_BFO_0000023', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000004_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000004_RO_0001025_BFO_0000004_checkParticipationMin(&quot;_BFO_0000004_uid_domain&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000004_RO_0001025_BFO_0000004"
-      WHERE "BFO_0000004_uid_domain" = "_BFO_0000004_uid_domain"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000004_RO_0001025_BFO_0000004', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000004_uid_domain" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000015_BFO_0000055_BFO_0000017_checkParticipationMin(&quot;_BFO_0000015_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000015_BFO_0000055_BFO_0000017"
-      WHERE "BFO_0000015_uid" = "_BFO_0000015_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000015_BFO_0000055_BFO_0000017', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000015_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000017_BFO_0000054_BFO_0000015_checkParticipationMin(&quot;_BFO_0000017_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000017_BFO_0000054_BFO_0000015"
-      WHERE "BFO_0000017_uid" = "_BFO_0000017_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000017_BFO_0000054_BFO_0000015', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000017_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000020_RO_0000059_BFO_0000031_checkParticipationMin(&quot;_BFO_0000020_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000020_RO_0000059_BFO_0000031"
-      WHERE "BFO_0000020_uid" = "_BFO_0000020_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000020_RO_0000059_BFO_0000031', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000020_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="BFO_0000031_RO_0000058_BFO_0000020_checkParticipationMin(&quot;_BFO_0000031_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."BFO_0000031_RO_0000058_BFO_0000020"
-      WHERE "BFO_0000031_uid" = "_BFO_0000031_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'BFO_0000031_RO_0000058_BFO_0000020', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_BFO_0000031_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000001_OBI_0000312_HBW_0000012_checkParticipationMin(&quot;_HBW_0000001_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000001_OBI_0000312_HBW_0000012"
-      WHERE "HBW_0000001_uid" = "_HBW_0000001_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000001_OBI_0000312_HBW_0000012', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000001_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000002_PHYSIO_0000100_string_checkParticipationMax(&quot;_HBW_0000002_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000002_PHYSIO_0000100_string"
-      WHERE "HBW_0000002_uid" = "_HBW_0000002_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'HBW_0000002_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000002_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000002_PHYSIO_0000100_string_checkParticipationMin(&quot;_HBW_0000002_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000002_PHYSIO_0000100_string"
-      WHERE "HBW_0000002_uid" = "_HBW_0000002_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000002_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000002_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000004_IAO_0000136_OBI_0100026_checkParticipationMin(&quot;_HBW_0000004_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000004_IAO_0000136_OBI_0100026"
-      WHERE "HBW_0000004_uid" = "_HBW_0000004_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000004_IAO_0000136_OBI_0100026', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000004_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000005_BFO_0000051_HBW_0000001_checkParticipationMin(&quot;_HBW_0000005_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000005_BFO_0000051_HBW_0000001"
-      WHERE "HBW_0000005_uid" = "_HBW_0000005_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000005_BFO_0000051_HBW_0000001', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000005_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000005_BFO_0000051_HBW_0000006_checkParticipationMax(&quot;_HBW_0000005_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000005_BFO_0000051_HBW_0000006"
-      WHERE "HBW_0000005_uid" = "_HBW_0000005_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'HBW_0000005_BFO_0000051_HBW_0000006', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000005_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000005_BFO_0000051_HBW_0000006_checkParticipationMin(&quot;_HBW_0000005_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000005_BFO_0000051_HBW_0000006"
-      WHERE "HBW_0000005_uid" = "_HBW_0000005_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000005_BFO_0000051_HBW_0000006', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000005_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45_checkParticipationMa(&quot;_HBW_0000006_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45"
-      WHERE "HBW_0000006_uid" = "_HBW_0000006_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000006_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45_checkParticipationMi(&quot;_HBW_0000006_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45"
-      WHERE "HBW_0000006_uid" = "_HBW_0000006_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000006_IAO_0000219_ONTORELA_C4d0c3f45', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000006_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000007_RO_0000087_HBW_0000011_checkParticipationMin(&quot;_HBW_0000007_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000007_RO_0000087_HBW_0000011"
-      WHERE "HBW_0000007_uid" = "_HBW_0000007_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000007_RO_0000087_HBW_0000011', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000007_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000008_RO_0000087_HBW_0000010_checkParticipationMin(&quot;_HBW_0000008_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000008_RO_0000087_HBW_0000010"
-      WHERE "HBW_0000008_uid" = "_HBW_0000008_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000008_RO_0000087_HBW_0000010', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000008_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000012_OBI_0000299_ONTORELA_C61c354fb_checkParticipationMi(&quot;_HBW_0000012_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000012_OBI_0000299_ONTORELA_C61c354fb"
-      WHERE "HBW_0000012_uid" = "_HBW_0000012_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000012_OBI_0000299_ONTORELA_C61c354fb', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000012_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000012_PHYSIO_0000089_NCBITaxon_9606_checkParticipationMax(&quot;_HBW_0000012_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000012_PHYSIO_0000089_NCBITaxon_9606"
-      WHERE "HBW_0000012_uid" = "_HBW_0000012_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'HBW_0000012_PHYSIO_0000089_NCBITaxon_9606', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000012_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000012_PHYSIO_0000089_NCBITaxon_9606_checkParticipationMin(&quot;_HBW_0000012_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000012_PHYSIO_0000089_NCBITaxon_9606"
-      WHERE "HBW_0000012_uid" = "_HBW_0000012_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000012_PHYSIO_0000089_NCBITaxon_9606', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000012_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000013_PHYSIO_0000089_HBW_0000008_checkParticipationMax(&quot;_HBW_0000013_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000013_PHYSIO_0000089_HBW_0000008"
-      WHERE "HBW_0000013_uid" = "_HBW_0000013_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'HBW_0000013_PHYSIO_0000089_HBW_0000008', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000013_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000013_PHYSIO_0000089_HBW_0000008_checkParticipationMin(&quot;_HBW_0000013_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000013_PHYSIO_0000089_HBW_0000008"
-      WHERE "HBW_0000013_uid" = "_HBW_0000013_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000013_PHYSIO_0000089_HBW_0000008', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000013_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000022_BFO_0000051_IAO_0020015_checkParticipationMin(&quot;_HBW_0000022_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000022_BFO_0000051_IAO_0020015"
-      WHERE "HBW_0000022_uid" = "_HBW_0000022_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000022_BFO_0000051_IAO_0020015', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000022_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000022_BFO_0000051_IAO_0020017_checkParticipationMin(&quot;_HBW_0000022_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000022_BFO_0000051_IAO_0020017"
-      WHERE "HBW_0000022_uid" = "_HBW_0000022_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000022_BFO_0000051_IAO_0020017', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000022_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000022_IAO_0000219_NCBITaxon_9606_checkParticipationMin(&quot;_HBW_0000022_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000022_IAO_0000219_NCBITaxon_9606"
-      WHERE "HBW_0000022_uid" = "_HBW_0000022_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000022_IAO_0000219_NCBITaxon_9606', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000022_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000026_IAO_0000004_decimal_checkParticipationMin(&quot;_HBW_0000026_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000026_IAO_0000004_decimal"
-      WHERE "HBW_0000026_uid" = "_HBW_0000026_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000026_IAO_0000004_decimal', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000026_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="HBW_0000026_IAO_0000039_HBW_0000003_checkParticipationMin(&quot;_HBW_0000026_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."HBW_0000026_IAO_0000039_HBW_0000003"
-      WHERE "HBW_0000026_uid" = "_HBW_0000026_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'HBW_0000026_IAO_0000039_HBW_0000003', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_HBW_0000026_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000003_PHYSIO_0000100_string_checkParticipationMax(&quot;_IAO_0000003_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000003_PHYSIO_0000100_string"
-      WHERE "IAO_0000003_uid" = "_IAO_0000003_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'IAO_0000003_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000003_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000003_PHYSIO_0000100_string_checkParticipationMin(&quot;_IAO_0000003_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000003_PHYSIO_0000100_string"
-      WHERE "IAO_0000003_uid" = "_IAO_0000003_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000003_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000003_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000030_IAO_0000136_BFO_0000001_checkParticipationMin(&quot;_IAO_0000030_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000030_IAO_0000136_BFO_0000001"
-      WHERE "IAO_0000030_uid" = "_IAO_0000030_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000030_IAO_0000136_BFO_0000001', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000030_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000030_IAO_0000219_BFO_0000001_checkParticipationMin(&quot;_IAO_0000030_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000030_IAO_0000219_BFO_0000001"
-      WHERE "IAO_0000030_uid" = "_IAO_0000030_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000030_IAO_0000219_BFO_0000001', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000030_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000032_IAO_0000004_Literal_checkParticipationMin(&quot;_IAO_0000032_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000032_IAO_0000004_Literal"
-      WHERE "IAO_0000032_uid" = "_IAO_0000032_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000032_IAO_0000004_Literal', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000032_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000032_IAO_0000004_double_checkParticipationMax(&quot;_IAO_0000032_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000032_IAO_0000004_double"
-      WHERE "IAO_0000032_uid" = "_IAO_0000032_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'IAO_0000032_IAO_0000004_double', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000032_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000032_IAO_0000004_double_checkParticipationMin(&quot;_IAO_0000032_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000032_IAO_0000004_double"
-      WHERE "IAO_0000032_uid" = "_IAO_0000032_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000032_IAO_0000004_double', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000032_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000032_IAO_0000039_IAO_0000003_checkParticipationMin(&quot;_IAO_0000032_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000032_IAO_0000039_IAO_0000003"
-      WHERE "IAO_0000032_uid" = "_IAO_0000032_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000032_IAO_0000039_IAO_0000003', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000032_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000109_IAO_0000039_IAO_0000003_checkParticipationMax(&quot;_IAO_0000109_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000109_IAO_0000039_IAO_0000003"
-      WHERE "IAO_0000109_uid" = "_IAO_0000109_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'IAO_0000109_IAO_0000039_IAO_0000003', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000109_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000109_IAO_0000039_IAO_0000003_checkParticipationMin(&quot;_IAO_0000109_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000109_IAO_0000039_IAO_0000003"
-      WHERE "IAO_0000109_uid" = "_IAO_0000109_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000109_IAO_0000039_IAO_0000003', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000109_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000577_PHYSIO_0000100_string_checkParticipationMax(&quot;_IAO_0000577_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000577_PHYSIO_0000100_string"
-      WHERE "IAO_0000577_uid" = "_IAO_0000577_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'IAO_0000577_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000577_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0000577_PHYSIO_0000100_string_checkParticipationMin(&quot;_IAO_0000577_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0000577_PHYSIO_0000100_string"
-      WHERE "IAO_0000577_uid" = "_IAO_0000577_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0000577_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0000577_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0020000_IAO_0000219_BFO_0000001_checkParticipationMin(&quot;_IAO_0020000_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0020000_IAO_0000219_BFO_0000001"
-      WHERE "IAO_0020000_uid" = "_IAO_0020000_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0020000_IAO_0000219_BFO_0000001', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0020000_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0020015_PHYSIO_0000100_string_checkParticipationMax(&quot;_IAO_0020015_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0020015_PHYSIO_0000100_string"
-      WHERE "IAO_0020015_uid" = "_IAO_0020015_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'IAO_0020015_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0020015_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0020015_PHYSIO_0000100_string_checkParticipationMin(&quot;_IAO_0020015_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0020015_PHYSIO_0000100_string"
-      WHERE "IAO_0020015_uid" = "_IAO_0020015_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0020015_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0020015_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0020017_PHYSIO_0000100_string_checkParticipationMax(&quot;_IAO_0020017_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0020017_PHYSIO_0000100_string"
-      WHERE "IAO_0020017_uid" = "_IAO_0020017_uid"
-    ) <= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect maximal value %', 'IAO_0020017_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0020017_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="IAO_0020017_PHYSIO_0000100_string_checkParticipationMin(&quot;_IAO_0020017_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."IAO_0020017_PHYSIO_0000100_string"
-      WHERE "IAO_0020017_uid" = "_IAO_0020017_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'IAO_0020017_PHYSIO_0000100_string', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_IAO_0020017_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="NOYO_0000050_IAO_0000136_NCBITaxon_9606_checkParticipationMin(&quot;_NOYO_0000050_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."NOYO_0000050_IAO_0000136_NCBITaxon_9606"
-      WHERE "NOYO_0000050_uid" = "_NOYO_0000050_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'NOYO_0000050_IAO_0000136_NCBITaxon_9606', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_NOYO_0000050_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026_checkParticipatio(&quot;_ONTORELA_C2986e108-el0_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026"
-      WHERE "ONTORELA_C2986e108-el0_uid" = "_ONTORELA_C2986e108-el0_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'ONTORELA_C2986e108-el0_RO_0000052_OBI_0100026', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_ONTORELA_C2986e108-el0_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007_checkParticipationMi(&quot;_ONTORELA_C4d0c3f45_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007"
-      WHERE "ONTORELA_C4d0c3f45_uid" = "_ONTORELA_C4d0c3f45_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'ONTORELA_C4d0c3f45_IAO_0000136_HBW_0000007', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_ONTORELA_C4d0c3f45_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108_checkParticip(&quot;_ONTORELA_C61c354fb_uid&quot; &quot;BW&quot;.uid_domain)" returnType="boolean" securityType="INVOKER" type="FUNCTION">
-         <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  IF
-  (
-    (
-      SELECT COUNT(*)
-      FROM "BW"."ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108"
-      WHERE "ONTORELA_C61c354fb_uid" = "_ONTORELA_C61c354fb_uid"
-    ) >= 1
-  )
-  THEN
-    RETURN TRUE;
-  ELSE
-    RAISE NOTICE 'Participation  %  does not respect minimum value %', 'ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108', 1;
-    RETURN FALSE;
-  END IF;
-END;]]></definition>
-         <parameters>
-            <parameter mode="IN" name="_ONTORELA_C61c354fb_uid" type="&quot;BW&quot;.uid_domain"/>
-         </parameters>
-      </routine>
-   </routines>
 </database>

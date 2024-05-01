@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="test" schema="basicR2RML" type="PostgreSQL - 15.3 (Debian 15.3-1.pgdg120+1)">
+   <tables>
+      <table name="JOIN_TABLE" numRows="3" remarks="" schema="basicR2RML" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="domain" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="m" foreignKey="JOIN_TABLE_domain_fkey" implied="false" onDeleteCascade="false" schema="basicR2RML" table="TABLE2"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="range" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="m" foreignKey="JOIN_TABLE_range_fkey" implied="false" onDeleteCascade="false" schema="basicR2RML" table="TABLE2"/>
+         </column>
+         <primaryKey column="domain" sequenceNumberInPK="1"/>
+         <primaryKey column="range" sequenceNumberInPK="2"/>
+         <index name="JOIN_TABLE_pkey" unique="true">
+            <column ascending="true" name="domain"/>
+            <column ascending="true" name="range"/>
+         </index>
+      </table>
+      <table name="TABLE1" numRows="5" remarks="" schema="basicR2RML" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="m" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="n" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="o" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="m" sequenceNumberInPK="1"/>
+         <index name="TABLE1_pkey" unique="true">
+            <column ascending="true" name="m"/>
+         </index>
+      </table>
+      <table name="TABLE2" numRows="3" remarks="" schema="basicR2RML" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="m" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <child column="domain" foreignKey="JOIN_TABLE_domain_fkey" implied="false" onDeleteCascade="false" schema="basicR2RML" table="JOIN_TABLE"/>
+            <child column="range" foreignKey="JOIN_TABLE_range_fkey" implied="false" onDeleteCascade="false" schema="basicR2RML" table="JOIN_TABLE"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="n" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="o" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="m" sequenceNumberInPK="1"/>
+         <index name="TABLE2_pkey" unique="true">
+            <column ascending="true" name="m"/>
+         </index>
+      </table>
+      <table name="TABLE3" numRows="4" remarks="" schema="basicR2RML" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="m" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="m" sequenceNumberInPK="1"/>
+         <index name="TABLE3_pkey" unique="true">
+            <column ascending="true" name="m"/>
+         </index>
+      </table>
+   </tables>
+</database>

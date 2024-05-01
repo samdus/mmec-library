@@ -108,7 +108,7 @@
 <polygon fill="none" stroke="#000000" points="341,-245.7 341,-267.7 645,-267.7 645,-245.7 341,-245.7"/>
 <text text-anchor="start" x="361" y="-252.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">IAO_0000032_IAO_0000004_double_IAO_0000004</text>
 <polygon fill="none" stroke="#000000" points="645,-245.7 645,-267.7 807,-267.7 807,-245.7 645,-245.7"/>
-<text text-anchor="start" x="648" y="-253.4" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">&quot;bw&quot;.&quot;double&quot;[17,17]</text>
+<text text-anchor="start" x="648" y="-253.4" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">&quot;bw&quot;.&quot;double_domain&quot;[17,17]</text>
 <polygon fill="none" stroke="#000000" points="341,-223.7 341,-245.7 645,-245.7 645,-223.7 341,-223.7"/>
 <image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="346" y="-240.7"/>
 <text text-anchor="start" x="361" y="-230.8" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#000000">IAO_0000032_uid</text>

@@ -75,6 +75,19 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>Ontorel</h1><p><span id="recordNumber">1</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Holds the core details of each OntoRel entity including a unique identifier (UUID), version information, and the timestamp marking the generation or last update of the entity.</p>
+                        </div><!-- /.box-body -->
+                    </div>
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -110,8 +123,8 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="ontorel_id">ontorel_id</span></td>
-                                    <td>&quot;ontorelcat_pub&quot;.&quot;ontorel_id&quot;</td>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="ontorel_uuid">ontorel_uuid</span></td>
+                                    <td>varchar</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
                                     <td title=''></td>
@@ -119,28 +132,23 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
-                                                <td title="Ontology.ontorel_id references Ontorel.ontorel_id via Ontology_fk0"><a href='Ontology.html'>Ontology</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Ontology_fk0</td>
+                                                <td title="Ontology.ontorel_uuid references Ontorel.ontorel_uuid via Ontology_cr0"><a href='Ontology.html'>Ontology</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Ontology_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="Ontorel_db_Config.ontorel_id references Ontorel.ontorel_id via Ontorel_db_Config_fk0"><a href='Ontorel_db_Config.html'>Ontorel_db_Config</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Ontorel_db_Config_fk0</td>
+                                                <td title="Ontorel_db_config.ontorel_uuid references Ontorel.ontorel_uuid via Ontorel_db_config_cr0"><a href='Ontorel_db_config.html'>Ontorel_db_config</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Ontorel_db_config_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="Ontorel_Entity.ontorel_id references Ontorel.ontorel_id via Ontorel_Entity_fk0"><a href='Ontorel_Entity.html'>Ontorel_Entity</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Ontorel_Entity_fk0</td>
+                                                <td title="Ontorel_entity.ontorel_uuid references Ontorel.ontorel_uuid via Ontorel_entity_cr0"><a href='Ontorel_entity.html'>Ontorel_entity</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Ontorel_entity_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="Ontorel_Import.ontorel_id references Ontorel.ontorel_id via Ontorel_Import_fk0"><a href='Ontorel_Import.html'>Ontorel_Import</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Ontorel_Import_fk0</td>
-                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="Ontorel_Schema.ontorel_id references Ontorel.ontorel_id via Ontorel_Schema_fk0"><a href='Ontorel_Schema.html'>Ontorel_Schema</a><span class='relatedKey'>.ontorel_id</span></td>
-                                                <td class="constraint detail">Ontorel_Schema_fk0</td>
+                                                <td title="Ontorel_schema.ontorel_uuid references Ontorel.ontorel_uuid via Ontorel_schema_cr0"><a href='Ontorel_schema.html'>Ontorel_schema</a><span class='relatedKey'>.ontorel_uuid</span></td>
+                                                <td class="constraint detail">Ontorel_schema_cr0</td>
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
@@ -155,6 +163,23 @@
                                     <td><span id="version">version</span></td>
                                     <td>varchar</td>
                                     <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="ontorel_generation_date">ontorel_generation_date</span></td>
+                                    <td>timestamptz</td>
+                                    <td>35,6</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -202,7 +227,7 @@
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> Ontorel_ck0</td>
                                     <td>Primary key</td>
                                     <td><span title='Ascending'>Asc</span></td>
-                                    <td>ontorel_id</td>
+                                    <td>ontorel_uuid</td>
                                 </tr>
                                 </tbody>
                             </table>
