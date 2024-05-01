@@ -3,13 +3,23 @@
     <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
         <org.eventb.core.action name="'" org.eventb.core.assignment="sign ≔ ∅" org.eventb.core.label="init_sign"/>
         <org.eventb.core.action name="(" org.eventb.core.assignment="subsets ≔ ∅" org.eventb.core.label="init_subsets"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="signatureOfClass ≔ ∅" org.eventb.core.label="init_signatureOfClass"/>
     </org.eventb.core.event>
     <org.eventb.core.seesContext name="(" org.eventb.core.target="1-MappingContext"/>
     <org.eventb.core.variable name=")" org.eventb.core.comment="l'ensemble des signatures définies" org.eventb.core.identifier="sign"/>
-    <org.eventb.core.invariant name="*" org.eventb.core.comment="un sous-ensemble des signatures possibles" org.eventb.core.label="type_sign" org.eventb.core.predicate="sign ∈ ℙ(S)"/>
+    <org.eventb.core.invariant name="*" org.eventb.core.comment="signature doit être un sous-ensemble des signatures possibles" org.eventb.core.label="type_sign" org.eventb.core.predicate="sign ⊆ S"/>
     <org.eventb.core.variable name="+" org.eventb.core.comment="la relation de sous-ensemble entre des signatures" org.eventb.core.identifier="subsets"/>
-    <org.eventb.core.invariant name="," org.eventb.core.comment="fonction partielle des signatures possibles vers l'ensemble des signatures dont elles sont le sous-ensemble" org.eventb.core.label="type_subsets" org.eventb.core.predicate="subsets ∈ S ⇸ ℙ(S)"/>
-    <org.eventb.core.invariant name="-" org.eventb.core.comment="un sous-ensemble est une signature définie" org.eventb.core.label="inv_subsets_domIsDefinedSign" org.eventb.core.predicate="dom(subsets) ⊆ sign"/>
-    <org.eventb.core.invariant name="." org.eventb.core.comment="une signature sur-ensemble doit être une signature définie" org.eventb.core.label="inv_subsets_ranIsDefinedSign" org.eventb.core.predicate="∀s · s ∈ ran(subsets) ⇒ s ⊆ sign"/>
-    <org.eventb.core.invariant name="/" org.eventb.core.comment="un particulier est identifié par une et une seule signature, sauf si les signatures sont en relation subsets" org.eventb.core.label="inv_sign_disjointe" org.eventb.core.predicate="∀s1,s2,e1,e2 · {s1,s2} ⊆ sign ∧ e1 = sign_expression(s1) ∧ e2 = sign_expression(s2) ⇒ s1 ∉ sign_overlap(s2) ∨ s1 ∈ subsets(s2) ∨ s2 ∈ subsets(s1)"/>
+    <org.eventb.core.invariant name="," org.eventb.core.comment="subsets doit correspondre à une fonction partielle des signatures définies vers l'ensemble des signatures définies dont elles sont le sous-ensemble" org.eventb.core.label="type_subsets" org.eventb.core.predicate="subsets ∈ sign ⇸ ℙ(sign)"/>
+    <org.eventb.core.invariant name="0" org.eventb.core.comment="subsets doit être une une fonction transitive" org.eventb.core.label="inv_subsets_transitive" org.eventb.core.predicate="∀s1,s2,s3 · s2 ∈ subsets(s1) ∧ s3 ∈ subsets(s2) ⇔ s3 ∈ subsets(s1)"/>
+    <org.eventb.core.invariant name="/" org.eventb.core.comment="un particulier est identifié par une et une seule signature, sauf si les signatures sont en relation subsets" org.eventb.core.label="inv_sign_disjointe" org.eventb.core.predicate="∀s1,s2 · {s1,s2} ⊆ sign ⇒  s1 ∉ sign_overlap(s2) ∨ s1 ∈ subsets(s2) ∨ s2 ∈ subsets(s1)"/>
+    <org.eventb.core.event name="1" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="final">
+        <org.eventb.core.guard name="'" org.eventb.core.comment="chaque particulier exprimable par la source de données doit être individualisé par au moins une signature" org.eventb.core.label="final_grd2" org.eventb.core.predicate="∀p · p ∈ P ⇒ (∃s · s ∈ sign ∧ p ∈ individuation(sign_expression(s))) "/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="2" org.eventb.core.convergence="2" org.eventb.core.extended="false" org.eventb.core.label="mapping">
+        <org.eventb.core.guard name="'" org.eventb.core.comment="certains particuliers ne sont pas individualisés par une signature" org.eventb.core.label="mapNextC_grd1" org.eventb.core.predicate="∃p · p ∈ P ∧ p ∉ { p' ∣ ∃ s · s ∈ sign ∧ p' ∈ individuation(sign_expression(s)) }"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="sign, signatureOfClass :∣ sign' = dom(signatureOfClass')" org.eventb.core.comment="mettre à jour les signatures en fonction des classes arrimées" org.eventb.core.label="mapNextC_addSignature"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="subsets :∣ ∀s1,s2,s3 · s2 ∈ subsets'(s1) ∧ s3 ∈ subsets'(s2) ⇔ s3 ∈ subsets'(s1) " org.eventb.core.comment="mettre à jour subsets, en assurant de conserver la transitivité" org.eventb.core.label="mapNextC_addSubsets"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="3" org.eventb.core.identifier="signatureOfClass"/>
+    <org.eventb.core.invariant name="4" org.eventb.core.label="type_signatureOfClass" org.eventb.core.predicate="signatureOfClass ∈ sign → ℙ1(C)"/>
 </org.eventb.core.machineFile>
