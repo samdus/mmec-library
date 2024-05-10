@@ -39,7 +39,7 @@ import java.net.URL;
  * @par Tâches
  *      S.O.
  */
-public class FacadePropertiesImpl extends FacadeProperties {
+public class FacadePropertiesImpl implements FacadeProperties {
   private final URL facadeStgUrl;
 
   public FacadePropertiesImpl(URL facadeStgUrl) {

@@ -18,6 +18,7 @@ import ca.griis.mmec.properties.FacadeType;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -68,7 +69,7 @@ public class FacadePropertiesBuilderTest {
         .build();
 
     Assertions.assertNotNull(actualProperties);
-    Assertions.assertNotNull(actualProperties.getFacadeStgStream());
+    Assertions.assertNotNull(actualProperties.getFacadeStgUrl());
   }
 
   @Test
@@ -79,7 +80,7 @@ public class FacadePropertiesBuilderTest {
         .build();
 
     Assertions.assertNotNull(actualProperties);
-    Assertions.assertNotNull(actualProperties.getFacadeStgStream());
+    Assertions.assertNotNull(actualProperties.getFacadeStgUrl());
   }
 
   @Test
@@ -90,10 +91,12 @@ public class FacadePropertiesBuilderTest {
         .build();
 
     Assertions.assertNotNull(actualProperties);
-    Assertions.assertNotNull(actualProperties.getFacadeStgStream());
+    Assertions.assertNotNull(actualProperties.getFacadeStgUrl());
 
-    Assertions.assertTrue(actualProperties.getFacadeStgStream().readAllBytes().length > 0,
-        "The facade stg stream is empty.");
+    try (InputStream inStream = actualProperties.getFacadeStgUrl().openStream()) {
+      Assertions.assertTrue(inStream.readAllBytes().length > 0,
+          "The facade stg stream is empty.");
+    }
   }
 
   private static void createSampleFile(URL stgFilePath) throws URISyntaxException {

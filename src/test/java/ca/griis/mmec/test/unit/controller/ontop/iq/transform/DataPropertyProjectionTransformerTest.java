@@ -150,57 +150,6 @@ public class DataPropertyProjectionTransformerTest {
   }
 
   @Test
-  public void transformConstructionWithSingleInvalidDatatypeShouldThrowTest() throws SQLException {
-    DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(
-        mappingExtension,
-        iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
-    String ontoRelId = "ontoRelId";
-    String datatypeIriString = "datatypeIri";
-    IQTree iqTree = Mockito.mock(IQTree.class);
-    ConstructionNode constructionNode = Mockito.mock(ConstructionNode.class);
-    ConstructionNode newConstructionNode = Mockito.mock(ConstructionNode.class);
-    IQTree childTree = Mockito.mock(IQTree.class);
-    Substitution<ImmutableTerm> substitution = Mockito.mock(Substitution.class);
-    Variable variable = Mockito.mock(Variable.class);
-    ImmutableSet<Variable> constructionNodeVariable = ImmutableSet.of(variable);
-    NonGroundFunctionalTerm term = Mockito.mock(NonGroundFunctionalTerm.class);
-    RDFTermFunctionSymbol functionSymbol = Mockito.mock(RDFTermFunctionSymbol.class);
-    RDFTermTypeConstant rdfTermTypeConstant = Mockito.mock(RDFTermTypeConstant.class);
-    SimpleRDFDatatype simpleRDFDatatype = Mockito.mock(SimpleRDFDatatype.class);
-    Map<Variable, ImmutableTerm> substitutionMap = ImmutableMap.of(variable, term);
-    UnaryIQTree expected = Mockito.mock(UnaryIQTree.class);
-    IRI datatypeIri = Mockito.mock(IRI.class);
-
-    ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
-        ArgumentCaptor.forClass(ImmutableSet.class);
-    ArgumentCaptor<Substitution<ImmutableTerm>> substitutionArgumentCaptor =
-        ArgumentCaptor.forClass(Substitution.class);
-
-    Mockito.when(substitution.isEmpty()).thenReturn(false);
-    Mockito.when(substitution.stream()).thenReturn(substitutionMap.entrySet().stream());
-    Mockito.when(constructionNode.getSubstitution()).thenReturn(substitution);
-    Mockito.when(term.getFunctionSymbol()).thenReturn(functionSymbol);
-    Mockito.when(term.getTerm(1)).thenReturn(rdfTermTypeConstant);
-    Mockito.when(rdfTermTypeConstant.getRDFTermType()).thenReturn(simpleRDFDatatype);
-    Mockito.when(mappingProperties.getOntoRelId()).thenReturn(ontoRelId);
-    Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
-    Mockito.when(simpleRDFDatatype.getIRI()).thenReturn(datatypeIri);
-    Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenThrow(
-        new SQLException("transformConstructionWithSingleInvalidDatatypeShouldThrowTest thrown"));
-
-    Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariable);
-    Mockito.when(iqFactory.createConstructionNode(constructionNodeArgumentCaptor.capture(),
-        substitutionArgumentCaptor.capture())).thenReturn(newConstructionNode);
-    Mockito.when(childTree.acceptTransformer(transformer)).thenReturn(childTree);
-    Mockito.when(iqTree.getRootNode()).thenReturn(constructionNode);
-    Mockito.when(iqFactory.createUnaryIQTree(newConstructionNode, childTree)).thenReturn(expected);
-
-    Assertions.assertThrows(
-        DataPropertyProjectionTransformer.DataPropertyProjectionTransformerException.class,
-        () -> transformer.transformConstruction(iqTree, constructionNode, childTree));
-  }
-
-  @Test
   public void transformConstructionWithSingleInvalidSubstitutionShouldThrowTest()
       throws SQLException {
     DataPropertyProjectionTransformer transformer = new DataPropertyProjectionTransformer(

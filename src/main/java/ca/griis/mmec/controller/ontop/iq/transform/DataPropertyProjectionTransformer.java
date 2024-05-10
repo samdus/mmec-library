@@ -21,7 +21,6 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
@@ -121,7 +120,7 @@ public class DataPropertyProjectionTransformer
           if (targetType.getName().contains("\"") && targetType.getName().equals(
               variableType.getName())
               || !targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
-                  variableType.getName()) == 0) {
+              variableType.getName()) == 0) {
             valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
                 variable);
           } else {
@@ -163,15 +162,11 @@ public class DataPropertyProjectionTransformer
   }
 
   private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
-    try {
-      return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-          rdfDatatype.getIRI().getIRIString())
-          .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
-              String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
-                  rdfDatatype.getIRI().getIRIString())));
-    } catch (SQLException e) {
-      throw new DataPropertyProjectionTransformerException(iqTree, e);
-    }
+    return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
+            rdfDatatype.getIRI().getIRIString())
+        .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
+            String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
+                rdfDatatype.getIRI().getIRIString())));
   }
 
   public static class DataPropertyProjectionTransformerException extends RuntimeException {

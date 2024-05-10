@@ -16,7 +16,7 @@ base_create_view(comment, schema, view_name, columns)::=
 create view <schema:quoted()>.<view_name:quoted()>(
 <tabulation()><first(columns):quoted()><rest(columns):{col |,<\n><tabulation()><col:quoted()>}>
 )
-<tabulation()>with (security_barrier=true, check_option=cascaded)
+<tabulation()>with (security_barrier=true)
 as
 >>
 

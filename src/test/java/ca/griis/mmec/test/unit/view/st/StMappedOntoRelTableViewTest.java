@@ -17,6 +17,7 @@ import ca.griis.mmec.model.MappedOntoRelTable;
 import ca.griis.mmec.model.mapped.MappedClassTableRecord;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
 import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
+import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.view.st.StMappedOntoRelTableView;
 import java.io.File;
 import java.net.URL;
@@ -27,14 +28,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.Mockito;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 
 public class StMappedOntoRelTableViewTest {
 
   private static Stream<Arguments> provideTestCase() {
-    STGroup insertGroup = createGroupFromResource("templates", "postgres", "insert.stg");
-    STGroup viewsGroup = createGroupFromResource("templates", "postgres", "views.stg");
+    URL insertGroupUrl = createUrlFromResource("templates", "postgres", "insert.stg");
+    URL viewsGroupUrl = createUrlFromResource("templates", "postgres", "views.stg");
 
     MappedClassTableRecord mappedClassTable = new MappedClassTableRecord(
         "tableName",
@@ -119,7 +121,7 @@ public class StMappedOntoRelTableViewTest {
     );
 
     return Stream.of(
-        Arguments.of(insertGroup, mappedClassTable,
+        Arguments.of(insertGroupUrl, mappedClassTable,
             // spotless:off
             """
                 /*
@@ -136,7 +138,7 @@ public class StMappedOntoRelTableViewTest {
                 ;"""
             // spotless:on
         ),
-        Arguments.of(insertGroup, mappedObjectPropertyTable,
+        Arguments.of(insertGroupUrl, mappedObjectPropertyTable,
             // spotless:off
             """
                 /*
@@ -154,7 +156,7 @@ public class StMappedOntoRelTableViewTest {
                 ;"""
             // spotless:on
         ),
-        Arguments.of(insertGroup, mappedDataPropertyTable,
+        Arguments.of(insertGroupUrl, mappedDataPropertyTable,
             // spotless:off
             """
                 /*
@@ -172,7 +174,7 @@ public class StMappedOntoRelTableViewTest {
                 ;"""
             // spotless:on
         ),
-        Arguments.of(viewsGroup, mappedClassTable,
+        Arguments.of(viewsGroupUrl, mappedClassTable,
             // spotless:off
             """
                 /*
@@ -191,7 +193,7 @@ public class StMappedOntoRelTableViewTest {
                 ;"""
             // spotless:on
         ),
-        Arguments.of(viewsGroup, mappedObjectPropertyTable,
+        Arguments.of(viewsGroupUrl, mappedObjectPropertyTable,
             // spotless:off
             """
                 /*
@@ -211,7 +213,7 @@ public class StMappedOntoRelTableViewTest {
                 ;"""
             // spotless:on
         ),
-        Arguments.of(viewsGroup, mappedDataPropertyTable,
+        Arguments.of(viewsGroupUrl, mappedDataPropertyTable,
             // spotless:off
             """
                 /*
@@ -232,7 +234,7 @@ public class StMappedOntoRelTableViewTest {
             // spotless:on
         )
         ,
-        Arguments.of(insertGroup, emptyMappedClassTable,
+        Arguments.of(insertGroupUrl, emptyMappedClassTable,
             // spotless:off
             """
                 /*
@@ -241,7 +243,7 @@ public class StMappedOntoRelTableViewTest {
                 */"""
             // spotless:on
         ),
-        Arguments.of(insertGroup, emptyMmappedObjectPropertyTable,
+        Arguments.of(insertGroupUrl, emptyMmappedObjectPropertyTable,
             // spotless:off
             """
                 /*
@@ -250,7 +252,7 @@ public class StMappedOntoRelTableViewTest {
                 */"""
             // spotless:on
         ),
-        Arguments.of(insertGroup, emptyMappedDataPropertyTable,
+        Arguments.of(insertGroupUrl, emptyMappedDataPropertyTable,
             // spotless:off
             """
                 /*
@@ -259,7 +261,7 @@ public class StMappedOntoRelTableViewTest {
                 */"""
             // spotless:on
         ),
-        Arguments.of(viewsGroup, emptyMappedClassTable,
+        Arguments.of(viewsGroupUrl, emptyMappedClassTable,
             // spotless:off
             """
                 /*
@@ -275,7 +277,7 @@ public class StMappedOntoRelTableViewTest {
                 ;"""
             // spotless:on
         ),
-        Arguments.of(viewsGroup, emptyMmappedObjectPropertyTable,
+        Arguments.of(viewsGroupUrl, emptyMmappedObjectPropertyTable,
             // spotless:off
             """
                 /*
@@ -292,7 +294,7 @@ public class StMappedOntoRelTableViewTest {
                 ;"""
             // spotless:on
         ),
-        Arguments.of(viewsGroup, emptyMappedDataPropertyTable,
+        Arguments.of(viewsGroupUrl, emptyMappedDataPropertyTable,
             // spotless:off
             """
                 /*
@@ -314,9 +316,11 @@ public class StMappedOntoRelTableViewTest {
 
   @ParameterizedTest
   @MethodSource("provideTestCase")
-  void testClassTemplate(STGroup group, MappedOntoRelTable mappedOntoRelTable, String expected) {
-    StMappedOntoRelTableView stMappedOntoRelTableView = new StMappedOntoRelTableView(group);
+  void testClassTemplate(URL groupUrl, MappedOntoRelTable mappedOntoRelTable, String expected) {
+    FacadeProperties facadeProperties = Mockito.mock(FacadeProperties.class);
+    Mockito.when(facadeProperties.getFacadeStgUrl()).thenReturn(groupUrl);
 
+    StMappedOntoRelTableView stMappedOntoRelTableView = new StMappedOntoRelTableView(facadeProperties);
     String actual = null;
 
     if (mappedOntoRelTable instanceof MappedClassTableRecord) {
@@ -334,12 +338,12 @@ public class StMappedOntoRelTableViewTest {
     Assertions.assertEquals(expected, actual);
   }
 
-  private static STGroup createGroupFromResource(String templatePathFirst,
+  private static URL createUrlFromResource(String templatePathFirst,
       String... templatePathMore) {
     String templatePath = Stream.concat(Stream.of(templatePathFirst), Stream.of(templatePathMore))
         .collect(Collectors.joining(File.separator, File.separator, ""));
     URL url = StMappedOntoRelTableViewTest.class.getResource(templatePath);
     Assertions.assertNotNull(url, String.format("Template '%s' not found", templatePath));
-    return new STGroupFile(url);
+    return url;
   }
 }

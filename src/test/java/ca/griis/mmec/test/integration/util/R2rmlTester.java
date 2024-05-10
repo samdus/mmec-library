@@ -1,6 +1,7 @@
 package ca.griis.mmec.test.integration.util;
 
 
+import ca.griis.mmec.model.ontorel.ClassTable;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
@@ -30,6 +31,7 @@ import it.unibz.inf.ontop.spec.ontology.Ontology;
 import it.unibz.inf.ontop.spec.ontology.owlapi.OWLAPITranslatorOWL2QL;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Optional;
 import org.apache.commons.rdf.api.IRI;
@@ -68,8 +70,9 @@ public class R2rmlTester extends OntopTester {
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
-        testFigureCasDeBase(connection);
-        testPourLaFigureProprieteDefinieALAideDUneJointure(connection);
+        testGetAllDefinitions(connection);
+//        testFigureCasDeBase(connection);
+//        testPourLaFigureProprieteDefinieALAideDUneJointure(connection);
       }
     }
   }
@@ -184,38 +187,43 @@ public class R2rmlTester extends OntopTester {
   // return builder.toString();
   // }
 
-  public void testGetDefinitions()
-      throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
+  public void testGetAllDefinitions(OntopConnection connection) {
+    ontoRelCatRepository.getClassTables(mappingProperties.getOntoRelId())
+        .stream()
+        .map(classTable -> {
+          try {
+            return ontoRelTableMappingController.map(connection, classTable);
+          } catch (Exception e) {
+            throw new RuntimeException(e);
+          }
+        })
+        .map(mappedOntoRelTableView::getExpression)
+        .forEach(System.out::println);
 
-    // TODO: Ajouter un test pour les expressions vide et la mécanique pour générer des
-    // expressions relationnelles vides.
-    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
-      ontopQueryEngine.connect();
-      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
-        String classIri = "http://purl.obolibrary.org/obo/HBW_0000004";
-        System.out.printf("Test de génération d'une expression pour la classe %s%n", classIri);
-        System.out.println("---------------------------------------------");
-        testGetClassDef(connection, classIri);
+    ontoRelCatRepository.getObjectPropertyTables(mappingProperties.getOntoRelId())
+        .stream()
+        .map(opTable -> {
+          try {
+            return ontoRelTableMappingController.map(connection, opTable);
+          } catch (Exception e) {
+            throw new RuntimeException(e);
+          }
+        })
+        .map(mappedOntoRelTableView::getExpression)
+        .forEach(System.out::println);
 
-        classIri = "http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C4d0c3f45";
-        System.out.printf("Test de génération d'une expression pour la classe %s%n", classIri);
-        System.out.println("---------------------------------------------");
-        testGetClassDef(connection, classIri);
+    ontoRelCatRepository.getDataPropertyTables(mappingProperties.getOntoRelId())
+        .stream()
+        .map(dpTable -> {
+          try {
+            return ontoRelTableMappingController.map(connection, dpTable);
+          } catch (Exception e) {
+            throw new RuntimeException(e);
+          }
+        })
+        .map(mappedOntoRelTableView::getExpression)
+        .forEach(System.out::println);
 
-        System.out.println("Test de génération d'une expression de ObjectProperty");
-        System.out.println("---------------------------------------------------");
-
-        testGetOPDef(connection, "http://purl.obolibrary.org/obo/IAO_0000032",
-            "http://purl.obolibrary.org/obo/IAO_0000003",
-            "http://purl.obolibrary.org/obo/IAO_0000039");
-
-        System.out.println("Test de génération d'une expression de DataProperty");
-        System.out.println("---------------------------------------------------");
-        testGetDPDef(connection, "http://purl.obolibrary.org/obo/IAO_0000003",
-            "http://purl.obolibrary.org/obo/PHYSIO_0000100",
-            "http://www.w3.org/2001/XMLSchema#string");
-      }
-    }
   }
 
   private void testFigureCasDeBase(OntopConnection connection)

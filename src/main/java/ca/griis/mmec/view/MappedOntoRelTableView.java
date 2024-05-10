@@ -13,8 +13,11 @@
 
 package ca.griis.mmec.view;
 
+import ca.griis.mmec.model.mapped.MappedClassTable;
 import ca.griis.mmec.model.mapped.MappedClassTableRecord;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
 import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
 
 /**
@@ -45,9 +48,9 @@ import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
  *      S.O.
  */
 public interface MappedOntoRelTableView {
-  String getExpression(MappedClassTableRecord mappedClassTable);
+  String getExpression(MappedClassTable mappedClassTable);
 
-  String getExpression(MappedObjectPropertyTableRecord mappedObjectPropertyTable);
+  String getExpression(MappedObjectPropertyTable mappedObjectPropertyTable);
 
-  String getExpression(MappedDataPropertyTableRecord mappedDataPropertyTable);
+  String getExpression(MappedDataPropertyTable mappedDataPropertyTable);
 }

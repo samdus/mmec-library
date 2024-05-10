@@ -44,7 +44,7 @@ dependencies {
 
     implementation "ca.griis:logger-library:2.0.1-SNAPSHOT"
     implementation "org.jooq:jooq:3.19.0"
-    implementation "ca.griis:ontorelcat-jooqclient-library:0.0.0-SNAPSHOT"
+    implementation "ca.griis:ontorelcat-jooqclient-library:1.0.0-SNAPSHOT"
     implementation "org.postgresql:postgresql"
 
     implementation "org.antlr:ST4:4.3.4"

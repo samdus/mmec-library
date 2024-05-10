@@ -1,10 +1,14 @@
 package ca.griis.mmec.test.integration.util;
 
+import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
 import ca.griis.mmec.properties.FacadeProperties;
+import ca.griis.mmec.properties.FacadeType;
 import ca.griis.mmec.properties.MappingProperties;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
 import ca.griis.mmec.properties.builder.MappingPropertiesBuilder;
+import ca.griis.mmec.repository.OntoRelCatRepository;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
+import ca.griis.mmec.view.MappedOntoRelTableView;
 import it.unibz.inf.ontop.answering.reformulation.generation.NativeQueryGenerator;
 import it.unibz.inf.ontop.answering.reformulation.rewriting.QueryRewriter;
 import it.unibz.inf.ontop.injection.CoreSingletons;
@@ -46,6 +50,10 @@ public class OntopTester {
   public final MMecR2rmlMappingParserImpl mMecR2rmlMappingParserImpl;
   public final SQLMappingExtractor mappingExtractor;
   public final File mappingFile;
+  public final OntoRelCatRepository ontoRelCatRepository;
+  public final MappingProperties mappingProperties;
+  public final MappedOntoRelTableView mappedOntoRelTableView;
+  public final OntoRelTableMappingController ontoRelTableMappingController;
   public static final String injectionConfigurationFile = "defaultConfiguration.properties";
 
   public OntopTester(PostgresContainerWrapper postgresContainerWrapper, File ontologyFile,
@@ -59,9 +67,13 @@ public class OntopTester {
     }
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
     //TODO: Ajouter un fichier de paramètre dans chaque testset
-    MappingProperties mappingProperties = new MappingPropertiesBuilder()
-        .setOntoRelId("9c9563e2-a24e-41f3-945c-64403d119d52").build();
-    FacadeProperties facadeProperties = new FacadePropertiesBuilder().build();
+    mappingProperties = new MappingPropertiesBuilder()
+        .withOntoRelId("c01367c9-d1a9-4d37-be22-32df5b83f8d5")
+        .withMappingSchema("MappingSchema")
+        .build();
+    FacadeProperties facadeProperties = new FacadePropertiesBuilder()
+        .withFacadeType(FacadeType.VIEWS)
+        .build();
 
     configuration = new MMecConfiguration.MMecConfigurationBuilder()
         .properties(properties)
@@ -93,6 +105,11 @@ public class OntopTester {
     nativeQueryGenerator =
         translationFactory.create(postgresContainerWrapper.getDBParameters(coreSingletons));
     sqlQueryParser = new SQLQueryParser(coreSingletons);
+    ontoRelCatRepository = configuration.getInjector().getInstance(OntoRelCatRepository.class);
+    mappedOntoRelTableView = configuration.getInjector().getInstance(
+        MappedOntoRelTableView.class);
+    ontoRelTableMappingController = configuration.getInjector().getInstance(
+        OntoRelTableMappingController.class);
   }
 
   private Properties getInjectionConfigurationProperties() throws IOException {

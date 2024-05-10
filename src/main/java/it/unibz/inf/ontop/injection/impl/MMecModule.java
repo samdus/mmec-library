@@ -13,6 +13,8 @@ import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
 import ca.griis.mmec.repository.OntoRelCatRepository;
+import ca.griis.mmec.view.MappedOntoRelTableView;
+import org.jooq.DSLContext;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -53,8 +55,11 @@ public class MMecModule extends OntopAbstractModule {
   protected void configure() {
     bind(FacadeProperties.class).toInstance(configuration.getFacadeProperties());
     bind(MappingProperties.class).toInstance(configuration.getMappingProperties());
+    bind(DSLContext.class).toInstance(configuration.getJooqContext());
     bind(MMecMappingExtension.class).toInstance(new MMecMappingExtension());
 
     bindFromSettings(OntoRelCatRepository.class);
+    bindFromSettings(MappedOntoRelTableView.class);
   }
+
 }

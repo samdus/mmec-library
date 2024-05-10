@@ -14,12 +14,18 @@
 package ca.griis.mmec.view.st;
 
 import ca.griis.mmec.model.MappedOntoRelTable;
+import ca.griis.mmec.model.mapped.MappedClassTable;
 import ca.griis.mmec.model.mapped.MappedClassTableRecord;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
 import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
+import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.view.MappedOntoRelTableView;
+import com.google.inject.Inject;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
+import org.stringtemplate.v4.STGroupFile;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -58,12 +64,13 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
 
   STGroup group;
 
-  public StMappedOntoRelTableView(STGroup group) {
-    this.group = group;
+  @Inject
+  public StMappedOntoRelTableView(FacadeProperties facadeProperties) {
+    this.group = new STGroupFile(facadeProperties.getFacadeStgUrl());
   }
 
   @Override
-  public String getExpression(MappedClassTableRecord mappedClassTable) {
+  public String getExpression(MappedClassTable mappedClassTable) {
     ST st = initialiseStWithQueryIfPresent(mappedClassTable, classTemplateName,
         emptyClassTemplateName);
 
@@ -78,7 +85,7 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
   }
 
   @Override
-  public String getExpression(MappedObjectPropertyTableRecord mappedObjectPropertyTable) {
+  public String getExpression(MappedObjectPropertyTable mappedObjectPropertyTable) {
     ST st = initialiseStWithQueryIfPresent(mappedObjectPropertyTable, opTemplateName,
         emptyOpTemplateName);
 
@@ -96,7 +103,7 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
   }
 
   @Override
-  public String getExpression(MappedDataPropertyTableRecord mappedDataPropertyTable) {
+  public String getExpression(MappedDataPropertyTable mappedDataPropertyTable) {
     ST st = initialiseStWithQueryIfPresent(mappedDataPropertyTable, dpTemplateName,
         emptyDpTemplateName);
 

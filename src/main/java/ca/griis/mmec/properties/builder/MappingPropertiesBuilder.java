@@ -76,12 +76,12 @@ public class MappingPropertiesBuilder {
     return mappingSchema;
   }
 
-  public MappingPropertiesBuilder setOntoRelId(String ontoRelId) {
+  public MappingPropertiesBuilder withOntoRelId(String ontoRelId) {
     this.ontoRelId = ontoRelId;
     return this;
   }
 
-  public MappingPropertiesBuilder setMappingSchema(String mappingSchema) {
+  public MappingPropertiesBuilder withMappingSchema(String mappingSchema) {
     this.mappingSchema = mappingSchema;
     return this;
   }

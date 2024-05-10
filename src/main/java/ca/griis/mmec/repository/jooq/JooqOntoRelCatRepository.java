@@ -1,42 +1,122 @@
 package ca.griis.mmec.repository.jooq;
 
 import ca.griis.gen.ontorelcat_ldm.ontorelcat_api_relrel.Routines;
+import ca.griis.mmec.model.ontorel.ClassTable;
+import ca.griis.mmec.model.ontorel.ClassTableRecord;
+import ca.griis.mmec.model.ontorel.DataPropertyTable;
+import ca.griis.mmec.model.ontorel.DataPropertyTableRecord;
+import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
+import ca.griis.mmec.model.ontorel.ObjectPropertyTableRecord;
 import ca.griis.mmec.repository.OntoRelCatRepository;
 import it.unibz.inf.ontop.injection.CoreSingletons;
 import it.unibz.inf.ontop.injection.OntopSQLCredentialSettings;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.DBTypeFactory;
 import it.unibz.inf.ontop.model.type.TypeFactory;
-import it.unibz.inf.ontop.utils.LocalJDBCConnectionUtils;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 import org.jooq.DSLContext;
-import org.jooq.SQLDialect;
-import org.jooq.impl.DSL;
 
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Repository Jooq pour OntoRelCat
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-05-07 [SD] - Implémentation initiale<br>
+ *
+ * @par Tâches
+ *     S.O.
+ */
 public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
   private final DBTypeFactory dbTypeFactory;
   private final OntopSQLCredentialSettings settings;
+  private final DSLContext context;
+  private final String langString = "en";
 
   @Inject
-  public JooqOntoRelCatRepository(CoreSingletons coreSingletons, TypeFactory typeFactory) {
+  public JooqOntoRelCatRepository(CoreSingletons coreSingletons, TypeFactory typeFactory,
+      DSLContext context) {
     this.dbTypeFactory = typeFactory.getDBTypeFactory();
     this.settings = (OntopSQLCredentialSettings) coreSingletons.getSettings();
+    this.context = context;
   }
 
   @Override
-  public Optional<DBTermType> getSqlType(String ontoRelId, String typeIri) throws SQLException {
-    try (Connection connection = LocalJDBCConnectionUtils.createConnection(settings)) {
-      // TODO: Support dynamic dialect
-      // TODO: Ajouter le DSLContext dans le module Guice
-      DSLContext context = DSL.using(connection, SQLDialect.POSTGRES);
-      String sqlType = Routines.getSqlTypeByIri(context.configuration(), ontoRelId, typeIri);
+  public Optional<DBTermType> getSqlType(String ontoRelId, String typeIri) {
+    String sqlType = Routines.getSqlTypeByIri(context.configuration(), ontoRelId, typeIri);
 
-      return Optional.ofNullable(sqlType)
-          .map(dbTypeFactory::getDBTermType);
-    }
+    return Optional.ofNullable(sqlType)
+        .map(dbTypeFactory::getDBTermType);
+  }
+
+  @Override
+  public List<ClassTable> getClassTables(String ontoRelId) {
+    return Routines.getClassTables(context.configuration(), ontoRelId, langString)
+        .stream().map(record ->
+            new ClassTableRecord(record.getIri(), record.getLabel(), record.getIri(),
+                record.getOntorelColumnId(), record.getOntorelColumnType())
+        )
+        .map(ClassTable.class::cast)
+        .toList();
+    //    return List.of(new ClassTableRecord("IAO_0020015", "\"IAO_0020017\"@family name",
+    //        "http://purl.obolibrary.org/obo/IAO_0020015", "uid", "\"BW\".\"uid_domain\""));
+  }
+
+  @Override
+  public List<DataPropertyTable> getDataPropertyTables(String ontoRelId) {
+    return Routines.getDataPropertyTables(context.configuration(), ontoRelId, langString)
+        .stream().map(record ->
+            new DataPropertyTableRecord(record.getTableName(), record.getLabel(),
+                record.getIriSubject(), record.getIriPredicate(), record.getIriValue(),
+                record.getOntorelSubjectColumnId(), record.getOntorelSubjectColumnType(),
+                record.getOntorelValueColumnId(), record.getOntorelValueColumnType())
+        )
+        .map(DataPropertyTable.class::cast)
+        .toList();
+    //    return List.of(new DataPropertyTableRecord("IAO_0020017_PHYSIO_0000100_string",
+    //        "\"IAO_0020015\"@personal name \"has value\"@PHYSIO_0000100 string",
+    //        "http://purl.obolibrary.org/obo/IAO_0020015",
+    //        "http://purl.obolibrary.org/obo/PHYSIO_0000100",
+    //        "http://www.w3.org/2001/XMLSchema#string", "uid", "\"BW\".\"uid_domain\"",
+    //        "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100",
+    //        "\"BW\".\"string\""));
+  }
+
+  @Override
+  public List<ObjectPropertyTable> getObjectPropertyTables(String ontoRelId) {
+    return Routines.getObjectPropertyTables(context.configuration(), ontoRelId, langString)
+        .stream().map(record ->
+            new ObjectPropertyTableRecord(record.getTableName(), record.getLabel(),
+                record.getIriSubject(), record.getIriPredicate(), record.getIriObject(),
+                record.getOntorelSubjectColumnId(), record.getOntorelSubjectColumnType(),
+                record.getOntorelObjectColumnId(), record.getOntorelObjectColumnType())
+        )
+        .map(ObjectPropertyTable.class::cast)
+        .toList();
+    //    return List.of(new ObjectPropertyTableRecord("HBW_0000022_BFO_0000051_IAO_0020015",
+    //        "\"HBW_0000022\"@human name BFO_0000051@'has part' \"IAO_0020015\"@personal name",
+    //        "http://purl.obolibrary.org/obo/HBW_0000022",
+    //        "http://purl.obolibrary.org/obo/BFO_0000051",
+    //        "http://purl.obolibrary.org/obo/IAO_0020015", "HBW_0000022_uid", "\"BW\".\"uid_domain\"",
+    //        "IAO_0020015_uid", "\"BW\".\"uid_domain\""));
   }
 }

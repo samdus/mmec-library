@@ -49,23 +49,6 @@ import java.net.URL;
  * @par Tâches
  *      S.O.
  */
-public abstract class FacadeProperties {
-  protected abstract URL getFacadeStgUrl();
-
-  /**
-   * @brief @~english «Description of the method»
-   * @return «Return description»
-   *
-   * @brief @~french Ouvrir le stream du gabarit de la façade.
-   * @return Le stream du gabarit de la façade.
-   *
-   * @note S.O.
-   *
-   * @par Tâches
-   *      S.O.
-   */
-  public InputStream getFacadeStgStream() throws IOException {
-    return getFacadeStgUrl().openStream();
-  }
-
+public interface FacadeProperties {
+  URL getFacadeStgUrl();
 }
