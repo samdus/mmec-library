@@ -1,7 +1,6 @@
 package ca.griis.mmec.test.integration.util;
 
 
-import ca.griis.mmec.model.ontorel.ClassTable;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
@@ -31,7 +30,6 @@ import it.unibz.inf.ontop.spec.ontology.Ontology;
 import it.unibz.inf.ontop.spec.ontology.owlapi.OWLAPITranslatorOWL2QL;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Optional;
 import org.apache.commons.rdf.api.IRI;
@@ -71,8 +69,8 @@ public class R2rmlTester extends OntopTester {
       ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
         testGetAllDefinitions(connection);
-//        testFigureCasDeBase(connection);
-//        testPourLaFigureProprieteDefinieALAideDUneJointure(connection);
+        // testFigureCasDeBase(connection);
+        // testPourLaFigureProprieteDefinieALAideDUneJointure(connection);
       }
     }
   }
@@ -226,7 +224,7 @@ public class R2rmlTester extends OntopTester {
 
   }
 
-  private void testFigureCasDeBase(OntopConnection connection)
+  public void testFigureCasDeBase(OntopConnection connection)
       throws OBDASpecificationException, OntopConnectionException, OntopReformulationException {
     System.out.println("*********************************************");
     System.out.println("Tests pour la figure: Cas de base");

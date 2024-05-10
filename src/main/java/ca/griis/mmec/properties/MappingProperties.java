@@ -44,5 +44,6 @@ public abstract class MappingProperties {
   // TODO: Add the properties for the configuration of the mapping. For exemple, the path of the
   // mapping file.
   public abstract String getOntoRelId();
+
   public abstract String getMappingSchema();
 }

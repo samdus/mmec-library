@@ -14,11 +14,8 @@
 package ca.griis.mmec.view;
 
 import ca.griis.mmec.model.mapped.MappedClassTable;
-import ca.griis.mmec.model.mapped.MappedClassTableRecord;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
-import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
 import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
-import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»

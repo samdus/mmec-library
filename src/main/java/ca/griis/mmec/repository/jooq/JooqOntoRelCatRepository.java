@@ -8,8 +8,6 @@ import ca.griis.mmec.model.ontorel.DataPropertyTableRecord;
 import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
 import ca.griis.mmec.model.ontorel.ObjectPropertyTableRecord;
 import ca.griis.mmec.repository.OntoRelCatRepository;
-import it.unibz.inf.ontop.injection.CoreSingletons;
-import it.unibz.inf.ontop.injection.OntopSQLCredentialSettings;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.DBTypeFactory;
 import it.unibz.inf.ontop.model.type.TypeFactory;
@@ -43,20 +41,17 @@ import org.jooq.DSLContext;
  *      2024-05-07 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *     S.O.
+ *      S.O.
  */
 public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
   private final DBTypeFactory dbTypeFactory;
-  private final OntopSQLCredentialSettings settings;
   private final DSLContext context;
   private final String langString = "en";
 
   @Inject
-  public JooqOntoRelCatRepository(CoreSingletons coreSingletons, TypeFactory typeFactory,
-      DSLContext context) {
+  public JooqOntoRelCatRepository(TypeFactory typeFactory, DSLContext context) {
     this.dbTypeFactory = typeFactory.getDBTypeFactory();
-    this.settings = (OntopSQLCredentialSettings) coreSingletons.getSettings();
     this.context = context;
   }
 
@@ -71,52 +66,34 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
   @Override
   public List<ClassTable> getClassTables(String ontoRelId) {
     return Routines.getClassTables(context.configuration(), ontoRelId, langString)
-        .stream().map(record ->
-            new ClassTableRecord(record.getIri(), record.getLabel(), record.getIri(),
-                record.getOntorelColumnId(), record.getOntorelColumnType())
-        )
+        .stream()
+        .map(record -> new ClassTableRecord(record.getIri(), record.getLabel(), record.getIri(),
+            record.getOntorelColumnId(), record.getOntorelColumnType()))
         .map(ClassTable.class::cast)
         .toList();
-    //    return List.of(new ClassTableRecord("IAO_0020015", "\"IAO_0020017\"@family name",
-    //        "http://purl.obolibrary.org/obo/IAO_0020015", "uid", "\"BW\".\"uid_domain\""));
   }
 
   @Override
   public List<DataPropertyTable> getDataPropertyTables(String ontoRelId) {
     return Routines.getDataPropertyTables(context.configuration(), ontoRelId, langString)
-        .stream().map(record ->
-            new DataPropertyTableRecord(record.getTableName(), record.getLabel(),
-                record.getIriSubject(), record.getIriPredicate(), record.getIriValue(),
-                record.getOntorelSubjectColumnId(), record.getOntorelSubjectColumnType(),
-                record.getOntorelValueColumnId(), record.getOntorelValueColumnType())
-        )
+        .stream()
+        .map(record -> new DataPropertyTableRecord(record.getTableName(), record.getLabel(),
+            record.getIriSubject(), record.getIriPredicate(), record.getIriValue(),
+            record.getOntorelSubjectColumnId(), record.getOntorelSubjectColumnType(),
+            record.getOntorelValueColumnId(), record.getOntorelValueColumnType()))
         .map(DataPropertyTable.class::cast)
         .toList();
-    //    return List.of(new DataPropertyTableRecord("IAO_0020017_PHYSIO_0000100_string",
-    //        "\"IAO_0020015\"@personal name \"has value\"@PHYSIO_0000100 string",
-    //        "http://purl.obolibrary.org/obo/IAO_0020015",
-    //        "http://purl.obolibrary.org/obo/PHYSIO_0000100",
-    //        "http://www.w3.org/2001/XMLSchema#string", "uid", "\"BW\".\"uid_domain\"",
-    //        "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100",
-    //        "\"BW\".\"string\""));
   }
 
   @Override
   public List<ObjectPropertyTable> getObjectPropertyTables(String ontoRelId) {
     return Routines.getObjectPropertyTables(context.configuration(), ontoRelId, langString)
-        .stream().map(record ->
-            new ObjectPropertyTableRecord(record.getTableName(), record.getLabel(),
-                record.getIriSubject(), record.getIriPredicate(), record.getIriObject(),
-                record.getOntorelSubjectColumnId(), record.getOntorelSubjectColumnType(),
-                record.getOntorelObjectColumnId(), record.getOntorelObjectColumnType())
-        )
+        .stream()
+        .map(record -> new ObjectPropertyTableRecord(record.getTableName(), record.getLabel(),
+            record.getIriSubject(), record.getIriPredicate(), record.getIriObject(),
+            record.getOntorelSubjectColumnId(), record.getOntorelSubjectColumnType(),
+            record.getOntorelObjectColumnId(), record.getOntorelObjectColumnType()))
         .map(ObjectPropertyTable.class::cast)
         .toList();
-    //    return List.of(new ObjectPropertyTableRecord("HBW_0000022_BFO_0000051_IAO_0020015",
-    //        "\"HBW_0000022\"@human name BFO_0000051@'has part' \"IAO_0020015\"@personal name",
-    //        "http://purl.obolibrary.org/obo/HBW_0000022",
-    //        "http://purl.obolibrary.org/obo/BFO_0000051",
-    //        "http://purl.obolibrary.org/obo/IAO_0020015", "HBW_0000022_uid", "\"BW\".\"uid_domain\"",
-    //        "IAO_0020015_uid", "\"BW\".\"uid_domain\""));
   }
 }

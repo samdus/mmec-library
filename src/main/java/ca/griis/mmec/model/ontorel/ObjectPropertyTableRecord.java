@@ -40,7 +40,7 @@ package ca.griis.mmec.model.ontorel;
  * @par Tâches
  *      S.O.
  */
-public record ObjectPropertyTableRecord(
+public record ObjectPropertyTableRecord (
     String tableName,
     String label,
     String iriSubject,

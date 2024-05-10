@@ -13,7 +13,6 @@
 
 package ca.griis.mmec.model.ontorel;
 
-import ca.griis.mmec.model.MappedOntoRelTable;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -42,7 +41,7 @@ import ca.griis.mmec.model.MappedOntoRelTable;
  * @par Tâches
  *      S.O.
  */
-public record DataPropertyTableRecord(
+public record DataPropertyTableRecord (
     String tableName,
     String label,
     String iriSubject,
@@ -51,7 +50,6 @@ public record DataPropertyTableRecord(
     String ontorelSubjectColumnId,
     String ontorelSubjectColumnType,
     String ontorelValueColumnId,
-    String ontorelValueColumnType
-)
+    String ontorelValueColumnType)
     implements DataPropertyTable {
 }

@@ -13,8 +13,6 @@
 
 package ca.griis.mmec.properties;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
 /**

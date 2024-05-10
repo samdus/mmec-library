@@ -1,6 +1,5 @@
 package ca.griis.mmec.test.integration;
 
-import ca.griis.mmec.test.integration.util.OntopTester;
 import ca.griis.mmec.test.integration.util.OptimizeTester;
 import ca.griis.mmec.test.integration.util.R2rmlTester;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;

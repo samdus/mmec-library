@@ -13,7 +13,6 @@
 
 package ca.griis.mmec.model.ontorel;
 
-import ca.griis.mmec.model.mapped.MappedClassTable;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -42,7 +41,7 @@ import ca.griis.mmec.model.mapped.MappedClassTable;
  * @par Tâches
  *      S.O.
  */
-public record ClassTableRecord(
+public record ClassTableRecord (
     String tableName,
     String label,
     String iri,

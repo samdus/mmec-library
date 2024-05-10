@@ -43,7 +43,7 @@ import java.util.Optional;
  * @par Tâches
  *      S.O.
  */
-public record MappedObjectPropertyTableRecord(
+public record MappedObjectPropertyTableRecord (
     String tableName,
     String label,
     String iriSubject,

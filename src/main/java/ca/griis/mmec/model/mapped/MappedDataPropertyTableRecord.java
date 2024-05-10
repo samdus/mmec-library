@@ -43,7 +43,7 @@ import java.util.Optional;
  * @par Tâches
  *      S.O.
  */
-public record MappedDataPropertyTableRecord(
+public record MappedDataPropertyTableRecord (
     String tableName,
     String label,
     String iriSubject,
@@ -56,8 +56,7 @@ public record MappedDataPropertyTableRecord(
     String schema,
     Optional<String> mmecQuery,
     String mmecQuerySubjectColumnId,
-    String mmecQueryValueColumnId
-)
+    String mmecQueryValueColumnId)
     implements MappedDataPropertyTable {
   public MappedDataPropertyTableRecord(DataPropertyTable dataPropertyTableRecord, String schema,
       Optional<String> mmecQuery, String mmecQuerySubjectColumnId, String mmecQueryValueColumnId) {

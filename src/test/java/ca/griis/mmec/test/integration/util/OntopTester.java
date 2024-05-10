@@ -66,7 +66,7 @@ public class OntopTester {
       System.err.println(e.getMessage());
     }
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
-    //TODO: Ajouter un fichier de paramètre dans chaque testset
+    // TODO: Ajouter un fichier de paramètre dans chaque testset
     mappingProperties = new MappingPropertiesBuilder()
         .withOntoRelId("c01367c9-d1a9-4d37-be22-32df5b83f8d5")
         .withMappingSchema("MappingSchema")

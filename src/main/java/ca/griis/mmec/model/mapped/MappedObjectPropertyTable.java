@@ -14,7 +14,6 @@
 package ca.griis.mmec.model.mapped;
 
 import ca.griis.mmec.model.MappedOntoRelTable;
-import ca.griis.mmec.model.ontorel.DataPropertyTable;
 import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
 
 /**

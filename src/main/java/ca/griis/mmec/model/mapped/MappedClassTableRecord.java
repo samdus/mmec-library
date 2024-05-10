@@ -43,7 +43,7 @@ import java.util.Optional;
  * @par Tâches
  *      S.O.
  */
-public record MappedClassTableRecord(
+public record MappedClassTableRecord (
     String tableName,
     String label,
     String iri,

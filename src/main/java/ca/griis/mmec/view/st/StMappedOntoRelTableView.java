@@ -15,11 +15,8 @@ package ca.griis.mmec.view.st;
 
 import ca.griis.mmec.model.MappedOntoRelTable;
 import ca.griis.mmec.model.mapped.MappedClassTable;
-import ca.griis.mmec.model.mapped.MappedClassTableRecord;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
-import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
 import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
-import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.view.MappedOntoRelTableView;
 import com.google.inject.Inject;

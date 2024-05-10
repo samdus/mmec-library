@@ -29,8 +29,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
-import org.stringtemplate.v4.STGroup;
-import org.stringtemplate.v4.STGroupFile;
 
 public class StMappedOntoRelTableViewTest {
 
@@ -46,8 +44,7 @@ public class StMappedOntoRelTableViewTest {
         "ontorelColumnType",
         "schema",
         Optional.of("mmecQuery"),
-        "mmecQueryColumnId"
-    );
+        "mmecQueryColumnId");
     MappedObjectPropertyTableRecord mappedObjectPropertyTable = new MappedObjectPropertyTableRecord(
         "tableName",
         "comment",
@@ -61,8 +58,7 @@ public class StMappedOntoRelTableViewTest {
         "schema",
         Optional.of("mmecQuery"),
         "mmecQuerySubjectColumnId",
-        "mmecQueryObjectColumnId"
-    );
+        "mmecQueryObjectColumnId");
     MappedDataPropertyTableRecord mappedDataPropertyTable = new MappedDataPropertyTableRecord(
         "tableName",
         "comment",
@@ -76,8 +72,7 @@ public class StMappedOntoRelTableViewTest {
         "schema",
         Optional.of("mmecQuery"),
         "mmecQuerySubjectColumnId",
-        "mmecQueryValueColumnId"
-    );
+        "mmecQueryValueColumnId");
     MappedClassTableRecord emptyMappedClassTable = new MappedClassTableRecord(
         "tableName",
         "comment",
@@ -86,8 +81,7 @@ public class StMappedOntoRelTableViewTest {
         "ontorelColumnType",
         "schema",
         Optional.empty(),
-        "mmecQueryColumnId"
-    );
+        "mmecQueryColumnId");
     MappedObjectPropertyTableRecord emptyMmappedObjectPropertyTable =
         new MappedObjectPropertyTableRecord(
             "tableName",
@@ -102,8 +96,7 @@ public class StMappedOntoRelTableViewTest {
             "schema",
             Optional.empty(),
             "mmecQuerySubjectColumnId",
-            "mmecQueryObjectColumnId"
-        );
+            "mmecQueryObjectColumnId");
     MappedDataPropertyTableRecord emptyMappedDataPropertyTable = new MappedDataPropertyTableRecord(
         "tableName",
         "comment",
@@ -117,8 +110,7 @@ public class StMappedOntoRelTableViewTest {
         "schema",
         Optional.empty(),
         "mmecQuerySubjectColumnId",
-        "mmecQueryValueColumnId"
-    );
+        "mmecQueryValueColumnId");
 
     return Stream.of(
         Arguments.of(insertGroupUrl, mappedClassTable,
@@ -136,7 +128,7 @@ public class StMappedOntoRelTableViewTest {
                 select "mmecQueryColumnId"
                 from mmec_query
                 ;"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(insertGroupUrl, mappedObjectPropertyTable,
             // spotless:off
@@ -154,7 +146,7 @@ public class StMappedOntoRelTableViewTest {
                 select "mmecQuerySubjectColumnId", "mmecQueryObjectColumnId"
                 from mmec_query
                 ;"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(insertGroupUrl, mappedDataPropertyTable,
             // spotless:off
@@ -172,7 +164,7 @@ public class StMappedOntoRelTableViewTest {
                 select "mmecQuerySubjectColumnId", "mmecQueryValueColumnId"
                 from mmec_query
                 ;"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(viewsGroupUrl, mappedClassTable,
             // spotless:off
@@ -191,7 +183,7 @@ public class StMappedOntoRelTableViewTest {
                 select "mmecQueryColumnId"
                 from mmec_query
                 ;"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(viewsGroupUrl, mappedObjectPropertyTable,
             // spotless:off
@@ -211,7 +203,7 @@ public class StMappedOntoRelTableViewTest {
                 select "mmecQuerySubjectColumnId", "mmecQueryObjectColumnId"
                 from mmec_query
                 ;"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(viewsGroupUrl, mappedDataPropertyTable,
             // spotless:off
@@ -231,9 +223,8 @@ public class StMappedOntoRelTableViewTest {
                 select "mmecQuerySubjectColumnId", "mmecQueryValueColumnId"
                 from mmec_query
                 ;"""
-            // spotless:on
-        )
-        ,
+        // spotless:on
+        ),
         Arguments.of(insertGroupUrl, emptyMappedClassTable,
             // spotless:off
             """
@@ -241,7 +232,7 @@ public class StMappedOntoRelTableViewTest {
                 comment
                 Empty mapping: insert not required
                 */"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(insertGroupUrl, emptyMmappedObjectPropertyTable,
             // spotless:off
@@ -250,7 +241,7 @@ public class StMappedOntoRelTableViewTest {
                 comment
                 Empty mapping: insert not required
                 */"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(insertGroupUrl, emptyMappedDataPropertyTable,
             // spotless:off
@@ -259,7 +250,7 @@ public class StMappedOntoRelTableViewTest {
                 comment
                 Empty mapping: insert not required
                 */"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(viewsGroupUrl, emptyMappedClassTable,
             // spotless:off
@@ -275,7 +266,7 @@ public class StMappedOntoRelTableViewTest {
                 select null::ontorelColumnType
                 where false
                 ;"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(viewsGroupUrl, emptyMmappedObjectPropertyTable,
             // spotless:off
@@ -292,7 +283,7 @@ public class StMappedOntoRelTableViewTest {
                 select null::ontorelSubjectColumnType, null::ontorelObjectColumnType
                 where false
                 ;"""
-            // spotless:on
+        // spotless:on
         ),
         Arguments.of(viewsGroupUrl, emptyMappedDataPropertyTable,
             // spotless:off
@@ -309,9 +300,8 @@ public class StMappedOntoRelTableViewTest {
                 select null::ontorelSubjectColumnType, null::ontorelValueColumnType
                 where false
                 ;"""
-            // spotless:on
-        )
-    );
+        // spotless:on
+        ));
   }
 
   @ParameterizedTest
@@ -320,7 +310,8 @@ public class StMappedOntoRelTableViewTest {
     FacadeProperties facadeProperties = Mockito.mock(FacadeProperties.class);
     Mockito.when(facadeProperties.getFacadeStgUrl()).thenReturn(groupUrl);
 
-    StMappedOntoRelTableView stMappedOntoRelTableView = new StMappedOntoRelTableView(facadeProperties);
+    StMappedOntoRelTableView stMappedOntoRelTableView =
+        new StMappedOntoRelTableView(facadeProperties);
     String actual = null;
 
     if (mappedOntoRelTable instanceof MappedClassTableRecord) {

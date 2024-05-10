@@ -120,7 +120,7 @@ public class DataPropertyProjectionTransformer
           if (targetType.getName().contains("\"") && targetType.getName().equals(
               variableType.getName())
               || !targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
-              variableType.getName()) == 0) {
+                  variableType.getName()) == 0) {
             valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
                 variable);
           } else {
@@ -163,7 +163,7 @@ public class DataPropertyProjectionTransformer
 
   private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
     return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-            rdfDatatype.getIRI().getIRIString())
+        rdfDatatype.getIRI().getIRIString())
         .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
             String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
                 rdfDatatype.getIRI().getIRIString())));

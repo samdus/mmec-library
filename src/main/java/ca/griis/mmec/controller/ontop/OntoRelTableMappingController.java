@@ -15,6 +15,7 @@ package ca.griis.mmec.controller.ontop;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.model.mapped.MappedClassTable;
 import ca.griis.mmec.model.mapped.MappedClassTableRecord;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
@@ -96,6 +97,7 @@ public class OntoRelTableMappingController {
 
   public MappedClassTable map(OntopConnection connection, ClassTable classTable)
       throws OntopReformulationException, OntopConnectionException {
+    logger.trace(Trace.ENTER_METHOD_2, connection, classTable);
     try (OntopStatement statement = connection.createStatement()) {
       String classColumnName = classTable.ontorelColumnId();
       StatementPattern classStatement = new StatementPattern(new Var(classColumnName),
@@ -113,6 +115,8 @@ public class OntoRelTableMappingController {
   public MappedDataPropertyTable map(OntopConnection connection,
       DataPropertyTable dataPropertyTable)
       throws OntopReformulationException, OntopConnectionException {
+    logger.trace(Trace.ENTER_METHOD_2, connection, dataPropertyTable);
+
     String dpSubjectColumnName = dataPropertyTable.ontorelSubjectColumnId();
     String dpValColumnName = dataPropertyTable.ontorelValueColumnId();
     try (OntopStatement statement = connection.createStatement()) {
@@ -147,6 +151,8 @@ public class OntoRelTableMappingController {
   public MappedObjectPropertyTable map(OntopConnection connection,
       ObjectPropertyTable objectPropertyTable)
       throws OntopReformulationException, OntopConnectionException {
+    logger.trace(Trace.ENTER_METHOD_2, connection, objectPropertyTable);
+
     String opSubjectColumnName = objectPropertyTable.ontorelSubjectColumnId();
     String opObjectColumnName = objectPropertyTable.ontorelObjectColumnId();
     try (OntopStatement statement = connection.createStatement()) {
@@ -185,6 +191,8 @@ public class OntoRelTableMappingController {
   private Optional<String> getNativeQuery(OntopStatement statement,
       QueryRoot queryRoot)
       throws OntopReformulationException {
+    logger.trace(Trace.ENTER_METHOD_2, statement, queryRoot);
+
     try {
       RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery(
           queryRoot.toString(),

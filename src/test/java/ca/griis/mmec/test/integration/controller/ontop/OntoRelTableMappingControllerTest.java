@@ -113,9 +113,10 @@ public class OntoRelTableMappingControllerTest {
 
   @Test
   public void testMapClassTable() throws OntopReformulationException, OntopConnectionException {
-    String expected = """
-        SELECT DISTINCT individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "uid"
-        FROM "EXP"."PERSONNE" v1""";
+    String expected =
+        """
+            SELECT DISTINCT individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "uid"
+            FROM "EXP"."PERSONNE" v1""";
     ClassTable classTable = new ClassTableRecord("IAO_0020015", "\"IAO_0020017\"@family name",
         "http://purl.obolibrary.org/obo/IAO_0020015", "uid", "\"BW\".\"uid_domain\"");
     MappedClassTable mappedClassTable = controller.map(connection, classTable);
@@ -128,10 +129,11 @@ public class OntoRelTableMappingControllerTest {
   @Test
   public void testMapDataPropertyTable()
       throws OntopReformulationException, OntopConnectionException {
-    //Note: Column order is not guaranteed, it is not an issue
-    String expected = """
-        SELECT DISTINCT CAST(v1."PRENOM" AS "BW"."string") AS "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100", individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "uid"
-        FROM "EXP"."PERSONNE" v1""";
+    // Note: Column order is not guaranteed, it is not an issue
+    String expected =
+        """
+            SELECT DISTINCT CAST(v1."PRENOM" AS "BW"."string") AS "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100", individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "uid"
+            FROM "EXP"."PERSONNE" v1""";
     DataPropertyTable dpTable = new DataPropertyTableRecord("IAO_0020017_PHYSIO_0000100_string",
         "\"IAO_0020015\"@personal name \"has value\"@PHYSIO_0000100 string",
         "http://purl.obolibrary.org/obo/IAO_0020015",
@@ -141,7 +143,7 @@ public class OntoRelTableMappingControllerTest {
         "\"BW\".\"string\"");
     MappedDataPropertyTable mappedDataPropertyTable = controller.map(connection, dpTable);
 
-    //TODO: Investiguer pourquoi est-ce que le type est converti en majuscule...
+    // TODO: Investiguer pourquoi est-ce que le type est converti en majuscule...
     Assertions.assertFalse(mappedDataPropertyTable.mmecQuery().isEmpty(),
         String.format("MappedDataPropertyTable %s is empty", mappedDataPropertyTable));
     Assertions.assertEquals(expected, mappedDataPropertyTable.mmecQuery().get());
@@ -150,11 +152,13 @@ public class OntoRelTableMappingControllerTest {
   @Test
   public void testMapObjectPropertyTable()
       throws OntopReformulationException, OntopConnectionException {
-    //Note: Column order is not guaranteed, it is not an issue
-    String expected = """
-        SELECT DISTINCT individuation('http://www.griis.ca/projects#HBW_0000022/{}/{}', v1."PRENOM", v1."NOM") AS "HBW_0000022_uid", individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "IAO_0020015_uid"
-        FROM "EXP"."PERSONNE" v1""";
-    ObjectPropertyTable opTable = new ObjectPropertyTableRecord("HBW_0000022_BFO_0000051_IAO_0020015",
+    // Note: Column order is not guaranteed, it is not an issue
+    String expected =
+        """
+            SELECT DISTINCT individuation('http://www.griis.ca/projects#HBW_0000022/{}/{}', v1."PRENOM", v1."NOM") AS "HBW_0000022_uid", individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "IAO_0020015_uid"
+            FROM "EXP"."PERSONNE" v1""";
+    ObjectPropertyTable opTable = new ObjectPropertyTableRecord(
+        "HBW_0000022_BFO_0000051_IAO_0020015",
         "\"HBW_0000022\"@human name BFO_0000051@'has part' \"IAO_0020015\"@personal name",
         "http://purl.obolibrary.org/obo/HBW_0000022",
         "http://purl.obolibrary.org/obo/BFO_0000051",
