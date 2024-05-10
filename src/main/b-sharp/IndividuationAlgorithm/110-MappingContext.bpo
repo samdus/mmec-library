@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="18">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="18">
+        <org.eventb.core.poIdentifier name="E" org.eventb.core.type="ℙ(E)"/>
+        <org.eventb.core.poIdentifier name="S" org.eventb.core.type="ℙ(S)"/>
+        <org.eventb.core.poIdentifier name="exp_subsets" org.eventb.core.type="ℙ(E×ℙ(E))"/>
+        <org.eventb.core.poIdentifier name="sign_overlap" org.eventb.core.type="ℙ(S×ℙ(S))"/>
+        <org.eventb.core.poIdentifier name="sign_expression" org.eventb.core.type="ℙ(S×E)"/>
+        <org.eventb.core.poIdentifier name="exp_equivalent" org.eventb.core.type="ℙ(E×ℙ(E))"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="map_equivalent_axm_def/WD" org.eventb.core.accurate="false" org.eventb.core.poDesc="Well-definedness of Axiom" org.eventb.core.poStamp="18">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP,"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈dom(exp_equivalent)∧exp_equivalent∈E ⇸ ℙ(E)∧e2∈dom(exp_subsets)∧exp_subsets∈E ⇸ ℙ(E)∧(e1∈exp_subsets(e2)⇒e1∈dom(exp_subsets))" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm4"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm4"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP,"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="map_equivalent_thm_symmetric/WD" org.eventb.core.accurate="false" org.eventb.core.poDesc="Well-definedness of Theorem" org.eventb.core.poStamp="18">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP-"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈dom(exp_equivalent)∧exp_equivalent∈E ⇸ ℙ(E)∧e2∈dom(exp_equivalent)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP-"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="map_equivalent_thm_symmetric/THM" org.eventb.core.accurate="false" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="18">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP-"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e2∈exp_equivalent(e1)⇔e1∈exp_equivalent(e2)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP-"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="map_equivalent_thm_reflexive/WD" org.eventb.core.accurate="false" org.eventb.core.poDesc="Well-definedness of Theorem" org.eventb.core.poStamp="18">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP."/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈dom(exp_equivalent)∧exp_equivalent∈E ⇸ ℙ(E)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP."/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="map_equivalent_thm_reflexive/THM" org.eventb.core.accurate="false" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="18">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP."/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_equivalent(e)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP."/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="HYP," org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="finite(S)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst6"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="finite(E)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst7"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="sign_overlap∈S → ℙ1(S)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst4"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="sign_expression∈S → E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="exp_subsets∈E → ℙ1(E)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm1"/>
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="exp_equivalent∈E → ℙ1(E)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm2"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="HYP-" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP," org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e2∈exp_equivalent(e1)⇔e1∈exp_subsets(e2)∧e2∈exp_subsets(e1)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm4"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="HYP." org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP-" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e2∈exp_equivalent(e1)⇔e1∈exp_equivalent(e2)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP." org.eventb.core.poStamp="18">
+        <org.eventb.core.poPredicate name="PRD8" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_equivalent(e)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>
