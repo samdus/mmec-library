@@ -6,10 +6,10 @@
     <org.eventb.core.axiom name="cst4" org.eventb.core.comment="P est un sous-ensemble des naturels" org.eventb.core.label="onto_type_P_cLevel" org.eventb.core.predicate="P_cLevel ⊆ ℕ"/>
     <org.eventb.core.axiom name="cst5" org.eventb.core.comment="Q est un sous-ensemble des naturels" org.eventb.core.label="onto_type_Q_cLevel" org.eventb.core.predicate="Q_cLevel ⊆ ℕ"/>
     <org.eventb.core.axiom name="cst=" org.eventb.core.comment="le premier niveau correspond à l'ensemble contenant uniquement la racine thing" org.eventb.core.label="onto_cLevel_axm_first" org.eventb.core.predicate="c_level[{0}] = {thing}"/>
-    <org.eventb.core.axiom name="axm3" org.eventb.core.comment="les autres niveaux correspondent aux enfants du niveau inférieur" org.eventb.core.label="onto_cLevel_axm_others" org.eventb.core.predicate="∀i · i &gt; 0 &#10;  ⇒ c_level[{i}] = {c ∣ c_level[{i−1}] ⊆ has_parent[{c}]}"/>
+    <org.eventb.core.axiom name="axm3" org.eventb.core.comment="les autres niveaux correspondent aux enfants du niveau inférieur" org.eventb.core.label="onto_cLevel_axm_others" org.eventb.core.predicate="∀i · i &gt; 0 &#10;  ⇒ c_level[{i−1}] = has_parent[c_level[{i}]]"/>
     <org.eventb.core.axiom name="cst6" org.eventb.core.comment="chaque i de P correspond à un niveau pour lesquels toutes les classes sont des thing" org.eventb.core.label="onto_P_cLevel_def" org.eventb.core.predicate="P_cLevel = {i ∣ i ∈ ℕ ∧ (∀c · c ∈ c_level[{i}]&#10;                          ⇒ thing ∈ is_a[{c}])}"/>
     <org.eventb.core.axiom name="axm4" org.eventb.core.comment="base d'induction: toutes les classes du niveau 0 sont des thing" org.eventb.core.label="onto_P_cLevel_thm_inductionBase" org.eventb.core.predicate="0 ∈ P_cLevel" org.eventb.core.theorem="true"/>
-    <org.eventb.core.axiom name="cst7" org.eventb.core.label="onto_P_cLevel_thm_induction" org.eventb.core.predicate="∀i · i &gt; 1 ∧&#10;     i − 1 ∈ P_cLevel &#10;  ⇒ i ∈ P_cLevel" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="cst7" org.eventb.core.label="onto_P_cLevel_thm_induction" org.eventb.core.predicate="∀i · i ∈ ℕ1 ∧&#10;     i − 1 ∈ P_cLevel &#10;  ⇒ i ∈ P_cLevel" org.eventb.core.theorem="true"/>
     <org.eventb.core.axiom name="cst8" org.eventb.core.comment="Q correspond à l'inverse de P" org.eventb.core.label="onto_P_cLevel_axm_Q_cLevel_def" org.eventb.core.predicate="Q_cLevel = ℕ ∖ P_cLevel"/>
     <org.eventb.core.axiom name="cst9" org.eventb.core.comment="P est vrai pour tout ℕ" org.eventb.core.label="onto_P_cLevel_thm_Q_cLevel_empty" org.eventb.core.predicate="Q_cLevel = ∅" org.eventb.core.theorem="true"/>
     <org.eventb.core.axiom name="cst:" org.eventb.core.label="onto_P_cLevel_thm_P_cLevel_allNAT" org.eventb.core.predicate="P_cLevel = ℕ"/>
@@ -17,5 +17,4 @@
     <org.eventb.core.axiom name="axm6" org.eventb.core.label="onto_isA_thm_allIsAThing" org.eventb.core.predicate="∀c · c ∈ C ⇔ thing ∈ is_a[{c}]" org.eventb.core.theorem="true"/>
     <org.eventb.core.constant name="cst2" org.eventb.core.comment="l'ensemble des étages pour lesquels les classes sont des things" org.eventb.core.identifier="P_cLevel"/>
     <org.eventb.core.constant name="cst3" org.eventb.core.comment="l'ensemble des étages pour lesquels les classes ne sont pas des things" org.eventb.core.identifier="Q_cLevel"/>
-    <org.eventb.core.axiom name="cst&gt;" org.eventb.core.label="testSHOULDNOTBEPROVED" org.eventb.core.predicate="thing ∉ is_a[H_leaves]" org.eventb.core.theorem="true"/>
 </org.eventb.core.contextFile>

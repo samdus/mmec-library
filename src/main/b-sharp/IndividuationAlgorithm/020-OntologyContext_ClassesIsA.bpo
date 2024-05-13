@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="94">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="91">
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="H_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -14,37 +14,37 @@
         <org.eventb.core.poPredicate name="has_paren{" org.eventb.core.predicate="thing∈H_leaves⇒C={thing}∧has_parent=(∅ ⦂ ℙ(C×C))" org.eventb.core.source="/IndividuationAlgorithm/010-OntologyContext_ClassesHierarchy.buc|org.eventb.core.contextFile#010-OntologyContext_ClassesHierarchy|org.eventb.core.axiom#F"/>
         <org.eventb.core.poIdentifier name="is_a" org.eventb.core.type="ℙ(C×C)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poSequent name="onot_isA_axm_thingIsAThing/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="91">
+    <org.eventb.core.poSequent name="onot_isA_axm_thingIsAThing/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch}"/>
         <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="thing ↦ thing∈is_a" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst3"/>
         <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst3"/>
         <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch}"/>
     </org.eventb.core.poSequent>
-    <org.eventb.core.poSequent name="onto_isA_thm_hasParentIsSubset/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="91">
+    <org.eventb.core.poSequent name="onto_isA_thm_hasParentIsSubset/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch~"/>
         <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="has_parent⊆is_a" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst2"/>
         <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst2"/>
         <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch~"/>
     </org.eventb.core.poSequent>
-    <org.eventb.core.poSequent name="tst_hasParent/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="91">
+    <org.eventb.core.poSequent name="tst_hasParent/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarci'"/>
         <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·cp∈has_parent[{c}]∧cpp∈has_parent[{cp}]⇒cpp∈is_a[{c}]" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#axm6"/>
         <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#axm6"/>
         <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarci'"/>
     </org.eventb.core.poSequent>
-    <org.eventb.core.poPredicateSet name="HYP010-OntologyContext_ClassesHierarch}" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="91">
+    <org.eventb.core.poPredicateSet name="HYP010-OntologyContext_ClassesHierarch}" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="is_a∈C  C" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#axm1"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="∀c⦂C,cp⦂C·cp∈has_parent[{c}]⇒cp∈is_a[{c}]" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst5"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#axm2"/>
         <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="∀c⦂C,cp⦂C·{c,cp}⊆C∧cp ↦ c∈is_a∧c ↦ cp∈is_a⇔c=cp" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst4"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="HYP010-OntologyContext_ClassesHierarch~" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch}" org.eventb.core.poStamp="91">
+    <org.eventb.core.poPredicateSet name="HYP010-OntologyContext_ClassesHierarch~" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch}" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="thing ↦ thing∈is_a" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst3"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="HYP010-OntologyContext_ClassesHierarci'" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch~" org.eventb.core.poStamp="91">
+    <org.eventb.core.poPredicateSet name="HYP010-OntologyContext_ClassesHierarci'" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch~" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="has_parent⊆is_a" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst2"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarci'" org.eventb.core.poStamp="94">
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarci'" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·cp∈has_parent[{c}]∧cpp∈has_parent[{cp}]⇒cpp∈is_a[{c}]" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#axm6"/>
     </org.eventb.core.poPredicateSet>
 </org.eventb.core.poFile>
