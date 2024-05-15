@@ -175,7 +175,6 @@ public class StMappedOntoRelTableViewTest {
                 create view "schema"."tableName"(
                   "ontorelColumnId"
                 )
-                  with (security_barrier=true, check_option=cascaded)
                 as
                 with mmec_query as (
                   mmecQuery
@@ -195,7 +194,6 @@ public class StMappedOntoRelTableViewTest {
                   "ontorelSubjectColumnId",
                   "ontorelObjectColumnId"
                 )
-                  with (security_barrier=true, check_option=cascaded)
                 as
                 with mmec_query as (
                   mmecQuery
@@ -215,7 +213,6 @@ public class StMappedOntoRelTableViewTest {
                   "ontorelSubjectColumnId",
                   "ontorelValueColumnId"
                 )
-                  with (security_barrier=true, check_option=cascaded)
                 as
                 with mmec_query as (
                   mmecQuery
@@ -261,7 +258,6 @@ public class StMappedOntoRelTableViewTest {
                 create view "schema"."tableName"(
                   "ontorelColumnId"
                 )
-                  with (security_barrier=true, check_option=cascaded)
                 as
                 select null::ontorelColumnType
                 where false
@@ -278,7 +274,6 @@ public class StMappedOntoRelTableViewTest {
                   "ontorelSubjectColumnId",
                   "ontorelObjectColumnId"
                 )
-                  with (security_barrier=true, check_option=cascaded)
                 as
                 select null::ontorelSubjectColumnType, null::ontorelObjectColumnType
                 where false
@@ -295,7 +290,6 @@ public class StMappedOntoRelTableViewTest {
                   "ontorelSubjectColumnId",
                   "ontorelValueColumnId"
                 )
-                  with (security_barrier=true, check_option=cascaded)
                 as
                 select null::ontorelSubjectColumnType, null::ontorelValueColumnType
                 where false
