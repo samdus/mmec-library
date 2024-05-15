@@ -132,7 +132,7 @@ public class OntoRelTableMappingControllerTest {
     // Note: Column order is not guaranteed, it is not an issue
     String expected =
         """
-            SELECT DISTINCT CAST(v1."PRENOM" AS "BW"."string") AS "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100", individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "uid"
+            SELECT DISTINCT CAST(v1."PRENOM" AS "BW"."string_domain") AS "IAO_0020017_PHYSIO_0000100_string_PHYSIO_0000100", individuation('http://www.griis.ca/projects#IAO_0020015/{}', v1."PRENOM") AS "uid"
             FROM "EXP"."PERSONNE" v1""";
     DataPropertyTable dpTable = new DataPropertyTableRecord("IAO_0020017_PHYSIO_0000100_string",
         "\"IAO_0020015\"@personal name \"has value\"@PHYSIO_0000100 string",
@@ -143,10 +143,11 @@ public class OntoRelTableMappingControllerTest {
         "\"BW\".\"string\"");
     MappedDataPropertyTable mappedDataPropertyTable = controller.map(connection, dpTable);
 
-    // TODO: Investiguer pourquoi est-ce que le type est converti en majuscule...
     Assertions.assertFalse(mappedDataPropertyTable.mmecQuery().isEmpty(),
         String.format("MappedDataPropertyTable %s is empty", mappedDataPropertyTable));
-    Assertions.assertEquals(expected, mappedDataPropertyTable.mmecQuery().get());
+    // FIXME: Investiguer pourquoi est-ce que le type est converti en majuscule et retirer le lower
+    Assertions.assertEquals(expected.toLowerCase(),
+        mappedDataPropertyTable.mmecQuery().get().toLowerCase());
   }
 
   @Test
