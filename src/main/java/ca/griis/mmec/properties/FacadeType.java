@@ -49,7 +49,8 @@ public enum FacadeType {
   /**
    * Façade d'arrimage à partir de vues.
    */
-  VIEWS("/templates/postgres/views.stg");
+  VIEWS("/templates/postgres/views.stg"),
+  INSERTS("/templates/postgres/insert.stg");
 
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(FacadeType.class);
   private URL stgUrl;
