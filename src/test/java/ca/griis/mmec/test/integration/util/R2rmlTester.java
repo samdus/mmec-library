@@ -29,9 +29,12 @@ import it.unibz.inf.ontop.spec.mapping.Mapping;
 import it.unibz.inf.ontop.spec.ontology.Ontology;
 import it.unibz.inf.ontop.spec.ontology.owlapi.OWLAPITranslatorOWL2QL;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.apache.commons.rdf.api.IRI;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.query.algebra.Compare;
@@ -185,8 +188,14 @@ public class R2rmlTester extends OntopTester {
   // return builder.toString();
   // }
 
-  public void testGetAllDefinitions(OntopConnection connection) {
-    ontoRelCatRepository.getClassTables(mappingProperties.getOntoRelId())
+  public void testGetAllDefinitions(OntopConnection connection) throws FileNotFoundException {
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("-- ========================================================\n");
+    builder.append("-- Classes\n");
+    builder.append("-- ========================================================\n");
+
+    builder.append(ontoRelCatRepository.getClassTables(mappingProperties.getOntoRelId())
         .stream()
         .map(classTable -> {
           try {
@@ -196,9 +205,13 @@ public class R2rmlTester extends OntopTester {
           }
         })
         .map(mappedOntoRelTableView::getExpression)
-        .forEach(System.out::println);
+        .collect(Collectors.joining("\n")));
 
-    ontoRelCatRepository.getObjectPropertyTables(mappingProperties.getOntoRelId())
+    builder.append("-- ========================================================\n");
+    builder.append("-- ObjectProperties\n");
+    builder.append("-- ========================================================\n");
+
+    builder.append(ontoRelCatRepository.getObjectPropertyTables(mappingProperties.getOntoRelId())
         .stream()
         .map(opTable -> {
           try {
@@ -208,9 +221,12 @@ public class R2rmlTester extends OntopTester {
           }
         })
         .map(mappedOntoRelTableView::getExpression)
-        .forEach(System.out::println);
+        .collect(Collectors.joining("\n")));
 
-    ontoRelCatRepository.getDataPropertyTables(mappingProperties.getOntoRelId())
+    builder.append("-- ========================================================\n");
+    builder.append("-- DataProperties\n");
+    builder.append("-- ========================================================\n");
+    builder.append(ontoRelCatRepository.getDataPropertyTables(mappingProperties.getOntoRelId())
         .stream()
         .map(dpTable -> {
           try {
@@ -220,8 +236,11 @@ public class R2rmlTester extends OntopTester {
           }
         })
         .map(mappedOntoRelTableView::getExpression)
-        .forEach(System.out::println);
+        .collect(Collectors.joining("\n")));
 
+    try (PrintWriter writer = new PrintWriter("build/tmp/test/complete_mapping.sql")) {
+      writer.write(builder.toString());
+    }
   }
 
   public void testFigureCasDeBase(OntopConnection connection)
