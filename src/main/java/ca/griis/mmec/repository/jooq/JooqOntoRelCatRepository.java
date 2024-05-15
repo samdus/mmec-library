@@ -67,7 +67,7 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
   public List<ClassTable> getClassTables(String ontoRelId) {
     return Routines.getClassTables(context.configuration(), ontoRelId, langString)
         .stream()
-        .map(record -> new ClassTableRecord(record.getIri(), record.getLabel(), record.getIri(),
+        .map(record -> new ClassTableRecord(record.getTableName(), record.getLabel(), record.getIri(),
             record.getOntorelColumnId(), record.getOntorelColumnType()))
         .map(ClassTable.class::cast)
         .toList();
