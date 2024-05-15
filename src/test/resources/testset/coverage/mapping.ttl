@@ -10,7 +10,7 @@
 @prefix :       <http://www.griis.ca/projects#> .
 @base <http://www.griis.ca/projects#> .
 
-<http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437>
+obo:humanbodyweight-appli:couverture:v1.0
     a mmec:OntoRel .
 
 <https://griis.ca/JeDIS>
@@ -18,7 +18,7 @@
 
 :MappingHeader
     a            mmec:MappingHeader ;
-    mmec:ontorel <http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0/20240313-1437> ;
+    mmec:ontorel obo:humanbodyweight-appli:couverture:v1.0 ;
     mmec:source  <https://griis.ca/JeDIS> .
 
 # ----------------------------------------------------------------------------------------------------------------------
