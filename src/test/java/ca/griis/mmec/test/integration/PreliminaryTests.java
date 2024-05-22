@@ -27,6 +27,7 @@ public class PreliminaryTests {
             try {
               Path ontologyFile = null;
               Path mappingFile = null;
+              String ontoRelId = file.getFileName().toString();
 
               try (DirectoryStream<Path> fichiers = Files.newDirectoryStream(file)) {
                 for (Path fichier : fichiers) {
@@ -40,7 +41,7 @@ public class PreliminaryTests {
                 }
               }
 
-              return Arguments.of(ontologyFile, mappingFile);
+              return Arguments.of(ontoRelId, ontologyFile, mappingFile);
             } catch (IOException e) {
               throw new RuntimeException(e);
             }
@@ -52,34 +53,35 @@ public class PreliminaryTests {
 
   @ParameterizedTest
   @MethodSource("listTestElements")
-  public void testOptimize(Path ontologyFile, Path mappingFile)
+  public void testOptimize(String ontoRelId, Path ontologyFile, Path mappingFile)
       throws Exception {
-    OptimizeTester tester = new OptimizeTester(postgresContainerWrapper,
-        ontologyFile.toFile(),
-        mappingFile.toFile());
+    OptimizeTester tester = new OptimizeTester(postgresContainerWrapper, ontoRelId,
+        ontologyFile.toFile(), mappingFile.toFile());
     tester.runTest();
   }
 
   @ParameterizedTest
   @MethodSource("listTestElements")
-  public void testR2RML(Path ontologyFile, Path mappingFile) throws Exception {
-    R2rmlTester tester = new R2rmlTester(postgresContainerWrapper,
-        ontologyFile.toFile(),
-        mappingFile.toFile());
+  public void testR2RML(String ontoRelId, Path ontologyFile, Path mappingFile) throws Exception {
+    R2rmlTester tester = new R2rmlTester(postgresContainerWrapper, ontoRelId,
+        ontologyFile.toFile(), mappingFile.toFile());
     tester.runTest();
   }
 
   @Test
   public void specificTest() throws Exception {
+    String testSet = "basicR2RML";
     R2rmlTester tester = new R2rmlTester(postgresContainerWrapper,
-        Paths.get("src", "test", "resources", "testset", "coverage", "ontology.ttl").toFile(),
-        Paths.get("src", "test", "resources", "testset", "coverage", "mapping.ttl").toFile());
+        testSet,
+        Paths.get("src", "test", "resources", "testset", testSet, "ontology.ttl").toFile(),
+        Paths.get("src", "test", "resources", "testset", testSet, "mapping.ttl").toFile());
     tester.runTest();
   }
 
   @Test
   public void testWithoutMMec() throws Exception {
     R2rmlTester tester = new R2rmlTester(postgresContainerWrapper,
+        "basicR2RML",
         Paths.get("src", "test", "resources", "testset", "basicR2RML", "ontology.ttl").toFile(),
         Paths.get("src", "test", "resources", "testset", "basicR2RML", "mapping.ttl").toFile());
 

@@ -140,6 +140,8 @@ Voir comment Ontop gère ça, intuitivement on devrait pouvoir ne rien faire de 
 . Créer une instance de la base de données
 . Générer la figure schemaSpy à l'aide de la commande: `schemaspy-griis-application -t pgsql11 -dp $PG_DRIVER -vizjs -imageformat svg -host localhost -port 15433 -db ontorelcat-ldm -u postgres -p postgres -o ./src/test/resources/testset/coverage/schemaSpy -desc "Documentation de la base de données de couverture." -all -schemaSpec '(?!^information_schema|pg_.+|sys.+).*'`
 . Importer le fichier "src/test/resources/testset/coverage/schemaSpy/BW/diagrams/summary/relationships.real.large.svg" dans le fichier "cas_limites_individuation.graffle" en glissant et déposant l'icone du fichier dans un nouveau calque.
+. Copier l'ontologie normalisée dans le fichier "ontology.ttl"
+. Copier l'OntoRelCat dans le fichier "OntoRelCat_ins.sql"
 
 == Références
 L'ontologie de référence a été développée dans le cadre du développement d'OntoRelA: Khnaisser, C., Lavoie, L., Fraikin, B., Barton, A., Dussault, S., Burgun, A., Ethier, J.-F., 2022. Using an ontology to derive a sharable and interoperable relational data model for heterogeneous healthcare data and various applications. Methods Inf Med a-1877-9498. https://doi.org/10.1055/a-1877-9498

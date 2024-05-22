@@ -48,9 +48,9 @@ public class OptimizeTester extends OntopTester {
     }
   };
 
-  public OptimizeTester(PostgresContainerWrapper postgresContainerWrapper, File ontologyFile,
-      File mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
-    super(postgresContainerWrapper, ontologyFile, mappingFile);
+  public OptimizeTester(PostgresContainerWrapper postgresContainerWrapper, String ontoRelId,
+      File ontologyFile, File mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
+    super(postgresContainerWrapper, ontoRelId, ontologyFile, mappingFile);
   }
 
   public void runTest() throws Exception {

@@ -1,0 +1,11 @@
+
+======================================================= 
+OntoRel Diagnostics
+======================================================= 
+
+--------------------------------------- 
+OWL to SQL datatypes
+--------------------------------------- 
+============ Reduction summary
+Creating join table for: ONTORELA_C0004X [1..*] rel ONTORELA_C0006X
+Creating join table for: tst1 [1..*] rel ONTORELA_C0004X

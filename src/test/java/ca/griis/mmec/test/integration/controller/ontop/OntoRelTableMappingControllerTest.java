@@ -44,6 +44,7 @@ public class OntoRelTableMappingControllerTest {
   private static OntopConnection connection;
   private static final OntopTester ontopTester = new OntopTester(
       PostgresContainerWrapper.getInstance(),
+      "coverage",
       Paths.get("src", "test", "resources", "testset", "coverage", "ontology.ttl").toFile(),
       Paths.get("src", "test", "resources", "testset", "coverage", "mapping.ttl").toFile());
 

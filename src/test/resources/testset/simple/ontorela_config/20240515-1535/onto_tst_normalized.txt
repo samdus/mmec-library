@@ -1,0 +1,34 @@
+ONTOLOGY :"onto_tst"  
+
+PROPERTY :"rel"  
+
+PROPERTY :"has_value"  
+
+CLASS :"ONTORELA_C0004X"   
+  LABEL @fr 'tst1 C0004X'
+    @en 'tst1 C0004Xtst3 | rel | tst2' 
+  DESCRIPTION @fr 'tst1 C0004X'
+    @en 'tst1 C0004X' 
+  :"rel"  [1..*] :"ONTORELA_C0006X" 
+
+CLASS :"ONTORELA_C0006X"   
+  LABEL @fr 'tst1 C0004X unionOf '
+    @en 'tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3' 
+  DESCRIPTION @fr 'tst1 C0004X unionOf '
+    @en 'tst1 C0004Xtst3 | rel | tst2 unionOf ' 
+
+CLASS :"tst3"   
+  ISA :"ONTORELA_C0006X" 
+  ISA :"tst"  
+
+CLASS :"tst2"   
+  ISA :"tst" 
+  ISA :"ONTORELA_C0006X"  
+
+CLASS :"tst1"   
+  ISA :"tst"  
+  :"rel"  [1..*] :"ONTORELA_C0004X" 
+
+CLASS :"tst"   
+  :"has_value"  [1..1] :"string" 
+

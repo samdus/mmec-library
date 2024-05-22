@@ -1,0 +1,20 @@
+
+======================================================= 
+Long view identifiers anomalies
+======================================================= 
+  Note : if the identifier is long, the IRI idenfiers will be used.
+
+--------------------------------------- 
+Long view name and attributes identifiers
+--------------------------------------- 
+
+
+
+
+
+
+
+
+  View name @en: tst1 C0004Xtst3 | rel | tst2 rel tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3
+
+

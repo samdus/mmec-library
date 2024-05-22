@@ -57,7 +57,7 @@
     mmec:conversionInputType  [ a                        mmec:SQLType ;
                                 mmec:qualifiedIdentifier "integer" ] ;
     mmec:conversionOutputType [ a                        mmec:SQLType ;
-                                mmec:qualifiedIdentifier "\"BW\".\"string\"" ] .
+                                mmec:qualifiedIdentifier "\"simple\".\"string_domain\"" ] .
 
 <Mapping:SharedSignature1>
     a mmec:SignatureSuperset .

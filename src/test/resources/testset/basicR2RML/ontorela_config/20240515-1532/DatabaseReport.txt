@@ -1,0 +1,42 @@
+
+======================================================= 
+Database Report
+======================================================= 
+onto_tst
+Schemas: 1
+  Schema [id=simple, schemaType=BASE]
+
+--------------------------------------- 
+simple
+--------------------------------------- 
+All Tables: 10
+Join Tables: 2
+Types: 4
+Foreign keys: 13
+Constraints: 3
+
+Tables:
+  T7f4f794200::Thing
+  T4f2a1f1000::tst3
+  T29732e8200::tst
+  T305deffb00::ONTORELA_C0004X
+  T305df03900::ONTORELA_C0006X
+  T4f2a1f0000::tst2
+  T4f2a1ef000::tst1
+  T75162af000::tst_has_value_string
+  T7f06a14e00::ONTORELA_C0004X_rel_ONTORELA_C0006X
+  T3801380400::tst1_rel_ONTORELA_C0004X
+Foreign keys: 
+  ForeignKey [foreignKeyType=ISA, fkId=fk0_T29732e8200, origin=T29732e8200::tst, destination=T7f4f794200::Thing, linkedAtt={T29732e8200_uid::tst_uid uid_domain=T7f4f794200_uid::Thing_uid uid_domain}]
+  ForeignKey [foreignKeyType=ISA, fkId=fk0_T305deffb00, origin=T305deffb00::ONTORELA_C0004X, destination=T7f4f794200::Thing, linkedAtt={T305deffb00_uid::ONTORELA_C0004X_uid uid_domain=T7f4f794200_uid::Thing_uid uid_domain}]
+  ForeignKey [foreignKeyType=ISA, fkId=fk0_T305df03900, origin=T305df03900::ONTORELA_C0006X, destination=T7f4f794200::Thing, linkedAtt={T305df03900_uid::ONTORELA_C0006X_uid uid_domain=T7f4f794200_uid::Thing_uid uid_domain}]
+  ForeignKey [foreignKeyType=ISA, fkId=fk0_T4f2a1f0000, origin=T4f2a1f0000::tst2, destination=T305df03900::ONTORELA_C0006X, linkedAtt={T4f2a1f0000_uid::tst2_uid uid_domain=T305df03900_uid::ONTORELA_C0006X_uid uid_domain}]
+  ForeignKey [foreignKeyType=ISA, fkId=fk0_T4f2a1f1000, origin=T4f2a1f1000::tst3, destination=T29732e8200::tst, linkedAtt={T4f2a1f1000_uid::tst3_uid uid_domain=T29732e8200_uid::tst_uid uid_domain}]
+  ForeignKey [foreignKeyType=ISA, fkId=fk0_T4f2a1ef000, origin=T4f2a1ef000::tst1, destination=T29732e8200::tst, linkedAtt={T4f2a1ef000_uid::tst1_uid uid_domain=T29732e8200_uid::tst_uid uid_domain}]
+  ForeignKey [foreignKeyType=ISA, fkId=fk1_T4f2a1f0000, origin=T4f2a1f0000::tst2, destination=T29732e8200::tst, linkedAtt={T4f2a1f0000_uid::tst2_uid uid_domain=T29732e8200_uid::tst_uid uid_domain}]
+  ForeignKey [foreignKeyType=ISA, fkId=fk1_T4f2a1f1000, origin=T4f2a1f1000::tst3, destination=T305df03900::ONTORELA_C0006X, linkedAtt={T4f2a1f1000_uid::tst3_uid uid_domain=T305df03900_uid::ONTORELA_C0006X_uid uid_domain}]
+  ForeignKey [foreignKeyType=DATAPROPERTY, fkId=fk0_T75162af000, origin=T75162af000::tst_has_value_string, destination=T29732e8200::tst, linkedAtt={T29732e8200_uid::tst_uid uid_domain=T29732e8200_uid::tst_uid uid_domain}]
+  ForeignKey [foreignKeyType=OBJECTPROPERTY, fkId=fk0_T7f06a14e00, origin=T7f06a14e00::ONTORELA_C0004X_rel_ONTORELA_C0006X, destination=T305deffb00::ONTORELA_C0004X, linkedAtt={T305deffb00_uid::ONTORELA_C0004X_uid uid_domain=T305deffb00_uid::ONTORELA_C0004X_uid uid_domain}]
+  ForeignKey [foreignKeyType=OBJECTPROPERTY, fkId=fk1_T7f06a14e00, origin=T7f06a14e00::ONTORELA_C0004X_rel_ONTORELA_C0006X, destination=T305df03900::ONTORELA_C0006X, linkedAtt={T305df03900_uid::ONTORELA_C0006X_uid uid_domain=T305df03900_uid::ONTORELA_C0006X_uid uid_domain}]
+  ForeignKey [foreignKeyType=OBJECTPROPERTY, fkId=fk0_T3801380400, origin=T3801380400::tst1_rel_ONTORELA_C0004X, destination=T4f2a1ef000::tst1, linkedAtt={T4f2a1ef000_uid::tst1_uid uid_domain=T4f2a1ef000_uid::tst1_uid uid_domain}]
+  ForeignKey [foreignKeyType=OBJECTPROPERTY, fkId=fk1_T3801380400, origin=T3801380400::tst1_rel_ONTORELA_C0004X, destination=T305deffb00::ONTORELA_C0004X, linkedAtt={T305deffb00_uid::ONTORELA_C0004X_uid uid_domain=T305deffb00_uid::ONTORELA_C0004X_uid uid_domain}]

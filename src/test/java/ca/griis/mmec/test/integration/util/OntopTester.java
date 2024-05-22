@@ -56,8 +56,8 @@ public class OntopTester {
   public final OntoRelTableMappingController ontoRelTableMappingController;
   public static final String injectionConfigurationFile = "defaultConfiguration.properties";
 
-  public OntopTester(PostgresContainerWrapper postgresContainerWrapper, File ontologyFile,
-      File mappingFile) {
+  public OntopTester(PostgresContainerWrapper postgresContainerWrapper, String ontoRelId,
+      File ontologyFile, File mappingFile) {
     Properties dbProperties = postgresContainerWrapper.getPropertiesForOntop();
     Properties defaultConfigurationProperties = null;
     try {
@@ -66,9 +66,8 @@ public class OntopTester {
       System.err.println(e.getMessage());
     }
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
-    // TODO: Ajouter un fichier de paramètre dans chaque testset
     mappingProperties = new MappingPropertiesBuilder()
-        .withOntoRelId("c01367c9-d1a9-4d37-be22-32df5b83f8d5")
+        .withOntoRelId(ontoRelId)
         .withMappingSchema("MappingSchema")
         .build();
     FacadeProperties facadeProperties = new FacadePropertiesBuilder()

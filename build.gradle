@@ -42,11 +42,11 @@ dependencies {
     api "it.unibz.inf.ontop:ontop-system-sql-core:$ontopVersion"
     api "it.unibz.inf.ontop:ontop-system-sql-owlapi:$ontopVersion"
 
-    implementation "ca.griis:logger-library:2.0.1-SNAPSHOT"
-    implementation "org.jooq:jooq:3.19.0"
-    implementation "ca.griis:ontorelcat-jooqclient-library:1.0.0-SNAPSHOT"
+    implementation "ca.griis:logger-library:1.+"
+    implementation "org.jooq:jooq"
     implementation "org.postgresql:postgresql"
 
+    implementation "ca.griis:ontorelcat-jooqclient-library:1.+"
     implementation "org.antlr:ST4:4.3.4"
 
     // Versions minimales des dépendances transitives de RDF4J pour prévenir le CVE-2018-1000644

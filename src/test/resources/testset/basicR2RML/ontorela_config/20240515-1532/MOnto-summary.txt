@@ -1,0 +1,34 @@
+
+======================================================= 
+MOnto summary
+======================================================= 
+Original ontology : http://www.griis.ca/projects/onto_tst
+Alias : onto_tst
+@en Label : null
+
+--------------------------------------- 
+Original ontology
+--------------------------------------- 
+Nb. classes          : 6
+Nb. data properties  : 1
+Nb. object properties: 1
+Nb. isa axioms       : 5
+Nb. data axioms      : 1
+Nb. class axioms     : 2
+
+--------------------------------------- 
+Reduced ontology (axiom complexity reduction)
+--------------------------------------- 
+Nb. classes          : 6
+Nb. data properties  : 1
+Nb. object properties: 1
+Nb. isa axioms       : 5
+Nb. data axioms      : 1
+Nb. class axioms     : 2
+Nb. reduced class axioms: 0
+
+--------------------------------------- 
+Other
+--------------------------------------- 
+Execution time: 0 sec
+Output total size: 16 KB

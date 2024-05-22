@@ -1,0 +1,118 @@
+
+======================================================= 
+Ontology Details
+======================================================= 
+IRI_owlapi [ontoIRI=OntoIRI [fullIRI=http://www.griis.ca/projects/onto_tst, shortIRI=onto_tst], iriOwlapi=http://www.griis.ca/projects/onto_tst]
+
+--------------------------------------- 
+Imported Ontology : 0
+--------------------------------------- 
+
+--------------------------------------- 
+Prefixes : 6
+--------------------------------------- 
+  OntoPrefix [alias=xml:, path=http://www.w3.org/XML/1998/namespace]
+  OntoPrefix [alias=rdfs:, path=http://www.w3.org/2000/01/rdf-schema#]
+  OntoPrefix [alias=rdf:, path=http://www.w3.org/1999/02/22-rdf-syntax-ns#]
+  OntoPrefix [alias=:, path=http://www.griis.ca/projects/onto_tst#]
+  OntoPrefix [alias=owl:, path=http://www.w3.org/2002/07/owl#]
+  OntoPrefix [alias=xsd:, path=http://www.w3.org/2001/XMLSchema#]
+
+--------------------------------------- 
+Datatypes : 2
+--------------------------------------- 
+  OntoDatatype [name=langString OntoIRI [fullIRI=http://www.w3.org/1999/02/22-rdf-syntax-ns#langString, shortIRI=langString]]
+  OntoDatatype [name=string OntoIRI [fullIRI=http://www.w3.org/2001/XMLSchema#string, shortIRI=string]]
+
+--------------------------------------- 
+Data properties : 1
+--------------------------------------- 
+DataProperty_owlapi [<http://www.griis.ca/projects/has_value>, isFunctional=false]
+  Domain : 
+  Range : 
+
+--------------------------------------- 
+Object properties : 1
+--------------------------------------- 
+ObjectProperty_owlapi [<http://www.griis.ca/projects/rel>, isFunctional=false, isInverseFunctional=false]
+  Domain : 
+  Range : 
+
+--------------------------------------- 
+ InverseOf Object Property : (Property, list of inverse)
+--------------------------------------- 
+
+--------------------------------------- 
+Classes : 6
+--------------------------------------- 
+OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/ONTORELA_C0004X, shortIRI=ONTORELA_C0004X],type=DECLARED]
+OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=DECLARED]
+OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst3, shortIRI=tst3],type=DECLARED]
+  ISA http://www.griis.ca/projects/tst
+  ISA http://www.griis.ca/projects/ONTORELA_C0006X
+OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst2, shortIRI=tst2],type=DECLARED]
+  ISA http://www.griis.ca/projects/ONTORELA_C0006X
+  ISA http://www.griis.ca/projects/tst
+OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst1, shortIRI=tst1],type=DECLARED]
+  ISA http://www.griis.ca/projects/tst
+OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst, shortIRI=tst],type=DECLARED]
+
+--------------------------------------- 
+Class Inheritance Axioms : 5
+--------------------------------------- 
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst2, shortIRI=tst2],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=DECLARED]
+ axiomOrigin=DECLARED]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst3, shortIRI=tst3],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst, shortIRI=tst],type=DECLARED]
+ axiomOrigin=DECLARED]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst1, shortIRI=tst1],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst, shortIRI=tst],type=DECLARED]
+ axiomOrigin=DECLARED]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst2, shortIRI=tst2],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst, shortIRI=tst],type=DECLARED]
+ axiomOrigin=DECLARED]
+  ISA [
+ subclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst3, shortIRI=tst3],type=DECLARED]
+ superclass=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=DECLARED]
+ axiomOrigin=DECLARED]
+
+--------------------------------------- 
+Data Association Axioms : 1
+--------------------------------------- 
+  OntoAxiomData [
+  axiomType=ASSOCIATION
+  determinant=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst, shortIRI=tst],type=DECLARED]
+  participation=Participation [participationType=EXACT, min=1, max=1]
+  property=DataProperty_owlapi [<http://www.griis.ca/projects/has_value>, isFunctional=false]
+  dependent=OwlApiDatatype [ontoDatatype=OntoDatatype [name=string OntoIRI [fullIRI=http://www.w3.org/2001/XMLSchema#string, shortIRI=string]], owlDatatype=xsd:string]
+  axiomOrigin=DECLARED
+  annotations=OntoAnnotationSet [OntoAnnotation [type=DEFINITION, language=fr, value=DataExactCardinality(1 <http://www.griis.ca/projects/has_value> xsd:string)]
+OntoAnnotation [type=DEFINITION, language=en, value=DataExactCardinality(1 <http://www.griis.ca/projects/has_value> xsd:string)]
+]]
+
+--------------------------------------- 
+Class Association Axioms : 2
+--------------------------------------- 
+  OntoAxiomClass [
+  axiomType=ASSOCIATION
+  determinant=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/ONTORELA_C0004X, shortIRI=ONTORELA_C0004X],type=DECLARED]
+  participation=Participation [participationType=MIN, min=1, max=2147483647]
+  property=ObjectProperty_owlapi [<http://www.griis.ca/projects/rel>, isFunctional=false, isInverseFunctional=false]
+  dependent=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/ONTORELA_C0006X, shortIRI=ONTORELA_C0006X],type=DECLARED]
+  axiomOrigin=DECLARED  annotations=OntoAnnotationSet [OntoAnnotation [type=DEFINITION, language=fr, value=ObjectMinCardinality(1 <http://www.griis.ca/projects/rel> <http://www.griis.ca/projects/ONTORELA_C0006X>)]
+OntoAnnotation [type=DEFINITION, language=en, value=ObjectMinCardinality(1 <http://www.griis.ca/projects/rel> <http://www.griis.ca/projects/ONTORELA_C0006X>)]
+]]
+  OntoAxiomClass [
+  axiomType=ASSOCIATION
+  determinant=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/tst1, shortIRI=tst1],type=DECLARED]
+  participation=Participation [participationType=MIN, min=1, max=2147483647]
+  property=ObjectProperty_owlapi [<http://www.griis.ca/projects/rel>, isFunctional=false, isInverseFunctional=false]
+  dependent=OntoClass [OntoIRI [fullIRI=http://www.griis.ca/projects/ONTORELA_C0004X, shortIRI=ONTORELA_C0004X],type=DECLARED]
+  axiomOrigin=DECLARED  annotations=OntoAnnotationSet [OntoAnnotation [type=DEFINITION, language=fr, value=ObjectMinCardinality(1 <http://www.griis.ca/projects/rel> <http://www.griis.ca/projects/ONTORELA_C0004X>)]
+OntoAnnotation [type=DEFINITION, language=en, value=ObjectMinCardinality(1 <http://www.griis.ca/projects/rel> <http://www.griis.ca/projects/ONTORELA_C0004X>)]
+]]

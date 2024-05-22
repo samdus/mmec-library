@@ -1,0 +1,160 @@
+
+======================================================= 
+Long view identifiers anomalies
+======================================================= 
+  Note : if the identifier is long, the IRI idenfiers will be used.
+
+--------------------------------------- 
+Long view name and attributes identifiers
+--------------------------------------- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  View name @en: data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+    View attribute @en: uid data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+
+
+
+
+  View name @en: human biological sex or gender identity information content entity
+    View attribute @en: uid human biological sex or gender identity information content entity
+
+
+
+
+
+  View name @en: female biological sex or gender identity information content entity
+    View attribute @en: uid female biological sex or gender identity information content entity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  View name @en: intersex biological sex or non-binary gender identity information content entity
+    View attribute @en: uid intersex biological sex or non-binary gender identity information content entity
+
+
+
+
+
+
+
+
+
+
+
+
+
+  View name @en: male biological sex or gender identity information content entity
+    View attribute @en: uid male biological sex or gender identity information content entity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  View name @en: medical record identifier denotes health care record
+ and (is about some patient)
+
+
+
+
+
+
+  View name @en: (disposition or quality)
+ and (inheres in some organism) inheres in organism
+
+
+  View name @en: data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism))) is about (disposition or quality)
+ and (inheres in some organism)
+    View attribute @en: uid data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+
+
+  View name @en: physiological evaluation report has part physiological data item
+
+  View name @en: physiological evaluation report has part medical record identifier
+
+  View name @en: physiological data item is_specified_output_of physiological evaluation
+
+  View name @en: physiological evaluation from health care provider has evaluant health care provider
+
+  View name @en: measurement datum has measurement unit label measurement unit label
+
+  View name @en: scalar measurement datum has measurement unit label measurement unit label
+
+
+
+
+  View name @en: health care record
+ and (is about some patient) is about patient
+
+
+
+  View name @en: physiological evaluation has_specified_output data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+    View attribute @en: uid data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+
+======================================================= 
+Classes without data association axiom
+======================================================= 
+http://www.griis.ca/projects/ONTORELA_C0004X
+http://www.griis.ca/projects/ONTORELA_C0006X
+http://www.griis.ca/projects/tst3
+http://www.griis.ca/projects/tst2
+http://www.griis.ca/projects/tst1
+
+======================================================= 
+Leaf classes without data association axiom
+======================================================= 
+http://www.griis.ca/projects/tst3
+http://www.griis.ca/projects/tst2
+
+======================================================= 
+Isolated classes
+======================================================= 
+
+======================================================= 
+Detected Inverse Cycles
+======================================================= 

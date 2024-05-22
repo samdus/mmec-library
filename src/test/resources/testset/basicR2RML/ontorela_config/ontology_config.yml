@@ -1,4 +1,4 @@
-owlFilePath: ../ontology.ttl
+owlFilePath: ontology.ttl
 loadEquivalentClass: true
 annotations:
   labels:
