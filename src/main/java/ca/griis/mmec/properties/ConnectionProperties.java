@@ -16,7 +16,11 @@ package ca.griis.mmec.properties;
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Hashtable;
 import java.util.Properties;
+import java.util.stream.Stream;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -48,6 +52,8 @@ import java.util.Properties;
 public abstract class ConnectionProperties {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(ConnectionProperties.class);
+  public static final String defaultOntopConfigurationFile = "defaultConfiguration.properties";
+
 
   /**
    * @brief @~english «Description of the method»
@@ -119,15 +125,17 @@ public abstract class ConnectionProperties {
   /**
    * @brief @~english «Description of the method»
    * @return «Return description»
+   * @throws IOException «Exception description»
    *
    * @brief @~french Récupérer les propriétés dans un format compréhensible pour Ontop
    * @return un Object Properties contenant les propriétés de connexion à la base de données.
+   * @throws IOException si le fichier de configuration par défaut n'est pas trouvé.
    *
    * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
    * @par Tâches
    *      S.O.
    */
-  public Properties getPropertiesForOntop() {
+  public Properties getPropertiesForOntop() throws IOException {
     logger.trace(Trace.ENTER_METHOD_0);
 
     Properties properties = new Properties();
@@ -137,7 +145,25 @@ public abstract class ConnectionProperties {
     properties.setProperty("jdbc.user", getUsername());
     properties.setProperty("jdbc.password", getPassword());
 
-    logger.trace(Trace.EXIT_METHOD_0);
-    return properties;
+    return mergeProperties(getDefaultOntopConfigurationProperties(), properties);
+  }
+
+  private Properties mergeProperties(Properties... properties) {
+    return Stream.of(properties)
+        .collect(Properties::new, Hashtable::putAll, Hashtable::putAll);
+  }
+
+  private Properties getDefaultOntopConfigurationProperties() throws IOException {
+    Properties prop = new Properties();
+
+    try (InputStream propStream = this.getClass().getClassLoader()
+        .getResourceAsStream(defaultOntopConfigurationFile)) {
+      if (propStream == null) {
+        throw new IOException("Cannot find file " + defaultOntopConfigurationFile);
+      }
+
+      prop.load(propStream);
+      return prop;
+    }
   }
 }

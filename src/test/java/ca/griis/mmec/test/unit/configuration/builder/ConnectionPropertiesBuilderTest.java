@@ -15,6 +15,7 @@ package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.builder.ConnectionPropertiesBuilder;
+import java.io.IOException;
 import java.util.Properties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -80,7 +81,7 @@ public class ConnectionPropertiesBuilderTest {
   }
 
   @Test
-  public void testBuildConnexionGetOntopConfiguration() {
+  public void testBuildConnexionGetOntopConfiguration() throws IOException {
     String driverName = "TestDriver";
     String databaseName = "TestDatabase";
     String jdbcUrl = "jdbc:test";

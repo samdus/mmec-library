@@ -7,11 +7,11 @@
  *
  * @version @@GRIIS_VERSION@@
  *
- * @brief @~french Implémentation de l'objet MappingConfiguration.
- * @brief @~english MappingConfiguration object implementation.
+ * @brief @~french Implémentation de la classe DefaultOntopConfigurationNotFound.
+ * @brief @~english DefaultOntopConfigurationNotFound class implementation.
  */
 
-package ca.griis.mmec.properties;
+package ca.griis.mmec.api.exception;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -24,7 +24,7 @@ package ca.griis.mmec.properties;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french Configurations de l'arrimage.
+ * @brief @~french «Brève description de la composante (classe, interface, ...)»
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -35,17 +35,13 @@ package ca.griis.mmec.properties;
  *      S.O.
  *
  * @par Historique
- *      2023-09-06 [SD] - Implémentation initiale<br>
+ *      2024-05-22 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
  *      S.O.
  */
-public abstract class MappingProperties {
-  public abstract String getOntoRelId();
-
-  public abstract String getMappingSchema();
-
-  public abstract String getR2rmlMappingFilePath();
-
-  public abstract String getOntologyFilePath();
+public class DefaultOntopConfigurationNotFound extends Exception {
+  public DefaultOntopConfigurationNotFound(Throwable cause) {
+    super("Cannot find the default Ontop configuration file.", cause);
+  }
 }

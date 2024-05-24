@@ -56,7 +56,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 public class R2rmlTester extends OntopTester {
 
   public R2rmlTester(PostgresContainerWrapper postgresContainerWrapper, String ontoRelId,
-      File ontologyFile, File mappingFile) throws ClassNotFoundException, IOException, OWLOntologyCreationException {
+      File ontologyFile, File mappingFile)
+      throws ClassNotFoundException, IOException, OWLOntologyCreationException {
     super(postgresContainerWrapper, ontoRelId, ontologyFile, mappingFile);
   }
 

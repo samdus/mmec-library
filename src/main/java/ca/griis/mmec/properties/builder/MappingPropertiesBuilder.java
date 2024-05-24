@@ -52,6 +52,8 @@ public class MappingPropertiesBuilder {
 
   private String ontoRelId;
   private String mappingSchema;
+  private String r2rmlMappingFilePath;
+  private String ontologyFilePath;
 
   /**
    * @brief @~english «Description of the function»
@@ -65,7 +67,8 @@ public class MappingPropertiesBuilder {
   public MappingProperties build() {
     logger.trace(Trace.ENTER_METHOD_0);
 
-    return new MappingPropertiesImpl(ontoRelId, mappingSchema);
+    return new MappingPropertiesImpl(ontoRelId, mappingSchema, r2rmlMappingFilePath,
+        ontologyFilePath);
   }
 
   public String getOntoRelId() {
@@ -83,6 +86,16 @@ public class MappingPropertiesBuilder {
 
   public MappingPropertiesBuilder withMappingSchema(String mappingSchema) {
     this.mappingSchema = mappingSchema;
+    return this;
+  }
+
+  public MappingPropertiesBuilder withR2rmlMappingFilePath(String r2rmlMappingFilePath) {
+    this.r2rmlMappingFilePath = r2rmlMappingFilePath;
+    return this;
+  }
+
+  public MappingPropertiesBuilder withOntologyFilePath(String ontologyFilePath) {
+    this.ontologyFilePath = ontologyFilePath;
     return this;
   }
 }

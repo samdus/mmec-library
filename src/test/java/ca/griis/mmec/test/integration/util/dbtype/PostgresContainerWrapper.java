@@ -177,8 +177,24 @@ public class PostgresContainerWrapper implements Closeable {
     return "PostgreSQL";
   }
 
+  public String getDataBaseName() {
+    return container.getDatabaseName();
+  }
+
   public String getDriverName() {
     return "org.postgresql.Driver";
+  }
+
+  public String getJdbcUrl() {
+    return container.getJdbcUrl();
+  }
+
+  public String getUsername() {
+    return container.getUsername();
+  }
+
+  public String getPassword() {
+    return container.getPassword();
   }
 
   public Properties getPropertiesForOntop() {

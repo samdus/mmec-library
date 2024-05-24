@@ -41,10 +41,15 @@ import ca.griis.mmec.properties.MappingProperties;
 public class MappingPropertiesImpl extends MappingProperties {
   private final String ontoRelId;
   private final String mappingSchema;
+  private final String r2rmlMappingFilePath;
+  private final String ontologyFilePath;
 
-  public MappingPropertiesImpl(String ontoRelId, String mappingSchema) {
+  public MappingPropertiesImpl(String ontoRelId, String mappingSchema, String r2rmlMappingFilePath,
+      String ontologyFilePath) {
     this.ontoRelId = ontoRelId;
     this.mappingSchema = mappingSchema;
+    this.r2rmlMappingFilePath = r2rmlMappingFilePath;
+    this.ontologyFilePath = ontologyFilePath;
   }
 
   @Override
@@ -55,5 +60,15 @@ public class MappingPropertiesImpl extends MappingProperties {
   @Override
   public String getMappingSchema() {
     return mappingSchema;
+  }
+
+  @Override
+  public String getR2rmlMappingFilePath() {
+    return r2rmlMappingFilePath;
+  }
+
+  @Override
+  public String getOntologyFilePath() {
+    return ontologyFilePath;
   }
 }
