@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.psFile>
-    <org.eventb.core.psStatus name="inv_subsets_transitive/THM" org.eventb.core.confidence="0" org.eventb.core.poStamp="37" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/type_subsets/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="37" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/type_signatureOfClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="37" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/inv_sign_disjointe/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="37" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="final/final_grd2/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="38" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="mapping/mapNextC_grd1/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="40" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="mapping/type_subsets/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="40" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="mapping/type_signatureOfClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="40" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="mapping/inv_sign_disjointe/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="40" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="mapping/mapNextC_addSignature/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="40" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="mapping/mapNextC_addSubsets/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="40" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="inv_noDeadlock/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="62" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/type_signatureForClasses/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="58" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="mapping/type_signatureForClasses/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="70" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="mapping/mapNextC_addSignature/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="70" org.eventb.core.psManual="true"/>
 </org.eventb.core.psFile>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.psFile>
-    <org.eventb.core.psStatus name="map_equivalent_thm_symmetric/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="37" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="map_equivalent_thm_reflexive/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="37" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="map_signOverlap_def/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="37" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="map_equivalent_thm_symmetric/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="42" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="map_equivalent_thm_reflexive/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="42" org.eventb.core.psManual="false"/>
 </org.eventb.core.psFile>
