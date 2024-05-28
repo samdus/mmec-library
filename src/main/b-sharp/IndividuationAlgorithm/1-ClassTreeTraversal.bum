@@ -4,11 +4,18 @@
     <org.eventb.core.seesContext name="(" org.eventb.core.target="110-MappingContext"/>
     <org.eventb.core.variable name=")" org.eventb.core.comment="l'ensemble des signatures définies" org.eventb.core.identifier="sign"/>
     <org.eventb.core.variable name="3" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatureForClasses"/>
-    <org.eventb.core.event name="4" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION"/>
+    <org.eventb.core.event name="4" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="step ≔ C_leaves" org.eventb.core.label="init_step"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="current_class :∈ C_leaves" org.eventb.core.label="init_currentClass"/>
+    </org.eventb.core.event>
     <org.eventb.core.event name="5" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="final">
         <org.eventb.core.refinesEvent name="'" org.eventb.core.target="final"/>
     </org.eventb.core.event>
     <org.eventb.core.event name="6" org.eventb.core.convergence="2" org.eventb.core.extended="true" org.eventb.core.label="mapping">
         <org.eventb.core.refinesEvent name="'" org.eventb.core.target="mapping"/>
     </org.eventb.core.event>
+    <org.eventb.core.variable name="7" org.eventb.core.comment="l'étage de l'arbre qui est en cours d'arrimage" org.eventb.core.identifier="step"/>
+    <org.eventb.core.variable name="8" org.eventb.core.comment="la classe à arrimer" org.eventb.core.identifier="current_class"/>
+    <org.eventb.core.invariant name="9" org.eventb.core.label="type_step" org.eventb.core.predicate="step ⊆ C"/>
+    <org.eventb.core.invariant name=":" org.eventb.core.label="type_currentClass" org.eventb.core.predicate="current_class ∈ C"/>
 </org.eventb.core.machineFile>
