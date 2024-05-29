@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="101">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="101">
+<org.eventb.core.poFile org.eventb.core.poStamp="104">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="104">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -25,7 +25,7 @@
         <org.eventb.core.poIdentifier name="c_level" org.eventb.core.type="ℙ(ℤ×C)"/>
         <org.eventb.core.poIdentifier name="P_cLevel" org.eventb.core.type="ℙ(ℤ)"/>
         <org.eventb.core.poPredicate name="has_pareo+" org.eventb.core.predicate="max_level∈ℕ" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_ClassesIsATransitiveClosure.buc|org.eventb.core.contextFile#030-OntologyContext_ClassesIsATransitiveClosure|org.eventb.core.axiom#cstA"/>
-        <org.eventb.core.poPredicate name="has_pareo," org.eventb.core.predicate="c_level∈0 ‥ max_level  C" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_ClassesIsATransitiveClosure.buc|org.eventb.core.contextFile#030-OntologyContext_ClassesIsATransitiveClosure|org.eventb.core.axiom#axm1"/>
+        <org.eventb.core.poPredicate name="has_pareo," org.eventb.core.predicate="c_level∈0 ‥ max_level  C" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_ClassesIsATransitiveClosure.buc|org.eventb.core.contextFile#030-OntologyContext_ClassesIsATransitiveClosure|org.eventb.core.axiom#axm1"/>
         <org.eventb.core.poPredicate name="has_pareo-" org.eventb.core.predicate="P_cLevel⊆ℕ" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_ClassesIsATransitiveClosure.buc|org.eventb.core.contextFile#030-OntologyContext_ClassesIsATransitiveClosure|org.eventb.core.axiom#cst4"/>
         <org.eventb.core.poPredicate name="has_pareo." org.eventb.core.predicate="Q_cLevel⊆ℕ" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_ClassesIsATransitiveClosure.buc|org.eventb.core.contextFile#030-OntologyContext_ClassesIsATransitiveClosure|org.eventb.core.axiom#cst5"/>
         <org.eventb.core.poPredicate name="has_pareo/" org.eventb.core.predicate="finite(c_level)" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_ClassesIsATransitiveClosure.buc|org.eventb.core.contextFile#030-OntologyContext_ClassesIsATransitiveClosure|org.eventb.core.axiom#cst&gt;"/>
@@ -54,19 +54,19 @@
         <org.eventb.core.poIdentifier name="expression_for" org.eventb.core.type="ℙ(C×E)"/>
         <org.eventb.core.poIdentifier name="exp_equivalent" org.eventb.core.type="ℙ(E×E)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poSequent name="map_equivalent_thm_symmetric/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="101">
+    <org.eventb.core.poSequent name="map_equivalent_thm_symmetric/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="104">
         <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurm"/>
         <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
         <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
         <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurm"/>
     </org.eventb.core.poSequent>
-    <org.eventb.core.poSequent name="map_equivalent_thm_reflexive/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="101">
+    <org.eventb.core.poSequent name="map_equivalent_thm_reflexive/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="104">
         <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurn"/>
         <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_equivalent[{e}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
         <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
         <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurn"/>
     </org.eventb.core.poSequent>
-    <org.eventb.core.poPredicateSet name="HYP030-OntologyContext_ClassesIsATransitiveClosurm" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="101">
+    <org.eventb.core.poPredicateSet name="HYP030-OntologyContext_ClassesIsATransitiveClosurm" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="104">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="finite(E)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst7"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="expression_for∈C ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#+"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="individuation∈E  P" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#-"/>
@@ -76,10 +76,10 @@
         <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_subsets[{e1}]⇔individuation[{e1}]⊆individuation[{e2}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm3"/>
         <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_subsets[{e2}]∧e2∈exp_subsets[{e1}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm4"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="HYP030-OntologyContext_ClassesIsATransitiveClosurn" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurm" org.eventb.core.poStamp="101">
+    <org.eventb.core.poPredicateSet name="HYP030-OntologyContext_ClassesIsATransitiveClosurn" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurm" org.eventb.core.poStamp="104">
         <org.eventb.core.poPredicate name="PRD8" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurn" org.eventb.core.poStamp="101">
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/110-MappingContext.bpo|org.eventb.core.poFile#110-MappingContext|org.eventb.core.poPredicateSet#HYP030-OntologyContext_ClassesIsATransitiveClosurn" org.eventb.core.poStamp="104">
         <org.eventb.core.poPredicate name="PRD9" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_equivalent[{e}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
         <org.eventb.core.poPredicate name="PRD10" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e1∈exp_overlap[{e2}]⇔individuation[{e1}]∩individuation[{e2}]≠(∅ ⦂ ℙ(P))" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst5"/>
     </org.eventb.core.poPredicateSet>

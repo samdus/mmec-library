@@ -3,7 +3,7 @@
     <org.eventb.core.extendsContext name="'" org.eventb.core.target="020-OntologyContext_ClassesIsA"/>
     <org.eventb.core.constant name="cst1" org.eventb.core.comment="une relation permettant d'obtenir les classes à une certaines distance de la racine Thing" org.eventb.core.identifier="c_level"/>
     <org.eventb.core.axiom name="cstA" org.eventb.core.label="onto_type_maxLevel" org.eventb.core.predicate="max_level ∈ ℕ"/>
-    <org.eventb.core.axiom name="axm1" org.eventb.core.comment="relation entre une distance de thing et des classes" org.eventb.core.label="onto_type_cLevel" org.eventb.core.predicate="c_level ∈ 0‥max_level  C"/>
+    <org.eventb.core.axiom name="axm1" org.eventb.core.comment="relation entre une distance de thing et des classes" org.eventb.core.label="onto_type_cLevel" org.eventb.core.predicate="c_level ∈ 0‥max_level  C"/>
     <org.eventb.core.axiom name="cst4" org.eventb.core.comment="P est un sous-ensemble des naturels" org.eventb.core.label="onto_type_P_cLevel" org.eventb.core.predicate="P_cLevel ⊆ ℕ"/>
     <org.eventb.core.axiom name="cst5" org.eventb.core.comment="Q est un sous-ensemble des naturels" org.eventb.core.label="onto_type_Q_cLevel" org.eventb.core.predicate="Q_cLevel ⊆ ℕ"/>
     <org.eventb.core.axiom name="cst&gt;" org.eventb.core.comment="Il y a un nombre fini d'étage" org.eventb.core.label="onto_finite_cLevel" org.eventb.core.predicate="finite(c_level)"/>
