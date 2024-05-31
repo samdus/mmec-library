@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="70">
-    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="70">
+<org.eventb.core.poFile org.eventb.core.poStamp="73">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="72">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -65,17 +65,14 @@
         <org.eventb.core.poPredicate name="expression_fo|" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_equivalent[{e}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
         <org.eventb.core.poPredicate name="expression_fo}" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e1∈exp_overlap[{e2}]⇔individuation[{e1}]∩individuation[{e2}]≠(∅ ⦂ ℙ(P))" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst5"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-Subsets.bpo|org.eventb.core.poFile#4-Subsets|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="70">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-Subsets.bpo|org.eventb.core.poFile#4-Subsets|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="73">
         <org.eventb.core.poIdentifier name="signatureForClasses" org.eventb.core.type="ℙ(E×C)"/>
         <org.eventb.core.poIdentifier name="sign" org.eventb.core.type="ℙ(E)"/>
         <org.eventb.core.poIdentifier name="subsets" org.eventb.core.type="ℙ(E×E)"/>
-        <org.eventb.core.poPredicate name="signatureForClasset" org.eventb.core.predicate="sign⊆E" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.invariant#*"/>
-        <org.eventb.core.poPredicate name="signatureForClasseu" org.eventb.core.predicate="signatureForClasses∈sign  C" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.invariant#4"/>
-        <org.eventb.core.poPredicate name="signatureForClassev" org.eventb.core.predicate="¬(∃c⦂C,p⦂P,s⦂E·c∈C∧p∈P∧s∈E∧c∈class_of[{p}]∧p∈individuation[{s}]∧s∉signatureForClasses∼[{c}])⇒(∀c⦂C,p⦂P,s⦂E·c∈C∧p∈P∧s∈E∧c∈class_of[{p}]∧p∈individuation[{s}]⇒s∈signatureForClasses∼[{c}])" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.invariant#5"/>
+        <org.eventb.core.poPredicate name="signatureForClasset" org.eventb.core.predicate="signatureForClasses∈E ↔ C" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.invariant#4"/>
+        <org.eventb.core.poPredicate name="signatureForClasseu" org.eventb.core.predicate="¬(∃c⦂C,p⦂P,s⦂E·c∈C∧p∈P∧s∈E∧c∈class_of[{p}]∧p∈individuation[{s}]∧s∉signatureForClasses∼[{c}])⇒(∀c⦂C,p⦂P,s⦂E·c∈C∧p∈P∧s∈E∧c∈class_of[{p}]∧p∈individuation[{s}]⇒s∈signatureForClasses∼[{c}])" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.invariant#5"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-Subsets.bpo|org.eventb.core.poFile#4-Subsets|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="70">
-        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="subsets∈sign ↔ sign" org.eventb.core.source="/IndividuationAlgorithm/4-Subsets.bum|org.eventb.core.machineFile#4-Subsets|org.eventb.core.invariant#inv3"/>
-        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="∀s1⦂E,s2⦂E,s3⦂E·{s1,s2,s3}⊆sign∧s2∈subsets[{s1}]∧s3∈subsets[{s2}]⇔s3∈subsets[{s1}]" org.eventb.core.source="/IndividuationAlgorithm/4-Subsets.bum|org.eventb.core.machineFile#4-Subsets|org.eventb.core.invariant#inv1"/>
-        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="∀s1⦂E,s2⦂E·{s1,s2}⊆sign⇒s1∉exp_overlap[{s2}]∨s1∈subsets[{s2}]∨s2∈subsets[{s1}]" org.eventb.core.source="/IndividuationAlgorithm/4-Subsets.bum|org.eventb.core.machineFile#4-Subsets|org.eventb.core.invariant#inv2"/>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-Subsets.bpo|org.eventb.core.poFile#4-Subsets|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="73">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="∀s1⦂E,s2⦂E·{s1,s2}⊆sign⇒s1∉exp_overlap[{s2}]∨s1∈subsets[{s2}]∨s2∈subsets[{s1}]" org.eventb.core.source="/IndividuationAlgorithm/4-Subsets.bum|org.eventb.core.machineFile#4-Subsets|org.eventb.core.invariant#inv2"/>
     </org.eventb.core.poPredicateSet>
 </org.eventb.core.poFile>
