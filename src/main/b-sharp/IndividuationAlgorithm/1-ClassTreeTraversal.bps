@@ -3,6 +3,7 @@
     <org.eventb.core.psStatus name="var_QtytoMapOnLevel/VWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="121" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="INITIALISATION/type_levelNum/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="122" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="INITIALISATION/init_currentClass/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="122" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="final/final_grd1/GRD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="128" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_class/nextClass_pop/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="121" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="next_class/var_QtytoMapOnLevel/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="121" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="next_class/var_QtytoMapOnLevel/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="121" org.eventb.core.psManual="true"/>

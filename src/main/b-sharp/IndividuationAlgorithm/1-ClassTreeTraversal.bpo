@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="124">
+<org.eventb.core.poFile org.eventb.core.poStamp="128">
     <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="97">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
@@ -102,8 +102,17 @@
         <org.eventb.core.poIdentifier name="currentClass'" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
     <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurm" org.eventb.core.parentSet="/IndividuationAlgorithm/1-ClassTreeTraversal.bpo|org.eventb.core.poFile#1-ClassTreeTraversal|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurm" org.eventb.core.poStamp="0"/>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurn" org.eventb.core.parentSet="/IndividuationAlgorithm/1-ClassTreeTraversal.bpo|org.eventb.core.poFile#1-ClassTreeTraversal|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="121">
-        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="∀c⦂C,p⦂P,s⦂E·c∈C∧p∈P∧s∈E∧c∈class_of[{p}]∧p∈individuation[{s}]⇒s∈signatureForClasses∼[{c}]" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.event#1|org.eventb.core.guard#'"/>
+    <org.eventb.core.poSequent name="final/final_grd1/GRD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Guard strengthening (split)" org.eventb.core.poStamp="128">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/1-ClassTreeTraversal.bpo|org.eventb.core.poFile#1-ClassTreeTraversal|org.eventb.core.poPredicateSet#EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurn"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀c⦂C,p⦂P,s⦂E·c∈C∧p∈P∧s∈E∧c∈class_of[{p}]∧p∈individuation[{s}]⇒s∈signatureForClasses∼[{c}]" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.event#1|org.eventb.core.guard#'"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.event#1"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.event#1|org.eventb.core.guard#'"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/IndividuationAlgorithm/1-ClassTreeTraversal.bum|org.eventb.core.machineFile#1-ClassTreeTraversal|org.eventb.core.event#5"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/1-ClassTreeTraversal.bpo|org.eventb.core.poFile#1-ClassTreeTraversal|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/1-ClassTreeTraversal.bpo|org.eventb.core.poFile#1-ClassTreeTraversal|org.eventb.core.poSequent#final\/final_grd1\/GRD|org.eventb.core.poPredicateSet#SEQHYP"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurn" org.eventb.core.parentSet="/IndividuationAlgorithm/1-ClassTreeTraversal.bpo|org.eventb.core.poFile#1-ClassTreeTraversal|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="128">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="∀c⦂C,p⦂P,s⦂E·c∈mapped∧p∈P∧s∈E∧c∈class_of[{p}]∧p∈individuation[{s}]⇒s∈signatureForClasses∼[{c}]" org.eventb.core.source="/IndividuationAlgorithm/1-ClassTreeTraversal.bum|org.eventb.core.machineFile#1-ClassTreeTraversal|org.eventb.core.event#5|org.eventb.core.guard#grd1"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="mapped=C" org.eventb.core.source="/IndividuationAlgorithm/1-ClassTreeTraversal.bum|org.eventb.core.machineFile#1-ClassTreeTraversal|org.eventb.core.event#5|org.eventb.core.guard#'"/>
     </org.eventb.core.poPredicateSet>
     <org.eventb.core.poSequent name="next_class/nextClass_pop/FIS" org.eventb.core.accurate="true" org.eventb.core.poDesc="Feasibility of action" org.eventb.core.poStamp="121">
         <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/1-ClassTreeTraversal.bpo|org.eventb.core.poFile#1-ClassTreeTraversal|org.eventb.core.poPredicateSet#EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosuro"/>
