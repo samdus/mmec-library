@@ -17,6 +17,7 @@ import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.ConnectionProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -125,8 +126,24 @@ public class ConnectionPropertiesBuilder {
    *      S.O.
    * @return La configuration de connexion à partir des paramètres spécifiés.
    */
-  public ConnectionProperties build() {
+  public ConnectionProperties build() throws MissingPropertyException {
     logger.trace(Trace.ENTER_METHOD_0);
+
+    if (driverName == null) {
+      throw new MissingPropertyException("driverName", "JDBC driver name");
+    }
+    if (databaseName == null) {
+      throw new MissingPropertyException("databaseName", "database name");
+    }
+    if (jdbcUrl == null) {
+      throw new MissingPropertyException("jdbcUrl", "connexion URL");
+    }
+    if (username == null) {
+      throw new MissingPropertyException("username", "username");
+    }
+    if (password == null) {
+      throw new MissingPropertyException("password", "password");
+    }
 
     return new ConnectionProperties() {
       @Override

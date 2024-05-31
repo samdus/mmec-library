@@ -61,10 +61,6 @@ public abstract class ConnectionProperties {
    *
    * @brief @~french Récupérer le nom du pilote de la base de données.
    * @return Le nom du pilote de la base de données.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   * @par Tâches
-   *      S.O.
    */
   public abstract String getDriverName();
 
@@ -74,10 +70,6 @@ public abstract class ConnectionProperties {
    *
    * @brief @~french Récupérer le nom de la base de données.
    * @return Le nom de la base de données.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   * @par Tâches
-   *      S.O.
    */
   public abstract String getDatabaseName();
 
@@ -87,10 +79,6 @@ public abstract class ConnectionProperties {
    *
    * @brief @~french Récupérer l'URL de connexion à la base de données.
    * @return Le nom de la base de données.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   * @par Tâches
-   *      S.O.
    */
   public abstract String getJdbcUrl();
 
@@ -100,11 +88,6 @@ public abstract class ConnectionProperties {
    *
    * @brief @~french Récupérer le nom d'utilisateur de la base de données.
    * @return Le nom d'utilisateur de la base de données.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
-   * @par Tâches
-   *      S.O.
    */
   public abstract String getUsername();
 
@@ -114,11 +97,6 @@ public abstract class ConnectionProperties {
    *
    * @brief @~french Récupérer le mot de passe de la base de données.
    * @return Le mot de passe de la base de données.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   *
-   * @par Tâches
-   *      S.O.
    */
   public abstract String getPassword();
 
@@ -130,10 +108,6 @@ public abstract class ConnectionProperties {
    * @brief @~french Récupérer les propriétés dans un format compréhensible pour Ontop
    * @return un Object Properties contenant les propriétés de connexion à la base de données.
    * @throws IOException si le fichier de configuration par défaut n'est pas trouvé.
-   *
-   * @note «AAAA-MM-JJ» [«initiales»] - «Note informative»
-   * @par Tâches
-   *      S.O.
    */
   public Properties getPropertiesForOntop() throws IOException {
     logger.trace(Trace.ENTER_METHOD_0);

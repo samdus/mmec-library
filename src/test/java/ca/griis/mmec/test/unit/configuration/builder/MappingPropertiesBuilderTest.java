@@ -14,6 +14,7 @@
 package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.builder.MappingPropertiesBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -47,9 +48,14 @@ import org.junit.jupiter.api.Test;
  */
 public class MappingPropertiesBuilderTest {
   @Test
-  public void test() {
+  public void test() throws MissingPropertyException {
     MappingPropertiesBuilder builder = new MappingPropertiesBuilder();
-    MappingProperties actualProperties = builder.build();
+    MappingProperties actualProperties = builder
+        .withOntoRelId("ontoRelId")
+        .withMappingSchema("mappingSchema")
+        .withOntologyFilePath("ontologyFilePath")
+        .withR2rmlMappingFilePath("r2rmlMappingFilePath")
+        .build();
 
     Assertions.assertNotNull(actualProperties);
   }

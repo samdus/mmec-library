@@ -4,6 +4,7 @@ import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.FacadeType;
 import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
 import ca.griis.mmec.properties.builder.MappingPropertiesBuilder;
 import ca.griis.mmec.repository.OntoRelCatRepository;
@@ -52,6 +53,7 @@ public class OntopTester {
   public final File mappingFile;
   public final OntoRelCatRepository ontoRelCatRepository;
   public final MappingProperties mappingProperties;
+  public final FacadeProperties facadeProperties;
   public final MappedOntoRelTableView mappedOntoRelTableView;
   public final OntoRelTableMappingController ontoRelTableMappingController;
   public static final String injectionConfigurationFile = "defaultConfiguration.properties";
@@ -66,13 +68,20 @@ public class OntopTester {
       System.err.println(e.getMessage());
     }
     Properties properties = mergeProperties(dbProperties, defaultConfigurationProperties);
-    mappingProperties = new MappingPropertiesBuilder()
-        .withOntoRelId(ontoRelId)
-        .withMappingSchema("MappingSchema")
-        .build();
-    FacadeProperties facadeProperties = new FacadePropertiesBuilder()
-        .withFacadeType(FacadeType.VIEWS)
-        .build();
+    try {
+      mappingProperties = new MappingPropertiesBuilder()
+          .withOntoRelId(ontoRelId)
+          .withMappingSchema("MappingSchema")
+          .withR2rmlMappingFilePath(mappingFile.getPath())
+          .withOntologyFilePath(ontologyFile.getPath())
+          .build();
+
+      facadeProperties = new FacadePropertiesBuilder()
+          .withFacadeType(FacadeType.VIEWS)
+          .build();
+    } catch (MissingPropertyException e) {
+      throw new RuntimeException(e);
+    }
 
     configuration = new MMecConfiguration.MMecConfigurationBuilder()
         .properties(properties)

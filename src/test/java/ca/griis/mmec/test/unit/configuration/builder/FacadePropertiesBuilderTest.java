@@ -15,6 +15,7 @@ package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.FacadeType;
+import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class FacadePropertiesBuilderTest {
 
   @Test
   public void testCustomFacadeStg(@TempDir File tempDir)
-      throws IOException, URISyntaxException {
+      throws IOException, URISyntaxException, MissingPropertyException {
     URL stgFilePath = Path.of(tempDir.getAbsolutePath(), "TestFacade.stg").toUri().toURL();
 
     createSampleFile(stgFilePath);
@@ -73,7 +74,7 @@ public class FacadePropertiesBuilderTest {
   }
 
   @Test
-  public void testSetPredefinedFacadeStg() throws IOException {
+  public void testSetPredefinedFacadeStg() throws IOException, MissingPropertyException {
     FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
     FacadeProperties actualProperties = builder
         .withFacadeType(FacadeType.VIEWS)
@@ -84,7 +85,7 @@ public class FacadePropertiesBuilderTest {
   }
 
   @Test
-  public void testGetInStream() throws IOException {
+  public void testGetInStream() throws IOException, MissingPropertyException {
     FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
     FacadeProperties actualProperties = builder
         .withFacadeType(FacadeType.VIEWS)

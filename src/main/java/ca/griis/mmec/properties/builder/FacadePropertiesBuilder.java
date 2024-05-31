@@ -14,6 +14,7 @@ import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.FacadeType;
+import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.impl.FacadePropertiesImpl;
 import java.net.URL;
 
@@ -103,8 +104,13 @@ public class FacadePropertiesBuilder {
    *      S.O.
    * @return La configuration de la façade d'arrimage à partir des paramètres spécifiés.
    */
-  public FacadeProperties build() {
+  public FacadeProperties build() throws MissingPropertyException {
     logger.trace(Trace.ENTER_METHOD_0);
+
+    if (facadeStgUrl == null) {
+      throw new MissingPropertyException("facadeStgUrl", "facade storage path");
+    }
+
     return new FacadePropertiesImpl(facadeStgUrl);
   }
 }

@@ -17,6 +17,7 @@ import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.impl.MappingPropertiesImpl;
 
 /**
@@ -64,8 +65,24 @@ public class MappingPropertiesBuilder {
    *      S.O.
    * @return La configuration d'arrimage à partir des paramètres spécifiés.
    */
-  public MappingProperties build() {
+  public MappingProperties build() throws MissingPropertyException {
     logger.trace(Trace.ENTER_METHOD_0);
+
+    if (ontoRelId == null) {
+      throw new MissingPropertyException("ontoRelId", "OntoRel identifier in the OntoRelCat");
+    }
+
+    if (mappingSchema == null) {
+      throw new MissingPropertyException("mappingSchema", "mapping schema");
+    }
+
+    if (r2rmlMappingFilePath == null) {
+      throw new MissingPropertyException("r2rmlMappingFilePath", "R2RML mapping file path");
+    }
+
+    if (ontologyFilePath == null) {
+      throw new MissingPropertyException("ontologyFilePath", "ontology file path");
+    }
 
     return new MappingPropertiesImpl(ontoRelId, mappingSchema, r2rmlMappingFilePath,
         ontologyFilePath);

@@ -14,6 +14,7 @@
 package ca.griis.mmec.test.unit.configuration.builder;
 
 import ca.griis.mmec.properties.ConnectionProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.builder.ConnectionPropertiesBuilder;
 import java.io.IOException;
 import java.util.Properties;
@@ -57,7 +58,7 @@ public class ConnectionPropertiesBuilderTest {
   }
 
   @Test
-  public void testBuildConnectionConfiguration() {
+  public void testBuildConnectionConfiguration() throws MissingPropertyException {
     String driverName = "TestDriver";
     String databaseName = "TestDatabase";
     String jdbcUrl = "jdbc:test";
@@ -81,7 +82,8 @@ public class ConnectionPropertiesBuilderTest {
   }
 
   @Test
-  public void testBuildConnexionGetOntopConfiguration() throws IOException {
+  public void testBuildConnexionGetOntopConfiguration() throws IOException,
+      MissingPropertyException {
     String driverName = "TestDriver";
     String databaseName = "TestDatabase";
     String jdbcUrl = "jdbc:test";
