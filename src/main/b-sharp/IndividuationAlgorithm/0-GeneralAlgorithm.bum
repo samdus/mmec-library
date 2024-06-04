@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.machineFile org.eventb.core.comment="Algorithme à haut niveau" org.eventb.core.configuration="org.eventb.core.fwd" version="5">
     <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
-        <org.eventb.core.action name=")" org.eventb.core.assignment="signatureForClasses ≔ ∅" org.eventb.core.label="init_signatureForClasses"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="signatures ≔ ∅" org.eventb.core.label="init_signatures"/>
     </org.eventb.core.event>
     <org.eventb.core.seesContext name="(" org.eventb.core.target="110-MappingContext"/>
-    <org.eventb.core.invariant name="4" org.eventb.core.comment="signatureForClasses doit correspondre à la relation entre une expression et les classes dont l'expression asserte qu'elle sert à l'individuation de particuliers" org.eventb.core.label="type_signatureForClasses" org.eventb.core.predicate="signatureForClasses ∈ E ↔ C"/>
+    <org.eventb.core.invariant name="4" org.eventb.core.comment="signatureForClasses doit correspondre à la relation entre une expression et les classes dont l'expression asserte qu'elle sert à l'individuation de particuliers" org.eventb.core.label="type_signatures" org.eventb.core.predicate="signatures ∈ E ↔ C"/>
     <org.eventb.core.event name="1" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="final">
-        <org.eventb.core.guard name="'" org.eventb.core.comment="toutes les classes de tout les particuliers sont spécifiés dans les signatures" org.eventb.core.label="final_grd1" org.eventb.core.predicate="∀c,p,s · c ∈ C ∧ &#10;         p ∈ P ∧&#10;         s ∈ E ∧&#10;         c ∈ class_of[{p}] ∧&#10;         p ∈ individuation[{s}]&#10;      ⇒ s ∈ signatureForClasses∼[{c}]"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="signatures ≔ { s ↦ c ∣ s ∈ individuation∼[class_of∼[{c}]] }" org.eventb.core.label="final_allSignatures"/>
     </org.eventb.core.event>
-    <org.eventb.core.event name="2" org.eventb.core.convergence="2" org.eventb.core.extended="false" org.eventb.core.label="mapping">
-        <org.eventb.core.guard name="'" org.eventb.core.comment="certaines classes n'ont pas été arrimés" org.eventb.core.label="mapNextC_grd1" org.eventb.core.predicate="∃c,p,s · c ∈ C ∧ &#10;         p ∈ P ∧&#10;         s ∈ E ∧&#10;         c ∈ class_of[{p}] ∧&#10;         p ∈ individuation[{s}] ∧&#10;         s ∉ signatureForClasses∼[{c}]"/>
-        <org.eventb.core.action name="(" org.eventb.core.assignment="signatureForClasses :∣ signatureForClasses ⊂ signatureForClasses' " org.eventb.core.comment="procéder à l'arrimage d'une classe" org.eventb.core.label="mapNextC_addSignature"/>
-    </org.eventb.core.event>
-    <org.eventb.core.variable name="3" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatureForClasses"/>
-    <org.eventb.core.invariant name="5" org.eventb.core.comment="la négation de la garde de &quot;mapping&quot; implique la garde de &quot;final&quot;" org.eventb.core.label="inv_noDeadlock" org.eventb.core.predicate="¬ (∃c,p,s · c ∈ C ∧ &#10;         p ∈ P ∧&#10;         s ∈ E ∧&#10;         c ∈ class_of[{p}] ∧&#10;         p ∈ individuation[{s}] ∧&#10;         s ∉ signatureForClasses∼[{c}]) &#10;⇒ (∀c,p,s · c ∈ C ∧ &#10;         p ∈ P ∧&#10;         s ∈ E ∧&#10;         c ∈ class_of[{p}] ∧&#10;         p ∈ individuation[{s}]&#10;      ⇒ s ∈ signatureForClasses∼[{c}])" org.eventb.core.theorem="true"/>
+    <org.eventb.core.variable name="3" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatures"/>
 </org.eventb.core.machineFile>

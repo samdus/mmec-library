@@ -1,5 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.psFile>
-    <org.eventb.core.psStatus name="inv_noDeadlock/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="138" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="mapping/mapNextC_addSignature/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="139" org.eventb.core.psManual="true"/>
-</org.eventb.core.psFile>
+<org.eventb.core.psFile/>
