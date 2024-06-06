@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.psFile>
-    <org.eventb.core.psStatus name="onto_finite_cLevel/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="onto_P_cLevel_thm_inductionBase/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="onto_P_cLevel_thm_induction/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="onto_P_cLevel_thm_Q_cLevel_empty/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="onto_P_cLevel_thm_P_cLevel_allNAT/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="onto_P_cLevel_thm_complete/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="onto_isA_thm_allIsAThing/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="onto_cLevel_thm_allLevelsEqualsAllClasses/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="92" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="onto_finite_cLevel/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="onto_P_cLevel_thm_inductionBase/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="onto_P_cLevel_thm_induction/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="onto_P_cLevel_thm_Q_cLevel_empty/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="onto_P_cLevel_thm_P_cLevel_allNAT/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="onto_P_cLevel_thm_complete/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="onto_isA_thm_allIsAThing/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="onto_cLevel_thm_allLevelsEqualsAllClasses/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
 </org.eventb.core.psFile>

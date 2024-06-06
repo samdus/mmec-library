@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="110-MappingContext"/>
+    <org.eventb.core.axiom name="(" org.eventb.core.comment="Aucune autre classe que thing" org.eventb.core.label="animation_C_axm" org.eventb.core.predicate="C = {thing}"/>
+    <org.eventb.core.axiom name="1" org.eventb.core.comment="Un seul particulier" org.eventb.core.label="animation_P_axm" org.eventb.core.predicate="P = {p1}"/>
+    <org.eventb.core.axiom name="5" org.eventb.core.comment="Une seule expression qui permet l'individuation" org.eventb.core.label="animation_E_axm" org.eventb.core.predicate="E = {neutral_expression, e1}"/>
+    <org.eventb.core.axiom name="6" org.eventb.core.label="animatino_e1_axm" org.eventb.core.predicate="e1 ≠ neutral_expression"/>
+    <org.eventb.core.axiom name=")" org.eventb.core.label="thm1" org.eventb.core.predicate="C_leaves = {thing}" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="*" org.eventb.core.label="thm2" org.eventb.core.predicate="has_parent = ∅" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="+" org.eventb.core.label="thm3" org.eventb.core.predicate="is_a = {thing ↦ thing }" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="-" org.eventb.core.label="thm4" org.eventb.core.predicate="c_level = { 0 ↦ thing }" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="." org.eventb.core.label="thm5" org.eventb.core.predicate="P_cLevel = ℕ " org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="/" org.eventb.core.label="thm6" org.eventb.core.predicate="Q_cLevel = ∅" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="0" org.eventb.core.label="thm7" org.eventb.core.predicate="max_level = 0" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="2" org.eventb.core.label="thm8" org.eventb.core.predicate="class_of = { p1 ↦ thing }" org.eventb.core.theorem="true"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="3" org.eventb.core.comment="le seul particulier" org.eventb.core.identifier="p1"/>
+    <org.eventb.core.axiom name="axm1" org.eventb.core.label="thm9" org.eventb.core.predicate="individuation = { e1 ↦ p1 }" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="axm2" org.eventb.core.label="thm10" org.eventb.core.predicate="exp_subsets = { e1 ↦ e1, neutral_expression ↦ neutral_expression, neutral_expression ↦ e1 }" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="axm3" org.eventb.core.label="thm11" org.eventb.core.predicate="exp_equivalent = { e1 ↦ e1, neutral_expression ↦ neutral_expression }" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="axm4" org.eventb.core.label="thm12" org.eventb.core.predicate="exp_overlap = { e1 ↦ e1 }" org.eventb.core.theorem="true"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="4" org.eventb.core.comment="la seule expression" org.eventb.core.identifier="e1"/>
+</org.eventb.core.contextFile>

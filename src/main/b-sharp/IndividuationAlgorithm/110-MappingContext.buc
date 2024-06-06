@@ -2,9 +2,7 @@
 <org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
     <org.eventb.core.extendsContext name="'" org.eventb.core.target="040-OntologyContext_Particulars"/>
     <org.eventb.core.carrierSet name=")" org.eventb.core.comment="l'ensemble des expressions de la source de données" org.eventb.core.identifier="E"/>
-    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="*" org.eventb.core.comment="toutes expressions permettant de faire l'individuation de la classe" org.eventb.core.identifier="expression_for"/>
     <org.eventb.core.axiom name="cst7" org.eventb.core.comment="E est un ensemble fini" org.eventb.core.label="map_finite_E" org.eventb.core.predicate="finite(E)"/>
-    <org.eventb.core.axiom name="+" org.eventb.core.comment="relation entre des classes et des ensembles d'expressions de la source de données qui permettent d'individualiser des particuliers répondant aux axiomes de celles-ci" org.eventb.core.label="map_type_expressionFor" org.eventb.core.predicate="expression_for ∈ C ↔ E"/>
     <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="," org.eventb.core.comment="les particuliers individualisés par l'expression" org.eventb.core.identifier="individuation"/>
     <org.eventb.core.axiom name="-" org.eventb.core.comment="relation surjective et totale des expressions vers les particuliers dont elles permettent l'individuation" org.eventb.core.label="map_type_individuation" org.eventb.core.predicate="individuation ∈ E  P"/>
     <org.eventb.core.axiom name="axm1" org.eventb.core.comment="relation entre des expressions qui permettent d'individualiser certains particuliers en communs  " org.eventb.core.label="map_type_expSubsets" org.eventb.core.predicate="exp_subsets ∈ E ↔ E"/>
@@ -21,5 +19,6 @@
     <org.eventb.core.axiom name="cst5" org.eventb.core.comment="deux expression s'overlap si l'intersection des particuliers qu'ils individualisent n'est pas vide" org.eventb.core.label="map_expOverlap_def" org.eventb.core.predicate="∀e1,e2 · {e1,e2} ⊆ E ∧&#10;         e1 ∈ exp_overlap[{e2}] &#10;      ⇔ &#10;         (individuation[{e1}] ∩ individuation[{e2}]) ≠ ∅ "/>
     <org.eventb.core.constant name="cst8" org.eventb.core.comment="une expression neutre qui n'individualise aucun particulier, utilisée pour les classes dont aucun particuliers ne respectent les axiomes" org.eventb.core.identifier="neutral_expression"/>
     <org.eventb.core.axiom name="cst9" org.eventb.core.comment="l'expression neutre n'individualise pas de particuliers " org.eventb.core.label="map_neutralExpression" org.eventb.core.predicate="individuation[{neutral_expression}] = ∅ "/>
+    <org.eventb.core.axiom name="cst=" org.eventb.core.comment="l'expression neutre est un sous-ensemble de toutes les expressions " org.eventb.core.label="map_neutralExpression_subsetsAllExpression" org.eventb.core.predicate="∀e · e ∈ E ⇒ e ∈ exp_subsets[{neutral_expression}]" org.eventb.core.theorem="true"/>
     <org.eventb.core.axiom name="cst;" org.eventb.core.comment="pour chaque particulier, il existe au moins une expression qui en permet l'individuation" org.eventb.core.label="map_allParticularHasExpression" org.eventb.core.predicate="∀p · p ∈ P ⇒ (∃e · p ∈ individuation[{e}]) " org.eventb.core.theorem="true"/>
 </org.eventb.core.contextFile>

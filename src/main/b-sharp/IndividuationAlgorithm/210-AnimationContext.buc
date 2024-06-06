@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="110-MappingContext"/>
+    <org.eventb.core.constant name=")" org.eventb.core.identifier="humanName"/>
+    <org.eventb.core.constant name="+" org.eventb.core.identifier="identifier"/>
+    <org.eventb.core.constant name="-" org.eventb.core.comment="information content entity" org.eventb.core.identifier="ice"/>
+    <org.eventb.core.axiom name="6" org.eventb.core.label="classAreDistincts" org.eventb.core.predicate="thing ∉ { entity, continuant, gdc, ice, identifier, humanName } ∧&#10;entity ∉ { thing, continuant, gdc, ice, identifier, humanName } ∧&#10;continuant ∉ { thing, entity, gdc, ice, identifier, humanName } ∧&#10;gdc ∉ { thing, entity, continuant, ice, identifier, humanName } ∧&#10;ice ∉ { thing, entity, continuant, gdc, identifier, humanName } ∧&#10;identifier ∉ { thing, entity, continuant, gdc, ice, humanName } ∧&#10;humanName ∉ { thing, entity, continuant, gdc, ice, identifier }"/>
+    <org.eventb.core.axiom name="(" org.eventb.core.label="animation_classes" org.eventb.core.predicate="C = { thing, entity, continuant, gdc, ice, identifier, humanName }"/>
+    <org.eventb.core.axiom name="1" org.eventb.core.label="animation_cLeaves" org.eventb.core.predicate="C_leaves = {humanName}"/>
+    <org.eventb.core.axiom name="7" org.eventb.core.label="animation_hasParent" org.eventb.core.predicate="has_parent = { humanName ↦ identifier, identifier ↦ ice, ice ↦ gdc, gdc ↦ continuant, continuant ↦ entity, entity ↦ thing }"/>
+    <org.eventb.core.axiom name="8" org.eventb.core.label="animation_isA_thm" org.eventb.core.predicate="is_a = {&#10;&#9;thing ↦ thing,&#10;    entity ↦ thing, entity ↦ entity,&#10;&#9;continuant ↦ entity, continuant ↦ thing, continuant ↦ continuant,&#10;&#9;gdc ↦ continuant, gdc ↦ entity, gdc ↦ thing, gdc ↦ gdc,&#10;&#9;ice ↦ gdc, ice ↦ continuant, ice ↦ entity, ice ↦ thing, ice ↦ ice,&#10;&#9;identifier ↦ ice, identifier ↦ gdc, identifier ↦ continuant, identifier ↦ entity, identifier ↦ thing, identifier ↦ identifier,&#10;&#9;humanName ↦ identifier, humanName ↦ ice, humanName ↦ gdc, humanName ↦ continuant, humanName ↦ entity, humanName ↦ thing, humanName ↦ humanName&#10;}" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="/" org.eventb.core.label="animation_SHOULD_NOT_BE_PROVED" org.eventb.core.predicate="⊥" org.eventb.core.theorem="true"/>
+    <org.eventb.core.constant name="3" org.eventb.core.comment="generically dependent continuant" org.eventb.core.identifier="gdc"/>
+    <org.eventb.core.constant name="4" org.eventb.core.identifier="continuant"/>
+    <org.eventb.core.constant name="5" org.eventb.core.identifier="entity"/>
+</org.eventb.core.contextFile>

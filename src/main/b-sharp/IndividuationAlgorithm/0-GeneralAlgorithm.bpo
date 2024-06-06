@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="164">
-    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="164">
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -52,35 +52,34 @@
         <org.eventb.core.poIdentifier name="neutral_expression" org.eventb.core.type="E"/>
         <org.eventb.core.poIdentifier name="exp_overlap" org.eventb.core.type="ℙ(E×E)"/>
         <org.eventb.core.poIdentifier name="individuation" org.eventb.core.type="ℙ(E×P)"/>
-        <org.eventb.core.poIdentifier name="expression_for" org.eventb.core.type="ℙ(C×E)"/>
         <org.eventb.core.poIdentifier name="exp_equivalent" org.eventb.core.type="ℙ(E×E)"/>
         <org.eventb.core.poPredicate name="neutral_expressioo" org.eventb.core.predicate="finite(E)" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst7"/>
-        <org.eventb.core.poPredicate name="neutral_expressiop" org.eventb.core.predicate="expression_for∈C ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#+"/>
-        <org.eventb.core.poPredicate name="neutral_expressioq" org.eventb.core.predicate="individuation∈E  P" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#-"/>
-        <org.eventb.core.poPredicate name="neutral_expressior" org.eventb.core.predicate="exp_subsets∈E ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm1"/>
-        <org.eventb.core.poPredicate name="neutral_expressios" org.eventb.core.predicate="exp_equivalent∈E ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm2"/>
-        <org.eventb.core.poPredicate name="neutral_expressiot" org.eventb.core.predicate="exp_overlap∈E ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst4"/>
-        <org.eventb.core.poPredicate name="neutral_expressiou" org.eventb.core.predicate="neutral_expression∈E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst:"/>
-        <org.eventb.core.poPredicate name="neutral_expressiov" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_subsets[{e1}]⇔individuation[{e1}]⊆individuation[{e2}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm3"/>
-        <org.eventb.core.poPredicate name="neutral_expressiow" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_subsets[{e2}]∧e2∈exp_subsets[{e1}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm4"/>
-        <org.eventb.core.poPredicate name="neutral_expressiox" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
-        <org.eventb.core.poPredicate name="neutral_expressioy" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_equivalent[{e}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
-        <org.eventb.core.poPredicate name="neutral_expressioz" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e1∈exp_overlap[{e2}]⇔individuation[{e1}]∩individuation[{e2}]≠(∅ ⦂ ℙ(P))" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst5"/>
-        <org.eventb.core.poPredicate name="neutral_expressio{" org.eventb.core.predicate="individuation[{neutral_expression}]=(∅ ⦂ ℙ(P))" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst9"/>
+        <org.eventb.core.poPredicate name="neutral_expressiop" org.eventb.core.predicate="individuation∈E  P" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#-"/>
+        <org.eventb.core.poPredicate name="neutral_expressioq" org.eventb.core.predicate="exp_subsets∈E ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm1"/>
+        <org.eventb.core.poPredicate name="neutral_expressior" org.eventb.core.predicate="exp_equivalent∈E ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm2"/>
+        <org.eventb.core.poPredicate name="neutral_expressios" org.eventb.core.predicate="exp_overlap∈E ↔ E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst4"/>
+        <org.eventb.core.poPredicate name="neutral_expressiot" org.eventb.core.predicate="neutral_expression∈E" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst:"/>
+        <org.eventb.core.poPredicate name="neutral_expressiou" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_subsets[{e1}]⇔individuation[{e1}]⊆individuation[{e2}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm3"/>
+        <org.eventb.core.poPredicate name="neutral_expressiov" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_subsets[{e2}]∧e2∈exp_subsets[{e1}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm4"/>
+        <org.eventb.core.poPredicate name="neutral_expressiow" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm5"/>
+        <org.eventb.core.poPredicate name="neutral_expressiox" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_equivalent[{e}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm6"/>
+        <org.eventb.core.poPredicate name="neutral_expressioy" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e1∈exp_overlap[{e2}]⇔individuation[{e1}]∩individuation[{e2}]≠(∅ ⦂ ℙ(P))" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst5"/>
+        <org.eventb.core.poPredicate name="neutral_expressioz" org.eventb.core.predicate="individuation[{neutral_expression}]=(∅ ⦂ ℙ(P))" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst9"/>
+        <org.eventb.core.poPredicate name="neutral_expressio{" org.eventb.core.predicate="∀e⦂E·e∈E⇒e∈exp_subsets[{neutral_expression}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst="/>
         <org.eventb.core.poPredicate name="neutral_expressio|" org.eventb.core.predicate="∀p⦂P·p∈P⇒(∃e⦂E·p∈individuation[{e}])" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cst;"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="164">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="signatures" org.eventb.core.type="ℙ(E×C)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurg" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="164">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurg" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="signatures'" org.eventb.core.type="ℙ(E×C)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurg" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurg" org.eventb.core.poStamp="164"/>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurh" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="164">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurg" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurg" org.eventb.core.poStamp="0"/>
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurh" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="signatures'" org.eventb.core.type="ℙ(E×C)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurh" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurh" org.eventb.core.poStamp="164"/>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="164">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_ClassesIsATransitiveClosurh" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_ClassesIsATransitiveClosurh" org.eventb.core.poStamp="0"/>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/0-GeneralAlgorithm.bpo|org.eventb.core.poFile#0-GeneralAlgorithm|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="signatures∈E ↔ C" org.eventb.core.source="/IndividuationAlgorithm/0-GeneralAlgorithm.bum|org.eventb.core.machineFile#0-GeneralAlgorithm|org.eventb.core.invariant#4"/>
     </org.eventb.core.poPredicateSet>
 </org.eventb.core.poFile>
