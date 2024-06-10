@@ -3,10 +3,10 @@
     <org.eventb.core.refinesMachine name="'" org.eventb.core.target="0-GeneralAlgorithm"/>
     <org.eventb.core.seesContext name="(" org.eventb.core.target="110-MappingContext"/>
     <org.eventb.core.variable name="3" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatures"/>
+    <org.eventb.core.variable name="var1" org.eventb.core.comment="la relation de sous-ensemble entre des signatures" org.eventb.core.identifier="subsets"/>
     <org.eventb.core.event name="4" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
         <org.eventb.core.action name=")" org.eventb.core.assignment="levelNum ≔ max_level" org.eventb.core.label="init_stepNum"/>
-        <org.eventb.core.action name="'" org.eventb.core.assignment="currentLevel ≔ c_level[{max_level}]" org.eventb.core.label="init_step"/>
-        <org.eventb.core.action name="(" org.eventb.core.assignment="currentClass :∈ c_level[{max_level}] " org.eventb.core.label="init_currentClass"/>
+        <org.eventb.core.action name="act1" org.eventb.core.assignment="currentLevel, currentClass :∣ currentClass' ∈ c_level[{max_level}] ∧&#10;                              currentLevel' = c_level[{max_level}] ∖ { currentClass' }" org.eventb.core.comment="on choisi une classe à arrimer et on la retire des classes à arrimer pour ce niveau" org.eventb.core.label="init_currentClassAndLevel"/>
         <org.eventb.core.action name="*" org.eventb.core.assignment="mapped ≔ ∅" org.eventb.core.label="init_mapped"/>
     </org.eventb.core.event>
     <org.eventb.core.event name="5" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="final">
@@ -19,9 +19,10 @@
         <org.eventb.core.action name="*" org.eventb.core.assignment="currentLevel, currentClass :∣ currentClass' ∈ currentLevel ∧&#10;                              currentLevel' = currentLevel ∖ { currentClass' }" org.eventb.core.comment="on choisi une classe à arrimer et on la retire des classes à arrimer pour ce niveau" org.eventb.core.label="nextClass_pop"/>
     </org.eventb.core.event>
     <org.eventb.core.event name="A" org.eventb.core.convergence="1" org.eventb.core.extended="false" org.eventb.core.label="next_level">
-        <org.eventb.core.guard name="'" org.eventb.core.label="nextLevel_grd1" org.eventb.core.predicate="currentLevel = ∅"/>
-        <org.eventb.core.guard name="(" org.eventb.core.label="nextLevel_grd2" org.eventb.core.predicate="levelNum &gt; 0"/>
-        <org.eventb.core.action name=")" org.eventb.core.assignment="currentLevel ≔ c_level[{levelNum − 1}]" org.eventb.core.comment="le nouveau courant est maintenant le niveau d'au dessus" org.eventb.core.label="nextLevel_changeCurrentLevel"/>
+        <org.eventb.core.guard name="+" org.eventb.core.comment="l'arrimage est terminé pour la classe en cours" org.eventb.core.label="nextLevel_grd1" org.eventb.core.predicate="currentClass ∈ mapped"/>
+        <org.eventb.core.guard name="'" org.eventb.core.comment="il n'y a pas d'autre classes à arrimer à ce niveau" org.eventb.core.label="nextLevel_grd2" org.eventb.core.predicate="currentLevel = ∅"/>
+        <org.eventb.core.guard name="(" org.eventb.core.comment="on peut encore descendre d'un niveau" org.eventb.core.label="nextLevel_grd3" org.eventb.core.predicate="levelNum &gt; 0"/>
+        <org.eventb.core.action name="act1" org.eventb.core.assignment="currentLevel, currentClass :∣ currentClass' ∈ c_level[{levelNum − 1}] ∧&#10;                              currentLevel' = c_level[{levelNum − 1}] ∖ { currentClass' }" org.eventb.core.comment="on choisi une classe à arrimer et on la retire des classes à arrimer pour ce niveau" org.eventb.core.label="nextClass_popFromNewLevel"/>
         <org.eventb.core.action name="*" org.eventb.core.assignment="levelNum ≔ levelNum − 1" org.eventb.core.comment="le numéro du niveau correpond au numéro du niveau courant" org.eventb.core.label="nextLevel_changeLevelNum"/>
     </org.eventb.core.event>
     <org.eventb.core.variable name="7" org.eventb.core.comment="les éléments qu'il reste à arrimer sur l'étage courant de l'arbre" org.eventb.core.identifier="currentLevel"/>
@@ -36,7 +37,11 @@
     <org.eventb.core.event name="C" org.eventb.core.comment="l'arrimage de la classe est terminé" org.eventb.core.convergence="1" org.eventb.core.extended="false" org.eventb.core.label="class_mapped">
         <org.eventb.core.action name="'" org.eventb.core.assignment="mapped ≔ mapped ∪ { currentClass }" org.eventb.core.comment="on ajoute la classe aux classes arrimées" org.eventb.core.label="classMapped_addToMapped"/>
         <org.eventb.core.guard name="(" org.eventb.core.comment="la classe courant n'est pas arrimée" org.eventb.core.label="classMapped_grd1" org.eventb.core.predicate="currentClass ∉ mapped"/>
-        <org.eventb.core.guard name=")" org.eventb.core.comment="la classe fait partie du niveau courant" org.eventb.core.label="classMapped_grd2" org.eventb.core.predicate="currentClass ∈ c_level[{levelNum}]"/>
     </org.eventb.core.event>
-    <org.eventb.core.invariant name="D" org.eventb.core.comment="les classes arrimées sont celles des étages courant ou inférieurs" org.eventb.core.label="inv_mapped" org.eventb.core.predicate="mapped ⊆ c_level[levelNum‥max_level]"/>
+    <org.eventb.core.invariant name="var5" org.eventb.core.comment="les classes à arrimer au niveau courant font parti de ce niveau" org.eventb.core.label="inv_currentLevelInLevel" org.eventb.core.predicate="currentLevel ⊆ c_level[{levelNum}]"/>
+    <org.eventb.core.invariant name="D" org.eventb.core.comment="les classes arrimées sont celles des étages courant et supérieurs, hormis les classes encore à arrimer" org.eventb.core.label="inv_mappedPreviousLevel" org.eventb.core.predicate="mapped ⊆ c_level[levelNum‥max_level] ∖ currentLevel"/>
+    <org.eventb.core.invariant name="var3" org.eventb.core.comment="les niveaux courant et supérieurs sont arrimées, hormis la classe courante et les classes encore à arrimer" org.eventb.core.label="inv_previousLevelMapped" org.eventb.core.predicate="c_level[levelNum‥max_level] ∖ (currentLevel ∪  { currentClass }) ⊆ mapped "/>
+    <org.eventb.core.invariant name="var4" org.eventb.core.comment="la classe courante doit être sur l'étage courant" org.eventb.core.label="inv_currentClassInCurrentLevel" org.eventb.core.predicate="currentClass ∈ c_level[{levelNum}]"/>
+    <org.eventb.core.invariant name="var6" org.eventb.core.comment="la classe en cours d'arrime ne doit pas être incluse dans les classes à arrimer" org.eventb.core.label="inv_currentClassNotInToMappedInLevel" org.eventb.core.predicate="currentClass ∉ currentLevel"/>
+    <org.eventb.core.invariant name="var2" org.eventb.core.comment="l'événement final est accessible lorsque tout a été arrimé" org.eventb.core.label="deadlock_noNextLevelImpliesFinal" org.eventb.core.predicate="levelNum = 0 ∧ currentLevel = ∅ ∧ thing ∈ mapped  ⇒ mapped = C" org.eventb.core.theorem="true"/>
 </org.eventb.core.machineFile>

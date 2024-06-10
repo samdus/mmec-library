@@ -3,6 +3,7 @@
     <org.eventb.core.refinesMachine name="'" org.eventb.core.target="1-ClassTreeTraversal"/>
     <org.eventb.core.seesContext name="(" org.eventb.core.target="110-MappingContext"/>
     <org.eventb.core.variable name="var2" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatures"/>
+    <org.eventb.core.variable name="var8" org.eventb.core.comment="la relation de sous-ensemble entre des signatures" org.eventb.core.identifier="subsets"/>
     <org.eventb.core.variable name="7" org.eventb.core.comment="les éléments qu'il reste à arrimer sur l'étage courant de l'arbre" org.eventb.core.identifier="currentLevel"/>
     <org.eventb.core.variable name="8" org.eventb.core.comment="la classe à arrimer" org.eventb.core.identifier="currentClass"/>
     <org.eventb.core.variable name=";" org.eventb.core.comment="le numéro de l'étage courant" org.eventb.core.identifier="levelNum"/>
@@ -10,15 +11,17 @@
     <org.eventb.core.event name="@" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
         <org.eventb.core.action name=")" org.eventb.core.assignment="signatures ≔ ∅" org.eventb.core.label="init_signatures"/>
         <org.eventb.core.action name="internal1" org.eventb.core.assignment="levelNum ≔ max_level" org.eventb.core.label="init_stepNum"/>
-        <org.eventb.core.action name="internal2" org.eventb.core.assignment="currentLevel ≔ c_level[{max_level}]" org.eventb.core.label="init_step"/>
+        <org.eventb.core.action name="'" org.eventb.core.assignment="currentLevel ≔ c_level[{max_level}]" org.eventb.core.label="init_step"/>
+        <org.eventb.core.action name="internal3" org.eventb.core.assignment="mapped ≔ ∅" org.eventb.core.label="init_mapped"/>
+        <org.eventb.core.action name="act3" org.eventb.core.assignment="subsets ≔ ∅" org.eventb.core.label="init_subsets"/>
         <org.eventb.core.action name="(" org.eventb.core.assignment="currentClass, expressionsOfCurrentClass, currentExpression :∣&#10;&#9;currentClass' ∈ c_level[{max_level}] ∧ &#10;&#9;expressionsOfCurrentClass' = individuation∼[class_of∼[{currentClass'}]] ∧&#10;&#9;(currentExpression' ∈ expressionsOfCurrentClass' ∨ (expressionsOfCurrentClass' = ∅ ∧ currentExpression' = neutral_expression))" org.eventb.core.comment="La classe courante est choisie arbitrairement parmis les classes du niveau&#10;L'expression est choisie arbitrairement parmis les expressions permettant l'individuation des particuliers qui répondent aux axiomes de cette classe&#10;   Si aucune expression ne permet l'individuation de particuliers répondant aux axiomes de la classe, l'expression correspond à l'expression neutre" org.eventb.core.label="init_currentClass"/>
-        <org.eventb.core.action name="*" org.eventb.core.assignment="mapped ≔ ∅" org.eventb.core.label="init_mapped"/>
         <org.eventb.core.action name="act2" org.eventb.core.assignment="signatureForClasses ≔ ∅" org.eventb.core.label="init_signatureForClasses"/>
     </org.eventb.core.event>
     <org.eventb.core.event name="A" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="final">
         <org.eventb.core.refinesEvent name="'" org.eventb.core.target="final"/>
         <org.eventb.core.guard name="'" org.eventb.core.comment="on a appliqué le procédé d'arrimage à toutes les classes" org.eventb.core.label="final_grd1" org.eventb.core.predicate="mapped = C"/>
         <org.eventb.core.action name="+" org.eventb.core.assignment="signatures ≔ signatureForClasses" org.eventb.core.label="final_allSignatures"/>
+        <org.eventb.core.action name="act1" org.eventb.core.assignment="subsets :∣ ∀e1,e2 · e1 ∈ dom(signatures) ∧ &#10;                    e2 ∈ dom(signatures) ∧&#10; &#9;&#9;&#9;&#9;&#9;e1 ≠ e2 ∧&#10;                    e1 ∈ exp_overlap[{e2}] &#10;                 ⇒ (∃s,n · n ∈ ℕ1 ∧ &#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;s ∈ 0‥n → E ∧&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;(∀i · i ∈ 0‥n−1 ⇒ s(i) ∈ subsets'[{s(i+1)}]) ∧ &#10;&#9;&#9;&#9;&#9;&#9;&#9;    {e1, e2} ⊆ ran(s) &#10;&#9;&#9;&#9;&#9;&#9;)" org.eventb.core.comment="deux signatures distinctes qui individuent des particuliers en commun sont explicitement liés par la relation subsets" org.eventb.core.label="final_subsets"/>
     </org.eventb.core.event>
     <org.eventb.core.event name="B" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="next_class">
         <org.eventb.core.refinesEvent name="'" org.eventb.core.target="next_class"/>
@@ -36,7 +39,7 @@
     </org.eventb.core.event>
     <org.eventb.core.variable name="var:" org.eventb.core.comment="les signatures assertées pour chaque classes" org.eventb.core.identifier="signatureForClasses"/>
     <org.eventb.core.variable name="F" org.eventb.core.comment="l'expression en cours d'évaluation" org.eventb.core.identifier="currentExpression"/>
-    <org.eventb.core.invariant name="G" org.eventb.core.comment="la signature courante est une expression ou l'ensemble vide" org.eventb.core.label="type_currentExpression" org.eventb.core.predicate="currentExpression ∈ E ∪ ∅"/>
+    <org.eventb.core.invariant name="G" org.eventb.core.comment="l'expression courante est une expression" org.eventb.core.label="type_currentExpression" org.eventb.core.predicate="currentExpression ∈ E"/>
     <org.eventb.core.invariant name="inv1" org.eventb.core.comment="signatureForClasses doit correspondre à la relation entre une expression et les classes dont l'expression asserte qu'elle sert à l'individuation de particuliers" org.eventb.core.label="type_signatureForClasses" org.eventb.core.predicate="signatureForClasses ∈ E ↔ C"/>
     <org.eventb.core.event name="varA" org.eventb.core.comment="l'expression est arrimée" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="expression_mapped">
         <org.eventb.core.guard name="grd2" org.eventb.core.comment="l'expression n'a pas déjà été ajoutée" org.eventb.core.label="expressionMapped_grd1" org.eventb.core.predicate="currentExpression ↦ currentClass ∉ signatureForClasses"/>
@@ -49,9 +52,9 @@
         <org.eventb.core.guard name="+" org.eventb.core.comment="l'expression courantes a été ajoutée commme signature" org.eventb.core.label="classMapped_grd4" org.eventb.core.predicate="currentExpression ↦ currentClass ∈ signatureForClasses"/>
         <org.eventb.core.guard name=")" org.eventb.core.comment="toutes les signatures qui permettent l'individuation de particuliers répondant aux axiomes de la classe sont ajoutés à signatureForForClasses" org.eventb.core.label="classMapped_grd5_thm" org.eventb.core.predicate="∀ s · s ∈ individuation∼[class_of∼[{currentClass}]] &#10;    ⇒ s ↦ currentClass ∈ signatureForClasses" org.eventb.core.theorem="true"/>
     </org.eventb.core.event>
-    <org.eventb.core.invariant name="var8" org.eventb.core.label="type_signOfCurrentClass" org.eventb.core.predicate="expressionsOfCurrentClass ⊆ E"/>
+    <org.eventb.core.invariant name="var8" org.eventb.core.comment="l'ensemble des expressions à évaluer pour la classe est un sous-ensemble des expressions" org.eventb.core.label="type_signOfCurrentClass" org.eventb.core.predicate="expressionsOfCurrentClass ⊆ E"/>
     <org.eventb.core.invariant name="var@" org.eventb.core.comment="une signature identifiée pour une classe doit permettre l'individuation des particuliers qui répondent aux axiomes de cette classe" org.eventb.core.label="inv_allMappedSignAreValid" org.eventb.core.predicate="∀ s,c · s ↦ c ∈ signatureForClasses&#10;     ⇒ s ∈ individuation∼[class_of∼[{c}]]"/>
-    <org.eventb.core.invariant name="var6" org.eventb.core.comment="toutes les signatures de toutes classes incluses dans mapped sont incluses dans signatureForClasses " org.eventb.core.label="inv_allSignOfMapped" org.eventb.core.predicate="∀c · c ∈ mapped &#10; ⇒ (∀ s · s ∈ individuation∼[class_of∼[{c}]] &#10;       ⇔ s ↦ c ∈ signatureForClasses)"/>
+    <org.eventb.core.invariant name="var6" org.eventb.core.comment="pour chaque classe de mapped, les particuliers doivent être individualisés par une expression de signature associée à la classe ou un de ses descendants" org.eventb.core.label="inv_allSignOfMapped" org.eventb.core.predicate="∀c, descendants · c ∈ mapped ∧ &#10;                  descendants = is_a∼[{c}]&#10;               ⇒ class_of∼[{c}] ⊆ individuation[signatureForClasses∼[descendants]]"/>
     <org.eventb.core.variable name="var7" org.eventb.core.comment="les expressions qui permettent l'individuation de particuliers qui répondent aux axiomes de la classe courante" org.eventb.core.identifier="expressionsOfCurrentClass"/>
     <org.eventb.core.invariant name="var9" org.eventb.core.comment="les expressions permettant de faire l'individuation de particuliers respectant les axiomes de la classe courante " org.eventb.core.label="inv_signOfCurrentClassAlwaysSyncWithCurrentClass" org.eventb.core.predicate="expressionsOfCurrentClass ⊆ individuation∼[class_of∼[{currentClass}]]"/>
     <org.eventb.core.invariant name="var;" org.eventb.core.comment="toutes les expressions qui permettent l'individuation de particuliers répondant aux axiomes de la classe et ne sont plus incluses dans les expressions à traiter sont ajoutés à signatureForForClasses" org.eventb.core.label="inv_allTreatedSignIsMapped" org.eventb.core.predicate="∀s · s ∈ individuation∼[class_of∼[{currentClass}]] ∖ (expressionsOfCurrentClass ∪ {currentExpression})&#10;  ⇒ s ↦ currentClass ∈ signatureForClasses"/>

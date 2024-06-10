@@ -2,11 +2,15 @@
 <org.eventb.core.machineFile org.eventb.core.comment="Algorithme à haut niveau" org.eventb.core.configuration="org.eventb.core.fwd" version="5">
     <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
         <org.eventb.core.action name=")" org.eventb.core.assignment="signatures ≔ ∅" org.eventb.core.label="init_signatures"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="subsets ≔ ∅" org.eventb.core.label="init_subsets"/>
     </org.eventb.core.event>
     <org.eventb.core.seesContext name="(" org.eventb.core.target="110-MappingContext"/>
     <org.eventb.core.invariant name="4" org.eventb.core.comment="signatureForClasses doit correspondre à la relation entre une expression et les classes dont l'expression asserte qu'elle sert à l'individuation de particuliers" org.eventb.core.label="type_signatures" org.eventb.core.predicate="signatures ∈ E ↔ C"/>
     <org.eventb.core.event name="1" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="final">
-        <org.eventb.core.action name="+" org.eventb.core.assignment="signatures ≔ { s ↦ c ∣ s ∈ individuation∼[class_of∼[{c}]] }" org.eventb.core.label="final_allSignatures"/>
+        <org.eventb.core.action name="act1" org.eventb.core.assignment="signatures :∣ ∀p · p ∈ P &#10;                ⇒ ( ∃e,c,i · e ↦ c ∈ signatures' ∧&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;  p ∈ individuation[{e}] ∧&#10;                              c ∈ class_of[{p}] ∧&#10;                              c ∈ c_level[{i}] ∧&#10;                              (∀j · j ∈ i+1‥max_level &#10;                                 ⇒ class_of[{p}] ∩ c_level[{j}] = ∅))" org.eventb.core.comment="tout les particuliers sont individualisés par une expression associée à la classe la plus éloignée de Thing possible " org.eventb.core.label="final_signatures"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="subsets :∣ ∀e1,e2 · e1 ∈ dom(signatures) ∧ &#10;                    e2 ∈ dom(signatures) ∧&#10; &#9;&#9;&#9;&#9;&#9;e1 ≠ e2 ∧&#10;                    e1 ∈ exp_overlap[{e2}] &#10;                 ⇒ (∃s,n · n ∈ ℕ1 ∧ &#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;s ∈ 0‥n → E ∧&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;(∀i · i ∈ 0‥n−1 ⇒ s(i) ∈ subsets'[{s(i+1)}]) ∧ &#10;&#9;&#9;&#9;&#9;&#9;&#9;    {e1, e2} ⊆ ran(s) &#10;&#9;&#9;&#9;&#9;&#9;)" org.eventb.core.comment="deux signatures distinctes qui individuent des particuliers en commun sont explicitement liés par la relation subsets" org.eventb.core.label="final_subsets"/>
     </org.eventb.core.event>
     <org.eventb.core.variable name="3" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatures"/>
+    <org.eventb.core.invariant name="inv1" org.eventb.core.comment="subsets doit correspondre à la relation entre des expressions et les expressions dont elles sont le sous-ensemble" org.eventb.core.label="type_subsets" org.eventb.core.predicate="subsets ∈ E ↔ E"/>
+    <org.eventb.core.variable name="var1" org.eventb.core.comment="la relation de sous-ensemble entre des signatures" org.eventb.core.identifier="subsets"/>
 </org.eventb.core.machineFile>

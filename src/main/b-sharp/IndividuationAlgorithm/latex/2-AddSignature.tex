@@ -1,0 +1,100 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{2-AddSignature}
+\MACHINE{2-AddSignature}{1-ClassTreeTraversal}{110-MappingContext}{}
+\VARIABLES{
+	\Variable{signatures}{l'association d'une signature à une ou plusieurs classe}
+	\Variable{currentLevel}{les éléments qu'il reste à arrimer sur l'étage courant de l'arbre}
+	\Variable{currentClass}{la classe à arrimer}
+	\Variable{levelNum}{le numéro de l'étage courant}
+	\Variable{mapped}{l'ensemble des classes arrimées}
+	\Variable{signatureForClasses}{les signatures assertées pour chaque classes}
+	\Variable{currentExpression}{l'expression en cours d'évaluation}
+	\Variable{expressionsOfCurrentClass}{les expressions qui permettent l'individuation de particuliers qui répondent aux axiomes de la classe courante}
+}
+\INVARIANTS{
+	\Invariant{type\_currentExpression}{false}{$currentExpression \in{} E \bunion{} \emptyset{}$}{\\la signature courante est une expression ou l'ensemble vide}
+	\Invariant{type\_signatureForClasses}{false}{$signatureForClasses \in{} E \rel{} C$}{\\signatureForClasses doit correspondre à la relation entre une expression et les classes dont l'expression asserte qu'elle sert à l'individuation de particuliers}
+	\Invariant{type\_signOfCurrentClass}{false}{$expressionsOfCurrentClass \subseteq{} E$}{}
+	\Invariant{inv\_allMappedSignAreValid}{false}{$\\\forall{} s,c \qdot{} s \mapsto{} c \in{} signatureForClasses\\~    \limp{} s \in{} individuation\converse{}[class\_of\converse{}[\{c\}]]$}{\\une signature identifiée pour une classe doit permettre l'individuation des particuliers qui répondent aux axiomes de cette classe}
+	\Invariant{inv\_allSignOfMapped}{false}{$\\\forall{}c \qdot{} c \in{} mapped \\~\limp{} (\forall{} s \qdot{} s \in{} individuation\converse{}[class\_of\converse{}[\{c\}]] \\~      \leqv{} s \mapsto{} c \in{} signatureForClasses)$}{\\toutes les signatures de toutes classes incluses dans mapped sont incluses dans signatureForClasses }
+	\Invariant{inv\_signOfCurrentClassAlwaysSyncWithCurrentClass}{false}{$expressionsOfCurrentClass \subseteq{} individuation\converse{}[class\_of\converse{}[\{currentClass\}]]$}{\\les expressions permettant de faire l'individuation de particuliers respectant les axiomes de la classe courante }
+	\Invariant{inv\_allTreatedSignIsMapped}{false}{$\\\forall{}s \qdot{} s \in{} individuation\converse{}[class\_of\converse{}[\{currentClass\}]] \setminus{} (expressionsOfCurrentClass \bunion{} \{currentExpression\})\\~ \limp{} s \mapsto{} currentClass \in{} signatureForClasses$}{\\toutes les expressions qui permettent l'individuation de particuliers répondant aux axiomes de la classe et ne sont plus incluses dans les expressions à traiter sont ajoutés à signatureForForClasses}
+	\Invariant{inv\_currentClassIsNeutralOnlyWhenLastExpression}{false}{$\btrue{}$}{\\l'expression courante correspond à l'expression neutre uniquement lorsqu'il n'y a plus d'expression à traiter pour la classe}
+	\Invariant{inv\_currentExpressionIsNeutralOrExpressionOfCurrentClass}{false}{$currentExpression \in{} individuation\converse{}[class\_of\converse{}[\{currentClass\}]] \bunion{} \{ neutral\_expression \}$}{}
+}
+\VARIANT{
+	\Variant{$card(expressionsOfCurrentClass)$}{nextSign converge en diminuant le nombre d'expressions pour la classe courante}
+}
+\EVENTS{
+\INITIALISATION{false}{}{
+	\ACTIONS{false}{
+		\Action{init\_signatures}{$signatures \bcmeq{} \emptyset{}$}{true}{}
+		\Action{init\_stepNum}{$levelNum \bcmeq{} max\_level$}{true}{}
+		\Action{init\_step}{$currentLevel \bcmeq{} c\_level[\{max\_level\}]$}{true}{}
+		\Action{init\_currentClass}{$\\currentClass, expressionsOfCurrentClass, currentExpression \bcmsuch{}\\~~~~currentClass' \in{} c\_level[\{max\_level\}] \land{} \\~~~~expressionsOfCurrentClass' = individuation\converse{}[class\_of\converse{}[\{currentClass'\}]] \land{}\\~~~~(currentExpression' \in{} expressionsOfCurrentClass' \lor{} (expressionsOfCurrentClass' = \emptyset{} \land{} currentExpression' = neutral\_expression))$}{true}{\\La classe courante est choisie arbitrairement parmis les classes du niveau\\L'expression est choisie arbitrairement parmis les expressions permettant l'individuation des particuliers qui répondent aux axiomes de cette classe\\~  Si aucune expression ne permet l'individuation de particuliers répondant aux axiomes de la classe, l'expression correspond à l'expression neutre}
+		\Action{init\_mapped}{$mapped \bcmeq{} \emptyset{}$}{true}{}
+		\Action{init\_signatureForClasses}{$signatureForClasses \bcmeq{} \emptyset{}$}{true}{}
+	}
+}
+\EVT{final}{false}{ordinary}{final}{}{
+	\GUARDS{false}{
+		\Guard{final\_grd1}{false}{$mapped = C$}{true}{\\on a appliqué le procédé d'arrimage à toutes les classes}
+	}
+	\ACTIONS{true}{
+		\Action{final\_allSignatures}{$signatures \bcmeq{} signatureForClasses$}{true}{}
+	}
+}
+\EVT{next\_class}{false}{ordinary}{next\_class}{}{
+	\GUARDS{false}{
+		\Guard{nextClass\_grd1}{false}{$currentClass \in{} mapped$}{true}{\\l'arrimage est terminé pour la classe en cours}
+		\Guard{nextClass\_grd2}{false}{$currentLevel \neq{} \emptyset{}$}{true}{\\il reste des classes à arrimer sur cette étage}
+	}
+	\ACTIONS{true}{
+		\Action{nextClass\_pop}{$\\currentClass, currentLevel, expressionsOfCurrentClass, currentExpression \bcmsuch{}\\~~~~currentClass' \in{} currentLevel \land{}\\~   currentLevel' = currentLevel \setminus{} \{ currentClass' \} \land{}\\~~~~expressionsOfCurrentClass' = individuation\converse{}[class\_of\converse{}[\{currentClass'\}]] \land{}\\~~~~(currentExpression' \in{} expressionsOfCurrentClass' \lor{} (expressionsOfCurrentClass' = \emptyset{} \land{} currentExpression' = neutral\_expression))$}{true}{\\on choisi une classe à arrimer\\on la retire des classes à arrimer pour ce niveau\\on met à jour les signatures pour la classe courante\\on choisi une signature à spécifier}
+	}
+}
+\EVT{next\_level}{true}{ordinary}{next\_level}{}{
+	\GUARDS{false}{
+		\Guard{nextLevel\_grd1}{false}{$currentLevel = \emptyset{}$}{false}{}
+		\Guard{nextLevel\_grd2}{false}{$levelNum > 0$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{nextLevel\_changeCurrentLevel}{$currentLevel \bcmeq{} c\_level[\{levelNum - 1\}]$}{false}{\\le nouveau courant est maintenant le niveau d'au dessus}
+		\Action{nextLevel\_changeLevelNum}{$levelNum \bcmeq{} levelNum - 1$}{false}{\\le numéro du niveau correpond au numéro du niveau courant}
+	}
+}
+\EVT{next\_expression}{false}{convergent}{}{\\on passe à la prochaine expression}{
+	\GUARDS{false}{
+		\Guard{nextExpression\_grd1}{false}{$expressionsOfCurrentClass \neq{} \emptyset{}$}{true}{\\il reste des expressions à taiter}
+		\Guard{nextExpression\_grd2}{false}{$currentExpression \mapsto{} currentClass \in{} signatureForClasses$}{true}{\\l'expression est ajoutée aux signatures}
+	}
+	\ACTIONS{true}{
+		\Action{nextExpression\_pop}{$\\currentExpression, expressionsOfCurrentClass \bcmsuch{} currentExpression' \in{} expressionsOfCurrentClass  \land{}\\~                                               expressionsOfCurrentClass' = expressionsOfCurrentClass \setminus{} \{ currentExpression' \}$}{true}{\\on ajoute la signature aux signatures de la classe courante\\on passe à la prochaine expression, s'il y en a une}
+	}
+}
+\EVT{expression\_mapped}{false}{ordinary}{}{\\l'expression est arrimée}{
+	\GUARDS{false}{
+		\Guard{expressionMapped\_grd1}{false}{$currentExpression \mapsto{} currentClass \notin{} signatureForClasses$}{true}{\\l'expression n'a pas déjà été ajoutée}
+		\Guard{expressionMapped\_grd2}{false}{$currentExpression \neq{} neutral\_expression$}{true}{\\on n'ajoute pas l'expression neutre}
+	}
+	\ACTIONS{true}{
+		\Action{expressionMapped\_addToSign}{$signatureForClasses \bcmeq{} signatureForClasses \bunion{} \{ currentExpression \mapsto{} currentClass \}$}{true}{}
+	}
+}
+\EVT{class\_mapped}{true}{ordinary}{class\_mapped}{\\l'arrimage de la classe est terminé}{
+	\GUARDS{false}{
+		\Guard{classMapped\_grd1}{false}{$currentClass \notin{} mapped$}{false}{\\la classe courant n'est pas arrimée}
+		\Guard{classMapped\_grd2}{false}{$currentClass \in{} c\_level[\{levelNum\}]$}{false}{\\la classe fait partie du niveau courant}
+		\Guard{classMapped\_grd3}{false}{$expressionsOfCurrentClass = \emptyset{}$}{true}{\\toutes les signatures qui permettent l'individuation de particuliers répondant aux axiomes de la classe ont été traitées }
+		\Guard{classMapped\_grd4}{false}{$currentExpression \mapsto{} currentClass \in{} signatureForClasses$}{true}{\\l'expression courantes a été ajoutée commme signature}
+		\Guard{classMapped\_grd5\_thm}{true}{$\\\forall{} s \qdot{} s \in{} individuation\converse{}[class\_of\converse{}[\{currentClass\}]] \\~   \limp{} s \mapsto{} currentClass \in{} signatureForClasses$}{true}{\\toutes les signatures qui permettent l'individuation de particuliers répondant aux axiomes de la classe sont ajoutés à signatureForForClasses}
+	}
+	\ACTIONS{true}{
+		\Action{classMapped\_addToMapped}{$mapped \bcmeq{} mapped \bunion{} \{ currentClass \}$}{false}{\\on ajoute la classe aux classes arrimées}
+	}
+}
+}
+\END
+\end{document}

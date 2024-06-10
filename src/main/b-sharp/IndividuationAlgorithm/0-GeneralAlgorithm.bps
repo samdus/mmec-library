@@ -1,2 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<org.eventb.core.psFile/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.psFile>
+    <org.eventb.core.psStatus name="final/final_signatures/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="11" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="final/final_subsets/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="11" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="final/final_subsets/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="11" org.eventb.core.psManual="true"/>
+</org.eventb.core.psFile>
