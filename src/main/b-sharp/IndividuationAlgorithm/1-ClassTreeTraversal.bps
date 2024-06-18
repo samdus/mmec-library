@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.psFile>
-    <org.eventb.core.psStatus name="deadlock_noNextLevelImpliesFinal/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="var_QtytoMapOnLevel/VWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="deadlock_noNextLevelImpliesFinal/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="var_QtytoMapOnLevel/VWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="INITIALISATION/type_levelNum/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="INITIALISATION/inv_currentLevelInLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="INITIALISATION/inv_mappedPreviousLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
@@ -15,8 +15,8 @@
     <org.eventb.core.psStatus name="next_class/inv_currentClassInCurrentLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_class/inv_currentClassNotInToMappedInLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_class/nextClass_pop/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="next_class/var_QtytoMapOnLevel/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="next_class/var_QtytoMapOnLevel/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="next_class/var_QtytoMapOnLevel/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="next_class/var_QtytoMapOnLevel/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="next_level/type_levelNum/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_level/inv_currentLevelInLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_level/inv_mappedPreviousLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
@@ -24,10 +24,10 @@
     <org.eventb.core.psStatus name="next_level/inv_currentClassInCurrentLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_level/inv_currentClassNotInToMappedInLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_level/nextClass_popFromNewLevel/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="next_level/var_QtytoMapOnLevel/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="next_level/var_QtytoMapOnLevel/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="next_level/var_QtytoMapOnLevel/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="next_level/var_QtytoMapOnLevel/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="class_mapped/inv_mappedPreviousLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="class_mapped/inv_previousLevelMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="class_mapped/var_QtytoMapOnLevel/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="class_mapped/var_QtytoMapOnLevel/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="class_mapped/var_QtytoMapOnLevel/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="class_mapped/var_QtytoMapOnLevel/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
 </org.eventb.core.psFile>

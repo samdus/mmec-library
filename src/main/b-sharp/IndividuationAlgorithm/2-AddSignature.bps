@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.psFile>
-    <org.eventb.core.psStatus name="var_nextSign/VWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/inv_allMappedSignAreValid/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="inv_doNotAddNeutralExpression/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="inv_particularOfCurrentExpressionRespectCurrentClass/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="var_nextExpression/VWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="INITIALISATION/type_signatureForClasses/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/type_expressionsOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/type_expressionsLeftForCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/def_expressionsOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/inv_allMappedSignAreValid/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="INITIALISATION/inv_allSignOfMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/inv_signOfCurrentClassAlwaysSyncWithCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/inv_allTreatedSignIsMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/inv_currentExpressionIsNeutralOrExpressionOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="INITIALISATION/init_currentClass/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="INITIALISATION/init_currentClassAndLevel/SIM" org.eventb.core.confidence="0" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="final/final_signatures/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_class/inv_signOfCurrentClassAlwaysSyncWithCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="next_class/inv_allTreatedSignIsMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_class/inv_currentExpressionIsNeutralOrExpressionOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_class/nextClass_pop/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_class/nextClass_pop/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="true"/>
-    <org.eventb.core.psStatus name="next_level/inv_signOfCurrentClassAlwaysSyncWithCurrentClass/INV" org.eventb.core.confidence="0" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_level/inv_allTreatedSignIsMapped/INV" org.eventb.core.confidence="0" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_level/inv_currentExpressionIsNeutralOrExpressionOfCurrentClass/INV" org.eventb.core.confidence="0" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_expression/inv_signOfCurrentClassAlwaysSyncWithCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_expression/inv_allTreatedSignIsMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_expression/inv_currentExpressionIsNeutralOrExpressionOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_expression/nextExpression_pop/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_expression/var_nextSign/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="next_expression/var_nextSign/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="expression_mapped/inv_allMappedSignAreValid/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="expression_mapped/inv_allSignOfMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="expression_mapped/inv_allTreatedSignIsMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="class_mapped/classMapped_grd5_thm/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="class_mapped/inv_allSignOfMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/inv_allSignOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/inv_currentClassIsNeutralOnlyWhenLastExpression/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/inv_newSignIsntTooCloseOfThing/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/init_currentClass/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/init_currentClassAndLevel/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="final/final_subsets/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="final/final_subsets/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="final/final/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_class/type_expressionsOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_class/type_expressionsLeftForCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_class/def_expressionsOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_class/inv_allSignOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_class/inv_currentClassIsNeutralOnlyWhenLastExpression/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_class/nextClass_pop/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_class/nextClass_pop/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_level/def_expressionsOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_level/inv_allSignOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_expression/type_expressionsLeftForCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_expression/inv_allSignOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_expression/inv_currentClassIsNeutralOnlyWhenLastExpression/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_expression/nextExpression_pop/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_expression/var_nextExpression/NAT" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="next_expression/var_nextExpression/VAR" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="expression_isSign/type_signatureForClasses/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="expression_isSign/inv_allMappedSignAreValid/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="expression_isSign/inv_allSignOfMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="expression_isSign/inv_allSignOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="expression_isSign/inv_newSignIsntTooCloseOfThing/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="class_mapped/inv_allSignOfMapped/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="class_mapped/inv_newSignIsntTooCloseOfThing/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="13" org.eventb.core.psBroken="true" org.eventb.core.psManual="false"/>
 </org.eventb.core.psFile>
