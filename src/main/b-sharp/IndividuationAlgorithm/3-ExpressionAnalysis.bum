@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.refinesMachine name="'" org.eventb.core.target="2-ExpressionTraversal"/>
+    <org.eventb.core.seesContext name="(" org.eventb.core.target="110-MappingContext"/>
+    <org.eventb.core.variable name="var2" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatures"/>
+    <org.eventb.core.variable name="var8" org.eventb.core.comment="la relation de sous-ensemble entre des signatures" org.eventb.core.identifier="subsets"/>
+    <org.eventb.core.variable name="7" org.eventb.core.comment="les éléments qu'il reste à arrimer sur l'étage courant de l'arbre" org.eventb.core.identifier="currentLevel"/>
+    <org.eventb.core.variable name="8" org.eventb.core.comment="la classe à arrimer" org.eventb.core.identifier="currentClass"/>
+    <org.eventb.core.variable name=";" org.eventb.core.comment="le numéro de l'étage courant" org.eventb.core.identifier="levelNum"/>
+    <org.eventb.core.variable name="?" org.eventb.core.comment="l'ensemble des classes arrimées" org.eventb.core.identifier="mapped"/>
+    <org.eventb.core.variable name="F" org.eventb.core.comment="l'expression en cours d'évaluation" org.eventb.core.identifier="currentExpression"/>
+    <org.eventb.core.variable name="var7" org.eventb.core.comment="les expressions qui permettent l'individuation de particuliers qui répondent aux axiomes de la classe courante" org.eventb.core.identifier="expressionsOfCurrentClass"/>
+    <org.eventb.core.variable name="varE" org.eventb.core.comment="les expressions encore à analyser pour la classe courante " org.eventb.core.identifier="expressionsLeftForCurrentClass"/>
+    <org.eventb.core.variable name="varG" org.eventb.core.comment="l'ensemble des expressions analysées" org.eventb.core.identifier="analysedExpressions"/>
+    <org.eventb.core.event name="varH" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="definedSignatures ≔ ∅" org.eventb.core.comment="aucune signature n'est définie" org.eventb.core.label="init_definedSignatures"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="definedSubsets ≔ ∅" org.eventb.core.comment="aucune relation de sous-ensemble n'est définie" org.eventb.core.label="init_definedSubsets"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varI" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="final">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="final"/>
+        <org.eventb.core.action name="act1" org.eventb.core.assignment="signatures,subsets  ≔ definedSignatures, definedSubsets" org.eventb.core.comment="assignation des signatures et sous-ensembles définies aux signatures et sous-ensembles finaux " org.eventb.core.label="final"/>
+        <org.eventb.core.guard name="'" org.eventb.core.comment="on a appliqué le procédé d'arrimage à toutes les classes" org.eventb.core.label="final_grd1" org.eventb.core.predicate="mapped = C"/>
+        <org.eventb.core.guard name="(" org.eventb.core.comment="lorsque toutes les classes sont arrimées, on sait que toutes les expressions correspondant à des signatures valides ont étés analysées" org.eventb.core.label="final_grd2" org.eventb.core.predicate="∀c · c ∈ C&#10;  ⇒ (∀e · (∀p · p ∈ individuation[{e}]&#10;              ⇔ c ∈ class_of[{p}])&#10;          ⇒ e ∈ analysedExpressions)" org.eventb.core.theorem="true"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varJ" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="next_class">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="next_class"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varK" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="next_level">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="next_level"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varL" org.eventb.core.comment="on passe à la prochaine expression" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="next_expression">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="next_expression"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varM" org.eventb.core.comment="l'arrimage de la classe est terminé" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="class_mapped">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="class_mapped"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varN" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="expression_analysed">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="expression_analysed"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="varO" org.eventb.core.comment="les signatures définies au cours du procédé" org.eventb.core.identifier="definedSignatures"/>
+    <org.eventb.core.variable name="varP" org.eventb.core.comment="les relations de sous-ensembles entre signatures définies au cours du procédé" org.eventb.core.identifier="definedSubsets"/>
+    <org.eventb.core.invariant name="varQ" org.eventb.core.label="type_definedSignatures" org.eventb.core.predicate="definedSignatures ∈ E ↔ C"/>
+    <org.eventb.core.invariant name="varR" org.eventb.core.label="type_definedSubsets" org.eventb.core.predicate="definedSubsets ∈ E ↔ E"/>
+    <org.eventb.core.invariant name="varS" org.eventb.core.comment="tout particulier qui répond aux axiomes d'une classe arrimée est au moins individualisé par une expression associée à ses classes terminales" org.eventb.core.label="inv_allMappedAndStrictClassesAreDefined" org.eventb.core.predicate="∀p,c · p ∈ P ∧&#10;       c ∈ class_of_strict[{p}] ∧&#10;       c ∈ mapped&#10;    ⇒ (∃e · p ∈ individuation[{e}] ∧&#10;             e ↦ c ∈ definedSignatures)"/>
+    <org.eventb.core.invariant name="varT" org.eventb.core.comment="tout particulier individualisé par une signature associé à une classe c respectent les axiomes de la classe c" org.eventb.core.label="inv_allDefinedSignaturesAreValid" org.eventb.core.predicate="∀e,c · e ↦ c ∈ definedSignatures&#10;        ⇒ ( ∀p · p ∈ individuation[{e}]&#10;            ⇒ c ∈ class_of[{p}])"/>
+    <org.eventb.core.invariant name="varU" org.eventb.core.comment="toute expression utilisée comme signature permet l'individuation d'au moins un particulier " org.eventb.core.label="inv_allDefinedSignaturesIndividuateAParticular" org.eventb.core.predicate="∀e · e ∈ dom(definedSignatures)&#10;  ⇒ individuation[{e}] ≠ ∅"/>
+    <org.eventb.core.invariant name="varV" org.eventb.core.comment="la relation de sous-ensembles est définie à partir d'expression utilisées comme signature" org.eventb.core.label="inv_definedSubsetsDefinedOverDefinedSignatures" org.eventb.core.predicate="dom(definedSubsets) ⊆ dom(definedSignatures)"/>
+    <org.eventb.core.invariant name="varW" org.eventb.core.comment="toutes signatures qui individues des particuliers en commun sont en relations subsets" org.eventb.core.label="inv_overlapingDefinedSignaturesAreLinkByDefinedSubsets" org.eventb.core.predicate="∀e1,e2 · e1 ∈ dom(definedSignatures) ∧ &#10;         e2 ∈ dom(definedSignatures) ∧&#10;         e1 ≠ e2 ∧&#10;         e1 ∈ exp_overlap[{e2}] &#10;      ⇒ (∃s,n · n ∈ ℕ1 ∧ &#10;                 s ∈ 0‥n → E ∧&#10;                 (∀i · i ∈ 0‥n−1 ⇒ s(i) ∈ definedSubsets[{s(i+1)}] ∨&#10;                                     s(i) ∈ definedSubsets∼[{s(i+1)}]) ∧&#10;                 s(0) = e1 ∧&#10;                 s(n) = e2)"/>
+    <org.eventb.core.invariant name="varX" org.eventb.core.comment="les signatures notés comme étant en relation de sous-ensemble sont effectivement des sous-ensembles " org.eventb.core.label="inv_definedSubsetsAreEffectivelySubsets" org.eventb.core.predicate="∀sup,sub · sup ∈ definedSubsets[{sub}]&#10;        ⇒ sup ∈ exp_subsets[{sub}]"/>
+    <org.eventb.core.invariant name="varY" org.eventb.core.comment="les clés des signatures notés comme étant en relation de sous-ensemble doivent être compatible" org.eventb.core.label="inv_definedSubsetsHaveCompatibleKeys" org.eventb.core.predicate="∀e1,e2 · e1 ∈ definedSubsets[{e2}]&#10;      ⇒ exp_key(e1) ∈ key_compatible[{exp_key(e2)}]"/>
+</org.eventb.core.machineFile>
