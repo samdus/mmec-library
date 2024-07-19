@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.contextFile org.eventb.core.comment="preuve que is_a correspond à la fermeture transitive de l'arbre C" org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
     <org.eventb.core.extendsContext name="'" org.eventb.core.target="020-OntologyContext_ClassesIsA"/>
     <org.eventb.core.constant name="cst1" org.eventb.core.comment="une relation permettant d'obtenir les classes à une certaines distance de la racine Thing" org.eventb.core.identifier="c_level"/>
     <org.eventb.core.axiom name="cstA" org.eventb.core.label="onto_type_maxLevel" org.eventb.core.predicate="max_level ∈ ℕ"/>
