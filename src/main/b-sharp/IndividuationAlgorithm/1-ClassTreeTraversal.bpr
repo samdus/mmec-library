@@ -5953,7 +5953,7 @@
                                         <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p82"/>
                                         <org.eventb.core.prHypAction name="HIDE1" org.eventb.core.prHyps="p83"/>
                                         <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p66" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p84"/>
-                                        <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p30" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p85"/>
+                                        <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p31" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p85"/>
                                         <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p24" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p86"/>
                                         <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p5" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p87"/>
                                         <org.eventb.core.prHypAction name="REWRITE6" org.eventb.core.prHidden="p60" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p88"/>
@@ -6001,8 +6001,8 @@
                                                 <org.eventb.core.prHypAction name="REWRITE17" org.eventb.core.prHidden="p111" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p129"/>
                                                 <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="sl/ds" org.eventb.core.prHyps="">
                                                     <org.eventb.core.prAnte name="'">
-                                                        <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p3,p4,p7,p116,p78,p46,p11,p12,p112,p47,p48,p50,p51,p19,p52,p126,p129,p21,p57,p58,p59,p28,p62,p113,p29,p115,p63,p33,p34,p35,p117,p67,p122,p38,p114,p71,p40"/>
-                                                        <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p21,p58,p62,p3,p40,p11,p47,p4,p44,p46,p42,p9,p28,p48,p57,p63,p31,p32,p23,p17,p41,p33,p29,p45,p52,p12,p34,p67,p56,p27,p10,p37,p18,p1,p8,p22,p61,p39,p65,p36,p49,p50,p7,p38,p51,p59,p54,p35,p19,p71,p78,p79,p81,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p122,p123,p124,p126,p127,p128">
+                                                        <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p3,p4,p7,p116,p78,p46,p11,p12,p112,p47,p48,p50,p51,p19,p52,p126,p129,p21,p57,p58,p59,p28,p62,p113,p30,p115,p63,p34,p35,p36,p117,p67,p122,p38,p114,p71,p40"/>
+                                                        <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p21,p58,p62,p3,p40,p11,p47,p4,p44,p46,p42,p9,p28,p48,p57,p63,p32,p33,p23,p17,p41,p34,p30,p45,p52,p12,p35,p67,p56,p27,p10,p29,p18,p1,p8,p22,p61,p39,p65,p37,p49,p50,p7,p38,p51,p59,p54,p36,p19,p71,p78,p79,p81,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p122,p123,p124,p126,p127,p128">
                                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                         </org.eventb.core.prRule>
                                                     </org.eventb.core.prAnte>
@@ -6064,13 +6064,13 @@
         <org.eventb.core.prPred name="p73" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧¬e1∈exp_subsets[{e2}]∧¬e2∈exp_subsets[{e1}]⇒(∃e3⦂E·e3∈exp_subsets[{e1}]∧e3∈exp_subsets[{e2}])"/>
         <org.eventb.core.prPred name="p110" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·⊤∧⊤∧¬empty_e∈dom(individuation)⇒e∈exp_subsets[{empty_e}]"/>
         <org.eventb.core.prPred name="p28" org.eventb.core.predicate="finite(c_level)"/>
-        <org.eventb.core.prPred name="p29" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
+        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
         <org.eventb.core.prPred name="p115" org.eventb.core.predicate="∀c⦂C·thing∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
-        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
-        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="finite(currentLevel)"/>
+        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
+        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
+        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="finite(currentLevel)"/>
         <org.eventb.core.prPred name="p85" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·⊤∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
+        <org.eventb.core.prPred name="p37" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
         <org.eventb.core.prPred name="p104" org.eventb.core.predicate="subsets∈E ↔ E">
             <org.eventb.core.prIdent name="subsets" org.eventb.core.type="ℙ(E×E)"/>
         </org.eventb.core.prPred>
@@ -6127,13 +6127,13 @@
         <org.eventb.core.prPred name="p20" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_subsets[{e2}]∧e2∈exp_subsets[{e1}]"/>
         <org.eventb.core.prPred name="p22" org.eventb.core.predicate="∀p⦂P·p∈P⇒(∃e⦂E·{p}=individuation[{e}])"/>
         <org.eventb.core.prPred name="p25" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·e∈E∧empty_e∈E∧individuation[{empty_e}]=(∅ ⦂ ℙ(P))⇒e∈exp_subsets[{empty_e}]"/>
-        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="0∈P_cLevel"/>
-        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
+        <org.eventb.core.prPred name="p29" org.eventb.core.predicate="exp_key∈E ↠ K"/>
+        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
+        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="0∈P_cLevel"/>
+        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
         <org.eventb.core.prPred name="p96" org.eventb.core.predicate="∀e1⦂E,e2⦂E·⊤∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]"/>
         <org.eventb.core.prPred name="p72" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]⇒(∃e3⦂E·e3∈exp_subsets[{e1}]∧e3∈exp_subsets[{e2}])"/>
         <org.eventb.core.prPred name="p111" org.eventb.core.predicate="∀c⦂C·⊤⇒(∃e⦂ℙ(ℤ×E),n⦂ℤ·n∈ℕ∧(∀i⦂ℤ·i∈0 ‥ n)∧⊤∧(∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[ran(e)]))"/>
-        <org.eventb.core.prPred name="p37" org.eventb.core.predicate="exp_key∈E ⤖ K"/>
         <org.eventb.core.prPred name="p38" org.eventb.core.predicate="mapped⊆c_level[levelNum ‥ max_level] ∖ currentLevel"/>
         <org.eventb.core.prPred name="p39" org.eventb.core.predicate="∀c⦂C·c∈C⇒(∃SE⦂ℙ(E)·∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[SE])"/>
         <org.eventb.core.prPred name="p97" org.eventb.core.predicate="∀e⦂E·⊤⇒e∈exp_equivalent[{e}]"/>
@@ -6642,7 +6642,7 @@
                                 <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p82"/>
                                 <org.eventb.core.prHypAction name="HIDE1" org.eventb.core.prHyps="p83"/>
                                 <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p67" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p84"/>
-                                <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p31" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p85"/>
+                                <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p32" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p85"/>
                                 <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p26" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p86"/>
                                 <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p5" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p87"/>
                                 <org.eventb.core.prHypAction name="REWRITE6" org.eventb.core.prHidden="p61" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p88"/>
@@ -6695,8 +6695,8 @@
                                                     <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p131">
                                                         <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="sl/ds" org.eventb.core.prHyps="">
                                                             <org.eventb.core.prAnte name="'">
-                                                                <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p3,p4,p7,p116,p80,p47,p11,p12,p112,p48,p49,p51,p52,p20,p53,p126,p129,p22,p58,p59,p60,p29,p63,p113,p30,p115,p64,p34,p35,p36,p117,p68,p122,p39,p114,p73,p41"/>
-                                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p131" org.eventb.core.prHyps="p22,p59,p63,p3,p41,p11,p48,p4,p45,p47,p43,p9,p29,p49,p58,p64,p32,p33,p24,p18,p42,p34,p30,p46,p53,p12,p35,p68,p57,p28,p10,p38,p19,p1,p8,p23,p62,p40,p66,p37,p50,p51,p7,p39,p52,p60,p55,p16,p36,p20,p73,p80,p81,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p122,p123,p124,p126,p127,p128">
+                                                                <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p3,p4,p7,p116,p80,p47,p11,p12,p112,p48,p49,p51,p52,p20,p53,p126,p129,p22,p58,p59,p60,p29,p63,p113,p31,p115,p64,p35,p36,p37,p117,p68,p122,p39,p114,p73,p41"/>
+                                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p131" org.eventb.core.prHyps="p22,p59,p63,p3,p41,p11,p48,p4,p45,p47,p43,p9,p29,p49,p58,p64,p33,p34,p24,p18,p42,p35,p31,p46,p53,p12,p36,p68,p57,p28,p10,p30,p19,p1,p8,p23,p62,p40,p66,p38,p50,p51,p7,p39,p52,p60,p55,p16,p37,p20,p73,p80,p81,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p122,p123,p124,p126,p127,p128">
                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                 </org.eventb.core.prRule>
                                                             </org.eventb.core.prAnte>
@@ -6760,13 +6760,13 @@
         <org.eventb.core.prPred name="p75" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧¬e1∈exp_subsets[{e2}]∧¬e2∈exp_subsets[{e1}]⇒(∃e3⦂E·e3∈exp_subsets[{e1}]∧e3∈exp_subsets[{e2}])"/>
         <org.eventb.core.prPred name="p110" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·⊤∧⊤∧¬empty_e∈dom(individuation)⇒e∈exp_subsets[{empty_e}]"/>
         <org.eventb.core.prPred name="p29" org.eventb.core.predicate="finite(c_level)"/>
-        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
+        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
         <org.eventb.core.prPred name="p115" org.eventb.core.predicate="∀c⦂C·thing∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
-        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
-        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="finite(currentLevel)"/>
+        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
+        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
+        <org.eventb.core.prPred name="p37" org.eventb.core.predicate="finite(currentLevel)"/>
         <org.eventb.core.prPred name="p85" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·⊤∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p37" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
+        <org.eventb.core.prPred name="p38" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
         <org.eventb.core.prPred name="p104" org.eventb.core.predicate="subsets∈E ↔ E">
             <org.eventb.core.prIdent name="subsets" org.eventb.core.type="ℙ(E×E)"/>
         </org.eventb.core.prPred>
@@ -6825,13 +6825,13 @@
         <org.eventb.core.prPred name="p21" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_subsets[{e2}]∧e2∈exp_subsets[{e1}]"/>
         <org.eventb.core.prPred name="p23" org.eventb.core.predicate="∀p⦂P·p∈P⇒(∃e⦂E·{p}=individuation[{e}])"/>
         <org.eventb.core.prPred name="p27" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·e∈E∧empty_e∈E∧individuation[{empty_e}]=(∅ ⦂ ℙ(P))⇒e∈exp_subsets[{empty_e}]"/>
-        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="0∈P_cLevel"/>
-        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
+        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="exp_key∈E ↠ K"/>
+        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
+        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="0∈P_cLevel"/>
+        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
         <org.eventb.core.prPred name="p96" org.eventb.core.predicate="∀e1⦂E,e2⦂E·⊤∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]"/>
         <org.eventb.core.prPred name="p74" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]⇒(∃e3⦂E·e3∈exp_subsets[{e1}]∧e3∈exp_subsets[{e2}])"/>
         <org.eventb.core.prPred name="p111" org.eventb.core.predicate="∀c⦂C·⊤⇒(∃e⦂ℙ(ℤ×E),n⦂ℤ·n∈ℕ∧(∀i⦂ℤ·i∈0 ‥ n)∧⊤∧(∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[ran(e)]))"/>
-        <org.eventb.core.prPred name="p38" org.eventb.core.predicate="exp_key∈E ⤖ K"/>
         <org.eventb.core.prPred name="p39" org.eventb.core.predicate="mapped⊆c_level[levelNum ‥ max_level] ∖ currentLevel"/>
         <org.eventb.core.prPred name="p40" org.eventb.core.predicate="∀c⦂C·c∈C⇒(∃SE⦂ℙ(E)·∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[SE])"/>
         <org.eventb.core.prPred name="p97" org.eventb.core.predicate="∀e⦂E·⊤⇒e∈exp_equivalent[{e}]"/>
@@ -11317,7 +11317,7 @@
                         <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p79"/>
                         <org.eventb.core.prHypAction name="HIDE1" org.eventb.core.prHyps="p80"/>
                         <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p65" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p81"/>
-                        <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p30" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p82"/>
+                        <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p31" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p82"/>
                         <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p25" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p83"/>
                         <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p5" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p84"/>
                         <org.eventb.core.prHypAction name="REWRITE6" org.eventb.core.prHidden="p59" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p85"/>
@@ -11365,8 +11365,8 @@
                                 <org.eventb.core.prHypAction name="REWRITE17" org.eventb.core.prHidden="p108" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p126"/>
                                 <org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="sl/ds" org.eventb.core.prHyps="">
                                     <org.eventb.core.prAnte name="'">
-                                        <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p3,p4,p7,p113,p43,p77,p46,p11,p12,p109,p47,p48,p50,p51,p19,p52,p123,p126,p22,p56,p57,p58,p28,p61,p110,p29,p112,p62,p33,p34,p35,p114,p66,p119,p38,p111,p70,p40"/>
-                                        <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p22,p57,p61,p3,p40,p11,p47,p4,p44,p46,p42,p9,p28,p48,p56,p62,p31,p32,p24,p17,p41,p33,p29,p45,p52,p12,p34,p66,p55,p27,p10,p37,p18,p1,p8,p23,p60,p39,p64,p36,p49,p50,p7,p38,p51,p58,p43,p35,p19,p70,p77,p78,p109,p110,p111,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p123,p124,p125">
+                                        <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p3,p4,p7,p113,p43,p77,p46,p11,p12,p109,p47,p48,p50,p51,p19,p52,p123,p126,p22,p56,p57,p58,p28,p61,p110,p30,p112,p62,p34,p35,p36,p114,p66,p119,p38,p111,p70,p40"/>
+                                        <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p22,p57,p61,p3,p40,p11,p47,p4,p44,p46,p42,p9,p28,p48,p56,p62,p32,p33,p24,p17,p41,p34,p30,p45,p52,p12,p35,p66,p55,p27,p10,p29,p18,p1,p8,p23,p60,p39,p64,p37,p49,p50,p7,p38,p51,p58,p43,p36,p19,p70,p77,p78,p109,p110,p111,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p123,p124,p125">
                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                         </org.eventb.core.prRule>
                                     </org.eventb.core.prAnte>
@@ -11423,14 +11423,14 @@
         <org.eventb.core.prPred name="p72" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧¬e1∈exp_subsets[{e2}]∧¬e2∈exp_subsets[{e1}]⇒(∃e3⦂E·e3∈exp_subsets[{e1}]∧e3∈exp_subsets[{e2}])"/>
         <org.eventb.core.prPred name="p107" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·⊤∧⊤∧¬empty_e∈dom(individuation)⇒e∈exp_subsets[{empty_e}]"/>
         <org.eventb.core.prPred name="p28" org.eventb.core.predicate="finite(c_level)"/>
-        <org.eventb.core.prPred name="p29" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
+        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
         <org.eventb.core.prPred name="p112" org.eventb.core.predicate="∀c⦂C·thing∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
-        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
-        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="finite(currentLevel)"/>
+        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
+        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
+        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="finite(currentLevel)"/>
         <org.eventb.core.prPred name="p78" org.eventb.core.predicate="¬currentClass∈mapped"/>
         <org.eventb.core.prPred name="p82" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·⊤∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
+        <org.eventb.core.prPred name="p37" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
         <org.eventb.core.prPred name="p101" org.eventb.core.predicate="subsets∈E ↔ E">
             <org.eventb.core.prIdent name="subsets" org.eventb.core.type="ℙ(E×E)"/>
         </org.eventb.core.prPred>
@@ -11485,13 +11485,13 @@
         <org.eventb.core.prPred name="p21" org.eventb.core.predicate="currentClass∉mapped"/>
         <org.eventb.core.prPred name="p23" org.eventb.core.predicate="∀p⦂P·p∈P⇒(∃e⦂E·{p}=individuation[{e}])"/>
         <org.eventb.core.prPred name="p26" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·e∈E∧empty_e∈E∧individuation[{empty_e}]=(∅ ⦂ ℙ(P))⇒e∈exp_subsets[{empty_e}]"/>
-        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="0∈P_cLevel"/>
-        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
+        <org.eventb.core.prPred name="p29" org.eventb.core.predicate="exp_key∈E ↠ K"/>
+        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
+        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="0∈P_cLevel"/>
+        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
         <org.eventb.core.prPred name="p93" org.eventb.core.predicate="∀e1⦂E,e2⦂E·⊤∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]"/>
         <org.eventb.core.prPred name="p71" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]⇒(∃e3⦂E·e3∈exp_subsets[{e1}]∧e3∈exp_subsets[{e2}])"/>
         <org.eventb.core.prPred name="p108" org.eventb.core.predicate="∀c⦂C·⊤⇒(∃e⦂ℙ(ℤ×E),n⦂ℤ·n∈ℕ∧(∀i⦂ℤ·i∈0 ‥ n)∧⊤∧(∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[ran(e)]))"/>
-        <org.eventb.core.prPred name="p37" org.eventb.core.predicate="exp_key∈E ⤖ K"/>
         <org.eventb.core.prPred name="p38" org.eventb.core.predicate="mapped⊆c_level[levelNum ‥ max_level] ∖ currentLevel"/>
         <org.eventb.core.prPred name="p39" org.eventb.core.predicate="∀c⦂C·c∈C⇒(∃SE⦂ℙ(E)·∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[SE])"/>
         <org.eventb.core.prPred name="p94" org.eventb.core.predicate="∀e⦂E·⊤⇒e∈exp_equivalent[{e}]"/>
@@ -17108,7 +17108,7 @@
         <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.falseHyp"/>
         <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.genMPL4"/>
     </org.eventb.core.prProof>
-    <org.eventb.core.prProof name="next_class/inv_currentClassInCurrentLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.prFresh="" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26,p27,p28,p29,p30,p31,p32,p33,p34,p35,p36,p37,p38,p39,p40,p41,p42,p43,p44,p45,p46,p47,p48,p49,p50,p51,p52,p53,p54,p55,p56,p57,p58,p59,p60,p61,p62,p63,p64,p65,p66,p67" org.eventb.core.prSets="C,E,K,P">
+    <org.eventb.core.prProof name="next_class/inv_currentClassInCurrentLevel/INV" org.eventb.core.confidence="1000" org.eventb.core.prFresh="" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26,p27,p28,p29,p30,p31,p32,p33,p34,p35,p36,p37,p38,p39,p40,p41,p42,p43,p44,p45,p46,p47,p48,p49,p50,p51,p52,p53,p54,p55,p56,p57,p58,p59,p60,p61,p62,p63,p64,p65,p66,p67" org.eventb.core.prSets="C,E,K,P" org.eventb.core.psManual="true">
         <org.eventb.core.lang name="L"/>
         <org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
             <org.eventb.core.prAnte name="'">
@@ -17117,7 +17117,7 @@
                 <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p62" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p70"/>
                 <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p59" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p71"/>
                 <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p25" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p72"/>
-                <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p35" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p73"/>
+                <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p36" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p73"/>
                 <org.eventb.core.prHypAction name="REWRITE6" org.eventb.core.prHidden="p53" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p74"/>
                 <org.eventb.core.prHypAction name="REWRITE7" org.eventb.core.prHidden="p26" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p75"/>
                 <org.eventb.core.prHypAction name="REWRITE8" org.eventb.core.prHidden="p19" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p76,p77"/>
@@ -17132,7 +17132,7 @@
                                         <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p80"/>
                                         <org.eventb.core.prHypAction name="HIDE1" org.eventb.core.prHyps="p81"/>
                                         <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p64" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p82"/>
-                                        <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p30" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p83"/>
+                                        <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p31" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p83"/>
                                         <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p24" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p84"/>
                                         <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p5" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p85"/>
                                         <org.eventb.core.prHypAction name="REWRITE6" org.eventb.core.prHidden="p58" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p86"/>
@@ -17186,7 +17186,7 @@
                                                 <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with currentLevel'=currentLevel ∖ {currentClass'}" org.eventb.core.prHyps="p77">
                                                     <org.eventb.core.prAnte name="'">
                                                         <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p77"/>
-                                                        <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p21,p56,p60,p3,p39,p11,p46,p4,p43,p45,p41,p9,p28,p47,p55,p61,p31,p32,p23,p17,p40,p33,p29,p44,p50,p12,p34,p65,p54,p27,p10,p36,p18,p1,p48,p7,p37,p49,p57,p52,p69,p71,p73,p74,p75,p76,p79,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p122,p123,p124,p125,p126,p127,p128,p129,p130,p131">
+                                                        <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p21,p56,p60,p3,p39,p11,p46,p4,p43,p45,p41,p9,p28,p47,p55,p61,p32,p33,p23,p17,p40,p34,p30,p44,p50,p12,p35,p65,p54,p27,p10,p29,p18,p1,p48,p7,p37,p49,p57,p52,p69,p71,p73,p74,p75,p76,p79,p112,p113,p114,p115,p116,p117,p118,p119,p120,p121,p122,p123,p124,p125,p126,p127,p128,p129,p130,p131">
                                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
                                                         </org.eventb.core.prRule>
                                                     </org.eventb.core.prAnte>
@@ -17253,12 +17253,12 @@
         <org.eventb.core.prPred name="p111" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·⊤∧⊤∧¬empty_e∈dom(individuation)⇒e∈exp_subsets[{empty_e}]"/>
         <org.eventb.core.prPred name="p28" org.eventb.core.predicate="finite(c_level)"/>
         <org.eventb.core.prPred name="p76" org.eventb.core.predicate="currentClass'∈currentLevel"/>
-        <org.eventb.core.prPred name="p29" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
+        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="c_level[0 ‥ max_level]=C"/>
         <org.eventb.core.prPred name="p115" org.eventb.core.predicate="∀c⦂C·thing∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
-        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
+        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="∀i⦂ℤ·i∈1 ‥ max_level∧i − 1∈P_cLevel⇒i∈P_cLevel"/>
+        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="∀parent⦂C,child⦂C,p⦂P·parent∈is_a[{child}]∧child∈class_of[{p}]⇒parent∈class_of[{p}]"/>
         <org.eventb.core.prPred name="p83" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·⊤∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
+        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])"/>
         <org.eventb.core.prPred name="p105" org.eventb.core.predicate="subsets∈E ↔ E">
             <org.eventb.core.prIdent name="subsets" org.eventb.core.type="ℙ(E×E)"/>
         </org.eventb.core.prPred>
@@ -17318,12 +17318,12 @@
         <org.eventb.core.prPred name="p20" org.eventb.core.predicate="∀e1⦂E,e2⦂E·{e1,e2}⊆E∧e2∈exp_equivalent[{e1}]⇔e1∈exp_subsets[{e2}]∧e2∈exp_subsets[{e1}]"/>
         <org.eventb.core.prPred name="p22" org.eventb.core.predicate="∀p⦂P·p∈P⇒(∃e⦂E·{p}=individuation[{e}])"/>
         <org.eventb.core.prPred name="p25" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·e∈E∧empty_e∈E∧individuation[{empty_e}]=(∅ ⦂ ℙ(P))⇒e∈exp_subsets[{empty_e}]"/>
-        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
-        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="0∈P_cLevel"/>
-        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
+        <org.eventb.core.prPred name="p29" org.eventb.core.predicate="exp_key∈E ↠ K"/>
+        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]"/>
+        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="0∈P_cLevel"/>
+        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])"/>
         <org.eventb.core.prPred name="p96" org.eventb.core.predicate="∀e1⦂E,e2⦂E·⊤∧e2∈exp_equivalent[{e1}]⇔e1∈exp_equivalent[{e2}]"/>
         <org.eventb.core.prPred name="p126" org.eventb.core.predicate="∀p⦂P·∃e⦂E·p∈individuation[{e}]"/>
-        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="exp_key∈E ⤖ K"/>
         <org.eventb.core.prPred name="p37" org.eventb.core.predicate="mapped⊆c_level[levelNum ‥ max_level] ∖ currentLevel"/>
         <org.eventb.core.prPred name="p38" org.eventb.core.predicate="∀c⦂C·c∈C⇒(∃SE⦂ℙ(E)·∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[SE])"/>
         <org.eventb.core.prPred name="p97" org.eventb.core.predicate="∀e⦂E·⊤⇒e∈exp_equivalent[{e}]"/>
