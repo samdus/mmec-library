@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="14">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="14">
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -98,7 +98,7 @@
         <org.eventb.core.poIdentifier name="ice" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="gdc" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/910-AnimationContextFig4.3.bpo|org.eventb.core.poFile#910-AnimationContextFig4.3|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="14">
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/910-AnimationContextFig4.3.bpo|org.eventb.core.poFile#910-AnimationContextFig4.3|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="partition(C,{thing},{entity},{continuant},{gdc},{ice},{identifier},{humanName})" org.eventb.core.source="/IndividuationAlgorithm/910-AnimationContextFig4.3.buc|org.eventb.core.contextFile#910-AnimationContextFig4.3|org.eventb.core.axiom#axm?"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="partition(P,{n1},{n2})" org.eventb.core.source="/IndividuationAlgorithm/910-AnimationContextFig4.3.buc|org.eventb.core.contextFile#910-AnimationContextFig4.3|org.eventb.core.axiom#axm1"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="partition(E,{exp1},{exp2},{exp3})" org.eventb.core.source="/IndividuationAlgorithm/910-AnimationContextFig4.3.buc|org.eventb.core.contextFile#910-AnimationContextFig4.3|org.eventb.core.axiom#axm2"/>
