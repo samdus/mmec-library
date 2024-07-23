@@ -12,8 +12,8 @@
     <org.eventb.core.axiom name="axmC" org.eventb.core.label="animation_cLevels" org.eventb.core.predicate="partition(c_level, { 0 ↦ thing }, { 1 ↦ entity }, { 2 ↦ continuant },  { 3 ↦ gdc }, { 4 ↦ ice }, { 5 ↦ identifier }, { 6 ↦ humanName })"/>
     <org.eventb.core.axiom name="axmE" org.eventb.core.label="animation_maxLevel" org.eventb.core.predicate="max_level = 6"/>
     <org.eventb.core.axiom name="7" org.eventb.core.label="animation_hasParent" org.eventb.core.predicate="partition(has_parent, {humanName ↦ identifier}, {identifier ↦ ice}, {ice ↦ gdc}, {gdc ↦ continuant}, {continuant ↦ entity}, {entity ↦ thing} )"/>
-    <org.eventb.core.axiom name="axmM" org.eventb.core.label="animation_classOfStrict" org.eventb.core.predicate="partition(class_of_strict, {n1 ↦ humanName}, {n2 ↦ humanName })"/>
-    <org.eventb.core.axiom name="axm7" org.eventb.core.label="animation_classOf" org.eventb.core.predicate="partition(class_of, {n1,n2} × C) "/>
+    <org.eventb.core.axiom name="axmM" org.eventb.core.label="animation_classOfStrict" org.eventb.core.predicate="partition(class_of_strict, {n1 ↦ humanName}, {n2 ↦ humanName})"/>
+    <org.eventb.core.axiom name="axm7" org.eventb.core.label="animation_classOf" org.eventb.core.predicate="partition(class_of, {n1 ↦ humanName},{n1 ↦ identifier},{n1 ↦ ice},{n1 ↦ gdc},{n1 ↦ continuant},{n1 ↦ entity},{n1 ↦ thing},&#10;                    {n2 ↦ humanName},{n2 ↦ identifier},{n2 ↦ ice},{n2 ↦ gdc},{n2 ↦ continuant},{n2 ↦ entity},{n2 ↦ thing}) "/>
     <org.eventb.core.constant name="3" org.eventb.core.comment="generically dependent continuant" org.eventb.core.identifier="gdc"/>
     <org.eventb.core.constant name="4" org.eventb.core.identifier="continuant"/>
     <org.eventb.core.constant name="5" org.eventb.core.identifier="entity"/>
