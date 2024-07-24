@@ -58,39 +58,38 @@ obo:humanbodyweight-appli:couverture:v1.0
 
 # -- Classes
 
-# "HBW_0000022"@human name
-
-:HBW_0000022
-    a               rr:TriplesMap ;
-    rr:logicalTable [ rr:tableName """
-                       "EXP"."PERSONNE"
-                      """ ] ;
-    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
-                      rr:class                obo:HBW_0000022 ;
-                      mmec:signatureComponent """ "PRENOM" """, """ "NOM" """ ;
-                      rr:termType             rr:IRI ] .
 
 # "IAO_0020015"@personal name
 :IAO_0020015
     a               rr:TriplesMap ;
     rr:logicalTable [ rr:tableName """
                        "EXP"."PERSONNE"
-                      """ ] ;
+                      """ ] ; # exp1
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:IAO_0020015 ;
-                      mmec:signatureComponent """ "PRENOM" """ ;
+                      mmec:signatureComponent """ "PRENOM" """ ; # k1
                       rr:termType             rr:IRI ] .
 
 # "IAO_0020017"@family name
-
 :IAO_0020017
     a               rr:TriplesMap ;
     rr:logicalTable [ rr:tableName """
                        "EXP"."PERSONNE"
-                      """ ] ;
+                      """ ] ; # exp2
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:IAO_0020017 ;
-                      mmec:signatureComponent """ "NOM" """ ;
+                      mmec:signatureComponent """ "NOM" """ ; # k2
+                      rr:termType             rr:IRI ] .
+
+# "HBW_0000022"@human name
+:HBW_0000022
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                       "EXP"."PERSONNE"
+                      """ ] ; # exp3
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000022 ;
+                      mmec:signatureComponent """ "PRENOM" """, """ "NOM" """ ; # k3
                       rr:termType             rr:IRI ] .
 
 # -- Propriétés d'objet

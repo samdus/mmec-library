@@ -1,0 +1,47 @@
+{
+  "name": "4-AnimationMachine",
+  "description": "(ce projet à été crée automatiquement du fichier /Users/samueldussault/Documents/Projets/arot/hephaistos/mMEC/src/main/b-sharp/IndividuationAlgorithm/4-AnimationMachine.bum)",
+  "machines": [
+    {
+      "name": "4-AnimationMachine",
+      "description": "",
+      "location": "4-AnimationMachine.bum",
+      "lastUsedPreferenceName": "default",
+      "temporalFormulas": [],
+      "ltlPatterns": [],
+      "symbolicCheckingFormulas": [],
+      "symbolicAnimationFormulas": [],
+      "testCases": [],
+      "traces": [
+        {
+          "id": null,
+          "location": "../../../../../../../../../Downloads/4-AnimationMachine.prob2trace",
+          "selected": true
+        },
+        {
+          "id": null,
+          "location": "../../../../doc/animation_proB/AnimationContext-Simple.prob2trace",
+          "selected": true
+        }
+      ],
+      "modelcheckingItems": [],
+      "proofObligationItems": [],
+      "simulations": [],
+      "visBVisualisation": null,
+      "historyChartItems": [],
+      "dotVisualizationItems": {},
+      "tableVisualizationItems": {}
+    }
+  ],
+  "requirements": [],
+  "preferences": [],
+  "metadata": {
+    "fileType": "Project",
+    "formatVersion": 37,
+    "savedAt": "2024-07-24T17:55:02.427899Z",
+    "creator": "User",
+    "proB2KernelVersion": "4.12.2",
+    "proBCliVersion": null,
+    "modelName": null
+  }
+}

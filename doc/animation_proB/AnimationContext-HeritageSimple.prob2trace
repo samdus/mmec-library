@@ -1,0 +1,2449 @@
+{
+  "description": "",
+  "transitionList": [
+    {
+      "name": "$setup_constants",
+      "params": {},
+      "results": {},
+      "destState": {
+        "exp_equivalent": "{(exp3↦exp3),(exp6↦exp6),(exp7↦exp7)}",
+        "has_parent": "{(continuant↦entity),(entity↦thing),(gdc↦continuant),(humanName↦identifier),(ice↦gdc),(identifier↦ice)}",
+        "P_cLevel": "{0,1,2,3,4,5,6}",
+        "c_level": "{(0↦thing),(1↦entity),(2↦continuant),(3↦gdc),(4↦ice),(5↦identifier),(6↦humanName)}",
+        "class_of_strict": "{(n1↦humanName),(n2↦humanName)}",
+        "exp_list": "{(1↦exp3),(2↦exp6),(3↦exp7)}",
+        "exp_key": "{(exp3↦k3),(exp6↦k3),(exp7↦k3)}",
+        "Q_cLevel": "∅",
+        "key_compatible": "{(k3↦k3)}",
+        "max_level": "6",
+        "individuation": "{(exp3↦n1),(exp3↦n2),(exp6↦n1),(exp7↦n2)}",
+        "exp_subsets": "{(exp3↦exp3),(exp3↦exp6),(exp3↦exp7),(exp6↦exp6),(exp7↦exp7)}",
+        "exp_overlap": "{(exp3↦exp3),(exp3↦exp6),(exp3↦exp7),(exp6↦exp3),(exp6↦exp6),(exp7↦exp3),(exp7↦exp7)}",
+        "class_of": "{(n1↦thing),(n1↦continuant),(n1↦entity),(n1↦gdc),(n1↦humanName),(n1↦ice),(n1↦identifier),(n2↦thing),(n2↦continuant),(n2↦entity),(n2↦gdc),(n2↦humanName),(n2↦ice),(n2↦identifier)}",
+        "is_a": "{(thing↦thing),(continuant↦thing),(continuant↦continuant),(continuant↦entity),(entity↦thing),(entity↦entity),(gdc↦thing),(gdc↦continuant),(gdc↦entity),(gdc↦gdc),(humanName↦thing),(humanName↦continuant),(humanName↦entity),(humanName↦gdc),(humanName↦humanName),(humanName↦ice),(humanName↦identifier),(ice↦thing),(ice↦continuant),(ice↦entity),(ice↦gdc),(ice↦ice),(identifier↦thing),(identifier↦continuant),(identifier↦entity),(identifier↦gdc),(identifier↦ice),(identifier↦identifier)}",
+        "C_leaves": "{humanName}"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "$initialise_machine",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "humanName",
+        "definedSignatureSupersets": "∅",
+        "signatureSupersets": "∅",
+        "signatures": "∅",
+        "definedSignatures": "∅",
+        "currentLevel": "∅",
+        "levelNum": "6",
+        "analysedExpressions": "∅",
+        "currentExpression": "exp3",
+        "mapped": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{exp3,exp6,exp7}",
+        "definedSubsets": "∅",
+        "expressionsLeftForCurrentClass": "{exp3,exp6,exp7}",
+        "subsets": "∅"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "expressionsLeftForCurrentClass": "{exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(exp3↦humanName)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp6↦humanName)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp6↦humanName),(exp7↦humanName)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{humanName}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "identifier",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "5",
+        "expressionsLeftForCurrentClass": "{exp3,exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "expressionsLeftForCurrentClass": "{exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp3↦identifier),(exp6↦humanName),(exp7↦humanName)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp3↦identifier),(exp6↦humanName),(exp6↦identifier),(exp7↦humanName)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp3↦identifier),(exp6↦humanName),(exp6↦identifier),(exp7↦humanName),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{humanName,identifier}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "ice",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "4",
+        "expressionsLeftForCurrentClass": "{exp3,exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "expressionsLeftForCurrentClass": "{exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦humanName),(exp6↦identifier),(exp7↦humanName),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦humanName),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{humanName,ice,identifier}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "gdc",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "3",
+        "expressionsLeftForCurrentClass": "{exp3,exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "expressionsLeftForCurrentClass": "{exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{gdc,humanName,ice,identifier}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "continuant",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "2",
+        "expressionsLeftForCurrentClass": "{exp3,exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "expressionsLeftForCurrentClass": "{exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦continuant),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦continuant),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦continuant),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦continuant),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦continuant),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦continuant),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{continuant,gdc,humanName,ice,identifier}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "entity",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "1",
+        "expressionsLeftForCurrentClass": "{exp3,exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "expressionsLeftForCurrentClass": "{exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦continuant),(exp3↦entity),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦continuant),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦continuant),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦continuant),(exp3↦entity),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦continuant),(exp6↦entity),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦continuant),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦continuant),(exp3↦entity),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦continuant),(exp6↦entity),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦continuant),(exp7↦entity),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{continuant,entity,gdc,humanName,ice,identifier}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "thing",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "0",
+        "expressionsLeftForCurrentClass": "{exp3,exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "expressionsLeftForCurrentClass": "{exp6,exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦thing),(exp3↦continuant),(exp3↦entity),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦continuant),(exp6↦entity),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦continuant),(exp7↦entity),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦thing),(exp3↦continuant),(exp3↦entity),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦thing),(exp6↦continuant),(exp6↦entity),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦continuant),(exp7↦entity),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦thing),(exp3↦continuant),(exp3↦entity),(exp3↦gdc),(exp3↦humanName),(exp3↦ice),(exp3↦identifier),(exp6↦thing),(exp6↦continuant),(exp6↦entity),(exp6↦gdc),(exp6↦humanName),(exp6↦ice),(exp6↦identifier),(exp7↦thing),(exp7↦continuant),(exp7↦entity),(exp7↦gdc),(exp7↦humanName),(exp7↦ice),(exp7↦identifier)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{thing,continuant,entity,gdc,humanName,ice,identifier}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "final",
+      "params": {},
+      "results": {},
+      "destState": {
+        "signatures": "{(exp3↦humanName)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    }
+  ],
+  "variableNames": [
+    "analysedExpressions",
+    "currentClass",
+    "currentExpression",
+    "currentExpressionAnalysed",
+    "currentLevel",
+    "definedSignatureSupersets",
+    "definedSignatures",
+    "definedSubsets",
+    "expressionsLeftForCurrentClass",
+    "expressionsOfCurrentClass",
+    "levelNum",
+    "mapped",
+    "signatureSupersets",
+    "signatures",
+    "subsets"
+  ],
+  "constantNames": [
+    "C_leaves",
+    "has_parent",
+    "is_a",
+    "max_level",
+    "Q_cLevel",
+    "c_level",
+    "P_cLevel",
+    "class_of",
+    "class_of_strict",
+    "exp_key",
+    "exp_subsets",
+    "exp_overlap",
+    "individuation",
+    "key_compatible",
+    "exp_list",
+    "exp_equivalent"
+  ],
+  "setNames": [
+    "P",
+    "E",
+    "K",
+    "C"
+  ],
+  "machineOperationInfos": {
+    "analyse_not_required": {
+      "operationName": "analyse_not_required",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of_strict",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "exp_key",
+        "exp_overlap",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "individuation",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "expression_analysed": {
+      "operationName": "expression_analysed",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "analysedExpressions"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_level": {
+      "operationName": "next_level",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "c_level",
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "levelNum"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_with_equivalent_signature": {
+      "operationName": "analyse_with_equivalent_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_equivalent",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatures"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "final": {
+      "operationName": "final",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "class_of",
+        "class_of_strict",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "individuation",
+        "key_compatible",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "nonDetWrittenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "typeMap": {}
+    },
+    "next_expression": {
+      "operationName": "next_expression",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentExpression",
+        "expressionsLeftForCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "class_mapped": {
+      "operationName": "class_mapped",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentLevel",
+        "expressionsOfCurrentClass",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "mapped"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_class": {
+      "operationName": "next_class",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_current_subsets_signature": {
+      "operationName": "analyse_current_subsets_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_equivalent",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    }
+  },
+  "globalIdentifierTypes": {
+    "currentClass": "global('C')",
+    "definedSignatureSupersets": "set(global('E'))",
+    "exp_equivalent": "set(couple(global('E'),global('E')))",
+    "signatureSupersets": "set(global('E'))",
+    "class_of_strict": "set(couple(global('P'),global('C')))",
+    "c_level": "set(couple(integer,global('C')))",
+    "signatures": "set(couple(global('E'),global('C')))",
+    "definedSignatures": "set(couple(global('E'),global('C')))",
+    "exp_key": "set(couple(global('E'),global('K')))",
+    "currentLevel": "set(global('C'))",
+    "levelNum": "integer",
+    "key_compatible": "set(couple(global('K'),global('K')))",
+    "individuation": "set(couple(global('E'),global('P')))",
+    "analysedExpressions": "set(couple(global('E'),global('C')))",
+    "currentExpression": "global('E')",
+    "mapped": "set(global('C'))",
+    "exp_subsets": "set(couple(global('E'),global('E')))",
+    "exp_overlap": "set(couple(global('E'),global('E')))",
+    "currentExpressionAnalysed": "integer",
+    "expressionsOfCurrentClass": "set(global('E'))",
+    "class_of": "set(couple(global('P'),global('C')))",
+    "definedSubsets": "set(couple(global('E'),global('E')))",
+    "expressionsLeftForCurrentClass": "set(global('E'))",
+    "subsets": "set(couple(global('E'),global('E')))"
+  },
+  "metadata": {
+    "fileType": "Trace",
+    "formatVersion": 5,
+    "savedAt": "2024-07-24T19:11:56.471681Z",
+    "creator": "traceReplay",
+    "proB2KernelVersion": "4.12.2",
+    "proBCliVersion": "1.12.2-final",
+    "modelName": "4-AnimationMachine"
+  }
+}
