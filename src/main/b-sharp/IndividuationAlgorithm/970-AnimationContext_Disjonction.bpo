@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="9">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="5">
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -85,41 +85,6 @@
         <org.eventb.core.poPredicate name="class_of_strid:" org.eventb.core.predicate="∀k⦂K·k∈K⇒k∈key_compatible[{k}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cstH"/>
         <org.eventb.core.poPredicate name="class_of_strid;" org.eventb.core.predicate="∀k1⦂K,k2⦂K·{k1,k2}⊆K∧k1∈key_compatible[{k2}]⇒k2∈key_compatible[{k1}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cstI"/>
         <org.eventb.core.poPredicate name="class_of_strid=" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm7"/>
-        <org.eventb.core.poIdentifier name="exp7" org.eventb.core.type="E"/>
-        <org.eventb.core.poIdentifier name="exp6" org.eventb.core.type="E"/>
-        <org.eventb.core.poIdentifier name="exp5" org.eventb.core.type="E"/>
-        <org.eventb.core.poIdentifier name="exp4" org.eventb.core.type="E"/>
-        <org.eventb.core.poIdentifier name="exp3" org.eventb.core.type="E"/>
-        <org.eventb.core.poIdentifier name="exp2" org.eventb.core.type="E"/>
-        <org.eventb.core.poIdentifier name="exp1" org.eventb.core.type="E"/>
-        <org.eventb.core.poIdentifier name="pn1" org.eventb.core.type="P"/>
-        <org.eventb.core.poIdentifier name="pn2" org.eventb.core.type="P"/>
-        <org.eventb.core.poIdentifier name="nm1" org.eventb.core.type="P"/>
-        <org.eventb.core.poIdentifier name="personalName" org.eventb.core.type="C"/>
-        <org.eventb.core.poIdentifier name="k1" org.eventb.core.type="K"/>
-        <org.eventb.core.poIdentifier name="n1" org.eventb.core.type="P"/>
-        <org.eventb.core.poIdentifier name="n2" org.eventb.core.type="P"/>
-        <org.eventb.core.poIdentifier name="humanName" org.eventb.core.type="C"/>
-        <org.eventb.core.poIdentifier name="familyName" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/900-AnimationContextFig4.2.bpo|org.eventb.core.poFile#900-AnimationContextFig4.2|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="9">
-        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="partition(C,{thing},{humanName},{personalName},{familyName})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm1"/>
-        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="partition(P,{n1},{n2},{pn1},{pn2},{nm1})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#cst:"/>
-        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="partition(E,{exp1},{exp2},{exp3},{exp4},{exp5},{exp6},{exp7})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm2"/>
-        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="partition(K,{k1})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm3"/>
-        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="partition(C_leaves,{humanName},{personalName},{familyName})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm4"/>
-        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="partition(c_level,{0 ↦ thing},{1 ↦ humanName},{1 ↦ personalName},{1 ↦ familyName})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm5"/>
-        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="max_level=1" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm6"/>
-        <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="partition(has_parent,{humanName ↦ thing},{personalName ↦ thing},{familyName ↦ thing})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm7"/>
-        <org.eventb.core.poPredicate name="PRD8" org.eventb.core.predicate="partition(class_of_strict,{n1 ↦ humanName},{n2 ↦ humanName},{pn1 ↦ personalName},{pn2 ↦ personalName},{nm1 ↦ familyName})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm8"/>
-        <org.eventb.core.poPredicate name="PRD9" org.eventb.core.predicate="partition(class_of,{n1 ↦ humanName},{n2 ↦ humanName},{pn1 ↦ personalName},{pn2 ↦ personalName},{nm1 ↦ familyName},{n1 ↦ thing},{n2 ↦ thing},{pn1 ↦ thing},{pn2 ↦ thing},{nm1 ↦ thing})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm9"/>
-        <org.eventb.core.poPredicate name="PRD10" org.eventb.core.predicate="partition(is_a,{thing ↦ thing},{humanName ↦ humanName},{humanName ↦ thing},{personalName ↦ personalName},{personalName ↦ thing},{familyName ↦ familyName},{familyName ↦ thing})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm10"/>
-        <org.eventb.core.poPredicate name="PRD11" org.eventb.core.predicate="partition(individuation,{exp1 ↦ pn1},{exp1 ↦ pn2},{exp4 ↦ pn1},{exp5 ↦ pn2},{exp2 ↦ nm1},{exp3 ↦ n1},{exp3 ↦ n2},{exp6 ↦ n1},{exp7 ↦ n2})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm11"/>
-        <org.eventb.core.poPredicate name="PRD12" org.eventb.core.predicate="partition(exp_subsets,{exp1 ↦ exp1},{exp2 ↦ exp2},{exp3 ↦ exp3},{exp4 ↦ exp4},{exp5 ↦ exp5},{exp6 ↦ exp6},{exp7 ↦ exp7},{exp4 ↦ exp1},{exp5 ↦ exp1},{exp6 ↦ exp3},{exp7 ↦ exp3})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm12"/>
-        <org.eventb.core.poPredicate name="PRD13" org.eventb.core.predicate="partition(exp_equivalent,{exp1 ↦ exp1},{exp2 ↦ exp2},{exp3 ↦ exp3},{exp4 ↦ exp4},{exp5 ↦ exp5},{exp6 ↦ exp6},{exp7 ↦ exp7})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm13"/>
-        <org.eventb.core.poPredicate name="PRD14" org.eventb.core.predicate="partition(exp_overlap,{exp1 ↦ exp1},{exp2 ↦ exp2},{exp3 ↦ exp3},{exp4 ↦ exp4},{exp5 ↦ exp5},{exp6 ↦ exp6},{exp7 ↦ exp7},{exp4 ↦ exp1},{exp5 ↦ exp1},{exp6 ↦ exp3},{exp7 ↦ exp3},{exp1 ↦ exp4},{exp1 ↦ exp5},{exp3 ↦ exp6},{exp3 ↦ exp7})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm14"/>
-        <org.eventb.core.poPredicate name="PRD15" org.eventb.core.predicate="partition(exp_key,{exp1 ↦ k1},{exp2 ↦ k1},{exp3 ↦ k1},{exp4 ↦ k1},{exp5 ↦ k1},{exp6 ↦ k1},{exp7 ↦ k1})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm15"/>
-        <org.eventb.core.poPredicate name="PRD16" org.eventb.core.predicate="partition(key_compatible,{k1 ↦ k1})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm16"/>
-        <org.eventb.core.poPredicate name="PRD17" org.eventb.core.predicate="partition(exp_list,{1 ↦ exp1},{2 ↦ exp2},{3 ↦ exp3},{4 ↦ exp4},{5 ↦ exp5},{6 ↦ exp6},{7 ↦ exp7})" org.eventb.core.source="/IndividuationAlgorithm/900-AnimationContextFig4.2.buc|org.eventb.core.contextFile#900-AnimationContextFig4.2|org.eventb.core.axiom#axm17"/>
-    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/970-AnimationContext_Disjonction.bpo|org.eventb.core.poFile#970-AnimationContext_Disjonction|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0"/>
 </org.eventb.core.poFile>
