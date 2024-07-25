@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
     <org.eventb.core.extendsContext name="'" org.eventb.core.target="110-MappingContext"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstL" org.eventb.core.identifier="organism"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstK" org.eventb.core.identifier="homoSapiens"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst1" org.eventb.core.identifier="patient"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst3" org.eventb.core.identifier="healthCareProvider"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst4" org.eventb.core.identifier="o1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst5" org.eventb.core.identifier="o2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst6" org.eventb.core.identifier="o3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst7" org.eventb.core.identifier="o4"/>
+    <org.eventb.core.axiom name="axm1" org.eventb.core.label="animation_classes" org.eventb.core.predicate="partition(C, {organism}, {homoSapiens}, {patient}, {healthCareProvider})"/>
+    <org.eventb.core.axiom name="axm2" org.eventb.core.label="axm1" org.eventb.core.predicate="partition(P, {o1}, {o2}, {o3}, {o4})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst9" org.eventb.core.identifier="e1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst:" org.eventb.core.identifier="e2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst;" org.eventb.core.identifier="e3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst=" org.eventb.core.identifier="e4"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst&gt;" org.eventb.core.identifier="e5"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst?" org.eventb.core.identifier="e6"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst@" org.eventb.core.identifier="e7"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstA" org.eventb.core.identifier="e8"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstB" org.eventb.core.identifier="e9"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstC" org.eventb.core.identifier="e10"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst10" org.eventb.core.identifier="e11"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst14" org.eventb.core.identifier="e12"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst13" org.eventb.core.identifier="e13"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst12" org.eventb.core.identifier="e14"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst11" org.eventb.core.identifier="e15"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst16" org.eventb.core.identifier="e16"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst15" org.eventb.core.identifier="e17"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstD" org.eventb.core.identifier="e18"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst17" org.eventb.core.identifier="e19"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst18" org.eventb.core.identifier="e20"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst20" org.eventb.core.identifier="e21"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst19" org.eventb.core.identifier="e22"/>
+    <org.eventb.core.axiom name="cstE" org.eventb.core.comment="On a trois signatures retenues pour l'arrimage:&#10;- e1 associée à Homo sapiens&#10;- e2 associée à patient&#10;- e3 associée à health care provider&#10;# e1: o1, o2, o3, 04&#10;# e2: o1, o2, o3&#10;# e3: o2, o3, o4&#10;&#10;Décompositions de e1&#10;# e4: o1, o2, o3&#10;# e5: o2, o3, o4&#10;# e6: o1, o3, o4&#10;# e7: o1, o2&#10;# e8: o1, o3&#10;# e9: o1, o4&#10;# e10: o2, o3&#10;# e11: o2, o4&#10;# e12: o3, o4&#10;&#10;Décompositions de e2&#10;# e13: o1, o2&#10;# e14: o1, o3&#10;# e15: o2, o3&#10;&#10;Décompositions de e3&#10;# e16: o2, o3&#10;# e17: o2, o4&#10;# e18: o3, o4&#10;&#10;Singletons&#10;# e19: o1&#10;# e20: o2&#10;# e21: o3&#10;# e22: o4&#10;# Note: e15 et e16 sont équivalents. On pourrait dire que e6 correspond aux patients qui sont aussi médecin et e7 correspond aux médecines qui sont aussi patients." org.eventb.core.label="axm2" org.eventb.core.predicate="partition(E, {e1}, {e2}, {e3}, {e4}, {e5}, &#10;             {e6}, {e7}, {e8}, {e9}, {e10}, &#10;             {e11}, {e12}, {e13}, {e14}, {e15}, &#10;             {e16}, {e17}, {e18}, {e19}, {e20},&#10;             {e21}, {e22})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstG" org.eventb.core.identifier="k1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstH" org.eventb.core.identifier="k2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstI" org.eventb.core.identifier="k3"/>
+    <org.eventb.core.axiom name="cstJ" org.eventb.core.label="axm3" org.eventb.core.predicate="partition(K, {k1}, {k2}, {k3})"/>
+    <org.eventb.core.axiom name="axm3" org.eventb.core.label="axm5" org.eventb.core.predicate="partition(C_leaves, {patient}, {healthCareProvider})"/>
+    <org.eventb.core.axiom name="axm4" org.eventb.core.label="axm6" org.eventb.core.predicate="partition(c_level, { 0 ↦ thing }, {1 ↦ organism}, {2 ↦ patient}, {2 ↦ homoSapiens}, {3 ↦ healthCareProvider})"/>
+    <org.eventb.core.axiom name="axm5" org.eventb.core.label="axm7" org.eventb.core.predicate="max_level = 3"/>
+    <org.eventb.core.axiom name="axm6" org.eventb.core.label="axm8" org.eventb.core.predicate="partition(has_parent, {healthCareProvider ↦ homoSapiens}, {homoSapiens ↦ organism}, {patient ↦ organism}, {organism ↦ thing})"/>
+    <org.eventb.core.axiom name="cst21" org.eventb.core.label="axm19" org.eventb.core.predicate="partition(is_a, {healthCareProvider ↦ healthCareProvider}, {healthCareProvider ↦ homoSapiens}, {healthCareProvider ↦ organism}, {healthCareProvider ↦ thing},&#10;                {patient ↦ patient}, {patient ↦ organism}, {patient ↦ thing},&#10;                {homoSapiens ↦ homoSapiens}, {homoSapiens ↦ organism}, {homoSapiens ↦ thing},&#10;                {organism ↦ organism}, {organism ↦ thing},&#10;                {thing ↦ thing})"/>
+    <org.eventb.core.axiom name="axm7" org.eventb.core.label="axm9" org.eventb.core.predicate="partition(class_of_strict, {o1 ↦ patient}, {o2 ↦ patient}, {o3 ↦ patient}, &#10;                           {o2 ↦ healthCareProvider}, {o3 ↦ healthCareProvider}, {o4 ↦ healthCareProvider}) "/>
+    <org.eventb.core.axiom name="axm8" org.eventb.core.label="axm10" org.eventb.core.predicate="partition(class_of, {o1 ↦ patient}, {o1 ↦ homoSapiens}, {o1 ↦ organism}, {o1 ↦ thing},&#10;                    {o2 ↦ patient}, {o2 ↦ healthCareProvider}, {o2 ↦ homoSapiens}, {o2 ↦ organism}, {o2 ↦ thing},&#10;                    {o3 ↦ patient}, {o3 ↦ healthCareProvider}, {o3 ↦ homoSapiens}, {o3 ↦ organism}, {o3 ↦ thing},&#10;                    {o4 ↦ healthCareProvider}, {o4 ↦ homoSapiens}, {o4 ↦ organism}, {o4 ↦ thing} )"/>
+    <org.eventb.core.axiom name="axm9" org.eventb.core.label="axm11" org.eventb.core.predicate="partition(individuation, { e1 ↦ o1}, { e1 ↦ o2}, { e1 ↦ o3}, { e1 ↦ o4}, &#10;                         { e2 ↦ o1}, { e2 ↦ o2}, { e2 ↦ o3}, &#10;                         { e3 ↦ o2}, { e3 ↦ o3}, { e3 ↦ o4},&#10;                         { e4 ↦ o1}, { e4 ↦ o2}, { e4 ↦ o3},&#10;                         { e5 ↦ o1}, { e5 ↦ o3}, { e5 ↦ o4},&#10;                         { e6 ↦ o2}, { e6 ↦ o3}, { e6 ↦ o4},&#10;                         { e7 ↦ o1}, { e7 ↦ o2},&#10;                         { e8 ↦ o1}, { e8 ↦ o3},&#10;                         { e9 ↦ o1}, { e9 ↦ o4},&#10;                         { e10 ↦ o2}, { e10 ↦ o3},&#10;                         { e11 ↦ o2}, { e11 ↦ o4},&#10;                         { e12 ↦ o3}, { e12 ↦ o4},&#10;                         { e13 ↦ o1}, { e13 ↦ o2},&#10;                         { e14 ↦ o1}, { e14 ↦ o3},&#10;                         { e15 ↦ o2}, { e15 ↦ o3},&#10;                         { e16 ↦ o2}, { e16 ↦ o3},&#10;                         { e17 ↦ o2}, { e17 ↦ o4},&#10;                         { e18 ↦ o3}, { e18 ↦ o4},&#10;                         { e19 ↦ o1}, { e20 ↦ o2}, { e21 ↦ o3}, { e22 ↦ o4})"/>
+    <org.eventb.core.axiom name="axm10" org.eventb.core.label="axm16" org.eventb.core.predicate="partition(exp_key, { e1 ↦ k1 }, { e2 ↦ k2 }, { e3 ↦ k1 }, { e4 ↦ k1 }, { e5 ↦ k1 }, { e6 ↦ k2 }, { e7 ↦ k2 }, { e8 ↦ k2 }, { e9 ↦ k1 }, { e10 ↦ k1 }, { e11 ↦ k1 }, { e12 ↦ k2 }, { e13 ↦ k2 }, { e14 ↦ k2 })"/>
+    <org.eventb.core.axiom name="axm11" org.eventb.core.label="axm17" org.eventb.core.predicate="partition(key_compatible, { k1 ↦ k1 }, { k2 ↦ k2 }, { k3 ↦ k3 },&#10;                          { k1 ↦ k2 }, { k2 ↦ k1 },&#10;&#9;&#9;&#9;&#9;&#9;&#9;  { k1 ↦ k3 }, { k3 ↦ k1 },&#10;&#9;&#9;&#9;&#9;&#9;&#9;  { k2 ↦ k3 }, { k3 ↦ k2 })"/>
+    <org.eventb.core.axiom name="axm12" org.eventb.core.label="axm18" org.eventb.core.predicate="partition(exp_list, {1 ↦ e1}, {2 ↦ e2}, {3 ↦ e3}, {4 ↦ e4}, {5 ↦ e5}, {6 ↦ e6}, {7 ↦ e7}, {8 ↦ e8}, {9 ↦ e9}, {10 ↦ e10}, {11 ↦ e11}, {12 ↦ e12}, {13 ↦ e13}, {14 ↦ e14}, {15 ↦ e15}, {16 ↦ e16}, {17 ↦ e17}, {18 ↦ e18}, {19 ↦ e19}, {20 ↦ e20}, {21 ↦ e21}, {22 ↦ e22})"/>
 </org.eventb.core.contextFile>

@@ -124,11 +124,40 @@ obo:humanbodyweight-appli:couverture:v1.0
 
 # **** Héritage multiple ****
 
-# {po1 ↦ thing}, {po2 ↦ thing}, {po3 ↦ thing}, {po4 ↦ thing}
-
-
+# "HBW_0000009"@body weight
+:HBW_0000009
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                       "EXP"."PERSONNE"
+                      """ ] ; # exp1
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000009 ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ; # k1
+                      rr:termType             rr:IRI ] .
 
 # **** Héritage par disjonction ****
+
+# "HBW_0000011"@patient role
+:HBW_0000011
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                       "EXP"."PERSONNE"
+                      """ ] ; # exp1
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000011 ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ; # k1
+                      rr:termType             rr:IRI ] .
+
+# "HBW_0000010"@health care provider role
+:HBW_0000010
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName """
+                       "EXP"."MEDECIN"
+                      """ ] ; # exp2
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000010 ;
+                      mmec:signatureComponent """ "ID_MEDECIN_EXT" """ ; # k2
+                      rr:termType             rr:IRI ] .
 
 # **** Héritage avec chevauchement ****
 
@@ -137,20 +166,20 @@ obo:humanbodyweight-appli:couverture:v1.0
     a               rr:TriplesMap ;
     rr:logicalTable [ rr:tableName """
                         "EXP"."PERSONNE"
-                      """ ] ;
+                      """ ] ; # exp1
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:NCBITaxon_9606 ;
-                      mmec:signatureComponent """ "ID_PERSONNE_EXT" """ ;
+                      mmec:signatureComponent """ "ID_PERSONNE_EXT" """ ;   # k1
                       rr:termType             rr:IRI ] .
 
 # HBW_0000007@Patient
 :HBW_0000007
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
-                      rr:tableName """ "EXP"."PATIENT" """ ] ;
+                      rr:tableName """ "EXP"."PATIENT" """ ] ; # exp2
     rr:subjectMap   [ a                       rr:SubjectMap ;
                       rr:class                obo:HBW_0000007 ;
-                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ;
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ; # k2
                       rr:termType             rr:IRI ] ;
     mmec:subsets    :NCBITaxon_9606 .
 
@@ -170,10 +199,10 @@ obo:humanbodyweight-appli:couverture:v1.0
 :HBW_0000008
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
-                      rr:tableName """ "EXP"."MEDECIN" """ ] ;
+                      rr:tableName """ "EXP"."MEDECIN" """ ] ; # exp3
     rr:subjectMap   [ a                       rr:SubjectMap ;
                       rr:class                obo:HBW_0000008 ;
-                      mmec:signatureComponent """ "ID_MEDECIN_EXT" """ ;
+                      mmec:signatureComponent """ "ID_MEDECIN_EXT" """ ; # k3
                       rr:termType             rr:IRI ] ;
     mmec:subsets    :NCBITaxon_9606 .
 

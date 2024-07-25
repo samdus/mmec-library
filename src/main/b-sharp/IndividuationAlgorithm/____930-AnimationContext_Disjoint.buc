@@ -10,6 +10,34 @@
     <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst7" org.eventb.core.identifier="pm1"/>
     <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst8" org.eventb.core.identifier="pm2"/>
     <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst9" org.eventb.core.identifier="pm3"/>
-    <org.eventb.core.axiom name="axm1" org.eventb.core.label="animation_classes" org.eventb.core.predicate="partition(C, {role}, {patientRole}, {healthCareProviderRole})"/>
+    <org.eventb.core.axiom name="axm1" org.eventb.core.label="animation_classes" org.eventb.core.predicate="partition(C, {thing}, {role}, {patientRole}, {healthCareProviderRole})"/>
     <org.eventb.core.axiom name="axm2" org.eventb.core.label="axm1" org.eventb.core.predicate="partition(P, {pr1}, {pr2}, {pr3}, {pm1}, {pm2}, {pm3})"/>
+    <org.eventb.core.axiom name="cst:" org.eventb.core.comment="e1 et e2 seront retenues comme signatures, les autres expressions correspondent à leur décomposition&#10;e1: pr1, pr2, pr3&#10;e2: pm1, pm2, pm3&#10;e3: pr1, pr2&#10;e4: pr1, pr3&#10;e5: pr2, pr3&#10;e6: pm1, pm2&#10;e7: pm1, pm3&#10;e8: pm2, pm3&#10;e9: pr1&#10;e10: pr2&#10;e11: pr3&#10;e12: pm1&#10;e13: pm2&#10;e14: pm3" org.eventb.core.label="axm2" org.eventb.core.predicate="partition(E, {e1}, {e2}, {e3}, {e4}, {e5}, {e6}, {e7}, {e8}, {e9}, {e10}, {e11}, {e12}, {e13}, {e14})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst=" org.eventb.core.identifier="e1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst&gt;" org.eventb.core.identifier="e2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst?" org.eventb.core.identifier="e3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst@" org.eventb.core.identifier="e4"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstA" org.eventb.core.identifier="e5"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstB" org.eventb.core.identifier="e6"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstC" org.eventb.core.identifier="e7"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstD" org.eventb.core.identifier="e8"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstE" org.eventb.core.identifier="e9"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstF" org.eventb.core.identifier="e10"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstG" org.eventb.core.identifier="e11"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstH" org.eventb.core.identifier="e12"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstI" org.eventb.core.identifier="e13"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstJ" org.eventb.core.identifier="e14"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstL" org.eventb.core.identifier="k1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cstM" org.eventb.core.identifier="k2"/>
+    <org.eventb.core.axiom name="cstN" org.eventb.core.label="axm3" org.eventb.core.predicate="partition(K, {k1}, {k2})"/>
+    <org.eventb.core.axiom name="cstO" org.eventb.core.label="axm4" org.eventb.core.predicate="partition(C_leaves, {patientRole}, {healthCareProviderRole})"/>
+    <org.eventb.core.axiom name="cstQ" org.eventb.core.label="axm6" org.eventb.core.predicate="partition(c_level, { 0 ↦ thing }, { 1 ↦ role }, { 2 ↦ patientRole }, { 2 ↦ healthCareProviderRole })"/>
+    <org.eventb.core.axiom name="cstP" org.eventb.core.label="axm5" org.eventb.core.predicate="max_level = 2"/>
+    <org.eventb.core.axiom name="cstR" org.eventb.core.label="axm7" org.eventb.core.predicate="partition(has_parent, { healthCareProviderRole ↦ role }, { patientRole ↦ role }, { role ↦ thing })"/>
+    <org.eventb.core.axiom name="cstS" org.eventb.core.label="axm8" org.eventb.core.predicate="partition(class_of_strict, {pr1 ↦ patientRole}, {pr2 ↦ patientRole}, {pr3 ↦ patientRole},&#10;                           {pm1 ↦ healthCareProviderRole}, {pm2 ↦ healthCareProviderRole}, {pm3 ↦ healthCareProviderRole}) "/>
+    <org.eventb.core.axiom name="cstT" org.eventb.core.label="axm9" org.eventb.core.predicate="partition(class_of, {pr1 ↦ patientRole}, {pr1 ↦ role}, {pr1 ↦ thing},&#10;                    {pr2 ↦ patientRole}, {pr2 ↦ role}, {pr2 ↦ thing},&#10;                    {pr3 ↦ patientRole}, {pr3 ↦ role}, {pr3 ↦ thing},&#10;                    {pm1 ↦ healthCareProviderRole}, {pm1 ↦ role}, {pm1 ↦ thing},&#10;                    {pm2 ↦ healthCareProviderRole}, {pm2 ↦ role}, {pm2 ↦ thing},&#10;                    {pm3 ↦ healthCareProviderRole}, {pm3 ↦ role}, {pm3 ↦ thing})"/>
+    <org.eventb.core.axiom name="cstU" org.eventb.core.label="axm10" org.eventb.core.predicate="partition(individuation, { e1 ↦ pr1}, { e1 ↦ pr2}, { e1 ↦ pr3}, &#10;                         { e2 ↦ pm1}, { e2 ↦ pm2}, { e2 ↦ pm3},&#10;                         { e3 ↦ pr1}, { e3 ↦ pr2},&#10;                         { e4 ↦ pr1}, { e4 ↦ pr3},&#10;                         { e5 ↦ pr2}, { e5 ↦ pr3},&#10;                         { e6 ↦ pm1}, { e6 ↦ pm2},&#10;                         { e7 ↦ pm1}, { e7 ↦ pm3},&#10;                         { e8 ↦ pm2}, { e8 ↦ pm3},&#10;                         { e9 ↦ pr1}, { e10 ↦ pr2}, { e11 ↦ pr3},&#10;                         { e12 ↦ pm1}, { e13 ↦ pm2}, { e14 ↦ pm3})"/>
+    <org.eventb.core.axiom name="axm3" org.eventb.core.label="axm16" org.eventb.core.predicate="partition(exp_key, { e1 ↦ k1 }, { e2 ↦ k2 }, { e3 ↦ k1 }, { e4 ↦ k1 }, { e5 ↦ k1 }, { e6 ↦ k2 }, { e7 ↦ k2 }, { e8 ↦ k2 }, { e9 ↦ k1 }, { e10 ↦ k1 }, { e11 ↦ k1 }, { e12 ↦ k2 }, { e13 ↦ k2 }, { e14 ↦ k2 })"/>
+    <org.eventb.core.axiom name="axm4" org.eventb.core.comment="bien qu'ils soient basés sur un attribut compatible, il ne sont pas compatible puisque leur sémantique est différente par rapport aux particuliers qui sont représentés par l'expression" org.eventb.core.label="axm17" org.eventb.core.predicate="partition(key_compatible, { k1 ↦ k1 }, { k2 ↦ k2 })"/>
+    <org.eventb.core.axiom name="axm5" org.eventb.core.label="axm18" org.eventb.core.predicate="partition(exp_list, {1 ↦ e1}, {2 ↦ e2}, {3 ↦ e3}, {4 ↦ e4}, {5 ↦ e5}, {6 ↦ e6}, {7 ↦ e7}, {8 ↦ e8}, {9 ↦ e9}, {10 ↦ e10}, {11 ↦ e11}, {12 ↦ e12}, {13 ↦ e13}, {14 ↦ e14})"/>
 </org.eventb.core.contextFile>

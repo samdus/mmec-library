@@ -1,0 +1,3988 @@
+{
+  "description": "",
+  "transitionList": [
+    {
+      "name": "$setup_constants",
+      "params": {},
+      "results": {},
+      "destState": {
+        "exp_equivalent": "{(e1↦e1),(e2↦e2),(e3↦e3),(e4↦e4),(e5↦e5),(e6↦e6),(e7↦e7),(e8↦e8),(e9↦e9),(e10↦e10),(e11↦e11),(e12↦e12),(e13↦e13),(e14↦e14)}",
+        "has_parent": "{(healthCareProviderRole↦role),(patientRole↦role),(role↦thing)}",
+        "P_cLevel": "{0,1,2}",
+        "c_level": "{(0↦thing),(1↦role),(2↦healthCareProviderRole),(2↦patientRole)}",
+        "class_of_strict": "{(pr1↦patientRole),(pr2↦patientRole),(pr3↦patientRole),(pm1↦healthCareProviderRole),(pm2↦healthCareProviderRole),(pm3↦healthCareProviderRole)}",
+        "exp_list": "{(1↦e1),(2↦e2),(3↦e3),(4↦e4),(5↦e5),(6↦e6),(7↦e7),(8↦e8),(9↦e9),(10↦e10),(11↦e11),(12↦e12),(13↦e13),(14↦e14)}",
+        "exp_key": "{(e1↦k1),(e2↦k2),(e3↦k1),(e4↦k1),(e5↦k1),(e6↦k2),(e7↦k2),(e8↦k2),(e9↦k1),(e10↦k1),(e11↦k1),(e12↦k2),(e13↦k2),(e14↦k2)}",
+        "Q_cLevel": "∅",
+        "key_compatible": "{(k1↦k1),(k2↦k2)}",
+        "max_level": "2",
+        "individuation": "{(e1↦pr1),(e1↦pr2),(e1↦pr3),(e2↦pm1),(e2↦pm2),(e2↦pm3),(e3↦pr1),(e3↦pr2),(e4↦pr1),(e4↦pr3),(e5↦pr2),(e5↦pr3),(e6↦pm1),(e6↦pm2),(e7↦pm1),(e7↦pm3),(e8↦pm2),(e8↦pm3),(e9↦pr1),(e10↦pr2),(e11↦pr3),(e12↦pm1),(e13↦pm2),(e14↦pm3)}",
+        "exp_subsets": "{(e1↦e1),(e1↦e3),(e1↦e4),(e1↦e5),(e1↦e9),(e1↦e10),(e1↦e11),(e2↦e2),(e2↦e6),(e2↦e7),(e2↦e8),(e2↦e12),(e2↦e13),(e2↦e14),(e3↦e3),(e3↦e9),(e3↦e10),(e4↦e4),(e4↦e9),(e4↦e11),(e5↦e5),(e5↦e10),(e5↦e11),(e6↦e6),(e6↦e12),(e6↦e13),(e7↦e7),(e7↦e12),(e7↦e14),(e8↦e8),(e8↦e13),(e8↦e14),(e9↦e9),(e10↦e10),(e11↦e11),(e12↦e12),(e13↦e13),(e14↦e14)}",
+        "exp_overlap": "{(e1↦e1),(e1↦e3),(e1↦e4),(e1↦e5),(e1↦e9),(e1↦e10),(e1↦e11),(e2↦e2),(e2↦e6),(e2↦e7),(e2↦e8),(e2↦e12),(e2↦e13),(e2↦e14),(e3↦e1),(e3↦e3),(e3↦e4),(e3↦e5),(e3↦e9),(e3↦e10),(e4↦e1),(e4↦e3),(e4↦e4),(e4↦e5),(e4↦e9),(e4↦e11),(e5↦e1),(e5↦e3),(e5↦e4),(e5↦e5),(e5↦e10),(e5↦e11),(e6↦e2),(e6↦e6),(e6↦e7),(e6↦e8),(e6↦e12),(e6↦e13),(e7↦e2),(e7↦e6),(e7↦e7),(e7↦e8),(e7↦e12),(e7↦e14),(e8↦e2),(e8↦e6),(e8↦e7),(e8↦e8),(e8↦e13),(e8↦e14),(e9↦e1),(e9↦e3),(e9↦e4),(e9↦e9),(e10↦e1),(e10↦e3),(e10↦e5),(e10↦e10),(e11↦e1),(e11↦e4),(e11↦e5),(e11↦e11),(e12↦e2),(e12↦e6),(e12↦e7),(e12↦e12),(e13↦e2),(e13↦e6),(e13↦e8),(e13↦e13),(e14↦e2),(e14↦e7),(e14↦e8),(e14↦e14)}",
+        "class_of": "{(pr1↦thing),(pr1↦patientRole),(pr1↦role),(pr2↦thing),(pr2↦patientRole),(pr2↦role),(pr3↦thing),(pr3↦patientRole),(pr3↦role),(pm1↦thing),(pm1↦healthCareProviderRole),(pm1↦role),(pm2↦thing),(pm2↦healthCareProviderRole),(pm2↦role),(pm3↦thing),(pm3↦healthCareProviderRole),(pm3↦role)}",
+        "is_a": "{(thing↦thing),(healthCareProviderRole↦thing),(healthCareProviderRole↦healthCareProviderRole),(healthCareProviderRole↦role),(patientRole↦thing),(patientRole↦patientRole),(patientRole↦role),(role↦thing),(role↦role)}",
+        "C_leaves": "{healthCareProviderRole,patientRole}"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "$initialise_machine",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "patientRole",
+        "definedSignatureSupersets": "∅",
+        "signatureSupersets": "∅",
+        "signatures": "∅",
+        "definedSignatures": "∅",
+        "currentLevel": "{healthCareProviderRole}",
+        "levelNum": "2",
+        "analysedExpressions": "∅",
+        "currentExpression": "e1",
+        "mapped": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e1,e3,e4,e5,e9,e10,e11}",
+        "definedSubsets": "∅",
+        "expressionsLeftForCurrentClass": "{e1,e3,e4,e5,e9,e10,e11}",
+        "subsets": "∅"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e4,e5,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e3↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e3↦patientRole),(e4↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e9",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e9↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e10",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e9↦patientRole),(e10↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e11",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{patientRole}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "healthCareProviderRole",
+        "currentLevel": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e2,e6,e7,e8,e12,e13,e14}",
+        "expressionsLeftForCurrentClass": "{e2,e6,e7,e8,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦patientRole),(e2↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7,e8,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e8,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e12",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e13",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e14",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{healthCareProviderRole,patientRole}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "role",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}",
+        "levelNum": "1",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e9",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e10",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e11",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e12",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e13",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e14",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{healthCareProviderRole,patientRole,role}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "thing",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "0",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7,e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e8,e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e9,e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦thing),(e8↦healthCareProviderRole),(e8↦role),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e9",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e10,e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦thing),(e8↦healthCareProviderRole),(e8↦role),(e9↦thing),(e9↦patientRole),(e9↦role),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e10",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e11,e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦thing),(e8↦healthCareProviderRole),(e8↦role),(e9↦thing),(e9↦patientRole),(e9↦role),(e10↦thing),(e10↦patientRole),(e10↦role),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e11",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e12,e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦thing),(e8↦healthCareProviderRole),(e8↦role),(e9↦thing),(e9↦patientRole),(e9↦role),(e10↦thing),(e10↦patientRole),(e10↦role),(e11↦thing),(e11↦patientRole),(e11↦role),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e12",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e13,e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦thing),(e8↦healthCareProviderRole),(e8↦role),(e9↦thing),(e9↦patientRole),(e9↦role),(e10↦thing),(e10↦patientRole),(e10↦role),(e11↦thing),(e11↦patientRole),(e11↦role),(e12↦thing),(e12↦healthCareProviderRole),(e12↦role),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e13",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e14}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦thing),(e8↦healthCareProviderRole),(e8↦role),(e9↦thing),(e9↦patientRole),(e9↦role),(e10↦thing),(e10↦patientRole),(e10↦role),(e11↦thing),(e11↦patientRole),(e11↦role),(e12↦thing),(e12↦healthCareProviderRole),(e12↦role),(e13↦thing),(e13↦healthCareProviderRole),(e13↦role),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e14",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦patientRole),(e1↦role),(e2↦thing),(e2↦healthCareProviderRole),(e2↦role),(e3↦thing),(e3↦patientRole),(e3↦role),(e4↦thing),(e4↦patientRole),(e4↦role),(e5↦thing),(e5↦patientRole),(e5↦role),(e6↦thing),(e6↦healthCareProviderRole),(e6↦role),(e7↦thing),(e7↦healthCareProviderRole),(e7↦role),(e8↦thing),(e8↦healthCareProviderRole),(e8↦role),(e9↦thing),(e9↦patientRole),(e9↦role),(e10↦thing),(e10↦patientRole),(e10↦role),(e11↦thing),(e11↦patientRole),(e11↦role),(e12↦thing),(e12↦healthCareProviderRole),(e12↦role),(e13↦thing),(e13↦healthCareProviderRole),(e13↦role),(e14↦thing),(e14↦healthCareProviderRole),(e14↦role)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{thing,healthCareProviderRole,patientRole,role}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "final",
+      "params": {},
+      "results": {},
+      "destState": {
+        "signatures": "{(e1↦patientRole),(e2↦healthCareProviderRole)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    }
+  ],
+  "variableNames": [
+    "analysedExpressions",
+    "currentClass",
+    "currentExpression",
+    "currentExpressionAnalysed",
+    "currentLevel",
+    "definedSignatureSupersets",
+    "definedSignatures",
+    "definedSubsets",
+    "expressionsLeftForCurrentClass",
+    "expressionsOfCurrentClass",
+    "levelNum",
+    "mapped",
+    "signatureSupersets",
+    "signatures",
+    "subsets"
+  ],
+  "constantNames": [
+    "C_leaves",
+    "has_parent",
+    "is_a",
+    "max_level",
+    "Q_cLevel",
+    "c_level",
+    "P_cLevel",
+    "class_of",
+    "class_of_strict",
+    "exp_key",
+    "exp_subsets",
+    "exp_overlap",
+    "individuation",
+    "key_compatible",
+    "exp_list",
+    "exp_equivalent"
+  ],
+  "setNames": [
+    "P",
+    "E",
+    "K",
+    "C"
+  ],
+  "machineOperationInfos": {
+    "analyse_not_required": {
+      "operationName": "analyse_not_required",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of_strict",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "exp_key",
+        "exp_overlap",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "individuation",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "expression_analysed": {
+      "operationName": "expression_analysed",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "analysedExpressions"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_level": {
+      "operationName": "next_level",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "c_level",
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "levelNum"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_with_equivalent_signature": {
+      "operationName": "analyse_with_equivalent_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_equivalent",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatures"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "final": {
+      "operationName": "final",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "class_of",
+        "class_of_strict",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "individuation",
+        "key_compatible",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "nonDetWrittenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "typeMap": {}
+    },
+    "next_expression": {
+      "operationName": "next_expression",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentExpression",
+        "expressionsLeftForCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "class_mapped": {
+      "operationName": "class_mapped",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentLevel",
+        "expressionsOfCurrentClass",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "mapped"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_class": {
+      "operationName": "next_class",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_current_subsets_signature": {
+      "operationName": "analyse_current_subsets_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_equivalent",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    }
+  },
+  "globalIdentifierTypes": {
+    "currentClass": "global('C')",
+    "definedSignatureSupersets": "set(global('E'))",
+    "exp_equivalent": "set(couple(global('E'),global('E')))",
+    "signatureSupersets": "set(global('E'))",
+    "class_of_strict": "set(couple(global('P'),global('C')))",
+    "c_level": "set(couple(integer,global('C')))",
+    "signatures": "set(couple(global('E'),global('C')))",
+    "definedSignatures": "set(couple(global('E'),global('C')))",
+    "exp_key": "set(couple(global('E'),global('K')))",
+    "currentLevel": "set(global('C'))",
+    "levelNum": "integer",
+    "key_compatible": "set(couple(global('K'),global('K')))",
+    "individuation": "set(couple(global('E'),global('P')))",
+    "analysedExpressions": "set(couple(global('E'),global('C')))",
+    "currentExpression": "global('E')",
+    "mapped": "set(global('C'))",
+    "exp_subsets": "set(couple(global('E'),global('E')))",
+    "exp_overlap": "set(couple(global('E'),global('E')))",
+    "currentExpressionAnalysed": "integer",
+    "expressionsOfCurrentClass": "set(global('E'))",
+    "class_of": "set(couple(global('P'),global('C')))",
+    "definedSubsets": "set(couple(global('E'),global('E')))",
+    "expressionsLeftForCurrentClass": "set(global('E'))",
+    "subsets": "set(couple(global('E'),global('E')))"
+  },
+  "metadata": {
+    "fileType": "Trace",
+    "formatVersion": 5,
+    "savedAt": "2024-07-25T17:53:41.224397Z",
+    "creator": "traceReplay",
+    "proB2KernelVersion": "4.12.2",
+    "proBCliVersion": "1.12.2-final",
+    "modelName": "4-AnimationMachine"
+  }
+}
