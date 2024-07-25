@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="8">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="5">
+<org.eventb.core.poFile org.eventb.core.poStamp="13">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="13">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -105,7 +105,7 @@
         <org.eventb.core.poIdentifier name="humanName" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="familyName" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____900-AnimationContext_Simple.bpo|org.eventb.core.poFile#____900-AnimationContext_Simple|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="8">
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____900-AnimationContext_Simple.bpo|org.eventb.core.poFile#____900-AnimationContext_Simple|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="13">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="partition(C,{thing},{humanName},{personalName},{familyName})" org.eventb.core.source="/IndividuationAlgorithm/____900-AnimationContext_Simple.buc|org.eventb.core.contextFile#____900-AnimationContext_Simple|org.eventb.core.axiom#axm1"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="partition(P,{n1},{n2},{pn1},{pn2},{nm1})" org.eventb.core.source="/IndividuationAlgorithm/____900-AnimationContext_Simple.buc|org.eventb.core.contextFile#____900-AnimationContext_Simple|org.eventb.core.axiom#cst:"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="partition(E,{exp1},{exp2},{exp3},{exp4},{exp5},{exp6},{exp7})" org.eventb.core.source="/IndividuationAlgorithm/____900-AnimationContext_Simple.buc|org.eventb.core.contextFile#____900-AnimationContext_Simple|org.eventb.core.axiom#axm2"/>

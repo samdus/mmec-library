@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="5">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="5">
+<org.eventb.core.poFile org.eventb.core.poStamp="8">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="8">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -87,5 +87,5 @@
         <org.eventb.core.poPredicate name="class_of_strid=" org.eventb.core.predicate="∀k1⦂K,k2⦂K·{k1,k2}⊆K∧k1∈key_compatible[{k2}]⇒k2∈key_compatible[{k1}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cstI"/>
         <org.eventb.core.poPredicate name="class_of_strid&gt;" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm7"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____950-AnimationContext_SignMult.bpo|org.eventb.core.poFile#____950-AnimationContext_SignMult|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="5"/>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____950-AnimationContext_SignMult.bpo|org.eventb.core.poFile#____950-AnimationContext_SignMult|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="8"/>
 </org.eventb.core.poFile>

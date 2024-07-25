@@ -122,6 +122,12 @@ obo:humanbodyweight-appli:couverture:v1.0
 # **** Héritage de base ****
 # Aucune définition supplémentaire requise, puisque l'héritage simple est généré automatiquement.
 
+# **** Héritage multiple ****
+
+# {po1 ↦ thing}, {po2 ↦ thing}, {po3 ↦ thing}, {po4 ↦ thing}
+
+
+
 # **** Héritage par disjonction ****
 
 # **** Héritage avec chevauchement ****
@@ -181,8 +187,6 @@ obo:humanbodyweight-appli:couverture:v1.0
                      """ ;
    ]
  ] .
-
-# **** Héritage multiple ****
 
 # **** Classe à signatures multiples ****
 

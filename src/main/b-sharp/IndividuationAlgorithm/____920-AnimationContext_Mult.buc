@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
     <org.eventb.core.extendsContext name="'" org.eventb.core.target="110-MappingContext"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name=")" org.eventb.core.identifier="qualityOrDisposition"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="*" org.eventb.core.identifier="quality"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="+" org.eventb.core.identifier="bodyWeight"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="," org.eventb.core.identifier="sdc"/>
+    <org.eventb.core.axiom name="-" org.eventb.core.label="axm1" org.eventb.core.predicate="partition(C, {thing}, {qualityOrDisposition}, {quality}, {bodyWeight}, {sdc})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="/" org.eventb.core.identifier="po1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="0" org.eventb.core.identifier="po2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="1" org.eventb.core.identifier="po3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="2" org.eventb.core.identifier="po4"/>
+    <org.eventb.core.axiom name="3" org.eventb.core.label="axm2" org.eventb.core.predicate="partition(P, {po1}, {po2}, {po3}, {po4})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="5" org.eventb.core.identifier="e1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="6" org.eventb.core.identifier="e2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="7" org.eventb.core.identifier="e3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="8" org.eventb.core.identifier="e4"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="9" org.eventb.core.identifier="e5"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name=":" org.eventb.core.identifier="e6"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name=";" org.eventb.core.identifier="e7"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="=" org.eventb.core.identifier="e8"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="&gt;" org.eventb.core.identifier="e9"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="?" org.eventb.core.identifier="e10"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="@" org.eventb.core.identifier="e11"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="A" org.eventb.core.identifier="e12"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="B" org.eventb.core.identifier="e13"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="C" org.eventb.core.identifier="e14"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="D" org.eventb.core.identifier="e15"/>
+    <org.eventb.core.axiom name="E" org.eventb.core.comment="e1 correspond à la seule expression qui sera utile à l'arrimage, les autres correspondent à ses sous-ensembles&#10;e1 individue po1, po2, po3 et po4&#10;e2 individue po1, po2 et po3&#10;e3 individue po2, po3 et po4&#10;e4 individue po1, po2 et po4&#10;e5 individue po1, po3 et po4&#10;e6 individue po1 et po2&#10;e7 individue po1 et po3&#10;e8 individue po1 et po4&#10;e9 individue po2 et po3&#10;e10 individue po2 et po4&#10;e11 individue po3 et po4&#10;e12 individue po1&#10;e13 individue po2&#10;e14 individue po3&#10;e15 individue po4" org.eventb.core.label="axm3" org.eventb.core.predicate="partition(E, {e1}, {e2}, {e3}, {e4}, {e5}, {e6}, {e7}, {e8}, {e9}, {e10}, {e11}, {e12}, {e13}, {e14}, {e15})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="G" org.eventb.core.identifier="k1"/>
+    <org.eventb.core.axiom name="H" org.eventb.core.label="axm4" org.eventb.core.predicate="partition(K, {k1})"/>
+    <org.eventb.core.axiom name="I" org.eventb.core.label="axm5" org.eventb.core.predicate="partition(C_leaves, {bodyWeight})"/>
+    <org.eventb.core.axiom name="J" org.eventb.core.label="axm6" org.eventb.core.predicate="partition(c_level, { 0 ↦ thing }, {1 ↦ qualityOrDisposition}, {1 ↦ sdc}, {2 ↦ quality}, {3 ↦ bodyWeight})"/>
+    <org.eventb.core.axiom name="K" org.eventb.core.label="axm7" org.eventb.core.predicate="max_level = 3"/>
+    <org.eventb.core.axiom name="L" org.eventb.core.label="axm8" org.eventb.core.predicate="partition(has_parent, {bodyWeight ↦ quality}, {quality ↦ sdc}, {quality ↦ qualityOrDisposition}, {sdc ↦ thing}, {qualityOrDisposition ↦ thing})"/>
+    <org.eventb.core.axiom name="O" org.eventb.core.label="axm11" org.eventb.core.predicate="partition(is_a, { bodyWeight ↦ bodyWeight }, { bodyWeight ↦ quality }, { bodyWeight ↦ sdc }, { bodyWeight ↦ qualityOrDisposition }, { bodyWeight ↦ thing },&#10;                { quality ↦ quality }, { quality ↦ sdc }, { quality ↦ qualityOrDisposition }, { quality ↦ thing },&#10;                { qualityOrDisposition ↦ qualityOrDisposition }, { qualityOrDisposition ↦ thing },&#10;                { sdc ↦ sdc }, { sdc ↦ thing },&#10;                { thing ↦ thing })"/>
+    <org.eventb.core.axiom name="M" org.eventb.core.label="axm9" org.eventb.core.predicate="partition(class_of_strict, {po1 ↦ bodyWeight}, {po2 ↦ bodyWeight}, {po3 ↦ bodyWeight}, {po4 ↦ bodyWeight}) "/>
+    <org.eventb.core.axiom name="N" org.eventb.core.label="axm10" org.eventb.core.predicate="partition(class_of, {po1 ↦ bodyWeight}, {po2 ↦ bodyWeight}, {po3 ↦ bodyWeight}, {po4 ↦ bodyWeight},&#10;                    {po1 ↦ quality}, {po2 ↦ quality}, {po3 ↦ quality}, {po4 ↦ quality},&#10;                    {po1 ↦ qualityOrDisposition}, {po2 ↦ qualityOrDisposition}, {po3 ↦ qualityOrDisposition}, {po4 ↦ qualityOrDisposition},&#10;                    {po1 ↦ sdc}, {po2 ↦ sdc}, {po3 ↦ sdc}, {po4 ↦ sdc},&#10;                    {po1 ↦ thing}, {po2 ↦ thing}, {po3 ↦ thing}, {po4 ↦ thing})"/>
+    <org.eventb.core.axiom name="P" org.eventb.core.label="axm12" org.eventb.core.predicate="partition(individuation, { e1 ↦ po1}, { e1 ↦ po2}, { e1 ↦ po3}, { e1 ↦ po4},&#10;                         { e2 ↦ po1}, { e2 ↦ po2}, { e2 ↦ po3},&#10;                         { e3 ↦ po2}, { e3 ↦ po3}, { e3 ↦ po4},&#10;                         { e4 ↦ po1}, { e4 ↦ po2}, { e4 ↦ po4},&#10;                         { e5 ↦ po1}, { e5 ↦ po3}, { e5 ↦ po4},&#10;                         { e6 ↦ po1}, { e6 ↦ po2},&#10;                         { e7 ↦ po1}, { e7 ↦ po3},&#10;                         { e8 ↦ po1}, { e8 ↦ po4},&#10;                         { e9 ↦ po2}, { e9 ↦ po3},&#10;                         { e10 ↦ po2}, { e10 ↦ po4},&#10;                         { e11 ↦ po3}, { e11 ↦ po4},&#10;                         { e12 ↦ po1}, { e13 ↦ po2}, { e14 ↦ po3}, { e15 ↦ po4})"/>
+    <org.eventb.core.axiom name="T" org.eventb.core.label="axm16" org.eventb.core.predicate="partition(exp_key, { e1 ↦ k1 }, { e2 ↦ k1 }, { e3 ↦ k1 }, { e4 ↦ k1 }, { e5 ↦ k1 }, { e6 ↦ k1 }, { e7 ↦ k1 }, { e8 ↦ k1 }, { e9 ↦ k1 }, { e10 ↦ k1 }, { e11 ↦ k1 }, { e12 ↦ k1 }, { e13 ↦ k1 }, { e14 ↦ k1 }, { e15 ↦ k1 })"/>
+    <org.eventb.core.axiom name="U" org.eventb.core.label="axm17" org.eventb.core.predicate="partition(key_compatible, { k1 ↦ k1 })"/>
+    <org.eventb.core.axiom name="V" org.eventb.core.label="axm18" org.eventb.core.predicate="partition(exp_list, {1 ↦ e1}, {2 ↦ e2}, {3 ↦ e3}, {4 ↦ e4}, {5 ↦ e5}, {6 ↦ e6}, {7 ↦ e7}, {8 ↦ e8}, {9 ↦ e9}, {10 ↦ e10}, {11 ↦ e11}, {12 ↦ e12}, {13 ↦ e13}, {14 ↦ e14}, {15 ↦ e15})"/>
 </org.eventb.core.contextFile>

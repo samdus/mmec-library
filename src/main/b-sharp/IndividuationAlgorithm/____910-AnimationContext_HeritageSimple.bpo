@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="7">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="7">
+<org.eventb.core.poFile org.eventb.core.poStamp="10">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="10">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -99,7 +99,7 @@
         <org.eventb.core.poIdentifier name="ice" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="gdc" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____910-AnimationContext_HeritageSimple.bpo|org.eventb.core.poFile#____910-AnimationContext_HeritageSimple|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="7">
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____910-AnimationContext_HeritageSimple.bpo|org.eventb.core.poFile#____910-AnimationContext_HeritageSimple|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="10">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="partition(C,{thing},{entity},{continuant},{gdc},{ice},{identifier},{humanName})" org.eventb.core.source="/IndividuationAlgorithm/____910-AnimationContext_HeritageSimple.buc|org.eventb.core.contextFile#____910-AnimationContext_HeritageSimple|org.eventb.core.axiom#axm?"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="partition(P,{n1},{n2})" org.eventb.core.source="/IndividuationAlgorithm/____910-AnimationContext_HeritageSimple.buc|org.eventb.core.contextFile#____910-AnimationContext_HeritageSimple|org.eventb.core.axiom#axm1"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="partition(E,{exp3},{exp6},{exp7})" org.eventb.core.source="/IndividuationAlgorithm/____910-AnimationContext_HeritageSimple.buc|org.eventb.core.contextFile#____910-AnimationContext_HeritageSimple|org.eventb.core.axiom#axm2"/>
