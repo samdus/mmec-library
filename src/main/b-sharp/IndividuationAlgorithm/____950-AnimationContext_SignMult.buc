@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
     <org.eventb.core.extendsContext name="'" org.eventb.core.target="110-MappingContext"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name=")" org.eventb.core.identifier="RAMQVulnerabilityCode"/>
+    <org.eventb.core.axiom name="*" org.eventb.core.label="axm1" org.eventb.core.predicate="partition(C, {thing}, {RAMQVulnerabilityCode})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="," org.eventb.core.identifier="c1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="-" org.eventb.core.identifier="c2"/>
+    <org.eventb.core.axiom name="." org.eventb.core.label="axm2" org.eventb.core.predicate="partition(P, {c1}, {c2}, {c3}, {c4})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm9" org.eventb.core.identifier="c3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm:" org.eventb.core.identifier="c4"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="0" org.eventb.core.identifier="e1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="1" org.eventb.core.identifier="e2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="2" org.eventb.core.identifier="e3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="3" org.eventb.core.identifier="e4"/>
+    <org.eventb.core.axiom name="4" org.eventb.core.comment="e1 pour CODE_VULN_1&#10;e2 pour CODE_VULN_2&#10;e3 pour CODE_VULN_3&#10;e4 comme expression d'union &#10;e5, e6, e7, e8 comme expressions de décompositions" org.eventb.core.label="axm3" org.eventb.core.predicate="partition(E, {e1}, {e2}, {e3}, {e4}, {e5}, {e6}, {e7}, {e8})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="5" org.eventb.core.identifier="e5"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm;" org.eventb.core.identifier="e6"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm=" org.eventb.core.identifier="e7"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm&gt;" org.eventb.core.identifier="e8"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="7" org.eventb.core.identifier="k1"/>
+    <org.eventb.core.axiom name="axm10" org.eventb.core.label="axm4" org.eventb.core.predicate="partition(K, {k1}, {k2}, {k3}, {k4})"/>
+    <org.eventb.core.axiom name="9" org.eventb.core.label="axm5" org.eventb.core.predicate="partition(C_leaves, {RAMQVulnerabilityCode})"/>
+    <org.eventb.core.axiom name=":" org.eventb.core.label="axm6" org.eventb.core.predicate="partition(c_level, { 0 ↦ thing }, {1 ↦ RAMQVulnerabilityCode})"/>
+    <org.eventb.core.axiom name=";" org.eventb.core.label="axm7" org.eventb.core.predicate="max_level = 1"/>
+    <org.eventb.core.axiom name="axm1" org.eventb.core.label="axm8" org.eventb.core.predicate="partition(has_parent, {RAMQVulnerabilityCode ↦ thing})"/>
+    <org.eventb.core.axiom name="axm2" org.eventb.core.label="axm9" org.eventb.core.predicate="partition(is_a, {RAMQVulnerabilityCode ↦ RAMQVulnerabilityCode}, {RAMQVulnerabilityCode ↦ thing}, {thing ↦ thing}) "/>
+    <org.eventb.core.axiom name="axm3" org.eventb.core.label="axm10" org.eventb.core.predicate="partition(class_of_strict, {c1 ↦ RAMQVulnerabilityCode}, {c2 ↦ RAMQVulnerabilityCode}, {c3 ↦ RAMQVulnerabilityCode}, {c4 ↦ RAMQVulnerabilityCode})"/>
+    <org.eventb.core.axiom name="axm4" org.eventb.core.label="axm11" org.eventb.core.predicate="partition(individuation, { e1 ↦ c1 }, { e1 ↦ c3 },  &#10;                         { e2 ↦ c1 }, { e2 ↦ c2 },  &#10;                         { e3 ↦ c1 }, { e3 ↦ c4 },  &#10;                         { e4 ↦ c1 }, { e4 ↦ c2 }, { e4 ↦ c3 }, { e4 ↦ c4 },&#10;                         { e5 ↦ c1 }, { e6 ↦ c2 }, { e7 ↦ c3 }, { e8 ↦ c4 })"/>
+    <org.eventb.core.axiom name="axm5" org.eventb.core.label="axm12" org.eventb.core.predicate="partition(exp_key, { e1 ↦ k1 }, { e2 ↦ k2 }, { e3 ↦ k3 }, { e4 ↦ k4 }, { e5 ↦ k1 }, { e6 ↦ k2 }, { e7 ↦ k3 }, { e8 ↦ k4 })"/>
+    <org.eventb.core.axiom name="axm9" org.eventb.core.label="axm17" org.eventb.core.predicate="partition(key_compatible, { k1 ↦ k1 }, { k2 ↦ k2 }, { k3 ↦ k3 }, { k4 ↦ k4 },&#10;                          { k1 ↦ k2 }, { k2 ↦ k1 },&#10;&#9;&#9;&#9;&#9;&#9;&#9;  { k1 ↦ k3 }, { k3 ↦ k1 },&#10;&#9;&#9;&#9;&#9;&#9;&#9;  { k1 ↦ k4 }, { k4 ↦ k1 },&#10;&#9;&#9;&#9;&#9;&#9;&#9;  { k2 ↦ k3 }, { k3 ↦ k2 },&#10;&#9;&#9;&#9;&#9;&#9;&#9;  { k2 ↦ k4 }, { k4 ↦ k2 },&#10;&#9;&#9;&#9;&#9;&#9;&#9;  { k3 ↦ k4 }, { k4 ↦ k3 })"/>
+    <org.eventb.core.axiom name="axm8" org.eventb.core.label="axm18" org.eventb.core.predicate="partition(exp_list, {1 ↦ e1}, {2 ↦ e2}, {3 ↦ e3}, {4 ↦ e4}, {5 ↦ e5}, {6 ↦ e6}, {7 ↦ e7}, {8 ↦ e8})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm?" org.eventb.core.identifier="k2"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm@" org.eventb.core.identifier="k3"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axmA" org.eventb.core.identifier="k4"/>
 </org.eventb.core.contextFile>

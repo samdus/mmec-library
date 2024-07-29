@@ -1,0 +1,1773 @@
+{
+  "description": "",
+  "transitionList": [
+    {
+      "name": "$setup_constants",
+      "params": {},
+      "results": {},
+      "destState": {
+        "exp_equivalent": "{(e1↦e1),(e2↦e2),(e3↦e3),(e4↦e4),(e5↦e5),(e6↦e6),(e7↦e7),(e8↦e8)}",
+        "has_parent": "{(RAMQVulnerabilityCode↦thing)}",
+        "P_cLevel": "{0,1}",
+        "c_level": "{(0↦thing),(1↦RAMQVulnerabilityCode)}",
+        "class_of_strict": "{(c1↦RAMQVulnerabilityCode),(c2↦RAMQVulnerabilityCode),(c3↦RAMQVulnerabilityCode),(c4↦RAMQVulnerabilityCode)}",
+        "exp_list": "{(1↦e1),(2↦e2),(3↦e3),(4↦e4),(5↦e5),(6↦e6),(7↦e7),(8↦e8)}",
+        "exp_key": "{(e1↦k1),(e2↦k2),(e3↦k3),(e4↦k4),(e5↦k1),(e6↦k2),(e7↦k3),(e8↦k4)}",
+        "Q_cLevel": "∅",
+        "key_compatible": "{(k1↦k1),(k1↦k2),(k1↦k3),(k1↦k4),(k2↦k1),(k2↦k2),(k2↦k3),(k2↦k4),(k3↦k1),(k3↦k2),(k3↦k3),(k3↦k4),(k4↦k1),(k4↦k2),(k4↦k3),(k4↦k4)}",
+        "max_level": "1",
+        "individuation": "{(e1↦c1),(e1↦c3),(e2↦c1),(e2↦c2),(e3↦c1),(e3↦c4),(e4↦c1),(e4↦c2),(e4↦c3),(e4↦c4),(e5↦c1),(e6↦c2),(e7↦c3),(e8↦c4)}",
+        "exp_subsets": "{(e1↦e1),(e1↦e5),(e1↦e7),(e2↦e2),(e2↦e5),(e2↦e6),(e3↦e3),(e3↦e5),(e3↦e8),(e4↦e1),(e4↦e2),(e4↦e3),(e4↦e4),(e4↦e5),(e4↦e6),(e4↦e7),(e4↦e8),(e5↦e5),(e6↦e6),(e7↦e7),(e8↦e8)}",
+        "exp_overlap": "{(e1↦e1),(e1↦e2),(e1↦e3),(e1↦e4),(e1↦e5),(e1↦e7),(e2↦e1),(e2↦e2),(e2↦e3),(e2↦e4),(e2↦e5),(e2↦e6),(e3↦e1),(e3↦e2),(e3↦e3),(e3↦e4),(e3↦e5),(e3↦e8),(e4↦e1),(e4↦e2),(e4↦e3),(e4↦e4),(e4↦e5),(e4↦e6),(e4↦e7),(e4↦e8),(e5↦e1),(e5↦e2),(e5↦e3),(e5↦e4),(e5↦e5),(e6↦e2),(e6↦e4),(e6↦e6),(e7↦e1),(e7↦e4),(e7↦e7),(e8↦e3),(e8↦e4),(e8↦e8)}",
+        "class_of": "{(c1↦thing),(c1↦RAMQVulnerabilityCode),(c2↦thing),(c2↦RAMQVulnerabilityCode),(c3↦thing),(c3↦RAMQVulnerabilityCode),(c4↦thing),(c4↦RAMQVulnerabilityCode)}",
+        "is_a": "{(thing↦thing),(RAMQVulnerabilityCode↦thing),(RAMQVulnerabilityCode↦RAMQVulnerabilityCode)}",
+        "C_leaves": "{RAMQVulnerabilityCode}"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "$initialise_machine",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "RAMQVulnerabilityCode",
+        "definedSignatureSupersets": "∅",
+        "signatureSupersets": "∅",
+        "signatures": "∅",
+        "definedSignatures": "∅",
+        "currentLevel": "∅",
+        "levelNum": "1",
+        "analysedExpressions": "∅",
+        "currentExpression": "e1",
+        "mapped": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8}",
+        "definedSubsets": "∅",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8}",
+        "subsets": "∅"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "definedSignatureSupersets": "{e4}",
+        "currentExpressionAnalysed": "1",
+        "definedSubsets": "{(e4↦e1),(e4↦e2)}",
+        "definedSignatures": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "expressionsLeftForCurrentClass",
+        "signatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e4,e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSubsets": "{(e4↦e1),(e4↦e2),(e4↦e3)}",
+        "definedSignatures": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{RAMQVulnerabilityCode}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "thing",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "0",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦thing),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e4,e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦thing),(e2↦RAMQVulnerabilityCode),(e3↦thing),(e3↦RAMQVulnerabilityCode),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦thing),(e2↦RAMQVulnerabilityCode),(e3↦thing),(e3↦RAMQVulnerabilityCode),(e4↦thing),(e4↦RAMQVulnerabilityCode),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦thing),(e2↦RAMQVulnerabilityCode),(e3↦thing),(e3↦RAMQVulnerabilityCode),(e4↦thing),(e4↦RAMQVulnerabilityCode),(e5↦thing),(e5↦RAMQVulnerabilityCode),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7,e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦thing),(e2↦RAMQVulnerabilityCode),(e3↦thing),(e3↦RAMQVulnerabilityCode),(e4↦thing),(e4↦RAMQVulnerabilityCode),(e5↦thing),(e5↦RAMQVulnerabilityCode),(e6↦thing),(e6↦RAMQVulnerabilityCode),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦thing),(e2↦RAMQVulnerabilityCode),(e3↦thing),(e3↦RAMQVulnerabilityCode),(e4↦thing),(e4↦RAMQVulnerabilityCode),(e5↦thing),(e5↦RAMQVulnerabilityCode),(e6↦thing),(e6↦RAMQVulnerabilityCode),(e7↦thing),(e7↦RAMQVulnerabilityCode),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦RAMQVulnerabilityCode),(e2↦thing),(e2↦RAMQVulnerabilityCode),(e3↦thing),(e3↦RAMQVulnerabilityCode),(e4↦thing),(e4↦RAMQVulnerabilityCode),(e5↦thing),(e5↦RAMQVulnerabilityCode),(e6↦thing),(e6↦RAMQVulnerabilityCode),(e7↦thing),(e7↦RAMQVulnerabilityCode),(e8↦thing),(e8↦RAMQVulnerabilityCode)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{thing,RAMQVulnerabilityCode}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "final",
+      "params": {},
+      "results": {},
+      "destState": {
+        "signatureSupersets": "{e4}",
+        "signatures": "{(e1↦RAMQVulnerabilityCode),(e2↦RAMQVulnerabilityCode),(e3↦RAMQVulnerabilityCode)}",
+        "subsets": "{(e4↦e1),(e4↦e2),(e4↦e3)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    }
+  ],
+  "variableNames": [
+    "analysedExpressions",
+    "currentClass",
+    "currentExpression",
+    "currentExpressionAnalysed",
+    "currentLevel",
+    "definedSignatureSupersets",
+    "definedSignatures",
+    "definedSubsets",
+    "expressionsLeftForCurrentClass",
+    "expressionsOfCurrentClass",
+    "levelNum",
+    "mapped",
+    "signatureSupersets",
+    "signatures",
+    "subsets"
+  ],
+  "constantNames": [
+    "C_leaves",
+    "has_parent",
+    "is_a",
+    "max_level",
+    "Q_cLevel",
+    "c_level",
+    "P_cLevel",
+    "class_of",
+    "class_of_strict",
+    "exp_key",
+    "exp_subsets",
+    "exp_overlap",
+    "individuation",
+    "key_compatible",
+    "exp_list",
+    "exp_equivalent"
+  ],
+  "setNames": [
+    "P",
+    "E",
+    "K",
+    "C"
+  ],
+  "machineOperationInfos": {
+    "analyse_not_required": {
+      "operationName": "analyse_not_required",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of_strict",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_key",
+        "exp_overlap",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "individuation",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "expression_analysed": {
+      "operationName": "expression_analysed",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "analysedExpressions"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_level": {
+      "operationName": "next_level",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "c_level",
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "levelNum"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_with_equivalent_signature": {
+      "operationName": "analyse_with_equivalent_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_equivalent",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatures"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "final": {
+      "operationName": "final",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "class_of",
+        "class_of_strict",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "individuation",
+        "key_compatible",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "nonDetWrittenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "typeMap": {}
+    },
+    "next_expression": {
+      "operationName": "next_expression",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentExpression",
+        "expressionsLeftForCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "class_mapped": {
+      "operationName": "class_mapped",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentLevel",
+        "expressionsOfCurrentClass",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "mapped"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_class": {
+      "operationName": "next_class",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_current_subsets_signature": {
+      "operationName": "analyse_current_subsets_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_equivalent",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    }
+  },
+  "globalIdentifierTypes": {
+    "currentClass": "global('C')",
+    "definedSignatureSupersets": "set(global('E'))",
+    "exp_equivalent": "set(couple(global('E'),global('E')))",
+    "signatureSupersets": "set(global('E'))",
+    "class_of_strict": "set(couple(global('P'),global('C')))",
+    "c_level": "set(couple(integer,global('C')))",
+    "signatures": "set(couple(global('E'),global('C')))",
+    "definedSignatures": "set(couple(global('E'),global('C')))",
+    "exp_key": "set(couple(global('E'),global('K')))",
+    "currentLevel": "set(global('C'))",
+    "levelNum": "integer",
+    "key_compatible": "set(couple(global('K'),global('K')))",
+    "individuation": "set(couple(global('E'),global('P')))",
+    "analysedExpressions": "set(couple(global('E'),global('C')))",
+    "currentExpression": "global('E')",
+    "mapped": "set(global('C'))",
+    "exp_subsets": "set(couple(global('E'),global('E')))",
+    "exp_overlap": "set(couple(global('E'),global('E')))",
+    "currentExpressionAnalysed": "integer",
+    "expressionsOfCurrentClass": "set(global('E'))",
+    "class_of": "set(couple(global('P'),global('C')))",
+    "definedSubsets": "set(couple(global('E'),global('E')))",
+    "expressionsLeftForCurrentClass": "set(global('E'))",
+    "subsets": "set(couple(global('E'),global('E')))"
+  },
+  "metadata": {
+    "fileType": "Trace",
+    "formatVersion": 5,
+    "savedAt": "2024-07-29T17:43:06.955951Z",
+    "creator": "traceReplay",
+    "proB2KernelVersion": "4.12.2",
+    "proBCliVersion": "1.12.2-final",
+    "modelName": "4-AnimationMachine"
+  }
+}

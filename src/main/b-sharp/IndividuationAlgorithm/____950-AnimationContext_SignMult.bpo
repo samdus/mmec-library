@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="9">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="9">
+<org.eventb.core.poFile org.eventb.core.poStamp="18">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="17">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -85,6 +85,38 @@
         <org.eventb.core.poPredicate name="class_of_strid:" org.eventb.core.predicate="∀k⦂K·k∈K⇒k∈key_compatible[{k}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cstH"/>
         <org.eventb.core.poPredicate name="class_of_strid;" org.eventb.core.predicate="∀k1⦂K,k2⦂K·{k1,k2}⊆K∧k1∈key_compatible[{k2}]⇒k2∈key_compatible[{k1}]" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#cstI"/>
         <org.eventb.core.poPredicate name="class_of_strid=" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_overlap[{e2}]∧e1∉exp_subsets[{e2}]∧e2∉exp_subsets[{e1}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}]⇒(∃e3⦂E·e1∈exp_subsets[{e3}]∧e2∈exp_subsets[{e3}]∧exp_key(e3)∈key_compatible[{exp_key(e1)}]∧exp_key(e3)∈key_compatible[{exp_key(e2)}])" org.eventb.core.source="/IndividuationAlgorithm/110-MappingContext.buc|org.eventb.core.contextFile#110-MappingContext|org.eventb.core.axiom#axm7"/>
+        <org.eventb.core.poIdentifier name="RAMQVulnerabilityCode" org.eventb.core.type="C"/>
+        <org.eventb.core.poIdentifier name="c1" org.eventb.core.type="P"/>
+        <org.eventb.core.poIdentifier name="c2" org.eventb.core.type="P"/>
+        <org.eventb.core.poIdentifier name="c3" org.eventb.core.type="P"/>
+        <org.eventb.core.poIdentifier name="c4" org.eventb.core.type="P"/>
+        <org.eventb.core.poIdentifier name="e1" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="e2" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="e3" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="e4" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="e5" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="e6" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="e7" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="e8" org.eventb.core.type="E"/>
+        <org.eventb.core.poIdentifier name="k1" org.eventb.core.type="K"/>
+        <org.eventb.core.poIdentifier name="k2" org.eventb.core.type="K"/>
+        <org.eventb.core.poIdentifier name="k3" org.eventb.core.type="K"/>
+        <org.eventb.core.poIdentifier name="k4" org.eventb.core.type="K"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____950-AnimationContext_SignMult.bpo|org.eventb.core.poFile#____950-AnimationContext_SignMult|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="9"/>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____950-AnimationContext_SignMult.bpo|org.eventb.core.poFile#____950-AnimationContext_SignMult|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="18">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="partition(C,{thing},{RAMQVulnerabilityCode})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#*"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="partition(P,{c1},{c2},{c3},{c4})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#."/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="partition(E,{e1},{e2},{e3},{e4},{e5},{e6},{e7},{e8})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#4"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="partition(K,{k1},{k2},{k3},{k4})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm10"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="partition(C_leaves,{RAMQVulnerabilityCode})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#9"/>
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="partition(c_level,{0 ↦ thing},{1 ↦ RAMQVulnerabilityCode})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#:"/>
+        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="max_level=1" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#;"/>
+        <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="partition(has_parent,{RAMQVulnerabilityCode ↦ thing})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm1"/>
+        <org.eventb.core.poPredicate name="PRD8" org.eventb.core.predicate="partition(is_a,{RAMQVulnerabilityCode ↦ RAMQVulnerabilityCode},{RAMQVulnerabilityCode ↦ thing},{thing ↦ thing})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm2"/>
+        <org.eventb.core.poPredicate name="PRD9" org.eventb.core.predicate="partition(class_of_strict,{c1 ↦ RAMQVulnerabilityCode},{c2 ↦ RAMQVulnerabilityCode},{c3 ↦ RAMQVulnerabilityCode},{c4 ↦ RAMQVulnerabilityCode})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm3"/>
+        <org.eventb.core.poPredicate name="PRD10" org.eventb.core.predicate="partition(individuation,{e1 ↦ c1},{e1 ↦ c3},{e2 ↦ c1},{e2 ↦ c2},{e3 ↦ c1},{e3 ↦ c4},{e4 ↦ c1},{e4 ↦ c2},{e4 ↦ c3},{e4 ↦ c4},{e5 ↦ c1},{e6 ↦ c2},{e7 ↦ c3},{e8 ↦ c4})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm4"/>
+        <org.eventb.core.poPredicate name="PRD11" org.eventb.core.predicate="partition(exp_key,{e1 ↦ k1},{e2 ↦ k2},{e3 ↦ k3},{e4 ↦ k4},{e5 ↦ k1},{e6 ↦ k2},{e7 ↦ k3},{e8 ↦ k4})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm5"/>
+        <org.eventb.core.poPredicate name="PRD12" org.eventb.core.predicate="partition(key_compatible,{k1 ↦ k1},{k2 ↦ k2},{k3 ↦ k3},{k4 ↦ k4},{k1 ↦ k2},{k2 ↦ k1},{k1 ↦ k3},{k3 ↦ k1},{k1 ↦ k4},{k4 ↦ k1},{k2 ↦ k3},{k3 ↦ k2},{k2 ↦ k4},{k4 ↦ k2},{k3 ↦ k4},{k4 ↦ k3})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm9"/>
+        <org.eventb.core.poPredicate name="PRD13" org.eventb.core.predicate="partition(exp_list,{1 ↦ e1},{2 ↦ e2},{3 ↦ e3},{4 ↦ e4},{5 ↦ e5},{6 ↦ e6},{7 ↦ e7},{8 ↦ e8})" org.eventb.core.source="/IndividuationAlgorithm/____950-AnimationContext_SignMult.buc|org.eventb.core.contextFile#____950-AnimationContext_SignMult|org.eventb.core.axiom#axm8"/>
+    </org.eventb.core.poPredicateSet>
 </org.eventb.core.poFile>
