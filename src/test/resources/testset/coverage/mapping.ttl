@@ -287,9 +287,10 @@ obo:humanbodyweight-appli:couverture:v1.0
 
 # HBW_0000007@Patient
 # Lorsque la personne responsable de l'arrimage traite un nouvel axiome de l'OntoRel, il est possible qu'elle réalise
-# qu'une définition n'était pas complète. C'est probablement le cas ici, puisqu'il est probable que le cas des patients
-# non identifiés n'a pas été pris en compte dans la documentation de la source de données. Il est donc nécessaire de
-# compléter la définition de la classe HBW_0000007@Patient pour inclure les patients non identifiés.
+# que certains particuliers n'avaient pas été pris en compte lors de l'arrimage d'une classe.
+# C'est élément est simulé ici, puisqu'il est possible que le cas des patients non identifiés n'aie pas été pris en
+# compte dans la documentation de la source de données. Il est donc nécessaire de compléter la définition de la classe
+# HBW_0000007@Patient pour inclure les patients non identifiés.
 
 # HBW_0000007@Patient (not yet identified)
 <HBW_0000007_noidyet:subject>
@@ -317,7 +318,7 @@ obo:humanbodyweight-appli:couverture:v1.0
    ]
  ] .
 
-# Note: il ne s'agit pas d'un subset de :NCBITaxon_9606, puisque les composants de la signature ne sont pas compatibles.
+# Note: il ne s'agit pas d'un subset de :NCBITaxon_9606, puisqu'il n'y a aucune façon de réassocier les particuliers
 :HBW_0000007_not_identified
     a               rr:TriplesMap ;
     rr:logicalTable [ a           rr:R2RMLView ;
@@ -372,6 +373,157 @@ obo:humanbodyweight-appli:couverture:v1.0
                                                                  rr:parent """ "ID_PATIENT_UUID" """ ] ] ] .
 
 # **** Individuation d'une disjonction ****
+
+# VO_0004896@intersex datum
+:VO_0004896
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "SEXE_BIO"
+                        from "EXP"."PATIENT"
+                        where "SEXE_BIO" = 'I'
+                      """ ] ; # e1
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:VO_0004896, obo:HBW_0000024 ;
+                      mmec:signatureComponent """ "SEXE_BIO" """ ; # k1
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets :VO_0001194.
+
+# VO_0004895@female datum
+:VO_0004895
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "SEXE_BIO"
+                        from "EXP"."PATIENT"
+                        where "SEXE_BIO" = 'F'
+                      """ ] ; # e2
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:VO_0004895, obo:HBW_0000025 ;
+                      mmec:signatureComponent """ "SEXE_BIO" """ ; # k1
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets :VO_0001194.
+
+# VO_0000613@male datum
+:VO_0000613
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "SEXE_BIO"
+                        from "EXP"."PATIENT"
+                        where "SEXE_BIO" = 'M'
+                      """ ] ; # e3
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:VO_0000613, obo:HBW_0000023 ;
+                      mmec:signatureComponent """ "SEXE_BIO" """ ; # k1
+                      rr:termType             rr:IRI ];
+   mmec:subsets :VO_0001194.
+
+# VO_0001194@biological sex datum
+:VO_0001194
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "SEXE_BIO"
+                        from "EXP"."PATIENT"
+                        where "SEXE_BIO" is not null
+                      """ ] ; # e4
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:VO_0001194;
+                      mmec:signatureComponent """ "SEXE_BIO" """ ; # k1
+                      rr:termType             rr:IRI ] .
+
+# OMRSE_00000210@female gender identity ICE
+:OMRSE_00000210
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "IDENTITE_GENRE"
+                        from "EXP"."PATIENT"
+                        where "IDENTITE_GENRE" = 'F'
+                      """ ] ; # e5
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:OMRSE_00000210, obo:HBW_0000025 ;
+                      mmec:signatureComponent """ "IDENTITE_GENRE" """ ; # k2
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets :OMRSE_00000209.
+
+# OMRSE_00000211@male gender identity ICE
+:OMRSE_00000211
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "IDENTITE_GENRE"
+                        from "EXP"."PATIENT"
+                        where "IDENTITE_GENRE" = 'M'
+                      """ ] ; # e6
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:OMRSE_00000211, obo:HBW_0000023 ;
+                      mmec:signatureComponent """ "IDENTITE_GENRE" """ ; # k2
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets :OMRSE_00000209.
+
+# OMRSE_00000212@non-binary identity ICE
+:OMRSE_00000212
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "IDENTITE_GENRE"
+                        from "EXP"."PATIENT"
+                        where "IDENTITE_GENRE" = 'N'
+                      """ ] ; # e7
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:OMRSE_00000212, obo:HBW_0000024 ;
+                      mmec:signatureComponent """ "IDENTITE_GENRE" """ ; # k2
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets :OMRSE_00000209.
+
+# OMRSE_00000209@gender identity ICE
+:OMRSE_00000209
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "IDENTITE_GENRE"
+                        from "EXP"."PATIENT"
+                        where "IDENTITE_GENRE" is not null
+                      """ ] ; # e8
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:OMRSE_00000209 ;
+                      mmec:signatureComponent """ "IDENTITE_GENRE" """ ; # k2
+                      rr:termType             rr:IRI ] .
+
+# HBW_0000025@female datum or gender ICE
+:HBW_0000025
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "SEXE"
+                        from "EXP"."PATIENT"
+                        where "SEXE" = 'F'
+                      """ ] ; # e9
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000025 ;
+                      mmec:signatureComponent """ "SEXE" """ ; # k3
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets :IOIO_0000012.
+
+# HBW_0000023@male datum or gender ICE
+:HBW_0000023
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "SEXE"
+                        from "EXP"."PATIENT"
+                        where "SEXE" = 'M'
+                      """ ] ; # e10
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000023 ;
+                      mmec:signatureComponent """ "SEXE" """ ; # k3
+                      rr:termType             rr:IRI ] ;
+    mmec:subsets :IOIO_0000012.
+
+# IOIO_0000012@human biological sex or gender identity ICE
+:IOIO_0000012
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select "SEXE"
+                        from "EXP"."PATIENT"
+                        where "SEXE" is not null
+                      """ ] ; # e11
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:IOIO_0000012 ;
+                      mmec:signatureComponent """ "SEXE" """ ; # k3
+                      rr:termType             rr:IRI ] .
 
 # **** Individuation d'une conjonction de disjonction ****
 

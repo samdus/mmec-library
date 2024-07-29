@@ -1,0 +1,4635 @@
+{
+  "description": "",
+  "transitionList": [
+    {
+      "name": "$setup_constants",
+      "params": {},
+      "results": {},
+      "destState": {
+        "exp_equivalent": "{(e1↦e1),(e2↦e2),(e3↦e3),(e4↦e4),(e5↦e5),(e6↦e6),(e7↦e7),(e8↦e8),(e9↦e9),(e10↦e10),(e11↦e11)}",
+        "has_parent": "{(biologicalSex↦biologicalSexOrGenderIdentity),(biologicalSexOrGenderIdentity↦thing),(femaleDatum↦biologicalSex),(femaleDatumOrGender↦biologicalSexOrGenderIdentity),(femaleGender↦genderIdentity),(genderIdentity↦biologicalSexOrGenderIdentity),(intersexDatum↦biologicalSex),(intersexOrNonBinary↦biologicalSexOrGenderIdentity),(maleDatum↦biologicalSex),(maleDatumOrGender↦biologicalSexOrGenderIdentity),(maleGender↦genderIdentity),(nonBinaryGender↦genderIdentity)}",
+        "P_cLevel": "{0,1,2,3}",
+        "c_level": "{(0↦thing),(1↦biologicalSexOrGenderIdentity),(2↦biologicalSex),(2↦femaleDatumOrGender),(2↦genderIdentity),(2↦intersexOrNonBinary),(2↦maleDatumOrGender),(3↦femaleDatum),(3↦femaleGender),(3↦intersexDatum),(3↦maleDatum),(3↦maleGender),(3↦nonBinaryGender)}",
+        "class_of_strict": "{(ice1↦femaleDatum),(ice1↦femaleDatumOrGender),(ice2↦femaleDatumOrGender),(ice3↦femaleDatumOrGender),(ice3↦femaleGender),(ice4↦intersexDatum),(ice4↦intersexOrNonBinary),(ice5↦intersexOrNonBinary),(ice5↦nonBinaryGender),(ice6↦maleDatum),(ice6↦maleDatumOrGender),(ice7↦maleDatumOrGender),(ice7↦maleGender),(ice8↦maleDatumOrGender)}",
+        "exp_list": "{(1↦e1),(2↦e2),(3↦e3),(4↦e4),(5↦e5),(6↦e6),(7↦e7),(8↦e8),(9↦e9),(10↦e10),(11↦e11)}",
+        "exp_key": "{(e1↦k1),(e2↦k1),(e3↦k1),(e4↦k1),(e5↦k2),(e6↦k2),(e7↦k2),(e8↦k2),(e9↦k3),(e10↦k3),(e11↦k3)}",
+        "Q_cLevel": "∅",
+        "key_compatible": "{(k1↦k1),(k2↦k2),(k3↦k3)}",
+        "max_level": "3",
+        "individuation": "{(e1↦ice4),(e2↦ice1),(e3↦ice6),(e4↦ice1),(e4↦ice4),(e4↦ice6),(e5↦ice3),(e6↦ice7),(e7↦ice5),(e8↦ice3),(e8↦ice5),(e8↦ice7),(e9↦ice2),(e10↦ice8),(e11↦ice2),(e11↦ice8)}",
+        "exp_subsets": "{(e1↦e1),(e2↦e2),(e3↦e3),(e4↦e1),(e4↦e2),(e4↦e3),(e4↦e4),(e5↦e5),(e6↦e6),(e7↦e7),(e8↦e5),(e8↦e6),(e8↦e7),(e8↦e8),(e9↦e9),(e10↦e10),(e11↦e9),(e11↦e10),(e11↦e11)}",
+        "exp_overlap": "{(e1↦e1),(e1↦e4),(e2↦e2),(e2↦e4),(e3↦e3),(e3↦e4),(e4↦e1),(e4↦e2),(e4↦e3),(e4↦e4),(e5↦e5),(e5↦e8),(e6↦e6),(e6↦e8),(e7↦e7),(e7↦e8),(e8↦e5),(e8↦e6),(e8↦e7),(e8↦e8),(e9↦e9),(e9↦e11),(e10↦e10),(e10↦e11),(e11↦e9),(e11↦e10),(e11↦e11)}",
+        "class_of": "{(ice1↦thing),(ice1↦biologicalSex),(ice1↦biologicalSexOrGenderIdentity),(ice1↦femaleDatum),(ice1↦femaleDatumOrGender),(ice2↦thing),(ice2↦biologicalSexOrGenderIdentity),(ice2↦femaleDatumOrGender),(ice3↦thing),(ice3↦biologicalSexOrGenderIdentity),(ice3↦femaleDatumOrGender),(ice3↦femaleGender),(ice3↦genderIdentity),(ice4↦thing),(ice4↦biologicalSex),(ice4↦biologicalSexOrGenderIdentity),(ice4↦intersexDatum),(ice4↦intersexOrNonBinary),(ice5↦thing),(ice5↦biologicalSexOrGenderIdentity),(ice5↦genderIdentity),(ice5↦intersexOrNonBinary),(ice5↦nonBinaryGender),(ice6↦thing),(ice6↦biologicalSex),(ice6↦biologicalSexOrGenderIdentity),(ice6↦maleDatum),(ice6↦maleDatumOrGender),(ice7↦thing),(ice7↦biologicalSexOrGenderIdentity),(ice7↦genderIdentity),(ice7↦maleDatumOrGender),(ice7↦maleGender),(ice8↦thing),(ice8↦biologicalSexOrGenderIdentity),(ice8↦maleDatumOrGender)}",
+        "is_a": "{(thing↦thing),(biologicalSex↦thing),(biologicalSex↦biologicalSex),(biologicalSex↦biologicalSexOrGenderIdentity),(biologicalSexOrGenderIdentity↦thing),(biologicalSexOrGenderIdentity↦biologicalSexOrGenderIdentity),(femaleDatum↦thing),(femaleDatum↦biologicalSex),(femaleDatum↦biologicalSexOrGenderIdentity),(femaleDatum↦femaleDatum),(femaleDatumOrGender↦thing),(femaleDatumOrGender↦biologicalSexOrGenderIdentity),(femaleDatumOrGender↦femaleDatumOrGender),(femaleGender↦thing),(femaleGender↦biologicalSexOrGenderIdentity),(femaleGender↦femaleGender),(femaleGender↦genderIdentity),(genderIdentity↦thing),(genderIdentity↦biologicalSexOrGenderIdentity),(genderIdentity↦genderIdentity),(intersexDatum↦thing),(intersexDatum↦biologicalSex),(intersexDatum↦biologicalSexOrGenderIdentity),(intersexDatum↦intersexDatum),(intersexOrNonBinary↦thing),(intersexOrNonBinary↦biologicalSexOrGenderIdentity),(intersexOrNonBinary↦intersexOrNonBinary),(maleDatum↦thing),(maleDatum↦biologicalSex),(maleDatum↦biologicalSexOrGenderIdentity),(maleDatum↦maleDatum),(maleDatumOrGender↦thing),(maleDatumOrGender↦biologicalSexOrGenderIdentity),(maleDatumOrGender↦maleDatumOrGender),(maleGender↦thing),(maleGender↦biologicalSexOrGenderIdentity),(maleGender↦genderIdentity),(maleGender↦maleGender),(nonBinaryGender↦thing),(nonBinaryGender↦biologicalSexOrGenderIdentity),(nonBinaryGender↦genderIdentity),(nonBinaryGender↦nonBinaryGender)}",
+        "C_leaves": "{femaleDatum,femaleDatumOrGender,femaleGender,intersexDatum,intersexOrNonBinary,maleDatum,maleDatumOrGender,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "$initialise_machine",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "femaleDatum",
+        "definedSignatureSupersets": "∅",
+        "signatureSupersets": "∅",
+        "signatures": "∅",
+        "definedSignatures": "∅",
+        "currentLevel": "{femaleGender,intersexDatum,maleDatum,maleGender,nonBinaryGender}",
+        "levelNum": "3",
+        "analysedExpressions": "∅",
+        "currentExpression": "e1",
+        "mapped": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e2}",
+        "definedSubsets": "∅",
+        "expressionsLeftForCurrentClass": "{e2}",
+        "subsets": "∅"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e2↦femaleDatum)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e2↦femaleDatum)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "femaleGender",
+        "currentLevel": "{intersexDatum,maleDatum,maleGender,nonBinaryGender}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e5}",
+        "expressionsLeftForCurrentClass": "{e5}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e2↦femaleDatum),(e5↦femaleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e2↦femaleDatum),(e5↦femaleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "intersexDatum",
+        "currentLevel": "{maleDatum,maleGender,nonBinaryGender}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e1}",
+        "expressionsLeftForCurrentClass": "{e1}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "definedSignatureSupersets": "{e4}",
+        "currentExpressionAnalysed": "1",
+        "definedSubsets": "{(e4↦e1),(e4↦e2)}",
+        "definedSignatures": "{(e1↦intersexDatum),(e2↦femaleDatum),(e5↦femaleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "expressionsLeftForCurrentClass",
+        "signatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e2↦femaleDatum),(e5↦femaleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleGender,intersexDatum}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "maleDatum",
+        "currentLevel": "{maleGender,nonBinaryGender}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e3}",
+        "expressionsLeftForCurrentClass": "{e3}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSubsets": "{(e4↦e1),(e4↦e2),(e4↦e3)}",
+        "definedSignatures": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleGender,intersexDatum,maleDatum}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "maleGender",
+        "currentLevel": "{nonBinaryGender}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e6}",
+        "expressionsLeftForCurrentClass": "{e6}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "definedSignatureSupersets": "{e4,e8}",
+        "currentExpressionAnalysed": "1",
+        "definedSubsets": "{(e4↦e1),(e4↦e2),(e4↦e3),(e8↦e5),(e8↦e6)}",
+        "definedSignatures": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "expressionsLeftForCurrentClass",
+        "signatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleGender,intersexDatum,maleDatum,maleGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "nonBinaryGender",
+        "currentLevel": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e7}",
+        "expressionsLeftForCurrentClass": "{e7}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSubsets": "{(e4↦e1),(e4↦e2),(e4↦e3),(e8↦e5),(e8↦e6),(e8↦e7)}",
+        "definedSignatures": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleGender,intersexDatum,maleDatum,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "femaleDatumOrGender",
+        "currentLevel": "{biologicalSex,genderIdentity,intersexOrNonBinary,maleDatumOrGender}",
+        "levelNum": "2",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e2,e5,e9}",
+        "expressionsLeftForCurrentClass": "{e2,e5,e9}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e9",
+        "expressionsLeftForCurrentClass": "{e2,e5}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e2↦femaleDatum),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_with_equivalent_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_with_equivalent_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleDatumOrGender,femaleGender,intersexDatum,maleDatum,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "intersexOrNonBinary",
+        "currentLevel": "{biologicalSex,genderIdentity,maleDatumOrGender}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e1,e7}",
+        "expressionsLeftForCurrentClass": "{e1,e7}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "expressionsLeftForCurrentClass": "{e7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_with_equivalent_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_with_equivalent_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleDatumOrGender,femaleGender,intersexDatum,intersexOrNonBinary,maleDatum,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "maleDatumOrGender",
+        "currentLevel": "{biologicalSex,genderIdentity}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e3,e6,e10}",
+        "expressionsLeftForCurrentClass": "{e3,e6,e10}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e10",
+        "expressionsLeftForCurrentClass": "{e3,e6}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "definedSignatureSupersets": "{e4,e8,e11}",
+        "currentExpressionAnalysed": "1",
+        "definedSubsets": "{(e4↦e1),(e4↦e2),(e4↦e3),(e8↦e5),(e8↦e6),(e8↦e7),(e11↦e9),(e11↦e10)}",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "expressionsLeftForCurrentClass",
+        "signatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_with_equivalent_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_with_equivalent_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{femaleDatum,femaleDatumOrGender,femaleGender,intersexDatum,intersexOrNonBinary,maleDatum,maleDatumOrGender,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "biologicalSex",
+        "currentLevel": "{genderIdentity}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e1,e2,e3,e4}",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "definedSignatureSupersets": "{e8,e11}",
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e2,e3}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e3}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{biologicalSex,femaleDatum,femaleDatumOrGender,femaleGender,intersexDatum,intersexOrNonBinary,maleDatum,maleDatumOrGender,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "genderIdentity",
+        "currentLevel": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e5,e6,e7,e8}",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "definedSignatureSupersets": "{e11}",
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{biologicalSex,femaleDatum,femaleDatumOrGender,femaleGender,genderIdentity,intersexDatum,intersexOrNonBinary,maleDatum,maleDatumOrGender,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "biologicalSexOrGenderIdentity",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11}",
+        "levelNum": "1",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e11",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "definedSignatureSupersets": "∅",
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e6,e7,e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7,e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e4,e5,e6,e7,e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7,e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e8,e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e9,e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e9",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e10",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{biologicalSex,biologicalSexOrGenderIdentity,femaleDatum,femaleDatumOrGender,femaleGender,genderIdentity,intersexDatum,intersexOrNonBinary,maleDatum,maleDatumOrGender,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "thing",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "0",
+        "expressionsLeftForCurrentClass": "{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e1",
+        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e6,e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e4,e5,e6,e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦thing),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e7,e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦thing),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦thing),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e8,e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦thing),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦thing),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦thing),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e9,e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦thing),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦thing),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦thing),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦thing),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e9",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e10,e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦thing),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦thing),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦thing),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦thing),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦thing),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e10",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e11}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦thing),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦thing),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦thing),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦thing),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦thing),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦thing),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e11",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦thing),(e1↦biologicalSex),(e1↦biologicalSexOrGenderIdentity),(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦thing),(e2↦biologicalSex),(e2↦biologicalSexOrGenderIdentity),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦thing),(e3↦biologicalSex),(e3↦biologicalSexOrGenderIdentity),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦thing),(e4↦biologicalSex),(e4↦biologicalSexOrGenderIdentity),(e5↦thing),(e5↦biologicalSexOrGenderIdentity),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e5↦genderIdentity),(e6↦thing),(e6↦biologicalSexOrGenderIdentity),(e6↦genderIdentity),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦thing),(e7↦biologicalSexOrGenderIdentity),(e7↦genderIdentity),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦thing),(e8↦biologicalSexOrGenderIdentity),(e8↦genderIdentity),(e9↦thing),(e9↦biologicalSexOrGenderIdentity),(e9↦femaleDatumOrGender),(e10↦thing),(e10↦biologicalSexOrGenderIdentity),(e10↦maleDatumOrGender),(e11↦thing),(e11↦biologicalSexOrGenderIdentity)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{thing,biologicalSex,biologicalSexOrGenderIdentity,femaleDatum,femaleDatumOrGender,femaleGender,genderIdentity,intersexDatum,intersexOrNonBinary,maleDatum,maleDatumOrGender,maleGender,nonBinaryGender}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "final",
+      "params": {},
+      "results": {},
+      "destState": {
+        "signatures": "{(e1↦intersexDatum),(e1↦intersexOrNonBinary),(e2↦femaleDatum),(e2↦femaleDatumOrGender),(e3↦maleDatum),(e3↦maleDatumOrGender),(e4↦biologicalSex),(e5↦femaleDatumOrGender),(e5↦femaleGender),(e6↦maleDatumOrGender),(e6↦maleGender),(e7↦intersexOrNonBinary),(e7↦nonBinaryGender),(e8↦genderIdentity),(e9↦femaleDatumOrGender),(e10↦maleDatumOrGender),(e11↦biologicalSexOrGenderIdentity)}",
+        "subsets": "{(e4↦e1),(e4↦e2),(e4↦e3),(e8↦e5),(e8↦e6),(e8↦e7),(e11↦e9),(e11↦e10)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    }
+  ],
+  "variableNames": [
+    "analysedExpressions",
+    "currentClass",
+    "currentExpression",
+    "currentExpressionAnalysed",
+    "currentLevel",
+    "definedSignatureSupersets",
+    "definedSignatures",
+    "definedSubsets",
+    "expressionsLeftForCurrentClass",
+    "expressionsOfCurrentClass",
+    "levelNum",
+    "mapped",
+    "signatureSupersets",
+    "signatures",
+    "subsets"
+  ],
+  "constantNames": [
+    "C_leaves",
+    "has_parent",
+    "is_a",
+    "max_level",
+    "Q_cLevel",
+    "c_level",
+    "P_cLevel",
+    "class_of",
+    "class_of_strict",
+    "exp_key",
+    "exp_subsets",
+    "exp_overlap",
+    "individuation",
+    "key_compatible",
+    "exp_list",
+    "exp_equivalent"
+  ],
+  "setNames": [
+    "P",
+    "E",
+    "K",
+    "C"
+  ],
+  "machineOperationInfos": {
+    "analyse_not_required": {
+      "operationName": "analyse_not_required",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of_strict",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_key",
+        "exp_overlap",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "individuation",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "expression_analysed": {
+      "operationName": "expression_analysed",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "analysedExpressions"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_level": {
+      "operationName": "next_level",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "c_level",
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "levelNum"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_with_equivalent_signature": {
+      "operationName": "analyse_with_equivalent_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_equivalent",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatures"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "final": {
+      "operationName": "final",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "class_of",
+        "class_of_strict",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "individuation",
+        "key_compatible",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "nonDetWrittenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "typeMap": {}
+    },
+    "next_expression": {
+      "operationName": "next_expression",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "writtenVariables": [
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentExpression",
+        "expressionsLeftForCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "class_mapped": {
+      "operationName": "class_mapped",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentLevel",
+        "expressionsOfCurrentClass",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "mapped"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_class": {
+      "operationName": "next_class",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_current_subsets_signature": {
+      "operationName": "analyse_current_subsets_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_equivalent",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "key_compatible"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    }
+  },
+  "globalIdentifierTypes": {
+    "currentClass": "global('C')",
+    "definedSignatureSupersets": "set(global('E'))",
+    "exp_equivalent": "set(couple(global('E'),global('E')))",
+    "signatureSupersets": "set(global('E'))",
+    "class_of_strict": "set(couple(global('P'),global('C')))",
+    "c_level": "set(couple(integer,global('C')))",
+    "signatures": "set(couple(global('E'),global('C')))",
+    "definedSignatures": "set(couple(global('E'),global('C')))",
+    "exp_key": "set(couple(global('E'),global('K')))",
+    "currentLevel": "set(global('C'))",
+    "levelNum": "integer",
+    "key_compatible": "set(couple(global('K'),global('K')))",
+    "individuation": "set(couple(global('E'),global('P')))",
+    "analysedExpressions": "set(couple(global('E'),global('C')))",
+    "currentExpression": "global('E')",
+    "mapped": "set(global('C'))",
+    "exp_subsets": "set(couple(global('E'),global('E')))",
+    "exp_overlap": "set(couple(global('E'),global('E')))",
+    "currentExpressionAnalysed": "integer",
+    "expressionsOfCurrentClass": "set(global('E'))",
+    "class_of": "set(couple(global('P'),global('C')))",
+    "definedSubsets": "set(couple(global('E'),global('E')))",
+    "expressionsLeftForCurrentClass": "set(global('E'))",
+    "subsets": "set(couple(global('E'),global('E')))"
+  },
+  "metadata": {
+    "fileType": "Trace",
+    "formatVersion": 5,
+    "savedAt": "2024-07-29T21:11:56.285936Z",
+    "creator": "traceReplay",
+    "proB2KernelVersion": "4.12.2",
+    "proBCliVersion": "1.12.2-final",
+    "modelName": "4-AnimationMachine"
+  }
+}
