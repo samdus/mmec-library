@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="28">
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="28">
+<org.eventb.core.poFile org.eventb.core.poStamp="29">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="29">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -38,9 +38,9 @@
         <org.eventb.core.poPredicate name="has_pareo6" org.eventb.core.predicate="Q_cLevel=(∅ ⦂ ℙ(ℤ))" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#cst9"/>
         <org.eventb.core.poPredicate name="has_pareo7" org.eventb.core.predicate="P_cLevel=0 ‥ max_level" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#cst:"/>
         <org.eventb.core.poPredicate name="has_pareo8" org.eventb.core.predicate="∀i⦂ℤ·i∈0 ‥ max_level⇒(∀c⦂C·c∈c_level[{i}]⇒thing∈is_a[{c}])" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#cst;"/>
-        <org.eventb.core.poPredicate name="has_pareo9" org.eventb.core.predicate="∀c⦂C·c∈C⇔thing∈is_a[{c}]" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#axm6"/>
-        <org.eventb.core.poPredicate name="has_pareo:" org.eventb.core.predicate="c_level[0 ‥ max_level]=C" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#cstD"/>
-        <org.eventb.core.poPredicate name="has_pareo;" org.eventb.core.predicate="∀c⦂C,i⦂ℤ,j⦂ℤ·i&gt;j∧c∈c_level[{i}]∧c∈c_level[{j}]⇒(∃parent⦂C·parent∈c_level[{j}]∧parent∉c_level[j+1 ‥ max_level]∧parent∈is_a[{c}])" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#cstE"/>
+        <org.eventb.core.poPredicate name="has_pareo9" org.eventb.core.predicate="∀c⦂C,i⦂ℤ,j⦂ℤ·i&gt;j∧c∈c_level[{i}]∧c∈c_level[{j}]⇒(∃parent⦂C·parent∈c_level[{j}]∧parent∉c_level[j+1 ‥ max_level]∧parent∈is_a[{c}])" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#cstE"/>
+        <org.eventb.core.poPredicate name="has_pareo:" org.eventb.core.predicate="∀c⦂C·c∈C⇔thing∈is_a[{c}]" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#axm6"/>
+        <org.eventb.core.poPredicate name="has_pareo;" org.eventb.core.predicate="c_level[0 ‥ max_level]=C" org.eventb.core.source="/IndividuationAlgorithm/030-OntologyContext_TransitiveClosureOfIsA.buc|org.eventb.core.contextFile#030-OntologyContext_TransitiveClosureOfIsA|org.eventb.core.axiom#cstD"/>
         <org.eventb.core.poIdentifier name="P" org.eventb.core.type="ℙ(P)"/>
         <org.eventb.core.poIdentifier name="class_of" org.eventb.core.type="ℙ(P×C)"/>
         <org.eventb.core.poIdentifier name="class_of_strict" org.eventb.core.type="ℙ(P×C)"/>
@@ -111,7 +111,7 @@
         <org.eventb.core.poIdentifier name="k1" org.eventb.core.type="K"/>
         <org.eventb.core.poIdentifier name="k2" org.eventb.core.type="K"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____930-AnimationContext_Disjoint.bpo|org.eventb.core.poFile#____930-AnimationContext_Disjoint|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="28">
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/____930-AnimationContext_Disjoint.bpo|org.eventb.core.poFile#____930-AnimationContext_Disjoint|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="29">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="partition(C,{thing},{role},{patientRole},{healthCareProviderRole})" org.eventb.core.source="/IndividuationAlgorithm/____930-AnimationContext_Disjoint.buc|org.eventb.core.contextFile#____930-AnimationContext_Disjoint|org.eventb.core.axiom#axm1"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="partition(P,{pr1},{pr2},{pr3},{pm1},{pm2},{pm3})" org.eventb.core.source="/IndividuationAlgorithm/____930-AnimationContext_Disjoint.buc|org.eventb.core.contextFile#____930-AnimationContext_Disjoint|org.eventb.core.axiom#axm2"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="partition(E,{e1},{e2},{e3},{e4},{e5},{e6},{e7},{e8},{e9},{e10},{e11},{e12},{e13},{e14})" org.eventb.core.source="/IndividuationAlgorithm/____930-AnimationContext_Disjoint.buc|org.eventb.core.contextFile#____930-AnimationContext_Disjoint|org.eventb.core.axiom#cst:"/>
