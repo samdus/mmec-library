@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="1">
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
     <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
@@ -26,7 +26,7 @@
         <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#cst2"/>
         <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarch~"/>
     </org.eventb.core.poSequent>
-    <org.eventb.core.poSequent name="onto_isA_thm_transitiveOverHasParent/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="1">
+    <org.eventb.core.poSequent name="onto_isA_thm_transitiveOverHasParent/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="0">
         <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.bpo|org.eventb.core.poFile#020-OntologyContext_ClassesIsA|org.eventb.core.poPredicateSet#HYP010-OntologyContext_ClassesHierarci'"/>
         <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·cp∈has_parent[{c}]∧cpp∈has_parent[{cp}]⇒cpp∈is_a[{c}]" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#axm6"/>
         <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/IndividuationAlgorithm/020-OntologyContext_ClassesIsA.buc|org.eventb.core.contextFile#020-OntologyContext_ClassesIsA|org.eventb.core.axiom#axm6"/>
