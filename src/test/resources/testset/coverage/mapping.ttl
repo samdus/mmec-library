@@ -540,6 +540,7 @@ obo:humanbodyweight-appli:couverture:v1.0
 #                      rr:termType             rr:IRI ] .
 
 # HBW_0000009@body weight
+# ONTORELA_C2986e108@(quality ∨ disposition) ⋀ (‘inheres in’ organism)
 :HBW_0000009
     a               rr:TriplesMap ;
     rr:logicalTable [ rr:tableName """
