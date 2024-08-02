@@ -41,7 +41,7 @@
         "currentLevel": "∅",
         "levelNum": "3",
         "analysedExpressions": "∅",
-        "currentExpression": "e1",
+        "currentExpression": "e2",
         "mapped": "∅",
         "currentExpressionAnalysed": "0",
         "expressionsOfCurrentClass": "{e2,e6,e10}",
@@ -59,7 +59,6 @@
       "params": {},
       "results": {},
       "destState": {
-        "currentExpression": "e2",
         "expressionsLeftForCurrentClass": "{e6,e10}"
       },
       "destStateNotChanged": [
@@ -71,6 +70,7 @@
         "currentLevel",
         "levelNum",
         "analysedExpressions",
+        "currentExpression",
         "mapped",
         "currentExpressionAnalysed",
         "expressionsOfCurrentClass",
@@ -1004,8 +1004,8 @@
       "params": {},
       "results": {},
       "destState": {
-        "currentExpression": "e6",
-        "expressionsLeftForCurrentClass": "{e2,e10}"
+        "currentExpression": "e2",
+        "expressionsLeftForCurrentClass": "{e6,e10}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -1018,6 +1018,87 @@
         "analysedExpressions",
         "mapped",
         "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_with_equivalent_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e2↦bodyWeight),(e2↦qualityOrDispositionInheresInOrganism),(e3↦dataItemAboutQualityOrDispositionInheresInOrganism)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e2↦bodyWeight),(e2↦quality),(e2↦qualityOrDispositionInheresInOrganism),(e3↦dataItemAboutQualityOrDispositionInheresInOrganism),(e6↦bodyWeight),(e6↦quality),(e7↦dataItemAboutQualityOrDispositionInheresInOrganism),(e10↦bodyWeight),(e10↦quality),(e11↦dataItemAboutQualityOrDispositionInheresInOrganism)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e10}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
         "expressionsOfCurrentClass",
         "definedSubsets",
         "subsets"
@@ -1058,7 +1139,7 @@
       "params": {},
       "results": {},
       "destState": {
-        "analysedExpressions": "{(e2↦bodyWeight),(e2↦quality),(e3↦dataItemAboutQualityOrDispositionInheresInOrganism),(e6↦bodyWeight),(e6↦quality),(e6↦qualityOrDispositionInheresInOrganism),(e7↦dataItemAboutQualityOrDispositionInheresInOrganism),(e10↦bodyWeight),(e10↦quality),(e11↦dataItemAboutQualityOrDispositionInheresInOrganism)}"
+        "analysedExpressions": "{(e2↦bodyWeight),(e2↦quality),(e2↦qualityOrDispositionInheresInOrganism),(e3↦dataItemAboutQualityOrDispositionInheresInOrganism),(e6↦bodyWeight),(e6↦quality),(e6↦qualityOrDispositionInheresInOrganism),(e7↦dataItemAboutQualityOrDispositionInheresInOrganism),(e10↦bodyWeight),(e10↦quality),(e11↦dataItemAboutQualityOrDispositionInheresInOrganism)}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -1087,7 +1168,7 @@
       "destState": {
         "currentExpression": "e10",
         "currentExpressionAnalysed": "0",
-        "expressionsLeftForCurrentClass": "{e2}"
+        "expressionsLeftForCurrentClass": "∅"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -1120,87 +1201,6 @@
         "signatureSupersets",
         "signatures",
         "definedSignatures",
-        "currentLevel",
-        "levelNum",
-        "analysedExpressions",
-        "currentExpression",
-        "mapped",
-        "expressionsOfCurrentClass",
-        "definedSubsets",
-        "expressionsLeftForCurrentClass",
-        "subsets"
-      ],
-      "preds": [],
-      "postconditions": [],
-      "description": ""
-    },
-    {
-      "name": "expression_analysed",
-      "params": {},
-      "results": {},
-      "destState": {
-        "analysedExpressions": "{(e2↦bodyWeight),(e2↦quality),(e3↦dataItemAboutQualityOrDispositionInheresInOrganism),(e6↦bodyWeight),(e6↦quality),(e6↦qualityOrDispositionInheresInOrganism),(e7↦dataItemAboutQualityOrDispositionInheresInOrganism),(e10↦bodyWeight),(e10↦quality),(e10↦qualityOrDispositionInheresInOrganism),(e11↦dataItemAboutQualityOrDispositionInheresInOrganism)}"
-      },
-      "destStateNotChanged": [
-        "currentClass",
-        "definedSignatureSupersets",
-        "signatureSupersets",
-        "signatures",
-        "definedSignatures",
-        "currentLevel",
-        "levelNum",
-        "currentExpression",
-        "mapped",
-        "currentExpressionAnalysed",
-        "expressionsOfCurrentClass",
-        "definedSubsets",
-        "expressionsLeftForCurrentClass",
-        "subsets"
-      ],
-      "preds": [],
-      "postconditions": [],
-      "description": ""
-    },
-    {
-      "name": "next_expression",
-      "params": {},
-      "results": {},
-      "destState": {
-        "currentExpression": "e2",
-        "currentExpressionAnalysed": "0",
-        "expressionsLeftForCurrentClass": "∅"
-      },
-      "destStateNotChanged": [
-        "currentClass",
-        "definedSignatureSupersets",
-        "signatureSupersets",
-        "signatures",
-        "definedSignatures",
-        "currentLevel",
-        "levelNum",
-        "analysedExpressions",
-        "mapped",
-        "expressionsOfCurrentClass",
-        "definedSubsets",
-        "subsets"
-      ],
-      "preds": [],
-      "postconditions": [],
-      "description": ""
-    },
-    {
-      "name": "analyse_with_equivalent_signature",
-      "params": {},
-      "results": {},
-      "destState": {
-        "currentExpressionAnalysed": "1",
-        "definedSignatures": "{(e2↦bodyWeight),(e2↦qualityOrDispositionInheresInOrganism),(e3↦dataItemAboutQualityOrDispositionInheresInOrganism)}"
-      },
-      "destStateNotChanged": [
-        "currentClass",
-        "definedSignatureSupersets",
-        "signatureSupersets",
-        "signatures",
         "currentLevel",
         "levelNum",
         "analysedExpressions",
@@ -3560,6 +3560,7 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "class_of_strict",
         "currentClass",
         "currentExpression",
@@ -3570,7 +3571,8 @@
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
         "individuation",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed"
@@ -3590,7 +3592,8 @@
         "currentExpression",
         "currentExpressionAnalysed",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "analysedExpressions"
@@ -3636,13 +3639,15 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
         "definedSignatures",
         "exp_equivalent",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -3694,7 +3699,8 @@
         "currentClass",
         "currentExpression",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpression",
@@ -3763,6 +3769,7 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
@@ -3775,7 +3782,8 @@
         "exp_subsets",
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -3816,7 +3824,7 @@
   "metadata": {
     "fileType": "Trace",
     "formatVersion": 5,
-    "savedAt": "2024-07-31T20:35:15.010971Z",
+    "savedAt": "2024-08-02T20:24:13.750960Z",
     "creator": "traceReplay",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": "1.12.2-final",

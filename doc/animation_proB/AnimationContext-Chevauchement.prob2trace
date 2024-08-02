@@ -41,7 +41,7 @@
         "currentLevel": "∅",
         "levelNum": "3",
         "analysedExpressions": "∅",
-        "currentExpression": "e1",
+        "currentExpression": "e3",
         "mapped": "∅",
         "currentExpressionAnalysed": "0",
         "expressionsOfCurrentClass": "{e3,e5,e6,e7}",
@@ -59,7 +59,6 @@
       "params": {},
       "results": {},
       "destState": {
-        "currentExpression": "e3",
         "expressionsLeftForCurrentClass": "{e5,e6,e7}"
       },
       "destStateNotChanged": [
@@ -71,6 +70,7 @@
         "currentLevel",
         "levelNum",
         "analysedExpressions",
+        "currentExpression",
         "mapped",
         "currentExpressionAnalysed",
         "expressionsOfCurrentClass",
@@ -815,8 +815,8 @@
       "params": {},
       "results": {},
       "destState": {
-        "currentExpression": "e1",
-        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e6,e7}"
+        "currentExpression": "e2",
+        "expressionsLeftForCurrentClass": "{e1,e3,e4,e5,e6,e7}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -838,18 +838,18 @@
       "description": ""
     },
     {
-      "name": "analyse_not_required",
+      "name": "analyse_with_equivalent_signature",
       "params": {},
       "results": {},
       "destState": {
-        "currentExpressionAnalysed": "1"
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(e2↦homoSapiens),(e2↦patient),(e3↦healthCareProvider)}"
       },
       "destStateNotChanged": [
         "currentClass",
         "definedSignatureSupersets",
         "signatureSupersets",
         "signatures",
-        "definedSignatures",
         "currentLevel",
         "levelNum",
         "analysedExpressions",
@@ -869,7 +869,7 @@
       "params": {},
       "results": {},
       "destState": {
-        "analysedExpressions": "{(e1↦homoSapiens),(e2↦patient),(e3↦healthCareProvider),(e4↦patient),(e5↦healthCareProvider),(e5↦patient),(e6↦healthCareProvider),(e6↦patient),(e7↦healthCareProvider)}"
+        "analysedExpressions": "{(e2↦homoSapiens),(e2↦patient),(e3↦healthCareProvider),(e4↦patient),(e5↦healthCareProvider),(e5↦patient),(e6↦healthCareProvider),(e6↦patient),(e7↦healthCareProvider)}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -896,7 +896,7 @@
       "params": {},
       "results": {},
       "destState": {
-        "currentExpression": "e2",
+        "currentExpression": "e1",
         "currentExpressionAnalysed": "0",
         "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7}"
       },
@@ -919,18 +919,18 @@
       "description": ""
     },
     {
-      "name": "analyse_with_equivalent_signature",
+      "name": "analyse_not_required",
       "params": {},
       "results": {},
       "destState": {
-        "currentExpressionAnalysed": "1",
-        "definedSignatures": "{(e2↦homoSapiens),(e2↦patient),(e3↦healthCareProvider)}"
+        "currentExpressionAnalysed": "1"
       },
       "destStateNotChanged": [
         "currentClass",
         "definedSignatureSupersets",
         "signatureSupersets",
         "signatures",
+        "definedSignatures",
         "currentLevel",
         "levelNum",
         "analysedExpressions",
@@ -2723,6 +2723,7 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "class_of_strict",
         "currentClass",
         "currentExpression",
@@ -2733,7 +2734,8 @@
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
         "individuation",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed"
@@ -2753,7 +2755,8 @@
         "currentExpression",
         "currentExpressionAnalysed",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "analysedExpressions"
@@ -2799,13 +2802,15 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
         "definedSignatures",
         "exp_equivalent",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -2857,7 +2862,8 @@
         "currentClass",
         "currentExpression",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpression",
@@ -2926,6 +2932,7 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
@@ -2938,7 +2945,8 @@
         "exp_subsets",
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -2979,7 +2987,7 @@
   "metadata": {
     "fileType": "Trace",
     "formatVersion": 5,
-    "savedAt": "2024-07-26T20:28:34.795541Z",
+    "savedAt": "2024-08-02T20:09:18.942231Z",
     "creator": "traceReplay",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": "1.12.2-final",

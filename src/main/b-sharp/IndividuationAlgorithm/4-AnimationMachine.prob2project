@@ -15,11 +15,6 @@
       "traces": [
         {
           "id": null,
-          "location": "../../../../../../../../../Downloads/4-AnimationMachine.prob2trace",
-          "selected": true
-        },
-        {
-          "id": null,
           "location": "../../../../doc/animation_proB/AnimationContext-Simple.prob2trace",
           "selected": true
         }
@@ -38,7 +33,7 @@
   "metadata": {
     "fileType": "Project",
     "formatVersion": 37,
-    "savedAt": "2024-07-24T17:55:02.427899Z",
+    "savedAt": "2024-08-02T19:53:59.233804Z",
     "creator": "User",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": null,

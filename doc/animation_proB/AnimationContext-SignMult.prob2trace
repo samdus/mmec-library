@@ -1508,6 +1508,7 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "class_of_strict",
         "currentClass",
         "currentExpression",
@@ -1518,7 +1519,8 @@
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
         "individuation",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed"
@@ -1538,7 +1540,8 @@
         "currentExpression",
         "currentExpressionAnalysed",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "analysedExpressions"
@@ -1584,13 +1587,15 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
         "definedSignatures",
         "exp_equivalent",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -1642,7 +1647,8 @@
         "currentClass",
         "currentExpression",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpression",
@@ -1711,6 +1717,7 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
@@ -1723,7 +1730,8 @@
         "exp_subsets",
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -1764,7 +1772,7 @@
   "metadata": {
     "fileType": "Trace",
     "formatVersion": 5,
-    "savedAt": "2024-07-29T17:43:06.955951Z",
+    "savedAt": "2024-08-02T19:47:44.568803Z",
     "creator": "traceReplay",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": "1.12.2-final",

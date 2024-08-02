@@ -20,7 +20,7 @@
         "exp_subsets": "{(e1↦e1),(e1↦e2),(e1↦e3),(e1↦e4),(e1↦e5),(e1↦e6),(e1↦e7),(e1↦e8),(e1↦e9),(e1↦e10),(e1↦e11),(e1↦e12),(e1↦e13),(e1↦e14),(e1↦e15),(e2↦e2),(e2↦e6),(e2↦e7),(e2↦e9),(e2↦e12),(e2↦e13),(e2↦e14),(e3↦e3),(e3↦e9),(e3↦e10),(e3↦e11),(e3↦e13),(e3↦e14),(e3↦e15),(e4↦e4),(e4↦e6),(e4↦e8),(e4↦e10),(e4↦e12),(e4↦e13),(e4↦e15),(e5↦e5),(e5↦e7),(e5↦e8),(e5↦e11),(e5↦e12),(e5↦e14),(e5↦e15),(e6↦e6),(e6↦e12),(e6↦e13),(e7↦e7),(e7↦e12),(e7↦e14),(e8↦e8),(e8↦e12),(e8↦e15),(e9↦e9),(e9↦e13),(e9↦e14),(e10↦e10),(e10↦e13),(e10↦e15),(e11↦e11),(e11↦e14),(e11↦e15),(e12↦e12),(e13↦e13),(e14↦e14),(e15↦e15)}",
         "exp_overlap": "{(e1↦e1),(e1↦e2),(e1↦e3),(e1↦e4),(e1↦e5),(e1↦e6),(e1↦e7),(e1↦e8),(e1↦e9),(e1↦e10),(e1↦e11),(e1↦e12),(e1↦e13),(e1↦e14),(e1↦e15),(e2↦e1),(e2↦e2),(e2↦e3),(e2↦e4),(e2↦e5),(e2↦e6),(e2↦e7),(e2↦e8),(e2↦e9),(e2↦e10),(e2↦e11),(e2↦e12),(e2↦e13),(e2↦e14),(e3↦e1),(e3↦e2),(e3↦e3),(e3↦e4),(e3↦e5),(e3↦e6),(e3↦e7),(e3↦e8),(e3↦e9),(e3↦e10),(e3↦e11),(e3↦e13),(e3↦e14),(e3↦e15),(e4↦e1),(e4↦e2),(e4↦e3),(e4↦e4),(e4↦e5),(e4↦e6),(e4↦e7),(e4↦e8),(e4↦e9),(e4↦e10),(e4↦e11),(e4↦e12),(e4↦e13),(e4↦e15),(e5↦e1),(e5↦e2),(e5↦e3),(e5↦e4),(e5↦e5),(e5↦e6),(e5↦e7),(e5↦e8),(e5↦e9),(e5↦e10),(e5↦e11),(e5↦e12),(e5↦e14),(e5↦e15),(e6↦e1),(e6↦e2),(e6↦e3),(e6↦e4),(e6↦e5),(e6↦e6),(e6↦e7),(e6↦e8),(e6↦e9),(e6↦e10),(e6↦e12),(e6↦e13),(e7↦e1),(e7↦e2),(e7↦e3),(e7↦e4),(e7↦e5),(e7↦e6),(e7↦e7),(e7↦e8),(e7↦e9),(e7↦e11),(e7↦e12),(e7↦e14),(e8↦e1),(e8↦e2),(e8↦e3),(e8↦e4),(e8↦e5),(e8↦e6),(e8↦e7),(e8↦e8),(e8↦e10),(e8↦e11),(e8↦e12),(e8↦e15),(e9↦e1),(e9↦e2),(e9↦e3),(e9↦e4),(e9↦e5),(e9↦e6),(e9↦e7),(e9↦e9),(e9↦e10),(e9↦e11),(e9↦e13),(e9↦e14),(e10↦e1),(e10↦e2),(e10↦e3),(e10↦e4),(e10↦e5),(e10↦e6),(e10↦e8),(e10↦e9),(e10↦e10),(e10↦e11),(e10↦e13),(e10↦e15),(e11↦e1),(e11↦e2),(e11↦e3),(e11↦e4),(e11↦e5),(e11↦e7),(e11↦e8),(e11↦e9),(e11↦e10),(e11↦e11),(e11↦e14),(e11↦e15),(e12↦e1),(e12↦e2),(e12↦e4),(e12↦e5),(e12↦e6),(e12↦e7),(e12↦e8),(e12↦e12),(e13↦e1),(e13↦e2),(e13↦e3),(e13↦e4),(e13↦e6),(e13↦e9),(e13↦e10),(e13↦e13),(e14↦e1),(e14↦e2),(e14↦e3),(e14↦e5),(e14↦e7),(e14↦e9),(e14↦e11),(e14↦e14),(e15↦e1),(e15↦e3),(e15↦e4),(e15↦e5),(e15↦e8),(e15↦e10),(e15↦e11),(e15↦e15)}",
         "class_of": "{(po1↦thing),(po1↦bodyWeight),(po1↦quality),(po1↦qualityOrDisposition),(po1↦sdc),(po2↦thing),(po2↦bodyWeight),(po2↦quality),(po2↦qualityOrDisposition),(po2↦sdc),(po3↦thing),(po3↦bodyWeight),(po3↦quality),(po3↦qualityOrDisposition),(po3↦sdc),(po4↦thing),(po4↦bodyWeight),(po4↦quality),(po4↦qualityOrDisposition),(po4↦sdc)}",
-        "is_a": "{(thing↦thing),(bodyWeight↦thing),(bodyWeight↦bodyWeight),(bodyWeight↦quality),(bodyWeight↦qualityOrDisposition),(bodyWeight↦sdc),(quality↦thing),(quality↦quality),(quality↦qualityOrDisposition),(quality↦sdc),(qualityOrDisposition↦thing),(qualityOrDisposition↦qualityOrDisposition),(sdc↦thing),(sdc↦sdc)}",
+        "is_a": "{(thing↦thing),(bodyWeight↦thing),(bodyWeight↦bodyWeight),(bodyWeight↦quality),(bodyWeight↦qualityOrDisposition),(bodyWeight↦sdc),(quality↦thing),(quality↦quality),(quality↦qualityOrDisposition),(quality↦sdc),(qualityOrDisposition↦thing),(qualityOrDisposition↦qualityOrDisposition),(qualityOrDisposition↦sdc),(sdc↦thing),(sdc↦sdc)}",
         "C_leaves": "{bodyWeight}"
       },
       "destStateNotChanged": [],
@@ -140,90 +140,9 @@
       "params": {},
       "results": {},
       "destState": {
-        "currentExpression": "e6",
-        "currentExpressionAnalysed": "0",
-        "expressionsLeftForCurrentClass": "{e2,e3,e4,e5,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
-      },
-      "destStateNotChanged": [
-        "currentClass",
-        "definedSignatureSupersets",
-        "signatureSupersets",
-        "signatures",
-        "definedSignatures",
-        "currentLevel",
-        "levelNum",
-        "analysedExpressions",
-        "mapped",
-        "expressionsOfCurrentClass",
-        "definedSubsets",
-        "subsets"
-      ],
-      "preds": [],
-      "postconditions": [],
-      "description": ""
-    },
-    {
-      "name": "analyse_not_required",
-      "params": {},
-      "results": {},
-      "destState": {
-        "currentExpressionAnalysed": "1"
-      },
-      "destStateNotChanged": [
-        "currentClass",
-        "definedSignatureSupersets",
-        "signatureSupersets",
-        "signatures",
-        "definedSignatures",
-        "currentLevel",
-        "levelNum",
-        "analysedExpressions",
-        "currentExpression",
-        "mapped",
-        "expressionsOfCurrentClass",
-        "definedSubsets",
-        "expressionsLeftForCurrentClass",
-        "subsets"
-      ],
-      "preds": [],
-      "postconditions": [],
-      "description": ""
-    },
-    {
-      "name": "expression_analysed",
-      "params": {},
-      "results": {},
-      "destState": {
-        "analysedExpressions": "{(e1↦bodyWeight),(e6↦bodyWeight)}"
-      },
-      "destStateNotChanged": [
-        "currentClass",
-        "definedSignatureSupersets",
-        "signatureSupersets",
-        "signatures",
-        "definedSignatures",
-        "currentLevel",
-        "levelNum",
-        "currentExpression",
-        "mapped",
-        "currentExpressionAnalysed",
-        "expressionsOfCurrentClass",
-        "definedSubsets",
-        "expressionsLeftForCurrentClass",
-        "subsets"
-      ],
-      "preds": [],
-      "postconditions": [],
-      "description": ""
-    },
-    {
-      "name": "next_expression",
-      "params": {},
-      "results": {},
-      "destState": {
         "currentExpression": "e2",
         "currentExpressionAnalysed": "0",
-        "expressionsLeftForCurrentClass": "{e3,e4,e5,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
+        "expressionsLeftForCurrentClass": "{e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -275,7 +194,7 @@
       "params": {},
       "results": {},
       "destState": {
-        "analysedExpressions": "{(e1↦bodyWeight),(e2↦bodyWeight),(e6↦bodyWeight)}"
+        "analysedExpressions": "{(e1↦bodyWeight),(e2↦bodyWeight)}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -304,7 +223,7 @@
       "destState": {
         "currentExpression": "e3",
         "currentExpressionAnalysed": "0",
-        "expressionsLeftForCurrentClass": "{e4,e5,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
+        "expressionsLeftForCurrentClass": "{e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -356,7 +275,7 @@
       "params": {},
       "results": {},
       "destState": {
-        "analysedExpressions": "{(e1↦bodyWeight),(e2↦bodyWeight),(e3↦bodyWeight),(e6↦bodyWeight)}"
+        "analysedExpressions": "{(e1↦bodyWeight),(e2↦bodyWeight),(e3↦bodyWeight)}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -385,7 +304,7 @@
       "destState": {
         "currentExpression": "e4",
         "currentExpressionAnalysed": "0",
-        "expressionsLeftForCurrentClass": "{e5,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
+        "expressionsLeftForCurrentClass": "{e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -437,7 +356,7 @@
       "params": {},
       "results": {},
       "destState": {
-        "analysedExpressions": "{(e1↦bodyWeight),(e2↦bodyWeight),(e3↦bodyWeight),(e4↦bodyWeight),(e6↦bodyWeight)}"
+        "analysedExpressions": "{(e1↦bodyWeight),(e2↦bodyWeight),(e3↦bodyWeight),(e4↦bodyWeight)}"
       },
       "destStateNotChanged": [
         "currentClass",
@@ -465,6 +384,87 @@
       "results": {},
       "destState": {
         "currentExpression": "e5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{e6,e7,e8,e9,e10,e11,e12,e13,e14,e15}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(e1↦bodyWeight),(e2↦bodyWeight),(e3↦bodyWeight),(e4↦bodyWeight),(e5↦bodyWeight)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "e6",
         "currentExpressionAnalysed": "0",
         "expressionsLeftForCurrentClass": "{e7,e8,e9,e10,e11,e12,e13,e14,e15}"
       },
@@ -6449,18 +6449,19 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "class_of_strict",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
-        "definedSignatureSupersets",
         "definedSignatures",
         "exp_key",
         "exp_overlap",
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
         "individuation",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed"
@@ -6480,7 +6481,8 @@
         "currentExpression",
         "currentExpressionAnalysed",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "analysedExpressions"
@@ -6526,13 +6528,15 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
         "definedSignatures",
         "exp_equivalent",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -6584,7 +6588,8 @@
         "currentClass",
         "currentExpression",
         "expressionsLeftForCurrentClass",
-        "expressionsOfCurrentClass"
+        "expressionsOfCurrentClass",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpression",
@@ -6653,6 +6658,7 @@
       "topLevel": true,
       "type": "EVENTB",
       "readVariables": [
+        "analysedExpressions",
         "currentClass",
         "currentExpression",
         "currentExpressionAnalysed",
@@ -6665,7 +6671,8 @@
         "exp_subsets",
         "expressionsLeftForCurrentClass",
         "expressionsOfCurrentClass",
-        "key_compatible"
+        "key_compatible",
+        "mapped"
       ],
       "writtenVariables": [
         "currentExpressionAnalysed",
@@ -6706,7 +6713,7 @@
   "metadata": {
     "fileType": "Trace",
     "formatVersion": 5,
-    "savedAt": "2024-07-25T16:51:34.340273Z",
+    "savedAt": "2024-08-02T19:58:52.186128Z",
     "creator": "traceReplay",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": "1.12.2-final",
