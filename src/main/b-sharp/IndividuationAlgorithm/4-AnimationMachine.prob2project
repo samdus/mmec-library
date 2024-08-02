@@ -15,11 +15,21 @@
       "traces": [
         {
           "id": null,
-          "location": "../../../../doc/animation_proB/AnimationContext-Simple.prob2trace",
+          "location": "../../../../doc/animation_proB/AnimationContext-ConDis.prob2trace",
           "selected": true
         }
       ],
-      "modelcheckingItems": [],
+      "modelcheckingItems": [
+        {
+          "searchStrategy": "MIXED_BF_DF",
+          "options": [
+            "FIND_DEADLOCKS",
+            "FIND_INVARIANT_VIOLATIONS"
+          ],
+          "goal": "signatures /= {}",
+          "shouldExecute": true
+        }
+      ],
       "proofObligationItems": [],
       "simulations": [],
       "visBVisualisation": null,
@@ -33,7 +43,7 @@
   "metadata": {
     "fileType": "Project",
     "formatVersion": 37,
-    "savedAt": "2024-08-02T19:53:59.233804Z",
+    "savedAt": "2024-08-02T20:35:02.507937Z",
     "creator": "User",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": null,
