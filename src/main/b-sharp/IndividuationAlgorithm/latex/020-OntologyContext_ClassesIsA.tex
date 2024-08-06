@@ -1,0 +1,19 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{020-OntologyContext\_ClassesIsA}
+\CONTEXT{020-OntologyContext\_ClassesIsA}{010-OntologyContext\_ClassesHierarchy}{}
+\CONSTANTS{
+	\Constant{is\_a}{la relation entre une classe et tous ses parents}
+}
+\AXIOMS{
+	\Axiom{onto\_type\_isA}{false}{$is\_a \in{} C \strel{} C$}{\\une relation surjective totale entre deux classes. \\~   Toutes classes "is$\_$a" au moins une classe.\\~   Toutes classes sont "is$\_$a" d'au moins une classe.}
+	\Axiom{onto\_isA\_axm\_basedOnHasParent}{false}{$\forall{}c,cp \qdot{} cp \in{} has\_parent[\{c\}] \limp{} cp \in{} is\_a[\{c\}]$}{\\la relation is$\_$a est basée sur la relation has$\_$parent}
+	\Axiom{onto\_isA\_axm\_transitive}{false}{$\\\forall{}c,cp,cpp \qdot{} \{c, cp,cpp\} \subseteq{} C \land{}\\~           cp \in{} is\_a[\{c\}] \land{}\\~           cpp \in{} is\_a[\{cp\}] \\~        \limp{} cpp \in{} is\_a[\{c\}]$}{\\is$\_$a est une relation transitive}
+	\Axiom{onto\_isA\_axm\_reflexive}{false}{$\\\forall{}c,cp \qdot{} \{c, cp\} \subseteq{} C \land{}\\~        cp \mapsto{} c \in{} is\_a \land{}\\~        c \mapsto{} cp \in{} is\_a\\~     \leqv{} c = cp $}{\\is$\_$a est reflexive}
+	\Axiom{onot\_isA\_axm\_thingIsAThing}{true}{$thing \mapsto{} thing \in{} is\_a$}{\\thing is$\_$a thing}
+	\Axiom{onto\_isA\_thm\_hasParentIsSubset}{true}{$has\_parent \subseteq{} is\_a$}{\\la relation has$\_$parent est un sous-ensemble de la relation is$\_$a}
+	\Axiom{onto\_isA\_thm\_transitiveOverHasParent}{true}{$\\\forall{}c,cp,cpp \qdot{} cp \in{} has\_parent[\{c\}] \land{}\\~           cpp \in{} has\_parent[\{cp\}]\\~          \limp{} \\~           cpp \in{} is\_a[\{c\}]$}{\\is$\_$a est transitive par rapport à has$\_$parent}
+}
+\END
+\end{document}

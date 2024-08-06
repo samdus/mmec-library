@@ -1,0 +1,23 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{040-OntologyContext\_Particulars}
+\CONTEXT{040-OntologyContext\_Particulars}{030-OntologyContext\_TransitiveClosureOfIsA}{}
+\SETS{
+	\Set{P}{l'ensemble des particuliers dont l'individuation est possible dans la source de données}
+}
+\CONSTANTS{
+	\Constant{class\_of}{la relation d'instanciation entre un particulier p et certaines classes dont il respecte les axiomes}
+	\Constant{class\_of\_strict}{\\la relation d'instanciation stricte, sans la fermeture transitive\\Par exemple, soit un particulier p avec class$\_$of(p) = $\{$thing, entity, continuant$\}$ on a asserted$\_$class$\_$of(p) = $\{$continuant$\}$}
+}
+\AXIOMS{
+	\Axiom{onto\_finite\_P}{false}{$finite(P)$}{\\P est un ensemble fini}
+	\Axiom{onto\_type\_classOf}{false}{$class\_of \in{} P \trel{} C$}{\\class$\_$of est une relation totale des particuliers dans leurs sous-ensemble de classes dont ils respectent les axiomes}
+	\Axiom{onto\_type\_assertedClassOf}{false}{$class\_of\_strict \subseteq{} class\_of$}{\\la relation des classes assertée est un sous-ensemble de la relation des classes}
+	\Axiom{onto\_classOf\_axm\_relationWithIsA}{false}{$\\\forall{}parent, child, p \qdot{} parent \in{} is\_a[\{child\}] \land{}\\~                   child \in{} class\_of[\{p\}] \\~                \limp{} parent \in{} class\_of[\{p\}] $}{\\~not theorem ›si un particulier respecte les axiomes d'une classe, il respecte aussi les axiomes de ses parents}
+	\Axiom{onto\_classOf\_thm\_allPClassOfThing}{true}{$\forall{}p\qdot{}p\in{}P \leqv{} thing \in{} class\_of[\{p\}]$}{\\tout particulier est instance de thing}
+	\Axiom{onto\_classOf\_thm\_existsAtLeastAClassForallP}{true}{$\forall{}p\qdot{}p \in{} P \leqv{} (\exists{}c \qdot{} c \in{} class\_of[\{p\}])$}{\\chaque particulier respecte les axiomes d'au moins une classe}
+	\Axiom{onto\_classOfStrict\_axm\_mostPreciseClass}{false}{$\\\forall{}p,c \qdot{} p \mapsto{} c \in{} class\_of\_strict \\~   \leqv{} c \in{} class\_of[\{p\}] \land{}\\~      has\_parent\converse{}[\{c\}] \binter{} class\_of[\{p\}] = \emptyset{}$}{\\une classe c instancié strictement pour un particulier p indique que p respecte les axiomes de c, mais ne respecte pas les axiomes des enfants de c}
+}
+\END
+\end{document}

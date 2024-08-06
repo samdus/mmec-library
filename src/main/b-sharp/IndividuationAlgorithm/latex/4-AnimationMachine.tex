@@ -2,7 +2,7 @@
 \usepackage{bsymb,b2latex}
 \begin{document}
 \SingleHeader{4-AnimationMachine}
-\MACHINE{4-AnimationMachine}{3-ExpressionAnalysis}{\_\_\_\_950-AnimationContext\_SignMult}{}
+\MACHINE{4-AnimationMachine}{3-ExpressionAnalysis}{\_\_\_\_970-AnimationContext\_ConDis}{}
 \VARIABLES{
 	\Variable{signatures}{l'association d'une signature à une ou plusieurs classe}
 	\Variable{signatureSupersets}{les expressions définies uniquement selon leurs sous-ensembles}
@@ -40,7 +40,7 @@
 \EVT{final}{true}{ordinary}{final}{}{
 	\GUARDS{false}{
 		\Guard{final\_grd1}{false}{$mapped = C$}{false}{\\on a appliqué le procédé d'arrimage à toutes les classes}
-		\Guard{final\_grd2}{true}{$\\\forall{}c \qdot{} c \in{} C\\~ \limp{} (\forall{}e \qdot{} individuation[\{e\}]\neq{}\emptyset{} \land{}\\~          (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~             \leqv{} c \in{} class\_of[\{p\}])\\~       \limp{} e \mapsto{} c \in{} analysedExpressions)$}{false}{\\lorsque toutes les classes sont arrimées, on sait que toutes les expressions correspondant à des signatures valides ont étés analysées}
+		\Guard{final\_grd2\_thm}{true}{$\\\forall{}c \qdot{} c \in{} C\\~ \limp{} (\forall{}e \qdot{} individuation[\{e\}]\neq{}\emptyset{} \land{}\\~          (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~             \leqv{} c \in{} class\_of[\{p\}])\\~       \limp{} e \mapsto{} c \in{} analysedExpressions)$}{false}{\\lorsque toutes les classes sont arrimées, on sait que toutes les expressions correspondant à des signatures valides ont étés analysées}
 	}
 	\ACTIONS{true}{
 		\Action{final}{$signatures,subsets,signatureSupersets  \bcmeq{} definedSignatures, definedSubsets, definedSignatureSupersets$}{false}{\\assignation des signatures et sous-ensembles définies aux signatures et sous-ensembles finaux }
@@ -50,17 +50,19 @@
 	\GUARDS{false}{
 		\Guard{nextClass\_grd1}{false}{$currentClass \in{} mapped$}{false}{\\l'arrimage est terminé pour la classe en cours}
 		\Guard{nextClass\_grd2}{false}{$currentLevel \neq{} \emptyset{}$}{false}{\\il reste des classes à arrimer sur cette étage}
+		\Guard{nextClass\_grd3\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
 	}
 	\ACTIONS{true}{
 		\Action{nextClass\_pop}{$\\currentClass, currentLevel, expressionsOfCurrentClass, expressionsLeftForCurrentClass \bcmsuch{}\\~~~~currentClass' \in{} currentLevel \land{}\\~   currentLevel' = currentLevel \setminus{} \{ currentClass' \} \land{}\\~~~~(\forall{}e \qdot{} e \in{} expressionsOfCurrentClass'\\~      \leqv{} individuation[\{e\}] \neq{} \emptyset{} \land{}\\~         (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~            \limp{} currentClass' \in{} class\_of[\{p\}])) \land{}\\~   expressionsLeftForCurrentClass' = expressionsOfCurrentClass'$}{false}{\\on choisi une classe à arrimer\\on la retire des classes à arrimer pour ce niveau\\on met à jour les expressions correspondant à des signatures valides pour la classe courante}
-		\Action{nextClass\_resetCurrentExpressionAnalysed}{$currentExpressionAnalysed \bcmeq{} 0$}{false}{}
+		\Action{nextClass\_resetCurrentExpressionAnalysed}{$currentExpressionAnalysed \bcmeq{} 0$}{false}{\\on retire le marqueur indiquant que la signature courante est analysée}
 	}
 }
 \EVT{next\_level}{true}{ordinary}{next\_level}{}{
 	\GUARDS{false}{
 		\Guard{nextLevel\_grd1}{false}{$currentClass \in{} mapped$}{false}{\\l'arrimage est terminé pour la classe en cours}
 		\Guard{nextLevel\_grd2}{false}{$currentLevel = \emptyset{}$}{false}{\\il n'y a pas d'autre classes à arrimer à ce niveau}
-		\Guard{nextLevel\_grd3}{false}{$levelNum > 0$}{false}{\\on peut encore descendre d'un niveau}
+		\Guard{nextLevel\_grd3}{false}{$levelNum > 0$}{false}{\\on peut encore monter d'un niveau}
+		\Guard{nextLevel\_grd4\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
 	}
 	\ACTIONS{true}{
 		\Action{nextClass\_popFromNewLevel}{$\\currentLevel, currentClass, expressionsOfCurrentClass, expressionsLeftForCurrentClass \bcmsuch{}\\~~~~currentClass' \in{} c\_level[\{levelNum - 1\}] \setminus{} mapped \land{}\\~   currentLevel' = (c\_level[\{levelNum - 1\}] \setminus{} mapped) \setminus{} \{ currentClass' \} \land{}\\~~~~(\forall{}e \qdot{} e \in{} expressionsOfCurrentClass'\\~      \leqv{} individuation[\{e\}] \neq{} \emptyset{} \land{}\\~         (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~            \limp{} currentClass' \in{} class\_of[\{p\}])) \land{}\\~   expressionsLeftForCurrentClass' = expressionsOfCurrentClass'$}{false}{\\on choisi une classe à arrimer et on la retire des classes à arrimer pour ce niveau\\on met à jour les expressions correspondant à des signatures valides pour la classe courante}
@@ -71,17 +73,21 @@
 \EVT{next\_expression}{true}{ordinary}{next\_expression}{\\on passe à la prochaine expression}{
 	\GUARDS{false}{
 		\Guard{nextExpression\_grd1}{false}{$\\expressionsLeftForCurrentClass = expressionsOfCurrentClass \lor{} \\currentExpression \mapsto{} currentClass \in{} analysedExpressions$}{false}{\\soit la première expression n'est pas analysée,\\soit l'analyse de l'expression courante est terminée}
-		\Guard{nextExpression\_grd2}{false}{$expressionsLeftForCurrentClass \neq{} \emptyset{}$}{false}{\\il reste des expressions à taiter}
+		\Guard{nextExpression\_grd2}{false}{$expressionsLeftForCurrentClass \neq{} \emptyset{}$}{false}{\\il reste des expressions à taiter pour la classe courante}
+		\Guard{nextExpression\_grd3\_thm}{true}{$currentClass \notin{} mapped$}{false}{\\la classe courant n'est pas arrimée}
+		\Guard{nextExpression\_grd4\_thm}{true}{$\lnot{}(expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}])$}{false}{\\toutes les expressions de la classe courante ne sont pas analysées}
+		\Guard{nextExpression\_grd5\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
 	}
 	\ACTIONS{true}{
-		\Action{nextExpression\_pop}{$\\currentExpression, expressionsLeftForCurrentClass \bcmsuch{} currentExpression' \in{} expressionsLeftForCurrentClass  \land{}\\~                                                    expressionsLeftForCurrentClass' = expressionsLeftForCurrentClass \setminus{} \{ currentExpression' \}$}{false}{\\on ajoute la signature aux signatures de la classe courante\\on passe à la prochaine expression, s'il y en a une}
-		\Action{nextExpression\_resetCurrentExpressionAnalysed}{$currentExpressionAnalysed \bcmeq{} 0$}{false}{}
+		\Action{nextExpression\_pop}{$\\currentExpression, expressionsLeftForCurrentClass \bcmsuch{} currentExpression' \in{} expressionsLeftForCurrentClass  \land{}\\~                                                    expressionsLeftForCurrentClass' = expressionsLeftForCurrentClass \setminus{} \{ currentExpression' \}$}{false}{\\on passe à la prochaine expression\\on retire l'expression aux expressions à analyser pour la classe courante}
+		\Action{nextExpression\_resetCurrentExpressionAnalysed}{$currentExpressionAnalysed \bcmeq{} 0$}{false}{\\on retire le marqueur indiquant que la signature courante est analysée}
 	}
 }
 \EVT{class\_mapped}{true}{ordinary}{class\_mapped}{\\l'arrimage de la classe est terminé}{
 	\GUARDS{false}{
-		\Guard{classMapped\_grd1}{false}{$currentClass \notin{} mapped$}{false}{\\la classe courant n'est pas arrimée}
-		\Guard{classMapped\_grd2}{false}{$expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}]$}{false}{\\toutes les expressions de la classe courante sont analysées}
+		\Guard{classMapped\_grd1}{false}{$currentClass \notin{} mapped$}{false}{\\la classe courante n'est pas arrimée}
+		\Guard{classMapped\_grd2\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
+		\Guard{classMapped\_grd3}{false}{$expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}]$}{false}{\\toutes les expressions de la classe courante sont analysées}
 	}
 	\ACTIONS{true}{
 		\Action{classMapped\_addToMapped}{$mapped \bcmeq{} mapped \bunion{} \{ currentClass \}$}{false}{\\on ajoute la classe aux classes arrimées}
@@ -92,7 +98,10 @@
 		\Guard{expressionAnalysed\_grd1}{false}{$currentExpression \mapsto{} currentClass \notin{} analysedExpressions$}{false}{\\l'expression n'est pas déjà marquée comme analysée}
 		\Guard{expressionAnalysed\_grd2}{false}{$currentExpression \in{} expressionsOfCurrentClass$}{false}{\\l'expression courante correspond bel et bien à une expression de la classe}
 		\Guard{expressionAnalysed\_grd3}{false}{$currentExpression \notin{} expressionsLeftForCurrentClass$}{false}{\\l'expression courante n'est plus dans les expressions à analyser}
-		\Guard{expressionAnalysed\_grd4}{false}{$currentExpressionAnalysed = 1$}{false}{\\l'analyse de l'expression courante est terminée}
+		\Guard{expressionAnalysed\_grd4\_thm}{true}{$currentClass \notin{} mapped$}{false}{\\la classe courant n'est pas arrimée}
+		\Guard{expressionAnalysed\_grd5\_thm}{true}{$\lnot{}(expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}])$}{false}{\\toutes les expressions de la classe courante ne sont pas analysées}
+		\Guard{expressionAnalysed\_grd6\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
+		\Guard{expressionAnalysed\_grd7}{false}{$currentExpressionAnalysed = 1$}{false}{\\l'analyse de l'expression courante est terminée}
 	}
 	\ACTIONS{true}{
 		\Action{expressionAnalysed\_addToAnalysed}{$analysedExpressions \bcmeq{} analysedExpressions \bunion{} \{ currentExpression \mapsto{} currentClass \}$}{false}{\\on ajoute l'expression aux expressions analysées}
@@ -102,7 +111,11 @@
 	\GUARDS{false}{
 		\Guard{analyseNotRequired\_grd1}{false}{$\\currentExpression \in{} expressionsOfCurrentClass \land{}\\currentExpression \notin{} expressionsLeftForCurrentClass$}{false}{\\l'expression courante est une expression valide pour une signature de la classe et n'est pas compris dans les expressions à évaluer}
 		\Guard{analyseNotRequired\_grd2}{false}{$currentExpressionAnalysed = 0$}{false}{\\l'expression n'est pas analysée}
-		\Guard{analyseNotRequired\_grd4}{false}{$\\\forall{}p \qdot{} p \in{} P \land{}\\~    p \in{} individuation[\{currentExpression\}] \land{}\\~    currentClass \in{} class\_of\_strict[\{p\}]\\~ \limp{} (\exists{}e \qdot{} p \in{} individuation[\{e\}] \land{}\\~          ((e \in{} expressionsLeftForCurrentClass \setminus{} \{currentExpression\} \land{}\\~            \lnot{}(\exists{}e' \qdot{} e' \in{} exp\_overlap[\{e\}] \land{} \\~                    e' \in{} dom(definedSignatures) \land{}\\~                    exp\_key(e') \notin{} key\_compatible[\{exp\_key(e)\}]))\\~            \lor{}\\~            e \mapsto{} currentClass \in{} definedSignatures))$}{false}{\\les particuliers individualisés par l'expression sont déjà individualisés par une signature \\ou pourront l'être à l'aide d'une expression encore à analysée}
+		\Guard{analyseNotRequired\_grd3}{false}{$\\\forall{}p \qdot{} p \in{} P \land{}\\~    p \in{} individuation[\{currentExpression\}] \land{}\\~    currentClass \in{} class\_of\_strict[\{p\}]\\~ \limp{} (\exists{}e \qdot{} p \in{} individuation[\{e\}] \land{}\\~          ((e \in{} expressionsLeftForCurrentClass \setminus{} \{currentExpression\} \land{}\\~            \lnot{}(\exists{}e' \qdot{} e' \in{} exp\_overlap[\{e\}] \land{} \\~                    e' \in{} dom(definedSignatures) \land{}\\~                    exp\_key(e') \notin{} key\_compatible[\{exp\_key(e)\}]))\\~            \lor{}\\~            e \mapsto{} currentClass \in{} definedSignatures))$}{false}{\\les particuliers individualisés par l'expression sont déjà individualisés par une signature \\ou pourront l'être à l'aide d'une expression encore à analysée}
+		\Guard{analyseNotRequired\_grd4\_thm}{true}{$currentExpression \mapsto{} currentClass \notin{} analysedExpressions$}{false}{\\l'expression n'est pas déjà marquée comme analysée}
+		\Guard{analyseNotRequired\_grd5\_thm}{true}{$\lnot{}(expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}])$}{false}{\\toutes les expressions de la classe courante ne sont pas analysées}
+		\Guard{analyseNotRequired\_grd6\_thm}{true}{$currentClass \notin{} mapped$}{false}{\\la classe courant n'est pas arrimée}
+		\Guard{analyseNotRequired\_grd7\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
 	}
 	\ACTIONS{true}{
 		\Action{analyseNotRequired\_setAnalysed}{$currentExpressionAnalysed \bcmeq{} 1$}{false}{\\l'expression courante est marquée comme analysée sans être marquée comme signature}
@@ -113,6 +126,10 @@
 		\Guard{analyseWithEquivalentSignature\_grd1}{false}{$\\currentExpression \in{} expressionsOfCurrentClass \land{}\\currentExpression \notin{} expressionsLeftForCurrentClass$}{false}{\\l'expression courante est une expression valide pour une signature de la classe}
 		\Guard{analyseWithEquivalentSignature\_grd2}{false}{$currentExpressionAnalysed = 0$}{false}{\\l'expression n'est pas analysée}
 		\Guard{analyseWithEquivalentSignature\_grd3}{false}{$\\\exists{}s,c \qdot{} s \in{} exp\_equivalent[\{currentExpression\}] \land{}\\~      c \neq{} currentClass \land{}\\~      s \mapsto{} c \in{} definedSignatures$}{false}{\\une expression équivalente a déjà été définie comme signature d'une autre classe}
+		\Guard{analyseWithEquivalentSignature\_grd4\_thm}{true}{$currentExpression \mapsto{} currentClass \notin{} analysedExpressions$}{false}{\\l'expression n'est pas déjà marquée comme analysée}
+		\Guard{analyseWithEquivalentSignature\_grd5\_thm}{true}{$\lnot{}(expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}])$}{false}{\\toutes les expressions de la classe courante ne sont pas analysées}
+		\Guard{analyseWithEquivalentSignature\_grd6\_thm}{true}{$currentClass \notin{} mapped$}{false}{\\la classe courant n'est pas arrimée}
+		\Guard{analyseWithEquivalentSignature\_grd7\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
 	}
 	\ACTIONS{true}{
 		\Action{analyseWithEquivalentSignature\_addSToCurrentClass}{$\\definedSignatures \bcmeq{} definedSignatures \bunion{} (\{s | \exists{}c \qdot{} s \in{} exp\_equivalent[\{currentExpression\}] \land{}\\~                                                  c \neq{} currentClass \land{}\\~                                                  s \mapsto{} c \in{} definedSignatures \} \cprod{} \{currentClass\})$}{false}{\\la signature équivalente est assignée comme signature pour la classe}
@@ -123,8 +140,12 @@
 	\GUARDS{false}{
 		\Guard{analyseCurrentSubsetsSignature\_grd1}{false}{$\\currentExpression \in{} expressionsOfCurrentClass \land{}\\currentExpression \notin{} expressionsLeftForCurrentClass$}{false}{\\l'expression courante est une expression valide pour une signature de la classe}
 		\Guard{analyseCurrentSubsetsSignature\_grd2}{false}{$currentExpressionAnalysed = 0$}{false}{\\l'expression n'est pas analysée}
-		\Guard{analyseCurrentSubsetsSignature\_grd4}{false}{$\\\lnot{} (\exists{}s,c \qdot{} s \in{} exp\_equivalent[\{currentExpression\}] \land{}\\~         c \neq{} currentClass \land{}\\~         s \mapsto{} c \in{} definedSignatures)$}{false}{\\il n'existe pas de signature correspondant à une expression équivalente}
-		\Guard{analyseCurrentSubsetsSignature\_grd5}{false}{$\\\lnot{} (\exists{}e \qdot{} e \in{} dom(definedSignatures) \land{}\\~       e \in{} exp\_overlap[\{currentExpression\}] \land{}\\~       exp\_key(currentExpression) \notin{} key\_compatible[\{exp\_key(e)\}])$}{false}{\\il n'existe pas de signature qui overlap et dont la clé n'est pas compatible}
+		\Guard{analyseCurrentSubsetsSignature\_grd3}{false}{$\\\lnot{} (\exists{}s,c \qdot{} s \in{} exp\_equivalent[\{currentExpression\}] \land{}\\~         c \neq{} currentClass \land{}\\~         s \mapsto{} c \in{} definedSignatures)$}{false}{\\il n'existe pas de signature correspondant à une expression équivalente}
+		\Guard{analyseCurrentSubsetsSignature\_grd4}{false}{$\\\lnot{} (\exists{}e \qdot{} e \in{} dom(definedSignatures) \land{}\\~       e \in{} exp\_overlap[\{currentExpression\}] \land{}\\~       exp\_key(currentExpression) \notin{} key\_compatible[\{exp\_key(e)\}])$}{false}{\\il n'existe pas de signature qui overlap et dont la clé n'est pas compatible}
+		\Guard{analyseCurrentSubsetsSignature\_grd5\_thm}{true}{$currentExpression \mapsto{} currentClass \notin{} analysedExpressions$}{false}{\\l'expression n'est pas déjà marquée comme analysée}
+		\Guard{analyseCurrentSubsetsSignature\_grd6\_thm}{true}{$\lnot{}(expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}])$}{false}{\\toutes les expressions de la classe courante ne sont pas analysées}
+		\Guard{analyseCurrentSubsetsSignature\_grd7\_thm}{true}{$currentClass \notin{} mapped$}{false}{\\la classe courant n'est pas arrimée}
+		\Guard{analyseCurrentSubsetsSignature\_grd8\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
 	}
 	\ACTIONS{true}{
 		\Action{analyseCurrentSubsetsSignature\_addCurrentExpressionToSignatures}{$\\definedSignatures \bcmeq{} definedSignatures \bunion{} \\~                   \{ currentExpression \mapsto{} currentClass \}$}{false}{\\l'expression est ajouté comme une signature pour la classe courante}

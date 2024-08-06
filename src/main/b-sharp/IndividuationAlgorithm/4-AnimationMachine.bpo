@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="41">
-    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="41">
+<org.eventb.core.poFile org.eventb.core.poStamp="1">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="C" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="thing" org.eventb.core.type="C"/>
         <org.eventb.core.poIdentifier name="C_leaves" org.eventb.core.type="ℙ(C)"/>
@@ -137,7 +137,7 @@
         <org.eventb.core.poPredicate name="dataItemAboutQualityOrDispositionInheresInOrganis~" org.eventb.core.predicate="partition(key_compatible,{k1 ↦ k1},{k2 ↦ k2},{k3 ↦ k3},{k4 ↦ k4})" org.eventb.core.source="/IndividuationAlgorithm/____970-AnimationContext_ConDis.buc|org.eventb.core.contextFile#____970-AnimationContext_ConDis|org.eventb.core.axiom#cst9"/>
         <org.eventb.core.poPredicate name="dataItemAboutQualityOrDispositionInheresInOrganit'" org.eventb.core.predicate="partition(exp_list,{1 ↦ e1},{2 ↦ e2},{3 ↦ e3},{4 ↦ e4},{5 ↦ e5},{6 ↦ e6},{7 ↦ e7},{8 ↦ e8},{9 ↦ e9},{10 ↦ e10},{11 ↦ e11},{12 ↦ e12})" org.eventb.core.source="/IndividuationAlgorithm/____970-AnimationContext_ConDis.buc|org.eventb.core.contextFile#____970-AnimationContext_ConDis|org.eventb.core.axiom#axm10"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="signatureSupersets" org.eventb.core.type="ℙ(E)"/>
         <org.eventb.core.poIdentifier name="signatures" org.eventb.core.type="ℙ(E×C)"/>
         <org.eventb.core.poIdentifier name="definedSubsets" org.eventb.core.type="ℙ(E×E)"/>
@@ -197,9 +197,8 @@
         <org.eventb.core.poPredicate name="expressionsLeftForCurrentClatF" org.eventb.core.predicate="definedSignatureSupersets∩dom(definedSignatures)=(∅ ⦂ ℙ(E))" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.invariant#varb"/>
         <org.eventb.core.poPredicate name="expressionsLeftForCurrentClatG" org.eventb.core.predicate="∀s⦂E·s∈definedSignatureSupersets⇒(∃e1⦂E,e2⦂E·e1∈definedSubsets[{s}]∧e2∈definedSubsets[{s}])" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.invariant#varc"/>
         <org.eventb.core.poPredicate name="expressionsLeftForCurrentClatH" org.eventb.core.predicate="currentExpressionAnalysed=0⇒currentExpression ↦ currentClass∉analysedExpressions" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.invariant#vard"/>
-        <org.eventb.core.poPredicate name="expressionsLeftForCurrentClatI" org.eventb.core.predicate="⊤" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.invariant#var_"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIso" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsn" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
         <org.eventb.core.poIdentifier name="subsets'" org.eventb.core.type="ℙ(E×E)"/>
         <org.eventb.core.poIdentifier name="levelNum'" org.eventb.core.type="ℤ"/>
         <org.eventb.core.poIdentifier name="expressionsOfCurrentClass'" org.eventb.core.type="ℙ(E)"/>
@@ -216,29 +215,29 @@
         <org.eventb.core.poIdentifier name="definedSubsets'" org.eventb.core.type="ℙ(E×E)"/>
         <org.eventb.core.poIdentifier name="currentClass'" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIso" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIso" org.eventb.core.poStamp="41"/>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsp" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsn" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsn" org.eventb.core.poStamp="0"/>
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIso" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="subsets'" org.eventb.core.type="ℙ(E×E)"/>
         <org.eventb.core.poIdentifier name="signatures'" org.eventb.core.type="ℙ(E×C)"/>
         <org.eventb.core.poIdentifier name="signatureSupersets'" org.eventb.core.type="ℙ(E)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsp" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsp" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIso" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIso" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mapped=C" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#varI|org.eventb.core.guard#'"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="∀c⦂C·c∈C⇒(∀e⦂E·individuation[{e}]≠(∅ ⦂ ℙ(P))∧(∀p⦂P·p∈individuation[{e}]⇔c∈class_of[{p}])⇒e ↦ c∈analysedExpressions)" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#varI|org.eventb.core.guard#("/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsq" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsp" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="expressionsOfCurrentClass'" org.eventb.core.type="ℙ(E)"/>
         <org.eventb.core.poIdentifier name="expressionsLeftForCurrentClass'" org.eventb.core.type="ℙ(E)"/>
         <org.eventb.core.poIdentifier name="currentLevel'" org.eventb.core.type="ℙ(C)"/>
         <org.eventb.core.poIdentifier name="currentExpressionAnalysed'" org.eventb.core.type="ℤ"/>
         <org.eventb.core.poIdentifier name="currentClass'" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsq" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsq" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsp" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsp" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="currentClass∈mapped" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#B|org.eventb.core.guard#("/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="currentLevel≠(∅ ⦂ ℙ(C))" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#B|org.eventb.core.guard#'"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#B|org.eventb.core.guard#grd1"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsr" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsq" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="levelNum'" org.eventb.core.type="ℤ"/>
         <org.eventb.core.poIdentifier name="expressionsOfCurrentClass'" org.eventb.core.type="ℙ(E)"/>
         <org.eventb.core.poIdentifier name="expressionsLeftForCurrentClass'" org.eventb.core.type="ℙ(E)"/>
@@ -246,36 +245,36 @@
         <org.eventb.core.poIdentifier name="currentExpressionAnalysed'" org.eventb.core.type="ℤ"/>
         <org.eventb.core.poIdentifier name="currentClass'" org.eventb.core.type="C"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsr" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsr" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsq" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsq" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="currentClass∈mapped" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#C|org.eventb.core.guard#+"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="currentLevel=(∅ ⦂ ℙ(C))" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#C|org.eventb.core.guard#'"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="levelNum&gt;0" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#C|org.eventb.core.guard#("/>
         <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#C|org.eventb.core.guard#grd1"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIss" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsr" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="expressionsLeftForCurrentClass'" org.eventb.core.type="ℙ(E)"/>
         <org.eventb.core.poIdentifier name="currentExpression'" org.eventb.core.type="E"/>
         <org.eventb.core.poIdentifier name="currentExpressionAnalysed'" org.eventb.core.type="ℤ"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIss" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIss" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsr" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsr" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="expressionsLeftForCurrentClass=expressionsOfCurrentClass∨currentExpression ↦ currentClass∈analysedExpressions" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#H|org.eventb.core.guard#grd4"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="expressionsLeftForCurrentClass≠(∅ ⦂ ℙ(E))" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#H|org.eventb.core.guard#grd2"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="currentClass∉mapped" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#H|org.eventb.core.guard#grd5"/>
         <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="¬expressionsOfCurrentClass⊆analysedExpressions∼[{currentClass}]" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#H|org.eventb.core.guard#grd6"/>
         <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#H|org.eventb.core.guard#grd7"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIst" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIss" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="mapped'" org.eventb.core.type="ℙ(C)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIst" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIst" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIss" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIss" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="currentClass∉mapped" org.eventb.core.source="/IndividuationAlgorithm/1-ClassTreeTraversal.bum|org.eventb.core.machineFile#1-ClassTreeTraversal|org.eventb.core.event#C|org.eventb.core.guard#("/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/1-ClassTreeTraversal.bum|org.eventb.core.machineFile#1-ClassTreeTraversal|org.eventb.core.event#C|org.eventb.core.guard#grd1"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="expressionsOfCurrentClass⊆analysedExpressions∼[{currentClass}]" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#evt1|org.eventb.core.guard#+"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsu" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIst" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="analysedExpressions'" org.eventb.core.type="ℙ(E×C)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsu" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsu" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIst" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIst" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="currentExpression ↦ currentClass∉analysedExpressions" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#varK|org.eventb.core.guard#'"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="currentExpression∈expressionsOfCurrentClass" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#varK|org.eventb.core.guard#)"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="currentExpression∉expressionsLeftForCurrentClass" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#varK|org.eventb.core.guard#*"/>
@@ -284,10 +283,10 @@
         <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/2-ExpressionTraversal.bum|org.eventb.core.machineFile#2-ExpressionTraversal|org.eventb.core.event#varK|org.eventb.core.guard#grd3"/>
         <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="currentExpressionAnalysed=1" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#varN|org.eventb.core.guard#("/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsv" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsu" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="currentExpressionAnalysed'" org.eventb.core.type="ℤ"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsv" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsv" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsu" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsu" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="currentExpression∈expressionsOfCurrentClass∧currentExpression∉expressionsLeftForCurrentClass" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#var^|org.eventb.core.guard#*"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="currentExpressionAnalysed=0" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#var^|org.eventb.core.guard#'"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="∀p⦂P·p∈P∧p∈individuation[{currentExpression}]∧currentClass∈class_of_strict[{p}]⇒(∃e⦂E·p∈individuation[{e}]∧((e∈expressionsLeftForCurrentClass ∖ {currentExpression}∧¬(∃e'⦂E·e'∈exp_overlap[{e}]∧e'∈dom(definedSignatures)∧exp_key(e')∉key_compatible[{exp_key(e)}]))∨e ↦ currentClass∈definedSignatures))" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#var^|org.eventb.core.guard#("/>
@@ -296,11 +295,11 @@
         <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="currentClass∉mapped" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#var^|org.eventb.core.guard#grd1"/>
         <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#var^|org.eventb.core.guard#grd2"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsw" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsv" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="definedSignatures'" org.eventb.core.type="ℙ(E×C)"/>
         <org.eventb.core.poIdentifier name="currentExpressionAnalysed'" org.eventb.core.type="ℤ"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsw" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsw" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsv" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsv" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="currentExpression∈expressionsOfCurrentClass∧currentExpression∉expressionsLeftForCurrentClass" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt1|org.eventb.core.guard#*"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="currentExpressionAnalysed=0" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt1|org.eventb.core.guard#'"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="∃s⦂E,c⦂C·s∈exp_equivalent[{currentExpression}]∧c≠currentClass∧s ↦ c∈definedSignatures" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt1|org.eventb.core.guard#("/>
@@ -309,13 +308,13 @@
         <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="currentClass∉mapped" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt1|org.eventb.core.guard#grd2"/>
         <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt1|org.eventb.core.guard#grd3"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsx" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTIDENT030-OntologyContext_TransitiveClosureOfIsw" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="1">
         <org.eventb.core.poIdentifier name="definedSignatures'" org.eventb.core.type="ℙ(E×C)"/>
         <org.eventb.core.poIdentifier name="definedSignatureSupersets'" org.eventb.core.type="ℙ(E)"/>
         <org.eventb.core.poIdentifier name="currentExpressionAnalysed'" org.eventb.core.type="ℤ"/>
         <org.eventb.core.poIdentifier name="definedSubsets'" org.eventb.core.type="ℙ(E×E)"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsx" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsx" org.eventb.core.poStamp="41">
+    <org.eventb.core.poPredicateSet name="EVTALLHYP030-OntologyContext_TransitiveClosureOfIsw" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#EVTIDENT030-OntologyContext_TransitiveClosureOfIsw" org.eventb.core.poStamp="1">
         <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="currentExpression∈expressionsOfCurrentClass∧currentExpression∉expressionsLeftForCurrentClass" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt2|org.eventb.core.guard#*"/>
         <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="currentExpressionAnalysed=0" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt2|org.eventb.core.guard#'"/>
         <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="¬(∃s⦂E,c⦂C·s∈exp_equivalent[{currentExpression}]∧c≠currentClass∧s ↦ c∈definedSignatures)" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt2|org.eventb.core.guard#("/>
@@ -325,5 +324,5 @@
         <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="currentClass∉mapped" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt2|org.eventb.core.guard#grd4"/>
         <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="mapped≠C" org.eventb.core.source="/IndividuationAlgorithm/3-ExpressionAnalysis.bum|org.eventb.core.machineFile#3-ExpressionAnalysis|org.eventb.core.event#evt2|org.eventb.core.guard#grd5"/>
     </org.eventb.core.poPredicateSet>
-    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="41"/>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/IndividuationAlgorithm/4-AnimationMachine.bpo|org.eventb.core.poFile#4-AnimationMachine|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="1"/>
 </org.eventb.core.poFile>

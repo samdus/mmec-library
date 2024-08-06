@@ -1,0 +1,24 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{010-OntologyContext\_ClassesHierarchy}
+\CONTEXT{010-OntologyContext\_ClassesHierarchy}{}{}
+\SETS{
+	\Set{C}{l'ensemble des classes de l'ontologie}
+}
+\CONSTANTS{
+	\Constant{thing}{la racine de l'arbre des classes}
+	\Constant{C\_leaves}{les feuilles de la hierarchie des classes}
+	\Constant{has\_parent}{la relation directe entre une classe enfant un une ou des classes parents, servant à la hierarchie des classes}
+}
+\AXIOMS{
+	\Axiom{onto\_finite\_C}{false}{$finite(C)$}{\\C est un ensemble fini}
+	\Axiom{onto\_type\_thing}{false}{$thing \in{} C$}{}
+	\Axiom{onto\_type\_HLeaves}{true}{$C\_leaves \subseteq{} C$}{}
+	\Axiom{onto\_type\_hasParent}{false}{$has\_parent \in{} C \setminus{} \{thing\} \strel{} C \setminus{} C\_leaves$}{\\has$\_$parent est une relation injective totale des classes sans la racine Thing dans des ensembles de classes sauf les feuilles. Toutes classes, sauf thing, ont au moins un parent et toutes classes, sauf les feuilles, sont parents d'au moins une classse. }
+	\Axiom{onto\_C\_axm\_treeInduction}{false}{$\\\forall{}S \qdot{} S\subseteq{}C \land{} \\~    thing\in{}S \land{} \\~   (\forall{}n \qdot{} n\in{}C\setminus{}\{thing\} \land{} has\_parent[\{n\}] \subseteq{} S \limp{} n\in{}S) \\~  \limp{} \\~    C \subseteq{} S$}{\\Induction dans l'arbre, la relation parents s'applique à l'ensemble de l'arbre}
+	\Axiom{onto\_C\_axm\_notReflexive}{false}{$\forall{}c \qdot{} c \in{} C \limp{} c \notin{} has\_parent[\{c\}]$}{\\la relation parents n'est pas réflexive: un noeud n'est pas parent de lui-même}
+	\Axiom{onto\_C\_thm\_thingInLeaves}{true}{$thing \in{} C\_leaves \limp{} C = \{thing\} \land{} has\_parent=\emptyset{}$}{\\Si thing est une feuille, il s'agit de la seule classe de l'ontologie et il n'y a pas de relation parent}
+}
+\END
+\end{document}

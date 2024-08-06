@@ -1,0 +1,32 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{030-OntologyContext\_TransitiveClosureOfIsA}
+\CONTEXT{030-OntologyContext\_TransitiveClosureOfIsA}{020-OntologyContext\_ClassesIsA}{}
+\CONSTANTS{
+	\Constant{c\_level}{une relation permettant d'obtenir les classes à une certaines distance de la racine Thing}
+	\Constant{P\_cLevel}{l'ensemble des étages pour lesquels les classes sont des things}
+	\Constant{Q\_cLevel}{l'ensemble des étages pour lesquels les classes ne sont pas des things}
+	\Constant{max\_level}{la distance maximale avec Thing dans l'arbre de l'ontologie}
+}
+\AXIOMS{
+	\Axiom{onto\_type\_maxLevel}{false}{$max\_level \in{} \nat{}$}{}
+	\Axiom{onto\_type\_cLevel}{false}{$c\_level \in{} 0\upto{}max\_level \strel{} C$}{\\relation entre une distance de thing et des classes}
+	\Axiom{onto\_type\_P\_cLevel}{false}{$P\_cLevel \subseteq{} 0\upto{}max\_level$}{\\P est un sous-ensemble des naturels}
+	\Axiom{onto\_type\_Q\_cLevel}{false}{$Q\_cLevel \subseteq{} 0\upto{}max\_level$}{\\Q est un sous-ensemble des naturels}
+	\Axiom{onto\_finite\_cLevel}{true}{$finite(c\_level)$}{\\Il y a un nombre fini d'étage}
+	\Axiom{onto\_cLevel\_axm\_first}{false}{$c\_level[\{0\}] = \{thing\}$}{\\le premier niveau correspond à l'ensemble contenant uniquement la racine thing}
+	\Axiom{onto\_cLevel\_axm\_others}{false}{$\\\forall{}i \qdot{} i \in{} 1\upto{}max\_level\\~ \limp{} c\_level[\{i\}] = has\_parent\converse{}[c\_level[\{i-1\}]]$}{\\les autres niveaux correspondent aux enfants du niveau précédent}
+	\Axiom{onto\_P\_cLevel\_def}{false}{$\\P\_cLevel = \{i | i \in{} 0\upto{}max\_level \land{} (\forall{}c \qdot{} c \in{} c\_level[\{i\}]\\~                                    \limp{} thing \in{} is\_a[\{c\}])\}$}{\\chaque i de P correspond à un niveau pour lesquels toutes les classes sont des thing}
+	\Axiom{onto\_P\_cLevel\_thm\_inductionBase}{true}{$0 \in{} P\_cLevel$}{\\base d'induction: toutes les classes du niveau 0 sont des thing}
+	\Axiom{onto\_P\_cLevel\_thm\_induction}{true}{$\\\forall{}i \qdot{} i \in{} 1\upto{}max\_level \land{}\\~    i - 1 \in{} P\_cLevel \\~ \limp{} i \in{} P\_cLevel$}{\\induction: si les classes du niveau i-1 sont des thing, alors les classes du niveau i sont des things}
+	\Axiom{onto\_P\_cLevel\_axm\_Q\_cLevel\_def}{false}{$Q\_cLevel = 0\upto{}max\_level \setminus{} P\_cLevel$}{\\Q correspond à l'inverse de P}
+	\Axiom{onto\_P\_cLevel\_thm\_Q\_cLevel\_empty}{true}{$Q\_cLevel = \emptyset{}$}{\\Q est vide, il n'y a pas d'éléments qui contredisent P}
+	\Axiom{onto\_P\_cLevel\_thm\_P\_cLevel\_allStep}{true}{$P\_cLevel = 0\upto{}max\_level$}{\\P est vrai pour tout les étages}
+	\Axiom{onto\_P\_cLevel\_thm\_complete}{true}{$\\\forall{}i \qdot{} i \in{} 0\upto{}max\_level \\~ \limp{} (\forall{}c \qdot{} c \in{} c\_level[\{i\}]\\~       \limp{} thing \in{} is\_a[\{c\}]) $}{\\Théorème complet: toutes classes sont en relation is$\_$a avec Thing}
+	\Axiom{onto\_cLevel\_axm\_classOnMultipleLevelHasAParentOnItsLevel}{false}{$\\\forall{}c,i,j \qdot{} i > j \land{}\\~        c \in{} c\_level[\{i\}] \land{}\\~        c \in{} c\_level[\{j\}]\\~     \limp{} (\exists{}parent \qdot{} parent \in{} c\_level[\{j\}] \land{}\\~                   parent \notin{} c\_level[j+1\upto{}max\_level] \land{}\\~                   parent \in{} is\_a[\{c\}])$}{\\un élément qui se situe à deux niveaux hérite nécessairement d'une classe qui ne se trouve pas à une distance supérieure de thing}
+	\Axiom{onto\_isA\_thm\_allIsAThing}{true}{$\forall{}c \qdot{} c \in{} C \leqv{} thing \in{} is\_a[\{c\}]$}{\\Reformulation du théorème, sans utiliser c$\_$level}
+	\Axiom{onto\_cLevel\_thm\_allLevelsEqualsAllClasses}{true}{$c\_level[0\upto{}max\_level] = C$}{}
+}
+\END
+\end{document}

@@ -1,0 +1,119 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{2-ExpressionTraversal}
+\MACHINE{2-ExpressionTraversal}{1-ClassTreeTraversal}{110-MappingContext}{}
+\VARIABLES{
+	\Variable{signatures}{l'association d'une signature à une ou plusieurs classe}
+	\Variable{signatureSupersets}{les expressions définies uniquement selon leurs sous-ensembles}
+	\Variable{subsets}{la relation de sous-ensemble entre des signatures}
+	\Variable{currentLevel}{les éléments qu'il reste à arrimer sur l'étage courant de l'arbre}
+	\Variable{currentClass}{la classe à arrimer}
+	\Variable{levelNum}{le numéro de l'étage courant}
+	\Variable{mapped}{l'ensemble des classes arrimées}
+	\Variable{currentExpression}{l'expression en cours d'évaluation}
+	\Variable{expressionsOfCurrentClass}{les expressions qui permettent l'individuation de particuliers qui répondent aux axiomes de la classe courante}
+	\Variable{expressionsLeftForCurrentClass}{les expressions encore à analyser pour la classe courante }
+	\Variable{analysedExpressions}{l'ensemble des expressions analysées}
+}
+\INVARIANTS{
+	\Invariant{type\_currentExpression}{false}{$currentExpression \in{} E$}{\\l'expression courante est une expression}
+	\Invariant{type\_expressionsOfCurrentClass}{false}{$expressionsOfCurrentClass \subseteq{} E$}{\\l'ensemble des expressions à évaluer pour la classe est un sous-ensemble des expressions}
+	\Invariant{type\_expressionsLeftForCurrentClass}{false}{$expressionsLeftForCurrentClass \subseteq{} E $}{\\l'ensemble des expressions à évaluer pour la classe est un sous-ensemble des expressions}
+	\Invariant{type\_analysedExpressions}{false}{$analysedExpressions \in{} E \rel{} C$}{\\l'ensembles d'expressions analysées en regard de l'arrimage d'une classe}
+	\Invariant{def\_expressionsOfCurrentClass}{false}{$\\\forall{}e \qdot{} e \in{} expressionsOfCurrentClass\\~ \leqv{} individuation[\{e\}] \neq{} \emptyset{} \land{}\\~    (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~       \limp{} currentClass \in{} class\_of[\{p\}])$}{\\une expression de la classe courante correspond à une expression pour laquelle tout les particuliers qu'elle individualisent répondent aux axiomes de la classe courante}
+	\Invariant{def\_expressionsLeftForCurrentClass}{false}{$expressionsLeftForCurrentClass \subseteq{} expressionsOfCurrentClass$}{\\les expressions à analyser sont des expressions de la classe courante}
+	\Invariant{inv\_particularOfExpressionsOfCurrentClassHasClassOfCurrentClass}{true}{$\\\forall{}p \qdot{} p \in{} individuation[expressionsOfCurrentClass]\\~ \limp{} currentClass \in{} class\_of[\{p\}]$}{\\tout les particuliers individualisés par l'expression courante respectent les axiomes de la classe courante}
+	\Invariant{inv\_allExpressionOfCurrentClassNotLeftAreAnalysed}{false}{$\\\forall{}e \qdot{} e \in{} expressionsOfCurrentClass \land{}\\~    e \notin{} expressionsLeftForCurrentClass \bunion{} \{ currentExpression \}\\~ \limp{} e \mapsto{} currentClass \in{} analysedExpressions$}{\\les expressions analysées sont marquée comme telle}
+	\Invariant{inv\_analysedExpressionAreNotLeftForCurrentClass}{false}{$\\\forall{}e \qdot{} e \mapsto{} currentClass \in{} analysedExpressions \\~ \limp{} e \in{} expressionsOfCurrentClass \land{}\\~    e \notin{} expressionsLeftForCurrentClass$}{\\les expressions marquée comme analysée ne sont plus dans la liste des expressions à analyser }
+	\Invariant{inv\_allValidExpressionsAreAnalysedForMappedClasses}{false}{$\\(\forall{}c \qdot{} c \in{} mapped\\~  \limp{} (\forall{}e \qdot{} individuation[\{e\}] \neq{} \emptyset{} \land{} \\~           (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~              \leqv{} c \in{} class\_of[\{p\}])\\~        \limp{} e \mapsto{} c \in{} analysedExpressions))$}{\\toutes les expressions qui correspondent à des signatures valides sont analysées pour les classes arrimées}
+	\Invariant{inv\_allExpressionsOfNonVisitedClassAreNotMarkedAsAnalysed}{false}{$analysedExpressions\converse{}[C \setminus{} (mapped \bunion{} \{currentClass\})] = \emptyset{}$}{\\seuls les expressions de la classe courante et des classes arrimées peuvent être être marquées comme analysées }
+	\Invariant{inv\_expressionsOfCurrentClassIndividuatesAtLeastAParticular}{true}{$\\\forall{}e \qdot{} e \in{} expressionsOfCurrentClass \\~ \limp{} individuation[\{e\}] \neq{} \emptyset{}$}{\\les expressions valides pour la classe courante individualisent tous au moins un particulier}
+	\Invariant{inv\_expressionAreTreatedForMapped}{false}{$expressionsLeftForCurrentClass \neq{} \emptyset{} \limp{} currentClass \notin{} mapped$}{\\la classe courante n'est pas considérée arrimée tant qu'il reste des expressions à analyser}
+	\Invariant{inv\_currentExpressionIsTreatedForMapped}{false}{$\\currentExpression \in{} expressionsOfCurrentClass \land{} \\currentExpression \mapsto{} currentClass \notin{} analysedExpressions \limp{} currentClass \notin{} mapped$}{\\la classe courante n'est pas considérée arrimée tant que l'expression courante n'est pas analysée, si elle fait partie des expressions de la classe}
+}
+\VARIANT{
+	\Variant{$card(expressionsLeftForCurrentClass)$}{next$\_$expression converge en diminuant le nombre d'expressions pour la classe courante}
+}
+\EVENTS{
+\INITIALISATION{false}{}{
+	\ACTIONS{false}{
+		\Action{init\_signatures}{$signatures \bcmeq{} \emptyset{}$}{true}{}
+		\Action{init\_signatureSupersets}{$signatureSupersets \bcmeq{} \emptyset{}$}{true}{}
+		\Action{init\_subsets}{$subsets \bcmeq{} \emptyset{}$}{true}{}
+		\Action{init\_stepNum}{$levelNum \bcmeq{} max\_level$}{true}{}
+		\Action{init\_mapped}{$mapped \bcmeq{} \emptyset{}$}{true}{}
+		\Action{init\_currentClass}{$\\currentClass, currentLevel, expressionsOfCurrentClass, expressionsLeftForCurrentClass \bcmsuch{}\\~~~~currentClass' \in{} c\_level[\{max\_level\}] \land{}\\~   currentLevel' = c\_level[\{max\_level\}] \setminus{} \{ currentClass' \} \land{}\\~~~~(\forall{}e \qdot{} e \in{} expressionsOfCurrentClass'\\~      \leqv{} individuation[\{e\}] \neq{} \emptyset{} \land{}\\~         (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~            \limp{} currentClass' \in{} class\_of[\{p\}])) \land{}\\~   expressionsLeftForCurrentClass' = expressionsOfCurrentClass'$}{true}{\\La classe courante est choisie arbitrairement parmis les classes du niveau\\L'expression est choisie arbitrairement parmis les expressions permettant l'individuation des particuliers qui répondent aux axiomes de cette classe\\~  Si aucune expression ne permet l'individuation de particuliers répondant aux axiomes de la classe, l'expression correspond à l'expression neutre}
+		\Action{init\_currentExpression}{$currentExpression \bcmin{} E$}{true}{\\L'expression courante correspond à une expression quelconque}
+		\Action{init\_analysedExpressions}{$analysedExpressions \bcmeq{} \emptyset{}$}{true}{\\aucune expression n'est analysée}
+	}
+}
+\EVT{final}{true}{ordinary}{final}{}{
+	\GUARDS{false}{
+		\Guard{final\_grd1}{false}{$mapped = C$}{false}{\\on a appliqué le procédé d'arrimage à toutes les classes}
+		\Guard{final\_grd2}{true}{$\\\forall{}c \qdot{} c \in{} C\\~ \limp{} (\forall{}e \qdot{} individuation[\{e\}] \neq{} \emptyset{} \land{}\\~          (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~             \leqv{} c \in{} class\_of[\{p\}])\\~         \limp{} e \mapsto{} c \in{} analysedExpressions)$}{true}{\\lorsque toutes les classes sont arrimées, on sait que toutes les expressions correspondant à des signatures valides ont étés analysées}
+	}
+	\ACTIONS{true}{
+		\Action{final}{$\\signatures,subsets,signatureSupersets  \bcmsuch{}  (\forall{}p,c \qdot{} p \in{} P \land{}\\~                                                  c \in{} class\_of\_strict[\{p\}] \\~                                              \limp{} (\exists{}e \qdot{} p \in{} individuation[\{e\}] \land{}\\~                                                       e \mapsto{} c \in{} signatures')\\~                                          ) \\~                                        \land{}\\~                                          (\forall{}e,c \qdot{} e \mapsto{} c \in{} signatures'\\~                                                  \limp{} (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~                                                        \limp{} c \in{} class\_of[\{p\}])\\~                                          ) \\~                                        \land{}\\~                                          (\forall{}e \qdot{} e \in{} dom(signatures')\\~                                              \limp{} individuation[\{e\}] \neq{} \emptyset{}\\~                                          )\\~                                        \land{}\\~                                          dom(subsets') \subseteq{} dom(signatures') \bunion{} signatureSupersets'\\~                                        \land{}\\~                                          (\forall{}e1,e2 \qdot{} e1 \in{} dom(signatures') \land{} \\~                                                    e2 \in{} dom(signatures') \land{}\\~                                                    e1 \neq{} e2 \land{}\\~                                                    e1 \in{} exp\_overlap[\{e2\}] \\~                                                 \limp{} (\exists{}s,n \qdot{} n \in{} \natn{} \land{} \\~                                                            s \in{} 0\upto{}n \tfun{} E \land{}\\~                                                            (\forall{}i \qdot{} i \in{} 0\upto{}n-1 \limp{} s(i) \in{} subsets'[\{s(i+1)\}] \lor{}\\~                                                                  s(i) \in{} subsets'\converse{}[\{s(i+1)\}]) \land{}\\~                                                                  s(0) = e1 \land{}\\~                                                                  s(n) = e2)\\~                                          )\\~                                        \land{}\\~                                          (\forall{}sup,sub \qdot{} sub \in{} subsets'[\{sup\}]\\~                                                   \limp{} sub \in{} exp\_subsets[\{sup\}]) \\~                                        \land{}\\~                                          (\forall{}e1,e2 \qdot{} e1 \in{} subsets'[\{e2\}]\\~                                                 \limp{} exp\_key(e1) \in{} key\_compatible[\{exp\_key(e2)\}])\\~                                        \land{}\\~                                          signatureSupersets' \binter{} dom(signatures') = \emptyset{}\\~                                        \land{}\\~                                          (\forall{}s \qdot{} s \in{} signatureSupersets'\\~                                             \limp{} (\exists{}e1,e2 \qdot{} e1 \in{} subsets'[\{s\}] \land{}\\~                                                          e2 \in{} subsets'[\{s\}]))$}{false}{\\~- tout particulier est au moins individualisé par une expression associée à ses classes terminales\\~- tout particulier individualisé par une signature associé à une classe c respecte les axiomes de la classe c\\~- toute expression utilisée comme signature permet l'individuation d'au moins un particulier \\~- la relation de sous-ensembles est définie à partir d'expressions utilisées comme signature ou comme signature surensemble\\~- toutes signatures qui individualise des particuliers en commun sont transitivement en relations subsets\\~- les signatures notées comme étant en relation de sous-ensemble sont effectivement des sous-ensembles\\~- les clés des signatures notées comme étant en relation de sous-ensemble doivent être compatibles\\~- les signatures surensembles ne sont pas utilisées comme signature standard\\~- les signatures surensembles doivent être en relation subsets avec au moins deux signatures}
+	}
+}
+\EVT{next\_class}{false}{ordinary}{next\_class}{\\on passe à la prochaine classe}{
+	\GUARDS{false}{
+		\Guard{nextClass\_grd1}{false}{$currentClass \in{} mapped$}{true}{\\l'arrimage est terminé pour la classe en cours}
+		\Guard{nextClass\_grd2}{false}{$currentLevel \neq{} \emptyset{}$}{true}{\\il reste des classes à arrimer sur cette étage}
+		\Guard{nextClass\_grd3\_thm}{true}{$mapped \neq{} C$}{true}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
+	}
+	\ACTIONS{true}{
+		\Action{nextClass\_pop}{$\\currentClass, currentLevel, expressionsOfCurrentClass, expressionsLeftForCurrentClass \bcmsuch{}\\~~~~currentClass' \in{} currentLevel \land{}\\~   currentLevel' = currentLevel \setminus{} \{ currentClass' \} \land{}\\~~~~(\forall{}e \qdot{} e \in{} expressionsOfCurrentClass'\\~      \leqv{} individuation[\{e\}] \neq{} \emptyset{} \land{}\\~         (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~            \limp{} currentClass' \in{} class\_of[\{p\}])) \land{}\\~   expressionsLeftForCurrentClass' = expressionsOfCurrentClass'$}{true}{\\on choisi une classe à arrimer\\on la retire des classes à arrimer pour ce niveau\\on met à jour les expressions correspondant à des signatures valides pour la classe courante}
+	}
+}
+\EVT{next\_level}{false}{ordinary}{next\_level}{\\on passe au prochain niveau}{
+	\GUARDS{false}{
+		\Guard{nextLevel\_grd1}{false}{$currentClass \in{} mapped$}{true}{\\l'arrimage est terminé pour la classe en cours}
+		\Guard{nextLevel\_grd2}{false}{$currentLevel = \emptyset{}$}{true}{\\il n'y a pas d'autre classes à arrimer à ce niveau}
+		\Guard{nextLevel\_grd3}{false}{$levelNum > 0$}{true}{\\on peut encore monter d'un niveau}
+		\Guard{nextLevel\_grd4\_thm}{true}{$mapped \neq{} C$}{true}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
+	}
+	\ACTIONS{true}{
+		\Action{nextClass\_popFromNewLevel}{$\\currentLevel, currentClass, expressionsOfCurrentClass, expressionsLeftForCurrentClass \bcmsuch{}\\~~~~currentClass' \in{} c\_level[\{levelNum - 1\}] \setminus{} mapped \land{}\\~   currentLevel' = (c\_level[\{levelNum - 1\}] \setminus{} mapped) \setminus{} \{ currentClass' \} \land{}\\~~~~(\forall{}e \qdot{} e \in{} expressionsOfCurrentClass'\\~      \leqv{} individuation[\{e\}] \neq{} \emptyset{} \land{}\\~         (\forall{}p \qdot{} p \in{} individuation[\{e\}]\\~            \limp{} currentClass' \in{} class\_of[\{p\}])) \land{}\\~   expressionsLeftForCurrentClass' = expressionsOfCurrentClass'$}{true}{\\on choisi une classe à arrimer et on la retire des classes à arrimer pour ce niveau\\on met à jour les expressions correspondant à des signatures valides pour la classe courante}
+		\Action{nextLevel\_changeLevelNum}{$levelNum \bcmeq{} levelNum - 1$}{true}{\\le numéro du niveau correpond au numéro du niveau courant}
+	}
+}
+\EVT{class\_mapped}{true}{ordinary}{class\_mapped}{\\l'arrimage de la classe est terminé}{
+	\GUARDS{false}{
+		\Guard{classMapped\_grd1}{false}{$currentClass \notin{} mapped$}{false}{\\la classe courante n'est pas arrimée}
+		\Guard{classMapped\_grd2\_thm}{true}{$mapped \neq{} C$}{false}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
+		\Guard{classMapped\_grd3}{false}{$expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}]$}{true}{\\toutes les expressions de la classe courante sont analysées}
+	}
+	\ACTIONS{true}{
+		\Action{classMapped\_addToMapped}{$mapped \bcmeq{} mapped \bunion{} \{ currentClass \}$}{false}{\\on ajoute la classe aux classes arrimées}
+	}
+}
+\EVT{next\_expression}{false}{convergent}{}{\\on passe à la prochaine expression}{
+	\GUARDS{false}{
+		\Guard{nextExpression\_grd1}{false}{$\\expressionsLeftForCurrentClass = expressionsOfCurrentClass \lor{} \\currentExpression \mapsto{} currentClass \in{} analysedExpressions$}{true}{\\soit la première expression n'est pas analysée,\\soit l'analyse de l'expression courante est terminée}
+		\Guard{nextExpression\_grd2}{false}{$expressionsLeftForCurrentClass \neq{} \emptyset{}$}{true}{\\il reste des expressions à taiter pour la classe courante}
+		\Guard{nextExpression\_grd3\_thm}{true}{$currentClass \notin{} mapped$}{true}{\\la classe courant n'est pas arrimée}
+		\Guard{nextExpression\_grd4\_thm}{true}{$\lnot{}(expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}])$}{true}{\\toutes les expressions de la classe courante ne sont pas analysées}
+		\Guard{nextExpression\_grd5\_thm}{true}{$mapped \neq{} C$}{true}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
+	}
+	\ACTIONS{true}{
+		\Action{nextExpression\_pop}{$\\currentExpression, expressionsLeftForCurrentClass \bcmsuch{} currentExpression' \in{} expressionsLeftForCurrentClass  \land{}\\~                                                    expressionsLeftForCurrentClass' = expressionsLeftForCurrentClass \setminus{} \{ currentExpression' \}$}{true}{\\on passe à la prochaine expression\\on retire l'expression aux expressions à analyser pour la classe courante}
+	}
+}
+\EVT{expression\_analysed}{false}{ordinary}{}{\\l'analyse de l'expression est terminée}{
+	\GUARDS{false}{
+		\Guard{expressionAnalysed\_grd1}{false}{$currentExpression \mapsto{} currentClass \notin{} analysedExpressions$}{true}{\\l'expression n'est pas déjà marquée comme analysée}
+		\Guard{expressionAnalysed\_grd2}{false}{$currentExpression \in{} expressionsOfCurrentClass$}{true}{\\l'expression courante correspond bel et bien à une expression de la classe}
+		\Guard{expressionAnalysed\_grd3}{false}{$currentExpression \notin{} expressionsLeftForCurrentClass$}{true}{\\l'expression courante n'est plus dans les expressions à analyser}
+		\Guard{expressionAnalysed\_grd4\_thm}{true}{$currentClass \notin{} mapped$}{true}{\\la classe courant n'est pas arrimée}
+		\Guard{expressionAnalysed\_grd5\_thm}{true}{$\lnot{}(expressionsOfCurrentClass \subseteq{} analysedExpressions\converse{}[\{currentClass\}])$}{true}{\\toutes les expressions de la classe courante ne sont pas analysées}
+		\Guard{expressionAnalysed\_grd6\_thm}{true}{$mapped \neq{} C$}{true}{\\on n'a pas appliqué le procédé d'arrimage à toutes les classes}
+	}
+	\ACTIONS{true}{
+		\Action{expressionAnalysed\_addToAnalysed}{$analysedExpressions \bcmeq{} analysedExpressions \bunion{} \{ currentExpression \mapsto{} currentClass \}$}{true}{\\on ajoute l'expression aux expressions analysées}
+	}
+}
+}
+\END
+\end{document}
