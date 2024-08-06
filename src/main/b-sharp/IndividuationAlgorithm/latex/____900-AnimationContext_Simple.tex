@@ -1,0 +1,47 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_900-AnimationContext\_Simple}
+\CONTEXT{\_\_\_\_900-AnimationContext\_Simple}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{humanName}{}
+	\Constant{personalName}{}
+	\Constant{familyName}{}
+	\Constant{n1}{}
+	\Constant{n2}{}
+	\Constant{pn1}{}
+	\Constant{pn2}{}
+	\Constant{nm1}{}
+	\Constant{exp1}{}
+	\Constant{exp2}{}
+	\Constant{exp3}{}
+	\Constant{exp4}{}
+	\Constant{exp5}{}
+	\Constant{exp6}{}
+	\Constant{exp7}{}
+	\Constant{k1}{}
+	\Constant{k2}{}
+	\Constant{k3}{}
+}
+\AXIOMS{
+	\Axiom{animation\_classes}{false}{$partition(C, \{thing\}, \{humanName\}, \{personalName\}, \{familyName\})$}{}
+	\Axiom{animation\_particular}{false}{$partition(P, \{n1\}, \{n2\}, \{pn1\}, \{pn2\}, \{nm1\})$}{}
+	\Axiom{animation\_expressions}{false}{$partition(E, \{exp1\}, \{exp2\}, \{exp3\}, \{exp4\}, \{exp5\}, \{exp6\}, \{exp7\})$}{\\exp1 permet de récupérer les prénoms,\\exp4 et exp5 sont les décompositions de exp1\\exp2 permet de récuperer le nom,\\exp3 permet de récupérer les noms d'humains\\exp6 et exp7 sont les décompositions de exp3}
+	\Axiom{animation\_expressionsKeys}{false}{$partition(K, \{k1\}, \{k2\}, \{k3\})$}{}
+	\Axiom{animation\_cLeaves}{false}{$partition(C\_leaves, \{humanName\}, \{personalName\}, \{familyName\})$}{}
+	\Axiom{animation\_cLevels}{false}{$partition(c\_level, \{ 0 \mapsto{} thing \}, \{1 \mapsto{} humanName\}, \{1 \mapsto{} personalName\}, \{1 \mapsto{} familyName\})$}{}
+	\Axiom{animation\_maxLevel}{false}{$max\_level = 1$}{}
+	\Axiom{animation\_hasParent}{false}{$partition(has\_parent, \{humanName \mapsto{} thing\}, \{personalName \mapsto{} thing\}, \{familyName \mapsto{} thing\} )$}{}
+	\Axiom{animation\_classOfStrict}{false}{$\\partition(class\_of\_strict, \{n1 \mapsto{} humanName\}, \{n2 \mapsto{} humanName\}, \\~                          \{pn1 \mapsto{} personalName\}, \{pn2 \mapsto{} personalName\}, \\~                          \{nm1 \mapsto{} familyName\})$}{}
+	\Axiom{animation\_classOf}{false}{$\\partition(class\_of, \{n1 \mapsto{} humanName\}, \{n2 \mapsto{} humanName\}, \\~                   \{pn1 \mapsto{} personalName\}, \{pn2 \mapsto{} personalName\}, \\~                   \{nm1 \mapsto{} familyName\},\\~                   \{n1 \mapsto{} thing\}, \{n2 \mapsto{} thing\}, \\~                   \{pn1 \mapsto{} thing\}, \{pn2 \mapsto{} thing\}, \\~                   \{nm1 \mapsto{} thing\}) $}{}
+	\Axiom{animation\_isA}{false}{$partition(is\_a, \{ thing \mapsto{} thing \}, \{humanName \mapsto{} humanName\}, \{humanName \mapsto{} thing\}, \{personalName \mapsto{} personalName\}, \{personalName \mapsto{} thing\}, \{familyName \mapsto{} familyName\}, \{familyName \mapsto{} thing\} )$}{}
+	\Axiom{animation\_individuation}{false}{$\\partition(individuation, \{ exp1 \mapsto{} pn1 \}, \{ exp1 \mapsto{} pn2 \}, \{ exp4 \mapsto{}pn1\}, \{ exp5 \mapsto{} pn2 \},\\~                        \{ exp2 \mapsto{} nm1 \}, \\~                        \{ exp3 \mapsto{} n1 \}, \{ exp3 \mapsto{} n2 \}, \{ exp6 \mapsto{}n1\}, \{ exp7 \mapsto{} n2 \} )$}{}
+	\Axiom{animation\_expSubsets}{false}{$\\partition(exp\_subsets, \{ exp1 \mapsto{} exp1 \}, \{exp2 \mapsto{} exp2\}, \{exp3 \mapsto{} exp3\},\{exp4 \mapsto{} exp4\},\{exp5 \mapsto{} exp5\},\{exp6 \mapsto{} exp6\},\{exp7 \mapsto{} exp7\},\\~                      \{ exp1 \mapsto{} exp4\}, \{exp1 \mapsto{} exp5\},\\~                      \{ exp3 \mapsto{} exp6\}, \{exp3 \mapsto{} exp7\} )$}{}
+	\Axiom{animation\_expEquivalent}{false}{$partition(exp\_equivalent, \{ exp1 \mapsto{} exp1 \}, \{exp2 \mapsto{} exp2\}, \{exp3 \mapsto{} exp3\},\{exp4 \mapsto{} exp4\},\{exp5 \mapsto{} exp5\},\{exp6 \mapsto{} exp6\},\{exp7 \mapsto{} exp7\})$}{}
+	\Axiom{animation\_expOverlaps}{false}{$\\partition(exp\_overlap, \{ exp1 \mapsto{} exp1 \}, \{exp2 \mapsto{} exp2\}, \{exp3 \mapsto{} exp3\},\{exp4 \mapsto{} exp4\},\{exp5 \mapsto{} exp5\},\{exp6 \mapsto{} exp6\},\{exp7 \mapsto{} exp7\},\\~                      \{ exp4 \mapsto{} exp1\}, \{exp5 \mapsto{} exp1\},\\~                      \{ exp6 \mapsto{} exp3\}, \{exp7 \mapsto{} exp3\},\\~                      \{ exp1 \mapsto{} exp4 \}, \{ exp1 \mapsto{} exp5 \},\\~                      \{ exp3 \mapsto{} exp6 \}, \{ exp3 \mapsto{} exp7 \})$}{}
+	\Axiom{animation\_expKey}{false}{$partition(exp\_key, \{ exp1 \mapsto{} k1 \}, \{ exp2 \mapsto{} k2 \}, \{ exp3 \mapsto{} k3 \}, \{ exp4 \mapsto{} k1 \}, \{ exp5 \mapsto{} k1 \}, \{ exp6 \mapsto{} k3 \}, \{ exp7 \mapsto{} k3 \})$}{}
+	\Axiom{animation\_keyCompatible}{false}{$partition(key\_compatible, \{ k1 \mapsto{} k1 \}, \{ k2 \mapsto{} k2 \}, \{ k3 \mapsto{} k3 \})$}{}
+	\Axiom{animation\_expList}{false}{$partition(exp\_list, \{1 \mapsto{} exp1\}, \{2 \mapsto{} exp2\}, \{3 \mapsto{} exp3\}, \{4 \mapsto{} exp4\}, \{5 \mapsto{} exp5\}, \{6 \mapsto{} exp6\}, \{7 \mapsto{} exp7\})$}{}
+}
+\END
+\end{document}

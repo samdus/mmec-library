@@ -1,0 +1,44 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_940-AnimationContext\_Chevauchement}
+\CONTEXT{\_\_\_\_940-AnimationContext\_Chevauchement}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{organism}{}
+	\Constant{homoSapiens}{}
+	\Constant{patient}{}
+	\Constant{healthCareProvider}{}
+	\Constant{o1}{}
+	\Constant{o2}{}
+	\Constant{o3}{}
+	\Constant{o4}{}
+	\Constant{e1}{}
+	\Constant{e2}{}
+	\Constant{e3}{}
+	\Constant{e4}{}
+	\Constant{e5}{}
+	\Constant{e6}{}
+	\Constant{e7}{}
+	\Constant{k1}{}
+	\Constant{k2}{}
+	\Constant{k3}{}
+}
+\AXIOMS{
+	\Axiom{animation\_classes}{false}{$partition(C, \{thing\}, \{organism\}, \{homoSapiens\}, \{patient\}, \{healthCareProvider\})$}{}
+	\Axiom{axm1}{false}{$partition(P, \{o1\}, \{o2\}, \{o3\}, \{o4\})$}{}
+	\Axiom{axm2}{false}{$partition(E, \{e1\}, \{e2\}, \{e3\}, \{e4\}, \{e5\}, \{e6\}, \{e7\})$}{\\On a trois signatures retenues pour l'arrimage:\\- e1 associée à Homo sapiens\\- e2 associée à patient\\- e3 associée à health care provider\\$\#$ e1: o1, o2, o3, 04\\$\#$ e2: o1, o2, o3\\$\#$ e3: o2, o3, o4\\$\#$ e4: o1\\$\#$ e5: o2\\$\#$ e6: o3\\$\#$ e7: o4}
+	\Axiom{axm3}{false}{$partition(K, \{k1\}, \{k2\}, \{k3\})$}{}
+	\Axiom{axm5}{false}{$partition(C\_leaves, \{patient\}, \{healthCareProvider\})$}{}
+	\Axiom{axm6}{false}{$partition(c\_level, \{ 0 \mapsto{} thing \}, \{1 \mapsto{} organism\}, \{2 \mapsto{} patient\}, \{2 \mapsto{} homoSapiens\}, \{3 \mapsto{} healthCareProvider\})$}{}
+	\Axiom{axm7}{false}{$max\_level = 3$}{}
+	\Axiom{axm8}{false}{$partition(has\_parent, \{healthCareProvider \mapsto{} homoSapiens\}, \{homoSapiens \mapsto{} organism\}, \{patient \mapsto{} organism\}, \{organism \mapsto{} thing\})$}{}
+	\Axiom{axm19}{false}{$\\partition(is\_a, \{healthCareProvider \mapsto{} healthCareProvider\}, \{healthCareProvider \mapsto{} homoSapiens\}, \{healthCareProvider \mapsto{} organism\}, \{healthCareProvider \mapsto{} thing\},\\~               \{patient \mapsto{} patient\}, \{patient \mapsto{} organism\}, \{patient \mapsto{} thing\},\\~               \{homoSapiens \mapsto{} homoSapiens\}, \{homoSapiens \mapsto{} organism\}, \{homoSapiens \mapsto{} thing\},\\~               \{organism \mapsto{} organism\}, \{organism \mapsto{} thing\},\\~               \{thing \mapsto{} thing\})$}{}
+	\Axiom{axm9}{false}{$\\partition(class\_of\_strict, \{o1 \mapsto{} patient\}, \{o2 \mapsto{} patient\}, \{o3 \mapsto{} patient\}, \\~                          \{o2 \mapsto{} healthCareProvider\}, \{o3 \mapsto{} healthCareProvider\}, \{o4 \mapsto{} healthCareProvider\},\\~                          \{o1 \mapsto{} homoSapiens\}) $}{}
+	\Axiom{axm10}{false}{$\\partition(class\_of, \{o1 \mapsto{} patient\}, \{o1 \mapsto{} homoSapiens\}, \{o1 \mapsto{} organism\}, \{o1 \mapsto{} thing\},\\~                   \{o2 \mapsto{} patient\}, \{o2 \mapsto{} healthCareProvider\}, \{o2 \mapsto{} homoSapiens\}, \{o2 \mapsto{} organism\}, \{o2 \mapsto{} thing\},\\~                   \{o3 \mapsto{} patient\}, \{o3 \mapsto{} healthCareProvider\}, \{o3 \mapsto{} homoSapiens\}, \{o3 \mapsto{} organism\}, \{o3 \mapsto{} thing\},\\~                   \{o4 \mapsto{} healthCareProvider\}, \{o4 \mapsto{} homoSapiens\}, \{o4 \mapsto{} organism\}, \{o4 \mapsto{} thing\} )$}{}
+	\Axiom{axm11}{false}{$partition(individuation, \{ e1 \mapsto{} o1 \}, \{ e1 \mapsto{} o2 \}, \{ e1 \mapsto{} o3 \}, \{ e1 \mapsto{} o4 \}, \{ e2 \mapsto{} o1 \}, \{ e2 \mapsto{} o2 \}, \{ e2 \mapsto{} o3 \}, \{ e3 \mapsto{} o2 \}, \{ e3 \mapsto{} o3 \}, \{ e3 \mapsto{} o4 \}, \{ e4 \mapsto{} o1 \}, \{ e5 \mapsto{} o2 \}, \{ e6 \mapsto{} o3 \}, \{ e7 \mapsto{} o4 \})$}{}
+	\Axiom{axm16}{false}{$partition(exp\_key, \{ e1 \mapsto{} k1 \}, \{ e2 \mapsto{} k2 \}, \{ e3 \mapsto{} k3 \}, \{ e4 \mapsto{} k3 \}, \{ e5 \mapsto{} k3 \}, \{ e6 \mapsto{} k3 \}, \{ e7 \mapsto{} k3 \})$}{}
+	\Axiom{axm17}{false}{$\\partition(key\_compatible, \{ k1 \mapsto{} k1 \}, \{ k2 \mapsto{} k2 \}, \{ k3 \mapsto{} k3 \},\\~                         \{ k1 \mapsto{} k2 \}, \{ k2 \mapsto{} k1 \},\\~~~~					  \{ k1 \mapsto{} k3 \}, \{ k3 \mapsto{} k1 \},\\~~~~					  \{ k2 \mapsto{} k3 \}, \{ k3 \mapsto{} k2 \})$}{}
+	\Axiom{axm18}{false}{$partition(exp\_list, \{1 \mapsto{} e1\}, \{2 \mapsto{} e2\}, \{3 \mapsto{} e3\}, \{4 \mapsto{} e4\}, \{5 \mapsto{} e5\}, \{6 \mapsto{} e6\}, \{7 \mapsto{} e7\})$}{}
+}
+\END
+\end{document}

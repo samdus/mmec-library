@@ -1,0 +1,50 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_930-AnimationContext\_Disjoint}
+\CONTEXT{\_\_\_\_930-AnimationContext\_Disjoint}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{role}{}
+	\Constant{patientRole}{}
+	\Constant{healthCareProviderRole}{}
+	\Constant{pr1}{}
+	\Constant{pr2}{}
+	\Constant{pr3}{}
+	\Constant{pm1}{}
+	\Constant{pm2}{}
+	\Constant{pm3}{}
+	\Constant{e1}{}
+	\Constant{e2}{}
+	\Constant{e3}{}
+	\Constant{e4}{}
+	\Constant{e5}{}
+	\Constant{e6}{}
+	\Constant{e7}{}
+	\Constant{e8}{}
+	\Constant{e9}{}
+	\Constant{e10}{}
+	\Constant{e11}{}
+	\Constant{e12}{}
+	\Constant{e13}{}
+	\Constant{e14}{}
+	\Constant{k1}{}
+	\Constant{k2}{}
+}
+\AXIOMS{
+	\Axiom{animation\_classes}{false}{$partition(C, \{thing\}, \{role\}, \{patientRole\}, \{healthCareProviderRole\})$}{}
+	\Axiom{axm1}{false}{$partition(P, \{pr1\}, \{pr2\}, \{pr3\}, \{pm1\}, \{pm2\}, \{pm3\})$}{}
+	\Axiom{axm2}{false}{$partition(E, \{e1\}, \{e2\}, \{e3\}, \{e4\}, \{e5\}, \{e6\}, \{e7\}, \{e8\}, \{e9\}, \{e10\}, \{e11\}, \{e12\}, \{e13\}, \{e14\})$}{\\e1 et e2 seront retenues comme signatures, les autres expressions correspondent à leur décomposition\\e1: pr1, pr2, pr3\\e2: pm1, pm2, pm3\\e3: pr1, pr2\\e4: pr1, pr3\\e5: pr2, pr3\\e6: pm1, pm2\\e7: pm1, pm3\\e8: pm2, pm3\\e9: pr1\\e10: pr2\\e11: pr3\\e12: pm1\\e13: pm2\\e14: pm3}
+	\Axiom{axm3}{false}{$partition(K, \{k1\}, \{k2\})$}{}
+	\Axiom{axm4}{false}{$partition(C\_leaves, \{patientRole\}, \{healthCareProviderRole\})$}{}
+	\Axiom{axm6}{false}{$partition(c\_level, \{ 0 \mapsto{} thing \}, \{ 1 \mapsto{} role \}, \{ 2 \mapsto{} patientRole \}, \{ 2 \mapsto{} healthCareProviderRole \})$}{}
+	\Axiom{axm5}{false}{$max\_level = 2$}{}
+	\Axiom{axm7}{false}{$partition(has\_parent, \{ healthCareProviderRole \mapsto{} role \}, \{ patientRole \mapsto{} role \}, \{ role \mapsto{} thing \})$}{}
+	\Axiom{axm8}{false}{$\\partition(class\_of\_strict, \{pr1 \mapsto{} patientRole\}, \{pr2 \mapsto{} patientRole\}, \{pr3 \mapsto{} patientRole\},\\~                          \{pm1 \mapsto{} healthCareProviderRole\}, \{pm2 \mapsto{} healthCareProviderRole\}, \{pm3 \mapsto{} healthCareProviderRole\}) $}{}
+	\Axiom{axm9}{false}{$\\partition(class\_of, \{pr1 \mapsto{} patientRole\}, \{pr1 \mapsto{} role\}, \{pr1 \mapsto{} thing\},\\~                   \{pr2 \mapsto{} patientRole\}, \{pr2 \mapsto{} role\}, \{pr2 \mapsto{} thing\},\\~                   \{pr3 \mapsto{} patientRole\}, \{pr3 \mapsto{} role\}, \{pr3 \mapsto{} thing\},\\~                   \{pm1 \mapsto{} healthCareProviderRole\}, \{pm1 \mapsto{} role\}, \{pm1 \mapsto{} thing\},\\~                   \{pm2 \mapsto{} healthCareProviderRole\}, \{pm2 \mapsto{} role\}, \{pm2 \mapsto{} thing\},\\~                   \{pm3 \mapsto{} healthCareProviderRole\}, \{pm3 \mapsto{} role\}, \{pm3 \mapsto{} thing\})$}{}
+	\Axiom{axm10}{false}{$\\partition(individuation, \{ e1 \mapsto{} pr1\}, \{ e1 \mapsto{} pr2\}, \{ e1 \mapsto{} pr3\}, \\~                        \{ e2 \mapsto{} pm1\}, \{ e2 \mapsto{} pm2\}, \{ e2 \mapsto{} pm3\},\\~                        \{ e3 \mapsto{} pr1\}, \{ e3 \mapsto{} pr2\},\\~                        \{ e4 \mapsto{} pr1\}, \{ e4 \mapsto{} pr3\},\\~                        \{ e5 \mapsto{} pr2\}, \{ e5 \mapsto{} pr3\},\\~                        \{ e6 \mapsto{} pm1\}, \{ e6 \mapsto{} pm2\},\\~                        \{ e7 \mapsto{} pm1\}, \{ e7 \mapsto{} pm3\},\\~                        \{ e8 \mapsto{} pm2\}, \{ e8 \mapsto{} pm3\},\\~                        \{ e9 \mapsto{} pr1\}, \{ e10 \mapsto{} pr2\}, \{ e11 \mapsto{} pr3\},\\~                        \{ e12 \mapsto{} pm1\}, \{ e13 \mapsto{} pm2\}, \{ e14 \mapsto{} pm3\})$}{}
+	\Axiom{axm16}{false}{$partition(exp\_key, \{ e1 \mapsto{} k1 \}, \{ e2 \mapsto{} k2 \}, \{ e3 \mapsto{} k1 \}, \{ e4 \mapsto{} k1 \}, \{ e5 \mapsto{} k1 \}, \{ e6 \mapsto{} k2 \}, \{ e7 \mapsto{} k2 \}, \{ e8 \mapsto{} k2 \}, \{ e9 \mapsto{} k1 \}, \{ e10 \mapsto{} k1 \}, \{ e11 \mapsto{} k1 \}, \{ e12 \mapsto{} k2 \}, \{ e13 \mapsto{} k2 \}, \{ e14 \mapsto{} k2 \})$}{}
+	\Axiom{axm17}{false}{$partition(key\_compatible, \{ k1 \mapsto{} k1 \}, \{ k2 \mapsto{} k2 \})$}{\\bien qu'ils soient basés sur un attribut compatible, il ne sont pas compatible puisque leur sémantique est différente par rapport aux particuliers qui sont représentés par l'expression}
+	\Axiom{axm18}{false}{$partition(exp\_list, \{1 \mapsto{} e1\}, \{2 \mapsto{} e2\}, \{3 \mapsto{} e3\}, \{4 \mapsto{} e4\}, \{5 \mapsto{} e5\}, \{6 \mapsto{} e6\}, \{7 \mapsto{} e7\}, \{8 \mapsto{} e8\}, \{9 \mapsto{} e9\}, \{10 \mapsto{} e10\}, \{11 \mapsto{} e11\}, \{12 \mapsto{} e12\}, \{13 \mapsto{} e13\}, \{14 \mapsto{} e14\})$}{}
+}
+\END
+\end{document}

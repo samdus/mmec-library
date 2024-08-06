@@ -1,0 +1,42 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_950-AnimationContext\_SignMult}
+\CONTEXT{\_\_\_\_950-AnimationContext\_SignMult}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{RAMQVulnerabilityCode}{}
+	\Constant{c1}{}
+	\Constant{c2}{}
+	\Constant{c3}{}
+	\Constant{c4}{}
+	\Constant{e1}{}
+	\Constant{e2}{}
+	\Constant{e3}{}
+	\Constant{e4}{}
+	\Constant{e5}{}
+	\Constant{e6}{}
+	\Constant{e7}{}
+	\Constant{e8}{}
+	\Constant{k1}{}
+	\Constant{k2}{}
+	\Constant{k3}{}
+	\Constant{k4}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$partition(C, \{thing\}, \{RAMQVulnerabilityCode\})$}{}
+	\Axiom{axm2}{false}{$partition(P, \{c1\}, \{c2\}, \{c3\}, \{c4\})$}{}
+	\Axiom{axm3}{false}{$partition(E, \{e1\}, \{e2\}, \{e3\}, \{e4\}, \{e5\}, \{e6\}, \{e7\}, \{e8\})$}{\\e1 pour CODE$\_$VULN$\_$1\\e2 pour CODE$\_$VULN$\_$2\\e3 pour CODE$\_$VULN$\_$3\\e4 comme expression d'union \\e5, e6, e7, e8 comme expressions de décompositions}
+	\Axiom{axm4}{false}{$partition(K, \{k1\}, \{k2\}, \{k3\}, \{k4\})$}{}
+	\Axiom{axm5}{false}{$partition(C\_leaves, \{RAMQVulnerabilityCode\})$}{}
+	\Axiom{axm6}{false}{$partition(c\_level, \{ 0 \mapsto{} thing \}, \{1 \mapsto{} RAMQVulnerabilityCode\})$}{}
+	\Axiom{axm7}{false}{$max\_level = 1$}{}
+	\Axiom{axm8}{false}{$partition(has\_parent, \{RAMQVulnerabilityCode \mapsto{} thing\})$}{}
+	\Axiom{axm9}{false}{$partition(is\_a, \{RAMQVulnerabilityCode \mapsto{} RAMQVulnerabilityCode\}, \{RAMQVulnerabilityCode \mapsto{} thing\}, \{thing \mapsto{} thing\}) $}{}
+	\Axiom{axm10}{false}{$partition(class\_of\_strict, \{c1 \mapsto{} RAMQVulnerabilityCode\}, \{c2 \mapsto{} RAMQVulnerabilityCode\}, \{c3 \mapsto{} RAMQVulnerabilityCode\}, \{c4 \mapsto{} RAMQVulnerabilityCode\})$}{}
+	\Axiom{axm11}{false}{$\\partition(individuation, \{ e1 \mapsto{} c1 \}, \{ e1 \mapsto{} c3 \},  \\~                        \{ e2 \mapsto{} c1 \}, \{ e2 \mapsto{} c2 \},  \\~                        \{ e3 \mapsto{} c1 \}, \{ e3 \mapsto{} c4 \},  \\~                        \{ e4 \mapsto{} c1 \}, \{ e4 \mapsto{} c2 \}, \{ e4 \mapsto{} c3 \}, \{ e4 \mapsto{} c4 \},\\~                        \{ e5 \mapsto{} c1 \}, \{ e6 \mapsto{} c2 \}, \{ e7 \mapsto{} c3 \}, \{ e8 \mapsto{} c4 \})$}{}
+	\Axiom{axm12}{false}{$partition(exp\_key, \{ e1 \mapsto{} k1 \}, \{ e2 \mapsto{} k2 \}, \{ e3 \mapsto{} k3 \}, \{ e4 \mapsto{} k4 \}, \{ e5 \mapsto{} k1 \}, \{ e6 \mapsto{} k2 \}, \{ e7 \mapsto{} k3 \}, \{ e8 \mapsto{} k4 \})$}{}
+	\Axiom{axm17}{false}{$\\partition(key\_compatible, \{ k1 \mapsto{} k1 \}, \{ k2 \mapsto{} k2 \}, \{ k3 \mapsto{} k3 \}, \{ k4 \mapsto{} k4 \},\\~                         \{ k1 \mapsto{} k2 \}, \{ k2 \mapsto{} k1 \},\\~~~~					  \{ k1 \mapsto{} k3 \}, \{ k3 \mapsto{} k1 \},\\~~~~					  \{ k1 \mapsto{} k4 \}, \{ k4 \mapsto{} k1 \},\\~~~~					  \{ k2 \mapsto{} k3 \}, \{ k3 \mapsto{} k2 \},\\~~~~					  \{ k2 \mapsto{} k4 \}, \{ k4 \mapsto{} k2 \},\\~~~~					  \{ k3 \mapsto{} k4 \}, \{ k4 \mapsto{} k3 \})$}{}
+	\Axiom{axm18}{false}{$partition(exp\_list, \{1 \mapsto{} e1\}, \{2 \mapsto{} e2\}, \{3 \mapsto{} e3\}, \{4 \mapsto{} e4\}, \{5 \mapsto{} e5\}, \{6 \mapsto{} e6\}, \{7 \mapsto{} e7\}, \{8 \mapsto{} e8\})$}{}
+}
+\END
+\end{document}

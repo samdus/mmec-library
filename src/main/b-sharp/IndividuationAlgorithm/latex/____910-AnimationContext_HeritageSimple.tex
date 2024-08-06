@@ -1,0 +1,41 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_910-AnimationContext\_HeritageSimple}
+\CONTEXT{\_\_\_\_910-AnimationContext\_HeritageSimple}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{humanName}{}
+	\Constant{identifier}{}
+	\Constant{ice}{information content entity}
+	\Constant{gdc}{generically dependent continuant}
+	\Constant{continuant}{}
+	\Constant{entity}{}
+	\Constant{n1}{}
+	\Constant{n2}{}
+	\Constant{exp3}{}
+	\Constant{exp6}{}
+	\Constant{exp7}{}
+	\Constant{k3}{}
+}
+\AXIOMS{
+	\Axiom{animation\_classes}{false}{$partition(C, \{thing\}, \{entity\}, \{continuant\}, \{gdc\}, \{ice\}, \{identifier\}, \{humanName\})$}{}
+	\Axiom{animation\_particulars}{false}{$partition(P, \{n1\}, \{n2\})$}{}
+	\Axiom{animation\_expressions}{false}{$partition(E, \{exp3\}, \{exp6\}, \{exp7\})$}{\\exp1 permet l'individuation des deux particuliers, exp2 sert à l'individuation de n1 et exp2 sert à l'individuation de n2}
+	\Axiom{animation\_expressionsKeys}{false}{$partition(K, \{k3\})$}{}
+	\Axiom{animation\_cLeaves}{false}{$partition(C\_leaves, \{humanName\})$}{}
+	\Axiom{animation\_cLevels}{false}{$partition(c\_level, \{ 0 \mapsto{} thing \}, \{ 1 \mapsto{} entity \}, \{ 2 \mapsto{} continuant \},  \{ 3 \mapsto{} gdc \}, \{ 4 \mapsto{} ice \}, \{ 5 \mapsto{} identifier \}, \{ 6 \mapsto{} humanName \})$}{}
+	\Axiom{animation\_maxLevel}{false}{$max\_level = 6$}{}
+	\Axiom{animation\_hasParent}{false}{$partition(has\_parent, \{humanName \mapsto{} identifier\}, \{identifier \mapsto{} ice\}, \{ice \mapsto{} gdc\}, \{gdc \mapsto{} continuant\}, \{continuant \mapsto{} entity\}, \{entity \mapsto{} thing\} )$}{}
+	\Axiom{animation\_classOfStrict}{false}{$partition(class\_of\_strict, \{n1 \mapsto{} humanName\}, \{n2 \mapsto{} humanName\})$}{}
+	\Axiom{animation\_classOf}{false}{$\\partition(class\_of, \{n1 \mapsto{} humanName\},\{n1 \mapsto{} identifier\},\{n1 \mapsto{} ice\},\{n1 \mapsto{} gdc\},\{n1 \mapsto{} continuant\},\{n1 \mapsto{} entity\},\{n1 \mapsto{} thing\},\\~                   \{n2 \mapsto{} humanName\},\{n2 \mapsto{} identifier\},\{n2 \mapsto{} ice\},\{n2 \mapsto{} gdc\},\{n2 \mapsto{} continuant\},\{n2 \mapsto{} entity\},\{n2 \mapsto{} thing\}) $}{}
+	\Axiom{animation\_isA}{false}{$\\partition(is\_a,\\~~~~\{ humanName \mapsto{} identifier \}, \{ humanName \mapsto{} ice \}, \{ humanName \mapsto{} gdc \}, \{ humanName \mapsto{} continuant \}, \{ humanName \mapsto{} entity \}, \{ humanName \mapsto{} thing \}, \{ humanName \mapsto{} humanName \},\\~~~~\{ identifier \mapsto{} ice \}, \{ identifier \mapsto{} gdc \}, \{ identifier \mapsto{} continuant \}, \{ identifier \mapsto{} entity \}, \{ identifier \mapsto{} thing \}, \{ identifier \mapsto{} identifier \},\\~~~~\{ ice \mapsto{} gdc \}, \{ ice \mapsto{} continuant \}, \{ ice \mapsto{} entity \}, \{ ice \mapsto{} thing \}, \{ ice \mapsto{} ice \},\\~~~~\{ gdc \mapsto{} continuant \}, \{ gdc \mapsto{} entity \}, \{ gdc \mapsto{} thing \}, \{ gdc \mapsto{} gdc \},\\~~~~\{ continuant \mapsto{} entity \}, \{ continuant \mapsto{} thing \}, \{ continuant \mapsto{} continuant \},\\~~~~\{ entity \mapsto{} thing \}, \{ entity \mapsto{} entity \},\\~   \{ thing \mapsto{} thing \}\\)$}{}
+	\Axiom{animation\_individuation}{false}{$partition(individuation, \{ exp3 \mapsto{} n1 \}, \{ exp3 \mapsto{} n2 \}, \{ exp6 \mapsto{} n1\}, \{ exp7 \mapsto{} n2 \})$}{}
+	\Axiom{animation\_expSubsets}{false}{$partition(exp\_subsets, \{ exp3 \mapsto{} exp3 \}, \{exp6 \mapsto{} exp6\}, \{exp7 \mapsto{} exp7\}, \{exp3 \mapsto{} exp6\}, \{exp3 \mapsto{} exp7\} )$}{}
+	\Axiom{animation\_expEquivalent}{false}{$partition(exp\_equivalent, \{ exp3 \mapsto{} exp3 \}, \{ exp6 \mapsto{} exp6 \}, \{ exp7 \mapsto{} exp7 \})$}{}
+	\Axiom{animation\_expOverlaps}{false}{$partition(exp\_overlap, \{ exp3 \mapsto{} exp3 \}, \{ exp6 \mapsto{} exp6 \}, \{ exp7 \mapsto{} exp7 \}, \{ exp3 \mapsto{} exp6 \}, \{ exp3 \mapsto{} exp7 \}, \{ exp6 \mapsto{} exp3 \}, \{ exp7 \mapsto{} exp3 \})$}{}
+	\Axiom{animation\_expKey}{false}{$partition(exp\_key, \{ exp3 \mapsto{} k3 \}, \{ exp6 \mapsto{} k3 \}, \{ exp7 \mapsto{} k3 \})$}{}
+	\Axiom{animation\_keyCompatible}{false}{$partition(key\_compatible, \{ k3 \mapsto{} k3 \})$}{}
+	\Axiom{animation\_expList}{false}{$partition(exp\_list, \{1 \mapsto{} exp3\}, \{2 \mapsto{} exp6\}, \{3\mapsto{}exp7\})$}{}
+}
+\END
+\end{document}

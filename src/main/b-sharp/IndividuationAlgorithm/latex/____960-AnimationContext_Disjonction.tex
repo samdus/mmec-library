@@ -1,0 +1,60 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_960-AnimationContext\_Disjonction}
+\CONTEXT{\_\_\_\_960-AnimationContext\_Disjonction}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{e1}{}
+	\Constant{e2}{}
+	\Constant{e3}{}
+	\Constant{e4}{}
+	\Constant{e5}{}
+	\Constant{e6}{}
+	\Constant{e7}{}
+	\Constant{e8}{}
+	\Constant{e9}{}
+	\Constant{e10}{}
+	\Constant{e11}{}
+	\Constant{ice1}{}
+	\Constant{ice2}{}
+	\Constant{ice3}{}
+	\Constant{ice4}{}
+	\Constant{ice5}{}
+	\Constant{ice6}{}
+	\Constant{ice7}{}
+	\Constant{ice8}{}
+	\Constant{intersexDatum}{}
+	\Constant{femaleDatum}{}
+	\Constant{maleDatum}{}
+	\Constant{femaleGender}{}
+	\Constant{maleGender}{}
+	\Constant{nonBinaryGender}{}
+	\Constant{femaleDatumOrGender}{}
+	\Constant{intersexOrNonBinary}{}
+	\Constant{maleDatumOrGender}{}
+	\Constant{biologicalSex}{}
+	\Constant{genderIdentity}{}
+	\Constant{biologicalSexOrGenderIdentity}{}
+	\Constant{k1}{}
+	\Constant{k2}{}
+	\Constant{k3}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$partition(E, \{e1\}, \{e2\}, \{e3\}, \{e4\}, \{e5\}, \{e6\}, \{e7\}, \{e8\}, \{e9\}, \{e10\}, \{e11\})$}{}
+	\Axiom{axm2}{false}{$partition(P, \{ice1\}, \{ice2\}, \{ice3\}, \{ice4\}, \{ice5\}, \{ice6\}, \{ice7\}, \{ice8\})$}{}
+	\Axiom{axm3}{false}{$partition(C, \{thing\}, \{intersexDatum\}, \{femaleDatum\}, \{maleDatum\}, \{femaleGender\}, \{maleGender\}, \{nonBinaryGender\}, \{femaleDatumOrGender\}, \{intersexOrNonBinary\}, \{maleDatumOrGender\}, \{biologicalSex\}, \{genderIdentity\}, \{biologicalSexOrGenderIdentity\})$}{}
+	\Axiom{axm4}{false}{$partition(K, \{k1\}, \{k2\}, \{k3\})$}{}
+	\Axiom{axm5}{false}{$partition(C\_leaves, \{intersexDatum\}, \{femaleDatum\}, \{maleDatum\}, \{femaleGender\}, \{maleGender\}, \{nonBinaryGender\}, \{femaleDatumOrGender\}, \{intersexOrNonBinary\}, \{maleDatumOrGender\})$}{}
+	\Axiom{axm6}{false}{$\\partition(c\_level, \{ 0 \mapsto{} thing \}, \\~                  \{ 1 \mapsto{} biologicalSexOrGenderIdentity \}, \\~                  \{ 2 \mapsto{} biologicalSex \}, \{ 2 \mapsto{} genderIdentity \}, \{ 2 \mapsto{} femaleDatumOrGender\}, \{ 2 \mapsto{} intersexOrNonBinary\}, \{ 2 \mapsto{} maleDatumOrGender\},\\~                  \{ 3 \mapsto{} intersexDatum\}, \{ 3 \mapsto{} femaleDatum\}, \{ 3 \mapsto{} maleDatum\}, \{ 3 \mapsto{} femaleGender\}, \{ 3 \mapsto{} maleGender\}, \{ 3 \mapsto{} nonBinaryGender\})$}{}
+	\Axiom{axm7}{false}{$max\_level = 3$}{}
+	\Axiom{axm8}{false}{$\\partition(has\_parent, \{intersexDatum \mapsto{} biologicalSex\}, \{femaleDatum \mapsto{} biologicalSex\}, \{maleDatum \mapsto{} biologicalSex\},\\~                     \{femaleGender \mapsto{} genderIdentity\}, \{maleGender \mapsto{} genderIdentity\}, \{nonBinaryGender \mapsto{} genderIdentity\},\\~                     \{femaleDatumOrGender \mapsto{} biologicalSexOrGenderIdentity\}, \{intersexOrNonBinary \mapsto{} biologicalSexOrGenderIdentity\}, \{maleDatumOrGender \mapsto{} biologicalSexOrGenderIdentity\},\\~                     \{biologicalSex \mapsto{} biologicalSexOrGenderIdentity\}, \{genderIdentity \mapsto{} biologicalSexOrGenderIdentity\},\\~                     \{biologicalSexOrGenderIdentity \mapsto{} thing\})$}{}
+	\Axiom{axm9}{false}{$\\partition(is\_a, \{intersexDatum \mapsto{} intersexDatum\}, \{intersexDatum \mapsto{} biologicalSex\}, \{intersexDatum \mapsto{} biologicalSexOrGenderIdentity\}, \{intersexDatum \mapsto{} thing\}, \\~               \{femaleDatum \mapsto{} femaleDatum\}, \{femaleDatum \mapsto{} biologicalSex\}, \{femaleDatum \mapsto{} biologicalSexOrGenderIdentity\}, \{femaleDatum \mapsto{} thing\},\\~               \{maleDatum \mapsto{} maleDatum\}, \{maleDatum \mapsto{} biologicalSex\}, \{maleDatum \mapsto{} biologicalSexOrGenderIdentity\}, \{maleDatum \mapsto{} thing\},\\~               \{femaleGender \mapsto{} femaleGender\}, \{femaleGender \mapsto{} genderIdentity\}, \{femaleGender \mapsto{} biologicalSexOrGenderIdentity\}, \{femaleGender \mapsto{} thing\},\\~               \{maleGender \mapsto{} maleGender\}, \{maleGender \mapsto{} genderIdentity\}, \{maleGender \mapsto{} biologicalSexOrGenderIdentity\}, \{maleGender \mapsto{} thing\},\\~               \{nonBinaryGender \mapsto{} nonBinaryGender\}, \{nonBinaryGender \mapsto{} genderIdentity\}, \{nonBinaryGender \mapsto{} biologicalSexOrGenderIdentity\}, \{nonBinaryGender \mapsto{} thing\},\\~               \{femaleDatumOrGender \mapsto{} femaleDatumOrGender\}, \{femaleDatumOrGender \mapsto{} biologicalSexOrGenderIdentity\}, \{femaleDatumOrGender \mapsto{} thing\},\\~               \{intersexOrNonBinary \mapsto{} intersexOrNonBinary\}, \{intersexOrNonBinary \mapsto{} biologicalSexOrGenderIdentity\}, \{intersexOrNonBinary \mapsto{} thing\},\\~               \{maleDatumOrGender \mapsto{} maleDatumOrGender\}, \{maleDatumOrGender \mapsto{} biologicalSexOrGenderIdentity\}, \{maleDatumOrGender \mapsto{} thing\},\\~               \{biologicalSex \mapsto{} biologicalSex\}, \{biologicalSex \mapsto{} biologicalSexOrGenderIdentity\}, \{biologicalSex \mapsto{} thing\},\\~               \{genderIdentity \mapsto{} genderIdentity\}, \{genderIdentity \mapsto{} biologicalSexOrGenderIdentity\}, \{genderIdentity \mapsto{} thing\},\\~               \{biologicalSexOrGenderIdentity \mapsto{} biologicalSexOrGenderIdentity\}, \{biologicalSexOrGenderIdentity \mapsto{} thing\},\\~               \{thing \mapsto{} thing\})$}{}
+	\Axiom{axm10}{false}{$\\partition(class\_of\_strict, \{ice1 \mapsto{} femaleDatum\}, \{ice1 \mapsto{} femaleDatumOrGender\},\\~                          \{ice2 \mapsto{} femaleDatumOrGender\},\\~                          \{ice3 \mapsto{} femaleGender\}, \{ice3 \mapsto{} femaleDatumOrGender\},\\~                          \{ice4 \mapsto{} intersexDatum\}, \{ice4 \mapsto{} intersexOrNonBinary\},\\~                          \{ice5 \mapsto{} nonBinaryGender\}, \{ice5 \mapsto{} intersexOrNonBinary\},\\~                          \{ice6 \mapsto{} maleDatum\}, \{ice6 \mapsto{} maleDatumOrGender\},\\~                          \{ice7 \mapsto{} maleGender\}, \{ice7 \mapsto{} maleDatumOrGender\},\\~                          \{ice8 \mapsto{} maleDatumOrGender\}) $}{}
+	\Axiom{axm11}{false}{$\\partition(class\_of, \{ice1 \mapsto{} femaleDatum\}, \{ice1 \mapsto{} biologicalSex\}, \{ice1 \mapsto{} femaleDatumOrGender\}, \{ ice1 \mapsto{} biologicalSexOrGenderIdentity\}, \{ice1 \mapsto{} thing\},\\~                   \{ice2 \mapsto{} femaleDatumOrGender\}, \{ ice2 \mapsto{} biologicalSexOrGenderIdentity\},  \{ice2 \mapsto{} thing\},\\~                   \{ice3 \mapsto{} femaleGender\}, \{ice3 \mapsto{} genderIdentity\}, \{ice3 \mapsto{} femaleDatumOrGender\}, \{ ice3 \mapsto{} biologicalSexOrGenderIdentity\},  \{ice3 \mapsto{} thing\},\\~                   \{ice4 \mapsto{} intersexDatum\}, \{ice4 \mapsto{} biologicalSex\}, \{ice4 \mapsto{} intersexOrNonBinary\}, \{ ice4 \mapsto{} biologicalSexOrGenderIdentity\},  \{ice4 \mapsto{} thing\},\\~                   \{ice5 \mapsto{} nonBinaryGender\}, \{ice5 \mapsto{} genderIdentity\}, \{ice5 \mapsto{} intersexOrNonBinary\}, \{ ice5 \mapsto{} biologicalSexOrGenderIdentity\},  \{ice5 \mapsto{} thing\},\\~                   \{ice6 \mapsto{} maleDatum\}, \{ice6 \mapsto{} biologicalSex\}, \{ice6 \mapsto{} maleDatumOrGender\}, \{ ice6 \mapsto{} biologicalSexOrGenderIdentity\},  \{ice6 \mapsto{} thing\},\\~                   \{ice7 \mapsto{} maleGender\}, \{ice7 \mapsto{} genderIdentity\}, \{ice7 \mapsto{} maleDatumOrGender\}, \{ ice7 \mapsto{} biologicalSexOrGenderIdentity\},  \{ice7 \mapsto{} thing\},\\~                   \{ice8 \mapsto{} maleDatumOrGender\},  \{ ice8 \mapsto{} biologicalSexOrGenderIdentity\},  \{ice8 \mapsto{} thing\}) $}{}
+	\Axiom{axm12}{false}{$\\partition(individuation, \{ e1 \mapsto{} ice4 \}, \{ e2 \mapsto{} ice1 \}, \{ e3 \mapsto{} ice6 \}, \{ e4 \mapsto{} ice4 \}, \{ e4 \mapsto{} ice1 \}, \{ e4 \mapsto{} ice6 \},\\~                        \{ e5 \mapsto{} ice3 \}, \{ e6 \mapsto{} ice7 \}, \{ e7 \mapsto{} ice5 \}, \{ e8 \mapsto{} ice3 \}, \{ e8 \mapsto{} ice7 \}, \{ e8 \mapsto{} ice5 \},\\~                        \{ e9 \mapsto{} ice2 \}, \{ e10 \mapsto{} ice8 \}, \\~                        \{ e11 \mapsto{} ice2 \}, \{ e11 \mapsto{} ice8 \})$}{}
+	\Axiom{axm13}{false}{$\\partition(exp\_key, \{ e1 \mapsto{} k1 \}, \{ e2 \mapsto{} k1 \}, \{ e3 \mapsto{} k1 \}, \{ e4 \mapsto{} k1 \},\\~                  \{ e5 \mapsto{} k2 \}, \{ e6 \mapsto{} k2 \}, \{ e7 \mapsto{} k2 \}, \{ e8 \mapsto{} k2 \},\\~                  \{ e9 \mapsto{} k3 \}, \{ e10 \mapsto{} k3 \}, \{ e11 \mapsto{} k3 \})$}{}
+	\Axiom{axm17}{false}{$partition(key\_compatible, \{ k1 \mapsto{} k1 \}, \{ k2 \mapsto{} k2 \}, \{ k3 \mapsto{} k3 \})$}{}
+	\Axiom{axm18}{false}{$partition(exp\_list, \{1 \mapsto{} e1\}, \{2 \mapsto{} e2\}, \{3 \mapsto{} e3\}, \{4 \mapsto{} e4\}, \{5 \mapsto{} e5\}, \{6 \mapsto{} e6\}, \{7 \mapsto{} e7\}, \{8 \mapsto{} e8\}, \{9 \mapsto{} e9\}, \{10 \mapsto{} e10\}, \{11 \mapsto{} e11\})$}{}
+}
+\END
+\end{document}

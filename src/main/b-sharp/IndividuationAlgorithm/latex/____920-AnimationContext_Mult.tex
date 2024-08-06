@@ -1,0 +1,49 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_920-AnimationContext\_Mult}
+\CONTEXT{\_\_\_\_920-AnimationContext\_Mult}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{qualityOrDisposition}{}
+	\Constant{quality}{}
+	\Constant{bodyWeight}{}
+	\Constant{sdc}{}
+	\Constant{po1}{}
+	\Constant{po2}{}
+	\Constant{po3}{}
+	\Constant{po4}{}
+	\Constant{e1}{}
+	\Constant{e2}{}
+	\Constant{e3}{}
+	\Constant{e4}{}
+	\Constant{e5}{}
+	\Constant{e6}{}
+	\Constant{e7}{}
+	\Constant{e8}{}
+	\Constant{e9}{}
+	\Constant{e10}{}
+	\Constant{e11}{}
+	\Constant{e12}{}
+	\Constant{e13}{}
+	\Constant{e14}{}
+	\Constant{e15}{}
+	\Constant{k1}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$partition(C, \{thing\}, \{qualityOrDisposition\}, \{quality\}, \{bodyWeight\}, \{sdc\})$}{}
+	\Axiom{axm2}{false}{$partition(P, \{po1\}, \{po2\}, \{po3\}, \{po4\})$}{}
+	\Axiom{axm3}{false}{$partition(E, \{e1\}, \{e2\}, \{e3\}, \{e4\}, \{e5\}, \{e6\}, \{e7\}, \{e8\}, \{e9\}, \{e10\}, \{e11\}, \{e12\}, \{e13\}, \{e14\}, \{e15\})$}{\\e1 correspond à la seule expression qui sera utile à l'arrimage, les autres correspondent à ses sous-ensembles\\e1 individue po1, po2, po3 et po4\\e2 individue po1, po2 et po3\\e3 individue po2, po3 et po4\\e4 individue po1, po2 et po4\\e5 individue po1, po3 et po4\\e6 individue po1 et po2\\e7 individue po1 et po3\\e8 individue po1 et po4\\e9 individue po2 et po3\\e10 individue po2 et po4\\e11 individue po3 et po4\\e12 individue po1\\e13 individue po2\\e14 individue po3\\e15 individue po4}
+	\Axiom{axm4}{false}{$partition(K, \{k1\})$}{}
+	\Axiom{axm5}{false}{$partition(C\_leaves, \{bodyWeight\})$}{}
+	\Axiom{axm6}{false}{$partition(c\_level, \{ 0 \mapsto{} thing \}, \{1 \mapsto{} qualityOrDisposition\}, \{1 \mapsto{} sdc\}, \{2 \mapsto{} quality\}, \{3 \mapsto{} bodyWeight\})$}{}
+	\Axiom{axm7}{false}{$max\_level = 3$}{}
+	\Axiom{axm8}{false}{$partition(has\_parent, \{bodyWeight \mapsto{} quality\}, \{quality \mapsto{} sdc\}, \{quality \mapsto{} qualityOrDisposition\}, \{sdc \mapsto{} thing\}, \{qualityOrDisposition \mapsto{} thing\})$}{}
+	\Axiom{axm9}{false}{$partition(class\_of\_strict, \{po1 \mapsto{} bodyWeight\}, \{po2 \mapsto{} bodyWeight\}, \{po3 \mapsto{} bodyWeight\}, \{po4 \mapsto{} bodyWeight\}) $}{}
+	\Axiom{axm10}{false}{$\\partition(class\_of, \{po1 \mapsto{} bodyWeight\}, \{po2 \mapsto{} bodyWeight\}, \{po3 \mapsto{} bodyWeight\}, \{po4 \mapsto{} bodyWeight\},\\~                   \{po1 \mapsto{} quality\}, \{po2 \mapsto{} quality\}, \{po3 \mapsto{} quality\}, \{po4 \mapsto{} quality\},\\~                   \{po1 \mapsto{} qualityOrDisposition\}, \{po2 \mapsto{} qualityOrDisposition\}, \{po3 \mapsto{} qualityOrDisposition\}, \{po4 \mapsto{} qualityOrDisposition\},\\~                   \{po1 \mapsto{} sdc\}, \{po2 \mapsto{} sdc\}, \{po3 \mapsto{} sdc\}, \{po4 \mapsto{} sdc\},\\~                   \{po1 \mapsto{} thing\}, \{po2 \mapsto{} thing\}, \{po3 \mapsto{} thing\}, \{po4 \mapsto{} thing\})$}{}
+	\Axiom{axm12}{false}{$\\partition(individuation, \{ e1 \mapsto{} po1\}, \{ e1 \mapsto{} po2\}, \{ e1 \mapsto{} po3\}, \{ e1 \mapsto{} po4\},\\~                        \{ e2 \mapsto{} po1\}, \{ e2 \mapsto{} po2\}, \{ e2 \mapsto{} po3\},\\~                        \{ e3 \mapsto{} po2\}, \{ e3 \mapsto{} po3\}, \{ e3 \mapsto{} po4\},\\~                        \{ e4 \mapsto{} po1\}, \{ e4 \mapsto{} po2\}, \{ e4 \mapsto{} po4\},\\~                        \{ e5 \mapsto{} po1\}, \{ e5 \mapsto{} po3\}, \{ e5 \mapsto{} po4\},\\~                        \{ e6 \mapsto{} po1\}, \{ e6 \mapsto{} po2\},\\~                        \{ e7 \mapsto{} po1\}, \{ e7 \mapsto{} po3\},\\~                        \{ e8 \mapsto{} po1\}, \{ e8 \mapsto{} po4\},\\~                        \{ e9 \mapsto{} po2\}, \{ e9 \mapsto{} po3\},\\~                        \{ e10 \mapsto{} po2\}, \{ e10 \mapsto{} po4\},\\~                        \{ e11 \mapsto{} po3\}, \{ e11 \mapsto{} po4\},\\~                        \{ e12 \mapsto{} po1\}, \{ e13 \mapsto{} po2\}, \{ e14 \mapsto{} po3\}, \{ e15 \mapsto{} po4\})$}{}
+	\Axiom{axm16}{false}{$partition(exp\_key, \{ e1 \mapsto{} k1 \}, \{ e2 \mapsto{} k1 \}, \{ e3 \mapsto{} k1 \}, \{ e4 \mapsto{} k1 \}, \{ e5 \mapsto{} k1 \}, \{ e6 \mapsto{} k1 \}, \{ e7 \mapsto{} k1 \}, \{ e8 \mapsto{} k1 \}, \{ e9 \mapsto{} k1 \}, \{ e10 \mapsto{} k1 \}, \{ e11 \mapsto{} k1 \}, \{ e12 \mapsto{} k1 \}, \{ e13 \mapsto{} k1 \}, \{ e14 \mapsto{} k1 \}, \{ e15 \mapsto{} k1 \})$}{}
+	\Axiom{axm17}{false}{$partition(key\_compatible, \{ k1 \mapsto{} k1 \})$}{}
+	\Axiom{axm18}{false}{$partition(exp\_list, \{1 \mapsto{} e1\}, \{2 \mapsto{} e2\}, \{3 \mapsto{} e3\}, \{4 \mapsto{} e4\}, \{5 \mapsto{} e5\}, \{6 \mapsto{} e6\}, \{7 \mapsto{} e7\}, \{8 \mapsto{} e8\}, \{9 \mapsto{} e9\}, \{10 \mapsto{} e10\}, \{11 \mapsto{} e11\}, \{12 \mapsto{} e12\}, \{13 \mapsto{} e13\}, \{14 \mapsto{} e14\}, \{15 \mapsto{} e15\})$}{}
+}
+\END
+\end{document}

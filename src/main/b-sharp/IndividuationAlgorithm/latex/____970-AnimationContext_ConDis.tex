@@ -1,0 +1,62 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_970-AnimationContext\_ConDis}
+\CONTEXT{\_\_\_\_970-AnimationContext\_ConDis}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{bodyWeight}{}
+	\Constant{quality}{}
+	\Constant{qualityOrDisposition}{}
+	\Constant{disposition}{}
+	\Constant{organism}{}
+	\Constant{qualityOrDispositionInheresInOrganism}{}
+	\Constant{dataItem}{}
+	\Constant{dataItemAboutQualityOrDispositionInheresInOrganism}{}
+	\Constant{physiologicalEvaluation}{}
+	\Constant{eva1}{}
+	\Constant{eva2}{}
+	\Constant{out1}{}
+	\Constant{out2}{}
+	\Constant{bow1}{}
+	\Constant{bow2}{}
+	\Constant{org1}{}
+	\Constant{org2}{}
+	\Constant{e1}{}
+	\Constant{e2}{}
+	\Constant{e3}{}
+	\Constant{e4}{}
+	\Constant{e5}{}
+	\Constant{e6}{}
+	\Constant{e7}{}
+	\Constant{e8}{}
+	\Constant{e9}{}
+	\Constant{e10}{}
+	\Constant{e11}{}
+	\Constant{e12}{}
+	\Constant{k1}{}
+	\Constant{k2}{}
+	\Constant{k3}{}
+	\Constant{k4}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$partition(C, \{thing\}, \{bodyWeight\}, \{quality\}, \{qualityOrDisposition\}, \{disposition\}, \{organism\}, \{qualityOrDispositionInheresInOrganism\}, \{dataItem\}, \{dataItemAboutQualityOrDispositionInheresInOrganism\}, \{physiologicalEvaluation\})$}{}
+	\Axiom{axm2}{false}{$partition(P, \{eva1\}, \{eva2\}, \{out1\}, \{out2\}, \{bow1\}, \{bow2\}, \{org1\}, \{org2\})$}{}
+	\Axiom{axm3}{false}{$partition(E, \{e1\}, \{e2\}, \{e3\}, \{e4\}, \{e5\}, \{e6\}, \{e7\}, \{e8\}, \{e9\}, \{e10\}, \{e11\}, \{e12\})$}{\\e1 pour les organismes\\e2 pour les poids\\e3 pour les data item\\e4 pour les évaluations\\e5 à e12 comme expressions de décomposition }
+	\Axiom{axm4}{false}{$partition(K, \{k1\}, \{k2\}, \{k3\}, \{k4\})$}{}
+	\Axiom{axm5}{false}{$partition(C\_leaves, \{bodyWeight\}, \{ organism \}, \{qualityOrDispositionInheresInOrganism\}, \{dataItemAboutQualityOrDispositionInheresInOrganism\}, \{physiologicalEvaluation\}, \{ disposition \}) $}{}
+	\Axiom{axm6}{false}{$\\partition(c\_level, \{ 0 \mapsto{} thing \}, \\~                  \{ 1 \mapsto{} physiologicalEvaluation \}, \{ 1 \mapsto{} dataItem \}, \{ 1 \mapsto{} qualityOrDisposition\}, \{ 1 \mapsto{} quality \}, \{ 1 \mapsto{} disposition \}, \{ 1 \mapsto{} organism \},\\~                  \{ 2 \mapsto{} dataItemAboutQualityOrDispositionInheresInOrganism \}, \{ 2 \mapsto{} quality \}, \{ 2 \mapsto{} disposition \}, \{ 2 \mapsto{} bodyWeight \}, \{ 2 \mapsto{} qualityOrDispositionInheresInOrganism \},\\~                  \{ 3 \mapsto{} bodyWeight \})$}{}
+	\Axiom{axm7}{false}{$max\_level = 3$}{}
+	\Axiom{axm8}{false}{$\\partition(has\_parent, \{bodyWeight \mapsto{} quality\},\\~                     \{dataItemAboutQualityOrDispositionInheresInOrganism \mapsto{} dataItem\},\\~                     \{qualityOrDispositionInheresInOrganism \mapsto{} qualityOrDisposition \},\\~                     \{quality \mapsto{} thing\}, \{quality \mapsto{} qualityOrDisposition\},\\~                     \{disposition \mapsto{} thing\}, \{disposition \mapsto{} qualityOrDisposition\},\\~                     \{physiologicalEvaluation \mapsto{} thing \}, \\~                     \{dataItem \mapsto{} thing \}, \\~                     \{qualityOrDisposition \mapsto{} thing \}, \\~                     \{organism \mapsto{} thing \})$}{}
+	\Axiom{axm9}{false}{$\\partition(is\_a, \{ bodyWeight \mapsto{} bodyWeight \}, \{bodyWeight \mapsto{} quality\}, \{bodyWeight \mapsto{} thing\}, \{bodyWeight \mapsto{} qualityOrDisposition\},\\~               \{ dataItemAboutQualityOrDispositionInheresInOrganism \mapsto{} dataItemAboutQualityOrDispositionInheresInOrganism\}, \{dataItemAboutQualityOrDispositionInheresInOrganism \mapsto{} dataItem\}, \{dataItemAboutQualityOrDispositionInheresInOrganism \mapsto{} thing\},\\~               \{ qualityOrDispositionInheresInOrganism \mapsto{} qualityOrDispositionInheresInOrganism \}, \{qualityOrDispositionInheresInOrganism \mapsto{} qualityOrDisposition \}, \{qualityOrDispositionInheresInOrganism \mapsto{} thing \},\\~               \{ quality \mapsto{} quality\}, \{quality \mapsto{} thing\}, \{quality \mapsto{} qualityOrDisposition\},\\~               \{ disposition \mapsto{} disposition\}, \{disposition \mapsto{} thing\}, \{disposition \mapsto{} qualityOrDisposition\},\\~               \{ physiologicalEvaluation \mapsto{} physiologicalEvaluation \}, \{physiologicalEvaluation \mapsto{} thing \}, \\~               \{ dataItem \mapsto{} dataItem \}, \{ dataItem \mapsto{} thing \}, \\~               \{ qualityOrDisposition \mapsto{} qualityOrDisposition \}, \{ qualityOrDisposition \mapsto{} thing \},\\~               \{ organism \mapsto{} organism \}, \{ organism \mapsto{} thing \},\\~               \{ thing \mapsto{} thing \})$}{}
+	\Axiom{axm10}{false}{$\\partition(class\_of\_strict, \{eva1 \mapsto{} physiologicalEvaluation\}, \{eva2 \mapsto{} physiologicalEvaluation\},\\~                          \{out1 \mapsto{} dataItemAboutQualityOrDispositionInheresInOrganism\}, \{out2 \mapsto{} dataItemAboutQualityOrDispositionInheresInOrganism\},\\~                          \{bow1 \mapsto{} qualityOrDispositionInheresInOrganism \}, \{bow1 \mapsto{} bodyWeight \}, \{bow2 \mapsto{} qualityOrDispositionInheresInOrganism \}, \{bow2 \mapsto{} bodyWeight \},\\~                          \{org1 \mapsto{} organism \}, \{org2 \mapsto{} organism \})$}{}
+	\Axiom{axm11}{false}{$\\partition(class\_of, \{eva1 \mapsto{} physiologicalEvaluation\}, \{eva1 \mapsto{} thing\}, \\~                   \{eva2 \mapsto{} physiologicalEvaluation\}, \{eva2 \mapsto{} thing\}, \\~                   \{out1 \mapsto{} dataItemAboutQualityOrDispositionInheresInOrganism\}, \{out1 \mapsto{} dataItem\}, \{out1 \mapsto{} thing\},  \\~                   \{out2 \mapsto{} dataItemAboutQualityOrDispositionInheresInOrganism\}, \{out2 \mapsto{} dataItem\}, \{out2 \mapsto{} thing\},  \\~                   \{bow1 \mapsto{} qualityOrDispositionInheresInOrganism \}, \{bow1 \mapsto{} qualityOrDisposition \}, \{bow1 \mapsto{} quality\}, \{bow1 \mapsto{} bodyWeight\}, \{bow1 \mapsto{} thing \},\\~                   \{bow2 \mapsto{} qualityOrDispositionInheresInOrganism \}, \{bow2 \mapsto{} qualityOrDisposition \}, \{bow2 \mapsto{} quality\}, \{bow2 \mapsto{} bodyWeight\}, \{bow2 \mapsto{} thing \},\\~                   \{org1 \mapsto{} organism \}, \{org1 \mapsto{} thing \},\\~                   \{org2 \mapsto{} organism \}, \{org2 \mapsto{} thing \})$}{}
+	\Axiom{axm12}{false}{$\\partition(individuation, \{ e1 \mapsto{} org1 \}, \{ e1 \mapsto{} org2 \}, \\~                        \{ e2 \mapsto{} bow1 \}, \{ e2 \mapsto{} bow2 \},\\~                        \{ e3 \mapsto{} out1 \}, \{ e3 \mapsto{} out2 \},\\~                        \{ e4 \mapsto{} eva1 \}, \{ e4 \mapsto{} eva2 \},\\~                        \{ e5 \mapsto{} org1 \}, \{ e6 \mapsto{} bow1 \}, \{ e7 \mapsto{} out1 \}, \{ e8 \mapsto{} eva1 \},\\~                        \{ e9 \mapsto{} org2 \}, \{ e10 \mapsto{} bow2 \}, \{ e11 \mapsto{} out2 \}, \{ e12 \mapsto{} eva2 \}) $}{}
+	\Axiom{animation\_expSubsets}{false}{$\\partition(exp\_subsets, \{ e1 \mapsto{} e1 \}, \{e1 \mapsto{} e5\}, \{e1 \mapsto{} e9\},\\~                      \{ e2 \mapsto{} e2 \}, \{e2 \mapsto{} e6\}, \{e2 \mapsto{} e10\},\\~                      \{ e3 \mapsto{} e3 \}, \{e3 \mapsto{} e7\}, \{e3 \mapsto{} e11\},\\~                      \{ e4 \mapsto{} e4 \}, \{e4 \mapsto{} e8\}, \{e4 \mapsto{} e12\},\\~                      \{ e5 \mapsto{} e5 \}, \{ e6 \mapsto{} e6 \}, \{ e7 \mapsto{} e7 \}, \{ e8 \mapsto{} e8 \}, \{ e9 \mapsto{} e9 \}, \{ e10 \mapsto{} e10 \}, \{ e11 \mapsto{} e11 \}, \{ e12 \mapsto{} e12 \})$}{}
+	\Axiom{animation\_expEquivalent}{false}{$partition(exp\_equivalent, \{ e1 \mapsto{} e1 \}, \{e2 \mapsto{} e2\}, \{e3 \mapsto{} e3\},\{e4 \mapsto{} e4\},\{e5 \mapsto{} e5\},\{e6 \mapsto{} e6\},\{e7 \mapsto{} e7\},\{e8 \mapsto{} e8\},\{e9 \mapsto{} e9\},\{e10 \mapsto{} e10\},\{e11 \mapsto{} e11\},\{e12 \mapsto{} e12\})$}{}
+	\Axiom{animation\_expOverlaps}{false}{$\\partition(exp\_overlap, \{ e1 \mapsto{} e1 \}, \{e1 \mapsto{} e5\}, \{e1 \mapsto{} e9\},\\~                      \{ e2 \mapsto{} e2 \}, \{e2 \mapsto{} e6\}, \{e2 \mapsto{} e10\},\\~                      \{ e3 \mapsto{} e3 \}, \{e3 \mapsto{} e7\}, \{e3 \mapsto{} e11\},\\~                      \{ e4 \mapsto{} e4 \}, \{e4 \mapsto{} e8\}, \{e4 \mapsto{} e12\},\\~                      \{ e5 \mapsto{} e1 \}, \{ e9 \mapsto{} e1 \},\\~                      \{ e6 \mapsto{} e2 \}, \{ e10 \mapsto{} e2 \},\\~                      \{ e7 \mapsto{} e3 \}, \{ e11 \mapsto{} e3 \},\\~                      \{ e8 \mapsto{} e4 \}, \{ e12 \mapsto{} e4 \},\\~                      \{ e5 \mapsto{} e5 \}, \{ e6 \mapsto{} e6 \}, \{ e7 \mapsto{} e7 \}, \{ e8 \mapsto{} e8 \}, \{ e9 \mapsto{} e9 \}, \{ e10 \mapsto{} e10 \}, \{ e11 \mapsto{} e11 \}, \{ e12 \mapsto{} e12 \})$}{}
+	\Axiom{axm16}{false}{$\\partition(exp\_key, \{ e1 \mapsto{} k1 \}, \{ e2 \mapsto{} k2 \}, \{ e3 \mapsto{} k3 \}, \{ e4 \mapsto{} k4 \}, \\~                  \{ e5 \mapsto{} k1 \}, \{ e9 \mapsto{} k1 \},\\~                  \{ e6 \mapsto{} k2 \}, \{ e10 \mapsto{} k2 \},\\~                  \{ e7 \mapsto{} k3 \}, \{ e11 \mapsto{} k3 \},\\~                  \{ e8 \mapsto{} k4 \}, \{ e12 \mapsto{} k4 \})$}{}
+	\Axiom{axm17}{false}{$partition(key\_compatible, \{ k1 \mapsto{} k1 \}, \{ k2 \mapsto{} k2 \}, \{ k3 \mapsto{} k3 \}, \{ k4 \mapsto{} k4 \})$}{}
+	\Axiom{axm18}{false}{$partition(exp\_list, \{1 \mapsto{} e1\}, \{2 \mapsto{} e2\}, \{3 \mapsto{} e3\}, \{4 \mapsto{} e4\}, \{5 \mapsto{} e5\}, \{6 \mapsto{} e6\}, \{7 \mapsto{} e7\}, \{8 \mapsto{} e8\}, \{9 \mapsto{} e9\}, \{10 \mapsto{} e10\}, \{11 \mapsto{} e11\}, \{12 \mapsto{} e12\})$}{}
+}
+\END
+\end{document}
