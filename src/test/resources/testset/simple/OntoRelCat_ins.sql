@@ -25,6 +25,7 @@ Objet :
                             'false',
                             'false',
                             'false',
+                            'false',
                             'false');
 
  call "ontorelcat_pub".onto_schema_ins ('simple','simple','en','BASE');
