@@ -18,7 +18,7 @@ import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.PostgreSQLDBFunction
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.TypeFactory;
-import it.unibz.inf.ontop.model.type.impl.PostgreSQLDBTypeFactory;
+import ca.griis.mmec.controller.ontop.model.type.impl.MMecPostgreSQLDBTypeFactory;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -46,7 +46,7 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
       TypeFactory typeFactory) {
     super(typeFactory);
     individuationFunctionCallTemplate = "individuation(%s)";
-    individuationFunctionReturnType = dbTypeFactory.getDBTermType(PostgreSQLDBTypeFactory.UUID_STR);
+    individuationFunctionReturnType = dbTypeFactory.getDBTermType(MMecPostgreSQLDBTypeFactory.UUID_STR);
   }
 
   @Override
