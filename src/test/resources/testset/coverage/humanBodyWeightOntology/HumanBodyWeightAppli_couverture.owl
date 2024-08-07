@@ -17,7 +17,7 @@
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl">
         <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/humanbodyweight-appli.owl/couverture/v1.0"/>
-        <rdfs:comment xml:lang="fr">Ontologie applicative - version sans héritages multiples.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Ontologie applicative - définie de façon à montrer la couverture des structures ontologiques et des cas d&apos;arrimage</rdfs:comment>
     </owl:Ontology>
     
 
@@ -2404,6 +2404,54 @@ An occurrent that has temporal proper parts and for some time t, p s-depends_on 
     
 
 
+    <!-- http://purl.obolibrary.org/obo/HBW_0000028 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000028">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NOYO_0000013"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HBW_0000006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/IOIO_0000012"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A statement about the biological sex or gender identity of a human</rdfs:comment>
+        <rdfs:label xml:lang="en">human biological sex or gender identity statement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HBW_0000029 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/HBW_0000029">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NOYO_0000013"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HBW_0000002"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/HBW_0000006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A statement about the inscription of a patient in a category of health situation in order to adjust administrative handling of physician billing by the RAMQ.</rdfs:comment>
+        <rdfs:label xml:lang="en">RAMQ vulnerability code statement</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/IAO_0000003 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000003">
@@ -2713,23 +2761,6 @@ this case we explicitly refer to the singular form</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NOYO_0000012"/>
         <obo:IAO_0000115 xml:lang="en">An informational entity that is considered valid by some agent at some point in time. (TBD)</obo:IAO_0000115>
         <rdfs:label xml:lang="en">statement</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/NOYO_0000050 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NOYO_0000050">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/NOYO_0000013"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A statement about the information surrounding the birth of a human.</obo:IAO_0000115>
-        <rdfs:label xml:lang="en">birth statement</rdfs:label>
     </owl:Class>
     
 
