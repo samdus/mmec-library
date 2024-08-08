@@ -29,8 +29,8 @@ import java.util.regex.Pattern;
  *
  * @brief @~french Implémentation mMec de la classe des types PostgresSQL
  * @par Détails
- *     Le modèle initial fait toujours le toupper pour les noms de type et c'est à
- *     éviter lorsque le nom du type contient des guillemets.
+ *      Le modèle initial fait toujours le toupper pour les noms de type et c'est à
+ *      éviter lorsque le nom du type contient des guillemets.
  * @par Modèle
  *      S.O.
  * @par Conception
