@@ -44,12 +44,12 @@ import java.util.regex.Pattern;
  * @par Tâches
  *      S.O.
  */
-public class MMecPostgreSQLDBTypeFactory extends PostgreSQLDBTypeFactory {
+public class MMecPostgreSqlDbTypeFactory extends PostgreSQLDBTypeFactory {
 
   private static final Pattern OPTIONAL_LENGTH = Pattern.compile("\\([\\d, ]+\\)");
 
   @AssistedInject
-  protected MMecPostgreSQLDBTypeFactory(@Assisted TermType rootTermType,
+  protected MMecPostgreSqlDbTypeFactory(@Assisted TermType rootTermType,
       @Assisted TypeFactory typeFactory) {
     super(rootTermType, typeFactory);
   }

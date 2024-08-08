@@ -9,7 +9,7 @@
 
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
-import ca.griis.mmec.controller.ontop.model.type.impl.MMecPostgreSQLDBTypeFactory;
+import ca.griis.mmec.controller.ontop.model.type.impl.MMecPostgreSqlDbTypeFactory;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
@@ -47,7 +47,7 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
     super(typeFactory);
     individuationFunctionCallTemplate = "individuation(%s)";
     individuationFunctionReturnType =
-        dbTypeFactory.getDBTermType(MMecPostgreSQLDBTypeFactory.UUID_STR);
+        dbTypeFactory.getDBTermType(MMecPostgreSqlDbTypeFactory.UUID_STR);
   }
 
   @Override
