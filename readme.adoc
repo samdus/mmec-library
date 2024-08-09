@@ -15,7 +15,11 @@ Modèle permettant de définir une mise en correspondance.
 Le projet a été construit avec la version 5.2.0 de Ontop, mais celle-ci n'était pas encore finalisée au moment du
 développement. La dépendance a été ajoutée au nexus du griis, mais il est possible qu'elle ne soit plus disponible au
 moment de la construction. Si ce n'est pas le cas, simplement exécuter `./mvnw install` à la racine
-https://github.com/samdus/ontop/tree/version5[du fork du projet ontop].
+https://github.com/samdus/ontop/tree/version5[du fork du projet ontop]. Pour que le projet puisse être construit par le
+CI du GRIIS, il est nécessaire de déployer le projet sur le nexus du GRIIS. Pour ce faire, modifier `snapshotRepository`
+dans le fichier `pom.xml` pour qu'il pointe vers le nexus du GRIIS. Ensuite, exécuter les commandes :
+- `./mvnw clean package -DskipTests`
+- `./mvnw deploy`
 
 Certaines classes Ontop ont dû être adaptées directement. Ces classes ont été copiées depuis le projet Ontop et modifiées
 pour répondre aux besoins du projet mMEC. Ces classes sont situées sous `src/main/java/it/unibz/inf/ontop`. Il sera
