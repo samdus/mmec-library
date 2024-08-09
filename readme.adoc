@@ -9,3 +9,15 @@
 [#summary]
 == Sommaire
 Modèle permettant de définir une mise en correspondance.
+
+== Construction
+=== Dépendance à Ontop
+Le projet a été construit avec la version 5.2.0 de Ontop, mais celle-ci n'était pas encore finalisée au moment du
+développement. La dépendance a été ajoutée au nexus du griis, mais il est possible qu'elle ne soit plus disponible au
+moment de la construction. Si ce n'est pas le cas, simplement exécuter `./mvnw install` à la racine
+https://github.com/samdus/ontop/tree/version5[du fork du projet ontop].
+
+Certaines classes Ontop ont dû être adaptées directement. Ces classes ont été copiées depuis le projet Ontop et modifiées
+pour répondre aux besoins du projet mMEC. Ces classes sont situées sous `src/main/java/it/unibz/inf/ontop`. Il sera
+nécessaire de vérifier manuellement si ces fichiers doivent être mis à jour lors de la mise à jour de la dépendance à
+Ontop.
