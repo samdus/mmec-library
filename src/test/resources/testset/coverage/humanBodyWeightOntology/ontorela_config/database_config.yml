@@ -11,5 +11,6 @@ defaultAttributeDomaineName: value_domain
 defaultAttributeType: TEXT
 maxIdentifierLength: 60
 useIriAsTableId: true
+removeThingTable: true
 languages:
   - en
