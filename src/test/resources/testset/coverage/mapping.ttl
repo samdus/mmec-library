@@ -620,6 +620,12 @@ obo:humanbodyweight-appli:couverture:v1.0
                                            rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
                                                                  rr:parent """ "ID_PATIENT_EXT" """ ] ] ] .
 
+# "ONTORELA_C61c354fb" "IAO_0000136"@is about "ONTORELA_C2986e108"
+:HBW_0000026
+    rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000009 ;
+                                           rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
+                                                                 rr:parent """ "ID_PERSONNE_EXT" """ ] ] ] .
 
 
 # **** Arrimage d'une propriété définie sur un parent ****
@@ -849,3 +855,103 @@ obo:humanbodyweight-appli:couverture:v1.0
                                            rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
                                                                  rr:parent """ "ID_PATIENT_EXT" """ ] ] ] .
 
+# "HBW_0000028"@human biological sex or gender identity statement
+:HBW_0000028
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select *
+                        from "EXP"."PATIENT"
+                        where "SEXE_BIO" is not null
+                          or "IDENTITE_GENRE" is not null
+                          or "SEXE" is not null
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000028 ;
+                      mmec:signatureComponent "\"ID_PATIENT_EXT\"" ;
+                      rr:termType             rr:IRI ] .
+
+# "HBW_0000028"@human biological sex or gender identity statement "BFO_0000051"@has part
+#        "IOIO_0000012"@human biological sex or gender identity ICE
+:HBW_0000028
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :IOIO_0000012 ;
+                                           rr:joinCondition    [ rr:child  "\"SEXE\"" ;
+                                                                 rr:parent "\"SEXE\"" ] ] ] .
+
+# "HBW_0000028"@human biological sex or gender identity statement "BFO_0000051"@has part
+#        "VO_0001194"@biological sex datum
+:HBW_0000028
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :VO_0001194 ;
+                                           rr:joinCondition    [ rr:child  "\"SEXE_BIO\"" ;
+                                                                 rr:parent "\"SEXE_BIO\"" ] ] ] .
+
+# "HBW_0000028"@human biological sex or gender identity statement "BFO_0000051"@has part
+#        "OMRSE_00000209"@gender identity ICE
+:HBW_0000028
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :OMRSE_00000209 ;
+                                           rr:joinCondition    [ rr:child  "\"IDENTITE_GENRE\"" ;
+                                                                 rr:parent "\"IDENTITE_GENRE\"" ] ] ] .
+
+# "HBW_0000028"@human biological sex or gender identity statement "BFO_0000051"@has part
+#        "HBW_0000006"@medical record identifier
+:HBW_0000028
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000006 ;
+                                           rr:joinCondition    [ rr:child  "\"ID_PATIENT_EXT\"" ;
+                                                                 rr:parent "\"ID_PATIENT_EXT\"" ] ] ] .
+
+# "HBW_0000029"@RAMQ vulnerability code statement
+:HBW_0000029
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery """
+                        select *
+                        from "EXP"."PATIENT"
+                        where "CODE_VULN_1" is not null
+                          or "CODE_VULN_2" is not null
+                          or "CODE_VULN_3" is not null
+                      """ ] ;
+    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
+                      rr:class                obo:HBW_0000029 ;
+                      mmec:signatureComponent "\"ID_PATIENT_EXT\"" ;
+                      rr:termType             rr:IRI ] .
+
+# "HBW_0000029"@RAMQ vulnerability code statement "BFO_0000051"@has part
+#        "HBW_0000002"@RAMQ vulnerability code e1
+:HBW_0000029
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000002_e1 ;
+                                           rr:joinCondition    [ rr:child  "\"CODE_VULN_1\"" ;
+                                                                 rr:parent "\"CODE_VULN_1\"" ] ] ] .
+
+# "HBW_0000029"@RAMQ vulnerability code statement "BFO_0000051"@has part
+#        "HBW_0000002"@RAMQ vulnerability code e2
+:HBW_0000029
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000002_e2 ;
+                                           rr:joinCondition    [ rr:child  "\"CODE_VULN_2\"" ;
+                                                                 rr:parent "\"CODE_VULN_2\"" ] ] ] .
+
+# "HBW_0000029"@RAMQ vulnerability code statement "BFO_0000051"@has part
+#        "HBW_0000002"@RAMQ vulnerability code e3
+:HBW_0000029
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000002_e3 ;
+                                           rr:joinCondition    [ rr:child  "\"CODE_VULN_3\"" ;
+                                                                 rr:parent "\"CODE_VULN_3\"" ] ] ] .
+
+# "HBW_0000029"@RAMQ vulnerability code statement "BFO_0000051"@has part
+#        "HBW_0000006"@medical record identifier
+:HBW_0000029
+    rr:predicateObjectMap [ rr:predicate obo:BFO_0000051 ;
+                            rr:objectMap [ rr:parentTriplesMap :HBW_0000006 ;
+                                           rr:joinCondition    [ rr:child  "\"ID_PATIENT_EXT\"" ;
+                                                                 rr:parent "\"ID_PATIENT_EXT\"" ] ] ] .
+
+# "HBW_0000022"@human name "IAO_0000219"@denotes "NCBITaxon_9606"@Homo sapiens
+:HBW_0000022
+    rr:predicateObjectMap [ rr:predicate obo:IAO_0000219 ;
+                            rr:objectMap [ rr:parentTriplesMap :NCBITaxon_9606 ;
+                                           rr:joinCondition    [ rr:child  "\"ID_PERSONNE_EXT\"" ;
+                                                                 rr:parent "\"ID_PERSONNE_EXT\"" ] ] ] .
