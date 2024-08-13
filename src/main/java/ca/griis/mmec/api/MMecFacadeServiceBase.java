@@ -13,6 +13,8 @@
 
 package ca.griis.mmec.api;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFound;
 import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
 import ca.griis.mmec.model.mapped.MappedClassTable;
@@ -25,6 +27,7 @@ import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
 import ca.griis.mmec.repository.OntoRelCatRepository;
+import ca.griis.mmec.repository.ProjectInfoRepository;
 import ca.griis.mmec.view.MappedOntoRelTableView;
 import it.unibz.inf.ontop.answering.OntopQueryEngine;
 import it.unibz.inf.ontop.answering.connection.OntopConnection;
@@ -35,11 +38,15 @@ import it.unibz.inf.ontop.injection.impl.MMecConfiguration;
 import java.io.IOException;
 
 public class MMecFacadeServiceBase implements MMecFacadeService {
+  private static final GriisLogger logger = GriisLoggerFactory.getLogger(
+      MMecFacadeServiceBase.class);
+
   @Override
   public String createFacade(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
       throws DefaultOntopConfigurationNotFound, OntopConnectionException,
       OBDASpecificationException, OntopReformulationException {
+
     MMecConfiguration configuration = buildMMecConfiguration(
         connectionProperties, mappingProperties, mmecFacadeProperties);
 
@@ -50,6 +57,15 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
             OntoRelTableMappingController.class);
     OntoRelCatRepository ontoRelCatRepository = configuration.getInjector().getInstance(
         OntoRelCatRepository.class);
+    ProjectInfoRepository projectInfoRepository = configuration.getInjector().getInstance(
+        ProjectInfoRepository.class);
+
+    if (projectInfoRepository.getVersion().isPresent()) {
+      logger.warn("Creating facade using mMec version {}",
+          projectInfoRepository.getVersion().get());
+    } else {
+      logger.warn("Creating facade with an unknown version of mMec");
+    }
 
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
       ontopQueryEngine.connect();
