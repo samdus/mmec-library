@@ -24,6 +24,7 @@ import ca.griis.mmec.properties.builder.MappingPropertiesBuilder;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -119,7 +120,7 @@ public class MMecFacadeServiceBaseTest {
     Assertions.assertNotNull(facade);
     Assertions.assertFalse(facade.isEmpty());
 
-    try (PrintWriter writer = new PrintWriter(exportFile)) {
+    try (PrintWriter writer = new PrintWriter(exportFile, StandardCharsets.UTF_8)) {
       writer.write(facade);
     }
   }

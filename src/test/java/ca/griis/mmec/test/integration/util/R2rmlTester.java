@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -189,7 +190,7 @@ public class R2rmlTester extends OntopTester {
   // return builder.toString();
   // }
 
-  public void testGetAllDefinitions(OntopConnection connection) throws FileNotFoundException {
+  public void testGetAllDefinitions(OntopConnection connection) throws IOException {
     StringBuilder builder = new StringBuilder();
 
     builder.append("-- ========================================================\n");
@@ -239,7 +240,8 @@ public class R2rmlTester extends OntopTester {
         .map(mappedOntoRelTableView::getExpression)
         .collect(Collectors.joining("\n")));
 
-    try (PrintWriter writer = new PrintWriter("build/tmp/test/complete_mapping.sql")) {
+    try (PrintWriter writer = new PrintWriter("build/tmp/test/complete_mapping.sql",
+        StandardCharsets.UTF_8)) {
       writer.write(builder.toString());
     }
   }
