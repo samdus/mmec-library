@@ -22,7 +22,6 @@ import it.unibz.inf.ontop.exception.OBDASpecificationException;
 import it.unibz.inf.ontop.exception.OntopConnectionException;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
