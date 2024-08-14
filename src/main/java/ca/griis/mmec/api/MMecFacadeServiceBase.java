@@ -15,6 +15,7 @@ package ca.griis.mmec.api;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.mmec.api.exception.ConnectionException;
 import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFound;
 import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
 import ca.griis.mmec.model.mapped.MappedClassTable;
@@ -36,6 +37,7 @@ import it.unibz.inf.ontop.exception.OntopConnectionException;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import it.unibz.inf.ontop.injection.impl.MMecConfiguration;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MMecFacadeServiceBase implements MMecFacadeService {
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(
@@ -45,7 +47,7 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
   public String createFacade(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
       throws DefaultOntopConfigurationNotFound, OntopConnectionException,
-      OBDASpecificationException, OntopReformulationException {
+      OBDASpecificationException, OntopReformulationException, ConnectionException {
 
     MMecConfiguration configuration = buildMMecConfiguration(
         connectionProperties, mappingProperties, mmecFacadeProperties);
@@ -152,7 +154,7 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
 
   private static MMecConfiguration buildMMecConfiguration(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
-      throws DefaultOntopConfigurationNotFound {
+      throws DefaultOntopConfigurationNotFound, ConnectionException {
     MMecConfiguration configuration;
 
     try {
@@ -165,6 +167,12 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
           .build();
     } catch (IOException e) {
       throw new DefaultOntopConfigurationNotFound(e);
+    } catch (RuntimeException e) {
+      if (e.getCause() instanceof SQLException sqlE) {
+        throw new ConnectionException(sqlE);
+      } else {
+        throw e;
+      }
     }
     return configuration;
   }

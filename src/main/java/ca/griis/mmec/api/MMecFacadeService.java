@@ -13,6 +13,7 @@
 
 package ca.griis.mmec.api;
 
+import ca.griis.mmec.api.exception.ConnectionException;
 import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFound;
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.FacadeProperties;
@@ -21,6 +22,7 @@ import it.unibz.inf.ontop.exception.OBDASpecificationException;
 import it.unibz.inf.ontop.exception.OntopConnectionException;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -99,5 +101,5 @@ public interface MMecFacadeService {
   String createFacade(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
       throws IOException, DefaultOntopConfigurationNotFound, OntopConnectionException,
-      OBDASpecificationException, OntopReformulationException;
+      OBDASpecificationException, OntopReformulationException, ConnectionException;
 }
