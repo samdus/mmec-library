@@ -63,10 +63,10 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
         ProjectInfoRepository.class);
 
     if (projectInfoRepository.getVersion().isPresent()) {
-      logger.warn("Creating facade using mMec version {}",
+      logger.info("Creating facade using mMec version {}",
           projectInfoRepository.getVersion().get());
     } else {
-      logger.warn("Creating facade with an unknown version of mMec");
+      logger.info("Creating facade with an unknown version of mMec");
     }
 
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
