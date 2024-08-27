@@ -112,12 +112,11 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
   public IncrementalEvaluation evaluateStrictEq(ImmutableList<? extends ImmutableTerm> terms,
       ImmutableTerm otherTerm, TermFactory termFactory, VariableNullability variableNullability) {
     IncrementalEvaluation evaluation;
-    if ((otherTerm instanceof ImmutableFunctionalTerm otherImmutableFunctionalTerm)
-        && otherImmutableFunctionalTerm
-            .getFunctionSymbol() instanceof MMecIndividuationFunctionSymbol) {
-      if (otherImmutableFunctionalTerm.getTerms().size() == terms.size()) {
+    if (otherTerm instanceof ImmutableFunctionalTerm otherTermFunctional
+        && otherTermFunctional.getFunctionSymbol() instanceof MMecIndividuationFunctionSymbol) {
+      if (otherTermFunctional.getTerms().size() == terms.size()) {
         ImmutableList<? extends ImmutableTerm> otherSubTerms =
-            otherImmutableFunctionalTerm.getTerms();
+            otherTermFunctional.getTerms();
 
         ImmutableList<ImmutableExpression> conjonctionTerms = IntStream.range(0, terms.size())
             .mapToObj(i -> termFactory.getStrictEquality(terms.get(i), otherSubTerms.get(i)))

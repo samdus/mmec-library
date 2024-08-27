@@ -272,15 +272,15 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
      * @return «Return description»
      *
      * @brief @~french Lors de la mise à jour du ConstructionNode, il est fréquent
-     *                 d'induire des substitutions circulaires. Cette méthode
-     *                 permet de renommer les variables du sous-arbre de sorte qu'aucune valeur
-     *                 définie par le ConstructionNode n'aient le même nom.
+     *        d'induire des substitutions circulaires. Cette méthode
+     *        permet de renommer les variables du sous-arbre de sorte qu'aucune valeur
+     *        définie par le ConstructionNode n'aient le même nom.
      * @param updatedSubstitution l'instance de Substitution découlant d'une mise à jour d'IRI
      * @param query la requête sous-jaçente
      * @return La nouvelle substitution et la requête
      *
      * @par Tâches
-     *    S.O.
+     *      S.O.
      */
     private Pair<IQTree, Substitution<ImmutableTerm>> renameCircularSubstitution(
         Substitution<ImmutableTerm> updatedSubstitution, IQ query) {
