@@ -11,7 +11,11 @@ package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
 import ca.griis.mmec.controller.ontop.model.type.MMecIndividuationTermType;
 import com.google.common.collect.ImmutableList;
+import it.unibz.inf.ontop.iq.node.VariableNullability;
+import it.unibz.inf.ontop.model.term.ImmutableExpression;
+import it.unibz.inf.ontop.model.term.ImmutableFunctionalTerm;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.IncrementalEvaluation;
 import it.unibz.inf.ontop.model.term.TermFactory;
 import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractTypedDBFunctionSymbol;
@@ -23,6 +27,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -53,8 +58,8 @@ import java.util.stream.Collectors;
  *      fonction appelée par individuation_n où n correspond au nombre de
  *      propriétés identifiantes.
  */
-public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymbol implements
-    RDFTermFunctionSymbol {
+public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymbol
+    implements RDFTermFunctionSymbol {
   private final String functionCallTemplate;
   private final MMecIndividuationTermType mmecIndividuationTermType;
 
@@ -69,12 +74,11 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
    *      S.O.
    */
   protected MMecIndividuationFunctionSymbol(ImmutableList<TermType> argTypes,
-      ObjectRDFType iriTermType, DBTermType returnType,
-      String functionCallTemplate) {
-    super(String.format("Individuation_%s", argTypes.size()), argTypes, returnType);
+      ObjectRDFType iriTermType, DBTermType returnType, String functionCallTemplate) {
+    super(String.format("Individuation_%s", argTypes.size() - 1), argTypes, returnType);
     this.functionCallTemplate = functionCallTemplate;
-    mmecIndividuationTermType = new MMecIndividuationTermType(
-        iriTermType.getAncestry(), returnType);
+    mmecIndividuationTermType = new MMecIndividuationTermType(iriTermType.getAncestry(),
+        returnType);
   }
 
   @Override
@@ -105,19 +109,48 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
   }
 
   @Override
+  public IncrementalEvaluation evaluateStrictEq(ImmutableList<? extends ImmutableTerm> terms,
+      ImmutableTerm otherTerm, TermFactory termFactory, VariableNullability variableNullability) {
+    IncrementalEvaluation evaluation;
+    if (otherTerm instanceof ImmutableFunctionalTerm otherTermFunctional
+        && otherTermFunctional.getFunctionSymbol() instanceof MMecIndividuationFunctionSymbol) {
+      if (otherTermFunctional.getTerms().size() == terms.size()) {
+        ImmutableList<? extends ImmutableTerm> otherSubTerms =
+            otherTermFunctional.getTerms();
+
+        ImmutableList<ImmutableExpression> conjonctionTerms = IntStream.range(0, terms.size())
+            .mapToObj(i -> termFactory.getStrictEquality(terms.get(i), otherSubTerms.get(i)))
+            .collect(ImmutableList.toImmutableList());
+
+        evaluation = termFactory.getConjunction(conjonctionTerms).evaluate(variableNullability,
+            true);
+      } else {
+        evaluation = IncrementalEvaluation.declareIsFalse();
+      }
+    } else {
+      evaluation = super.evaluateStrictEq(terms, otherTerm, termFactory, variableNullability);
+    }
+    return evaluation;
+  }
+
+  @Override
+  protected Decomposability testDecomposabilityIntoConjunction(
+      ImmutableList<? extends ImmutableTerm> terms,
+      VariableNullability variableNullability,
+      ImmutableList<? extends ImmutableTerm> otherTerms) {
+    return Decomposability.NO_WRAPPING_NEEDED;
+  }
+
+  @Override
   public final boolean equals(Object other) {
-    return super.equals(other)
-        && other instanceof MMecIndividuationFunctionSymbol otherSymbol
+    return super.equals(other) && other instanceof MMecIndividuationFunctionSymbol otherSymbol
         && this.functionCallTemplate.compareToIgnoreCase(otherSymbol.functionCallTemplate) == 0
         && this.mmecIndividuationTermType.equals(otherSymbol.mmecIndividuationTermType);
   }
 
   @Override
   public final int hashCode() {
-    return Arrays.hashCode(new Object[] {
-        super.hashCode(),
-        this.functionCallTemplate.toLowerCase(),
-        this.mmecIndividuationTermType
-    });
+    return Arrays.hashCode(new Object[] {super.hashCode(), this.functionCallTemplate.toLowerCase(),
+        this.mmecIndividuationTermType});
   }
 }

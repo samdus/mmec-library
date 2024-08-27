@@ -35,7 +35,7 @@ package it.unibz.inf.ontop.spec.mapping.transformer.impl;
  * #L%
  *
  * NOTE:
- * This is a copy of it.unibz.inf.ontop.spec.mapping.transformer.impl.MMecTMappingSaturatorImpl
+ * This is a copy of it.unibz.inf.ontop.spec.mapping.transformer.impl.TMappingSaturatorImpl
  * that has been modified to use MMecMappingAssertionUnion instead of MappingAssertionUnion.
  */
 
@@ -50,6 +50,7 @@ import it.unibz.inf.ontop.exception.MinorOntopInternalBugException;
 import it.unibz.inf.ontop.injection.CoreSingletons;
 import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQ;
+import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.UnaryIQTree;
 import it.unibz.inf.ontop.iq.node.ConstructionNode;
 import it.unibz.inf.ontop.iq.tools.UnionBasedQueryMerger;
@@ -74,13 +75,18 @@ import it.unibz.inf.ontop.spec.ontology.EquivalencesDAG;
 import it.unibz.inf.ontop.spec.ontology.OClass;
 import it.unibz.inf.ontop.spec.ontology.ObjectPropertyExpression;
 import it.unibz.inf.ontop.spec.ontology.ObjectSomeValuesFrom;
+import it.unibz.inf.ontop.substitution.InjectiveSubstitution;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.SubstitutionFactory;
 import it.unibz.inf.ontop.utils.ImmutableCollectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.tuple.Pair;
 
 @Singleton
 public class MMecTMappingSaturatorImpl implements MappingSaturator {
@@ -135,12 +141,15 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
                     && !exclusionConfig.contains(node.getRepresentative()))
                 .flatMap(node -> saturate(node.getRepresentative(),
                     getSubsumees(reasoner.objectPropertiesDAG(), node), original,
-                    provider::getTransformer, cqc).stream()
+                    provider::getTransformer,
+                    cqc).stream()
                         .flatMap(ma -> node.getMembers().stream()
                             .filter(
-                                d -> !d.isInverse() || d.getInverse() != node.getRepresentative())
+                                d -> !d.isInverse()
+                                    || d.getInverse() != node.getRepresentative())
                             .map(d -> Maps.immutableEntry(
-                                provider.getTransformer(node.getRepresentative(), d), ma)))),
+                                provider.getTransformer(node.getRepresentative(), d),
+                                ma)))),
 
             reasoner.dataPropertiesDAG().stream()
                 .filter(node -> !exclusionConfig.contains(node.getRepresentative()))
@@ -239,12 +248,72 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
       ImmutableList<ImmutableTerm> args = constructionNode.getSubstitution().apply(variables);
       Substitution<ImmutableTerm> updatedSubstitution = substitutionFactory.getSubstitution(
           variables, transformer.apply(args));
+      Pair<IQTree, Substitution<ImmutableTerm>> circularSubstitutionRenamed =
+          renameCircularSubstitution(updatedSubstitution, query);
+
+      IQTree updatedChild = circularSubstitutionRenamed.getLeft();
+      Substitution<ImmutableTerm> substitutionWithoutSwap = circularSubstitutionRenamed.getRight();
+
       ConstructionNode updatedConstructionNode = iqFactory.createConstructionNode(
-          constructionNode.getVariables(), updatedSubstitution);
+          constructionNode.getVariables(), substitutionWithoutSwap);
+
       IQ updatedQuery = iqFactory.createIQ(projectionAtom,
           iqFactory.createUnaryIQTree(updatedConstructionNode,
-              ((UnaryIQTree) query.getTree()).getChild()));
+              updatedChild));
+
       return assertion.copyOf(updatedQuery);
+    }
+
+    /**
+     *
+     * @brief @~english «Description of the method»
+     * @param updatedSubstitution «Parameter description»
+     * @param query «Parameter description»
+     * @return «Return description»
+     *
+     * @brief @~french Lors de la mise à jour du ConstructionNode, il est fréquent
+     *        d'induire des substitutions circulaires. Cette méthode
+     *        permet de renommer les variables du sous-arbre de sorte qu'aucune valeur
+     *        définie par le ConstructionNode n'aient le même nom.
+     * @param updatedSubstitution l'instance de Substitution découlant d'une mise à jour d'IRI
+     * @param query la requête sous-jaçente
+     * @return La nouvelle substitution et la requête
+     *
+     * @par Tâches
+     *      S.O.
+     */
+    private Pair<IQTree, Substitution<ImmutableTerm>> renameCircularSubstitution(
+        Substitution<ImmutableTerm> updatedSubstitution, IQ query) {
+      ImmutableMap<Variable, Variable> circularSubstitution = updatedSubstitution.stream()
+          .filter(sub -> sub.getValue() instanceof Variable)
+          .filter(sub -> updatedSubstitution.isDefining((Variable) sub.getValue()))
+          .map(sub -> Maps.immutableEntry(sub.getKey(), (Variable) sub.getValue()))
+          .collect(ImmutableCollectors.toMap());
+      List<Variable> newVariables = new ArrayList<>(updatedSubstitution.stream()
+          .filter(v -> !circularSubstitution.containsKey(v.getKey()))
+          .map(Map.Entry::getKey)
+          .toList());
+      List<ImmutableTerm> newValues = new ArrayList<>(updatedSubstitution.stream()
+          .filter(v -> !circularSubstitution.containsKey(v.getKey()))
+          .map(Map.Entry::getValue)
+          .toList());
+      IQTree childTree = ((UnaryIQTree) query.getTree()).getChild();
+
+      for (Variable circularVariable : circularSubstitution.keySet()) {
+        Variable toReplace = circularSubstitution.get(circularVariable);
+        Variable freshVariable = query.getVariableGenerator().generateNewVariableFromVar(
+            toReplace);
+        InjectiveSubstitution<Variable> renaming = substitutionFactory
+            .getSubstitution(toReplace, freshVariable)
+            .injective();
+        childTree = childTree.applyFreshRenaming(renaming);
+        newVariables.add(circularVariable);
+        newValues.add(freshVariable);
+      }
+
+      return Pair.of(childTree, substitutionFactory.getSubstitution(
+          ImmutableList.copyOf(newVariables),
+          ImmutableList.copyOf(newValues)));
     }
 
     @Override

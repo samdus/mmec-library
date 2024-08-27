@@ -25,11 +25,11 @@ ext {
     minCoverageUnitItgr = 0
     minMutationUnit = 0
     product = "LIBRARY"
-    ontopVersion = "5.2.0-SNAPSHOT"
+    ontopVersion = "5.2.0"
 }
 
 group = "ca.griis"
-version = "1.0.1"
+version = "1.0.2"
 
 apply plugin: ca.griis.compliance.GriisPlugin
 
