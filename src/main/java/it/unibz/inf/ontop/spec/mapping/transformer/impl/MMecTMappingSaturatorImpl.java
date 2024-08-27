@@ -42,7 +42,6 @@ package it.unibz.inf.ontop.spec.mapping.transformer.impl;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -53,7 +52,6 @@ import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQ;
 import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.UnaryIQTree;
-import it.unibz.inf.ontop.iq.impl.IQTreeTools;
 import it.unibz.inf.ontop.iq.node.ConstructionNode;
 import it.unibz.inf.ontop.iq.tools.UnionBasedQueryMerger;
 import it.unibz.inf.ontop.model.atom.DistinctVariableOnlyDataAtom;
@@ -88,6 +86,7 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.tuple.Pair;
 
 @Singleton
 public class MMecTMappingSaturatorImpl implements MappingSaturator {
@@ -137,30 +136,26 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
         .distinct()
         .map(MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformerProvider::new)
         .flatMap(provider -> Stream.concat(Stream.concat(
-                reasoner.objectPropertiesDAG().stream()
-                    .filter(node -> !node.getRepresentative().isInverse()
-                        && !exclusionConfig.contains(node.getRepresentative()))
-                    .flatMap(node ->
-                        saturate(node.getRepresentative(),
-                            getSubsumees(reasoner.objectPropertiesDAG(), node), original,
-                            provider::getTransformer,
-                            cqc
-                        ).stream()
-                            .flatMap(ma ->
-                                node.getMembers().stream()
-                                    .filter(
-                                        d -> !d.isInverse()
-                                            || d.getInverse() != node.getRepresentative())
-                                    .map(d ->
-                                        Maps.immutableEntry(
-                                            provider.getTransformer(node.getRepresentative(), d),
-                                            ma)))),
+            reasoner.objectPropertiesDAG().stream()
+                .filter(node -> !node.getRepresentative().isInverse()
+                    && !exclusionConfig.contains(node.getRepresentative()))
+                .flatMap(node -> saturate(node.getRepresentative(),
+                    getSubsumees(reasoner.objectPropertiesDAG(), node), original,
+                    provider::getTransformer,
+                    cqc).stream()
+                        .flatMap(ma -> node.getMembers().stream()
+                            .filter(
+                                d -> !d.isInverse()
+                                    || d.getInverse() != node.getRepresentative())
+                            .map(d -> Maps.immutableEntry(
+                                provider.getTransformer(node.getRepresentative(), d),
+                                ma)))),
 
-                reasoner.dataPropertiesDAG().stream()
-                    .filter(node -> !exclusionConfig.contains(node.getRepresentative()))
-                    .flatMap(node -> saturate(node.getRepresentative(),
-                        getSubsumees(reasoner.dataPropertiesDAG(), node), original,
-                        provider::getTransformer, cqc).stream()
+            reasoner.dataPropertiesDAG().stream()
+                .filter(node -> !exclusionConfig.contains(node.getRepresentative()))
+                .flatMap(node -> saturate(node.getRepresentative(),
+                    getSubsumees(reasoner.dataPropertiesDAG(), node), original,
+                    provider::getTransformer, cqc).stream()
                         .flatMap(ma -> node.getMembers().stream()
                             .map(d -> Maps.immutableEntry(
                                 provider.getTransformer(node.getRepresentative(), d), ma))))),
@@ -171,24 +166,24 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
                 .flatMap(node -> saturate(node.getRepresentative(),
                     getSubsumees(reasoner.classesDAG(), node), original, provider::getTransformer,
                     cqc).stream()
-                    .flatMap(ma -> node.getMembers().stream()
-                        .filter(d -> d instanceof OClass)
-                        .map(d -> Maps.immutableEntry(
-                            provider.getTransformer(node.getRepresentative(), d), ma))))))
+                        .flatMap(ma -> node.getMembers().stream()
+                            .filter(d -> d instanceof OClass)
+                            .map(d -> Maps.immutableEntry(
+                                provider.getTransformer(node.getRepresentative(), d), ma))))))
 
         .map(e -> Maps.immutableEntry(
             e.getKey().getToIndex(), e.getKey().updateConstructionNodeIri(e.getValue())))
         .collect(ImmutableCollectors.toMap());
 
     return Stream.concat(
-            saturated.values().stream(),
-            original.asMap().entrySet().stream()
-                .filter(e -> !saturated.containsKey(e.getKey()))
-                .map(e -> e.getValue().stream()
-                    .collect(
-                        MMecMappingAssertionUnion.toMappingAssertion(
-                            cqc, coreSingletons, queryMerger)))
-                .map(Optional::orElseThrow))
+        saturated.values().stream(),
+        original.asMap().entrySet().stream()
+            .filter(e -> !saturated.containsKey(e.getKey()))
+            .map(e -> e.getValue().stream()
+                .collect(
+                    MMecMappingAssertionUnion.toMappingAssertion(
+                        cqc, coreSingletons, queryMerger)))
+            .map(Optional::orElseThrow))
         .collect(ImmutableCollectors.toList());
   }
 
@@ -253,51 +248,72 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
       ImmutableList<ImmutableTerm> args = constructionNode.getSubstitution().apply(variables);
       Substitution<ImmutableTerm> updatedSubstitution = substitutionFactory.getSubstitution(
           variables, transformer.apply(args));
-      Substitution<ImmutableTerm>
-          substitutionWithoutSwap = renameSwappedVariables(updatedSubstitution, query);
+      Pair<IQTree, Substitution<ImmutableTerm>> circularSubstitutionRenamed =
+          renameCircularSubstitution(updatedSubstitution, query);
+
+      IQTree updatedChild = circularSubstitutionRenamed.getLeft();
+      Substitution<ImmutableTerm> substitutionWithoutSwap = circularSubstitutionRenamed.getRight();
 
       ConstructionNode updatedConstructionNode = iqFactory.createConstructionNode(
-          constructionNode.getVariables(),substitutionWithoutSwap);
-      IQTree updatedChild = ((UnaryIQTree) query.getTree()).getChild();
+          constructionNode.getVariables(), substitutionWithoutSwap);
 
-      // Entre autre, tester si le IQ query a pour vrai été modifié...
       IQ updatedQuery = iqFactory.createIQ(projectionAtom,
           iqFactory.createUnaryIQTree(updatedConstructionNode,
               updatedChild));
+
       return assertion.copyOf(updatedQuery);
     }
 
-    private Substitution<ImmutableTerm> renameSwappedVariables(
+    /**
+     *
+     * @brief @~english «Description of the method»
+     * @param updatedSubstitution «Parameter description»
+     * @param query «Parameter description»
+     * @return «Return description»
+     *
+     * @brief @~french Lors de la mise à jour du ConstructionNode, il est fréquent
+     *                 d'induire des substitutions circulaires. Cette méthode
+     *                 permet de renommer les variables du sous-arbre de sorte qu'aucune valeur
+     *                 définie par le ConstructionNode n'aient le même nom.
+     * @param updatedSubstitution l'instance de Substitution découlant d'une mise à jour d'IRI
+     * @param query la requête sous-jaçente
+     * @return La nouvelle substitution et la requête
+     *
+     * @par Tâches
+     *    S.O.
+     */
+    private Pair<IQTree, Substitution<ImmutableTerm>> renameCircularSubstitution(
         Substitution<ImmutableTerm> updatedSubstitution, IQ query) {
-      ImmutableMap<Variable, Variable> swappingSubstitution = updatedSubstitution.stream()
+      ImmutableMap<Variable, Variable> circularSubstitution = updatedSubstitution.stream()
           .filter(sub -> sub.getValue() instanceof Variable)
-          .filter(
-              sub -> updatedSubstitution.get((Variable) sub.getValue()).equals(sub.getKey()))
+          .filter(sub -> updatedSubstitution.isDefining((Variable) sub.getValue()))
           .map(sub -> Maps.immutableEntry(sub.getKey(), (Variable) sub.getValue()))
           .collect(ImmutableCollectors.toMap());
       List<Variable> newVariables = new ArrayList<>(updatedSubstitution.stream()
-          .filter(v -> swappingSubstitution.containsKey(v.getKey()))
+          .filter(v -> !circularSubstitution.containsKey(v.getKey()))
           .map(Map.Entry::getKey)
           .toList());
       List<ImmutableTerm> newValues = new ArrayList<>(updatedSubstitution.stream()
-          .filter(v -> swappingSubstitution.containsKey(v.getKey()))
+          .filter(v -> !circularSubstitution.containsKey(v.getKey()))
           .map(Map.Entry::getValue)
           .toList());
       IQTree childTree = ((UnaryIQTree) query.getTree()).getChild();
 
-      for(Variable swapped : swappingSubstitution.keySet()) {
-        Variable freshVariable = query.getVariableGenerator().generateNewVariableFromVar(swapped);
+      for (Variable circularVariable : circularSubstitution.keySet()) {
+        Variable toReplace = circularSubstitution.get(circularVariable);
+        Variable freshVariable = query.getVariableGenerator().generateNewVariableFromVar(
+            toReplace);
         InjectiveSubstitution<Variable> renaming = substitutionFactory
-            .getSubstitution(swapped, freshVariable)
+            .getSubstitution(toReplace, freshVariable)
             .injective();
         childTree = childTree.applyFreshRenaming(renaming);
-        newVariables.add(swapped);
+        newVariables.add(circularVariable);
         newValues.add(freshVariable);
       }
-      Substitution<ImmutableTerm> substitutionWithoutSwap = substitutionFactory.getSubstitution(
+
+      return Pair.of(childTree, substitutionFactory.getSubstitution(
           ImmutableList.copyOf(newVariables),
-          ImmutableList.copyOf(newValues));
-      return substitutionWithoutSwap;
+          ImmutableList.copyOf(newValues)));
     }
 
     @Override
@@ -338,7 +354,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
             MappingAssertionIndex.ofClass(rdfAtomPredicate, toClass.getIRI()),
             ope.isInverse()
                 ? args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getObject(args),
-                rdfType, newIri)
+                    rdfType, newIri)
                 : args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args),
                     rdfType, newIri),
             true);
@@ -363,7 +379,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
           MappingAssertionIndex.ofProperty(rdfAtomPredicate, to.getIRI()),
           from.isInverse() != to.isInverse()
               ? args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getObject(args), newIri,
-              rdfAtomPredicate.getSubject(args))
+                  rdfAtomPredicate.getSubject(args))
               : args -> rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args), newIri,
                   rdfAtomPredicate.getObject(args)),
           false);
