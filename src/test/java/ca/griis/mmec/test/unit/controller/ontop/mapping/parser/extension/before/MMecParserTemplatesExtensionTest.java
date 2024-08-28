@@ -528,11 +528,11 @@ public class MMecParserTemplatesExtensionTest {
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
         subjectMap);
 
-    Assertions.assertFalse(mappingParser.hasMMecAsTemplateSource(testGraph, subjectMap));
+    Assertions.assertFalse(mappingParser.alreadyHasAnMMecTemplateSource(testGraph, subjectMap));
 
     mappingParser.generateTemplates_pub(testGraph, mappingExpression);
 
-    Assertions.assertTrue(mappingParser.hasMMecAsTemplateSource(testGraph, subjectMap));
+    Assertions.assertTrue(mappingParser.alreadyHasAnMMecTemplateSource(testGraph, subjectMap));
   }
 
   @Test

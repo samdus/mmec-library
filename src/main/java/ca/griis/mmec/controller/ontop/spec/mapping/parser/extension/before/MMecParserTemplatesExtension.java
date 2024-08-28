@@ -134,28 +134,6 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
   /**
    * @brief @~english «Description of the method»
    * @param mappingGraph «Parameter description»
-   * @param currentSubjectMap «Parameter description»
-   * @return «Return description»
-   *
-   * @brief @~french Vérifie si le subjectMap a déjà mmec:source annoté
-   * @param mappingGraph Le graphe d'arrimage
-   * @param currentSubjectMap Le subjectMap à vérifier
-   * @return Vrai si le subjectMap a déjà mmec:source annoté
-   */
-  public boolean hasMMecAsTemplateSource(Graph mappingGraph, BlankNodeOrIRI currentSubjectMap) {
-    return mappingGraph
-        .stream(null, OWLRDFVocabulary.OWL_ANNOTATED_SOURCE.getIRI(), currentSubjectMap)
-        .map(Triple::getSubject)
-        .flatMap(sourceAnnotation -> mappingGraph.stream(sourceAnnotation,
-            DublinCoreVocabulary.SOURCE.getIRI(),
-            rdf.createIRI(MMecVocabulary.NS_MMEC)))
-        .findAny()
-        .isPresent();
-  }
-
-  /**
-   * @brief @~english «Description of the method»
-   * @param mappingGraph «Parameter description»
    * @param current «Parameter description»
    *
    * @brief @~french Génère les templates pour un triplet donné.
@@ -168,7 +146,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
     final BlankNodeOrIRI parentRoot = getParentRoot(mappingGraph, current);
     final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow(
-            () -> new SignatureWithoutSubjectMapException(current));
+        () -> new SignatureWithoutSubjectMapException(current));
     final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parentRoot,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
     final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
@@ -185,45 +163,46 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
             rdf.createIRI(MMecVocabulary.P_SIGNATURE_COMPONENT)))
         .orElse(List.of());
 
-    if (currentTemplate.isPresent()) {
-      if (hasMMecAsTemplateSource(mappingGraph, currentSubjectMap)) {
-        return;
-      } else if (current.equals(parentRoot)
-          && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
-              .findAny().isEmpty()) {
-        if (currentComponents.isEmpty()) {
-          return;
-        } else {
-          logger.warn("The mapping '" + current.ntriplesString() + "' defined "
-              + "a rr:template that will be overwritten by the mmec extension");
-          mappingGraph.remove(currentSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-              null);
-        }
-      } else {
-        throw new SubsetHasTemplateException(current);
-      }
+    if (!alreadyHasTemplate(mappingGraph, current, currentTemplate, currentSubjectMap, parentRoot,
+        currentComponents)) {
+
+      checkForSignatureExceptions(mappingGraph, current, currentComponents, parentRoot,
+          parentComponents);
+
+      final String componentString = currentComponents.stream()
+          .map(component -> "{" + component.trim() + "}")
+          .collect(Collectors.joining("/"));
+
+      mappingGraph.add(currentSubjectMap,
+          rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+          rdf.createLiteral(signScope + "/" + componentString));
+      addMMecAsTemplateSource(mappingGraph, currentSubjectMap);
     }
-
-    if (currentComponents.isEmpty()) {
-      throw new SignatureComponentMissingException(current);
-    }
-
-    if (mappingGraph.stream(parentRoot, rdf.createIRI(nsTypeIri),
-        rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET)).findAny().isEmpty()
-        && currentComponents.size() != parentComponents.size()) {
-      throw new SignatureComponentMismatchException(current, parentRoot);
-    }
-
-    final String componentString = currentComponents.stream()
-        .map(component -> "{" + component.trim() + "}")
-        .collect(Collectors.joining("/"));
-
-    mappingGraph.add(currentSubjectMap,
-        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
-        rdf.createLiteral(signScope + "/" + componentString));
-    addMMecAsTemplateSource(mappingGraph, currentSubjectMap);
 
     logger.trace(Trace.EXIT_METHOD_0);
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param currentSubjectMap «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Vérifie si le subjectMap a déjà mmec:source annoté
+   * @param mappingGraph Le graphe d'arrimage
+   * @param currentSubjectMap Le subjectMap à vérifier
+   * @return Vrai si le subjectMap a déjà mmec:source annoté
+   */
+  public boolean alreadyHasAnMMecTemplateSource(Graph mappingGraph,
+      BlankNodeOrIRI currentSubjectMap) {
+    return mappingGraph
+        .stream(null, OWLRDFVocabulary.OWL_ANNOTATED_SOURCE.getIRI(), currentSubjectMap)
+        .map(Triple::getSubject)
+        .flatMap(sourceAnnotation -> mappingGraph.stream(sourceAnnotation,
+            DublinCoreVocabulary.SOURCE.getIRI(),
+            rdf.createIRI(MMecVocabulary.NS_MMEC)))
+        .findAny()
+        .isPresent();
   }
 
   /**
@@ -245,6 +224,86 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
       return getParentRoot(mappingGraph, parent.get());
     }
     return current;
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param current «Parameter description»
+   * @param currentTemplate «Parameter description»
+   * @param currentSubjectMap «Parameter description»
+   * @param parentRoot «Parameter description»
+   * @param currentComponents «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Vérifie si le nœud a déjà un template
+   * @param mappingGraph Le graphe d'arrimage
+   * @param current Le nœud courant
+   * @param currentTemplate Le template du nœud courant
+   * @param currentSubjectMap  Le subjectMap du nœud courant
+   * @param parentRoot Le parent du nœud courant
+   * @param currentComponents Les composants de signatures du nœud courant
+   * @return Vrai si le nœud a déjà un template, faux sinon ou si le template
+   *         pouvait être écrasé.
+   */
+  private boolean alreadyHasTemplate(Graph mappingGraph, BlankNodeOrIRI current,
+      Optional<String> currentTemplate, BlankNodeOrIRI currentSubjectMap, BlankNodeOrIRI parentRoot,
+      List<String> currentComponents) {
+    boolean alreadyHasTemplate;
+    if (currentTemplate.isPresent()) {
+      if (alreadyHasAnMMecTemplateSource(mappingGraph, currentSubjectMap)) {
+        alreadyHasTemplate = true;
+      } else if (current.equals(parentRoot)
+          && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
+          .findAny().isEmpty()) {
+        if (currentComponents.isEmpty()) {
+          alreadyHasTemplate = true;
+        } else {
+          logger.warn("The mapping '" + current.ntriplesString() + "' defined "
+              + "a rr:template that will be overwritten by the mmec extension");
+          mappingGraph.remove(currentSubjectMap, rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE),
+              null);
+          alreadyHasTemplate = false;
+        }
+      } else {
+        throw new SubsetHasTemplateException(current);
+      }
+    } else {
+      alreadyHasTemplate = false;
+    }
+    return alreadyHasTemplate;
+  }
+
+  /**
+   *
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param current «Parameter description»
+   * @param currentComponents «Parameter description»
+   * @param parentRoot «Parameter description»
+   * @param parentComponents «Parameter description»
+   *
+   * @brief @~french Vérifie que le nœud spécifie des composants de signatures
+   *                 et que le nombre de composants est le même que son éventuel parent.
+   * @param mappingGraph Le graphe d'arrimage
+   * @param current Le nœud courant
+   * @param currentComponents Les composants de signatures du nœud courant
+   * @param parentRoot Le parent du nœud courant
+   * @param parentComponents Les composants de signatures du parent du nœud courant
+   */
+  private void checkForSignatureExceptions(Graph mappingGraph, BlankNodeOrIRI current,
+      List<String> currentComponents,
+      BlankNodeOrIRI parentRoot, List<String> parentComponents)
+      throws SignatureComponentMissingException, SignatureComponentMismatchException {
+    if (currentComponents.isEmpty()) {
+      throw new SignatureComponentMissingException(current);
+    }
+
+    if (mappingGraph.stream(parentRoot, rdf.createIRI(nsTypeIri),
+        rdf.createIRI(MMecVocabulary.C_SIGNATURE_SUPERSET)).findAny().isEmpty()
+        && currentComponents.size() != parentComponents.size()) {
+      throw new SignatureComponentMismatchException(current, parentRoot);
+    }
   }
 
   /**

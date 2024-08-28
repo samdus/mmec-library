@@ -96,9 +96,9 @@ public class DataPropertyProjectionTransformer
   @Override
   public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
       IQTree child) {
-    Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
 
     if (!constructionNode.getSubstitution().isEmpty()) {
+      Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
       for (Map.Entry<Variable, ImmutableTerm> substitutionEntry : constructionNode.getSubstitution()
           .stream().toList()) {
         if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term
@@ -115,39 +115,14 @@ public class DataPropertyProjectionTransformer
               .map(termType -> (DBTermType) termType)
               .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
                   "Cannot get the type of the data property's substitution variable."));
-          ImmutableTerm valueTerm;
 
-          if (targetType.getName().contains("\"") && targetType.getName().equals(
-              variableType.getName())
-              || !targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
-                  variableType.getName()) == 0) {
-            valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
-                variable);
-          } else {
-            MMecMappingConversion conversion = mappingExtension
-                .getMappingConversion(variableType, targetType)
-                .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
-                    String.format(
-                        "No conversion found for the variable type %s to the target type %s.",
-                        variableType.getName(), targetType.getName())));
+          CastTermAndTree castTermAndTree = getCastTermAndTree(targetType, variable, variableType,
+              child, tree);
 
-            if (conversion.getConversionFunction().isPresent()) {
-              valueTerm = termFactory.getMMecConversionFunction(variable, conversion);
-            } else {
-              valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
-                  variable);
-            }
-
-            if (conversion.getValidationFunction().isPresent()) {
-              child = iqFactory.createUnaryIQTree(
-                  iqFactory.createFilterNode(termFactory.getStrictEquality(
-                      termFactory.getMMecConversionValidationFunction(variable, conversion),
-                      termFactory.getDBBooleanConstant(true))),
-                  child);
-            }
-          }
+          child = castTermAndTree.child();
           newSubstitutionMap.put(substitutionEntry.getKey(),
-              termFactory.getMMecValueFunction(valueTerm, targetType, rdfTermTypeConstant));
+              termFactory.getMMecValueFunction(castTermAndTree.valueTerm(), targetType,
+                  rdfTermTypeConstant));
         } else {
           newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
         }
@@ -161,9 +136,47 @@ public class DataPropertyProjectionTransformer
     return transformUnaryNode(tree, constructionNode, child);
   }
 
+  private record CastTermAndTree(ImmutableTerm valueTerm, IQTree child) {
+  }
+
+  private CastTermAndTree getCastTermAndTree(DBTermType targetType, Variable variable,
+      DBTermType variableType, IQTree child, IQTree tree) {
+    ImmutableTerm valueTerm;
+    if (targetType.getName().contains("\"") && targetType.getName().equals(
+        variableType.getName())
+        || !targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
+        variableType.getName()) == 0) {
+      valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
+          variable);
+    } else {
+      MMecMappingConversion conversion = mappingExtension
+          .getMappingConversion(variableType, targetType)
+          .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
+              String.format(
+                  "No conversion found for the variable type %s to the target type %s.",
+                  variableType.getName(), targetType.getName())));
+
+      if (conversion.getConversionFunction().isPresent()) {
+        valueTerm = termFactory.getMMecConversionFunction(variable, conversion);
+      } else {
+        valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
+            variable);
+      }
+
+      if (conversion.getValidationFunction().isPresent()) {
+        child = iqFactory.createUnaryIQTree(
+            iqFactory.createFilterNode(termFactory.getStrictEquality(
+                termFactory.getMMecConversionValidationFunction(variable, conversion),
+                termFactory.getDBBooleanConstant(true))),
+            child);
+      }
+    }
+    return new CastTermAndTree(valueTerm, child);
+  }
+
   private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
     return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-        rdfDatatype.getIRI().getIRIString())
+            rdfDatatype.getIRI().getIRIString())
         .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
             String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
                 rdfDatatype.getIRI().getIRIString())));
