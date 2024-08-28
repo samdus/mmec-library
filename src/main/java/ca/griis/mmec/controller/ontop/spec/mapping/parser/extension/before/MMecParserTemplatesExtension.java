@@ -146,7 +146,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
     final BlankNodeOrIRI parentRoot = getParentRoot(mappingGraph, current);
     final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP))
-        .orElseThrow(() -> new SignatureWithoutSubjectMapException(current));
+            .orElseThrow(() -> new SignatureWithoutSubjectMapException(current));
     final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parentRoot,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
     final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
@@ -240,7 +240,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
    * @param mappingGraph Le graphe d'arrimage
    * @param current Le nœud courant
    * @param currentTemplate Le template du nœud courant
-   * @param currentSubjectMap  Le subjectMap du nœud courant
+   * @param currentSubjectMap Le subjectMap du nœud courant
    * @param parentRoot Le parent du nœud courant
    * @param currentComponents Les composants de signatures du nœud courant
    * @return Vrai si le nœud a déjà un template, faux sinon ou si le template
@@ -255,7 +255,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
         alreadyHasTemplate = true;
       } else if (current.equals(parentRoot)
           && mappingGraph.stream(null, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), current)
-          .findAny().isEmpty()) {
+              .findAny().isEmpty()) {
         if (currentComponents.isEmpty()) {
           alreadyHasTemplate = true;
         } else {
@@ -284,7 +284,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
    * @param parentComponents «Parameter description»
    *
    * @brief @~french Vérifie que le nœud spécifie des composants de signatures
-   *                 et que le nombre de composants est le même que son éventuel parent.
+   *        et que le nombre de composants est le même que son éventuel parent.
    * @param mappingGraph Le graphe d'arrimage
    * @param current Le nœud courant
    * @param currentComponents Les composants de signatures du nœud courant
