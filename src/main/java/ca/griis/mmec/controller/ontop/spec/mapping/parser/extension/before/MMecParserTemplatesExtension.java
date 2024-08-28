@@ -145,8 +145,8 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
 
     final BlankNodeOrIRI parentRoot = getParentRoot(mappingGraph, current);
     final BlankNodeOrIRI currentSubjectMap = getObject(mappingGraph, current,
-        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP)).orElseThrow(
-        () -> new SignatureWithoutSubjectMapException(current));
+        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP))
+        .orElseThrow(() -> new SignatureWithoutSubjectMapException(current));
     final Optional<BlankNodeOrIRI> parentSubjectMap = getObject(mappingGraph, parentRoot,
         rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP));
     final Optional<String> currentTemplate = getLiteral(mappingGraph, currentSubjectMap,
