@@ -64,7 +64,6 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
  *      2024-03-22 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      TODO 2024-04-04 [SD] - Vérifier que l'ordre des composants est garantie.
  *      TODO 2024-04-04 [SD] - Faire en sorte que les classes définies pour toutes la hierarchie
  *      des parents soient ajouté à l'enfant.
  *      TODO 2024-04-11 [SD] - Ajuster la vérification des composants de signature pour les

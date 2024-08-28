@@ -37,7 +37,7 @@ import org.apache.commons.rdf.rdf4j.RDF4J;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french «Brève description de la composante (classe, interface, ...)»
+ * @brief @~french Classe abstraite servant de base pour les extensions de parser.
  * @par Détails
  *      S.O.
  * @par Modèle
