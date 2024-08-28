@@ -15,7 +15,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath "ca.griis:compliance-application:1.0.0-RC-SNAPSHOT"
+    classpath "ca.griis:compliance-application:3.+"
   }
 }
 
