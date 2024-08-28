@@ -14,7 +14,7 @@
 package ca.griis.mmec.api;
 
 import ca.griis.mmec.api.exception.ConnectionException;
-import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFound;
+import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFoundException;
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
@@ -99,6 +99,6 @@ public interface MMecFacadeService {
    */
   String createFacade(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
-      throws IOException, DefaultOntopConfigurationNotFound, OntopConnectionException,
+      throws IOException, DefaultOntopConfigurationNotFoundException, OntopConnectionException,
       OBDASpecificationException, OntopReformulationException, ConnectionException;
 }

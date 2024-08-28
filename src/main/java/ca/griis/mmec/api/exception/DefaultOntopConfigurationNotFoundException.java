@@ -40,8 +40,8 @@ package ca.griis.mmec.api.exception;
  * @par Tâches
  *      S.O.
  */
-public class DefaultOntopConfigurationNotFound extends Exception {
-  public DefaultOntopConfigurationNotFound(Throwable cause) {
+public class DefaultOntopConfigurationNotFoundException extends Exception {
+  public DefaultOntopConfigurationNotFoundException(Throwable cause) {
     super("Cannot find the default Ontop configuration file.", cause);
   }
 }

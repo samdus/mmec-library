@@ -16,7 +16,7 @@ package ca.griis.mmec.api;
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.mmec.api.exception.ConnectionException;
-import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFound;
+import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFoundException;
 import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
 import ca.griis.mmec.model.mapped.MappedClassTable;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
@@ -46,7 +46,7 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
   @Override
   public String createFacade(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
-      throws DefaultOntopConfigurationNotFound, OntopConnectionException,
+      throws DefaultOntopConfigurationNotFoundException, OntopConnectionException,
       OBDASpecificationException, OntopReformulationException, ConnectionException {
 
     MMecConfiguration configuration = buildMMecConfiguration(
@@ -154,7 +154,7 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
 
   private static MMecConfiguration buildMMecConfiguration(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
-      throws DefaultOntopConfigurationNotFound, ConnectionException {
+      throws DefaultOntopConfigurationNotFoundException, ConnectionException {
     MMecConfiguration configuration;
 
     try {
@@ -166,7 +166,7 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
           .facadeProperties(mmecFacadeProperties)
           .build();
     } catch (IOException e) {
-      throw new DefaultOntopConfigurationNotFound(e);
+      throw new DefaultOntopConfigurationNotFoundException(e);
     } catch (RuntimeException e) {
       if (e.getCause() instanceof SQLException sqlE) {
         throw new ConnectionException(sqlE);
