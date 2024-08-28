@@ -11,7 +11,7 @@
  * @brief @~english ConnectionConfigurationBuilderTest class implementation.
  */
 
-package ca.griis.mmec.test.unit.configuration.builder;
+package ca.griis.mmec.test.unit.properties.builder;
 
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.MissingPropertyException;
