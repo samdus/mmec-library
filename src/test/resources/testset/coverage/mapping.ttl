@@ -53,19 +53,9 @@ obo:humanbodyweight-appli:couverture:v1.0
     mmec:conversionInputType  :sqlText ;
     mmec:conversionOutputType :bwString ;
     mmec:conversionFunction   [ a                        mmec:SQLFunction ;
-                                mmec:qualifiedIdentifier "convertTextToBWString" ] ;
+                                mmec:qualifiedIdentifier "\"MappingSchema\".\"convertTextToBWString\"" ] ;
     mmec:verificationFunction [ a                        mmec:SQLFunction ;
-                                mmec:qualifiedIdentifier "v_convertTextToBWString" ] .
-
-:Conversion:TEXT:string
-    a                         mmec:Conversion ;
-    mmec:conversionInputType  :sqlText ;
-    mmec:conversionOutputType :bwString ;
-    mmec:conversionFunction   [ a                        mmec:SQLFunction ;
-                                mmec:qualifiedIdentifier "convertTextToBWDate" ] ;
-    mmec:verificationFunction [ a                        mmec:SQLFunction ;
-                                mmec:qualifiedIdentifier "v_convertTextToBWDate" ] .
-
+                                mmec:qualifiedIdentifier "\"MappingSchema\".\"v_convertTextToBWString\"" ] .
 
 :Conversion:VARCHAR:string
     a                         mmec:Conversion ;
@@ -518,7 +508,7 @@ obo:humanbodyweight-appli:couverture:v1.0
     rr:logicalTable [ rr:sqlQuery """
                         select "IDENTITE_GENRE"
                         from "EXP"."PATIENT"
-                        where "IDENTITE_GENRE" = 'N'
+                        where "IDENTITE_GENRE" = 'NB'
                       """ ] ; # e7
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:OMRSE_00000212, obo:HBW_0000024 ;
