@@ -1,0 +1,35 @@
+
+======================================================= 
+MOnto summary
+======================================================= 
+Original ontology : http://purl.obolibrary.org/obo/humanbodyweight-appli.owl
+Alias : humanbodyweight-appli.owl
+@en Label : null
+
+--------------------------------------- 
+Original ontology
+--------------------------------------- 
+Nb. classes          : 60
+Nb. data properties  : 3
+Nb. object properties: 17
+Nb. isa axioms       : 57
+Nb. data axioms      : 7
+Nb. class axioms     : 66
+
+--------------------------------------- 
+Reduced ontology (axiom complexity reduction)
+--------------------------------------- 
+Nb. classes          : 64
+Nb. data properties  : 3
+Nb. object properties: 17
+Nb. axioms: 99
+Nb. isa axioms       : 67
+Nb. data axioms      : 7
+Nb. class axioms     : 25
+Nb. reduced class axioms: 6
+
+--------------------------------------- 
+Other
+--------------------------------------- 
+Execution time: 0 sec
+Output total size: 183 KB

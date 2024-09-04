@@ -40,9 +40,13 @@ obo:humanbodyweight-appli:couverture:v1.0
     a                        mmec:SQLType ;
     mmec:qualifiedIdentifier "\"BW\".\"string_domain\"" .
 
-:bwDoubleDomain
+:bwDecimalDomain
     a                        mmec:SQLType ;
-    mmec:qualifiedIdentifier "\"BW\".\"double_domain\"" .
+    mmec:qualifiedIdentifier "\"BW\".\"decimal_domain\"" .
+
+:bwDate
+    a                        mmec:SQLType ;
+    mmec:qualifiedIdentifier "\"BW\".\"date_domain\"" .
 
 :Conversion:TEXT:string
     a                         mmec:Conversion ;
@@ -53,15 +57,25 @@ obo:humanbodyweight-appli:couverture:v1.0
     mmec:verificationFunction [ a                        mmec:SQLFunction ;
                                 mmec:qualifiedIdentifier "v_convertTextToBWString" ] .
 
+:Conversion:TEXT:string
+    a                         mmec:Conversion ;
+    mmec:conversionInputType  :sqlText ;
+    mmec:conversionOutputType :bwString ;
+    mmec:conversionFunction   [ a                        mmec:SQLFunction ;
+                                mmec:qualifiedIdentifier "convertTextToBWDate" ] ;
+    mmec:verificationFunction [ a                        mmec:SQLFunction ;
+                                mmec:qualifiedIdentifier "v_convertTextToBWDate" ] .
+
+
 :Conversion:VARCHAR:string
     a                         mmec:Conversion ;
     mmec:conversionInputType  :sqlVarchar ;
     mmec:conversionOutputType :bwString .
 
-:Conversion:Numeric:double
+:Conversion:Numeric:decimal
     a                         mmec:Conversion ;
     mmec:conversionInputType  :sqlNumeric ;
-    mmec:conversionOutputType :bwDoubleDomain .
+    mmec:conversionOutputType :bwDecimalDomain .
 
 :Conversion:Numeric:string
     a                         mmec:Conversion ;
@@ -322,7 +336,7 @@ obo:humanbodyweight-appli:couverture:v1.0
 # HBW_0000007@Patient
 # Lorsque la personne responsable de l'arrimage traite un nouvel axiome de l'OntoRel, il est possible qu'elle réalise
 # que certains particuliers n'avaient pas été pris en compte lors de l'arrimage d'une classe.
-# C'est élément est simulé ici, puisqu'il est possible que le cas des patients non identifiés n'aie pas été pris en
+# Cet élément est simulé ici, puisqu'il est possible que le cas des patients non identifiés n'aie pas été pris en
 # compte dans la documentation de la source de données. Il est donc nécessaire de compléter la définition de la classe
 # HBW_0000007@Patient pour inclure les patients non identifiés.
 
@@ -405,6 +419,13 @@ obo:humanbodyweight-appli:couverture:v1.0
                             rr:objectMap [ rr:parentTriplesMap :HBW_0000007_not_identified ;
                                            rr:joinCondition    [ rr:child  """ "ID_PATIENT_UUID" """ ;
                                                                  rr:parent """ "ID_PATIENT_UUID" """ ] ] ] .
+
+# Propriété de données
+# HBW_0000006@Medical record identifier PHYSIO_0000100@'has value' xsd:string
+:HBW_0000006
+    rr:predicateObjectMap [ rr:predicate obo:PHYSIO_0000100 ;
+                            rr:objectMap [ rr:column   """ "ID_PATIENT_UUID" """ ;
+                                           rr:datatype xsd:string ] ] .
 
 # **** Individuation d'une disjonction ****
 
@@ -671,7 +692,7 @@ obo:humanbodyweight-appli:couverture:v1.0
                                            rr:datatype xsd:string ] ] .
 
 
-# **** Arrimage lors d'un sous-typage de propriété ****
+# **** Arrimage lors d’un sous-typage de propriété d’objet ****
 
 # "IAO_0000032"@scalar measurement datum
 :IAO_0000032
@@ -714,17 +735,17 @@ obo:humanbodyweight-appli:couverture:v1.0
                             rr:objectMap [ rr:parentTriplesMap :HBW_0000003 ;
                                            rr:joinCondition    [ rr:child  "\"ID_PATIENT_EXT\"" ;
                                                                  rr:parent "\"ID_PATIENT_EXT\"" ] ] ] .
-# 'scalar measurement datum' 'has measurement value' Double (taille)
+# 'scalar measurement datum' 'has measurement value' decimal (taille)
 :IAO_0000032
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000004 ;
                             rr:objectMap [ rr:column   "\"TAILLE\"" ;
-                                           rr:datatype xsd:double ] ] .
+                                           rr:datatype xsd:decimal ] ] .
 
-# 'scalar measurement datum' 'has measurement value' Double (poids)
+# 'scalar measurement datum' 'has measurement value' decimal (poids)
 :HBW_0000026
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000004 ;
                             rr:objectMap [ rr:column  "\"POIDS\"" ;
-                                           rr:datatype xsd:double ] ] .
+                                           rr:datatype xsd:decimal ] ] .
 
 # **** Inférence d'arrimage ****
 # "HBW_0000014"@obesity
