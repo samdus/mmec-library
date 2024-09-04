@@ -1,0 +1,22 @@
+## Tests d'un cas d'arrimage
+
+La section 3.6 de la thèse présente un exemple d'arrimage spécialement conçu pour montrer la couverture ontologique des
+arrimages. Le script défini dans ce répertoire permet de valider que l'arrimage est bien valide. Il reprend les scripts
+présent dans le testset coverage, le script généré par mmec et un fichier de requêtes comparant les données de la source
+et les données de la source accédées par l'arrimage.
+
+## Exécution
+
+Pour exécuter ce test :
+
+. S'assurer d'être à la racine du projet
+. Exécuter la commande suivante :
++
+```shell
+./gradlew :test --tests "ca.griis.mmec.test.integration.api.MMecFacadeServiceBaseTest.testApi"
+```
+. En spécifiant les arguments correspondant à votre base de données, exécuter la commande :
++
+```shell
+ psql -h localhost -U postgres -d postgres -p 15432 -f src/test/sql/coverage/00_execute_test.sql```
+. Les résultats de la requête sont affichés dans la console. Les requêtes calculs le nombre de différences entre le résultat obtenue et attendue. Si le nombre de différences est 0, le test est réussi.
