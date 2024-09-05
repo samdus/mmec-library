@@ -401,7 +401,7 @@ obo:humanbodyweight-appli:couverture:v1.0
 :ONTORELA_C4d0c3f45
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
                             rr:objectMap [ rr:parentTriplesMap :HBW_0000007 ;
-                                           rr:joinCondition    [ rr:child  """ "ID_PATIENT_UUID" """ ;
+                                           rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
                                                                  rr:parent """ "ID_PATIENT_EXT" """ ] ] ] .
 
 :ONTORELA_C4d0c3f45
