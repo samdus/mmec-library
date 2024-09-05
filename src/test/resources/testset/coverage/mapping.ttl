@@ -638,6 +638,12 @@ obo:humanbodyweight-appli:couverture:v1.0
                                            rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
                                                                  rr:parent """ "ID_PERSONNE_EXT" """ ] ] ] .
 
+# "HBW_0000009" "RO_0000052@inheres in" "OBI_0100026"@organism
+:HBW_0000009
+    rr:predicateObjectMap [ rr:predicate obo:RO_0000052 ;
+                            rr:objectMap [ rr:parentTriplesMap :NCBITaxon_9606 ;
+                                           rr:joinCondition    [ rr:child  """ "ID_PERSONNE_EXT" """ ;
+                                                                 rr:parent """ "ID_PERSONNE_EXT" """ ] ] ] .
 
 # **** Arrimage d'une propriété définie sur un parent ****
 # "IAO_0000003"@measurement unit label
@@ -745,7 +751,7 @@ obo:humanbodyweight-appli:couverture:v1.0
     rr:logicalTable [ rr:sqlQuery """
                         select "ID_PATIENT_EXT"
                         from "EXP"."PATIENT"
-                        where ("POIDS" / ("TAILLE" * "TAILLE")) >= 30
+                        where ("POIDS" / ("TAILLE" / 100 * "TAILLE" / 100)) >= 30
                       """ ] ;
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:HBW_0000014, physio:ONTORELA_C2986e108 ;

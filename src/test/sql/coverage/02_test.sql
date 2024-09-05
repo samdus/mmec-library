@@ -174,7 +174,7 @@ from nbAttendu,
      nbObtenu;
 
 \echo test 7: Individuation d’une conjonction
-\echo Skip - Déjà testé avec les tests précédents
+\echo [Skip] - Déjà testé avec les tests précédents
 \echo
 
 \echo test 8: Individuation d’une disjonction
@@ -288,3 +288,92 @@ select "Nombre de lignes attendues",
 -- On veut que la différence soit 0
 from nbAttendu,
      nbObtenu;
+
+\echo test 9: Individuation d’une conjonction de disjonction
+with data_from_ontorel as (select "OBI_0100026_uid"                             as "patient",
+                                  "HBW_0000026_IAO_0000004_decimal_IAO_0000004" as "poids",
+                                  "PHYSIO_0000100_string"                       as "unite",
+                                  "HBW_0000008_uid"                             as "traitant"
+                           from
+                               -- HBW_0000013@'physiological evaluation from health care provider' has evaluant [1..1] HBW_0000008@'health care provider'
+                               "MappingSchema"."HBW_0000013_PHYSIO_0000089_HBW_0000008" as "HBW_0000013_PHYSIO_0000089_HBW_0000008"("HBW_0000012_uid", "HBW_0000008_uid")
+                                   -- HBW_0000012@'physiological evaluation' has_specified_output [1..*] ONTORELA_C61c354fb@'data item
+                                   --  and (is about some
+                                   --     ((disposition or quality)
+                                   --      and (inheres in some organism)))'
+                                   join "MappingSchema"."HBW_0000012_OBI_0000299_ONTORELA_C61c354fb" as "HBW_0000012_OBI_0000299_ONTORELA_C61c354fb"("HBW_0000012_uid", "HBW_0000026_uid")
+                                        using ("HBW_0000012_uid")
+                                   -- HBW_0000026@'http://purl.obolibrary.org/obo/HBW_0000026' has measurement value [1..*] @'Decimal'
+                                   join "MappingSchema"."HBW_0000026_IAO_0000004_decimal" using ("HBW_0000026_uid")
+                                   -- HBW_0000026@'http://purl.obolibrary.org/obo/HBW_0000026' has measurement unit label [1..*] HBW_0000003@'weight unit'
+                                   join "MappingSchema"."HBW_0000026_IAO_0000039_HBW_0000003" using ("HBW_0000026_uid")
+                                   -- IAO_0000003@'measurement unit label' has value [1..1] @'String'
+                                   join "MappingSchema"."IAO_0000003_PHYSIO_0000100_string" "IAO_0000003_PHYSIO_0000100_string"("HBW_0000003_uid", "PHYSIO_0000100_string")
+                                        using ("HBW_0000003_uid")
+                                   --ONTORELA_C61c354fb@'data item
+                                   --  and (is about some
+                                   --     ((disposition or quality)
+                                   --      and (inheres in some organism)))' is about [1..*] ONTORELA_C2986e108@'(disposition or quality)
+                                   --  and (inheres in some organism)'
+                                   join "MappingSchema"."ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108" "ONTORELA_C61c354fb_IAO_0000136_ONTORELA_C2986e108"("HBW_0000026_uid", "ONTORELA_C2986e108_uid")
+                                        using ("HBW_0000026_uid")
+                                   -- ONTORELA_C2986e108@'(disposition or quality)
+                                   --  and (inheres in some organism)' inheres in [1..*] OBI_0100026@'organism'
+                                   join "MappingSchema"."ONTORELA_C2986e108_RO_0000052_OBI_0100026"
+                                        using ("ONTORELA_C2986e108_uid")),
+     attendu as (select "MappingSchema".individuation('http://www.griis.ca/projects#NCBITaxon_9606/{}',
+                                                      "ID_PATIENT_EXT") as "patient",
+                        "POIDS"                                         as "poids",
+                        'kg'                                            as "unite",
+                        "MappingSchema".individuation('http://www.griis.ca/projects#NCBITaxon_9606/{}',
+                                                      "ID_MEDECIN_EXT") as "traitant"
+                 from "EXP"."PATIENT"
+                          join "EXP"."MEDECIN_TRAITANT" using ("ID_PATIENT_EXT")),
+     nbAttendu as (select count(*) as "Nombre de lignes attendues"
+                   from attendu),
+     nbObtenu as (select count(*) as "Nombre de lignes obtenues"
+                  from data_from_ontorel
+                           natural join attendu)
+select "Nombre de lignes attendues",
+       "Nombre de lignes obtenues",
+       "Nombre de lignes attendues" - "Nombre de lignes obtenues" as "différence"
+-- On veut que la différence soit 0
+from nbAttendu,
+     nbObtenu;
+
+\echo test 10:  Arrimage d’une propriété définie sur un parent
+\echo [Skip] - Déjà testé avec les tests précédents
+\echo
+
+\echo test 11:  Arrimage lors d’un sous-typage de propriété d’objet
+\echo [Skip] - Déjà testé avec les tests précédents
+\echo
+
+\echo test 12:  Inférence d’arrimage
+
+with data_from_ontorel as (select "OBI_0100026_uid" as "patient"
+                           -- obesity
+                           from "MappingSchema"."HBW_0000014"
+                                    -- ONTORELA_C2986e108@'(disposition or quality)
+                                    --  and (inheres in some organism)' inheres in [1..*] OBI_0100026@'organism'
+                                    join "MappingSchema"."ONTORELA_C2986e108_RO_0000052_OBI_0100026" as "ONTORELA_C2986e108_RO_0000052_OBI_0100026"("HBW_0000014_uid", "OBI_0100026_uid")
+                                         using ("HBW_0000014_uid")),
+     attendu as (select "MappingSchema"."individuation"('http://www.griis.ca/projects#NCBITaxon_9606/{}',
+                                                        "ID_PATIENT_EXT") as "patient"
+                 from "EXP"."PATIENT"
+                 where ("POIDS" / ("TAILLE" / 100 * "TAILLE" / 100)) >= 30),
+     nbAttendu as (select count(*) as "Nombre de lignes attendues"
+                   from attendu),
+     nbObtenu as (select count(*) as "Nombre de lignes obtenues"
+                  from data_from_ontorel
+                           natural join attendu)
+select "Nombre de lignes attendues",
+       "Nombre de lignes obtenues",
+       "Nombre de lignes attendues" - "Nombre de lignes obtenues" as "différence"
+-- On veut que la différence soit 0
+from nbAttendu,
+     nbObtenu;
+
+\echo test 13: Propriété définie à l’aide d’une jointure
+\echo [Skip] - Déjà testé avec les tests précédents
+\echo
