@@ -45,3 +45,22 @@ insert into "TABLE3"
 values (3);
 insert into "TABLE3"
 values (4);
+
+create table "Neoplasm"(id int primary key);
+create table "nsclc"(id int primary key
+--, foreign key(id) references "Neoplasm"(id)
+);
+create table "sclc"(id int primary key
+--, foreign key(id) references "Neoplasm"(id)
+);
+
+insert into "Neoplasm" values (1);
+insert into "Neoplasm" values (2);
+insert into "Neoplasm" values (3);
+insert into "Neoplasm" values (4);
+
+insert into "nsclc" values (1);
+insert into "nsclc" values (2);
+
+insert into "sclc" values (3);
+insert into "sclc" values (4);

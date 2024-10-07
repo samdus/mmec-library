@@ -33,6 +33,9 @@ Objet :
  call "ontorelcat_pub".ontology_ins ('simple','http://www.griis.ca/projects/onto_tst','ontology.ttl','onto_tst','','2023-08-17T15:01:00Z');
 
  call "ontorelcat_pub".onto_class_ins ('simple','http://www.w3.org/2002/07/owl#Thing','T7f4f794200','DECLARED');
+ call "ontorelcat_pub".onto_class_ins ('simple','http://www.griis.ca/projects/Neoplasm','T7f4f794211','DECLARED');
+ call "ontorelcat_pub".onto_class_ins ('simple','http://www.griis.ca/projects/nsclc','T7f4f794212','DECLARED');
+ call "ontorelcat_pub".onto_class_ins ('simple','http://www.griis.ca/projects/sclc','T7f4f794213','DECLARED');
 
  call "ontorelcat_pub".onto_class_ins ('simple','http://www.griis.ca/projects/tst3','T4f2a1f1000','DECLARED');
 
@@ -79,6 +82,9 @@ Objet :
  call "ontorelcat_pub".onto_class_inheritance_ins ('simple','http://www.griis.ca/projects/tst','http://www.griis.ca/projects/tst3');
 
  call "ontorelcat_pub".onto_class_inheritance_ins ('simple','http://www.w3.org/2002/07/owl#Thing','http://www.griis.ca/projects/tst');
+ call "ontorelcat_pub".onto_class_inheritance_ins ('simple','http://www.w3.org/2002/07/owl#Thing','http://www.griis.ca/projects/Neoplasm');
+ call "ontorelcat_pub".onto_class_inheritance_ins ('simple','http://www.griis.ca/projects/Neoplasm','http://www.griis.ca/projects/nsclc');
+ call "ontorelcat_pub".onto_class_inheritance_ins ('simple','http://www.griis.ca/projects/Neoplasm','http://www.griis.ca/projects/sclc');
 
  call "ontorelcat_pub".onto_class_inheritance_ins ('simple','http://www.griis.ca/projects/tst','http://www.griis.ca/projects/tst2');
 

@@ -41,7 +41,9 @@ xsd:string rdf:type rdfs:Datatype ;
 <http://purl.obolibrary.org/obo/BFO_0000050> rdf:type owl:ObjectProperty ;
                                              rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0002131> ;
                                              owl:inverseOf <http://purl.obolibrary.org/obo/BFO_0000051> ;
-                                             rdfs:comment "a core relation that holds between a part and its whole"@en ;
+                                             rdfs:comment """
+a core relation that holds between a part and its whole
+"""@en ;
                                              rdfs:label "part of"@en .
 
 
@@ -51,7 +53,7 @@ xsd:string rdf:type rdfs:Datatype ;
                                              rdfs:comment """
 a core relation that holds between a whole and its part
 """@en ;
-                                             rdfs:label "has_part"@en .
+                                             rdfs:label "has part"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000057
@@ -140,17 +142,13 @@ a core relation that holds between a whole and its part
 ###  http://purl.obolibrary.org/obo/RO_0002131
 <http://purl.obolibrary.org/obo/RO_0002131> rdf:type owl:ObjectProperty ;
                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0002323> ;
-                                            rdfs:comment """
-x overlaps y if and only if there exists some z such that x has part z and z part of y
-"""@en ;
+                                            rdfs:comment "x overlaps y if and only if there exists some z such that x has part z and z part of y"@en ;
                                             rdfs:label "overlaps"@en .
 
 
 ###  http://purl.obolibrary.org/obo/RO_0002323
 <http://purl.obolibrary.org/obo/RO_0002323> rdf:type owl:ObjectProperty ;
-                                            rdfs:comment """
-A mereological relationship or a topological relationship
-"""@en ;
+                                            rdfs:comment "A mereological relationship or a topological relationship"@en ;
                                             rdfs:label "mereotopologically related to"@en .
 
 
@@ -199,14 +197,14 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
 ###  http://purl.obolibrary.org/obo/BFO_0000001
 <http://purl.obolibrary.org/obo/BFO_0000001> rdf:type owl:Class ;
                                              rdfs:subClassOf owl:Thing ;
-                                             rdfs:comment "Entity"@en ;
+                                             rdfs:comment "per discussion with Barry Smith"@en ;
                                              rdfs:label "entity"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000002
 <http://purl.obolibrary.org/obo/BFO_0000002> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000001> ;
-                                             rdfs:comment "Continuant"@en ;
+                                             rdfs:comment "An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts."@en ;
                                              rdfs:label "continuant"@en .
 
 
@@ -217,7 +215,7 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
                                                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0000057> ;
                                                                owl:someValuesFrom <http://purl.obolibrary.org/obo/BFO_0000002>
                                                              ] ;
-                                             rdfs:comment "per discussion with Barry Smith"@en ;
+                                             rdfs:comment "An entity that has temporal parts and that happens, unfolds or develops through time."@en ;
                                              rdfs:label "occurrent"@en .
 
 
@@ -228,14 +226,16 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
                                                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0000087> ;
                                                                owl:someValuesFrom <http://purl.obolibrary.org/obo/BFO_0000023>
                                                              ] ;
-                                             rdfs:comment "b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])"@en ;
-                                             rdfs:label "independent continuant"@en .
+                                             rdfs:comment "A continuant that is a bearer of quality and realizable entity entities, in which other entities inhere and which itself cannot inhere in anything."@en ;
+                                             rdfs:label "ic"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000015
 <http://purl.obolibrary.org/obo/BFO_0000015> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000003> ;
-                                             rdfs:comment "p is a process = Def. p is an occurrent that has temporal proper parts and for some time t, p s-depends_on some material entity at t. (axiom label in BFO2 Reference: [083-003])"@en ;
+                                             rdfs:comment """
+An occurrent that has temporal proper parts and for some time t, p s-depends_on some material entity at t.
+"""@en ;
                                              rdfs:label "process"@en .
 
 
@@ -243,15 +243,15 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
 <http://purl.obolibrary.org/obo/BFO_0000016> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000017> ,
                                                              <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C1edc1ccd> ;
-                                             rdfs:comment "Disposition"@en ;
+                                             rdfs:comment "realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed"@en ;
                                              rdfs:label "disposition"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000017
 <http://purl.obolibrary.org/obo/BFO_0000017> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000020> ;
-                                             rdfs:comment "RealizableEntity"@en ;
-                                             rdfs:label "realizable"@en .
+                                             rdfs:comment "A specifically dependent continuant that inheres in some independent continuant which is not a spatial region and is of a type instances of which are realized in processes of a correlated type."@en ;
+                                             rdfs:label "realizable entity"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000019
@@ -265,8 +265,8 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
 ###  http://purl.obolibrary.org/obo/BFO_0000020
 <http://purl.obolibrary.org/obo/BFO_0000020> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
-                                             rdfs:comment "b is a specifically dependent continuant = Def. b is a continuant & there is some independent continuant c which is not a spatial region and which is such that b s-depends_on c at every time t during the course of b’s existence. (axiom label in BFO2 Reference: [050-003])"@en ;
-                                             rdfs:label "sdc"@en .
+                                             rdfs:comment "per discussion with Barry Smith"@en ;
+                                             rdfs:label "specifically dependent continuant"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000023
@@ -279,8 +279,8 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
 ###  http://purl.obolibrary.org/obo/BFO_0000031
 <http://purl.obolibrary.org/obo/BFO_0000031> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ;
-                                             rdfs:comment "GenericallyDependentContinuant"@en ;
-                                             rdfs:label "gdc"@en .
+                                             rdfs:comment "b is a generically dependent continuant = Def. b is a continuant that g-depends_on one or more other entities. (axiom label in BFO2 Reference: [074-001])"@en ;
+                                             rdfs:label "generically dependent continuant"@en .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000040
@@ -734,7 +734,7 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
                                                                rdfs:comment """(BFO_0000016 or BFO_0000019)
  and (RO_0000052 some OBI_0100026)"""@fr ,
                                                                             """(disposition or quality)
- and (inheres in some organism)realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality"""@en ;
+ and (inheres in some organism)Disposition realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality"""@en ;
                                                                rdfs:label "BFO_0000016 or BFO_0000019"@fr ,
                                                                           "disposition or quality"@en .
 
@@ -753,7 +753,7 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
                                                                             """data item
  and (is about some 
     ((disposition or quality)
-     and (inheres in some organism)))realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."""@en ;
+     and (inheres in some organism)))Disposition realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."""@en ;
                                                                rdfs:label """(BFO_0000016 or BFO_0000019)
  and (RO_0000052 some OBI_0100026)"""@fr ,
                                                                           """(disposition or quality)
@@ -783,7 +783,7 @@ owl:topDataProperty rdf:type owl:DatatypeProperty .
                                                                                  owl:someValuesFrom <http://purl.obolibrary.org/obo/physio.owl#ONTORELA_C2986e108>
                                                                                ] ;
                                                                rdfs:comment "HBW_0000012"@fr ,
-                                                                            "physiological evaluationrealizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements. A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."@en ;
+                                                                            "physiological evaluationDisposition realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements. A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs."@en ;
                                                                rdfs:label """IAO_0000027
  and (IAO_0000136 some 
     ((BFO_0000016 or BFO_0000019)

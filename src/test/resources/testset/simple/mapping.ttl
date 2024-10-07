@@ -146,6 +146,33 @@
                                            rr:joinCondition    [ rr:child  "m" ;
                                                                  rr:parent "m" ] ] ] .
 
+<Mapping:Neoplasm>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"Neoplasm\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    <http://www.griis.ca/projects/Neoplasm>;
+                      mmec:signatureComponent "id" ;
+                      rr:termType rr:IRI ] .
+
+<Mapping:nsclc>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"nsclc\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    <http://www.griis.ca/projects/nsclc>;
+                      mmec:signatureComponent "id" ;
+                        rr:termType rr:IRI ] ;
+    mmec:subsets <Mapping:Neoplasm>.
+
+<Mapping:sclc>
+    a               rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"sclc\"" ] ;
+    rr:subjectMap   [ a           rr:SubjectMap ;
+                      rr:class    <http://www.griis.ca/projects/sclc>;
+                      mmec:signatureComponent "id" ;
+                      rr:termType rr:IRI ] ;
+    mmec:subsets <Mapping:Neoplasm>.
+
+
 # ****************************************************************************************
 # Data Properties mappings
 # ****************************************************************************************

@@ -32,4 +32,4 @@ Nb. reduced class axioms: 6
 Other
 --------------------------------------- 
 Execution time: 0 sec
-Output total size: 183 KB
+Output total size: 184 KB

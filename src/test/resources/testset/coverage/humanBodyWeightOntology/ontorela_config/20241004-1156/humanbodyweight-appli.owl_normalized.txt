@@ -2,11 +2,13 @@ ONTOLOGY :"humanbodyweight-appli.owl"
 
 PROPERTY :"BFO_0000050"   
   LABEL @en 'part of' 
-  DESCRIPTION @en 'a core relation that holds between a part and its whole'
+  DESCRIPTION @en '
+a core relation that holds between a part and its whole
+'
   ISA :"RO_0002131"  
 
 PROPERTY :"BFO_0000051"   
-  LABEL @en 'has_part' 
+  LABEL @en 'has part' 
   DESCRIPTION @en '
 a core relation that holds between a whole and its part
 '
@@ -34,8 +36,8 @@ PROPERTY :"OBI_0000293"
 PROPERTY :"OBI_0000299"   
   LABEL @en 'has_specified_output' 
   DESCRIPTION @en 'A relation between a planned process and a continuant participating in that process. The presence of the continuant at the end of the process is explicitly specified in the objective specification which the process realizes the concretization of.'
-  ISA :"BFO_0000057" 
-  ISA :"RO_0000057"  
+  ISA :"RO_0000057" 
+  ISA :"BFO_0000057"  
 
 PROPERTY :"PHYSIO_0000089"   
   LABEL @en 'has evaluant' 
@@ -61,16 +63,12 @@ PROPERTY :"RO_0000087"
 
 PROPERTY :"RO_0002131"   
   LABEL @en 'overlaps' 
-  DESCRIPTION @en '
-x overlaps y if and only if there exists some z such that x has part z and z part of y
-'
+  DESCRIPTION @en 'x overlaps y if and only if there exists some z such that x has part z and z part of y'
   ISA :"RO_0002323"  
 
 PROPERTY :"RO_0002323"   
   LABEL @en 'mereotopologically related to' 
-  DESCRIPTION @en '
-A mereological relationship or a topological relationship
-'
+  DESCRIPTION @en 'A mereological relationship or a topological relationship'
 
 PROPERTY :"RO_0002350"   
   LABEL @en 'member of' 
@@ -108,13 +106,13 @@ CLASS :"OMRSE_00000209"
 
 CLASS :"BFO_0000003"   
   LABEL @en 'occurrent' 
-  DESCRIPTION @en 'per discussion with Barry Smith' 
+  DESCRIPTION @en 'An entity that has temporal parts and that happens, unfolds or develops through time.' 
   ISA :"BFO_0000001"  
   :"RO_0000057"  [1..*] :"BFO_0000002" 
 
 CLASS :"BFO_0000004"   
-  LABEL @en 'independent continuant' 
-  DESCRIPTION @en 'b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])' 
+  LABEL @en 'ic' 
+  DESCRIPTION @en 'A continuant that is a bearer of quality and realizable entity entities, in which other entities inhere and which itself cannot inhere in anything.' 
   ISA :"BFO_0000002"  
   :"RO_0000087"  [1..*] :"BFO_0000023" 
 
@@ -205,12 +203,12 @@ CLASS :"IOIO_0000012"
 
 CLASS :"BFO_0000001"   
   LABEL @en 'entity' 
-  DESCRIPTION @en 'Entity' 
+  DESCRIPTION @en 'per discussion with Barry Smith' 
   ISA :"Thing"  
 
 CLASS :"BFO_0000002"   
   LABEL @en 'continuant' 
-  DESCRIPTION @en 'Continuant' 
+  DESCRIPTION @en 'An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts.' 
   ISA :"BFO_0000001"  
 
 CLASS :"HBW_0000002"   
@@ -262,8 +260,8 @@ CLASS :"HBW_0000011"
   ISA :"BFO_0000023"  
 
 CLASS :"BFO_0000031"   
-  LABEL @en 'gdc' 
-  DESCRIPTION @en 'GenericallyDependentContinuant' 
+  LABEL @en 'generically dependent continuant' 
+  DESCRIPTION @en 'b is a generically dependent continuant = Def. b is a continuant that g-depends_on one or more other entities. (axiom label in BFO2 Reference: [074-001])' 
   ISA :"BFO_0000002"  
 
 CLASS :"IAO_0020000"   
@@ -316,13 +314,13 @@ CLASS :"OGMS_0000031"
 
 CLASS :"BFO_0000016"   
   LABEL @en 'disposition' 
-  DESCRIPTION @en 'Disposition' 
+  DESCRIPTION @en 'realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed' 
   ISA :"BFO_0000017" 
   ISA :"ONTORELA_C1edc1ccd"  
 
 CLASS :"BFO_0000017"   
-  LABEL @en 'realizable' 
-  DESCRIPTION @en 'RealizableEntity' 
+  LABEL @en 'realizable entity' 
+  DESCRIPTION @en 'A specifically dependent continuant that inheres in some independent continuant which is not a spatial region and is of a type instances of which are realized in processes of a correlated type.' 
   ISA :"BFO_0000020"  
 
 CLASS :"IAO_0020017"   
@@ -333,15 +331,17 @@ CLASS :"IAO_0020017"
 
 CLASS :"BFO_0000015"   
   LABEL @en 'process' 
-  DESCRIPTION @en 'p is a process = Def. p is an occurrent that has temporal proper parts and for some time t, p s-depends_on some material entity at t. (axiom label in BFO2 Reference: [083-003])' 
+  DESCRIPTION @en '
+An occurrent that has temporal proper parts and for some time t, p s-depends_on some material entity at t.
+' 
   ISA :"BFO_0000003"  
 
 CLASS :"HBW_0000022"   
   LABEL @en 'human name' 
   DESCRIPTION @en 'An identifier that is composed of some family name and some personal name that denotes of an Homo Sapiens.' 
   ISA :"IAO_0020000"  
-  :"BFO_0000051"  [1..*] :"IAO_0020017" 
   :"BFO_0000051"  [1..*] :"IAO_0020015" 
+  :"BFO_0000051"  [1..*] :"IAO_0020017" 
   :"IAO_0000219"  [1..*] :"NCBITaxon_9606" 
 
 CLASS :"BFO_0000019"   
@@ -357,16 +357,16 @@ CLASS :"IAO_0000109"
   :"IAO_0000039"  [1..1] :"IAO_0000003" 
 
 CLASS :"BFO_0000020"   
-  LABEL @en 'sdc' 
-  DESCRIPTION @en 'b is a specifically dependent continuant = Def. b is a continuant & there is some independent continuant c which is not a spatial region and which is such that b s-depends_on c at every time t during the course of b’s existence. (axiom label in BFO2 Reference: [050-003])' 
+  LABEL @en 'specifically dependent continuant' 
+  DESCRIPTION @en 'per discussion with Barry Smith' 
   ISA :"BFO_0000002"  
 
 CLASS :"HBW_0000028"   
   LABEL @en 'human biological sex or gender identity statement' 
   DESCRIPTION @en 'A statement about the biological sex or gender identity of a human' 
   ISA :"NOYO_0000013"  
-  :"BFO_0000051"  [1..1] :"IOIO_0000012" 
   :"BFO_0000051"  [1..1] :"HBW_0000006" 
+  :"BFO_0000051"  [1..1] :"IOIO_0000012" 
 
 CLASS :"HBW_0000029"   
   LABEL @en 'RAMQ vulnerability code statement' 
@@ -423,6 +423,16 @@ CLASS :"OBI_0100026"
   DESCRIPTION @en 'A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.' 
   ISA :"BFO_0000040"  
 
+CLASS :"ONTORELA_C4d0c3f45"   
+  LABEL @fr 'HBW_0000004
+ and (IAO_0000136 some HBW_0000007)'
+    @en 'health care record
+ and (is about some patient)' 
+  DESCRIPTION @fr 'HBW_0000006'
+    @en 'medical record identifierA document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting. An organism having the role of patient.' 
+  ISA :"HBW_0000004"  
+  :"IAO_0000136"  [1..*] :"HBW_0000007" 
+
 CLASS :"ONTORELA_C61c354fb"   
   LABEL @fr 'IAO_0000027
  and (IAO_0000136 some 
@@ -433,7 +443,7 @@ CLASS :"ONTORELA_C61c354fb"
     ((disposition or quality)
      and (inheres in some organism)))' 
   DESCRIPTION @fr 'HBW_0000012'
-    @en 'physiological evaluationrealizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements. A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.' 
+    @en 'physiological evaluationDisposition realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements. A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.' 
   ISA :"IAO_0000027"  
   :"IAO_0000136"  [1..*] :"ONTORELA_C2986e108" 
 
@@ -449,7 +459,7 @@ CLASS :"ONTORELA_C2986e108"
     @en 'data item
  and (is about some 
     ((disposition or quality)
-     and (inheres in some organism)))realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.' 
+     and (inheres in some organism)))Disposition realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs.' 
   ISA :"ONTORELA_C1edc1ccd"  
   :"RO_0000052"  [1..*] :"OBI_0100026" 
 
@@ -459,15 +469,5 @@ CLASS :"ONTORELA_C1edc1ccd"
   DESCRIPTION @fr '(BFO_0000016 or BFO_0000019)
  and (RO_0000052 some OBI_0100026)'
     @en '(disposition or quality)
- and (inheres in some organism)realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed Disposition a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality' 
-
-CLASS :"ONTORELA_C4d0c3f45"   
-  LABEL @fr 'HBW_0000004
- and (IAO_0000136 some HBW_0000007)'
-    @en 'health care record
- and (is about some patient)' 
-  DESCRIPTION @fr 'HBW_0000006'
-    @en 'medical record identifierA document that contains information representing health-relevant qualities of a patient written in a chronological manner and that is primarily used for patient care in a clinical setting. An organism having the role of patient.' 
-  ISA :"HBW_0000004"  
-  :"IAO_0000136"  [1..*] :"HBW_0000007" 
+ and (inheres in some organism)Disposition realizable entity that specifically depends of some material entity,  its bearer, for which is such that if it ceases to exist, then its bearer is physically changed a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized Quality' 
 
