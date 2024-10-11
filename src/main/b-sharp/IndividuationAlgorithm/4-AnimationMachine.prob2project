@@ -12,13 +12,7 @@
       "symbolicCheckingFormulas": [],
       "symbolicAnimationFormulas": [],
       "testCases": [],
-      "traces": [
-        {
-          "id": null,
-          "location": "../../../../doc/animation_proB/AnimationContext-ConDis.prob2trace",
-          "selected": true
-        }
-      ],
+      "traces": [],
       "modelcheckingItems": [
         {
           "searchStrategy": "MIXED_BF_DF",
@@ -43,7 +37,7 @@
   "metadata": {
     "fileType": "Project",
     "formatVersion": 37,
-    "savedAt": "2024-08-02T20:35:02.507937Z",
+    "savedAt": "2024-10-11T19:49:44.932378Z",
     "creator": "User",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": null,

@@ -6104,4 +6104,95 @@
         <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.eqL1:1"/>
         <org.eventb.core.prReas name="r3" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalPP:1"/>
     </org.eventb.core.prProof>
+    <org.eventb.core.prProof name="onto_cLevel_finite/THM" org.eventb.core.confidence="0" org.eventb.core.prFresh="" org.eventb.core.prHyps="">
+        <org.eventb.core.lang name="L"/>
+        <org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
+            <org.eventb.core.prAnte name="'">
+                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p0" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p1"/>
+                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="type rewrites" org.eventb.core.prHyps="">
+                    <org.eventb.core.prAnte name="'">
+                        <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p2"/>
+                        <org.eventb.core.prHypAction name="HIDE1" org.eventb.core.prHyps="p3"/>
+                        <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p4" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p5"/>
+                        <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p6" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p7"/>
+                        <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p8" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p9"/>
+                        <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p1" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p10"/>
+                        <org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
+                            <org.eventb.core.prAnte name="'">
+                                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p5" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p11"/>
+                                <org.eventb.core.prHypAction name="REWRITE1" org.eventb.core.prHidden="p7" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p12"/>
+                                <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p9" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p13"/>
+                                <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p10" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p14"/>
+                            </org.eventb.core.prAnte>
+                        </org.eventb.core.prRule>
+                    </org.eventb.core.prAnte>
+                </org.eventb.core.prRule>
+            </org.eventb.core.prAnte>
+        </org.eventb.core.prRule>
+        <org.eventb.core.prPred name="p0" org.eventb.core.predicate="∀c⦂C·c∈C⇒c∉has_parent[{c}]">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="has_parent" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p8" org.eventb.core.predicate="∀c⦂C,cp⦂C·{c,cp}⊆C∧cp ↦ c∈is_a∧c ↦ cp∈is_a⇔c=cp">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="is_a" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p12" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="is_a" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p6" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·{c,cp,cpp}⊆C∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="is_a" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p3" org.eventb.core.predicate="C_leaves⊆C">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="C_leaves" org.eventb.core.type="ℙ(C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p4" org.eventb.core.predicate="∀S⦂ℙ(C)·S⊆C∧thing∈S∧(∀n⦂C·n∈C ∖ {thing}∧has_parent[{n}]⊆S⇒n∈S)⇒C⊆S">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="has_parent" org.eventb.core.type="ℙ(C×C)"/>
+            <org.eventb.core.prIdent name="thing" org.eventb.core.type="C"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p10" org.eventb.core.predicate="∀c⦂C·⊤⇒¬c∈has_parent[{c}]">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="has_parent" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p11" org.eventb.core.predicate="∀S⦂ℙ(C)·thing∈S∧(∀n⦂C·n∈C ∖ {thing}∧has_parent[{n}]⊆S⇒n∈S)⇒C⊆S">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="has_parent" org.eventb.core.type="ℙ(C×C)"/>
+            <org.eventb.core.prIdent name="thing" org.eventb.core.type="C"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p2" org.eventb.core.predicate="thing∈C">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="thing" org.eventb.core.type="C"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p7" org.eventb.core.predicate="∀c⦂C,cp⦂C,cpp⦂C·⊤∧cp∈is_a[{c}]∧cpp∈is_a[{cp}]⇒cpp∈is_a[{c}]">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="is_a" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p13" org.eventb.core.predicate="∀c⦂C,cp⦂C·cp ↦ c∈is_a∧c ↦ cp∈is_a⇔c=cp">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="is_a" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p1" org.eventb.core.predicate="∀c⦂C·c∈C⇒¬c∈has_parent[{c}]">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="has_parent" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p5" org.eventb.core.predicate="∀S⦂ℙ(C)·⊤∧thing∈S∧(∀n⦂C·n∈C ∖ {thing}∧has_parent[{n}]⊆S⇒n∈S)⇒C⊆S">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="has_parent" org.eventb.core.type="ℙ(C×C)"/>
+            <org.eventb.core.prIdent name="thing" org.eventb.core.type="C"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p9" org.eventb.core.predicate="∀c⦂C,cp⦂C·⊤∧cp ↦ c∈is_a∧c ↦ cp∈is_a⇔c=cp">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="is_a" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p14" org.eventb.core.predicate="∀c⦂C·¬c∈has_parent[{c}]">
+            <org.eventb.core.prIdent name="C" org.eventb.core.type="ℙ(C)"/>
+            <org.eventb.core.prIdent name="has_parent" org.eventb.core.type="ℙ(C×C)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
+        <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+    </org.eventb.core.prProof>
 </org.eventb.core.prFile>

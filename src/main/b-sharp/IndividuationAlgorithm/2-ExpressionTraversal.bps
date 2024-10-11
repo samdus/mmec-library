@@ -14,7 +14,7 @@
     <org.eventb.core.psStatus name="INITIALISATION/init_currentClass/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="INITIALISATION/init_currentExpression/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="INITIALISATION/init_currentClassAndLevel/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
-    <org.eventb.core.psStatus name="final/final_grd2/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="2" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="final/final_grd2/THM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="true"/>
     <org.eventb.core.psStatus name="next_class/def_expressionsOfCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_class/def_expressionsLeftForCurrentClass/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>
     <org.eventb.core.psStatus name="next_class/inv_allExpressionOfCurrentClassNotLeftAreAnalysed/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="0" org.eventb.core.psManual="false"/>

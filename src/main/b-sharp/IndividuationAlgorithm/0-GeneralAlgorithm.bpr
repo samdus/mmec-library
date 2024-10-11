@@ -9172,7 +9172,7 @@
                                                                                                                         <org.eventb.core.prRule name="r10" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⊤ goal" org.eventb.core.prGoal="p137" org.eventb.core.prHyps=""/>
                                                                                                                     </org.eventb.core.prAnte>
                                                                                                                     <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p138">
-                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p138" org.eventb.core.prHyps="p18,p52,p56,p3,p35,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p25,p40,p48,p11,p31,p62,p50,p22,p8,p24,p15,p59,p65,p1,p54,p30,p32,p102,p103,p104,p105,p106,p107,p109,p110,p111,p112,p113,p114,p116,p117,p118,p121,p122,p125,p126,p135">
+                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p138" org.eventb.core.prHyps="p125,p1,p3,p4,p126,p7,p8,p10,p11,p102,p14,p15,p18,p20,p22,p23,p24,p25,p105,p27,p28,p29,p30,p31,p116,p32,p104,p35,p37,p38,p106,p114,p109,p39,p40,p41,p118,p113,p117,p112,p135,p44,p45,p111,p110,p48,p121,p50,p51,p52,p54,p56,p103,p57,p59,p122,p107,p62,p65">
                                                                                                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
                                                                                                                         </org.eventb.core.prRule>
                                                                                                                     </org.eventb.core.prAnte>
@@ -9232,7 +9232,7 @@
                                                                                                                 </org.eventb.core.prRule>
                                                                                                             </org.eventb.core.prAnte>
                                                                                                             <org.eventb.core.prAnte name=")" org.eventb.core.prHyps="p141">
-                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p140" org.eventb.core.prHyps="p18,p52,p56,p3,p35,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p25,p40,p48,p11,p31,p62,p50,p22,p8,p24,p15,p59,p65,p1,p54,p30,p32,p102,p103,p104,p105,p106,p107,p109,p110,p111,p112,p113,p114,p116,p117,p118,p121,p122,p125,p126,p135,p141">
+                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p140" org.eventb.core.prHyps="p125,p1,p3,p4,p126,p7,p8,p10,p11,p102,p14,p15,p18,p20,p22,p23,p24,p25,p105,p27,p28,p29,p30,p31,p116,p32,p104,p35,p37,p38,p106,p114,p109,p39,p40,p41,p118,p113,p117,p112,p135,p44,p45,p111,p110,p141,p48,p121,p50,p51,p52,p54,p56,p103,p57,p59,p122,p107,p62,p65">
                                                                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                                                                 </org.eventb.core.prRule>
                                                                                                             </org.eventb.core.prAnte>
@@ -9276,7 +9276,7 @@
                                                                                                                 <org.eventb.core.prRule name="r6" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with first=min(exp_list∼[{e' ∣ {p}=individuation[{e'}]}])" org.eventb.core.prGoal="p145" org.eventb.core.prHyps="p146">
                                                                                                                     <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p147">
                                                                                                                         <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p146"/>
-                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p147" org.eventb.core.prHyps="p18,p52,p56,p3,p35,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p25,p40,p48,p11,p31,p62,p50,p22,p8,p24,p15,p59,p65,p1,p54,p30,p32,p102,p103,p104,p105,p106,p107,p109,p110,p111,p112,p113,p114,p116,p117,p118,p121,p122,p125,p126,p143,p134">
+                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p147" org.eventb.core.prHyps="p125,p1,p3,p4,p126,p7,p8,p10,p11,p102,p134,p14,p15,p18,p20,p22,p23,p24,p25,p105,p27,p28,p29,p30,p31,p116,p32,p143,p104,p35,p37,p38,p106,p114,p109,p39,p40,p41,p118,p113,p117,p112,p44,p45,p111,p110,p48,p121,p50,p51,p52,p54,p56,p103,p57,p59,p122,p107,p62,p65">
                                                                                                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                                                                         </org.eventb.core.prRule>
                                                                                                                     </org.eventb.core.prAnte>
@@ -9891,7 +9891,7 @@
                                                                                                                                                                                                                                 <org.eventb.core.prRule name="r6" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with valid_signatures={e,c·∃p,equivalentExp,first·equivalentExp={e'·{p}=individuation[{e'}] ∣ e'}∧¬equivalentExp=∅∧c∈class_of_strict[{p}]∧first=min(exp_list∼[equivalentExp])∧e=exp_list(first) ∣ e ↦ c}" org.eventb.core.prHyps="p159">
                                                                                                                                                                                                                                     <org.eventb.core.prAnte name="'">
                                                                                                                                                                                                                                         <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p159"/>
-                                                                                                                                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p171" org.eventb.core.prHyps="p18,p52,p56,p3,p35,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p25,p40,p48,p11,p31,p62,p50,p22,p8,p24,p15,p59,p65,p1,p54,p30,p32,p126,p134,p160,p161,p125,p102,p103,p104,p105,p106,p107,p109,p110,p111,p112,p113,p114,p116,p117,p118,p121,p122,p165">
+                                                                                                                                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p171" org.eventb.core.prHyps="p125,p1,p3,p4,p126,p7,p8,p10,p11,p102,p165,p134,p14,p15,p18,p20,p22,p23,p24,p25,p105,p27,p28,p29,p30,p31,p116,p32,p104,p161,p35,p37,p160,p38,p106,p114,p109,p39,p40,p41,p118,p113,p117,p112,p44,p45,p111,p110,p48,p121,p50,p51,p52,p54,p56,p103,p57,p59,p122,p107,p62,p65">
                                                                                                                                                                                                                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
                                                                                                                                                                                                                                         </org.eventb.core.prRule>
                                                                                                                                                                                                                                     </org.eventb.core.prAnte>
@@ -10072,14 +10072,14 @@
                                                                                                                                 </org.eventb.core.prRule>
                                                                                                                             </org.eventb.core.prAnte>
                                                                                                                             <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p139">
-                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p139" org.eventb.core.prHyps="p18,p42,p9,p52,p61,p2,p56,p3,p35,p26,p21,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p5,p25,p40,p48,p11,p31,p53,p63,p62,p50,p22,p8,p47,p43,p36,p24,p17,p15,p59,p58,p65,p1,p6,p19,p54,p16,p12,p64,p30,p34,p60,p13,p49,p32,p55,p46,p33,p66,p152,p126,p156,p127,p160,p161,p167">
+                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p139" org.eventb.core.prHyps="p2,p1,p3,p4,p5,p6,p126,p7,p9,p8,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p21,p20,p22,p23,p24,p25,p26,p27,p28,p29,p30,p31,p32,p33,p34,p161,p35,p36,p37,p160,p38,p39,p40,p41,p42,p43,p156,p44,p45,p46,p167,p47,p127,p48,p49,p50,p51,p52,p66,p53,p54,p55,p56,p57,p58,p59,p61,p60,p62,p152,p63,p64,p65">
                                                                                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                                                                                 </org.eventb.core.prRule>
                                                                                                                             </org.eventb.core.prAnte>
                                                                                                                         </org.eventb.core.prRule>
                                                                                                                     </org.eventb.core.prAnte>
                                                                                                                     <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p172" org.eventb.core.prHyps="p139,p169">
-                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p172" org.eventb.core.prHyps="p18,p42,p9,p52,p61,p2,p56,p3,p35,p26,p21,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p5,p25,p40,p48,p11,p31,p53,p63,p62,p50,p22,p8,p47,p43,p36,p24,p17,p15,p59,p58,p65,p1,p6,p19,p54,p16,p12,p64,p30,p34,p60,p13,p49,p32,p55,p46,p33,p66,p152,p126,p156,p127,p160,p161,p167,p139,p169">
+                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p172" org.eventb.core.prHyps="p2,p1,p3,p4,p5,p6,p126,p7,p9,p8,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p21,p20,p22,p23,p24,p25,p169,p26,p27,p28,p29,p30,p31,p32,p33,p34,p161,p35,p36,p37,p139,p160,p38,p39,p40,p41,p42,p43,p156,p44,p45,p46,p167,p47,p127,p48,p49,p50,p51,p52,p66,p53,p54,p55,p56,p57,p58,p59,p61,p60,p62,p152,p63,p64,p65">
                                                                                                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                                                                         </org.eventb.core.prRule>
                                                                                                                     </org.eventb.core.prAnte>
@@ -10101,7 +10101,7 @@
                                                                                                                                                             <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p145">
                                                                                                                                                                 <org.eventb.core.prRule name="r18" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="lae in goal" org.eventb.core.prGoal="p145" org.eventb.core.prHyps="p143">
                                                                                                                                                                     <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p176">
-                                                                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p176" org.eventb.core.prHyps="p18,p42,p9,p52,p61,p2,p56,p3,p35,p26,p21,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p5,p25,p40,p48,p11,p31,p53,p63,p62,p50,p22,p8,p47,p43,p36,p24,p17,p15,p59,p58,p65,p1,p6,p19,p54,p16,p12,p64,p30,p34,p60,p13,p49,p32,p55,p46,p33,p66,p152,p126,p156,p127,p160,p161,p167,p139,p169,p143,p175">
+                                                                                                                                                                        <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p176" org.eventb.core.prHyps="p2,p1,p3,p4,p5,p6,p126,p7,p9,p8,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p21,p20,p22,p23,p24,p25,p169,p26,p27,p28,p29,p30,p31,p32,p33,p143,p34,p161,p35,p36,p37,p139,p160,p38,p39,p40,p41,p42,p43,p156,p44,p45,p46,p167,p47,p127,p48,p49,p50,p51,p52,p66,p53,p54,p55,p56,p57,p58,p175,p59,p61,p60,p62,p152,p63,p64,p65">
                                                                                                                                                                             <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                                                                                                                         </org.eventb.core.prRule>
                                                                                                                                                                     </org.eventb.core.prAnte>
@@ -10109,7 +10109,7 @@
                                                                                                                                                                 </org.eventb.core.prRule>
                                                                                                                                                             </org.eventb.core.prAnte>
                                                                                                                                                             <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p148">
-                                                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p148" org.eventb.core.prHyps="p18,p42,p9,p52,p61,p2,p56,p3,p35,p26,p21,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p5,p25,p40,p48,p11,p31,p53,p63,p62,p50,p22,p8,p47,p43,p36,p24,p17,p15,p59,p58,p65,p1,p6,p19,p54,p16,p12,p64,p30,p34,p60,p13,p49,p32,p55,p46,p33,p66,p152,p126,p156,p127,p160,p161,p167,p139,p169,p143,p175">
+                                                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p148" org.eventb.core.prHyps="p2,p1,p3,p4,p5,p6,p126,p7,p9,p8,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p21,p20,p22,p23,p24,p25,p169,p26,p27,p28,p29,p30,p31,p32,p33,p143,p34,p161,p35,p36,p37,p139,p160,p38,p39,p40,p41,p42,p43,p156,p44,p45,p46,p167,p47,p127,p48,p49,p50,p51,p52,p66,p53,p54,p55,p56,p57,p58,p175,p59,p61,p60,p62,p152,p63,p64,p65">
                                                                                                                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                                                                                                                 </org.eventb.core.prRule>
                                                                                                                                                             </org.eventb.core.prAnte>
@@ -10470,7 +10470,7 @@
                                                                                                                                                                                                                                                         <org.eventb.core.prRule name="r6" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with e'=exp_list(min(exp_list∼[equivalentExp]))" org.eventb.core.prHyps="p190">
                                                                                                                                                                                                                                                             <org.eventb.core.prAnte name="'">
                                                                                                                                                                                                                                                                 <org.eventb.core.prHypAction name="HIDE0" org.eventb.core.prHyps="p190"/>
-                                                                                                                                                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p197" org.eventb.core.prHyps="p18,p52,p56,p3,p35,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p25,p40,p48,p11,p31,p62,p50,p22,p8,p24,p15,p59,p65,p1,p54,p30,p32,p126,p127,p160,p161,p139,p143,p145,p148,p159,p125,p129,p186,p102,p103,p104,p105,p106,p107,p109,p110,p111,p112,p113,p114,p116,p117,p118,p121,p122,p196">
+                                                                                                                                                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p197" org.eventb.core.prHyps="p125,p1,p3,p4,p126,p7,p8,p10,p11,p102,p148,p14,p15,p18,p20,p22,p23,p24,p25,p105,p27,p28,p29,p30,p31,p116,p32,p143,p104,p161,p35,p37,p139,p160,p186,p38,p106,p114,p129,p109,p39,p40,p145,p41,p118,p113,p117,p112,p196,p44,p45,p111,p110,p127,p48,p121,p50,p51,p52,p54,p56,p103,p57,p59,p122,p159,p107,p62,p65">
                                                                                                                                                                                                                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
                                                                                                                                                                                                                                                                 </org.eventb.core.prRule>
                                                                                                                                                                                                                                                             </org.eventb.core.prAnte>
@@ -11118,7 +11118,7 @@
                                                                                                                                                                                                                                                                                                                         <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p127"/>
                                                                                                                                                                                                                                                                                                                         <org.eventb.core.prRule name="r18" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="lae in goal" org.eventb.core.prGoal="p233" org.eventb.core.prHyps="p127">
                                                                                                                                                                                                                                                                                                                             <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p234">
-                                                                                                                                                                                                                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p234" org.eventb.core.prHyps="p18,p52,p56,p3,p35,p10,p44,p4,p39,p41,p38,p7,p23,p45,p51,p57,p27,p28,p20,p14,p37,p29,p25,p40,p48,p11,p31,p62,p50,p22,p8,p24,p15,p59,p65,p1,p54,p30,p32,p126,p127,p160,p161,p143,p173,p175,p75,p125,p129,p102,p103,p104,p105,p106,p107,p109,p110,p111,p112,p113,p114,p116,p117,p118,p121,p122,p221,p131,p222,p212,p135,p223,p224,p226,p227">
+                                                                                                                                                                                                                                                                                                                                <org.eventb.core.prRule name="r11" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p234" org.eventb.core.prHyps="p125,p1,p3,p4,p126,p7,p8,p10,p11,p102,p14,p15,p18,p20,p22,p227,p23,p24,p25,p105,p27,p28,p29,p173,p30,p31,p116,p32,p143,p75,p104,p222,p161,p35,p37,p160,p38,p106,p114,p129,p109,p39,p40,p41,p118,p113,p117,p112,p135,p44,p45,p111,p131,p212,p110,p224,p127,p48,p121,p226,p50,p51,p52,p54,p223,p56,p103,p57,p175,p59,p122,p107,p62,p65,p221">
                                                                                                                                                                                                                                                                                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1;2;3:30000"/>
                                                                                                                                                                                                                                                                                                                                 </org.eventb.core.prRule>
                                                                                                                                                                                                                                                                                                                             </org.eventb.core.prAnte>
@@ -11761,7 +11761,7 @@
                                                                                                                                                                                         <org.eventb.core.prRule name="r15" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="sl/ds" org.eventb.core.prHyps="">
                                                                                                                                                                                             <org.eventb.core.prAnte name="'">
                                                                                                                                                                                                 <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p1,p3,p123,p4,p108,p8,p10,p11,p102,p15,p18,p72,p23,p25,p105,p29,p31,p116,p75,p201,p104,p35,p120,p106,p114,p109,p40,p41,p113,p119,p112,p257,p44,p45,p111,p261,p110,p48,p121,p50,p51,p52,p56,p103,p57,p259,p122,p107,p62,p115,p69"/>
-                                                                                                                                                                                                <org.eventb.core.prRule name="r21" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="CVC3" org.eventb.core.prGoal="p295" org.eventb.core.prHyps="p294,p297,p270,p274,p1,p3,p4,p8,p10,p11,p102,p15,p18,p23,p25,p105,p29,p31,p116,p75,p104,p35,p106,p114,p109,p40,p41,p113,p112,p257,p44,p45,p111,p261,p110,p48,p121,p50,p51,p52,p56,p103,p57,p259,p122,p107,p62">
+                                                                                                                                                                                                <org.eventb.core.prRule name="r21" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="CVC3" org.eventb.core.prGoal="p295" org.eventb.core.prHyps="p270,p1,p3,p4,p106,p114,p274,p109,p40,p294,p8,p41,p113,p10,p11,p102,p112,p257,p44,p45,p15,p111,p261,p110,p48,p121,p18,p50,p51,p52,p23,p56,p103,p25,p105,p57,p259,p297,p29,p122,p31,p116,p107,p62,p75,p104,p35">
                                                                                                                                                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="R1000"/>
                                                                                                                                                                                                     <org.eventb.core.prString name=".config_id" org.eventb.core.prSValue="CVC3"/>
                                                                                                                                                                                                 </org.eventb.core.prRule>
@@ -11900,7 +11900,7 @@
                                                                                                                                                                                                         <org.eventb.core.prRule name="r15" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="sl/ds" org.eventb.core.prHyps="">
                                                                                                                                                                                                             <org.eventb.core.prAnte name="'">
                                                                                                                                                                                                                 <org.eventb.core.prHypAction name="SELECT0" org.eventb.core.prHyps="p1,p3,p123,p4,p108,p8,p10,p11,p102,p15,p18,p72,p23,p25,p105,p29,p31,p116,p201,p104,p35,p120,p106,p114,p109,p40,p41,p113,p119,p112,p44,p45,p111,p261,p110,p48,p121,p50,p51,p52,p56,p103,p57,p259,p122,p292,p107,p62,p115,p69"/>
-                                                                                                                                                                                                                <org.eventb.core.prRule name="r21" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="CVC3" org.eventb.core.prGoal="p299" org.eventb.core.prHyps="p260,p294,p165,p301,p270,p274,p1,p3,p4,p8,p10,p11,p102,p15,p18,p23,p25,p105,p29,p31,p116,p104,p35,p106,p114,p109,p40,p41,p113,p112,p44,p45,p111,p261,p110,p48,p121,p50,p51,p52,p56,p103,p57,p259,p122,p292,p107,p62">
+                                                                                                                                                                                                                <org.eventb.core.prRule name="r21" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="CVC3" org.eventb.core.prGoal="p299" org.eventb.core.prHyps="p270,p1,p3,p4,p301,p106,p114,p274,p109,p40,p294,p8,p41,p113,p10,p11,p102,p112,p165,p44,p45,p15,p111,p261,p110,p48,p121,p18,p50,p51,p260,p52,p23,p56,p103,p25,p105,p57,p259,p29,p122,p31,p116,p292,p107,p62,p104,p35">
                                                                                                                                                                                                                     <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="R1000"/>
                                                                                                                                                                                                                     <org.eventb.core.prString name=".config_id" org.eventb.core.prSValue="CVC3"/>
                                                                                                                                                                                                                 </org.eventb.core.prRule>
@@ -12013,12 +12013,14 @@
                                         <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p307" org.eventb.core.prHyps="">
                                             <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p137">
                                                 <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p2" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p67"/>
-                                                <org.eventb.core.prHypAction name="REWRITE1" org.eventb.core.prHidden="p68" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p69"/>
+                                                <org.eventb.core.prHypAction name="REWRITE1" org.eventb.core.prHidden="p308" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p309"/>
                                                 <org.eventb.core.prHypAction name="REWRITE2" org.eventb.core.prHidden="p58" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p70"/>
-                                                <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p71" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p72"/>
-                                                <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p73" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p74"/>
-                                                <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p66" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p75"/>
-                                                <org.eventb.core.prHypAction name="REWRITE6" org.eventb.core.prHidden="p152" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p159"/>
+                                                <org.eventb.core.prHypAction name="REWRITE3" org.eventb.core.prHidden="p65" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p310"/>
+                                                <org.eventb.core.prHypAction name="REWRITE4" org.eventb.core.prHidden="p54" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p303"/>
+                                                <org.eventb.core.prHypAction name="REWRITE5" org.eventb.core.prHidden="p30" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p311"/>
+                                                <org.eventb.core.prHypAction name="REWRITE6" org.eventb.core.prHidden="p32" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p304"/>
+                                                <org.eventb.core.prHypAction name="REWRITE7" org.eventb.core.prHidden="p66" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p75"/>
+                                                <org.eventb.core.prHypAction name="REWRITE8" org.eventb.core.prHidden="p152" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p159"/>
                                                 <org.eventb.core.prRule name="r10" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⊤ goal" org.eventb.core.prGoal="p137" org.eventb.core.prHyps=""/>
                                             </org.eventb.core.prAnte>
                                         </org.eventb.core.prRule>
@@ -12063,6 +12065,9 @@
             <org.eventb.core.prIdent name="e1" org.eventb.core.type="E"/>
         </org.eventb.core.prPred>
         <org.eventb.core.prPred name="p1" org.eventb.core.predicate="∀e1⦂E,e2⦂E,p⦂P·e1∈exp_overlap[{e2}]∧p∈individuation[{e1}]∩individuation[{e2}]⇒(∃e⦂E·p∈individuation[{e}]∧e∈exp_subsets[{e1}]∧e∈exp_subsets[{e2}])"/>
+        <org.eventb.core.prPred name="p153" org.eventb.core.predicate="(∀p⦂P,c⦂C·p∈P∧c∈class_of_strict[{p}]⇒(∃e⦂E·p∈individuation[{e}]∧e ↦ c∈valid_signatures))∧(∀e⦂E,c⦂C·e ↦ c∈valid_signatures⇒(∀p⦂P·p∈individuation[{e}]⇒c∈class_of[{p}]))∧(∀e⦂E·e∈dom(valid_signatures)⇒individuation[{e}]≠(∅ ⦂ ℙ(P)))∧dom(∅ ⦂ ℙ(E×E))⊆dom(valid_signatures)∪(∅ ⦂ ℙ(E))∧(∀e1⦂E,e2⦂E·e1∈dom(valid_signatures)∧e2∈dom(valid_signatures)∧e1≠e2∧e1∈exp_overlap[{e2}]⇒(∃s⦂ℙ(ℤ×E),n⦂ℤ·n∈ℕ1∧s∈0 ‥ n → E∧(∀i⦂ℤ·i∈0 ‥ n − 1⇒s(i)∈(∅ ⦂ ℙ(E×E))[{s(i+1)}]∨s(i)∈(∅ ⦂ ℙ(E×E))∼[{s(i+1)}])∧s(0)=e1∧s(n)=e2))∧(∀sup⦂E,sub⦂E·sub∈(∅ ⦂ ℙ(E×E))[{sup}]⇒sub∈exp_subsets[{sup}])∧(∀e1⦂E,e2⦂E·e1∈(∅ ⦂ ℙ(E×E))[{e2}]⇒exp_key(e1)∈key_compatible[{exp_key(e2)}])∧(∅ ⦂ ℙ(E))∩dom(valid_signatures)=(∅ ⦂ ℙ(E))∧(∀s⦂E·s∈(∅ ⦂ ℙ(E))⇒(∃e1⦂E,e2⦂E·e1≠e2∧e1∈(∅ ⦂ ℙ(E×E))[{s}]∧e2∈(∅ ⦂ ℙ(E×E))[{s}]))">
+            <org.eventb.core.prIdent name="valid_signatures" org.eventb.core.type="ℙ(E×C)"/>
+        </org.eventb.core.prPred>
         <org.eventb.core.prPred name="p155" org.eventb.core.predicate="p∈P∧c∈class_of_strict[{p}]⇒(∃e⦂E·p∈individuation[{e}]∧e ↦ c∈valid_signatures)">
             <org.eventb.core.prIdent name="c" org.eventb.core.type="C"/>
             <org.eventb.core.prIdent name="p" org.eventb.core.type="P"/>
@@ -12077,9 +12082,6 @@
         <org.eventb.core.prPred name="p204" org.eventb.core.predicate="p∈individuation[{e'}]">
             <org.eventb.core.prIdent name="e'" org.eventb.core.type="E"/>
             <org.eventb.core.prIdent name="p" org.eventb.core.type="P"/>
-        </org.eventb.core.prPred>
-        <org.eventb.core.prPred name="p153" org.eventb.core.predicate="(∀p⦂P,c⦂C·p∈P∧c∈class_of_strict[{p}]⇒(∃e⦂E·p∈individuation[{e}]∧e ↦ c∈valid_signatures))∧(∀e⦂E,c⦂C·e ↦ c∈valid_signatures⇒(∀p⦂P·p∈individuation[{e}]⇒c∈class_of[{p}]))∧(∀e⦂E·e∈dom(valid_signatures)⇒individuation[{e}]≠(∅ ⦂ ℙ(P)))∧dom(∅ ⦂ ℙ(E×E))⊆dom(valid_signatures)∪(∅ ⦂ ℙ(E))∧(∀e1⦂E,e2⦂E·e1∈dom(valid_signatures)∧e2∈dom(valid_signatures)∧e1≠e2∧e1∈exp_overlap[{e2}]⇒(∃s⦂ℙ(ℤ×E),n⦂ℤ·n∈ℕ1∧s∈0 ‥ n → E∧(∀i⦂ℤ·i∈0 ‥ n − 1⇒s(i)∈(∅ ⦂ ℙ(E×E))[{s(i+1)}]∨s(i)∈(∅ ⦂ ℙ(E×E))∼[{s(i+1)}])∧s(0)=e1∧s(n)=e2))∧(∀sup⦂E,sub⦂E·sub∈(∅ ⦂ ℙ(E×E))[{sup}]⇒sub∈exp_subsets[{sup}])∧(∀e1⦂E,e2⦂E·e1∈(∅ ⦂ ℙ(E×E))[{e2}]⇒exp_key(e1)∈key_compatible[{exp_key(e2)}])∧(∅ ⦂ ℙ(E))∩dom(valid_signatures)=(∅ ⦂ ℙ(E))∧(∀s⦂E·s∈(∅ ⦂ ℙ(E))⇒(∃e1⦂E,e2⦂E·e1∈(∅ ⦂ ℙ(E×E))[{s}]∧e2∈(∅ ⦂ ℙ(E×E))[{s}]))">
-            <org.eventb.core.prIdent name="valid_signatures" org.eventb.core.type="ℙ(E×C)"/>
         </org.eventb.core.prPred>
         <org.eventb.core.prPred name="p236" org.eventb.core.predicate="e ↦ c∈valid_signatures⇒(∀p⦂P·p∈individuation[{e}]⇒c∈class_of[{p}])">
             <org.eventb.core.prIdent name="c" org.eventb.core.type="C"/>
@@ -12143,6 +12145,7 @@
         <org.eventb.core.prPred name="p193" org.eventb.core.predicate="∀i⦂ℤ·i∈exp_list∼[equivalentExp]⇒i∈dom(exp_list)∧⊤">
             <org.eventb.core.prIdent name="equivalentExp" org.eventb.core.type="ℙ(E)"/>
         </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p310" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈exp_subsets[{e2}]∧e1∈dom(individuation)∧e2∈dom(individuation)⇒e1∈exp_overlap[{e2}]∧e2∈exp_overlap[{e1}]"/>
         <org.eventb.core.prPred name="p188" org.eventb.core.predicate="e'=exp_list(first)">
             <org.eventb.core.prIdent name="e'" org.eventb.core.type="E"/>
             <org.eventb.core.prIdent name="first" org.eventb.core.type="ℤ"/>
@@ -12208,6 +12211,7 @@
             <org.eventb.core.prIdent name="first" org.eventb.core.type="ℤ"/>
         </org.eventb.core.prPred>
         <org.eventb.core.prPred name="p119" org.eventb.core.predicate="∀p1⦂P,p2⦂P·p1=p2⇒(∃e1⦂E,e2⦂E·p1∈individuation[{e1}]∧p2∈individuation[{e2}]∧exp_key(e1)∈key_compatible[{exp_key(e2)}])"/>
+        <org.eventb.core.prPred name="p309" org.eventb.core.predicate="∀c⦂C,i⦂ℤ,j⦂ℤ·i&gt;j∧c∈c_level[{i}]∧c∈c_level[{j}]⇒(∃parent⦂C·parent∈c_level[{j}]∧¬parent∈c_level[j+1 ‥ max_level]∧parent∈is_a[{c}])"/>
         <org.eventb.core.prPred name="p83" org.eventb.core.predicate="∀e1⦂E,e2⦂E·⊤∧e2∈exp_subsets[{e1}]⇔individuation[{e1}]⊆individuation[{e2}]"/>
         <org.eventb.core.prPred name="p46" org.eventb.core.predicate="signatureSupersets⊆E"/>
         <org.eventb.core.prPred name="p167" org.eventb.core.predicate="equivalentExp≠(∅ ⦂ ℙ(E))">
@@ -12289,6 +12293,7 @@
             <org.eventb.core.prIdent name="p" org.eventb.core.type="P"/>
         </org.eventb.core.prPred>
         <org.eventb.core.prPred name="p7" org.eventb.core.predicate="Q_cLevel⊆0 ‥ max_level"/>
+        <org.eventb.core.prPred name="p311" org.eventb.core.predicate="∀e⦂E,empty_e⦂E·e∈E∧empty_e∈E∧¬empty_e∈dom(individuation)⇒empty_e∈exp_subsets[{e}]"/>
         <org.eventb.core.prPred name="p280" org.eventb.core.predicate="exp_list(first)=e2">
             <org.eventb.core.prIdent name="e2" org.eventb.core.type="E"/>
             <org.eventb.core.prIdent name="first" org.eventb.core.type="ℤ"/>
@@ -12307,6 +12312,7 @@
             <org.eventb.core.prIdent name="ei" org.eventb.core.type="E"/>
             <org.eventb.core.prIdent name="p" org.eventb.core.type="P"/>
         </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p307" org.eventb.core.predicate="∀s⦂E·s∈(∅ ⦂ ℙ(E))⇒(∃e1⦂E,e2⦂E·e1≠e2∧e1∈(∅ ⦂ ℙ(E×E))[{s}]∧e2∈(∅ ⦂ ℙ(E×E))[{s}])"/>
         <org.eventb.core.prPred name="p272" org.eventb.core.predicate="∃c⦂C,p⦂P,first⦂ℤ·¬(∀e'⦂E·¬{p}=individuation[{e'}])∧c∈class_of_strict[{p}]∧first=min(exp_list∼[{e'⦂E·{p}=individuation[{e'}] ∣ e'}])∧e2=exp_list(first)">
             <org.eventb.core.prIdent name="e2" org.eventb.core.type="E"/>
         </org.eventb.core.prPred>
@@ -12463,7 +12469,6 @@
             <org.eventb.core.prIdent name="valid_signatures" org.eventb.core.type="ℙ(E×C)"/>
         </org.eventb.core.prPred>
         <org.eventb.core.prPred name="p89" org.eventb.core.predicate="∀c⦂C·⊤⇒(∃SE⦂ℙ(E)·∀p⦂P·c∈class_of_strict[{p}]⇔p∈individuation[SE])"/>
-        <org.eventb.core.prPred name="p0" org.eventb.core.predicate="∃signatures'⦂ℙ(E×C),subsets'⦂ℙ(E×E),signatureSupersets'⦂ℙ(E)·(∀p⦂P,c⦂C·p∈P∧c∈class_of_strict[{p}]⇒(∃e⦂E·p∈individuation[{e}]∧e ↦ c∈signatures'))∧(∀e⦂E,c⦂C·e ↦ c∈signatures'⇒(∀p⦂P·p∈individuation[{e}]⇒c∈class_of[{p}]))∧(∀e⦂E·e∈dom(signatures')⇒individuation[{e}]≠(∅ ⦂ ℙ(P)))∧dom(subsets')⊆dom(signatures')∪signatureSupersets'∧(∀e1⦂E,e2⦂E·e1∈dom(signatures')∧e2∈dom(signatures')∧e1≠e2∧e1∈exp_overlap[{e2}]⇒(∃s⦂ℙ(ℤ×E),n⦂ℤ·n∈ℕ1∧s∈0 ‥ n → E∧(∀i⦂ℤ·i∈0 ‥ n − 1⇒s(i)∈subsets'[{s(i+1)}]∨s(i)∈subsets'∼[{s(i+1)}])∧s(0)=e1∧s(n)=e2))∧(∀sup⦂E,sub⦂E·sub∈subsets'[{sup}]⇒sub∈exp_subsets[{sup}])∧(∀e1⦂E,e2⦂E·e1∈subsets'[{e2}]⇒exp_key(e1)∈key_compatible[{exp_key(e2)}])∧signatureSupersets'∩dom(signatures')=(∅ ⦂ ℙ(E))∧(∀s⦂E·s∈signatureSupersets'⇒(∃e1⦂E,e2⦂E·e1∈subsets'[{s}]∧e2∈subsets'[{s}]))"/>
         <org.eventb.core.prPred name="p20" org.eventb.core.predicate="Q_cLevel=0 ‥ max_level ∖ P_cLevel"/>
         <org.eventb.core.prPred name="p22" org.eventb.core.predicate="finite(K)"/>
         <org.eventb.core.prPred name="p23" org.eventb.core.predicate="finite(c_level)"/>
@@ -12686,6 +12691,7 @@
             <org.eventb.core.prIdent name="e" org.eventb.core.type="E"/>
             <org.eventb.core.prIdent name="valid_signatures" org.eventb.core.type="ℙ(E×C)"/>
         </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p308" org.eventb.core.predicate="∀c⦂C,i⦂ℤ,j⦂ℤ·i&gt;j∧c∈c_level[{i}]∧c∈c_level[{j}]⇒(∃parent⦂C·parent∈c_level[{j}]∧parent∉c_level[j+1 ‥ max_level]∧parent∈is_a[{c}])"/>
         <org.eventb.core.prPred name="p199" org.eventb.core.predicate="i∈exp_list∼[equivalentExp]⇒exp_list(i)∈equivalentExp">
             <org.eventb.core.prIdent name="equivalentExp" org.eventb.core.type="ℙ(E)"/>
             <org.eventb.core.prIdent name="i" org.eventb.core.type="ℤ"/>
@@ -12745,7 +12751,6 @@
         </org.eventb.core.prPred>
         <org.eventb.core.prPred name="p42" org.eventb.core.predicate="thing∈C"/>
         <org.eventb.core.prPred name="p44" org.eventb.core.predicate="has_parent⊆is_a"/>
-        <org.eventb.core.prPred name="p307" org.eventb.core.predicate="∀s⦂E·s∈(∅ ⦂ ℙ(E))⇒(∃e1⦂E,e2⦂E·e1∈(∅ ⦂ ℙ(E×E))[{s}]∧e2∈(∅ ⦂ ℙ(E×E))[{s}])"/>
         <org.eventb.core.prPred name="p291" org.eventb.core.predicate="exp_list(min(exp_list∼[{e'⦂E·{p0}=individuation[{e'}] ∣ e'}]))=exp_list(min(exp_list∼[{e'⦂E·{p0}=individuation[{e'}] ∣ e'}]))">
             <org.eventb.core.prIdent name="p0" org.eventb.core.type="P"/>
         </org.eventb.core.prPred>
@@ -12784,6 +12789,7 @@
         <org.eventb.core.prPred name="p292" org.eventb.core.predicate="∀e1⦂E,e2⦂E·e1∈dom(valid_signatures)∧e2∈dom(valid_signatures)∧¬e1=e2⇒¬e1∈exp_overlap[{e2}]">
             <org.eventb.core.prIdent name="valid_signatures" org.eventb.core.type="ℙ(E×C)"/>
         </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p0" org.eventb.core.predicate="∃signatures'⦂ℙ(E×C),subsets'⦂ℙ(E×E),signatureSupersets'⦂ℙ(E)·(∀p⦂P,c⦂C·p∈P∧c∈class_of_strict[{p}]⇒(∃e⦂E·p∈individuation[{e}]∧e ↦ c∈signatures'))∧(∀e⦂E,c⦂C·e ↦ c∈signatures'⇒(∀p⦂P·p∈individuation[{e}]⇒c∈class_of[{p}]))∧(∀e⦂E·e∈dom(signatures')⇒individuation[{e}]≠(∅ ⦂ ℙ(P)))∧dom(subsets')⊆dom(signatures')∪signatureSupersets'∧(∀e1⦂E,e2⦂E·e1∈dom(signatures')∧e2∈dom(signatures')∧e1≠e2∧e1∈exp_overlap[{e2}]⇒(∃s⦂ℙ(ℤ×E),n⦂ℤ·n∈ℕ1∧s∈0 ‥ n → E∧(∀i⦂ℤ·i∈0 ‥ n − 1⇒s(i)∈subsets'[{s(i+1)}]∨s(i)∈subsets'∼[{s(i+1)}])∧s(0)=e1∧s(n)=e2))∧(∀sup⦂E,sub⦂E·sub∈subsets'[{sup}]⇒sub∈exp_subsets[{sup}])∧(∀e1⦂E,e2⦂E·e1∈subsets'[{e2}]⇒exp_key(e1)∈key_compatible[{exp_key(e2)}])∧signatureSupersets'∩dom(signatures')=(∅ ⦂ ℙ(E))∧(∀s⦂E·s∈signatureSupersets'⇒(∃e1⦂E,e2⦂E·e1≠e2∧e1∈subsets'[{s}]∧e2∈subsets'[{s}]))"/>
         <org.eventb.core.prPred name="p62" org.eventb.core.predicate="∀p⦂P,c⦂C·p ↦ c∈class_of_strict⇔c∈class_of[{p}]∧has_parent∼[{c}]∩class_of[{p}]=(∅ ⦂ ℙ(C))"/>
         <org.eventb.core.prPred name="p174" org.eventb.core.predicate="e'∈equivalentExp⇒first∈dom(exp_list)∧exp_list∈ℤ ⇸ E">
             <org.eventb.core.prIdent name="e'" org.eventb.core.type="E"/>
@@ -12815,28 +12821,28 @@
             <org.eventb.core.prIdent name="valid_signatures" org.eventb.core.type="ℙ(E×C)"/>
         </org.eventb.core.prExpr>
         <org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
-        <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
-        <org.eventb.core.prReas name="r12" org.eventb.core.prRID="org.eventb.core.seqprover.onePointRule:2"/>
-        <org.eventb.core.prReas name="r21" org.eventb.core.prRID="org.eventb.smt.core.externalSMT"/>
-        <org.eventb.core.prReas name="r14" org.eventb.core.prRID="org.eventb.core.seqprover.hyp"/>
-        <org.eventb.core.prReas name="r9" org.eventb.core.prRID="org.eventb.core.seqprover.exI"/>
-        <org.eventb.core.prReas name="r4" org.eventb.core.prRID="org.eventb.core.seqprover.impI"/>
         <org.eventb.core.prReas name="r8" org.eventb.core.prRID="org.eventb.core.seqprover.exF"/>
-        <org.eventb.core.prReas name="r18" org.eventb.core.prRID="org.eventb.core.seqprover.locEq"/>
-        <org.eventb.core.prReas name="r20" org.eventb.core.prRID="org.eventb.core.seqprover.falseHyp"/>
-        <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.cut"/>
-        <org.eventb.core.prReas name="r13" org.eventb.core.prRID="org.eventb.core.seqprover.isFunGoal"/>
-        <org.eventb.core.prReas name="r10" org.eventb.core.prRID="org.eventb.core.seqprover.trueGoal"/>
-        <org.eventb.core.prReas name="r16" org.eventb.core.prRID="org.eventb.core.seqprover.allmpD:0"/>
-        <org.eventb.core.prReas name="r6" org.eventb.core.prRID="org.eventb.core.seqprover.eqL1:1"/>
-        <org.eventb.core.prReas name="r15" org.eventb.core.prRID="org.eventb.core.seqprover.mngHyp"/>
-        <org.eventb.core.prReas name="r19" org.eventb.core.prRID="org.eventb.core.seqprover.genMPL4"/>
-        <org.eventb.core.prReas name="r22" org.eventb.core.prRID="org.eventb.core.seqprover.setEqlRewrites"/>
+        <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
         <org.eventb.core.prReas name="r11" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
         <org.eventb.core.prReas name="r23" org.eventb.core.prRID="org.eventb.core.seqprover.ri"/>
-        <org.eventb.core.prReas name="r3" org.eventb.core.prRID="org.eventb.core.seqprover.allI"/>
+        <org.eventb.core.prReas name="r4" org.eventb.core.prRID="org.eventb.core.seqprover.impI"/>
         <org.eventb.core.prReas name="r7" org.eventb.core.prRID="org.eventb.core.seqprover.rn"/>
+        <org.eventb.core.prReas name="r3" org.eventb.core.prRID="org.eventb.core.seqprover.allI"/>
+        <org.eventb.core.prReas name="r6" org.eventb.core.prRID="org.eventb.core.seqprover.eqL1:1"/>
+        <org.eventb.core.prReas name="r16" org.eventb.core.prRID="org.eventb.core.seqprover.allmpD:0"/>
+        <org.eventb.core.prReas name="r18" org.eventb.core.prRID="org.eventb.core.seqprover.locEq"/>
+        <org.eventb.core.prReas name="r20" org.eventb.core.prRID="org.eventb.core.seqprover.falseHyp"/>
+        <org.eventb.core.prReas name="r21" org.eventb.core.prRID="org.eventb.smt.core.externalSMT"/>
+        <org.eventb.core.prReas name="r10" org.eventb.core.prRID="org.eventb.core.seqprover.trueGoal"/>
+        <org.eventb.core.prReas name="r9" org.eventb.core.prRID="org.eventb.core.seqprover.exI"/>
+        <org.eventb.core.prReas name="r12" org.eventb.core.prRID="org.eventb.core.seqprover.onePointRule:2"/>
+        <org.eventb.core.prReas name="r22" org.eventb.core.prRID="org.eventb.core.seqprover.setEqlRewrites"/>
+        <org.eventb.core.prReas name="r19" org.eventb.core.prRID="org.eventb.core.seqprover.genMPL4"/>
+        <org.eventb.core.prReas name="r13" org.eventb.core.prRID="org.eventb.core.seqprover.isFunGoal"/>
         <org.eventb.core.prReas name="r17" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalPP:1"/>
         <org.eventb.core.prReas name="r5" org.eventb.core.prRID="org.eventb.core.seqprover.conj:0"/>
+        <org.eventb.core.prReas name="r15" org.eventb.core.prRID="org.eventb.core.seqprover.mngHyp"/>
+        <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.cut"/>
+        <org.eventb.core.prReas name="r14" org.eventb.core.prRID="org.eventb.core.seqprover.hyp"/>
     </org.eventb.core.prProof>
 </org.eventb.core.prFile>
