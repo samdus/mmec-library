@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="110-MappingContext"/>
+    <org.eventb.core.constant name="cst1" org.eventb.core.identifier="humanName"/>
+    <org.eventb.core.axiom name="axm1" org.eventb.core.label="animation_classes" org.eventb.core.predicate="partition(C, {thing}, {humanName})"/>
+    <org.eventb.core.axiom name="axm2" org.eventb.core.label="animation_particular" org.eventb.core.predicate="partition(P, {n1})"/>
+    <org.eventb.core.axiom name="axm3" org.eventb.core.label="animation_expressions" org.eventb.core.predicate="partition(E, {exp1}, {expEmpty})"/>
+    <org.eventb.core.axiom name="axm4" org.eventb.core.label="animation_expressionsKeys" org.eventb.core.predicate="partition(K, {k1})"/>
+    <org.eventb.core.axiom name="axm5" org.eventb.core.label="animation_cLeaves" org.eventb.core.predicate="partition(C_leaves, {humanName})"/>
+    <org.eventb.core.axiom name="axm6" org.eventb.core.label="animation_cLevels" org.eventb.core.predicate="partition(c_level, { 0 ↦ thing }, {1 ↦ humanName})"/>
+    <org.eventb.core.axiom name="axm7" org.eventb.core.label="animation_maxLevel" org.eventb.core.predicate="max_level = 1"/>
+    <org.eventb.core.axiom name="axm8" org.eventb.core.label="animation_hasParent" org.eventb.core.predicate="partition(has_parent, {humanName ↦ thing})"/>
+    <org.eventb.core.axiom name="axm9" org.eventb.core.label="animation_classOfStrict" org.eventb.core.predicate="partition(class_of_strict, {n1 ↦ humanName})"/>
+    <org.eventb.core.axiom name="axm10" org.eventb.core.label="animation_classOf" org.eventb.core.predicate="partition(class_of, {n1 ↦ humanName}, {n1 ↦ thing}) "/>
+    <org.eventb.core.axiom name="axm11" org.eventb.core.label="animation_isA" org.eventb.core.predicate="partition(is_a, { thing ↦ thing }, {humanName ↦ humanName}, {humanName ↦ thing})"/>
+    <org.eventb.core.axiom name="axm12" org.eventb.core.label="animation_individuation" org.eventb.core.predicate="partition(individuation, { exp1 ↦ n1 })"/>
+    <org.eventb.core.axiom name="axm13" org.eventb.core.label="animation_expSubsets" org.eventb.core.predicate="partition(exp_subsets, { exp1 ↦ exp1 }, {expEmpty ↦ expEmpty }, { exp1 ↦ expEmpty } )"/>
+    <org.eventb.core.axiom name="axm14" org.eventb.core.label="animation_expEquivalent" org.eventb.core.predicate="partition(exp_equivalent, { exp1 ↦ exp1 }, { expEmpty ↦ expEmpty})"/>
+    <org.eventb.core.axiom name="axm15" org.eventb.core.label="animation_expOverlaps" org.eventb.core.predicate="partition(exp_overlap, { exp1 ↦ exp1 }, { expEmpty ↦ expEmpty}, { expEmpty ↦ exp1 }, { exp1 ↦ expEmpty})"/>
+    <org.eventb.core.axiom name="axm16" org.eventb.core.label="animation_expKey" org.eventb.core.predicate="partition(exp_key, { exp1 ↦ k1 }, { expEmpty ↦ k1 })"/>
+    <org.eventb.core.axiom name="axm17" org.eventb.core.label="animation_keyCompatible" org.eventb.core.predicate="partition(key_compatible, { k1 ↦ k1 })"/>
+    <org.eventb.core.axiom name="axm18" org.eventb.core.label="animation_expList" org.eventb.core.predicate="partition(exp_list, {1 ↦ exp1}, {2 ↦ expEmpty})"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst2" org.eventb.core.identifier="n1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst3" org.eventb.core.identifier="exp1"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="axm19" org.eventb.core.identifier="expEmpty"/>
+    <org.eventb.core.constant de.prob.symbolic.symbolicAttribute="false" name="cst4" org.eventb.core.identifier="k1"/>
+</org.eventb.core.contextFile>
