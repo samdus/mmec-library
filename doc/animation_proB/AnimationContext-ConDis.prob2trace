@@ -41,7 +41,7 @@
         "currentLevel": "∅",
         "levelNum": "3",
         "analysedExpressions": "∅",
-        "currentExpression": "e2",
+        "currentExpression": "e1",
         "mapped": "∅",
         "currentExpressionAnalysed": "0",
         "expressionsOfCurrentClass": "{e2,e6,e10}",
@@ -59,6 +59,7 @@
       "params": {},
       "results": {},
       "destState": {
+        "currentExpression": "e2",
         "expressionsLeftForCurrentClass": "{e6,e10}"
       },
       "destStateNotChanged": [
@@ -70,7 +71,6 @@
         "currentLevel",
         "levelNum",
         "analysedExpressions",
-        "currentExpression",
         "mapped",
         "currentExpressionAnalysed",
         "expressionsOfCurrentClass",
@@ -3824,7 +3824,7 @@
   "metadata": {
     "fileType": "Trace",
     "formatVersion": 5,
-    "savedAt": "2024-08-02T20:24:13.750960Z",
+    "savedAt": "2024-10-24T15:30:10.422577Z",
     "creator": "traceReplay",
     "proB2KernelVersion": "4.12.2",
     "proBCliVersion": "1.12.2-final",

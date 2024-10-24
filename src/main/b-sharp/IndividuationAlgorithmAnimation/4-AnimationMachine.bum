@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.refinesMachine name="'" org.eventb.core.target="3-ExpressionAnalysis"/>
+    <org.eventb.core.seesContext name="(" org.eventb.core.target="____970-AnimationContext_ConDis"/>
+    <org.eventb.core.variable name="var2" org.eventb.core.comment="l'association d'une signature à une ou plusieurs classe" org.eventb.core.identifier="signatures"/>
+    <org.eventb.core.variable name="var9" org.eventb.core.comment="les expressions définies uniquement selon leurs sous-ensembles" org.eventb.core.identifier="signatureSupersets"/>
+    <org.eventb.core.variable name="var8" org.eventb.core.comment="la relation de sous-ensemble entre des signatures" org.eventb.core.identifier="subsets"/>
+    <org.eventb.core.variable name="7" org.eventb.core.comment="les éléments qu'il reste à arrimer sur l'étage courant de l'arbre" org.eventb.core.identifier="currentLevel"/>
+    <org.eventb.core.variable name="8" org.eventb.core.comment="la classe à arrimer" org.eventb.core.identifier="currentClass"/>
+    <org.eventb.core.variable name=";" org.eventb.core.comment="le numéro de l'étage courant" org.eventb.core.identifier="levelNum"/>
+    <org.eventb.core.variable name="?" org.eventb.core.comment="l'ensemble des classes arrimées" org.eventb.core.identifier="mapped"/>
+    <org.eventb.core.variable name="F" org.eventb.core.comment="l'expression en cours d'évaluation" org.eventb.core.identifier="currentExpression"/>
+    <org.eventb.core.variable name="var7" org.eventb.core.comment="les expressions qui permettent l'individuation de particuliers qui répondent aux axiomes de la classe courante" org.eventb.core.identifier="expressionsOfCurrentClass"/>
+    <org.eventb.core.variable name="varE" org.eventb.core.comment="les expressions encore à analyser pour la classe courante " org.eventb.core.identifier="expressionsLeftForCurrentClass"/>
+    <org.eventb.core.variable name="varG" org.eventb.core.comment="l'ensemble des expressions analysées" org.eventb.core.identifier="analysedExpressions"/>
+    <org.eventb.core.variable name="varO" org.eventb.core.comment="les signatures définies au cours du procédé" org.eventb.core.identifier="definedSignatures"/>
+    <org.eventb.core.variable name="var`" org.eventb.core.comment="les signatures de sous-ensembles définies au cours du procédé" org.eventb.core.identifier="definedSignatureSupersets"/>
+    <org.eventb.core.variable name="varP" org.eventb.core.comment="les relations de sur-ensembles entre signatures définies au cours du procédé" org.eventb.core.identifier="definedSubsets"/>
+    <org.eventb.core.variable name="var[" org.eventb.core.comment="l'analyse de l'expression courante est terminée" org.eventb.core.identifier="currentExpressionAnalysed"/>
+    <org.eventb.core.event name="vara" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION"/>
+    <org.eventb.core.event name="varb" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="final">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="final"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varc" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="next_class">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="next_class"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="vard" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="next_level">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="next_level"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="vare" org.eventb.core.comment="on passe à la prochaine expression" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="next_expression">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="next_expression"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varf" org.eventb.core.comment="l'arrimage de la classe est terminé" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="class_mapped">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="class_mapped"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varg" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="expression_analysed">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="expression_analysed"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varh" org.eventb.core.comment="l'expression courante n'est pas à ajouter obligatoirement aux signatures de la classe" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="analyse_not_required">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="analyse_not_required"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="vari" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="analyse_with_equivalent_signature">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="analyse_with_equivalent_signature"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="varj" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="analyse_current_subsets_signature">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="analyse_current_subsets_signature"/>
+    </org.eventb.core.event>
+</org.eventb.core.machineFile>
