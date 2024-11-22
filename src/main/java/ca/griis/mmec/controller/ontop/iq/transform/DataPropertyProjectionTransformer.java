@@ -21,6 +21,7 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
@@ -116,13 +117,8 @@ public class DataPropertyProjectionTransformer
               .orElseThrow(() -> new DataPropertyProjectionTransformerException(tree,
                   "Cannot get the type of the data property's substitution variable."));
 
-          CastTermAndTree castTermAndTree = getCastTermAndTree(targetType, variable, variableType,
-              child, tree);
-
-          child = castTermAndTree.child();
-          newSubstitutionMap.put(substitutionEntry.getKey(),
-              termFactory.getMMecValueFunction(castTermAndTree.valueTerm(), targetType,
-                  rdfTermTypeConstant));
+          child = calculateAndAddConversion(newSubstitutionMap, substitutionEntry.getKey(),
+                  rdfTermTypeConstant, targetType, variable, variableType, child, tree);
         } else {
           newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
         }
@@ -136,16 +132,14 @@ public class DataPropertyProjectionTransformer
     return transformUnaryNode(tree, constructionNode, child);
   }
 
-  private record CastTermAndTree (ImmutableTerm valueTerm, IQTree child) {
-  }
-
-  private CastTermAndTree getCastTermAndTree(DBTermType targetType, Variable variable,
-      DBTermType variableType, IQTree child, IQTree tree) {
+  protected IQTree calculateAndAddConversion(Map<Variable, ImmutableTerm> newSubstitutionMap,
+      Variable substituedVariable, RDFTermTypeConstant rdfTermTypeConstant, DBTermType targetType,
+      Variable variable, DBTermType variableType, IQTree child, IQTree tree) {
     ImmutableTerm valueTerm;
     if (targetType.getName().contains("\"") && targetType.getName().equals(
         variableType.getName())
         || !targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
-            variableType.getName()) == 0) {
+        variableType.getName()) == 0) {
       valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
           variable);
     } else {
@@ -171,12 +165,15 @@ public class DataPropertyProjectionTransformer
             child);
       }
     }
-    return new CastTermAndTree(valueTerm, child);
+    newSubstitutionMap.put(substituedVariable,
+        termFactory.getMMecValueFunction(valueTerm, targetType,
+            rdfTermTypeConstant));
+    return child;
   }
 
-  private DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
+  protected DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
     return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-        rdfDatatype.getIRI().getIRIString())
+            rdfDatatype.getIRI().getIRIString())
         .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
             String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
                 rdfDatatype.getIRI().getIRIString())));
