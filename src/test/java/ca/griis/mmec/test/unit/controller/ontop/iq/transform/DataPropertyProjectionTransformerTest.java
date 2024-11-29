@@ -2,6 +2,7 @@ package ca.griis.mmec.test.unit.controller.ontop.iq.transform;
 
 import ca.griis.mmec.controller.ontop.iq.transform.DataPropertyProjectionTransformer;
 import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.properties.MappingProperties;
 import ca.griis.mmec.repository.OntoRelCatRepository;
@@ -12,10 +13,14 @@ import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
 import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.UnaryIQTree;
 import it.unibz.inf.ontop.iq.node.ConstructionNode;
+import it.unibz.inf.ontop.iq.node.FilterNode;
 import it.unibz.inf.ontop.iq.node.UnaryOperatorNode;
 import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
 import it.unibz.inf.ontop.model.term.*;
+import it.unibz.inf.ontop.model.term.functionsymbol.FunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.RDFTermType;
 import it.unibz.inf.ontop.model.type.TermType;
@@ -32,52 +37,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.semanticweb.owlapi.model.IRI;
 
-/**
- * Descriptions des cas de tests
- * -------------------------------
- * Cas: Pas de substitution, ni d'enfant implique que l'arbre est inchangé
- * Test: transformConstructionWithoutSubstitutionAndWithoutRecursionIsIdempotentTest
- * <br />
- * Cas: Pas de substitution, mais enfant
- * Test: transformConstructionWithoutSubstitutionDoesRecurseTest
- * <br />
- * Cas: Substitution, mais pas de propriété de données
- * Test: transformConstructionWithSingleSubstitutionNotDPTest
- * <br />
- * Cas: Substitution, mais propriété de données comportant un terme sans variables
- * Test: transformConstructionWithSingleInvalidSubstitutionShouldThrowTest
- * <br />
- * Cas: Substitution, mais propriété de données comportant un terme sans type
- * Test: transformConstructionWithSingleSubstitutionOfEmptyTermTypeShouldThrowTest
- * <br />
- * Cas: Substitution, mais propriété de données comportant un terme avec un type non DB
- * Test: transformConstructionWithSingleSubstitutionOfNonDbTermTypeShouldThrowTest
- * <br />
- * Cas: Substitution simple et conforme
- * Test: transformConstructionSingleTest
- * <br />
- * Cas: L'opération se répète pour chaque substitution
- * Test: transformConstructionLoopTest
- * <br />
- * Cas: Les types ont le même nom (incluant les déclinsaisons de guilemets), donc conversion simple
- * Test: calculateAndAddConversionSameNameTest
- * <br />
- * Cas: Les types n'ont pas le même nom, mais la conversion dn'existe pas, donc exception
- * Test:
- * <br />
- * Cas: Les types n'ont pas le même nom, dans une case différente, avec guillemets, donc MappingConversion
- *      sans fonction de conversion, ni de validation
- * Test:
- * <br />
- * Cas: MMecMappingConversion, avec fonction de conversion
- * Test:
- * <br />
- * Cas: MMecMappingConversion, avec fonction de validation
- * Test:
- */
 @SuppressWarnings("unchecked")
 public class DataPropertyProjectionTransformerTest {
   private IntermediateQueryFactory iqFactory;
@@ -143,6 +106,135 @@ public class DataPropertyProjectionTransformerTest {
     IQTree actual = transformer.transformConstruction(iqTree, constructionNode, childTree);
 
     Assertions.assertEquals(expected, actual);
+  }
+
+  @Test
+  public void transformConstructionWithSingleSubstitutionNotNonGroundFunctionalTermTest() {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    IQTree iqTree = Mockito.mock(IQTree.class);
+    ConstructionNode constructionNode = Mockito.mock(ConstructionNode.class);
+    ConstructionNode newConstructionNode = Mockito.mock(ConstructionNode.class);
+    IQTree childTree = Mockito.mock(IQTree.class);
+    Substitution<ImmutableTerm> substitution = Mockito.mock(Substitution.class);
+    Variable variable = Mockito.mock(Variable.class);
+    ImmutableSet<Variable> constructionNodeVariable = ImmutableSet.of(variable);
+    ImmutableFunctionalTerm term = Mockito.mock(ImmutableFunctionalTerm.class);
+    Map<Variable, ImmutableTerm> substitutionMap = ImmutableMap.of(variable, term);
+    UnaryIQTree expected = Mockito.mock(UnaryIQTree.class);
+
+    ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
+        ArgumentCaptor.forClass(ImmutableSet.class);
+    ArgumentCaptor<Substitution<ImmutableTerm>> substitutionArgumentCaptor =
+        ArgumentCaptor.forClass(Substitution.class);
+
+    Mockito.when(substitution.isEmpty()).thenReturn(false);
+    Mockito.when(constructionNode.getSubstitution()).thenReturn(substitution);
+    Mockito.when(substitution.stream()).thenReturn(substitutionMap.entrySet().stream());
+    Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariable);
+    Mockito.when(iqFactory.createConstructionNode(constructionNodeArgumentCaptor.capture(),
+        substitutionArgumentCaptor.capture())).thenReturn(newConstructionNode);
+    Mockito.doReturn(expected).when(transformer)
+        .transformUnaryNode_p(iqTree, newConstructionNode, childTree);
+
+    IQTree actual = transformer.transformConstruction(iqTree, constructionNode, childTree);
+
+    Assertions.assertEquals(expected, actual);
+    Assertions.assertEquals(constructionNodeVariable, constructionNodeArgumentCaptor.getValue());
+    Assertions.assertEquals(substitutionMap.get(variable),
+        substitutionArgumentCaptor.getValue().get(variable));
+  }
+
+  @Test
+  public void transformConstructionWithSingleSubstitutionNotRDFTermFunctionSymbolTest() {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    IQTree iqTree = Mockito.mock(IQTree.class);
+    ConstructionNode constructionNode = Mockito.mock(ConstructionNode.class);
+    ConstructionNode newConstructionNode = Mockito.mock(ConstructionNode.class);
+    IQTree childTree = Mockito.mock(IQTree.class);
+    Substitution<ImmutableTerm> substitution = Mockito.mock(Substitution.class);
+    Variable variable = Mockito.mock(Variable.class);
+    ImmutableSet<Variable> constructionNodeVariable = ImmutableSet.of(variable);
+    NonGroundFunctionalTerm term = Mockito.mock(NonGroundFunctionalTerm.class);
+    FunctionSymbol functionSymbol = Mockito.mock(FunctionSymbol.class);
+    Map<Variable, ImmutableTerm> substitutionMap = ImmutableMap.of(variable, term);
+    UnaryIQTree expected = Mockito.mock(UnaryIQTree.class);
+
+    ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
+        ArgumentCaptor.forClass(ImmutableSet.class);
+    ArgumentCaptor<Substitution<ImmutableTerm>> substitutionArgumentCaptor =
+        ArgumentCaptor.forClass(Substitution.class);
+
+    Mockito.when(substitution.isEmpty()).thenReturn(false);
+    Mockito.when(constructionNode.getSubstitution()).thenReturn(substitution);
+    Mockito.when(substitution.stream()).thenReturn(substitutionMap.entrySet().stream());
+    Mockito.when(term.getFunctionSymbol()).thenReturn(functionSymbol);
+    Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariable);
+    Mockito.when(iqFactory.createConstructionNode(constructionNodeArgumentCaptor.capture(),
+        substitutionArgumentCaptor.capture())).thenReturn(newConstructionNode);
+    Mockito.doReturn(expected).when(transformer)
+        .transformUnaryNode_p(iqTree, newConstructionNode, childTree);
+
+    IQTree actual = transformer.transformConstruction(iqTree, constructionNode, childTree);
+
+    Assertions.assertEquals(expected, actual);
+    Assertions.assertEquals(constructionNodeVariable, constructionNodeArgumentCaptor.getValue());
+    Assertions.assertEquals(substitutionMap.get(variable),
+        substitutionArgumentCaptor.getValue().get(variable));
+  }
+
+  @Test
+  public void transformConstructionWithSingleSubstitutionNotRDFTermTypeConstantTest() {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    IQTree iqTree = Mockito.mock(IQTree.class);
+    ConstructionNode constructionNode = Mockito.mock(ConstructionNode.class);
+    ConstructionNode newConstructionNode = Mockito.mock(ConstructionNode.class);
+    IQTree childTree = Mockito.mock(IQTree.class);
+    Substitution<ImmutableTerm> substitution = Mockito.mock(Substitution.class);
+    Variable variable = Mockito.mock(Variable.class);
+    ImmutableSet<Variable> constructionNodeVariable = ImmutableSet.of(variable);
+    NonGroundFunctionalTerm term = Mockito.mock(NonGroundFunctionalTerm.class);
+    RDFTermFunctionSymbol functionSymbol = Mockito.mock(RDFTermFunctionSymbol.class);
+    NonNullConstant notRdfTermTypeConstant = Mockito.mock(NonNullConstant.class);
+    Map<Variable, ImmutableTerm> substitutionMap = ImmutableMap.of(variable, term);
+    UnaryIQTree expected = Mockito.mock(UnaryIQTree.class);
+
+    ArgumentCaptor<ImmutableSet<Variable>> constructionNodeArgumentCaptor =
+        ArgumentCaptor.forClass(ImmutableSet.class);
+    ArgumentCaptor<Substitution<ImmutableTerm>> substitutionArgumentCaptor =
+        ArgumentCaptor.forClass(Substitution.class);
+
+    Mockito.when(substitution.isEmpty()).thenReturn(false);
+    Mockito.when(constructionNode.getSubstitution()).thenReturn(substitution);
+    Mockito.when(substitution.stream()).thenReturn(substitutionMap.entrySet().stream());
+    Mockito.when(term.getFunctionSymbol()).thenReturn(functionSymbol);
+    Mockito.when(term.getTerm(1)).thenReturn(notRdfTermTypeConstant);
+    Mockito.when(constructionNode.getVariables()).thenReturn(constructionNodeVariable);
+    Mockito.when(iqFactory.createConstructionNode(constructionNodeArgumentCaptor.capture(),
+        substitutionArgumentCaptor.capture())).thenReturn(newConstructionNode);
+    Mockito.doReturn(expected).when(transformer)
+        .transformUnaryNode_p(iqTree, newConstructionNode, childTree);
+
+    IQTree actual = transformer.transformConstruction(iqTree, constructionNode, childTree);
+
+    Assertions.assertEquals(expected, actual);
+    Assertions.assertEquals(constructionNodeVariable, constructionNodeArgumentCaptor.getValue());
+    Assertions.assertEquals(substitutionMap.get(variable),
+        substitutionArgumentCaptor.getValue().get(variable));
   }
 
   @Test
@@ -524,7 +616,7 @@ public class DataPropertyProjectionTransformerTest {
   @CsvSource(
       value = {"tname; TNAME2", "\"tname\"; tname", "\"TNAME\"; tname", "\"TNAME\"; tname"},
       delimiter = ';')
-  public void calculateAndAddConversionDifferentTypeNameConversionNotFoundShouldThrow(
+  public void calculateAndAddConversionDifferentTypeNameConversionNotFoundShouldThrowTest(
       String name1, String name2) {
     DataPropertyProjectionTransformerTester innerTransformer =
         new DataPropertyProjectionTransformerTester(
@@ -540,8 +632,6 @@ public class DataPropertyProjectionTransformerTest {
     DBTermType variableType = Mockito.mock(DBTermType.class);
     IQTree child = Mockito.mock(IQTree.class);
     IQTree tree = Mockito.mock(IQTree.class);
-    NonGroundFunctionalTerm valueTerm = Mockito.mock(NonGroundFunctionalTerm.class);
-    NonGroundFunctionalTerm valueFunction = Mockito.mock(NonGroundFunctionalTerm.class);
 
     Mockito.when(targetType.getName()).thenReturn(name1);
     Mockito.when(variableType.getName()).thenReturn(name2);
@@ -554,7 +644,254 @@ public class DataPropertyProjectionTransformerTest {
             rdfTermTypeConstant, targetType, variable, variableType, child, tree));
   }
 
+  @ParameterizedTest
+  @CsvSource(
+      value = {"tname; TNAME2", "\"tname\"; tname", "\"TNAME\"; tname", "\"TNAME\"; tname"},
+      delimiter = ';')
+  public void calculateAndAddConversionDifferentTypeNameWithConversionTest(String name1,
+      String name2) {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
 
+    Map<Variable, ImmutableTerm> newSubstitutionMap = Mockito.mock(Map.class);
+    Variable substituedVariable = Mockito.mock(Variable.class);
+    RDFTermTypeConstant rdfTermTypeConstant = Mockito.mock(RDFTermTypeConstant.class);
+    DBTermType targetType = Mockito.mock(DBTermType.class);
+    Variable variable = Mockito.mock(Variable.class);
+    DBTermType variableType = Mockito.mock(DBTermType.class);
+    IQTree child = Mockito.mock(IQTree.class);
+    IQTree tree = Mockito.mock(IQTree.class);
+    MMecMappingConversion conversion = Mockito.mock(MMecMappingConversion.class);
+    DBTypeConversionFunctionSymbol conversionFunction =
+        Mockito.mock(DBTypeConversionFunctionSymbol.class);
+    NonGroundFunctionalTerm valueTerm = Mockito.mock(NonGroundFunctionalTerm.class);
+    NonGroundFunctionalTerm valueFunction = Mockito.mock(NonGroundFunctionalTerm.class);
+
+    Mockito.when(targetType.getName()).thenReturn(name1);
+    Mockito.when(variableType.getName()).thenReturn(name2);
+    Mockito.when(mappingExtension.getMappingConversion(variableType, targetType))
+        .thenReturn(Optional.of(conversion));
+    Mockito.when(conversion.getConversionFunction()).thenReturn(
+        Optional.of(conversionFunction));
+    Mockito.when(conversion.getValidationFunction()).thenReturn(Optional.empty());
+    Mockito.when(termFactory.getMMecConversionFunction(variable, conversion)).thenReturn(valueTerm);
+    Mockito.when(termFactory.getMMecValueFunction(valueTerm, targetType, rdfTermTypeConstant))
+        .thenReturn(valueFunction);
+
+    IQTree actual = transformer.calculateAndAddConversion_p(newSubstitutionMap, substituedVariable,
+        rdfTermTypeConstant, targetType, variable, variableType, child, tree);
+
+    Assertions.assertSame(child, actual);
+    Mockito.verify(newSubstitutionMap).put(substituedVariable, valueFunction);
+  }
+
+  @ParameterizedTest
+  @CsvSource(
+      value = {"tname; TNAME2", "\"tname\"; tname", "\"TNAME\"; tname", "\"TNAME\"; tname"},
+      delimiter = ';')
+  public void calculateAndAddConversionDifferentTypeNameWithoutConversionTest(String name1,
+      String name2) {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    Map<Variable, ImmutableTerm> newSubstitutionMap = Mockito.mock(Map.class);
+    Variable substituedVariable = Mockito.mock(Variable.class);
+    RDFTermTypeConstant rdfTermTypeConstant = Mockito.mock(RDFTermTypeConstant.class);
+    DBTermType targetType = Mockito.mock(DBTermType.class);
+    Variable variable = Mockito.mock(Variable.class);
+    DBTermType variableType = Mockito.mock(DBTermType.class);
+    IQTree child = Mockito.mock(IQTree.class);
+    IQTree tree = Mockito.mock(IQTree.class);
+    MMecMappingConversion conversion = Mockito.mock(MMecMappingConversion.class);
+    NonGroundFunctionalTerm valueTerm = Mockito.mock(NonGroundFunctionalTerm.class);
+    NonGroundFunctionalTerm valueFunction = Mockito.mock(NonGroundFunctionalTerm.class);
+
+    Mockito.when(termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
+        variable)).thenReturn(valueTerm);
+    Mockito.when(termFactory.getMMecValueFunction(valueTerm, targetType, rdfTermTypeConstant))
+        .thenReturn(valueFunction);
+    Mockito.when(targetType.getName()).thenReturn(name1);
+    Mockito.when(variableType.getName()).thenReturn(name2);
+    Mockito.when(mappingExtension.getMappingConversion(variableType, targetType))
+        .thenReturn(Optional.of(conversion));
+    Mockito.when(conversion.getConversionFunction()).thenReturn(Optional.empty());
+    Mockito.when(conversion.getValidationFunction()).thenReturn(Optional.empty());
+
+    IQTree actual = transformer.calculateAndAddConversion_p(newSubstitutionMap, substituedVariable,
+        rdfTermTypeConstant, targetType, variable, variableType, child, tree);
+
+    Assertions.assertSame(child, actual);
+    Mockito.verify(newSubstitutionMap).put(substituedVariable, valueFunction);
+  }
+
+  @ParameterizedTest
+  @CsvSource(
+      value = {"tname; TNAME2", "\"tname\"; tname", "\"TNAME\"; tname", "\"TNAME\"; tname"},
+      delimiter = ';')
+  public void calculateAndAddConversionDifferentTypeNameWithConversionWithValidationTest(
+      String name1, String name2) {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    Map<Variable, ImmutableTerm> newSubstitutionMap = Mockito.mock(Map.class);
+    Variable substituedVariable = Mockito.mock(Variable.class);
+    RDFTermTypeConstant rdfTermTypeConstant = Mockito.mock(RDFTermTypeConstant.class);
+    DBTermType targetType = Mockito.mock(DBTermType.class);
+    Variable variable = Mockito.mock(Variable.class);
+    DBTermType variableType = Mockito.mock(DBTermType.class);
+    IQTree child = Mockito.mock(IQTree.class);
+    IQTree tree = Mockito.mock(IQTree.class);
+    MMecMappingConversion conversion = Mockito.mock(MMecMappingConversion.class);
+    DBTypeConversionFunctionSymbol conversionFunction =
+        Mockito.mock(DBTypeConversionFunctionSymbol.class);
+    NonGroundFunctionalTerm valueTerm = Mockito.mock(NonGroundFunctionalTerm.class);
+    NonGroundFunctionalTerm valueFunction = Mockito.mock(NonGroundFunctionalTerm.class);
+    DBBooleanFunctionSymbol validationFunction = Mockito.mock(DBBooleanFunctionSymbol.class);
+    NonGroundFunctionalTerm validationTerm = Mockito.mock(NonGroundFunctionalTerm.class);
+    DBConstant trueConstant = Mockito.mock(DBConstant.class);
+    ImmutableExpression equalityFunction = Mockito.mock(ImmutableExpression.class);
+    UnaryIQTree newChild = Mockito.mock(UnaryIQTree.class);
+    FilterNode filterNode = Mockito.mock(FilterNode.class);
+
+    Mockito.when(targetType.getName()).thenReturn(name1);
+    Mockito.when(variableType.getName()).thenReturn(name2);
+    Mockito.when(mappingExtension.getMappingConversion(variableType, targetType))
+        .thenReturn(Optional.of(conversion));
+    Mockito.when(conversion.getConversionFunction()).thenReturn(
+        Optional.of(conversionFunction));
+    Mockito.when(termFactory.getMMecConversionFunction(variable, conversion)).thenReturn(valueTerm);
+    Mockito.when(conversion.getValidationFunction()).thenReturn(Optional.of(validationFunction));
+    Mockito.when(termFactory.getMMecConversionValidationFunction(variable, conversion))
+        .thenReturn(validationTerm);
+    Mockito.when(termFactory.getDBBooleanConstant(true)).thenReturn(trueConstant);
+    Mockito.when(termFactory.getStrictEquality(validationTerm, trueConstant))
+        .thenReturn(equalityFunction);
+    Mockito.when(iqFactory.createFilterNode(equalityFunction)).thenReturn(filterNode);
+    Mockito.when(iqFactory.createUnaryIQTree(filterNode, child)).thenReturn(newChild);
+    Mockito.when(termFactory.getMMecValueFunction(valueTerm, targetType, rdfTermTypeConstant))
+        .thenReturn(valueFunction);
+
+    IQTree actual = transformer.calculateAndAddConversion_p(newSubstitutionMap, substituedVariable,
+        rdfTermTypeConstant, targetType, variable, variableType, child, tree);
+
+    Assertions.assertSame(newChild, actual);
+    Mockito.verify(newSubstitutionMap).put(substituedVariable, valueFunction);
+  }
+
+  @ParameterizedTest
+  @CsvSource(
+      value = {"tname; TNAME2", "\"tname\"; tname", "\"TNAME\"; tname", "\"TNAME\"; tname"},
+      delimiter = ';')
+  public void calculateAndAddConversionDifferentTypeNameWithoutConversionWithValidationTest(
+      String name1, String name2) {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    Map<Variable, ImmutableTerm> newSubstitutionMap = Mockito.mock(Map.class);
+    Variable substituedVariable = Mockito.mock(Variable.class);
+    RDFTermTypeConstant rdfTermTypeConstant = Mockito.mock(RDFTermTypeConstant.class);
+    DBTermType targetType = Mockito.mock(DBTermType.class);
+    Variable variable = Mockito.mock(Variable.class);
+    DBTermType variableType = Mockito.mock(DBTermType.class);
+    IQTree child = Mockito.mock(IQTree.class);
+    IQTree tree = Mockito.mock(IQTree.class);
+    MMecMappingConversion conversion = Mockito.mock(MMecMappingConversion.class);
+    NonGroundFunctionalTerm valueTerm = Mockito.mock(NonGroundFunctionalTerm.class);
+    NonGroundFunctionalTerm valueFunction = Mockito.mock(NonGroundFunctionalTerm.class);
+    DBBooleanFunctionSymbol validationFunction = Mockito.mock(DBBooleanFunctionSymbol.class);
+    NonGroundFunctionalTerm validationTerm = Mockito.mock(NonGroundFunctionalTerm.class);
+    DBConstant trueConstant = Mockito.mock(DBConstant.class);
+    ImmutableExpression equalityFunction = Mockito.mock(ImmutableExpression.class);
+    UnaryIQTree newChild = Mockito.mock(UnaryIQTree.class);
+    FilterNode filterNode = Mockito.mock(FilterNode.class);
+
+    Mockito.when(targetType.getName()).thenReturn(name1);
+    Mockito.when(variableType.getName()).thenReturn(name2);
+    Mockito.when(mappingExtension.getMappingConversion(variableType, targetType))
+        .thenReturn(Optional.of(conversion));
+    Mockito.when(conversion.getConversionFunction()).thenReturn(Optional.empty());
+    Mockito.when(termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
+        variable)).thenReturn(valueTerm);
+    Mockito.when(conversion.getValidationFunction()).thenReturn(Optional.of(validationFunction));
+    Mockito.when(termFactory.getMMecConversionValidationFunction(variable, conversion))
+        .thenReturn(validationTerm);
+    Mockito.when(termFactory.getDBBooleanConstant(true)).thenReturn(trueConstant);
+    Mockito.when(termFactory.getStrictEquality(validationTerm, trueConstant))
+        .thenReturn(equalityFunction);
+    Mockito.when(iqFactory.createFilterNode(equalityFunction)).thenReturn(filterNode);
+    Mockito.when(iqFactory.createUnaryIQTree(filterNode, child)).thenReturn(newChild);
+    Mockito.when(termFactory.getMMecValueFunction(valueTerm, targetType, rdfTermTypeConstant))
+        .thenReturn(valueFunction);
+
+    IQTree actual = transformer.calculateAndAddConversion_p(newSubstitutionMap, substituedVariable,
+        rdfTermTypeConstant, targetType, variable, variableType, child, tree);
+
+    Assertions.assertSame(newChild, actual);
+    Mockito.verify(newSubstitutionMap).put(substituedVariable, valueFunction);
+  }
+
+  @Test
+  public void getTargetSqlTypeTypeFoundTest() {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    IQTree tree = Mockito.mock(IQTree.class);
+    SimpleRDFDatatype rdfDatatype = Mockito.mock(SimpleRDFDatatype.class);
+    DBTermType targetType = Mockito.mock(DBTermType.class);
+    String ontoRelId = "ontoRelId";
+    String datatypeIriString = "datatypeIri";
+    IRI datatypeIri = Mockito.mock(IRI.class);
+
+    Mockito.when(mappingProperties.getOntoRelId()).thenReturn(ontoRelId);
+    Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
+    Mockito.when(rdfDatatype.getIRI()).thenReturn(datatypeIri);
+    Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
+        Optional.of(targetType));
+
+    DBTermType actual = transformer.getTargetSqlType_p(tree, rdfDatatype);
+
+    Assertions.assertEquals(targetType, actual);
+  }
+
+  @Test
+  public void getTargetSqlTypeTypeNotFoundTest() {
+    DataPropertyProjectionTransformerTester innerTransformer =
+        new DataPropertyProjectionTransformerTester(
+            mappingExtension,
+            iqFactory, termFactory, typeExtractor, ontoRelCatRepository, mappingProperties);
+    DataPropertyProjectionTransformerTester transformer = Mockito.spy(innerTransformer);
+
+    IQTree tree = Mockito.mock(IQTree.class);
+    SimpleRDFDatatype rdfDatatype = Mockito.mock(SimpleRDFDatatype.class);
+    String ontoRelId = "ontoRelId";
+    String datatypeIriString = "datatypeIri";
+    IRI datatypeIri = Mockito.mock(IRI.class);
+
+    Mockito.when(mappingProperties.getOntoRelId()).thenReturn(ontoRelId);
+    Mockito.when(datatypeIri.getIRIString()).thenReturn(datatypeIriString);
+    Mockito.when(rdfDatatype.getIRI()).thenReturn(datatypeIri);
+    Mockito.when(ontoRelCatRepository.getSqlType(ontoRelId, datatypeIriString)).thenReturn(
+        Optional.empty());
+
+    Assertions.assertThrows(
+        DataPropertyProjectionTransformer.DataPropertyProjectionTransformerException.class,
+        () -> transformer.getTargetSqlType_p(tree, rdfDatatype));
+  }
 
   /**
    * Classe interne permettant de mocker les méthodes protégées de la classe à tester

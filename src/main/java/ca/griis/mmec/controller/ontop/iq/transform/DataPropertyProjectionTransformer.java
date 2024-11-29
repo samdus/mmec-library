@@ -185,11 +185,5 @@ public class DataPropertyProjectionTransformer
           + "Cause: \"%s\";%n"
           + "IQTree:%n%s%n}", reason, iqTree.toString()));
     }
-
-    public DataPropertyProjectionTransformerException(IQTree iqTree, Throwable cause) {
-      super(String.format("Impossible to transform the DataProperty from the following tree. {%n"
-          + "Cause: \"%s\";%n"
-          + "IQTree:%n%s%n}", cause.getMessage(), iqTree.toString()), cause);
-    }
   }
 }
