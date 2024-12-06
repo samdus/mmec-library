@@ -16,8 +16,10 @@ package ca.griis.mmec.test.unit.properties.builder;
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.builder.ConnectionPropertiesBuilder;
+
 import java.io.IOException;
 import java.util.Properties;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -108,5 +110,7 @@ public class ConnectionPropertiesBuilderTest {
     Assertions.assertEquals(propertiesForOntop.get("jdbc.user"), actualProperties.getUsername());
     Assertions.assertEquals(propertiesForOntop.get("jdbc.password"),
         actualProperties.getPassword());
+    Assertions.assertEquals("ca.griis.mmec.repository.jooq.JooqOntoRelCatRepository",
+        propertiesForOntop.get("ca.griis.mmec.repository.OntoRelCatRepository"));
   }
 }
