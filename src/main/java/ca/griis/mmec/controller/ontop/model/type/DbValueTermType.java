@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.model.type;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.DBTypeFactory;
 import it.unibz.inf.ontop.model.type.LanguageTag;
@@ -46,6 +49,8 @@ import org.apache.commons.rdf.api.IRI;
  *      S.O.
  */
 public class DbValueTermType implements DBTermType, RDFDatatype {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(DbValueTermType.class);
   private final RDFDatatype innerRdfTermType;
   private final DBTermType innerDbTermType;
 
@@ -58,17 +63,20 @@ public class DbValueTermType implements DBTermType, RDFDatatype {
 
   @Override
   public boolean isAbstract() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return false;
   }
 
   @Override
   public DBTermType getClosestDBType(DBTypeFactory dbTypeFactory)
       throws UnsupportedOperationException {
+    logger.trace(Trace.ENTER_METHOD_1, dbTypeFactory);
     return innerDbTermType;
   }
 
   @Override
   public Optional<RDFDatatype> getNaturalRDFDatatype() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Optional.of(innerRdfTermType);
   }
 
@@ -76,76 +84,91 @@ public class DbValueTermType implements DBTermType, RDFDatatype {
 
   @Override
   public String getName() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerDbTermType.getName();
   }
 
   @Override
   public String getCastName() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerDbTermType.getCastName();
   }
 
   @Override
   public Category getCategory() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerDbTermType.getCategory();
   }
 
   @Override
   public boolean isNeedingIRISafeEncoding() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerDbTermType.isNeedingIRISafeEncoding();
   }
 
   @Override
   public boolean areEqualitiesStrict() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerDbTermType.areEqualitiesStrict();
   }
 
   @Override
   public Optional<Boolean> areEqualitiesStrict(DBTermType otherType) {
+    logger.trace(Trace.ENTER_METHOD_1, otherType);
     return innerDbTermType.areEqualitiesStrict(otherType);
   }
 
   @Override
   public boolean areEqualitiesBetweenTwoDBAttributesStrict() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerDbTermType.areEqualitiesBetweenTwoDBAttributesStrict();
   }
 
   @Override
   public Optional<Boolean> isValidLexicalValue(String lexicalValue) {
+    logger.trace(Trace.ENTER_METHOD_1, lexicalValue);
     return innerDbTermType.isValidLexicalValue(lexicalValue);
   }
 
   @Override
   public boolean isPreventDistinctRecommended() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerDbTermType.isPreventDistinctRecommended();
   }
 
   @Override
   public TermType getCommonDenominator(TermType otherTermType) {
+    logger.trace(Trace.ENTER_METHOD_1, otherTermType);
     return innerRdfTermType.getCommonDenominator(otherTermType);
   }
 
   @Override
   public TermTypeAncestry getAncestry() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerRdfTermType.getAncestry();
   }
 
   @Override
   public Optional<LanguageTag> getLanguageTag() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerRdfTermType.getLanguageTag();
   }
 
   @Override
   public boolean isA(TermType otherTermType) {
+    logger.trace(Trace.ENTER_METHOD_1, otherTermType);
     return innerRdfTermType.isA(otherTermType);
   }
 
   @Override
   public boolean isA(IRI baseDatatypeIri) {
+    logger.trace(Trace.ENTER_METHOD_1, baseDatatypeIri);
     return innerRdfTermType.isA(baseDatatypeIri);
   }
 
   @Override
   public IRI getIRI() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return innerRdfTermType.getIRI();
   }
 }

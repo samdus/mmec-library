@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.answering.reformulation;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 import it.unibz.inf.ontop.answering.logging.QueryLogger;
@@ -61,6 +64,8 @@ import it.unibz.inf.ontop.spec.OBDASpecification;
  * @todo 2024-02-01 [SD] - Ajouter le logger griis
  */
 public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecToFullNativeQueryReformulator.class);
 
   @AssistedInject
   public MMecToFullNativeQueryReformulator(
@@ -82,6 +87,8 @@ public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
 
   @Override
   protected IQ generateExecutableQuery(IQ iq) throws OntopReformulationException {
+    logger.trace(Trace.ENTER_METHOD_1, iq);
+
     if (iq.getTree() instanceof EmptyNode) {
       return iq;
     } else {

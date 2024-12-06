@@ -9,6 +9,10 @@
 
 package it.unibz.inf.ontop.injection.impl;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
 import com.google.inject.Module;
@@ -51,6 +55,9 @@ import org.jooq.impl.DSL;
  */
 public class MMecConfiguration extends OntopSQLOWLAPIConfigurationImpl {
 
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecMappingExtension.class);
+
   private final FacadeProperties facadeProperties;
   private final MappingProperties mappingProperties;
   private final DSLContext jooqContext;
@@ -75,6 +82,8 @@ public class MMecConfiguration extends OntopSQLOWLAPIConfigurationImpl {
 
     @Override
     public MMecConfiguration build() {
+      logger.trace(Trace.ENTER_METHOD_0);
+
       OntopStandaloneSQLSettings settings = new OntopStandaloneSQLSettingsImpl(generateProperties(),
           isR2rml());
       OntopSQLOWLAPIOptions options = generateSQLOWLAPIOptions();
@@ -91,23 +100,27 @@ public class MMecConfiguration extends OntopSQLOWLAPIConfigurationImpl {
     }
 
     public MMecConfigurationBuilder facadeProperties(FacadeProperties facadeProperties) {
+      logger.trace(Trace.ENTER_METHOD_1, facadeProperties);
       this.facadeProperties = facadeProperties;
       return this;
     }
 
     public MMecConfigurationBuilder mappingProperties(MappingProperties mappingProperties) {
+      logger.trace(Trace.ENTER_METHOD_1, mappingProperties);
       this.mappingProperties = mappingProperties;
       return this;
     }
 
     @Override
     protected MMecConfigurationBuilder self() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return this;
     }
   }
 
   @Override
   protected Stream<Module> buildGuiceModules() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Stream.concat(
         super.buildGuiceModules(),
         Stream.of(new MMecModule(this)));

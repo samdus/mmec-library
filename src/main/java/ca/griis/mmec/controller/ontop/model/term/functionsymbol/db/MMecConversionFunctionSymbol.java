@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.DBConstant;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
@@ -36,6 +39,8 @@ import javax.annotation.Nullable;
  * @par Tâches S.O.
  */
 public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFunctionSymbolImpl {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecConversionFunctionSymbol.class);
   private final String functionName;
   @Nullable
   private final DBTermType inputType;
@@ -64,48 +69,58 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
   @Override
   public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
       Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
+    logger.trace(Trace.ENTER_METHOD_3, terms, termConverter, termFactory);
+
     return String.format("%s(%s)", functionName,
         terms.stream().map(termConverter).collect(Collectors.joining(", ")));
   }
 
   @Override
   protected boolean isAlwaysInjectiveInTheAbsenceOfNonInjectiveFunctionalTerms() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return getInputType().isPresent();
   }
 
   @Override
   protected boolean tolerateNulls() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return true;
   }
 
   @Override
   public boolean canBePostProcessed(ImmutableList<? extends ImmutableTerm> immutableList) {
+    logger.trace(Trace.ENTER_METHOD_1, immutableList);
     return false;
   }
 
   @Override
   protected ImmutableTerm convertDBConstant(DBConstant constant, TermFactory termFactory)
       throws DBTypeConversionException {
+    logger.trace(Trace.ENTER_METHOD_2, constant, termFactory);
     return termFactory.getImmutableFunctionalTerm(this, constant);
   }
 
   @Override
   public Optional<DBTermType> getInputType() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Optional.ofNullable(inputType);
   }
 
   @Override
   public boolean isTemporary() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return false;
   }
 
   @Override
   public boolean isSimple() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return false;
   }
 
   @Override
   public final boolean equals(Object other) {
+    logger.trace(Trace.ENTER_METHOD_1, other);
     return super.equals(other)
         && other instanceof MMecConversionFunctionSymbol otherSymbol
         && this.functionName.compareToIgnoreCase(otherSymbol.functionName) == 0
@@ -114,6 +129,7 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
 
   @Override
   public final int hashCode() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Arrays.hashCode(new Object[] {
         super.hashCode(),
         this.functionName.toLowerCase(),

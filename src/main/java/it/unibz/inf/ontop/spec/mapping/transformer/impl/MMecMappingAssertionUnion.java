@@ -1,5 +1,8 @@
 package it.unibz.inf.ontop.spec.mapping.transformer.impl;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPpMappingAssertionProvenance;
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.ProvUnion;
 import com.google.common.collect.ImmutableList;
@@ -55,6 +58,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -89,6 +94,11 @@ import java.util.stream.Stream;
  */
 public class MMecMappingAssertionUnion {
 
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecMappingAssertionUnion.class);
+  private static final Logger log = LoggerFactory.getLogger(MMecMappingAssertionUnion.class);
+
+
   public static class MMecMappingAssertionUnionCollector implements
       Collector<MappingAssertion, MMecMappingAssertionUnion, Optional<MappingAssertion>> {
     private final ExtensionalDataNodeListContainmentCheck cqc;
@@ -105,16 +115,19 @@ public class MMecMappingAssertionUnion {
 
     @Override
     public Supplier<MMecMappingAssertionUnion> supplier() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return () -> new MMecMappingAssertionUnion(cqc, coreSingletons, queryMerger);
     }
 
     @Override
     public BiConsumer<MMecMappingAssertionUnion, MappingAssertion> accumulator() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return MMecMappingAssertionUnion::add;
     }
 
     @Override
     public BinaryOperator<MMecMappingAssertionUnion> combiner() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return (union1, union2) -> {
         throw new MinorOntopInternalBugException("no merge");
       };
@@ -122,11 +135,13 @@ public class MMecMappingAssertionUnion {
 
     @Override
     public Function<MMecMappingAssertionUnion, Optional<MappingAssertion>> finisher() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return MMecMappingAssertionUnion::build;
     }
 
     @Override
     public Set<Characteristics> characteristics() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return Set.of(Collector.Characteristics.UNORDERED);
     }
   }
@@ -134,6 +149,7 @@ public class MMecMappingAssertionUnion {
   public static MMecMappingAssertionUnionCollector toMappingAssertion(
       ExtensionalDataNodeListContainmentCheck cqc, CoreSingletons coreSingletons,
       UnionBasedQueryMerger queryMerger) {
+    logger.trace(Trace.ENTER_METHOD_3, cqc, coreSingletons, queryMerger);
     return new MMecMappingAssertionUnionCollector(cqc, coreSingletons, queryMerger);
   }
 
@@ -157,6 +173,7 @@ public class MMecMappingAssertionUnion {
   }
 
   public MMecMappingAssertionUnion add(MappingAssertion assertion) {
+    logger.trace(Trace.ENTER_METHOD_1, assertion);
     Optional<ConjunctiveIQ> cq = extractConjunctiveIQ(assertion);
     cq.ifPresentOrElse(this::mergeMappingsWithCqc, () -> otherIqs.add(assertion.getQuery()));
     return this;
@@ -174,6 +191,8 @@ public class MMecMappingAssertionUnion {
     ConjunctiveIQ(DistinctVariableOnlyDataAtom projectionAtom, ConstructionNode constructionNode,
         ImmutableList<ExtensionalDataNode> extensionalDataNodes, Optional<ValuesNode> valuesNode,
         DisjunctionOfConjunctions filter, PPMappingAssertionProvenance provenance) {
+      logger.trace(Trace.ENTER_METHOD_6, projectionAtom, constructionNode, extensionalDataNodes,
+          valuesNode, filter, provenance);
       this.provenance = (MMecPpMappingAssertionProvenance) provenance;
 
       VariableGenerator variableGenerator =
@@ -249,6 +268,7 @@ public class MMecMappingAssertionUnion {
 
     ConjunctiveIQ(ConjunctiveIQ other, DisjunctionOfConjunctions filter,
         Optional<ValuesNode> valuesNode, MMecPpMappingAssertionProvenance provenance) {
+      logger.trace(Trace.ENTER_METHOD_4, other, filter, valuesNode, provenance);
       this.projectionAtom = other.projectionAtom;
       this.substitution = other.substitution;
       this.extensionalDataNodes = other.extensionalDataNodes;
@@ -263,6 +283,7 @@ public class MMecMappingAssertionUnion {
     }
 
     IQ asIQ() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return iqFactory.createIQ(projectionAtom,
           iqFactory.createUnaryIQTree(iqFactory.createDistinctNode(), iqFactory.createUnaryIQTree(
               iqFactory.createConstructionNode(projectionAtom.getVariables(), substitution),
@@ -270,6 +291,7 @@ public class MMecMappingAssertionUnion {
     }
 
     IQTree getTree() {
+      logger.trace(Trace.ENTER_METHOD_0);
       // assumes that filter is a possibly empty list of non-empty lists
       Optional<ImmutableExpression> mergedConditions = translate(filter);
 
@@ -292,7 +314,7 @@ public class MMecMappingAssertionUnion {
     }
 
     Optional<ImmutableExpression> translate(DisjunctionOfConjunctions filter) {
-
+      logger.trace(Trace.ENTER_METHOD_1, filter);
       switch (filter.getNumberOfConjunctions()) {
         case 0:
           return Optional.empty();
@@ -312,32 +334,39 @@ public class MMecMappingAssertionUnion {
     }
 
     public ImmutableList<ImmutableTerm> getHeadTerms() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return substitution.applyToTerms(projectionAtom.getArguments());
     }
 
     public Substitution<ImmutableTerm> getSubstitution() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return substitution;
     }
 
     public ImmutableList<ExtensionalDataNode> getDatabaseAtoms() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return extensionalDataNodes;
     }
 
     public Optional<ValuesNode> getValuesNode() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return valuesNode;
     }
 
     public DisjunctionOfConjunctions getConditions() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return filter;
     }
 
     @Override
     public int hashCode() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return Objects.hash(substitution, extensionalDataNodes, valuesNode, filter);
     }
 
     @Override
     public boolean equals(Object o) {
+      logger.trace(Trace.ENTER_METHOD_1, o);
       if (o instanceof ConjunctiveIQ other) {
         return projectionAtom.equals(other.projectionAtom) && substitution.equals(
             other.substitution) && extensionalDataNodes.equals(other.extensionalDataNodes)
@@ -348,6 +377,7 @@ public class MMecMappingAssertionUnion {
 
     @Override
     public String toString() {
+      logger.trace(Trace.ENTER_METHOD_0);
       return projectionAtom.getPredicate() + "(" + getHeadTerms() + ") <- " + extensionalDataNodes
           + " FILTER " + filter + " " + valuesNode;
     }

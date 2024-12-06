@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.iq.transform;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -50,7 +53,8 @@ import javax.inject.Inject;
  */
 public class IndividuationFunctionQueryTransformer extends
     DefaultRecursiveIQTreeVisitingTransformer {
-
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(IndividuationFunctionQueryTransformer.class);
   private final MMecTermFactory termFactory;
   private final BasicSingleTermTypeExtractor typeExtractor;
 
@@ -67,6 +71,7 @@ public class IndividuationFunctionQueryTransformer extends
   @Override
   public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
       IQTree child) {
+    logger.trace(Trace.ENTER_METHOD_3, tree, constructionNode, child);
     Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
     for (Map.Entry<Variable, ImmutableTerm> substitutionEntry : constructionNode.getSubstitution()
         .stream().toList()) {
@@ -111,6 +116,7 @@ public class IndividuationFunctionQueryTransformer extends
    */
   private ImmutableTerm getIndividuationTerm(IQTree tree,
       IRIStringTemplateFunctionSymbol iriStrTemplateFn, NonGroundFunctionalTerm iriFunctionTerm) {
+    logger.trace(Trace.ENTER_METHOD_3, tree, iriStrTemplateFn, iriFunctionTerm);
     DBConstant identifierForSignatureGroup = termFactory.getDBStringConstant(
         iriStrTemplateFn.getName());
     ImmutableList<ImmutableTerm> arguments = ImmutableList.<ImmutableTerm>builder()

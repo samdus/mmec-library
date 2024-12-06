@@ -1,6 +1,9 @@
 package ca.griis.mmec.repository.jooq;
 
 import ca.griis.gen.ontorelcat_ldm.ontorelcat_api_relrel.Routines;
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.model.ontorel.ClassTable;
 import ca.griis.mmec.model.ontorel.ClassTableRecord;
 import ca.griis.mmec.model.ontorel.DataPropertyTable;
@@ -45,6 +48,9 @@ import org.jooq.DSLContext;
  */
 public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(JooqOntoRelCatRepository.class);
+
   private final DBTypeFactory dbTypeFactory;
   private final DSLContext context;
   private static final String langString = "en";
@@ -57,6 +63,8 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
   @Override
   public Optional<DBTermType> getSqlType(String ontoRelId, String typeIri) {
+    logger.trace(Trace.ENTER_METHOD_2, ontoRelId, typeIri);
+
     String sqlType = Routines.getSqlTypeByIri(context.configuration(), ontoRelId, typeIri);
 
     return Optional.ofNullable(sqlType)
@@ -65,6 +73,7 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
   @Override
   public List<ClassTable> getClassTables(String ontoRelId) {
+    logger.trace(Trace.ENTER_METHOD_1, ontoRelId);
     return Routines.getClassTables(context.configuration(), ontoRelId, langString)
         .stream()
         .map(record -> new ClassTableRecord(record.getTableName(), record.getLabel(),
@@ -75,6 +84,7 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
   @Override
   public List<DataPropertyTable> getDataPropertyTables(String ontoRelId) {
+    logger.trace(Trace.ENTER_METHOD_1, ontoRelId);
     return Routines.getDataPropertyTables(context.configuration(), ontoRelId, langString)
         .stream()
         .map(record -> new DataPropertyTableRecord(record.getTableName(), record.getLabel(),
@@ -87,6 +97,7 @@ public class JooqOntoRelCatRepository implements OntoRelCatRepository {
 
   @Override
   public List<ObjectPropertyTable> getObjectPropertyTables(String ontoRelId) {
+    logger.trace(Trace.ENTER_METHOD_1, ontoRelId);
     return Routines.getObjectPropertyTables(context.configuration(), ontoRelId, langString)
         .stream()
         .map(record -> new ObjectPropertyTableRecord(record.getTableName(), record.getLabel(),

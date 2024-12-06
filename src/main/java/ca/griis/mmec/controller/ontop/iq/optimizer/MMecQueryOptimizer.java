@@ -13,6 +13,9 @@
 
 package ca.griis.mmec.controller.ontop.iq.optimizer;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.iq.transform.DataPropertyProjectionTransformer;
 import ca.griis.mmec.controller.ontop.iq.transform.IndividuationFunctionQueryTransformer;
 import com.google.common.collect.ImmutableList;
@@ -51,6 +54,8 @@ import java.util.List;
  * @par Tâches
  */
 public class MMecQueryOptimizer {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecQueryOptimizer.class);
   protected final IntermediateQueryFactory iqFactory;
   protected final TermFactory termFactory;
   protected final List<IQTreeVisitingTransformer> transformers;
@@ -66,6 +71,8 @@ public class MMecQueryOptimizer {
   }
 
   public IQTree optimize(IQTree tree) {
+    logger.trace(Trace.ENTER_METHOD_1, tree);
+
     for (IQTreeVisitingTransformer transformer : transformers) {
       tree = tree.acceptTransformer(transformer);
     }

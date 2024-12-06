@@ -97,21 +97,25 @@ public class MappingPropertiesBuilder {
   }
 
   public MappingPropertiesBuilder withOntoRelId(String ontoRelId) {
+    logger.trace(Trace.ENTER_METHOD_1, ontoRelId);
     this.ontoRelId = ontoRelId;
     return this;
   }
 
   public MappingPropertiesBuilder withMappingSchema(String mappingSchema) {
+    logger.trace(Trace.ENTER_METHOD_1, mappingSchema);
     this.mappingSchema = mappingSchema;
     return this;
   }
 
   public MappingPropertiesBuilder withR2rmlMappingFilePath(String r2rmlMappingFilePath) {
+    logger.trace(Trace.ENTER_METHOD_1, r2rmlMappingFilePath);
     this.r2rmlMappingFilePath = r2rmlMappingFilePath;
     return this;
   }
 
   public MappingPropertiesBuilder withOntologyFilePath(String ontologyFilePath) {
+    logger.trace(Trace.ENTER_METHOD_1, ontologyFilePath);
     this.ontologyFilePath = ontologyFilePath;
     return this;
   }

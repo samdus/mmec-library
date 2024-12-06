@@ -64,6 +64,7 @@ public class ConnectionPropertiesBuilder {
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
   public ConnectionPropertiesBuilder withDriverName(String driverName) {
+    logger.trace(Trace.ENTER_METHOD_1, driverName);
     this.driverName = driverName;
     return this;
   }
@@ -76,6 +77,7 @@ public class ConnectionPropertiesBuilder {
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
   public ConnectionPropertiesBuilder withDatabaseName(String databaseName) {
+    logger.trace(Trace.ENTER_METHOD_1, databaseName);
     this.databaseName = databaseName;
     return this;
   }
@@ -89,6 +91,7 @@ public class ConnectionPropertiesBuilder {
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
   public ConnectionPropertiesBuilder withJdbcUrl(String jdbcUrl) {
+    logger.trace(Trace.ENTER_METHOD_1, jdbcUrl);
     this.jdbcUrl = jdbcUrl;
     return this;
   }
@@ -101,6 +104,7 @@ public class ConnectionPropertiesBuilder {
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
   public ConnectionPropertiesBuilder withUsername(String username) {
+    logger.trace(Trace.ENTER_METHOD_1, username);
     this.username = username;
     return this;
   }
@@ -113,6 +117,7 @@ public class ConnectionPropertiesBuilder {
    * @return Le constructeur de configuration de connexion en cours de configuration.
    */
   public ConnectionPropertiesBuilder withPassword(String password) {
+    logger.trace(Trace.ENTER_METHOD_0);
     this.password = password;
     return this;
   }
@@ -164,30 +169,35 @@ public class ConnectionPropertiesBuilder {
   }
 
   private void checkIfPasswordIsMissing() throws MissingPropertyException {
+    logger.trace(Trace.ENTER_METHOD_0);
     if (password == null) {
       throw new MissingPropertyException("password", "password");
     }
   }
 
   private void checkIfUsernameIsMissing() throws MissingPropertyException {
+    logger.trace(Trace.ENTER_METHOD_0);
     if (username == null) {
       throw new MissingPropertyException("username", "username");
     }
   }
 
   private void checkIfJdbcUrlIsMissing() throws MissingPropertyException {
+    logger.trace(Trace.ENTER_METHOD_0);
     if (jdbcUrl == null) {
       throw new MissingPropertyException("jdbcUrl", "connexion URL");
     }
   }
 
   private void checkIfDatabaseNameIsMissing() throws MissingPropertyException {
+    logger.trace(Trace.ENTER_METHOD_0);
     if (databaseName == null) {
       throw new MissingPropertyException("databaseName", "database name");
     }
   }
 
   private void checkIfDriverNameIsMissing() throws MissingPropertyException {
+    logger.trace(Trace.ENTER_METHOD_0);
     if (driverName == null) {
       throw new MissingPropertyException("driverName", "JDBC driver name");
     }

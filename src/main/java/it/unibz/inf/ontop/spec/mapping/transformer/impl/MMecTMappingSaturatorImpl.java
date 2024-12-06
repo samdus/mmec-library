@@ -39,6 +39,10 @@ package it.unibz.inf.ontop.spec.mapping.transformer.impl;
  * that has been modified to use MMecMappingAssertionUnion instead of MappingAssertionUnion.
  */
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
@@ -91,6 +95,9 @@ import org.apache.commons.lang3.tuple.Pair;
 @Singleton
 public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecMappingExtension.class);
+
   // TODO: the implementation of EXCLUDE ignores equivalent classes / properties
 
   private final TMappingExclusionConfig exclusionConfig;
@@ -118,6 +125,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
   @Override
   public ImmutableList<MappingAssertion> saturate(ImmutableList<MappingAssertion> mapping,
       ClassifiedTBox reasoner) {
+    logger.trace(Trace.ENTER_METHOD_2, mapping, reasoner);
 
     ExtensionalDataNodeListContainmentCheck cqc = new ExtensionalDataNodeListContainmentCheck(
         coreSingletons.getHomomorphismFactory(), coreSingletons.getCoreUtilsFactory());
@@ -191,7 +199,8 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
       ImmutableMultimap<MappingAssertionIndex, MappingAssertion> original,
       BiFunction<T, T, MappingAssertionConstructionNodeTransformer> transformerProvider,
       ExtensionalDataNodeListContainmentCheck cqc) {
-
+    logger.trace(Trace.ENTER_METHOD_5, representative, subsumees, original, transformerProvider,
+        cqc);
     return subsumees
         .map(s -> transformerProvider.apply(s, representative))
         .flatMap(u -> original.get(u.getFromIndex()).stream()
@@ -202,12 +211,14 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
   private MappingAssertion optimize(ExtensionalDataNodeListContainmentCheck cqc,
       MappingAssertion m) {
+    logger.trace(Trace.ENTER_METHOD_2, cqc, m);
     IQ optimizedIQ = m.getQuery().normalizeForOptimization();
     IQ cqcOptimizedIQ = mappingCqcOptimizer.optimize(cqc, optimizedIQ);
     return m.copyOf(cqcOptimizedIQ);
   }
 
   private static <T> Stream<T> getSubsumees(EquivalencesDAG<T> dag, Equivalences<T> node) {
+    logger.trace(Trace.ENTER_METHOD_2, dag, node);
     return dag.getSub(node).stream()
         .flatMap(n -> n.getMembers().stream());
   }
@@ -241,6 +252,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
     }
 
     MappingAssertion updateConstructionNodeIri(MappingAssertion assertion) {
+      logger.trace(Trace.ENTER_METHOD_1, assertion);
       IQ query = assertion.getQuery();
       ConstructionNode constructionNode = (ConstructionNode) query.getTree().getRootNode();
       DistinctVariableOnlyDataAtom projectionAtom = query.getProjectionAtom();
@@ -284,6 +296,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
      */
     private Pair<IQTree, Substitution<ImmutableTerm>> renameCircularSubstitution(
         Substitution<ImmutableTerm> updatedSubstitution, IQ query) {
+      logger.trace(Trace.ENTER_METHOD_2, updatedSubstitution, query);
       ImmutableMap<Variable, Variable> circularSubstitution = updatedSubstitution.stream()
           .filter(sub -> sub.getValue() instanceof Variable)
           .filter(sub -> updatedSubstitution.isDefining((Variable) sub.getValue()))
@@ -334,6 +347,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
     MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer getTransformer(
         ClassExpression from, ClassExpression to) {
+      logger.trace(Trace.ENTER_METHOD_2, from, to);
       if (!(to instanceof OClass toClass)) {
         throw new MinorOntopInternalBugException(
             "Cannot get a transformer to a property restriction: " + from + " " + to);
@@ -373,6 +387,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
     MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer getTransformer(
         ObjectPropertyExpression from, ObjectPropertyExpression to) {
+      logger.trace(Trace.ENTER_METHOD_2, from, to);
       IRIConstant newIri = termFactory.getConstantIRI(to.getIRI());
       return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(
           MappingAssertionIndex.ofProperty(rdfAtomPredicate, from.getIRI()),
@@ -387,6 +402,7 @@ public class MMecTMappingSaturatorImpl implements MappingSaturator {
 
     MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer getTransformer(
         DataPropertyExpression from, DataPropertyExpression to) {
+      logger.trace(Trace.ENTER_METHOD_2, from, to);
       IRIConstant newIri = termFactory.getConstantIRI(to.getIRI());
       return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(
           MappingAssertionIndex.ofProperty(rdfAtomPredicate, from.getIRI()),

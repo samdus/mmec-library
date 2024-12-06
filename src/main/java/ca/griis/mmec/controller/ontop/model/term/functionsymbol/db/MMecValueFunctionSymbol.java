@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.model.type.DbValueTermType;
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.model.term.ImmutableTerm;
@@ -54,6 +57,8 @@ import java.util.function.Function;
 public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol implements
     RDFTermFunctionSymbol {
 
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecValueFunctionSymbol.class);
   private final DBTermType valueType;
   private final RDFDatatype rdfDatatype;
 
@@ -81,34 +86,40 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
 
   @Override
   protected boolean isAlwaysInjectiveInTheAbsenceOfNonInjectiveFunctionalTerms() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return true;
   }
 
   @Override
   public boolean canBePostProcessed(ImmutableList<? extends ImmutableTerm> immutableList) {
+    logger.trace(Trace.ENTER_METHOD_1, immutableList);
     return false;
   }
 
   @Override
   public boolean tolerateNulls() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return false;
   }
 
   @Override
   public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
       Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
+    logger.trace(Trace.ENTER_METHOD_3, terms, termConverter, termFactory);
     checkArity(terms);
     return termConverter.apply(terms.get(0));
   }
 
   @Override
   public Optional<TermTypeInference> inferType(ImmutableList<? extends ImmutableTerm> terms) {
+    logger.trace(Trace.ENTER_METHOD_1, terms);
     return Optional.of(
         TermTypeInference.declareTermType(new DbValueTermType(rdfDatatype, valueType)));
   }
 
   private static void checkArity(ImmutableList<? extends ImmutableTerm> terms)
       throws IllegalArgumentException {
+    logger.trace(Trace.ENTER_METHOD_1, terms);
     if (terms.size() != 2) {
       throw new IllegalArgumentException("Wrong arity");
     }
@@ -116,6 +127,7 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
 
   @Override
   public final boolean equals(Object other) {
+    logger.trace(Trace.ENTER_METHOD_1, other);
     return super.equals(other)
         && other instanceof MMecValueFunctionSymbol otherSymbol
         && this.valueType.equals(otherSymbol.valueType)
@@ -124,6 +136,7 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
 
   @Override
   public final int hashCode() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Arrays.hashCode(new Object[] {
         super.hashCode(),
         valueType,

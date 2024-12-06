@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.model.term.functionsymbol.db;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.model.type.MMecIndividuationTermType;
 import com.google.common.collect.ImmutableList;
 import it.unibz.inf.ontop.iq.node.VariableNullability;
@@ -60,6 +63,10 @@ import java.util.stream.IntStream;
  */
 public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymbol
     implements RDFTermFunctionSymbol {
+
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecIndividuationFunctionSymbol.class);
+
   private final String functionCallTemplate;
   private final MMecIndividuationTermType mmecIndividuationTermType;
 
@@ -83,34 +90,40 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
 
   @Override
   protected boolean isAlwaysInjectiveInTheAbsenceOfNonInjectiveFunctionalTerms() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return true;
   }
 
   @Override
   public boolean canBePostProcessed(ImmutableList<? extends ImmutableTerm> immutableList) {
+    logger.trace(Trace.ENTER_METHOD_1, immutableList);
     return false;
   }
 
   @Override
   public boolean tolerateNulls() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return false;
   }
 
   @Override
   public String getNativeDBString(ImmutableList<? extends ImmutableTerm> terms,
       Function<ImmutableTerm, String> termConverter, TermFactory termFactory) {
+    logger.trace(Trace.ENTER_METHOD_3, terms, termConverter, termFactory);
     return String.format(functionCallTemplate,
         terms.stream().map(termConverter).collect(Collectors.joining(", ")));
   }
 
   @Override
   public Optional<TermTypeInference> inferType(ImmutableList<? extends ImmutableTerm> terms) {
+    logger.trace(Trace.ENTER_METHOD_1, terms);
     return Optional.of(mmecIndividuationTermType).map(TermTypeInference::declareTermType);
   }
 
   @Override
   public IncrementalEvaluation evaluateStrictEq(ImmutableList<? extends ImmutableTerm> terms,
       ImmutableTerm otherTerm, TermFactory termFactory, VariableNullability variableNullability) {
+    logger.trace(Trace.ENTER_METHOD_4, terms, otherTerm, termFactory, variableNullability);
     IncrementalEvaluation evaluation;
     if (otherTerm instanceof ImmutableFunctionalTerm otherTermFunctional
         && otherTermFunctional.getFunctionSymbol() instanceof MMecIndividuationFunctionSymbol) {
@@ -138,11 +151,13 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
       ImmutableList<? extends ImmutableTerm> terms,
       VariableNullability variableNullability,
       ImmutableList<? extends ImmutableTerm> otherTerms) {
+    logger.trace(Trace.ENTER_METHOD_3, terms, variableNullability, otherTerms);
     return Decomposability.NO_WRAPPING_NEEDED;
   }
 
   @Override
   public final boolean equals(Object other) {
+    logger.trace(Trace.ENTER_METHOD_1, other);
     return super.equals(other) && other instanceof MMecIndividuationFunctionSymbol otherSymbol
         && this.functionCallTemplate.compareToIgnoreCase(otherSymbol.functionCallTemplate) == 0
         && this.mmecIndividuationTermType.equals(otherSymbol.mmecIndividuationTermType);
@@ -150,6 +165,7 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
 
   @Override
   public final int hashCode() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Arrays.hashCode(new Object[] {super.hashCode(), this.functionCallTemplate.toLowerCase(),
         this.mmecIndividuationTermType});
   }

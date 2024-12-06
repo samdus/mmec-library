@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.model.term;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSqlDbFunctionSymbolFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import com.google.common.collect.ImmutableList;
@@ -50,6 +53,8 @@ import it.unibz.inf.ontop.model.type.TermType;
  *      S.O.
  */
 public class MMecTermFactory extends PartialTermFactory {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecTermFactory.class);
 
   @Inject
   public MMecTermFactory(TermFactoryImpl defaultTermFactory) {
@@ -90,6 +95,7 @@ public class MMecTermFactory extends PartialTermFactory {
    */
   public NonGroundFunctionalTerm getMMecSimpleCastFunctionalTerm(DBTermType inputType,
       DBTermType targetType, ImmutableTerm term) {
+    logger.trace(Trace.ENTER_METHOD_3, inputType, targetType, term);
     return defaultTermFactory.getNonGroundFunctionalTerm(
         getMMecDbFunctionSymbolFactory().createMMecSimpleConversionFunctionSymbol(inputType,
             targetType),
@@ -109,6 +115,7 @@ public class MMecTermFactory extends PartialTermFactory {
    */
   public NonGroundFunctionalTerm getMMecConversionFunction(ImmutableTerm variable,
       MMecMappingConversion conversion) {
+    logger.trace(Trace.ENTER_METHOD_2, variable, conversion);
     return defaultTermFactory.getNonGroundFunctionalTerm(
         conversion.getConversionFunction().orElseThrow(),
         variable);
@@ -127,6 +134,7 @@ public class MMecTermFactory extends PartialTermFactory {
    */
   public NonGroundFunctionalTerm getMMecConversionValidationFunction(ImmutableTerm variable,
       MMecMappingConversion conversion) {
+    logger.trace(Trace.ENTER_METHOD_2, variable, conversion);
     return defaultTermFactory.getNonGroundFunctionalTerm(
         conversion.getValidationFunction().orElseThrow(),
         variable);
@@ -147,6 +155,7 @@ public class MMecTermFactory extends PartialTermFactory {
    */
   public NonGroundFunctionalTerm getMMecValueFunction(ImmutableTerm variable,
       DBTermType variableType, RDFTermTypeConstant rdfTermTypeConstant) {
+    logger.trace(Trace.ENTER_METHOD_3, variable, variableType, rdfTermTypeConstant);
     return defaultTermFactory.getNonGroundFunctionalTerm(
         getMMecDbFunctionSymbolFactory().createMMecValueFunctionSymbol(variableType,
             rdfTermTypeConstant),
@@ -154,6 +163,7 @@ public class MMecTermFactory extends PartialTermFactory {
   }
 
   private MMecSqlDbFunctionSymbolFactory getMMecDbFunctionSymbolFactory() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return (MMecSqlDbFunctionSymbolFactory) defaultTermFactory.getDBFunctionSymbolFactory();
   }
 }

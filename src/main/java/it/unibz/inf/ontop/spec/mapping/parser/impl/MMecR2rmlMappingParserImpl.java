@@ -15,6 +15,9 @@
 
 package it.unibz.inf.ontop.spec.mapping.parser.impl;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -52,6 +55,8 @@ import org.eclipse.rdf4j.rio.helpers.StatementCollector;
  * High-level class that implements the MappingParser interface for R2RML.
  */
 public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecR2rmlMappingParserImpl.class);
   private final SpecificationFactory specificationFactory;
   private final R2RMLToSQLPPTriplesMapConverter transformer;
   private final RDF4JR2RMLMappingManager manager;
@@ -70,6 +75,8 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
 
   @Override
   public SQLPPMapping parse(File mappingFile) throws InvalidMappingException, MappingIOException {
+    logger.trace(Trace.ENTER_METHOD_1, mappingFile);
+
     LinkedHashModel rdf4jGraph = new LinkedHashModel();
     RDFParser parser = Rio.createParser(RDFFormat.TURTLE);
     StatementCollector collector = new StatementCollector(rdf4jGraph);
@@ -87,6 +94,8 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
 
   @Override
   public SQLPPMapping parse(Reader reader) throws InvalidMappingException, MappingIOException {
+    logger.trace(Trace.ENTER_METHOD_1, reader);
+
     LinkedHashModel rdf4jGraph = new LinkedHashModel();
     RDFParser parser = Rio.createParser(RDFFormat.TURTLE);
     StatementCollector collector = new StatementCollector(rdf4jGraph);
@@ -104,11 +113,13 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
 
   @Override
   public SQLPPMapping parse(Graph mappingGraph) throws InvalidMappingException {
+    logger.trace(Trace.ENTER_METHOD_1, mappingGraph);
     return parse(mappingGraph, ImmutableMap.of());
   }
 
   protected SQLPPMapping parse(Graph mappingGraph, ImmutableMap<String, String> prefixes)
       throws InvalidMappingException {
+    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);
     try {
       mappingParserExtension.updateMappingGraphBeforeParse(mappingGraph, prefixes);
 
@@ -126,6 +137,7 @@ public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
   }
 
   private ImmutableMap<String, String> extractPrefixes(LinkedHashModel rdf4jGraph) {
+    logger.trace(Trace.ENTER_METHOD_1, rdf4jGraph);
     return rdf4jGraph.getNamespaces().stream()
         .collect(ImmutableCollectors.toMap(
             namespace -> namespace.getPrefix() + ":",

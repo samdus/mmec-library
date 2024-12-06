@@ -15,6 +15,7 @@ package ca.griis.mmec.repository;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import com.google.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -82,22 +83,27 @@ public class ProjectInfoRepository {
   }
 
   public Optional<String> getApplicationMain() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Optional.ofNullable(properties.get("APPLICATION_MAIN"));
   }
 
   public Optional<String> getGroup() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Optional.ofNullable(properties.get("GROUP_PROJECT"));
   }
 
   public Optional<String> getName() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Optional.ofNullable(properties.get("NAME_PROJECT"));
   }
 
   public Optional<String> getProduct() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Optional.ofNullable(properties.get("PRODUCT"));
   }
 
   public Optional<String> getVersion() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Optional.ofNullable(properties.get("VERSION_PROJECT"));
   }
 }

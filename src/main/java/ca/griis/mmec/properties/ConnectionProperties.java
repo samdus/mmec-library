@@ -123,11 +123,13 @@ public abstract class ConnectionProperties {
   }
 
   private Properties mergeProperties(Properties... properties) {
+    logger.trace(Trace.ENTER_METHOD_1, (Object[]) properties);
     return Stream.of(properties)
         .collect(Properties::new, Hashtable::putAll, Hashtable::putAll);
   }
 
   private Properties getDefaultOntopConfigurationProperties() throws IOException {
+    logger.trace(Trace.ENTER_METHOD_0);
     Properties prop = new Properties();
 
     try (InputStream propStream = this.getClass().getClassLoader()

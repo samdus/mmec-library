@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.model.type;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.ObjectRDFType;
 import it.unibz.inf.ontop.model.type.RDFDatatype;
@@ -16,6 +19,8 @@ import it.unibz.inf.ontop.model.type.TermTypeAncestry;
 import it.unibz.inf.ontop.model.type.impl.RDFTermTypeImpl;
 import java.util.Arrays;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -46,7 +51,9 @@ import java.util.Optional;
  */
 public class MMecIndividuationTermType extends RDFTermTypeImpl implements ObjectRDFType,
     DBTermType {
-
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecIndividuationTermType.class);
+  private static final Logger log = LoggerFactory.getLogger(MMecIndividuationTermType.class);
   private final DBTermType individuationType;
 
   public MMecIndividuationTermType(TermTypeAncestry parentAncestry,
@@ -57,61 +64,73 @@ public class MMecIndividuationTermType extends RDFTermTypeImpl implements Object
 
   @Override
   public boolean isBlankNode() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return false;
   }
 
   @Override
   public String getName() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.getName();
   }
 
   @Override
   public String getCastName() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.getCastName();
   }
 
   @Override
   public Category getCategory() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.getCategory();
   }
 
   @Override
   public Optional<RDFDatatype> getNaturalRDFDatatype() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.getNaturalRDFDatatype();
   }
 
   @Override
   public boolean isNeedingIRISafeEncoding() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.isNeedingIRISafeEncoding();
   }
 
   @Override
   public boolean areEqualitiesStrict() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.areEqualitiesStrict();
   }
 
   @Override
   public Optional<Boolean> areEqualitiesStrict(DBTermType otherType) {
+    logger.trace(Trace.ENTER_METHOD_1, otherType);
     return individuationType.areEqualitiesStrict(otherType);
   }
 
   @Override
   public boolean areEqualitiesBetweenTwoDBAttributesStrict() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.areEqualitiesBetweenTwoDBAttributesStrict();
   }
 
   @Override
   public Optional<Boolean> isValidLexicalValue(String lexicalValue) {
+    logger.trace(Trace.ENTER_METHOD_1, lexicalValue);
     return individuationType.isValidLexicalValue(lexicalValue);
   }
 
   @Override
   public boolean isPreventDistinctRecommended() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return individuationType.isPreventDistinctRecommended();
   }
 
   @Override
   public final boolean equals(Object other) {
+    logger.trace(Trace.ENTER_METHOD_1, other);
     return super.equals(other)
         && other instanceof MMecIndividuationTermType otherTermType
         && this.individuationType.equals(otherTermType.individuationType);
@@ -119,6 +138,7 @@ public class MMecIndividuationTermType extends RDFTermTypeImpl implements Object
 
   @Override
   public final int hashCode() {
+    logger.trace(Trace.ENTER_METHOD_0);
     return Arrays.hashCode(new Object[] {
         super.hashCode(),
         individuationType

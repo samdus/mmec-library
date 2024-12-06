@@ -69,7 +69,6 @@ public class FacadePropertiesBuilder {
   public FacadePropertiesBuilder withFacadeStgPath(URL facadeStgPath) {
     logger.trace(Trace.ENTER_METHOD_1, facadeStgPath);
     this.facadeStgUrl = facadeStgPath;
-    logger.trace(Trace.EXIT_METHOD_0);
     return this;
   }
 
@@ -91,7 +90,6 @@ public class FacadePropertiesBuilder {
   public FacadePropertiesBuilder withFacadeType(FacadeType facadeType) {
     logger.trace(Trace.ENTER_METHOD_1, facadeType);
     this.facadeStgUrl = facadeType.getStgUrl();
-    logger.trace(Trace.EXIT_METHOD_0);
     return this;
   }
 

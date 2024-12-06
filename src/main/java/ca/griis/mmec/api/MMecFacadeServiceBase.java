@@ -15,6 +15,7 @@ package ca.griis.mmec.api;
 
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.api.exception.ConnectionException;
 import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFoundException;
 import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
@@ -48,6 +49,8 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
       throws DefaultOntopConfigurationNotFoundException, OntopConnectionException,
       OBDASpecificationException, OntopReformulationException, ConnectionException {
+    logger.trace(Trace.ENTER_METHOD_3, connectionProperties, mappingProperties,
+        mmecFacadeProperties);
 
     MMecConfiguration configuration = buildMMecConfiguration(
         connectionProperties, mappingProperties, mmecFacadeProperties);
@@ -83,6 +86,8 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
       OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
       MappedOntoRelTableView mappedOntoRelTableView)
       throws OntopReformulationException, OntopConnectionException {
+    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
     StringBuilder builder = new StringBuilder();
 
     getClassesDefinition(mappingProperties, ontoRelCatRepository, ontoRelTableMappingController,
@@ -104,6 +109,9 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
       OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
       MappedOntoRelTableView mappedOntoRelTableView, StringBuilder builder)
       throws OntopReformulationException, OntopConnectionException {
+    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
+
     builder.append("-- ========================================================\n");
     builder.append("-- Classes\n");
     builder.append("-- ========================================================\n");
@@ -121,6 +129,8 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
       OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
       MappedOntoRelTableView mappedOntoRelTableView, StringBuilder builder)
       throws OntopReformulationException, OntopConnectionException {
+    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
     builder.append("-- ========================================================\n");
     builder.append("-- ObjectProperties\n");
     builder.append("-- ========================================================\n");
@@ -132,6 +142,8 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
       builder.append(mappedOntoRelTableView.getExpression(mappedObjectPropertyTable));
       builder.append("\n");
     }
+
+    logger.trace(Trace.EXIT_METHOD_0);
   }
 
   private static void getDataPropertiesDefinition(MappingProperties mappingProperties,
@@ -139,6 +151,9 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
       OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
       MappedOntoRelTableView mappedOntoRelTableView, StringBuilder builder)
       throws OntopReformulationException, OntopConnectionException {
+    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
+
     builder.append("-- ========================================================\n");
     builder.append("-- DataProperties\n");
     builder.append("-- ========================================================\n");
@@ -150,11 +165,15 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
       builder.append(mappedOntoRelTableView.getExpression(mappedDataPropertyTable));
       builder.append("\n");
     }
+
+    logger.trace(Trace.EXIT_METHOD_0);
   }
 
   private static MMecConfiguration buildMMecConfiguration(ConnectionProperties connectionProperties,
       MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
       throws DefaultOntopConfigurationNotFoundException, ConnectionException {
+    logger.trace(Trace.ENTER_METHOD_3, connectionProperties, mappingProperties,
+        mmecFacadeProperties);
     MMecConfiguration configuration;
 
     try {

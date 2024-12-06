@@ -15,6 +15,9 @@
 
 package it.unibz.inf.ontop.spec.mapping.pp.impl;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -47,16 +50,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
  * SQLPPMapping -> MappingAssertion
  */
 public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(MMecSqlPpMappingConverterImpl.class);
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecSqlPpMappingConverterImpl.class);
 
   private final IntermediateQueryFactory iqFactory;
   private final SubstitutionFactory substitutionFactory;
@@ -80,6 +81,8 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
   private static <T> Function<Variable, Optional<T>> placeholderLookup(
       SQLPPTriplesMap mappingAssertion, QuotedIDFactory idFactory,
       ImmutableMap<QuotedID, T> lookup) {
+    logger.trace(Trace.ENTER_METHOD_3, mappingAssertion, idFactory, lookup);
+
     Function<Variable, Optional<T>> standard =
         v -> Optional.ofNullable(lookup.get(idFactory.createAttributeID(v.getName().trim())));
 
@@ -96,6 +99,7 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
   public ImmutableList<MappingAssertion> convert(ImmutableList<SQLPPTriplesMap> mapping,
       MetadataLookup metadataLookup)
       throws InvalidMappingSourceQueriesException, MetadataExtractionException {
+    logger.trace(Trace.ENTER_METHOD_2, mapping, metadataLookup);
     ImmutableList.Builder<MappingAssertion> builder = ImmutableList.builder();
     for (SQLPPTriplesMap assertion : mapping) {
       RAExpression re;
@@ -117,7 +121,7 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
         if (!ignoreInvalidMappingEntries) {
           throw e;
         }
-        LOGGER.warn("Mapping entry {} was ignored due to an issue: {}", assertion.getId(),
+        logger.warn("Mapping entry {} was ignored due to an issue: {}", assertion.getId(),
             e.getMessage());
         continue;
       }
@@ -130,20 +134,20 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
           if (!ignoreInvalidMappingEntries) {
             throw e;
           }
-          LOGGER.warn("Target atom {} was ignored due to an issue: {}", target, e.getMessage());
+          logger.warn("Target atom {} was ignored due to an issue: {}", target, e.getMessage());
         }
       }
     }
 
     ImmutableList<MappingAssertion> result = builder.build();
-    LOGGER.debug("Original mapping size: {}", result.size());
+    logger.debug("Original mapping size: {}", result.size());
     return result;
   }
 
   private MappingAssertion convert(TargetAtom target,
       Function<Variable, Optional<ImmutableTerm>> lookup, PPMappingAssertionProvenance provenance,
       IQTree tree) throws InvalidMappingSourceQueriesException {
-
+    logger.trace(Trace.ENTER_METHOD_4, target, lookup, provenance, tree);
     Substitution<ImmutableTerm> targetSubstitution = target.getSubstitution();
 
     ImmutableMap<Variable, Optional<ImmutableTerm>> targetPreMap =
@@ -192,6 +196,7 @@ public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
   public RAExpression getRaExpression(SQLPPTriplesMap mappingAssertion,
       MetadataLookup metadataLookup)
       throws InvalidMappingSourceQueriesException, MetadataExtractionException {
+    logger.trace(Trace.ENTER_METHOD_2, mappingAssertion, metadataLookup);
     String sourceQuery = mappingAssertion.getSourceQuery().getSQL();
     try {
       return sqlQueryParser.getRAExpression(sourceQuery, metadataLookup);

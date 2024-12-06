@@ -9,6 +9,9 @@
 
 package it.unibz.inf.ontop.injection.impl;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
@@ -44,6 +47,8 @@ import org.jooq.DSLContext;
  *      S.O.
  */
 public class MMecModule extends OntopAbstractModule {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecModule.class);
   private final MMecConfiguration configuration;
 
   protected MMecModule(MMecConfiguration configuration) {
@@ -53,6 +58,8 @@ public class MMecModule extends OntopAbstractModule {
 
   @Override
   protected void configure() {
+    logger.trace(Trace.ENTER_METHOD_0);
+
     bind(FacadeProperties.class).toInstance(configuration.getFacadeProperties());
     bind(MappingProperties.class).toInstance(configuration.getMappingProperties());
     bind(DSLContext.class).toInstance(configuration.getJooqContext());

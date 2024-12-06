@@ -9,6 +9,9 @@
 
 package ca.griis.mmec.controller.ontop.model.type.impl;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 import it.unibz.inf.ontop.model.type.TermType;
@@ -46,6 +49,8 @@ import java.util.regex.Pattern;
  */
 public class MMecPostgreSqlDbTypeFactory extends PostgreSQLDBTypeFactory {
 
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecPostgreSqlDbTypeFactory.class);
   private static final Pattern OPTIONAL_LENGTH = Pattern.compile("\\([\\d, ]+\\)");
 
   @AssistedInject
@@ -56,6 +61,8 @@ public class MMecPostgreSqlDbTypeFactory extends PostgreSQLDBTypeFactory {
 
   @Override
   protected String preprocessTypeName(String typeName) {
+    logger.trace(Trace.ENTER_METHOD_1, typeName);
+
     String preprocessed = OPTIONAL_LENGTH.matcher(typeName).replaceAll("");
     if (!preprocessed.contains("\"")) {
       preprocessed = preprocessed.toUpperCase();
@@ -65,6 +72,8 @@ public class MMecPostgreSqlDbTypeFactory extends PostgreSQLDBTypeFactory {
 
   @Override
   protected String preprocessTypeName(String typeName, int columnSize) {
+    logger.trace(Trace.ENTER_METHOD_2, typeName, columnSize);
+
     String preprocessed = OPTIONAL_LENGTH.matcher(typeName).replaceAll("");
     if (!preprocessed.contains("\"")) {
       preprocessed = preprocessed.toUpperCase();

@@ -1,5 +1,8 @@
 package ca.griis.mmec.controller.ontop.iq.transform;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
 import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
@@ -70,6 +73,8 @@ import javax.inject.Inject;
  */
 public class DataPropertyProjectionTransformer
     extends DefaultRecursiveIQTreeVisitingTransformer {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(DataPropertyProjectionTransformer.class);
   private final MMecTermFactory termFactory;
   private final BasicSingleTermTypeExtractor typeExtractor;
   private final OntoRelCatRepository ontoRelCatRepository;
@@ -96,6 +101,7 @@ public class DataPropertyProjectionTransformer
   @Override
   public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
       IQTree child) {
+    logger.trace(Trace.ENTER_METHOD_3, tree, constructionNode, child);
 
     if (!constructionNode.getSubstitution().isEmpty()) {
       Map<Variable, ImmutableTerm> newSubstitutionMap = new HashMap<>();
@@ -134,6 +140,8 @@ public class DataPropertyProjectionTransformer
   protected IQTree calculateAndAddConversion(Map<Variable, ImmutableTerm> newSubstitutionMap,
       Variable substituedVariable, RDFTermTypeConstant rdfTermTypeConstant, DBTermType targetType,
       Variable variable, DBTermType variableType, IQTree child, IQTree tree) {
+    logger.trace(Trace.ENTER_METHOD_7, substituedVariable, rdfTermTypeConstant,
+        targetType, variable, variableType, child, tree);
     ImmutableTerm valueTerm;
     if (targetType.getName().contains("\"") && targetType.getName().equals(
         variableType.getName())
@@ -171,6 +179,7 @@ public class DataPropertyProjectionTransformer
   }
 
   protected DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
+    logger.trace(Trace.ENTER_METHOD_2, iqTree, rdfDatatype);
     return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
         rdfDatatype.getIRI().getIRIString())
         .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,

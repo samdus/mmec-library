@@ -13,6 +13,9 @@
 
 package ca.griis.mmec.controller.ontop.spec.mapping;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +49,8 @@ import java.util.Optional;
  *      S.O.
  */
 public class MMecMappingExtension {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(MMecMappingExtension.class);
   private final Map<DBTermType, Map<DBTermType, MMecMappingConversion>> conversions;
 
   public MMecMappingExtension() {
@@ -53,12 +58,15 @@ public class MMecMappingExtension {
   }
 
   public Optional<MMecMappingConversion> getMappingConversion(DBTermType from, DBTermType to) {
+    logger.trace(Trace.ENTER_METHOD_2, from, to);
     return Optional.ofNullable(conversions.get(from))
         .map(m -> m.get(to));
   }
 
   public void addMappingConversion(MMecMappingConversion addedConversion) {
+    logger.trace(Trace.ENTER_METHOD_1, addedConversion);
     conversions.computeIfAbsent(addedConversion.getInputType(), k -> new HashMap<>())
         .put(addedConversion.getOutputType(), addedConversion);
+    logger.trace(Trace.EXIT_METHOD_0);
   }
 }

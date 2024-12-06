@@ -13,6 +13,9 @@
 
 package ca.griis.mmec.view.st;
 
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.model.MappedOntoRelTable;
 import ca.griis.mmec.model.mapped.MappedClassTable;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
@@ -52,6 +55,9 @@ import org.stringtemplate.v4.STGroupFile;
  *      S.O.
  */
 public class StMappedOntoRelTableView implements MappedOntoRelTableView {
+  private static final GriisLogger logger =
+      GriisLoggerFactory.getLogger(StMappedOntoRelTableView.class);
+
   public static final String classTemplateName = "class";
   private static final String emptyClassTemplateName = "class_empty";
   public static final String opTemplateName = "object_property";
@@ -68,6 +74,8 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
 
   @Override
   public String getExpression(MappedClassTable mappedClassTable) {
+    logger.trace(Trace.ENTER_METHOD_1, mappedClassTable);
+
     ST st = initialiseStWithQueryIfPresent(mappedClassTable, classTemplateName,
         emptyClassTemplateName);
 
@@ -83,6 +91,8 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
 
   @Override
   public String getExpression(MappedObjectPropertyTable mappedObjectPropertyTable) {
+    logger.trace(Trace.ENTER_METHOD_1, mappedObjectPropertyTable);
+
     ST st = initialiseStWithQueryIfPresent(mappedObjectPropertyTable, opTemplateName,
         emptyOpTemplateName);
 
@@ -101,6 +111,8 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
 
   @Override
   public String getExpression(MappedDataPropertyTable mappedDataPropertyTable) {
+    logger.trace(Trace.ENTER_METHOD_1, mappedDataPropertyTable);
+
     ST st = initialiseStWithQueryIfPresent(mappedDataPropertyTable, dpTemplateName,
         emptyDpTemplateName);
 
@@ -119,6 +131,8 @@ public class StMappedOntoRelTableView implements MappedOntoRelTableView {
 
   private ST initialiseStWithQueryIfPresent(MappedOntoRelTable mappedOntoRelTable, String template,
       String emptyTemplate) {
+    logger.trace(Trace.ENTER_METHOD_2, mappedOntoRelTable, template);
+
     ST st;
     if (mappedOntoRelTable.mmecQuery().isPresent()) {
       st = group.getInstanceOf(template);
