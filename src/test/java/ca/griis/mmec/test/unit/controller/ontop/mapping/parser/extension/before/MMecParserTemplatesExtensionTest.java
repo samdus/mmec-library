@@ -12,14 +12,15 @@ package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension.before
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureComponentMismatchException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureComponentMissingException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureWithoutSubjectMapException;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SubsetHasTemplateException;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import eu.optique.r2rml.api.model.R2RMLVocabulary;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import org.apache.commons.rdf.api.BlankNodeOrIRI;
-import org.apache.commons.rdf.api.Graph;
-import org.apache.commons.rdf.api.Literal;
+import org.apache.commons.rdf.api.*;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 import org.apache.commons.rdf.rdf4j.RDF4JBlankNode;
 import org.apache.commons.rdf.rdf4j.RDF4JIRI;
@@ -28,6 +29,7 @@ import org.apache.commons.rdf.rdf4j.RDF4JTriple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.semanticweb.owlapi.vocab.DublinCoreVocabulary;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
@@ -533,6 +535,21 @@ public class MMecParserTemplatesExtensionTest {
     mappingParser.generateTemplates_pub(testGraph, mappingExpression);
 
     Assertions.assertTrue(mappingParser.alreadyHasAnMMecTemplateSource(testGraph, subjectMap));
+
+    Optional<BlankNodeOrIRI> sourceAnnotation =
+        testGraph.stream(null, OWLRDFVocabulary.OWL_ANNOTATED_SOURCE.getIRI(), subjectMap)
+            .map(Triple::getSubject)
+            .findAny();
+    Assertions.assertTrue(sourceAnnotation.isPresent());
+    Assertions.assertTrue(testGraph.stream(sourceAnnotation.get(), rdf.createIRI(nsTypeIri),
+        OWLRDFVocabulary.OWL_AXIOM.getIRI())
+        .findAny()
+        .isPresent());
+    Assertions.assertTrue(testGraph.stream(sourceAnnotation.get(),
+        OWLRDFVocabulary.OWL_ANNOTATED_PROPERTY.getIRI(),
+        rdf.createIRI(R2RMLVocabulary.PROP_TEMPLATE))
+        .findAny()
+        .isPresent());
   }
 
   @Test
@@ -578,10 +595,44 @@ public class MMecParserTemplatesExtensionTest {
         originalTemplateLiteral).findAny().isPresent());
   }
 
+  @Test
+  public void generateTemplatesWithoutSubjectMapThrowsTest() {
+    RDF4JBlankNode mappingExpression = rdf.createBlankNode(
+        "mappingExpression");
+    testGraph.add(mappingExpression,
+        rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    Assertions.assertThrows(SignatureWithoutSubjectMapException.class,
+        () -> mappingParser.generateTemplates_pub(testGraph, mappingExpression));
+  }
+
+  @Test
+  public void updateGraphTest() {
+    MMecParserTemplatesExtensionTestImpl mappingParserSpy = Mockito.spy(mappingParser);
+    ImmutableMap<String, String> prefixes = ImmutableMap.of();
+    IRI subject = rdf.createIRI("http://subject");
+
+    testGraph.add(subject, rdf.createIRI(nsTypeIri),
+        rdf.createIRI(R2RMLVocabulary.TYPE_TRIPLES_MAP));
+
+    Mockito.doNothing().when(mappingParserSpy).generateTemplates_pub(Mockito.any(), Mockito.any());
+
+    mappingParserSpy.updateGraph(testGraph, prefixes);
+
+    Mockito.verify(mappingParserSpy, Mockito.times(1))
+        .generateTemplates_pub(testGraph, subject);
+  }
+
   // A class that expose protected methods of MappingParserExtension for the tests
   private static class MMecParserTemplatesExtensionTestImpl extends MMecParserTemplatesExtension {
     public MMecParserTemplatesExtensionTestImpl(RDF4J rdf) {
       super(rdf);
+    }
+
+    @Override
+    protected void generateTemplates(Graph mappingGraph, BlankNodeOrIRI current) {
+      generateTemplates_pub(mappingGraph, current);
     }
 
     public void generateTemplates_pub(Graph mappingGraph,

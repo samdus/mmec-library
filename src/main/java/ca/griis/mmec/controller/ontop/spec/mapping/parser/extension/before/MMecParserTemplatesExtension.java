@@ -219,10 +219,7 @@ public class MMecParserTemplatesExtension extends MappingExtendedBeforeParsing {
     logger.trace(Trace.ENTER_METHOD_2, mappingGraph, current);
     Optional<BlankNodeOrIRI> parent = getObject(mappingGraph, current,
         rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS));
-    if (parent.isPresent()) {
-      return getParentRoot(mappingGraph, parent.get());
-    }
-    return current;
+    return parent.orElse(current);
   }
 
   /**
