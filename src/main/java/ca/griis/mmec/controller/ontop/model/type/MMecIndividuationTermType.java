@@ -53,7 +53,6 @@ public class MMecIndividuationTermType extends RDFTermTypeImpl implements Object
     DBTermType {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(MMecIndividuationTermType.class);
-  private static final Logger log = LoggerFactory.getLogger(MMecIndividuationTermType.class);
   private final DBTermType individuationType;
 
   public MMecIndividuationTermType(TermTypeAncestry parentAncestry,
