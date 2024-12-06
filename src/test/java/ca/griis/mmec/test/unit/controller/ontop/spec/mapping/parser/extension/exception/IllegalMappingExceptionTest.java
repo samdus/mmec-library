@@ -16,8 +16,7 @@ public class IllegalMappingExceptionTest {
 
     Mockito.when(node.ntriplesString()).thenReturn(nodeName);
 
-    IllegalMappingException illegalMappingException = new IllegalMappingException(node, reason) {
-    };
+    IllegalMappingException illegalMappingException = new IllegalMappingException(node, reason) {};
 
     Assertions.assertSame(node, illegalMappingException.getInvalidNode());
     Assertions.assertTrue(illegalMappingException.getMessage().contains(reason));
