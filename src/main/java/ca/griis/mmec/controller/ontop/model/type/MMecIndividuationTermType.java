@@ -19,8 +19,6 @@ import it.unibz.inf.ontop.model.type.TermTypeAncestry;
 import it.unibz.inf.ontop.model.type.impl.RDFTermTypeImpl;
 import java.util.Arrays;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
