@@ -3,14 +3,12 @@ package ca.griis.mmec.test.unit.controller.ontop.spec.mapping.pp;
 import ca.griis.mmec.controller.ontop.spec.mapping.pp.ProvUnion;
 import it.unibz.inf.ontop.exception.MinorOntopInternalBugException;
 import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collector;
-import java.util.stream.Stream;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 @SuppressWarnings({"RedundantOperationOnEmptyContainer"})
 public class ProvUnionTest {

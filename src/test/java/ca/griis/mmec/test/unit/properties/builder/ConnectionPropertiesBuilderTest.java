@@ -16,10 +16,8 @@ package ca.griis.mmec.test.unit.properties.builder;
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.builder.ConnectionPropertiesBuilder;
-
 import java.io.IOException;
 import java.util.Properties;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
