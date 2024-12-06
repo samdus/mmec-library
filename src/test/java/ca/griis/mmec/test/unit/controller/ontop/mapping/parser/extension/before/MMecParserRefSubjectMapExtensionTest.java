@@ -10,25 +10,23 @@
 package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension.before;
 
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtension;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.JoinConditionWithoutChildColumnException;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.JoinConditionWithoutParentColumnException;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.LogicalTableWithoutSqlQueryNorTableNameException;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.RefSubjectMapWithoutParentTriplesMapException;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureWithoutLogicalTableException;
-import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureWithoutSubjectMapException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.*;
 import ca.griis.mmec.model.MMecVocabulary;
+import com.google.common.collect.ImmutableMap;
 import eu.optique.r2rml.api.model.R2RMLVocabulary;
+
 import java.util.List;
-import org.apache.commons.rdf.api.BlankNodeOrIRI;
-import org.apache.commons.rdf.api.Graph;
-import org.apache.commons.rdf.api.Triple;
+
+import org.apache.commons.rdf.api.*;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 import org.apache.commons.rdf.rdf4j.RDF4JBlankNode;
 import org.apache.commons.rdf.rdf4j.RDF4JIRI;
 import org.apache.commons.rdf.rdf4j.RDF4JLiteral;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 public class MMecParserRefSubjectMapExtensionTest {
   public static final String nsTypeIri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
@@ -478,12 +476,18 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
 
     Assertions.assertEquals(1, newLogicalTable.size());
+
+    Assertions.assertTrue(testGraph.stream(newLogicalTable.get(0), rdf.createIRI(nsTypeIri),
+            rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW)).findAny().isPresent(),
+        "Logical table should be a R2RML view.");
+    testGraph.stream(childMapping, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
 
     testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
         .map(Triple::getObject)
@@ -563,12 +567,17 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
 
     Assertions.assertEquals(1, newLogicalTable.size());
+    Assertions.assertTrue(testGraph.stream(newLogicalTable.get(0), rdf.createIRI(nsTypeIri),
+            rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW)).findAny().isPresent(),
+        "Logical table should be a R2RML view.");
+    testGraph.stream(childMapping, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
 
     testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
         .map(Triple::getObject)
@@ -648,12 +657,17 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
 
     Assertions.assertEquals(1, newLogicalTable.size());
+    Assertions.assertTrue(testGraph.stream(newLogicalTable.get(0), rdf.createIRI(nsTypeIri),
+            rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW)).findAny().isPresent(),
+        "Logical table should be a R2RML view.");
+    testGraph.stream(childMapping, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
 
     testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
         .map(Triple::getObject)
@@ -733,12 +747,17 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
 
     Assertions.assertEquals(1, newLogicalTable.size());
+    Assertions.assertTrue(testGraph.stream(newLogicalTable.get(0), rdf.createIRI(nsTypeIri),
+            rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW)).findAny().isPresent(),
+        "Logical table should be a R2RML view.");
+    testGraph.stream(childMapping, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
 
     testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
         .map(Triple::getObject)
@@ -839,12 +858,17 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
 
     Assertions.assertEquals(1, newLogicalTable.size());
+    Assertions.assertTrue(testGraph.stream(newLogicalTable.get(0), rdf.createIRI(nsTypeIri),
+            rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW)).findAny().isPresent(),
+        "Logical table should be a R2RML view.");
+    testGraph.stream(childMapping, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
 
     testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
         .map(Triple::getObject)
@@ -908,12 +932,17 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
 
     Assertions.assertEquals(1, newLogicalTable.size());
+    Assertions.assertTrue(testGraph.stream(newLogicalTable.get(0), rdf.createIRI(nsTypeIri),
+            rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW)).findAny().isPresent(),
+        "Logical table should be a R2RML view.");
+    testGraph.stream(childMapping, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
 
     testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
         .map(Triple::getObject)
@@ -976,12 +1005,17 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
 
     Assertions.assertEquals(1, newLogicalTable.size());
+    Assertions.assertTrue(testGraph.stream(newLogicalTable.get(0), rdf.createIRI(nsTypeIri),
+            rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW)).findAny().isPresent(),
+        "Logical table should be a R2RML view.");
+    testGraph.stream(childMapping, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP),
+        parentSubjectMap);
 
     testGraph.stream(newLogicalTable.get(0), rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY), null)
         .map(Triple::getObject)
@@ -1042,7 +1076,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     testGraph.stream(childMapping,
-        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentMapping)
+            rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentMapping)
         .findAny()
         .ifPresentOrElse(
             subset -> {
@@ -1102,7 +1136,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     testGraph.stream(childMapping,
-        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentSubsets)
+            rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentSubsets)
         .findAny()
         .ifPresentOrElse(
             subset -> {
@@ -1177,7 +1211,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -1280,7 +1314,7 @@ public class MMecParserRefSubjectMapExtensionTest {
     mappingParser.processRefSubjectMap_pub(testGraph, childMapping, childRefSubjectMap);
 
     List<BlankNodeOrIRI> newLogicalTable = testGraph.stream(childMapping,
-        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
+            rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), null)
         .map(Triple::getObject)
         .map(BlankNodeOrIRI.class::cast)
         .toList();
@@ -1299,11 +1333,46 @@ public class MMecParserRefSubjectMapExtensionTest {
                 newLogicalTable.get(0))));
   }
 
+  @Test
+  public void updateGraphWithInvalidRefSubjectMapThrowsTest() {
+    IRI subject = rdf.createIRI("http://subject");
+    Literal object = rdf.createLiteral("object");
+    ImmutableMap<String, String> prefixes = ImmutableMap.of();
+
+    testGraph.add(subject, rdf.createIRI(MMecVocabulary.P_REF_SUBJECT_MAP), object);
+
+    Assertions.assertThrows(InvalidRefSubjectMapException.class, () ->
+        mappingParser.updateGraph(testGraph, prefixes));
+  }
+
+  @Test
+  public void updateGraphWithValidRefSubjectMapTest() {
+    MMecParserRefSubjectMapExtensionTestImpl mappingParserSpy = Mockito.spy(mappingParser);
+    IRI subject = rdf.createIRI("http://subject");
+    BlankNodeOrIRI object = rdf.createBlankNode("object");
+    ImmutableMap<String, String> prefixes = ImmutableMap.of();
+
+    testGraph.add(subject, rdf.createIRI(MMecVocabulary.P_REF_SUBJECT_MAP), object);
+
+    Mockito.doNothing().when(mappingParserSpy)
+        .processRefSubjectMap_pub(Mockito.any(), Mockito.any(), Mockito.any());
+
+    mappingParserSpy.updateGraph(testGraph, prefixes);
+
+    Mockito.verify(mappingParserSpy, Mockito.times(1))
+        .processRefSubjectMap_pub(testGraph, subject, object);
+  }
 
   private static class MMecParserRefSubjectMapExtensionTestImpl
       extends MMecParserRefSubjectMapExtension {
     public MMecParserRefSubjectMapExtensionTestImpl(RDF4J rdf) {
       super(rdf);
+    }
+
+    @Override
+    protected void processRefSubjectMap(Graph mappingGraph, BlankNodeOrIRI child,
+        BlankNodeOrIRI childRefSubjectMap) {
+      processRefSubjectMap_pub(mappingGraph, child, childRefSubjectMap);
     }
 
     public void processRefSubjectMap_pub(Graph mappingGraph, BlankNodeOrIRI child,
