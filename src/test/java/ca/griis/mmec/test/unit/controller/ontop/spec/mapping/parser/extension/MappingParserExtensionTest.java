@@ -13,14 +13,13 @@ import it.unibz.inf.ontop.injection.SQLPPMappingFactory;
 import it.unibz.inf.ontop.spec.mapping.PrefixManager;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
 import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
+import java.util.Collection;
 import org.apache.commons.rdf.api.Graph;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.testcontainers.shaded.com.google.common.collect.Streams;
-
-import java.util.Collection;
 
 @SuppressWarnings("unchecked")
 public class MappingParserExtensionTest {

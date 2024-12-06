@@ -21,7 +21,6 @@ import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import it.unibz.inf.ontop.substitution.Substitution;
 import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
-
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
@@ -118,7 +117,7 @@ public class DataPropertyProjectionTransformer
                   "Cannot get the type of the data property's substitution variable."));
 
           child = calculateAndAddConversion(newSubstitutionMap, substitutionEntry.getKey(),
-                  rdfTermTypeConstant, targetType, variable, variableType, child, tree);
+              rdfTermTypeConstant, targetType, variable, variableType, child, tree);
         } else {
           newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());
         }
@@ -139,7 +138,7 @@ public class DataPropertyProjectionTransformer
     if (targetType.getName().contains("\"") && targetType.getName().equals(
         variableType.getName())
         || !targetType.getName().contains("\"") && targetType.getName().compareToIgnoreCase(
-        variableType.getName()) == 0) {
+            variableType.getName()) == 0) {
       valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,
           variable);
     } else {
@@ -173,7 +172,7 @@ public class DataPropertyProjectionTransformer
 
   protected DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
     return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),
-            rdfDatatype.getIRI().getIRIString())
+        rdfDatatype.getIRI().getIRIString())
         .orElseThrow(() -> new DataPropertyProjectionTransformerException(iqTree,
             String.format("Cannot retrieve RDFDatatype <%s> from the OntoRelCat.",
                 rdfDatatype.getIRI().getIRIString())));

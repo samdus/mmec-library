@@ -5,6 +5,8 @@ import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecTriplesMap;
 import ca.griis.mmec.model.MMecVocabulary;
 import com.google.common.collect.ImmutableList;
 import eu.optique.r2rml.api.model.TriplesMap;
+import java.util.Collection;
+import java.util.List;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.rdf4j.RDF4J;
@@ -12,9 +14,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.Collection;
-import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class MMecParserSubsetsExtensionTest {
@@ -192,6 +191,7 @@ public class MMecParserSubsetsExtensionTest {
 
     Mockito.verify(parentMMecTMap, Mockito.never()).addSubset(Mockito.any());
   }
+
   @Test
   public void parseWithParentNotFoundInSourceMappingThrowsExceptionTest() {
     IRI parentIRI = rdf.createIRI("http://example.com/parent");

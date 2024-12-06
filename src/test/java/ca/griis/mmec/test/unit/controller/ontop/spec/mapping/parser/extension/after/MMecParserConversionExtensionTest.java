@@ -15,6 +15,8 @@ import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionS
 import it.unibz.inf.ontop.model.type.DBTermType;
 import it.unibz.inf.ontop.model.type.DBTypeFactory;
 import it.unibz.inf.ontop.model.type.TypeFactory;
+import java.util.Collection;
+import java.util.Optional;
 import org.apache.commons.rdf.api.BlankNode;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
@@ -25,9 +27,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-
-import java.util.Collection;
-import java.util.Optional;
 
 @SuppressWarnings("unchecked")
 public class MMecParserConversionExtensionTest {
@@ -246,7 +245,7 @@ public class MMecParserConversionExtensionTest {
     Mockito.when(dbTypeFactory.getDBTermType(outputTypeId))
         .thenReturn(declaredOutputType);
     Mockito.when(sqlDbFunctionSymbolFactory.createMMecConversionValidationFunctionSymbol(
-            validationFunctionName, declaredInputType, declaredOutputType))
+        validationFunctionName, declaredInputType, declaredOutputType))
         .thenReturn(declaredValidationFunction);
 
     conversionExtension.parse(mappingGraph, tripleMaps, sourceMappings);
@@ -373,7 +372,7 @@ public class MMecParserConversionExtensionTest {
     Mockito.when(sqlDbFunctionSymbolFactory.createMMecConversionFunctionSymbol(functionName,
         declaredInputType, declaredOutputType)).thenReturn(declaredConversionFunction);
     Mockito.when(sqlDbFunctionSymbolFactory.createMMecConversionValidationFunctionSymbol(
-            validationFunctionName, declaredInputType, declaredOutputType))
+        validationFunctionName, declaredInputType, declaredOutputType))
         .thenReturn(declaredValidationFunction);
 
     conversionExtension.parse(mappingGraph, tripleMaps, sourceMappings);

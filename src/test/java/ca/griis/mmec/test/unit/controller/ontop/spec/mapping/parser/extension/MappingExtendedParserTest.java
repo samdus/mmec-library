@@ -2,14 +2,13 @@ package ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension;
 
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingExtendedParser;
 import ca.griis.mmec.model.MMecVocabulary;
+import java.util.List;
+import java.util.Optional;
 import org.apache.commons.rdf.api.*;
 import org.apache.commons.rdf.rdf4j.RDF4J;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.List;
-import java.util.Optional;
 
 public class MappingExtendedParserTest {
 
