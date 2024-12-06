@@ -7,7 +7,7 @@
  * @brief @~english MMecParserTemplatesExtensionTest class implementation.
  */
 
-package ca.griis.mmec.test.unit.controller.ontop.mapping.parser.extension.before;
+package ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before;
 
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtension;
 import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureComponentMismatchException;
