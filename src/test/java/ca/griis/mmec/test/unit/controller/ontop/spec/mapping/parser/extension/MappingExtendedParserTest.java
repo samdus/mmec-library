@@ -183,7 +183,7 @@ public class MappingExtendedParserTest {
     Optional<String> expected = Optional.empty();
     BlankNodeOrIRI subject = rdf.createIRI("http://example.org/subject");
     IRI predicate = rdf.createIRI("http://example.org/predicate");
-    IRI object = rdf.createIRI("http://example.org/object");
+    IRI object = rdf.createIRI("http://example.org/shouldHaveBeenLiteral");
 
     mappingGraph.add(subject, predicate, object);
     Optional<String> actual =
@@ -207,9 +207,12 @@ public class MappingExtendedParserTest {
     IRI predicate = rdf.createIRI("http://example.org/predicate");
     Literal object1 = rdf.createLiteral("expected1");
     Literal object2 = rdf.createLiteral("expected2");
+    IRI unexpectedObject = rdf.createIRI("http://example.org/unexpectedObject");
 
     mappingGraph.add(subject, predicate, object1);
     mappingGraph.add(subject, predicate, object2);
+    mappingGraph.add(subject, predicate, unexpectedObject);
+
     List<String> actual =
         mappingExtendedParserTester.getAllLiterals_p(mappingGraph, subject, predicate);
 
@@ -235,7 +238,6 @@ public class MappingExtendedParserTest {
 
     Assertions.assertEquals(expected, actual);
   }
-
 
   private static class MappingExtendedParserTester extends MappingExtendedParser {
     public MappingExtendedParserTester(RDF4J rdf) {
