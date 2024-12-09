@@ -88,14 +88,6 @@ public class MappingPropertiesBuilder {
         ontologyFilePath);
   }
 
-  public String getOntoRelId() {
-    return ontoRelId;
-  }
-
-  public String getMappingSchema() {
-    return mappingSchema;
-  }
-
   public MappingPropertiesBuilder withOntoRelId(String ontoRelId) {
     logger.trace(Trace.ENTER_METHOD_1, ontoRelId);
     this.ontoRelId = ontoRelId;

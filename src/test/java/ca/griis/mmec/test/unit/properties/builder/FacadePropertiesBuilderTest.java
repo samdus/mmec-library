@@ -100,6 +100,12 @@ public class FacadePropertiesBuilderTest {
     }
   }
 
+  @Test
+  public void testMissingFacadeStgShouldThrow() {
+    FacadePropertiesBuilder builder = new FacadePropertiesBuilder();
+    Assertions.assertThrows(MissingPropertyException.class, builder::build);
+  }
+
   private static void createSampleFile(URL stgFilePath) throws URISyntaxException {
     try {
       File sampleFile = Paths.get(stgFilePath.toURI()).toFile();

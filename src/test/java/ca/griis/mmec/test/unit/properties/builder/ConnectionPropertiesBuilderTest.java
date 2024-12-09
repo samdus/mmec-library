@@ -18,9 +18,13 @@ import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.properties.builder.ConnectionPropertiesBuilder;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
@@ -111,4 +115,27 @@ public class ConnectionPropertiesBuilderTest {
     Assertions.assertEquals("ca.griis.mmec.repository.jooq.JooqOntoRelCatRepository",
         propertiesForOntop.get("ca.griis.mmec.repository.OntoRelCatRepository"));
   }
+
+  private static Stream<Arguments> provideMissingProperties() {
+    return Stream.of(
+        Arguments.of(null, "databaseName", "jdbcUrl", "username", "password"),
+        Arguments.of("driverName", null, "jdbcUrl", "username", "password"),
+        Arguments.of("driverName", "databaseName", null, "username", "password"),
+        Arguments.of("driverName", "databaseName", "jdbcUrl", null, "password"),
+        Arguments.of("driverName", "databaseName", "jdbcUrl", "username", null));
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideMissingProperties")
+  public void testBuildWithMissingDriverNameShouldThrowException(String driverName,
+      String databaseName, String jdbcUrl, String username, String password) {
+    Assertions.assertThrows(MissingPropertyException.class, () -> builder
+        .withDriverName(driverName)
+        .withDatabaseName(databaseName)
+        .withJdbcUrl(jdbcUrl)
+        .withUsername(username)
+        .withPassword(password)
+        .build());
+  }
+
 }
