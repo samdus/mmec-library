@@ -68,7 +68,7 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
 
     try {
       projectInfoRepository.loadInfoRepository();
-    } catch (MissingPropertyException e) {
+    } catch (IOException e) {
       logger.error("Error loading project info repository", e);
     }
 

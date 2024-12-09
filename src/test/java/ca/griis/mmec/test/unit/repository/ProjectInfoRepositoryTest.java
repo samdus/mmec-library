@@ -1,13 +1,14 @@
 package ca.griis.mmec.test.unit.repository;
 
-import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.repository.ProjectInfoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class ProjectInfoRepositoryTest {
   @Test
-  public void test() throws MissingPropertyException {
+  public void test() throws IOException {
     ProjectInfoRepository projectInfoRepository = new ProjectInfoRepository();
 
     projectInfoRepository.loadInfoRepository();
@@ -23,7 +24,7 @@ public class ProjectInfoRepositoryTest {
   @Test
   public void invalidProjectInfoResourcePathTest() {
     InvalidProjectInfoRepository invalidProjectInfoRepository = new InvalidProjectInfoRepository();
-    Assertions.assertThrows(MissingPropertyException.class,
+    Assertions.assertThrows(IOException.class,
         invalidProjectInfoRepository::loadInfoRepository);
   }
 

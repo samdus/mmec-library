@@ -17,6 +17,7 @@ import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.MissingPropertyException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,11 +71,11 @@ public class ProjectInfoRepository {
     this.projectInfoResourcePath = projectInfoResourcePath;
   }
 
-  public void loadInfoRepository() throws MissingPropertyException {
+  public void loadInfoRepository() throws IOException {
     try (InputStream inputStream = ProjectInfoRepository.class.getResourceAsStream(
         projectInfoResourcePath)) {
       if (Objects.isNull(inputStream)) {
-        throw new MissingPropertyException("project.txt", "All properties from project.txt");
+        throw new IOException("The project.txt file is not found.");
       }
       try (BufferedReader reader = new BufferedReader(
           new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
@@ -86,8 +87,6 @@ public class ProjectInfoRepository {
           }
         }
       }
-    } catch (IOException e) {
-      throw new MissingPropertyException("project.txt", "All properties from project.txt");
     }
   }
 
