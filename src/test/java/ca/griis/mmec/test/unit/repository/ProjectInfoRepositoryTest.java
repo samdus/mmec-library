@@ -1,10 +1,9 @@
 package ca.griis.mmec.test.unit.repository;
 
 import ca.griis.mmec.repository.ProjectInfoRepository;
+import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 public class ProjectInfoRepositoryTest {
   @Test

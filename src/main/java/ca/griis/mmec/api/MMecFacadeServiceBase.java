@@ -28,7 +28,6 @@ import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
-import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.repository.OntoRelCatRepository;
 import ca.griis.mmec.repository.ProjectInfoRepository;
 import ca.griis.mmec.view.MappedOntoRelTableView;
@@ -66,6 +65,18 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
     ProjectInfoRepository projectInfoRepository = configuration.getInjector().getInstance(
         ProjectInfoRepository.class);
 
+    logMMecVersion(projectInfoRepository);
+
+    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
+      ontopQueryEngine.connect();
+      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
+        return getAllDefinitions(mappingProperties, ontoRelCatRepository,
+            ontoRelTableMappingController, connection, mappedOntoRelTableView);
+      }
+    }
+  }
+
+  private static void logMMecVersion(ProjectInfoRepository projectInfoRepository) {
     try {
       projectInfoRepository.loadInfoRepository();
     } catch (IOException e) {
@@ -77,14 +88,6 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
           projectInfoRepository.getVersion().get());
     } else {
       logger.info("Creating facade with an unknown version of mMec");
-    }
-
-    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
-      ontopQueryEngine.connect();
-      try (OntopConnection connection = ontopQueryEngine.getConnection()) {
-        return getAllDefinitions(mappingProperties, ontoRelCatRepository,
-            ontoRelTableMappingController, connection, mappedOntoRelTableView);
-      }
     }
   }
 

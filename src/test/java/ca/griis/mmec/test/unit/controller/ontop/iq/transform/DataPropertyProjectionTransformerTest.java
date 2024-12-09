@@ -26,10 +26,8 @@ import it.unibz.inf.ontop.model.type.RDFTermType;
 import it.unibz.inf.ontop.model.type.TermType;
 import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
 import it.unibz.inf.ontop.substitution.Substitution;
-
 import java.util.Map;
 import java.util.Optional;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -491,8 +489,7 @@ public class DataPropertyProjectionTransformerTest {
 
     Assertions.assertThrows(
         DataPropertyProjectionTransformer.DataPropertyProjectionTransformerException.class,
-        () ->
-            transformer.transformConstruction(iqTree, constructionNode, childTree));
+        () -> transformer.transformConstruction(iqTree, constructionNode, childTree));
   }
 
   @Test

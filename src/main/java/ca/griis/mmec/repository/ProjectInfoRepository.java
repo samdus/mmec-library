@@ -16,8 +16,6 @@ package ca.griis.mmec.repository;
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
-import ca.griis.mmec.properties.MissingPropertyException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
