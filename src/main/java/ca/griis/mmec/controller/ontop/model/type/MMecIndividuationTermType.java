@@ -17,6 +17,7 @@ import it.unibz.inf.ontop.model.type.ObjectRDFType;
 import it.unibz.inf.ontop.model.type.RDFDatatype;
 import it.unibz.inf.ontop.model.type.TermTypeAncestry;
 import it.unibz.inf.ontop.model.type.impl.RDFTermTypeImpl;
+
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -128,17 +129,13 @@ public class MMecIndividuationTermType extends RDFTermTypeImpl implements Object
   @Override
   public final boolean equals(Object other) {
     logger.trace(Trace.ENTER_METHOD_1, other);
-    return super.equals(other)
-        && other instanceof MMecIndividuationTermType otherTermType
-        && this.individuationType.equals(otherTermType.individuationType);
+    return other instanceof MMecIndividuationTermType otherTerm &&
+        this.getName().equals(otherTerm.getName());
   }
 
   @Override
   public final int hashCode() {
     logger.trace(Trace.ENTER_METHOD_0);
-    return Arrays.hashCode(new Object[] {
-        super.hashCode(),
-        individuationType
-    });
+    return this.getName().hashCode();
   }
 }
