@@ -138,4 +138,41 @@ public class ConnectionPropertiesBuilderTest {
         .build());
   }
 
+  @Test
+  public void testBuildWithMissingOntopConfigurationFileShouldThrow()
+      throws MissingPropertyException {
+    ConnectionProperties connectionProperties = new ConnectionProperties() {
+      @Override
+      public String getDriverName() {
+        return "drivername";
+      }
+
+      @Override
+      public String getDatabaseName() {
+        return "dbname";
+      }
+
+      @Override
+      public String getJdbcUrl() {
+        return "jdbcurl";
+      }
+
+      @Override
+      public String getUsername() {
+        return "usr";
+      }
+
+      @Override
+      public String getPassword() {
+        return "pwd";
+      }
+
+      @Override
+      public String getOntopConfigurationFile() {
+        return "InvalidPath";
+      }
+    };
+    Assertions.assertThrows(IOException.class, connectionProperties::getPropertiesForOntop);
+  }
+
 }

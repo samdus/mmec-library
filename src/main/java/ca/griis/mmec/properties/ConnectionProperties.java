@@ -54,7 +54,6 @@ public abstract class ConnectionProperties {
       GriisLoggerFactory.getLogger(ConnectionProperties.class);
   public static final String defaultOntopConfigurationFile = "defaultConfiguration.properties";
 
-
   /**
    * @brief @~english «Description of the method»
    * @return «Return description»
@@ -103,6 +102,18 @@ public abstract class ConnectionProperties {
   /**
    * @brief @~english «Description of the method»
    * @return «Return description»
+   *
+   * @brief @~french Récupérer le nom du fichier de configuration d'Ontop.
+   * @return Le nom du fichier de configuration d'Ontop.
+   */
+  protected String getOntopConfigurationFile() {
+    logger.trace(Trace.ENTER_METHOD_0);
+    return defaultOntopConfigurationFile;
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
    * @throws IOException «Exception description»
    *
    * @brief @~french Récupérer les propriétés dans un format compréhensible pour Ontop
@@ -119,7 +130,7 @@ public abstract class ConnectionProperties {
     properties.setProperty("jdbc.user", getUsername());
     properties.setProperty("jdbc.password", getPassword());
 
-    return mergeProperties(getDefaultOntopConfigurationProperties(), properties);
+    return mergeProperties(getOntopConfigurationProperties(), properties);
   }
 
   private Properties mergeProperties(Properties... properties) {
@@ -128,14 +139,14 @@ public abstract class ConnectionProperties {
         .collect(Properties::new, Hashtable::putAll, Hashtable::putAll);
   }
 
-  private Properties getDefaultOntopConfigurationProperties() throws IOException {
+  private Properties getOntopConfigurationProperties() throws IOException {
     logger.trace(Trace.ENTER_METHOD_0);
     Properties prop = new Properties();
 
     try (InputStream propStream = this.getClass().getClassLoader()
-        .getResourceAsStream(defaultOntopConfigurationFile)) {
+        .getResourceAsStream(getOntopConfigurationFile())) {
       if (propStream == null) {
-        throw new IOException("Cannot find file " + defaultOntopConfigurationFile);
+        throw new IOException("Cannot find file " + getOntopConfigurationFile());
       }
 
       prop.load(propStream);
