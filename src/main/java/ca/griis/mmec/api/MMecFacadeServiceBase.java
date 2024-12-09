@@ -28,6 +28,7 @@ import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
 import ca.griis.mmec.properties.ConnectionProperties;
 import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
 import ca.griis.mmec.repository.OntoRelCatRepository;
 import ca.griis.mmec.repository.ProjectInfoRepository;
 import ca.griis.mmec.view.MappedOntoRelTableView;
@@ -64,6 +65,13 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
         OntoRelCatRepository.class);
     ProjectInfoRepository projectInfoRepository = configuration.getInjector().getInstance(
         ProjectInfoRepository.class);
+
+    try {
+      projectInfoRepository.loadInfoRepository();
+    }
+    catch (MissingPropertyException e) {
+      logger.error("Error loading project info repository", e);
+    }
 
     if (projectInfoRepository.getVersion().isPresent()) {
       logger.info("Creating facade using mMec version {}",

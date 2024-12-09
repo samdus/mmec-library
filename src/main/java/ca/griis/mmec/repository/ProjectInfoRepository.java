@@ -18,6 +18,7 @@ import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
 import ca.griis.mmec.properties.MissingPropertyException;
 import com.google.inject.Inject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,15 +59,27 @@ import java.util.Optional;
 public class ProjectInfoRepository {
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(
       ProjectInfoRepository.class);
-  private static final String projectInfoResourcePath = "/META-INF/project.txt";
+  private static final String defaultProjectInfoResourcePath = "/META-INF/project.txt";
+  private final String projectInfoResourcePath;
   private final Map<String, String> properties = new HashMap<>();
 
-  @Inject
-  public ProjectInfoRepository() throws MissingPropertyException {
+  public ProjectInfoRepository() {
+    this(defaultProjectInfoResourcePath);
+  }
+
+  protected ProjectInfoRepository(String projectInfoResourcePath) {
+    logger.trace(Trace.ENTER_METHOD_1, projectInfoResourcePath);
+    this.projectInfoResourcePath = projectInfoResourcePath;
+  }
+
+  public void loadInfoRepository() throws MissingPropertyException {
     try (InputStream inputStream = ProjectInfoRepository.class.getResourceAsStream(
-        getProjectInfoResourcePath())) {
+        projectInfoResourcePath)) {
+      if (Objects.isNull(inputStream)) {
+        throw new MissingPropertyException("project.txt", "All properties from project.txt");
+      }
       try (BufferedReader reader = new BufferedReader(
-          new InputStreamReader(Objects.requireNonNull(inputStream), StandardCharsets.UTF_8))) {
+          new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
         String line;
         while ((line = reader.readLine()) != null) {
           String[] keyValue = line.split(" : ");
@@ -75,15 +88,9 @@ public class ProjectInfoRepository {
           }
         }
       }
-    } catch (NullPointerException | IOException e) {
-      logger.error("Cannot read project info from '{}'.", getProjectInfoResourcePath(), e);
+    } catch (IOException e) {
       throw new MissingPropertyException("project.txt", "All properties from project.txt");
     }
-  }
-
-  protected String getProjectInfoResourcePath() {
-    logger.trace(Trace.ENTER_METHOD_0);
-    return projectInfoResourcePath;
   }
 
   public Optional<String> getApplicationMain() {

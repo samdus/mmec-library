@@ -10,6 +10,8 @@ public class ProjectInfoRepositoryTest {
   public void test() throws MissingPropertyException {
     ProjectInfoRepository projectInfoRepository = new ProjectInfoRepository();
 
+    projectInfoRepository.loadInfoRepository();
+
     Assertions.assertEquals("ca.griis",
         projectInfoRepository.getApplicationMain().orElse("Undefined"));
     Assertions.assertEquals("ca.griis", projectInfoRepository.getGroup().orElse("Undefined"));
@@ -20,11 +22,14 @@ public class ProjectInfoRepositoryTest {
 
   @Test
   public void invalidProjectInfoResourcePathTest() {
-    Assertions.assertThrows(MissingPropertyException.class, () -> new ProjectInfoRepository() {
-      @Override
-      protected String getProjectInfoResourcePath() {
-        return "InvalidPath";
-      }
-    });
+    InvalidProjectInfoRepository invalidProjectInfoRepository = new InvalidProjectInfoRepository();
+    Assertions.assertThrows(MissingPropertyException.class,
+        invalidProjectInfoRepository::loadInfoRepository);
+  }
+
+  private static class InvalidProjectInfoRepository extends ProjectInfoRepository {
+    public InvalidProjectInfoRepository() {
+      super("InvalidPath");
+    }
   }
 }
