@@ -61,18 +61,38 @@ public class DbValueTermTypeTest {
   public void isNeedingIRISafeEncodingTest() {
     Mockito.when(innerDbTermType.isNeedingIRISafeEncoding()).thenReturn(true);
     Assertions.assertTrue(dbValueTermType.isNeedingIRISafeEncoding());
+
+    Mockito.when(innerDbTermType.isNeedingIRISafeEncoding()).thenReturn(false);
+    Assertions.assertFalse(dbValueTermType.isNeedingIRISafeEncoding());
   }
 
   @Test
   public void areEqualitiesStrictTest() {
     Mockito.when(innerDbTermType.areEqualitiesStrict()).thenReturn(true);
     Assertions.assertTrue(dbValueTermType.areEqualitiesStrict());
+
+    Mockito.when(innerDbTermType.areEqualitiesStrict()).thenReturn(false);
+    Assertions.assertFalse(dbValueTermType.areEqualitiesStrict());
+  }
+
+  @Test
+  public void areEqualitiesStrictOtherTypeTest() {
+    DBTermType otherType = Mockito.mock(DBTermType.class);
+
+    Mockito.when(innerDbTermType.areEqualitiesStrict(otherType)).thenReturn(Optional.of(true));
+    Assertions.assertTrue(dbValueTermType.areEqualitiesStrict(otherType).orElse(false));
+
+    Mockito.when(innerDbTermType.areEqualitiesStrict(otherType)).thenReturn(Optional.of(false));
+    Assertions.assertFalse(dbValueTermType.areEqualitiesStrict(otherType).orElse(true));
   }
 
   @Test
   public void areEqualitiesBetweenTwoDBAttributesStrictTest() {
     Mockito.when(innerDbTermType.areEqualitiesBetweenTwoDBAttributesStrict()).thenReturn(true);
     Assertions.assertTrue(dbValueTermType.areEqualitiesBetweenTwoDBAttributesStrict());
+
+    Mockito.when(innerDbTermType.areEqualitiesBetweenTwoDBAttributesStrict()).thenReturn(false);
+    Assertions.assertFalse(dbValueTermType.areEqualitiesBetweenTwoDBAttributesStrict());
   }
 
   @Test
@@ -86,6 +106,9 @@ public class DbValueTermTypeTest {
   public void isPreventDistinctRecommendedTest() {
     Mockito.when(innerDbTermType.isPreventDistinctRecommended()).thenReturn(true);
     Assertions.assertTrue(dbValueTermType.isPreventDistinctRecommended());
+
+    Mockito.when(innerDbTermType.isPreventDistinctRecommended()).thenReturn(false);
+    Assertions.assertFalse(dbValueTermType.isPreventDistinctRecommended());
   }
 
   @Test
@@ -113,15 +136,23 @@ public class DbValueTermTypeTest {
   @Test
   public void isATermTypeTest() {
     TermType otherTermType = Mockito.mock(TermType.class);
+
     Mockito.when(innerRdfTermType.isA(otherTermType)).thenReturn(true);
     Assertions.assertTrue(dbValueTermType.isA(otherTermType));
+
+    Mockito.when(innerRdfTermType.isA(otherTermType)).thenReturn(false);
+    Assertions.assertFalse(dbValueTermType.isA(otherTermType));
   }
 
   @Test
   public void isAIriTest() {
     IRI baseDatatypeIri = Mockito.mock(IRI.class);
+
     Mockito.when(innerRdfTermType.isA(baseDatatypeIri)).thenReturn(true);
     Assertions.assertTrue(dbValueTermType.isA(baseDatatypeIri));
+
+    Mockito.when(innerRdfTermType.isA(baseDatatypeIri)).thenReturn(false);
+    Assertions.assertFalse(dbValueTermType.isA(baseDatatypeIri));
   }
 
   @Test
