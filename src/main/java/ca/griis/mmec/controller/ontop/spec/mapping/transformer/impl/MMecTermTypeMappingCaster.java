@@ -16,7 +16,6 @@ package ca.griis.mmec.controller.ontop.spec.mapping.transformer.impl;
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
-import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;
 import it.unibz.inf.ontop.spec.mapping.MappingAssertion;
 import it.unibz.inf.ontop.spec.mapping.transformer.MappingCaster;
 
@@ -51,6 +50,7 @@ import it.unibz.inf.ontop.spec.mapping.transformer.MappingCaster;
 public class MMecTermTypeMappingCaster implements MappingCaster {
   private static final GriisLogger logger =
       GriisLoggerFactory.getLogger(MMecTermTypeMappingCaster.class);
+
   @Override
   public MappingAssertion transform(MappingAssertion assertion) {
     logger.trace(Trace.ENTER_METHOD_1, assertion);
