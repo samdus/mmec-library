@@ -2,13 +2,12 @@ package ca.griis.mmec.test.unit.model.type;
 
 import ca.griis.mmec.controller.ontop.model.type.DbValueTermType;
 import it.unibz.inf.ontop.model.type.*;
+import java.util.Optional;
 import org.apache.commons.rdf.api.IRI;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.Optional;
 
 public class DbValueTermTypeTest {
   private RDFDatatype innerRdfTermType;

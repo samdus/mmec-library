@@ -17,8 +17,6 @@ import it.unibz.inf.ontop.model.type.ObjectRDFType;
 import it.unibz.inf.ontop.model.type.RDFDatatype;
 import it.unibz.inf.ontop.model.type.TermTypeAncestry;
 import it.unibz.inf.ontop.model.type.impl.RDFTermTypeImpl;
-
-import java.util.Arrays;
 import java.util.Optional;
 
 /**

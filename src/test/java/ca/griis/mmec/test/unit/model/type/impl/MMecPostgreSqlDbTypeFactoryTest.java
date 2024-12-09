@@ -60,7 +60,7 @@ public class MMecPostgreSqlDbTypeFactoryTest {
     String typeName = "\"type\"";
     String expected = "\"type\"";
 
-    String actual = mmecPostgreSqlDbTypeFactoryTester.preprocessTypeName(typeName,1);
+    String actual = mmecPostgreSqlDbTypeFactoryTester.preprocessTypeName(typeName, 1);
 
     Assertions.assertEquals(expected, actual);
   }
