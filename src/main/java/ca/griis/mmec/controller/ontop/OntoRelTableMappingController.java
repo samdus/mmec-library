@@ -63,7 +63,8 @@ import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
  * @par Limits
  *      «Limits description (optional)»
  *
- * @brief @~french «Brève description de la composante (classe, interface, ...)»
+ * @brief @~french Classe permettant de transformer les tables OntoRel en tables mappées à l'aide
+ *                 de requêtes à Ontop.
  * @par Détails
  *      S.O.
  * @par Modèle
@@ -77,7 +78,7 @@ import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
  *      2024-04-12 [SD] - Implémentation initiale<br>
  *
  * @par Tâches
- *      TODO 2024-04-12 [SD] - Tester la classe<br>
+ *      S.O.
  */
 public class OntoRelTableMappingController {
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(
