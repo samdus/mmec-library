@@ -16,8 +16,6 @@ package ca.griis.mmec.api;
 import ca.griis.logger.GriisLogger;
 import ca.griis.logger.GriisLoggerFactory;
 import ca.griis.logger.statuscode.Trace;
-import ca.griis.mmec.api.exception.ConnectionException;
-import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFoundException;
 import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
 import ca.griis.mmec.model.mapped.MappedClassTable;
 import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
@@ -25,8 +23,6 @@ import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
 import ca.griis.mmec.model.ontorel.ClassTable;
 import ca.griis.mmec.model.ontorel.DataPropertyTable;
 import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
-import ca.griis.mmec.properties.ConnectionProperties;
-import ca.griis.mmec.properties.FacadeProperties;
 import ca.griis.mmec.properties.MappingProperties;
 import ca.griis.mmec.repository.OntoRelCatRepository;
 import ca.griis.mmec.repository.ProjectInfoRepository;
@@ -38,22 +34,15 @@ import it.unibz.inf.ontop.exception.OntopConnectionException;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
 import it.unibz.inf.ontop.injection.impl.MMecConfiguration;
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class MMecFacadeServiceBase implements MMecFacadeService {
   private static final GriisLogger logger = GriisLoggerFactory.getLogger(
       MMecFacadeServiceBase.class);
 
   @Override
-  public String createFacade(ConnectionProperties connectionProperties,
-      MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
-      throws DefaultOntopConfigurationNotFoundException, OntopConnectionException,
-      OBDASpecificationException, OntopReformulationException, ConnectionException {
-    logger.trace(Trace.ENTER_METHOD_3, connectionProperties, mappingProperties,
-        mmecFacadeProperties);
-
-    MMecConfiguration configuration = buildMMecConfiguration(
-        connectionProperties, mappingProperties, mmecFacadeProperties);
+  public String createFacade(MMecConfiguration configuration)
+      throws OntopConnectionException, OBDASpecificationException, OntopReformulationException {
+    logger.trace(Trace.ENTER_METHOD_1, configuration);
 
     MappedOntoRelTableView mappedOntoRelTableView = configuration.getInjector().getInstance(
         MappedOntoRelTableView.class);
@@ -68,9 +57,10 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
     logMMecVersion(projectInfoRepository);
 
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
-      ontopQueryEngine.connect();
+      // TODO: Vérifier que ça fonctionne encore ^^
+      // ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
-        return getAllDefinitions(mappingProperties, ontoRelCatRepository,
+        return getAllDefinitions(configuration.getMappingProperties(), ontoRelCatRepository,
             ontoRelTableMappingController, connection, mappedOntoRelTableView);
       }
     }
@@ -177,32 +167,5 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
     }
 
     logger.trace(Trace.EXIT_METHOD_0);
-  }
-
-  private static MMecConfiguration buildMMecConfiguration(ConnectionProperties connectionProperties,
-      MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
-      throws DefaultOntopConfigurationNotFoundException, ConnectionException {
-    logger.trace(Trace.ENTER_METHOD_3, connectionProperties, mappingProperties,
-        mmecFacadeProperties);
-    MMecConfiguration configuration;
-
-    try {
-      configuration = new MMecConfiguration.MMecConfigurationBuilder()
-          .properties(connectionProperties.getPropertiesForOntop())
-          .r2rmlMappingFile(mappingProperties.getR2rmlMappingFilePath())
-          .ontologyFile(mappingProperties.getOntologyFilePath())
-          .mappingProperties(mappingProperties)
-          .facadeProperties(mmecFacadeProperties)
-          .build();
-    } catch (IOException e) {
-      throw new DefaultOntopConfigurationNotFoundException(e);
-    } catch (RuntimeException e) {
-      if (e.getCause() instanceof SQLException sqlE) {
-        throw new ConnectionException(sqlE);
-      } else {
-        throw e;
-      }
-    }
-    return configuration;
   }
 }

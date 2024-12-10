@@ -22,6 +22,7 @@ import ca.griis.mmec.properties.builder.ConnectionPropertiesBuilder;
 import ca.griis.mmec.properties.builder.FacadePropertiesBuilder;
 import ca.griis.mmec.properties.builder.MappingPropertiesBuilder;
 import ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper;
+import it.unibz.inf.ontop.injection.impl.MMecConfiguration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
@@ -114,8 +115,15 @@ public class MMecFacadeServiceBaseTest {
     String exportFile = String.format(exportFilePattern, ontoRelId,
         facadeType.toString().toLowerCase());
 
-    String facade = facadeService.createFacade(connectionProperties, mappingProperties,
-        facadeProperties);
+    MMecConfiguration configuration = new MMecConfiguration.MMecConfigurationBuilder()
+        .properties(connectionProperties.getPropertiesForOntop())
+        .r2rmlMappingFile(mappingProperties.getR2rmlMappingFilePath())
+        .ontologyFile(mappingProperties.getOntologyFilePath())
+        .mappingProperties(mappingProperties)
+        .facadeProperties(facadeProperties)
+        .build();
+
+    String facade = facadeService.createFacade(configuration);
 
     Assertions.assertNotNull(facade);
     Assertions.assertFalse(facade.isEmpty());

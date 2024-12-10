@@ -15,12 +15,10 @@ package ca.griis.mmec.api;
 
 import ca.griis.mmec.api.exception.ConnectionException;
 import ca.griis.mmec.api.exception.DefaultOntopConfigurationNotFoundException;
-import ca.griis.mmec.properties.ConnectionProperties;
-import ca.griis.mmec.properties.FacadeProperties;
-import ca.griis.mmec.properties.MappingProperties;
 import it.unibz.inf.ontop.exception.OBDASpecificationException;
 import it.unibz.inf.ontop.exception.OntopConnectionException;
 import it.unibz.inf.ontop.exception.OntopReformulationException;
+import it.unibz.inf.ontop.injection.impl.MMecConfiguration;
 import java.io.IOException;
 
 /**
@@ -83,22 +81,17 @@ import java.io.IOException;
 public interface MMecFacadeService {
   /**
    * @brief @~english «Description of the function»
-   * @param connectionProperties «Parameter description»
-   * @param mappingProperties «Parameter description»
-   * @param mmecFacadeProperties «Parameter description»
+   * @param configuration «Parameter description»
    * @return «Return description»
    *
    * @brief @~french Création d'une façade MMec à partir d'une configuration valide.
-   * @param connectionProperties La configuration de la connexion à la source de données.
-   * @param mappingProperties La configuration du mapping.
-   * @param mmecFacadeProperties La configuration de la façade MMec.
+   * @param configuration La configuration de la façade MMec.
    * @return La façade MMec sous forme de chaîne de caractère.
    *
    * @par Tâches
    *      S.O.
    */
-  String createFacade(ConnectionProperties connectionProperties,
-      MappingProperties mappingProperties, FacadeProperties mmecFacadeProperties)
+  String createFacade(MMecConfiguration configuration)
       throws IOException, DefaultOntopConfigurationNotFoundException, OntopConnectionException,
       OBDASpecificationException, OntopReformulationException, ConnectionException;
 }
