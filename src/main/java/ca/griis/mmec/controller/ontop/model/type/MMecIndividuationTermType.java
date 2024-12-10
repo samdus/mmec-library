@@ -127,8 +127,8 @@ public class MMecIndividuationTermType extends RDFTermTypeImpl implements Object
   @Override
   public final boolean equals(Object other) {
     logger.trace(Trace.ENTER_METHOD_1, other);
-    return other instanceof MMecIndividuationTermType otherTerm &&
-        this.getName().equals(otherTerm.getName());
+    return other instanceof MMecIndividuationTermType otherTerm
+        && this.getName().equals(otherTerm.getName());
   }
 
   @Override
