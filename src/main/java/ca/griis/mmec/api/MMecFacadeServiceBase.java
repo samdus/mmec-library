@@ -57,8 +57,6 @@ public class MMecFacadeServiceBase implements MMecFacadeService {
     logMMecVersion(projectInfoRepository);
 
     try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {
-      // TODO: Vérifier que ça fonctionne encore ^^
-      // ontopQueryEngine.connect();
       try (OntopConnection connection = ontopQueryEngine.getConnection()) {
         return getAllDefinitions(configuration.getMappingProperties(), ontoRelCatRepository,
             ontoRelTableMappingController, connection, mappedOntoRelTableView);

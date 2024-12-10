@@ -2,6 +2,12 @@ package ca.griis.mmec.test.unit.api;
 
 import ca.griis.mmec.api.MMecFacadeServiceBase;
 import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
+import ca.griis.mmec.model.mapped.MappedClassTable;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
+import ca.griis.mmec.model.ontorel.ClassTable;
+import ca.griis.mmec.model.ontorel.DataPropertyTable;
+import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
 import ca.griis.mmec.properties.MappingProperties;
 import ca.griis.mmec.repository.OntoRelCatRepository;
 import ca.griis.mmec.repository.ProjectInfoRepository;
@@ -153,25 +159,118 @@ public class MMecFacadeServiceBaseTest {
 
   @ParameterizedTest
   @MethodSource("ontopExceptionProvider")
-  public void createFacadeClassTableOntopExceptionShouldThrowTest(Exception ontopException) {
+  public void createFacadeClassTableOntopExceptionShouldThrowTest(Exception ontopException)
+      throws Exception {
+    ClassTable classTable = Mockito.mock(ClassTable.class);
 
+    Mockito.when(projectInfoRepository.getVersion()).thenReturn(Optional.of("1.0"));
+    Mockito.when(mMecConfiguration.loadQueryEngine()).thenReturn(ontopQueryEngine);
+    Mockito.when(ontopQueryEngine.getConnection()).thenReturn(connection);
+    Mockito.when(ontoRelCatRepository.getClassTables(Mockito.any()))
+        .thenReturn(List.of(classTable));
+    Mockito.when(ontoRelTableMappingController.map(connection, classTable))
+        .thenThrow(ontopException);
+    MMecFacadeServiceBase mmecFacadeServiceBase = new MMecFacadeServiceBase();
+    Assertions.assertThrows(ontopException.getClass(),
+        () -> mmecFacadeServiceBase.createFacade(mMecConfiguration));
+
+    Assertions.assertTrue(loggerListAppender.list.stream().anyMatch(
+        event -> event.getFormattedMessage()
+            .contains("Creating facade using mMec version 1.0")));
   }
 
   @ParameterizedTest
   @MethodSource("ontopExceptionProvider")
-  public void createFacadeOpTableOntopExceptionShouldThrowTest(Exception ontopException) {
+  public void createFacadeOpTableOntopExceptionShouldThrowTest(Exception ontopException)
+      throws Exception {
+    ObjectPropertyTable opTable = Mockito.mock(ObjectPropertyTable.class);
 
+    Mockito.when(projectInfoRepository.getVersion()).thenReturn(Optional.of("1.0"));
+    Mockito.when(mMecConfiguration.loadQueryEngine()).thenReturn(ontopQueryEngine);
+    Mockito.when(ontopQueryEngine.getConnection()).thenReturn(connection);
+    Mockito.when(ontoRelCatRepository.getClassTables(Mockito.any()))
+        .thenReturn(List.of());
+    Mockito.when(ontoRelCatRepository.getObjectPropertyTables(Mockito.any()))
+        .thenReturn(List.of(opTable));
+    Mockito.when(ontoRelTableMappingController.map(connection, opTable))
+        .thenThrow(ontopException);
+    MMecFacadeServiceBase mmecFacadeServiceBase = new MMecFacadeServiceBase();
+    Assertions.assertThrows(ontopException.getClass(),
+        () -> mmecFacadeServiceBase.createFacade(mMecConfiguration));
+
+    Assertions.assertTrue(loggerListAppender.list.stream().anyMatch(
+        event -> event.getFormattedMessage()
+            .contains("Creating facade using mMec version 1.0")));
   }
 
   @ParameterizedTest
   @MethodSource("ontopExceptionProvider")
-  public void createFacadeDpTableOntopExceptionShouldThrowTest(Exception ontopException) {
+  public void createFacadeDpTableOntopExceptionShouldThrowTest(Exception ontopException)
+      throws Exception {
+    DataPropertyTable dpTable = Mockito.mock(DataPropertyTable.class);
 
+    Mockito.when(projectInfoRepository.getVersion()).thenReturn(Optional.of("1.0"));
+    Mockito.when(mMecConfiguration.loadQueryEngine()).thenReturn(ontopQueryEngine);
+    Mockito.when(ontopQueryEngine.getConnection()).thenReturn(connection);
+    Mockito.when(ontoRelCatRepository.getClassTables(Mockito.any()))
+        .thenReturn(List.of());
+    Mockito.when(ontoRelCatRepository.getObjectPropertyTables(Mockito.any()))
+        .thenReturn(List.of());
+    Mockito.when(ontoRelCatRepository.getDataPropertyTables(Mockito.any()))
+        .thenReturn(List.of(dpTable));
+    Mockito.when(ontoRelTableMappingController.map(connection, dpTable))
+        .thenThrow(ontopException);
+
+    MMecFacadeServiceBase mmecFacadeServiceBase = new MMecFacadeServiceBase();
+    Assertions.assertThrows(ontopException.getClass(),
+        () -> mmecFacadeServiceBase.createFacade(mMecConfiguration));
+
+    Assertions.assertTrue(loggerListAppender.list.stream().anyMatch(
+        event -> event.getFormattedMessage()
+            .contains("Creating facade using mMec version 1.0")));
   }
 
   @Test
-  public void createFacadeSuccessTest() {
+  public void createFacadeSuccessTest() throws Exception {
+    String classTableId = "createFacadeSuccessTestClassTable";
+    String opTableId = "createFacadeSuccessTestOpTable";
+    String dpTableId = "createFacadeSuccessTestDataPropertyTable";
 
+    ClassTable classTable = Mockito.mock(ClassTable.class);
+    ObjectPropertyTable opTable = Mockito.mock(ObjectPropertyTable.class);
+    DataPropertyTable dpTable = Mockito.mock(DataPropertyTable.class);
+    MappedClassTable mappedClassTable = Mockito.mock(MappedClassTable.class);
+    MappedObjectPropertyTable mappedOpTable = Mockito.mock(MappedObjectPropertyTable.class);
+    MappedDataPropertyTable mappedDpTable = Mockito.mock(MappedDataPropertyTable.class);
+
+    Mockito.when(projectInfoRepository.getVersion()).thenReturn(Optional.of("1.0"));
+    Mockito.when(mMecConfiguration.loadQueryEngine()).thenReturn(ontopQueryEngine);
+    Mockito.when(ontopQueryEngine.getConnection()).thenReturn(connection);
+    Mockito.when(ontoRelCatRepository.getClassTables(Mockito.any()))
+        .thenReturn(List.of(classTable));
+    Mockito.when(ontoRelCatRepository.getObjectPropertyTables(Mockito.any()))
+        .thenReturn(List.of(opTable));
+    Mockito.when(ontoRelCatRepository.getDataPropertyTables(Mockito.any()))
+        .thenReturn(List.of(dpTable));
+    Mockito.when(ontoRelTableMappingController.map(connection, classTable))
+        .thenReturn(mappedClassTable);
+    Mockito.when(ontoRelTableMappingController.map(connection, opTable))
+        .thenReturn(mappedOpTable);
+    Mockito.when(ontoRelTableMappingController.map(connection, dpTable))
+        .thenReturn(mappedDpTable);
+    Mockito.when(mappedOntoRelTableView.getExpression(mappedClassTable))
+        .thenReturn(classTableId);
+    Mockito.when(mappedOntoRelTableView.getExpression(mappedOpTable))
+        .thenReturn(opTableId);
+    Mockito.when(mappedOntoRelTableView.getExpression(mappedDpTable))
+        .thenReturn(dpTableId);
+
+    MMecFacadeServiceBase mmecFacadeServiceBase = new MMecFacadeServiceBase();
+    String facade = mmecFacadeServiceBase.createFacade(mMecConfiguration);
+
+    Assertions.assertTrue(facade.contains(classTableId));
+    Assertions.assertTrue(facade.contains(opTableId));
+    Assertions.assertTrue(facade.contains(dpTableId));
   }
 
   private static class OBDASpecificationExceptionT extends OBDASpecificationException {
