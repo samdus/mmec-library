@@ -14,18 +14,15 @@ import it.unibz.inf.ontop.iq.IQTree;
 import it.unibz.inf.ontop.iq.node.NativeNode;
 import it.unibz.inf.ontop.query.RDF4JQueryFactory;
 import it.unibz.inf.ontop.query.RDF4JSelectQuery;
+import java.util.Optional;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
-import org.eclipse.rdf4j.query.algebra.QueryRoot;
 import org.eclipse.rdf4j.query.impl.MapBindingSet;
 import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import java.util.Optional;
 
 public class OntoRelTableMappingControllerTest {
   private MappingProperties mappingProperties;
@@ -68,7 +65,7 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(Mockito.any(), Mockito.any(), Mockito.any()))
+        factrdf4JQueryFactory.createSelectQuery(Mockito.any(), Mockito.any(), Mockito.any()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenThrow(ontopReformulationException);
@@ -99,8 +96,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenThrow(ontopReformulationException);
@@ -113,13 +110,14 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue().toString(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals(parsedTupleQueryArgumentCaptor.getValue().toString(), """
-        QueryRoot
-           StatementPattern
-              Var (name=test_column_id)
-              Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-              Var (name=uid_uri, value=http://test.com/iri, anonymous)
-        """);
+    Assertions.assertEquals(parsedTupleQueryArgumentCaptor.getValue().toString(),
+        """
+            QueryRoot
+               StatementPattern
+                  Var (name=test_column_id)
+                  Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                  Var (name=uid_uri, value=http://test.com/iri, anonymous)
+            """);
   }
 
   @Test
@@ -142,8 +140,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenReturn(executableQuery);
@@ -157,13 +155,15 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           StatementPattern
-              Var (name=test_column_id)
-              Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-              Var (name=uid_uri, value=http://test.com/iri, anonymous)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               StatementPattern
+                  Var (name=test_column_id)
+                  Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                  Var (name=uid_uri, value=http://test.com/iri, anonymous)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 
   @Test
@@ -187,8 +187,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenReturn(executableQuery);
@@ -203,13 +203,15 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           StatementPattern
-              Var (name=test_column_id)
-              Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-              Var (name=uid_uri, value=http://test.com/iri, anonymous)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               StatementPattern
+                  Var (name=test_column_id)
+                  Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                  Var (name=uid_uri, value=http://test.com/iri, anonymous)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 
   @Test
@@ -241,7 +243,7 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(Mockito.any(), Mockito.any(), Mockito.any()))
+        factrdf4JQueryFactory.createSelectQuery(Mockito.any(), Mockito.any(), Mockito.any()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenThrow(ontopReformulationException);
@@ -273,8 +275,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenThrow(ontopReformulationException);
@@ -288,27 +290,29 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           Projection
-              ProjectionElemList
-                 ProjectionElem "ontorel_subject_column_id"
-                 ProjectionElem "ontorel_value_column_id"
-              Filter
-                 Compare (=)
-                    Datatype
-                       Var (name=ontorel_value_column_id)
-                    ValueConstant (value=http://test.com/irivalue)
-                 Join
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=sub_uri, value=http://test.com/iri, anonymous)
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=dp_uri, value=http://test.com/iripredicate, anonymous)
-                       Var (name=ontorel_value_column_id)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               Projection
+                  ProjectionElemList
+                     ProjectionElem "ontorel_subject_column_id"
+                     ProjectionElem "ontorel_value_column_id"
+                  Filter
+                     Compare (=)
+                        Datatype
+                           Var (name=ontorel_value_column_id)
+                        ValueConstant (value=http://test.com/irivalue)
+                     Join
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=sub_uri, value=http://test.com/iri, anonymous)
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=dp_uri, value=http://test.com/iripredicate, anonymous)
+                           Var (name=ontorel_value_column_id)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 
   @Test
@@ -333,8 +337,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenReturn(executableQuery);
@@ -349,27 +353,29 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           Projection
-              ProjectionElemList
-                 ProjectionElem "ontorel_subject_column_id"
-                 ProjectionElem "ontorel_value_column_id"
-              Filter
-                 Compare (=)
-                    Datatype
-                       Var (name=ontorel_value_column_id)
-                    ValueConstant (value=http://test.com/irivalue)
-                 Join
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=sub_uri, value=http://test.com/iri, anonymous)
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=dp_uri, value=http://test.com/iripredicate, anonymous)
-                       Var (name=ontorel_value_column_id)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               Projection
+                  ProjectionElemList
+                     ProjectionElem "ontorel_subject_column_id"
+                     ProjectionElem "ontorel_value_column_id"
+                  Filter
+                     Compare (=)
+                        Datatype
+                           Var (name=ontorel_value_column_id)
+                        ValueConstant (value=http://test.com/irivalue)
+                     Join
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=sub_uri, value=http://test.com/iri, anonymous)
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=dp_uri, value=http://test.com/iripredicate, anonymous)
+                           Var (name=ontorel_value_column_id)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 
   @Test
@@ -396,8 +402,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenReturn(executableQuery);
@@ -413,27 +419,29 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           Projection
-              ProjectionElemList
-                 ProjectionElem "ontorel_subject_column_id"
-                 ProjectionElem "ontorel_value_column_id"
-              Filter
-                 Compare (=)
-                    Datatype
-                       Var (name=ontorel_value_column_id)
-                    ValueConstant (value=http://test.com/irivalue)
-                 Join
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=sub_uri, value=http://test.com/iri, anonymous)
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=dp_uri, value=http://test.com/iripredicate, anonymous)
-                       Var (name=ontorel_value_column_id)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               Projection
+                  ProjectionElemList
+                     ProjectionElem "ontorel_subject_column_id"
+                     ProjectionElem "ontorel_value_column_id"
+                  Filter
+                     Compare (=)
+                        Datatype
+                           Var (name=ontorel_value_column_id)
+                        ValueConstant (value=http://test.com/irivalue)
+                     Join
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=sub_uri, value=http://test.com/iri, anonymous)
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=dp_uri, value=http://test.com/iripredicate, anonymous)
+                           Var (name=ontorel_value_column_id)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 
   @Test
@@ -466,7 +474,7 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(Mockito.any(), Mockito.any(), Mockito.any()))
+        factrdf4JQueryFactory.createSelectQuery(Mockito.any(), Mockito.any(), Mockito.any()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenThrow(ontopReformulationException);
@@ -500,8 +508,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenThrow(ontopReformulationException);
@@ -515,27 +523,29 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           Projection
-              ProjectionElemList
-                 ProjectionElem "ontorel_subject_column_id"
-                 ProjectionElem "ontorel_value_column_id"
-              Join
-                 Join
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=sub_uri, value=http://test.com/iri, anonymous)
-                    StatementPattern
-                       Var (name=ontorel_value_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=obj_uri, value=http://test.com/irivalue, anonymous)
-                 StatementPattern
-                    Var (name=ontorel_subject_column_id)
-                    Var (name=op_uri, value=http://test.com/iripredicate, anonymous)
-                    Var (name=ontorel_value_column_id)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               Projection
+                  ProjectionElemList
+                     ProjectionElem "ontorel_subject_column_id"
+                     ProjectionElem "ontorel_value_column_id"
+                  Join
+                     Join
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=sub_uri, value=http://test.com/iri, anonymous)
+                        StatementPattern
+                           Var (name=ontorel_value_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=obj_uri, value=http://test.com/irivalue, anonymous)
+                     StatementPattern
+                        Var (name=ontorel_subject_column_id)
+                        Var (name=op_uri, value=http://test.com/iripredicate, anonymous)
+                        Var (name=ontorel_value_column_id)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 
   @Test
@@ -562,8 +572,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenReturn(executableQuery);
@@ -578,27 +588,29 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           Projection
-              ProjectionElemList
-                 ProjectionElem "ontorel_subject_column_id"
-                 ProjectionElem "ontorel_value_column_id"
-              Join
-                 Join
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=sub_uri, value=http://test.com/iri, anonymous)
-                    StatementPattern
-                       Var (name=ontorel_value_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=obj_uri, value=http://test.com/irivalue, anonymous)
-                 StatementPattern
-                    Var (name=ontorel_subject_column_id)
-                    Var (name=op_uri, value=http://test.com/iripredicate, anonymous)
-                    Var (name=ontorel_value_column_id)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               Projection
+                  ProjectionElemList
+                     ProjectionElem "ontorel_subject_column_id"
+                     ProjectionElem "ontorel_value_column_id"
+                  Join
+                     Join
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=sub_uri, value=http://test.com/iri, anonymous)
+                        StatementPattern
+                           Var (name=ontorel_value_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=obj_uri, value=http://test.com/irivalue, anonymous)
+                     StatementPattern
+                        Var (name=ontorel_subject_column_id)
+                        Var (name=op_uri, value=http://test.com/iripredicate, anonymous)
+                        Var (name=ontorel_value_column_id)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 
   @Test
@@ -627,8 +639,8 @@ public class OntoRelTableMappingControllerTest {
 
     Mockito.when(connection.createStatement()).thenReturn(statement);
     Mockito.when(
-            factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
-                parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
+        factrdf4JQueryFactory.createSelectQuery(queryRootArgumentCaptor.capture(),
+            parsedTupleQueryArgumentCaptor.capture(), mapBindingSetArgumentCaptor.capture()))
         .thenReturn(rdf4JSelectQuery);
     Mockito.when(statement.getExecutableQuery(rdf4JSelectQuery, ImmutableMultimap.of()))
         .thenReturn(executableQuery);
@@ -644,26 +656,28 @@ public class OntoRelTableMappingControllerTest {
     Assertions.assertEquals(expected, actual);
     Assertions.assertEquals(queryRootArgumentCaptor.getValue(),
         parsedTupleQueryArgumentCaptor.getValue().toString());
-    Assertions.assertEquals("""
-        QueryRoot
-           Projection
-              ProjectionElemList
-                 ProjectionElem "ontorel_subject_column_id"
-                 ProjectionElem "ontorel_value_column_id"
-              Join
-                 Join
-                    StatementPattern
-                       Var (name=ontorel_subject_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=sub_uri, value=http://test.com/iri, anonymous)
-                    StatementPattern
-                       Var (name=ontorel_value_column_id)
-                       Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
-                       Var (name=obj_uri, value=http://test.com/irivalue, anonymous)
-                 StatementPattern
-                    Var (name=ontorel_subject_column_id)
-                    Var (name=op_uri, value=http://test.com/iripredicate, anonymous)
-                    Var (name=ontorel_value_column_id)
-        """, parsedTupleQueryArgumentCaptor.getValue().toString());
+    Assertions.assertEquals(
+        """
+            QueryRoot
+               Projection
+                  ProjectionElemList
+                     ProjectionElem "ontorel_subject_column_id"
+                     ProjectionElem "ontorel_value_column_id"
+                  Join
+                     Join
+                        StatementPattern
+                           Var (name=ontorel_subject_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=sub_uri, value=http://test.com/iri, anonymous)
+                        StatementPattern
+                           Var (name=ontorel_value_column_id)
+                           Var (name=rdf_type_uri, value=http://www.w3.org/1999/02/22-rdf-syntax-ns#type, anonymous)
+                           Var (name=obj_uri, value=http://test.com/irivalue, anonymous)
+                     StatementPattern
+                        Var (name=ontorel_subject_column_id)
+                        Var (name=op_uri, value=http://test.com/iripredicate, anonymous)
+                        Var (name=ontorel_value_column_id)
+            """,
+        parsedTupleQueryArgumentCaptor.getValue().toString());
   }
 }

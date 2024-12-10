@@ -64,7 +64,7 @@ import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
  *      «Limits description (optional)»
  *
  * @brief @~french Classe permettant de transformer les tables OntoRel en tables mappées à l'aide
- *                 de requêtes à Ontop.
+ *        de requêtes à Ontop.
  * @par Détails
  *      S.O.
  * @par Modèle
