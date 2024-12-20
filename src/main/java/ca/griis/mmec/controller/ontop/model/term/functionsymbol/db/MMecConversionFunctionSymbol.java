@@ -59,7 +59,7 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
    * @par Tâches
    *      S.O.
    */
-  protected MMecConversionFunctionSymbol(String functionName, DBTermType inputType,
+  public MMecConversionFunctionSymbol(String functionName, DBTermType inputType,
       DBTermType targetType) {
     super("Conversion", inputType, targetType);
     this.inputType = inputType;
@@ -78,7 +78,7 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
   @Override
   protected boolean isAlwaysInjectiveInTheAbsenceOfNonInjectiveFunctionalTerms() {
     logger.trace(Trace.ENTER_METHOD_0);
-    return getInputType().isPresent();
+    return true;
   }
 
   @Override
@@ -121,17 +121,17 @@ public class MMecConversionFunctionSymbol extends AbstractDBTypeConversionFuncti
   @Override
   public final boolean equals(Object other) {
     logger.trace(Trace.ENTER_METHOD_1, other);
-    return super.equals(other)
-        && other instanceof MMecConversionFunctionSymbol otherSymbol
+    assert this.inputType != null;
+
+    return other instanceof MMecConversionFunctionSymbol otherSymbol
         && this.functionName.compareToIgnoreCase(otherSymbol.functionName) == 0
-        && (this.inputType == null || this.inputType.equals(otherSymbol.inputType));
+        && this.inputType.equals(otherSymbol.inputType);
   }
 
   @Override
   public final int hashCode() {
     logger.trace(Trace.ENTER_METHOD_0);
     return Arrays.hashCode(new Object[] {
-        super.hashCode(),
         this.functionName.toLowerCase(),
         this.inputType
     });
