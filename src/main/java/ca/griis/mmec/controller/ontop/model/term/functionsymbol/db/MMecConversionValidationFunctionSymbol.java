@@ -69,7 +69,7 @@ public class MMecConversionValidationFunctionSymbol extends DBBooleanFunctionSym
    * @par Tâches
    *      S.O.
    */
-  protected MMecConversionValidationFunctionSymbol(String functionName, TermType argType,
+  public MMecConversionValidationFunctionSymbol(String functionName, TermType argType,
       DBTermType dbBooleanType) {
     super("ConversionValidation", ImmutableList.of(argType), dbBooleanType);
     this.functionName = functionName;
@@ -117,17 +117,17 @@ public class MMecConversionValidationFunctionSymbol extends DBBooleanFunctionSym
   @Override
   public final boolean equals(Object other) {
     logger.trace(Trace.ENTER_METHOD_1, other);
-    return super.equals(other)
-        && other instanceof MMecConversionValidationFunctionSymbol otherSymbol
-        && this.functionName.compareToIgnoreCase(otherSymbol.functionName) == 0;
+    return other instanceof MMecConversionValidationFunctionSymbol otherSymbol
+        && this.functionName.compareToIgnoreCase(otherSymbol.functionName) == 0
+        && this.getExpectedBaseType(0).equals(otherSymbol.getExpectedBaseType(0));
   }
 
   @Override
   public final int hashCode() {
     logger.trace(Trace.ENTER_METHOD_0);
     return Arrays.hashCode(new Object[] {
-        super.hashCode(),
-        this.functionName.toLowerCase()
+        this.functionName.toLowerCase(),
+        this.getExpectedBaseType(0)
     });
   }
 }
