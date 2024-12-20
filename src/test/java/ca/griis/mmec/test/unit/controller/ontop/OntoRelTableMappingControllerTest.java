@@ -15,7 +15,6 @@ import it.unibz.inf.ontop.iq.node.NativeNode;
 import it.unibz.inf.ontop.query.RDF4JQueryFactory;
 import it.unibz.inf.ontop.query.RDF4JSelectQuery;
 import java.util.Optional;
-import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.query.impl.MapBindingSet;
 import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +26,6 @@ import org.mockito.Mockito;
 public class OntoRelTableMappingControllerTest {
   private MappingProperties mappingProperties;
   private RDF4JQueryFactory factrdf4JQueryFactory;
-  private SimpleValueFactory valueFactory;
   private OntopConnection connection;
 
   @BeforeEach
@@ -35,7 +33,6 @@ public class OntoRelTableMappingControllerTest {
     mappingProperties = Mockito.mock(MappingProperties.class);
     factrdf4JQueryFactory = Mockito.mock(RDF4JQueryFactory.class);
     connection = Mockito.mock(OntopConnection.class);
-    valueFactory = SimpleValueFactory.getInstance();
   }
 
   @Test
