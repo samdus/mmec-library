@@ -73,7 +73,7 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
    * @par Tâches
    *      S.O.
    */
-  protected MMecValueFunctionSymbol(DBTermType valueType, RDFTermTypeConstant rdfTermTypeConstant,
+  public MMecValueFunctionSymbol(DBTermType valueType, RDFTermTypeConstant rdfTermTypeConstant,
       MetaRDFTermType typeTermType) {
     super(String.format("Value_%s", valueType.getName()), ImmutableList.of(valueType, typeTermType),
         valueType);

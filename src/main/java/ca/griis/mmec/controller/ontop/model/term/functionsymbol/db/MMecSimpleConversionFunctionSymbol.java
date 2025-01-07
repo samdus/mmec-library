@@ -61,7 +61,7 @@ public class MMecSimpleConversionFunctionSymbol
   private final DBTermType inputType;
   private final DBFunctionSymbolSerializer serializer;
 
-  protected MMecSimpleConversionFunctionSymbol(DBTermType inputType, DBTermType targetType) {
+  public MMecSimpleConversionFunctionSymbol(DBTermType inputType, DBTermType targetType) {
     super("SimpleCastTo" + targetType.getName(), targetType, targetType);
     serializer = Serializers.getCastSerializer(targetType);
     this.inputType = inputType;

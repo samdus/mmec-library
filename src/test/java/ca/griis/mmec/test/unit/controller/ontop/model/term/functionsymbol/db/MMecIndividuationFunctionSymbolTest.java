@@ -7,20 +7,17 @@ import it.unibz.inf.ontop.iq.node.VariableNullability;
 import it.unibz.inf.ontop.model.term.*;
 import it.unibz.inf.ontop.model.term.functionsymbol.FunctionSymbol;
 import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
-import it.unibz.inf.ontop.model.term.functionsymbol.impl.FunctionSymbolImpl;
 import it.unibz.inf.ontop.model.type.*;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class MMecIndividuationFunctionSymbolTest {
@@ -459,8 +456,8 @@ public class MMecIndividuationFunctionSymbolTest {
     Assertions.assertFalse(actual);
   }
 
-  //  @Test
-  //  Tests avec tout les cas de noms différentes et les types
+  // @Test
+  // Tests avec tout les cas de noms différentes et les types
   private static Stream<Arguments> equalsTestProvider() {
     TermType termType1 = Mockito.mock(TermType.class);
     TermType termType2 = Mockito.mock(TermType.class);
@@ -504,7 +501,7 @@ public class MMecIndividuationFunctionSymbolTest {
   public void equalsAndHashCodeTest(MMecIndividuationFunctionSymbol base,
       RDFTermFunctionSymbol other, boolean expected) {
     Assertions.assertEquals(expected, base.equals(other));
-    if(other != null) {
+    if (other != null) {
       Assertions.assertEquals(expected, base.hashCode() == other.hashCode());
     }
   }

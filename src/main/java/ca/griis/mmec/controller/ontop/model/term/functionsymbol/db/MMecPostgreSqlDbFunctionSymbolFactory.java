@@ -25,17 +25,31 @@ import it.unibz.inf.ontop.model.type.TypeFactory;
 
 /**
  * @brief @~english «Brief component description (class, interface, ...)»
- * @par Details «Detailed description of the component (optional)»
- * @par Model «Model (Abstract, automation, etc.) (optional)»
- * @par Conception «Conception description (criteria and constraints) (optional)»
- * @par Limits «Limits description (optional)»
- * @brief @~french «Brève description de la composante (classe, interface, ...)»
- * @par Détails S.O.
- * @par Modèle S.O.
- * @par Conception S.O.
- * @par Limites S.O.
- * @par Historique 2024-01-09 [SD] - Implémentation initiale<br>
- * @par Tâches S.O.
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Fabrique de symboles de fonctions pour la base de données PostgreSQL.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-01-30 [SD] - Implémentation initiale<br>
+ *
+ * @par Tâches
+ *      TODO 2024-01-11 [SD] - Injecter la paramétrisation pour le template d'appel aux différentes
+ *      fonctions d'individuation et de leur type de retour.
  */
 public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionSymbolFactory
     implements MMecSqlDbFunctionSymbolFactory {
@@ -44,10 +58,8 @@ public class MMecPostgreSqlDbFunctionSymbolFactory extends PostgreSQLDBFunctionS
   private final String individuationFunctionCallTemplate;
   private final DBTermType individuationFunctionReturnType;
 
-  // TODO: Injecter la paramétrisation pour le template d'appel aux différentes fonctions
-  // d'individuation et de leur type de retour.
   @Inject
-  protected MMecPostgreSqlDbFunctionSymbolFactory(
+  public MMecPostgreSqlDbFunctionSymbolFactory(
       TypeFactory typeFactory) {
     super(typeFactory);
     individuationFunctionCallTemplate = "individuation(%s)";
