@@ -80,7 +80,7 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
    * @par Tâches
    *      S.O.
    */
-  protected MMecIndividuationFunctionSymbol(ImmutableList<TermType> argTypes,
+  public MMecIndividuationFunctionSymbol(ImmutableList<TermType> argTypes,
       ObjectRDFType iriTermType, DBTermType returnType, String functionCallTemplate) {
     super(String.format("Individuation_%s", argTypes.size() - 1), argTypes, returnType);
     this.functionCallTemplate = functionCallTemplate;
@@ -158,15 +158,19 @@ public class MMecIndividuationFunctionSymbol extends AbstractTypedDBFunctionSymb
   @Override
   public final boolean equals(Object other) {
     logger.trace(Trace.ENTER_METHOD_1, other);
-    return super.equals(other) && other instanceof MMecIndividuationFunctionSymbol otherSymbol
+    return other instanceof MMecIndividuationFunctionSymbol otherSymbol
         && this.functionCallTemplate.compareToIgnoreCase(otherSymbol.functionCallTemplate) == 0
-        && this.mmecIndividuationTermType.equals(otherSymbol.mmecIndividuationTermType);
+        && this.mmecIndividuationTermType.equals(otherSymbol.mmecIndividuationTermType)
+        && this.getExpectedBaseTypes().equals(otherSymbol.getExpectedBaseTypes());
   }
 
   @Override
   public final int hashCode() {
     logger.trace(Trace.ENTER_METHOD_0);
-    return Arrays.hashCode(new Object[] {super.hashCode(), this.functionCallTemplate.toLowerCase(),
-        this.mmecIndividuationTermType});
+    return Arrays.hashCode(new Object[] {
+        this.functionCallTemplate.toLowerCase(),
+        this.mmecIndividuationTermType,
+        this.getExpectedBaseTypes()
+    });
   }
 }
