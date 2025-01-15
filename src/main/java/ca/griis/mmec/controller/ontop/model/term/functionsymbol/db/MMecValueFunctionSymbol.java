@@ -81,7 +81,7 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
     this.rdfDatatype = Optional.of(rdfTermTypeConstant.getRDFTermType())
         .filter(type -> type instanceof RDFDatatype)
         .map(RDFDatatype.class::cast)
-        .orElseThrow();
+        .orElseThrow(IllegalArgumentException::new);
   }
 
   @Override

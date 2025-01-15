@@ -21,6 +21,7 @@ import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.AbstractDBTypeConver
 import it.unibz.inf.ontop.model.term.functionsymbol.db.impl.Serializers;
 import it.unibz.inf.ontop.model.type.DBTermType;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -122,7 +123,7 @@ public class MMecSimpleConversionFunctionSymbol
     logger.trace(Trace.ENTER_METHOD_1, other);
     return super.equals(other)
         && other instanceof MMecSimpleConversionFunctionSymbol otherSymbol
-        && this.inputType.equals(otherSymbol.inputType);
+        && Objects.equals(this.inputType, otherSymbol.inputType);
   }
 
   @Override
