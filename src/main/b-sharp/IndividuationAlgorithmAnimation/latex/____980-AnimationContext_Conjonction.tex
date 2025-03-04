@@ -1,0 +1,65 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\SingleHeader{\_\_\_\_980-AnimationContext\_Conjonction}
+\CONTEXT{\_\_\_\_980-AnimationContext\_Conjonction}{110-MappingContext}{}
+\CONSTANTS{
+	\Constant{mri}{medical record identifier}
+	\Constant{healthCareRecord}{}
+	\Constant{hcrAboutPatient}{}
+	\Constant{patient}{}
+	\Constant{mri1}{}
+	\Constant{mri2}{}
+	\Constant{mri3}{}
+	\Constant{mri4}{}
+	\Constant{x1}{}
+	\Constant{x2}{}
+	\Constant{x3}{}
+	\Constant{x4}{}
+	\Constant{o1}{}
+	\Constant{o2}{}
+	\Constant{o3}{}
+	\Constant{o4}{}
+	\Constant{exp1}{patient}
+	\Constant{exp2}{patient (sans n-uplets dans PATIENT)}
+	\Constant{exp3}{medical record identifier}
+	\Constant{exp4}{hcrAboutPatient}
+	\Constant{k1}{}
+	\Constant{k2}{}
+	\Constant{k3}{}
+	\Constant{k4}{}
+	\Constant{exp5}{o1}
+	\Constant{exp6}{o2}
+	\Constant{exp7}{o3}
+	\Constant{exp8}{o4}
+	\Constant{exp9}{mri1}
+	\Constant{exp10}{mri2}
+	\Constant{exp11}{mri3}
+	\Constant{exp12}{mri4}
+	\Constant{exp13}{x1}
+	\Constant{exp14}{x2}
+	\Constant{exp15}{x3}
+	\Constant{exp16}{x4}
+}
+\AXIOMS{
+	\Axiom{animation\_classes}{false}{$partition(C, \{thing\}, \{mri\}, \{healthCareRecord\}, \{hcrAboutPatient\}, \{patient\})$}{}
+	\Axiom{animation\_particulars}{false}{$partition(P, \{ mri1 \}, \{ mri2 \}, \{ mri3 \}, \{ mri4 \}, \{ x1 \}, \{ x2 \}, \{ x3 \}, \{ x4 \}, \{ o1 \}, \{ o2 \}, \{ o3 \}, \{ o4 \})$}{}
+	\Axiom{animation\_expressions}{false}{$partition(E, \{exp1\}, \{exp2\}, \{exp3\}, \{exp4\}, \{exp5\}, \{exp6\}, \{exp7\}, \{exp8\}, \{exp9\}, \{exp10\}, \{exp11\}, \{exp12\}, \{exp13\}, \{exp14\}, \{exp15\}, \{exp16\})$}{}
+	\Axiom{animation\_expressionsKeys}{false}{$partition(K, \{k1\}, \{k2\}, \{k3\}, \{k4\})$}{}
+	\Axiom{animation\_cLeaves}{false}{$partition(C\_leaves, \{mri\}, \{hcrAboutPatient\}, \{patient\})$}{}
+	\Axiom{animation\_cLevels}{false}{$partition(c\_level, \{ 0 \mapsto{} thing \}, \{ 1 \mapsto{} mri \}, \{ 1 \mapsto{} healthCareRecord \}, \{ 1 \mapsto{} patient \}, \{ 2 \mapsto{} hcrAboutPatient \})$}{}
+	\Axiom{animation\_maxLevel}{false}{$max\_level = 2$}{}
+	\Axiom{animation\_hasParent}{false}{$partition(has\_parent, \{mri \mapsto{} thing\}, \{ healthCareRecord \mapsto{} thing\}, \{ patient \mapsto{} thing\}, \{ hcrAboutPatient \mapsto{} healthCareRecord\} )$}{}
+	\Axiom{animation\_classOfStrict}{false}{$\\partition(class\_of\_strict, \{mri1 \mapsto{} mri\}, \{mri2 \mapsto{} mri\}, \{mri3 \mapsto{} mri\}, \{mri4 \mapsto{} mri\},\\~                          \{x1 \mapsto{} hcrAboutPatient\}, \{x2 \mapsto{} hcrAboutPatient\}, \{x3 \mapsto{} hcrAboutPatient\}, \{x4 \mapsto{} hcrAboutPatient\},\\~                          \{o1 \mapsto{} patient\}, \{o2 \mapsto{} patient\}, \{o3 \mapsto{} patient\}, \{o4 \mapsto{} patient\})$}{}
+	\Axiom{animation\_classOf}{false}{$\\partition(class\_of, \{mri1 \mapsto{} mri\}, \{mri1 \mapsto{} thing\},  \{mri2 \mapsto{} mri\}, \{mri2 \mapsto{} thing\},  \{mri3 \mapsto{} mri\}, \{mri3 \mapsto{} thing\},  \{mri4 \mapsto{} mri\}, \{mri4 \mapsto{} thing\}, \\~                   \{x1 \mapsto{} hcrAboutPatient\}, \{x1 \mapsto{} healthCareRecord\}, \{x1 \mapsto{} thing\},\\~                   \{x2 \mapsto{} hcrAboutPatient\}, \{x2 \mapsto{} healthCareRecord\}, \{x2 \mapsto{} thing\},\\~                   \{x3 \mapsto{} hcrAboutPatient\}, \{x3 \mapsto{} healthCareRecord\}, \{x3 \mapsto{} thing\},\\~                   \{x4 \mapsto{} hcrAboutPatient\}, \{x4 \mapsto{} healthCareRecord\}, \{x4 \mapsto{} thing\},\\~                   \{o1 \mapsto{} patient\}, \{o1 \mapsto{} thing\}, \{o2 \mapsto{} patient\}, \{o2 \mapsto{} thing\}, \{o3 \mapsto{} patient\}, \{o3 \mapsto{} thing\}, \{o4 \mapsto{} patient\}, \{o4 \mapsto{} thing\}) $}{}
+	\Axiom{animation\_isA}{false}{$\\partition(is\_a,\\~~~~\{ mri \mapsto{} thing \}, \{ mri \mapsto{} mri \},\\~   \{ healthCareRecord \mapsto{} thing \}, \{ healthCareRecord \mapsto{} healthCareRecord \},\\~   \{ hcrAboutPatient \mapsto{} healthCareRecord \}, \{ hcrAboutPatient \mapsto{} thing \}, \{ hcrAboutPatient \mapsto{} hcrAboutPatient \},\\~   \{ patient \mapsto{} thing \}, \{ patient \mapsto{} patient \},\\~   \{ thing \mapsto{} thing \}\\)$}{}
+	\Axiom{animation\_individuation}{false}{$\\partition(individuation, \{ exp1 \mapsto{} o1 \}, \{ exp1 \mapsto{} o2 \}, \{ exp1 \mapsto{} o3 \}, \{ exp2 \mapsto{} o4 \},\\~                        \{ exp3 \mapsto{} mri1 \}, \{ exp3 \mapsto{} mri2 \}, \{ exp3 \mapsto{} mri3 \}, \{ exp3 \mapsto{} mri4 \},\\~                        \{ exp4 \mapsto{} x1 \}, \{ exp4 \mapsto{} x2 \}, \{ exp4 \mapsto{} x3 \}, \{ exp4 \mapsto{} x4 \},\\~                        \{ exp5 \mapsto{} o1 \}, \{ exp6 \mapsto{} o2 \}, \{ exp7 \mapsto{} o3 \}, \{ exp8 \mapsto{} o4 \},\\~                        \{ exp9 \mapsto{} mri1 \}, \{ exp10 \mapsto{} mri2 \}, \{ exp11 \mapsto{} mri3 \}, \{ exp12 \mapsto{} mri4 \},\\~                        \{ exp13 \mapsto{} x1 \}, \{ exp14 \mapsto{} x2 \}, \{ exp15 \mapsto{} x3 \}, \{ exp16 \mapsto{} x4 \})$}{}
+	\Axiom{animation\_expSubsets}{false}{$\\partition(exp\_subsets, \{ exp1 \mapsto{} exp1 \}, \{exp2 \mapsto{} exp2\}, \{exp3 \mapsto{} exp3\}, \{exp4 \mapsto{} exp4\}, \{ exp5 \mapsto{} exp5 \}, \{exp6 \mapsto{} exp6\}, \{exp7 \mapsto{} exp7\}, \{exp8 \mapsto{} exp8\},\\~                      \{ exp9 \mapsto{} exp9 \}, \{ exp10 \mapsto{} exp10 \}, \{ exp11 \mapsto{} exp11 \}, \{ exp12 \mapsto{} exp12 \}, \{ exp13 \mapsto{} exp13 \}, \{ exp14 \mapsto{} exp14 \}, \{ exp15 \mapsto{} exp15 \}, \{ exp16 \mapsto{} exp16 \},\\~                      \{ exp1 \mapsto{} exp5 \}, \{ exp1 \mapsto{} exp6 \}, \{exp1 \mapsto{} exp7\}, \{exp2 \mapsto{} exp8\}, \{exp8 \mapsto{} exp2\},\\~                      \{ exp3 \mapsto{} exp9\}, \{ exp3 \mapsto{} exp10\}, \{ exp3 \mapsto{} exp11\}, \{ exp3 \mapsto{} exp12\},\\~                      \{ exp4 \mapsto{} exp13 \}, \{ exp4 \mapsto{} exp14 \}, \{ exp4 \mapsto{} exp15 \}, \{ exp4 \mapsto{} exp16 \})$}{}
+	\Axiom{animation\_expEquivalent}{false}{$\\partition(exp\_equivalent, \{ exp2 \mapsto{} exp8 \}, \{ exp8 \mapsto{} exp2 \},\\~                         \{ exp1 \mapsto{} exp1 \}, \{ exp2 \mapsto{} exp2 \}, \{ exp3 \mapsto{} exp3 \}, \{ exp4 \mapsto{} exp4 \}, \{ exp5 \mapsto{} exp5 \}, \{ exp6 \mapsto{} exp6 \}, \\~                         \{ exp7 \mapsto{} exp7 \}, \{ exp8 \mapsto{} exp8 \}, \{ exp9 \mapsto{} exp9 \}, \{ exp10 \mapsto{} exp10 \}, \{ exp11 \mapsto{} exp11 \}, \{ exp12 \mapsto{} exp12 \}, \\~                         \{ exp13 \mapsto{} exp13 \}, \{ exp14 \mapsto{} exp14 \}, \{ exp15 \mapsto{} exp15 \}, \{ exp16 \mapsto{} exp16 \})$}{}
+	\Axiom{animation\_expOverlaps}{false}{$\\partition(exp\_overlap, \{ exp1 \mapsto{} exp5 \}, \{ exp1 \mapsto{} exp6 \}, \{ exp1 \mapsto{} exp7 \}, \{ exp5 \mapsto{} exp1 \}, \{ exp6 \mapsto{} exp1 \}, \{ exp7 \mapsto{} exp1 \}, \\~                      \{ exp2 \mapsto{} exp8 \}, \{ exp8 \mapsto{} exp2 \},\\~                      \{ exp3 \mapsto{} exp9 \}, \{ exp3 \mapsto{} exp10 \}, \{ exp3 \mapsto{} exp11 \}, \{ exp3 \mapsto{} exp12 \}, \{ exp9 \mapsto{} exp3 \}, \{ exp10 \mapsto{} exp3 \}, \{ exp11 \mapsto{} exp3 \}, \{ exp12 \mapsto{} exp3 \},\\~                      \{ exp4 \mapsto{} exp13\}, \{ exp4 \mapsto{} exp14 \}, \{ exp4 \mapsto{} exp15 \}, \{ exp4 \mapsto{} exp16\}, \{ exp13 \mapsto{} exp4 \}, \{ exp14 \mapsto{} exp4 \},  \{ exp15 \mapsto{} exp4 \},  \{ exp16 \mapsto{} exp4 \}, \\~                      \{exp1 \mapsto{} exp1\},\{exp2 \mapsto{} exp2\},\{exp3 \mapsto{} exp3\},\{exp4 \mapsto{} exp4\},\{exp5 \mapsto{} exp5\},\{exp6 \mapsto{} exp6\},\{exp7 \mapsto{} exp7\},\{exp8 \mapsto{} exp8\},\\~                      \{exp9 \mapsto{} exp9\},\{exp10 \mapsto{} exp10\},\{exp11 \mapsto{} exp11\},\{exp12 \mapsto{} exp12\},\{exp13 \mapsto{} exp13\},\{exp14 \mapsto{} exp14\},\{exp15 \mapsto{} exp15\},\{exp16 \mapsto{} exp16\})$}{}
+	\Axiom{animation\_expKey}{false}{$\\partition(exp\_key, \{ exp1 \mapsto{} k1 \}, \{ exp5 \mapsto{} k1 \}, \{ exp6 \mapsto{} k1 \}, \{ exp7 \mapsto{} k1 \},\\~                  \{ exp2 \mapsto{} k2 \}, \{ exp8 \mapsto{} k2 \},\\~                  \{ exp3 \mapsto{} k3 \}, \{ exp9 \mapsto{} k3 \}, \{ exp10 \mapsto{} k3 \}, \{ exp11 \mapsto{} k3 \}, \{ exp12 \mapsto{} k3 \},\\~                  \{ exp4 \mapsto{} k4 \}, \{ exp13 \mapsto{} k4 \}, \{ exp14 \mapsto{} k4 \}, \{ exp15 \mapsto{} k4 \}, \{ exp16 \mapsto{} k4 \})$}{}
+	\Axiom{animation\_keyCompatible}{false}{$partition(key\_compatible, \{ k1 \mapsto{} k1 \}, \{ k2 \mapsto{} k2 \}, \{ k3 \mapsto{} k3 \}, \{ k4 \mapsto{} k4 \})$}{}
+	\Axiom{animation\_expList}{false}{$\\partition(exp\_list, \{1 \mapsto{} exp1\}, \{2 \mapsto{} exp2\}, \{3 \mapsto{} exp3\}, \{4 \mapsto{} exp4\}, \{5 \mapsto{} exp5\}, \{6 \mapsto{} exp6\}, \{7 \mapsto{} exp7\}, \{8 \mapsto{} exp8\},\\~                   \{9 \mapsto{} exp9\}, \{10 \mapsto{} exp10\}, \{11 \mapsto{} exp11\}, \{12 \mapsto{} exp12\}, \{13 \mapsto{} exp13\}, \{14 \mapsto{} exp14\}, \{15 \mapsto{} exp15\}, \{16 \mapsto{} exp16\})$}{}
+}
+\END
+\end{document}
