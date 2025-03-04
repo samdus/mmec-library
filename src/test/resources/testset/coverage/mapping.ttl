@@ -148,12 +148,15 @@ obo:humanbodyweight-appli:couverture:v1.0
 # Rédéfini pour le cas Individuation d'une conjonction de disjonction
 #:HBW_0000009
 #    a               rr:TriplesMap ;
-#    rr:logicalTable [ rr:tableName """
-#                       "EXP"."PERSONNE"
-#                      """ ] ; # exp1
+#    rr:logicalTable [ rr:sqlQuery """
+#                        select "ID_PATIENT_EXT"
+#                        from "EXP"."PATIENT"
+#                        where "POIDS" IS NOT NULL
+#                      """
+#                    ] ; # exp1
 #    rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
 #                      rr:class                obo:HBW_0000009 ;
-#                      mmec:signatureComponent """ "ID_PERSONNE_EXT" """ ; # k1
+#                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ; # k1
 #                      rr:termType             rr:IRI ] .
 
 # **** Héritage par disjonction ****
@@ -277,7 +280,11 @@ obo:humanbodyweight-appli:couverture:v1.0
 :HBW_0000002_e1
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
-                      rr:tableName """ "EXP"."PATIENT" """ ] ; # e1
+                      rr:sqlQuery """
+                       select "ID_PATIENT_UUID"
+                       from "EXP"."DOSSIER"
+                       where "CODE_VULN_1" <> 0
+                      """ ] ; # e1
     rr:subjectMap   [ a                       rr:SubjectMap ;
                       rr:class                obo:HBW_0000002 ;
                       mmec:signatureComponent """ "CODE_VULN_1" """ ; # k1
@@ -287,7 +294,11 @@ obo:humanbodyweight-appli:couverture:v1.0
 :HBW_0000002_e2
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
-                      rr:tableName """ "EXP"."PATIENT" """ ] ; # e2
+                      rr:sqlQuery """
+                       select "ID_PATIENT_UUID"
+                       from "EXP"."DOSSIER"
+                       where "CODE_VULN_2" <> 0
+                      """ ] ; # e2
     rr:subjectMap   [ a                       rr:SubjectMap ;
                       rr:class                obo:HBW_0000002 ;
                       mmec:signatureComponent """ "CODE_VULN_2" """ ; # k2
@@ -297,7 +308,11 @@ obo:humanbodyweight-appli:couverture:v1.0
 :HBW_0000002_e3
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
-                      rr:tableName """ "EXP"."PATIENT" """ ] ; # e3
+                      rr:sqlQuery """
+                       select "ID_PATIENT_UUID"
+                       from "EXP"."DOSSIER"
+                       where "CODE_VULN_3" <> 0
+                      """ ] ; # e3
     rr:subjectMap   [ a                       rr:SubjectMap ;
                       rr:class                obo:HBW_0000002 ;
                       mmec:signatureComponent """ "CODE_VULN_3" """ ; # k3
@@ -588,12 +603,14 @@ obo:humanbodyweight-appli:couverture:v1.0
 # ONTORELA_C2986e108@(quality ∨ disposition) ⋀ (‘inheres in’ organism)
 :HBW_0000009
     a               rr:TriplesMap ;
-    rr:logicalTable [ rr:tableName """
-                       "EXP"."PERSONNE"
+    rr:logicalTable [ rr:sqlQuery """
+                        select "ID_PATIENT_EXT"
+                        from "EXP"."PATIENT"
+                        where "POIDS" is not null
                       """ ] ; # e2
     rr:subjectMap   [ a                       rr:SubjectMap, rr:TermMap ;
                       rr:class                obo:HBW_0000009, physio:ONTORELA_C2986e108 ;
-                      mmec:signatureComponent """ "ID_PERSONNE_EXT" """ ; # k2
+                      mmec:signatureComponent """ "ID_PATIENT_EXT" """ ; # k2
                       rr:termType             rr:IRI ] .
 
 # ONTORELA_C61c354fb@‘data item’ ⋀ ‘is about’ ((quality ∨ disposition) ⋀ (‘inheres in’ organism))
