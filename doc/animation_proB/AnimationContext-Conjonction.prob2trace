@@ -1,0 +1,3644 @@
+{
+  "description": "",
+  "transitionList": [
+    {
+      "name": "$setup_constants",
+      "params": {},
+      "results": {},
+      "destState": {
+        "exp_equivalent": "{(exp1↦exp1),(exp2↦exp2),(exp2↦exp8),(exp3↦exp3),(exp4↦exp4),(exp5↦exp5),(exp6↦exp6),(exp7↦exp7),(exp8↦exp2),(exp8↦exp8),(exp9↦exp9),(exp10↦exp10),(exp11↦exp11),(exp12↦exp12),(exp13↦exp13),(exp14↦exp14),(exp15↦exp15),(exp16↦exp16)}",
+        "has_parent": "{(hcrAboutPatient↦healthCareRecord),(healthCareRecord↦thing),(mri↦thing),(patient↦thing)}",
+        "P_cLevel": "{0,1,2}",
+        "c_level": "{(0↦thing),(1↦healthCareRecord),(1↦mri),(1↦patient),(2↦hcrAboutPatient)}",
+        "class_of_strict": "{(mri1↦mri),(mri2↦mri),(mri3↦mri),(mri4↦mri),(x1↦hcrAboutPatient),(x2↦hcrAboutPatient),(x3↦hcrAboutPatient),(x4↦hcrAboutPatient),(o1↦patient),(o2↦patient),(o3↦patient),(o4↦patient)}",
+        "exp_list": "{(1↦exp1),(2↦exp2),(3↦exp3),(4↦exp4),(5↦exp5),(6↦exp6),(7↦exp7),(8↦exp8),(9↦exp9),(10↦exp10),(11↦exp11),(12↦exp12),(13↦exp13),(14↦exp14),(15↦exp15),(16↦exp16)}",
+        "exp_key": "{(exp1↦k1),(exp2↦k2),(exp3↦k3),(exp4↦k4),(exp5↦k1),(exp6↦k1),(exp7↦k1),(exp8↦k2),(exp9↦k3),(exp10↦k3),(exp11↦k3),(exp12↦k3),(exp13↦k4),(exp14↦k4),(exp15↦k4),(exp16↦k4)}",
+        "Q_cLevel": "∅",
+        "key_compatible": "{(k1↦k1),(k2↦k2),(k3↦k3),(k4↦k4)}",
+        "max_level": "2",
+        "individuation": "{(exp1↦o1),(exp1↦o2),(exp1↦o3),(exp2↦o4),(exp3↦mri1),(exp3↦mri2),(exp3↦mri3),(exp3↦mri4),(exp4↦x1),(exp4↦x2),(exp4↦x3),(exp4↦x4),(exp5↦o1),(exp6↦o2),(exp7↦o3),(exp8↦o4),(exp9↦mri1),(exp10↦mri2),(exp11↦mri3),(exp12↦mri4),(exp13↦x1),(exp14↦x2),(exp15↦x3),(exp16↦x4)}",
+        "exp_subsets": "{(exp1↦exp1),(exp1↦exp5),(exp1↦exp6),(exp1↦exp7),(exp2↦exp2),(exp2↦exp8),(exp3↦exp3),(exp3↦exp9),(exp3↦exp10),(exp3↦exp11),(exp3↦exp12),(exp4↦exp4),(exp4↦exp13),(exp4↦exp14),(exp4↦exp15),(exp4↦exp16),(exp5↦exp5),(exp6↦exp6),(exp7↦exp7),(exp8↦exp2),(exp8↦exp8),(exp9↦exp9),(exp10↦exp10),(exp11↦exp11),(exp12↦exp12),(exp13↦exp13),(exp14↦exp14),(exp15↦exp15),(exp16↦exp16)}",
+        "exp_overlap": "{(exp1↦exp1),(exp1↦exp5),(exp1↦exp6),(exp1↦exp7),(exp2↦exp2),(exp2↦exp8),(exp3↦exp3),(exp3↦exp9),(exp3↦exp10),(exp3↦exp11),(exp3↦exp12),(exp4↦exp4),(exp4↦exp13),(exp4↦exp14),(exp4↦exp15),(exp4↦exp16),(exp5↦exp1),(exp5↦exp5),(exp6↦exp1),(exp6↦exp6),(exp7↦exp1),(exp7↦exp7),(exp8↦exp2),(exp8↦exp8),(exp9↦exp3),(exp9↦exp9),(exp10↦exp3),(exp10↦exp10),(exp11↦exp3),(exp11↦exp11),(exp12↦exp3),(exp12↦exp12),(exp13↦exp4),(exp13↦exp13),(exp14↦exp4),(exp14↦exp14),(exp15↦exp4),(exp15↦exp15),(exp16↦exp4),(exp16↦exp16)}",
+        "class_of": "{(mri1↦thing),(mri1↦mri),(mri2↦thing),(mri2↦mri),(mri3↦thing),(mri3↦mri),(mri4↦thing),(mri4↦mri),(x1↦thing),(x1↦hcrAboutPatient),(x1↦healthCareRecord),(x2↦thing),(x2↦hcrAboutPatient),(x2↦healthCareRecord),(x3↦thing),(x3↦hcrAboutPatient),(x3↦healthCareRecord),(x4↦thing),(x4↦hcrAboutPatient),(x4↦healthCareRecord),(o1↦thing),(o1↦patient),(o2↦thing),(o2↦patient),(o3↦thing),(o3↦patient),(o4↦thing),(o4↦patient)}",
+        "is_a": "{(thing↦thing),(hcrAboutPatient↦thing),(hcrAboutPatient↦hcrAboutPatient),(hcrAboutPatient↦healthCareRecord),(healthCareRecord↦thing),(healthCareRecord↦healthCareRecord),(mri↦thing),(mri↦mri),(patient↦thing),(patient↦patient)}",
+        "C_leaves": "{hcrAboutPatient,mri,patient}"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "$initialise_machine",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "hcrAboutPatient",
+        "definedSignatureSupersets": "∅",
+        "signatureSupersets": "∅",
+        "signatures": "∅",
+        "definedSignatures": "∅",
+        "currentLevel": "∅",
+        "levelNum": "2",
+        "analysedExpressions": "∅",
+        "currentExpression": "exp1",
+        "mapped": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{exp4,exp13,exp14,exp15,exp16}",
+        "definedSubsets": "∅",
+        "expressionsLeftForCurrentClass": "{exp4,exp13,exp14,exp15,exp16}",
+        "subsets": "∅"
+      },
+      "destStateNotChanged": [],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp4",
+        "expressionsLeftForCurrentClass": "{exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(exp4↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp13",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp13↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp14",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp13↦hcrAboutPatient),(exp14↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp15",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp13↦hcrAboutPatient),(exp14↦hcrAboutPatient),(exp15↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp16",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp13↦hcrAboutPatient),(exp14↦hcrAboutPatient),(exp15↦hcrAboutPatient),(exp16↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{hcrAboutPatient}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "healthCareRecord",
+        "currentLevel": "{mri,patient}",
+        "currentExpressionAnalysed": "0",
+        "levelNum": "1",
+        "expressionsLeftForCurrentClass": "{exp4,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp4",
+        "expressionsLeftForCurrentClass": "{exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp13↦hcrAboutPatient),(exp14↦hcrAboutPatient),(exp15↦hcrAboutPatient),(exp16↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp13",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp15↦hcrAboutPatient),(exp16↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp14",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp16↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp15",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp16",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{hcrAboutPatient,healthCareRecord}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "mri",
+        "currentLevel": "{patient}",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{exp3,exp9,exp10,exp11,exp12}",
+        "expressionsLeftForCurrentClass": "{exp3,exp9,exp10,exp11,exp12}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "expressionsLeftForCurrentClass": "{exp9,exp10,exp11,exp12}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(exp3↦mri),(exp4↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp9",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp10,exp11,exp12}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp9↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp10",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp11,exp12}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp9↦mri),(exp10↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp11",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp12}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp12",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{hcrAboutPatient,healthCareRecord,mri}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_class",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "patient",
+        "currentLevel": "∅",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{exp1,exp2,exp5,exp6,exp7,exp8}",
+        "expressionsLeftForCurrentClass": "{exp1,exp2,exp5,exp6,exp7,exp8}"
+      },
+      "destStateNotChanged": [
+        "definedSignatureSupersets",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp1",
+        "expressionsLeftForCurrentClass": "{exp2,exp5,exp6,exp7,exp8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(exp1↦patient),(exp3↦mri),(exp4↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp5,exp6,exp7,exp8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_current_subsets_signature",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1",
+        "definedSignatures": "{(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp6,exp7,exp8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7,exp8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp6↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp8}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp6↦patient),(exp7↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp6↦patient),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{hcrAboutPatient,healthCareRecord,mri,patient}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_level",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentClass": "thing",
+        "currentExpressionAnalysed": "0",
+        "expressionsOfCurrentClass": "{exp1,exp2,exp3,exp4,exp5,exp6,exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}",
+        "levelNum": "0",
+        "expressionsLeftForCurrentClass": "{exp1,exp2,exp3,exp4,exp5,exp6,exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentLevel",
+        "definedSignatureSupersets",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "signatureSupersets",
+        "definedSubsets",
+        "signatures",
+        "definedSignatures",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp1",
+        "expressionsLeftForCurrentClass": "{exp2,exp3,exp4,exp5,exp6,exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp6↦patient),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp2",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp3,exp4,exp5,exp6,exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp6↦patient),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp3",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp4,exp5,exp6,exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp6↦patient),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp4",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp5,exp6,exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦patient),(exp6↦patient),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp5",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp6,exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦patient),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp6",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp7,exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp7",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp8,exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp8",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp9,exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp9",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp10,exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp10",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp11,exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦thing),(exp10↦mri),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp11",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp12,exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦thing),(exp10↦mri),(exp11↦thing),(exp11↦mri),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp12",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp13,exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦thing),(exp10↦mri),(exp11↦thing),(exp11↦mri),(exp12↦thing),(exp12↦mri),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp13",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp14,exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦thing),(exp10↦mri),(exp11↦thing),(exp11↦mri),(exp12↦thing),(exp12↦mri),(exp13↦thing),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp14",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp15,exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦thing),(exp10↦mri),(exp11↦thing),(exp11↦mri),(exp12↦thing),(exp12↦mri),(exp13↦thing),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦thing),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp15",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "{exp16}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦thing),(exp10↦mri),(exp11↦thing),(exp11↦mri),(exp12↦thing),(exp12↦mri),(exp13↦thing),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦thing),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦thing),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "next_expression",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpression": "exp16",
+        "currentExpressionAnalysed": "0",
+        "expressionsLeftForCurrentClass": "∅"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "analyse_not_required",
+      "params": {},
+      "results": {},
+      "destState": {
+        "currentExpressionAnalysed": "1"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "expression_analysed",
+      "params": {},
+      "results": {},
+      "destState": {
+        "analysedExpressions": "{(exp1↦thing),(exp1↦patient),(exp2↦thing),(exp2↦patient),(exp3↦thing),(exp3↦mri),(exp4↦thing),(exp4↦hcrAboutPatient),(exp4↦healthCareRecord),(exp5↦thing),(exp5↦patient),(exp6↦thing),(exp6↦patient),(exp7↦thing),(exp7↦patient),(exp8↦thing),(exp8↦patient),(exp9↦thing),(exp9↦mri),(exp10↦thing),(exp10↦mri),(exp11↦thing),(exp11↦mri),(exp12↦thing),(exp12↦mri),(exp13↦thing),(exp13↦hcrAboutPatient),(exp13↦healthCareRecord),(exp14↦thing),(exp14↦hcrAboutPatient),(exp14↦healthCareRecord),(exp15↦thing),(exp15↦hcrAboutPatient),(exp15↦healthCareRecord),(exp16↦thing),(exp16↦hcrAboutPatient),(exp16↦healthCareRecord)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "class_mapped",
+      "params": {},
+      "results": {},
+      "destState": {
+        "mapped": "{thing,hcrAboutPatient,healthCareRecord,mri,patient}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "signatures",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    },
+    {
+      "name": "final",
+      "params": {},
+      "results": {},
+      "destState": {
+        "signatures": "{(exp1↦patient),(exp2↦patient),(exp3↦mri),(exp4↦hcrAboutPatient)}"
+      },
+      "destStateNotChanged": [
+        "currentClass",
+        "definedSignatureSupersets",
+        "signatureSupersets",
+        "definedSignatures",
+        "currentLevel",
+        "levelNum",
+        "analysedExpressions",
+        "currentExpression",
+        "mapped",
+        "currentExpressionAnalysed",
+        "expressionsOfCurrentClass",
+        "definedSubsets",
+        "expressionsLeftForCurrentClass",
+        "subsets"
+      ],
+      "preds": [],
+      "postconditions": [],
+      "description": ""
+    }
+  ],
+  "variableNames": [
+    "analysedExpressions",
+    "currentClass",
+    "currentExpression",
+    "currentExpressionAnalysed",
+    "currentLevel",
+    "definedSignatureSupersets",
+    "definedSignatures",
+    "definedSubsets",
+    "expressionsLeftForCurrentClass",
+    "expressionsOfCurrentClass",
+    "levelNum",
+    "mapped",
+    "signatureSupersets",
+    "signatures",
+    "subsets"
+  ],
+  "constantNames": [
+    "C_leaves",
+    "has_parent",
+    "is_a",
+    "max_level",
+    "Q_cLevel",
+    "c_level",
+    "P_cLevel",
+    "class_of",
+    "class_of_strict",
+    "exp_key",
+    "exp_subsets",
+    "exp_overlap",
+    "individuation",
+    "key_compatible",
+    "exp_list",
+    "exp_equivalent"
+  ],
+  "setNames": [
+    "P",
+    "E",
+    "K",
+    "C"
+  ],
+  "machineOperationInfos": {
+    "analyse_not_required": {
+      "operationName": "analyse_not_required",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "class_of_strict",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_key",
+        "exp_overlap",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "individuation",
+        "key_compatible",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "expression_analysed": {
+      "operationName": "expression_analysed",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "analysedExpressions"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_level": {
+      "operationName": "next_level",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "c_level",
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "levelNum"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_with_equivalent_signature": {
+      "operationName": "analyse_with_equivalent_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatures",
+        "exp_equivalent",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatures"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "final": {
+      "operationName": "final",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "class_of",
+        "class_of_strict",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "individuation",
+        "key_compatible",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "nonDetWrittenVariables": [
+        "signatureSupersets",
+        "signatures",
+        "subsets"
+      ],
+      "typeMap": {}
+    },
+    "next_expression": {
+      "operationName": "next_expression",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "expressionsLeftForCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentExpression",
+        "expressionsLeftForCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "class_mapped": {
+      "operationName": "class_mapped",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentLevel",
+        "expressionsOfCurrentClass",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "mapped"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    },
+    "next_class": {
+      "operationName": "next_class",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "class_of",
+        "currentClass",
+        "currentLevel",
+        "individuation",
+        "levelNum",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentClass",
+        "currentExpressionAnalysed",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "nonDetWrittenVariables": [
+        "currentClass",
+        "currentLevel",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass"
+      ],
+      "typeMap": {}
+    },
+    "analyse_current_subsets_signature": {
+      "operationName": "analyse_current_subsets_signature",
+      "parameterNames": [],
+      "outputParameterNames": [],
+      "topLevel": true,
+      "type": "EVENTB",
+      "readVariables": [
+        "analysedExpressions",
+        "currentClass",
+        "currentExpression",
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets",
+        "exp_equivalent",
+        "exp_key",
+        "exp_overlap",
+        "exp_subsets",
+        "expressionsLeftForCurrentClass",
+        "expressionsOfCurrentClass",
+        "key_compatible",
+        "mapped"
+      ],
+      "writtenVariables": [
+        "currentExpressionAnalysed",
+        "definedSignatureSupersets",
+        "definedSignatures",
+        "definedSubsets"
+      ],
+      "nonDetWrittenVariables": [],
+      "typeMap": {}
+    }
+  },
+  "globalIdentifierTypes": {
+    "currentClass": "global('C')",
+    "definedSignatureSupersets": "set(global('E'))",
+    "exp_equivalent": "set(couple(global('E'),global('E')))",
+    "signatureSupersets": "set(global('E'))",
+    "class_of_strict": "set(couple(global('P'),global('C')))",
+    "c_level": "set(couple(integer,global('C')))",
+    "signatures": "set(couple(global('E'),global('C')))",
+    "definedSignatures": "set(couple(global('E'),global('C')))",
+    "exp_key": "set(couple(global('E'),global('K')))",
+    "currentLevel": "set(global('C'))",
+    "levelNum": "integer",
+    "key_compatible": "set(couple(global('K'),global('K')))",
+    "individuation": "set(couple(global('E'),global('P')))",
+    "analysedExpressions": "set(couple(global('E'),global('C')))",
+    "currentExpression": "global('E')",
+    "mapped": "set(global('C'))",
+    "exp_subsets": "set(couple(global('E'),global('E')))",
+    "exp_overlap": "set(couple(global('E'),global('E')))",
+    "currentExpressionAnalysed": "integer",
+    "expressionsOfCurrentClass": "set(global('E'))",
+    "class_of": "set(couple(global('P'),global('C')))",
+    "definedSubsets": "set(couple(global('E'),global('E')))",
+    "expressionsLeftForCurrentClass": "set(global('E'))",
+    "subsets": "set(couple(global('E'),global('E')))"
+  },
+  "metadata": {
+    "fileType": "Trace",
+    "formatVersion": 5,
+    "savedAt": "2025-03-04T02:05:13.291329Z",
+    "creator": "traceReplay",
+    "proB2KernelVersion": "4.12.2",
+    "proBCliVersion": "1.12.2-final",
+    "modelName": "4-AnimationMachine"
+  }
+}
