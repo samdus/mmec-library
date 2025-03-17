@@ -17,7 +17,7 @@ public class ProjectInfoRepositoryTest {
     Assertions.assertEquals("ca.griis", projectInfoRepository.getGroup().orElse("Undefined"));
     Assertions.assertEquals("mMec-library", projectInfoRepository.getName().orElse("Undefined"));
     Assertions.assertEquals("LIBRARY", projectInfoRepository.getProduct().orElse("Undefined"));
-    Assertions.assertEquals("1.1.0", projectInfoRepository.getVersion().orElse("Undefined"));
+    Assertions.assertEquals("1.2.0", projectInfoRepository.getVersion().orElse("Undefined"));
   }
 
   @Test
