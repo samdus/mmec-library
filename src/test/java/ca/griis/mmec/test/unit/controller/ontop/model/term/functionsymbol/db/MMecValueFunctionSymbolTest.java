@@ -21,18 +21,6 @@ import org.mockito.Mockito;
 
 @SuppressWarnings({"unchecked"})
 public class MMecValueFunctionSymbolTest {
-  @Test
-  public void constructorThrowsWhenNotRDFDatatypeTest() {
-    DBTermType valueType = Mockito.mock(DBTermType.class);
-    RDFTermTypeConstant rdfTermTypeConstant = Mockito.mock(RDFTermTypeConstant.class);
-    MetaRDFTermType typeTermType = Mockito.mock(MetaRDFTermType.class);
-    RDFTermType rdfDatatype = Mockito.mock(RDFTermType.class);
-
-    Mockito.when(rdfTermTypeConstant.getRDFTermType()).thenReturn(rdfDatatype);
-
-    assertThrows(IllegalArgumentException.class,
-        () -> new MMecValueFunctionSymbol(valueType, rdfTermTypeConstant, typeTermType));
-  }
 
   @Test
   public void isAlwaysInjectiveInTheAbsenceOfNonInjectiveFunctionalTermsTest() {

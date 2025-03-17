@@ -77,11 +77,9 @@ public class MMecValueFunctionSymbol extends AbstractTypedDBFunctionSymbol imple
       MetaRDFTermType typeTermType) {
     super(String.format("Value_%s", valueType.getName()), ImmutableList.of(valueType, typeTermType),
         valueType);
+
     this.valueType = valueType;
-    this.rdfDatatype = Optional.of(rdfTermTypeConstant.getRDFTermType())
-        .filter(type -> type instanceof RDFDatatype)
-        .map(RDFDatatype.class::cast)
-        .orElseThrow(IllegalArgumentException::new);
+    this.rdfDatatype = (RDFDatatype) rdfTermTypeConstant.getRDFTermType();
   }
 
   @Override
