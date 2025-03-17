@@ -281,8 +281,8 @@ obo:humanbodyweight-appli:couverture:v1.0
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
                       rr:sqlQuery """
-                       select "ID_PATIENT_UUID"
-                       from "EXP"."DOSSIER"
+                       select "CODE_VULN_1"
+                       from "EXP"."PATIENT"
                        where "CODE_VULN_1" <> 0
                       """ ] ; # e1
     rr:subjectMap   [ a                       rr:SubjectMap ;
@@ -295,8 +295,8 @@ obo:humanbodyweight-appli:couverture:v1.0
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
                       rr:sqlQuery """
-                       select "ID_PATIENT_UUID"
-                       from "EXP"."DOSSIER"
+                       select "CODE_VULN_2"
+                       from "EXP"."PATIENT"
                        where "CODE_VULN_2" <> 0
                       """ ] ; # e2
     rr:subjectMap   [ a                       rr:SubjectMap ;
@@ -309,8 +309,8 @@ obo:humanbodyweight-appli:couverture:v1.0
     a               rr:TriplesMap ;
     rr:logicalTable [ a            rr:R2RMLView ;
                       rr:sqlQuery """
-                       select "ID_PATIENT_UUID"
-                       from "EXP"."DOSSIER"
+                       select "CODE_VULN_3"
+                       from "EXP"."PATIENT"
                        where "CODE_VULN_3" <> 0
                       """ ] ; # e3
     rr:subjectMap   [ a                       rr:SubjectMap ;
@@ -653,13 +653,13 @@ obo:humanbodyweight-appli:couverture:v1.0
     rr:predicateObjectMap [ rr:predicate obo:IAO_0000136 ;
                             rr:objectMap [ rr:parentTriplesMap :HBW_0000009 ;
                                            rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
-                                                                 rr:parent """ "ID_PERSONNE_EXT" """ ] ] ] .
+                                                                 rr:parent """ "ID_PATIENT_EXT" """ ] ] ] .
 
 # "HBW_0000009" "RO_0000052@inheres in" "OBI_0100026"@organism
 :HBW_0000009
     rr:predicateObjectMap [ rr:predicate obo:RO_0000052 ;
                             rr:objectMap [ rr:parentTriplesMap :NCBITaxon_9606 ;
-                                           rr:joinCondition    [ rr:child  """ "ID_PERSONNE_EXT" """ ;
+                                           rr:joinCondition    [ rr:child  """ "ID_PATIENT_EXT" """ ;
                                                                  rr:parent """ "ID_PERSONNE_EXT" """ ] ] ] .
 
 # **** Arrimage d'une propriété définie sur un parent ****
