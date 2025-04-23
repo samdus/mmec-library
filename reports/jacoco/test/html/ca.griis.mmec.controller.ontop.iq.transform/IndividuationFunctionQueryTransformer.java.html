@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IndividuationFunctionQueryTransformer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.iq.transform</a> &gt; <span class="el_source">IndividuationFunctionQueryTransformer.java</span></div><h1>IndividuationFunctionQueryTransformer.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ * @copyright @@GRIIS_COPYRIGHT@@
+ * @licence @@GRIIS_LICENCE@@
+ * @version @@GRIIS_VERSION@@
+ * @brief @~french Implémentation de la classe IndividuationFunctionQueryTransformer.
+ * @brief @~english IndividuationFunctionQueryTransformer class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.iq.transform;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
+import it.unibz.inf.ontop.iq.IQTree;
+import it.unibz.inf.ontop.iq.node.ConstructionNode;
+import it.unibz.inf.ontop.iq.transform.impl.DefaultRecursiveIQTreeVisitingTransformer;
+import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
+import it.unibz.inf.ontop.model.term.DBConstant;
+import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.NonGroundFunctionalTerm;
+import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
+import it.unibz.inf.ontop.model.term.TermFactory;
+import it.unibz.inf.ontop.model.term.Variable;
+import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.IRIStringTemplateFunctionSymbol;
+import it.unibz.inf.ontop.model.type.TermType;
+import it.unibz.inf.ontop.model.type.impl.IRITermType;
+import it.unibz.inf.ontop.substitution.Substitution;
+import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
+import java.util.HashMap;
+import java.util.Map;
+import javax.inject.Inject;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details «Detailed description of the component (optional)»
+ * @par Model «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception «Conception description (criteria and constraints) (optional)»
+ * @par Limits «Limits description (optional)»
+ * @brief @~french Transforme la requête pour modifier les appels de fonctions qui génère des IRI
+ *        pour appeler la fonction de génération de signature. Retire aussi les conversions de type.
+ * @par Détails S.O.
+ * @par Modèle S.O.
+ * @par Conception S.O.
+ * @par Limites S.O.
+ * @par Historique 2024-01-09 [SD] - Implémentation initiale&lt;br&gt;
+ * @par Tâches S.O.
+ */
+public class IndividuationFunctionQueryTransformer extends
+    DefaultRecursiveIQTreeVisitingTransformer {
+<span class="fc" id="L56">  private static final GriisLogger logger =</span>
+<span class="fc" id="L57">      GriisLoggerFactory.getLogger(IndividuationFunctionQueryTransformer.class);</span>
+  private final MMecTermFactory termFactory;
+  private final BasicSingleTermTypeExtractor typeExtractor;
+
+  @Inject
+  public IndividuationFunctionQueryTransformer(
+      IntermediateQueryFactory iqFactory, TermFactory termFactory,
+      BasicSingleTermTypeExtractor typeExtractor) {
+<span class="fc" id="L65">    super(iqFactory);</span>
+
+<span class="fc" id="L67">    this.termFactory = (MMecTermFactory) termFactory;</span>
+<span class="fc" id="L68">    this.typeExtractor = typeExtractor;</span>
+<span class="fc" id="L69">  }</span>
+
+  @Override
+  public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
+      IQTree child) {
+<span class="fc" id="L74">    logger.trace(Trace.ENTER_METHOD_3, tree, constructionNode, child);</span>
+<span class="fc" id="L75">    Map&lt;Variable, ImmutableTerm&gt; newSubstitutionMap = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">    for (Map.Entry&lt;Variable, ImmutableTerm&gt; substitutionEntry : constructionNode.getSubstitution()</span>
+<span class="fc" id="L77">        .stream().toList()) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">      if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">          &amp;&amp; term.getFunctionSymbol() instanceof RDFTermFunctionSymbol</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">          &amp;&amp; term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">          &amp;&amp; rdfTermTypeConstant.getRDFTermType() instanceof IRITermType</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">          &amp;&amp; term.getTerm(0) instanceof NonGroundFunctionalTerm iriFunctionTerm</span>
+          &amp;&amp; iriFunctionTerm
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">              .getFunctionSymbol() instanceof IRIStringTemplateFunctionSymbol iriStrTemplateFn) {</span>
+<span class="fc" id="L85">        newSubstitutionMap.put(substitutionEntry.getKey(),</span>
+<span class="fc" id="L86">            getIndividuationTerm(tree, iriStrTemplateFn, iriFunctionTerm));</span>
+      } else {
+<span class="fc" id="L88">        newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());</span>
+      }
+<span class="fc" id="L90">    }</span>
+<span class="fc" id="L91">    Substitution&lt;ImmutableTerm&gt; substitution = new SubstitutionImpl&lt;&gt;(</span>
+<span class="fc" id="L92">        ImmutableMap.copyOf(newSubstitutionMap), termFactory, true);</span>
+
+<span class="fc" id="L94">    ConstructionNode newConstructionNode = iqFactory.createConstructionNode(</span>
+<span class="fc" id="L95">        constructionNode.getVariables(),</span>
+        substitution);
+<span class="fc" id="L97">    return transformUnaryNode(tree, newConstructionNode, child);</span>
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param tree «Parameter description»
+   * @param iriStrTemplateFn «Parameter description»
+   * @param iriFunctionTerm «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Création d'un appel à la fonction de signature à partir d'un appel à la
+   *        fonction de génération d'IRI.
+   * @param tree Arbre correspondant à la requête complète
+   * @param iriStrTemplateFn Fonction de génération d'IRI à transformer
+   * @param iriFunctionTerm Appel de la fonction de génération d'IRI
+   * @return Appel à la fonction de signature
+   *
+   * @par Tâches
+   *      S.O.
+   */
+  private ImmutableTerm getIndividuationTerm(IQTree tree,
+      IRIStringTemplateFunctionSymbol iriStrTemplateFn, NonGroundFunctionalTerm iriFunctionTerm) {
+<span class="fc" id="L119">    logger.trace(Trace.ENTER_METHOD_3, tree, iriStrTemplateFn, iriFunctionTerm);</span>
+<span class="fc" id="L120">    DBConstant identifierForSignatureGroup = termFactory.getDBStringConstant(</span>
+<span class="fc" id="L121">        iriStrTemplateFn.getName());</span>
+<span class="fc" id="L122">    ImmutableList&lt;ImmutableTerm&gt; arguments = ImmutableList.&lt;ImmutableTerm&gt;builder()</span>
+<span class="fc" id="L123">        .add(identifierForSignatureGroup)</span>
+<span class="fc" id="L124">        .addAll(iriFunctionTerm.getVariables().asList())</span>
+<span class="fc" id="L125">        .build();</span>
+<span class="fc" id="L126">    ImmutableList&lt;TermType&gt; argTypes =</span>
+<span class="fc" id="L127">        arguments.stream().map(</span>
+<span class="fc" id="L128">            variable -&gt; typeExtractor.extractSingleTermType(variable, tree).orElseThrow())</span>
+<span class="fc" id="L129">            .collect(ImmutableList.toImmutableList());</span>
+
+<span class="fc" id="L131">    return termFactory.getMMecSignatureFunction(argTypes, arguments);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

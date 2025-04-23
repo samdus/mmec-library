@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecToFullNativeQueryReformulator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.answering.reformulation</a> &gt; <span class="el_source">MMecToFullNativeQueryReformulator.java</span></div><h1>MMecToFullNativeQueryReformulator.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ * @copyright @@GRIIS_COPYRIGHT@@
+ * @licence @@GRIIS_LICENCE@@
+ * @version @@GRIIS_VERSION@@
+ * @brief @~french Implémentation de la classe MMecToFullNativeQueryReformulator.
+ * @brief @~english MMecToFullNativeQueryReformulator class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.answering.reformulation;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
+import it.unibz.inf.ontop.answering.logging.QueryLogger;
+import it.unibz.inf.ontop.answering.reformulation.QueryCache;
+import it.unibz.inf.ontop.answering.reformulation.impl.QuestQueryProcessor;
+import it.unibz.inf.ontop.answering.reformulation.rewriting.QueryRewriter;
+import it.unibz.inf.ontop.evaluator.QueryContext;
+import it.unibz.inf.ontop.exception.OntopReformulationException;
+import it.unibz.inf.ontop.injection.TranslationFactory;
+import it.unibz.inf.ontop.iq.IQ;
+import it.unibz.inf.ontop.iq.node.EmptyNode;
+import it.unibz.inf.ontop.iq.node.NativeNode;
+import it.unibz.inf.ontop.iq.optimizer.GeneralStructuralAndSemanticIQOptimizer;
+import it.unibz.inf.ontop.iq.planner.QueryPlanner;
+import it.unibz.inf.ontop.query.KGQueryFactory;
+import it.unibz.inf.ontop.query.translation.KGQueryTranslator;
+import it.unibz.inf.ontop.query.unfolding.QueryUnfolder;
+import it.unibz.inf.ontop.spec.OBDASpecification;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Reformulateur de requête pour des MMec. Diffère du reformulateur Ontop par le
+ *        fait que la requête initiale est déjà dans les termes de la base de données.
+ *        &lt;br /&gt;
+ *        C'est-à-dire que le bloc de construction qui contenait des substitutions RDF
+ *        a déjà été remplacé par des variables de la source de données et l'appel à la
+ *        fonction d'individuation.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-01-11 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ * @todo 2024-02-01 [SD] - Ajouter le logger griis
+ */
+public class MMecToFullNativeQueryReformulator extends QuestQueryProcessor {
+<span class="fc" id="L67">  private static final GriisLogger logger =</span>
+<span class="fc" id="L68">      GriisLoggerFactory.getLogger(MMecToFullNativeQueryReformulator.class);</span>
+
+  @AssistedInject
+  public MMecToFullNativeQueryReformulator(
+      @Assisted OBDASpecification obdaSpecification,
+      QueryCache queryCache,
+      QueryUnfolder.Factory queryUnfolderFactory,
+      TranslationFactory translationFactory,
+      QueryRewriter queryRewriter,
+      KGQueryFactory kgQueryFactory,
+      KGQueryTranslator inputQueryTranslator,
+      GeneralStructuralAndSemanticIQOptimizer generalOptimizer,
+      QueryPlanner queryPlanner,
+      QueryLogger.Factory queryLoggerFactory,
+      QueryContext.Factory queryContextFactory) {
+<span class="fc" id="L83">    super(obdaSpecification, queryCache, queryUnfolderFactory, translationFactory, queryRewriter,</span>
+        kgQueryFactory, inputQueryTranslator, generalOptimizer, queryPlanner, queryLoggerFactory,
+        queryContextFactory);
+<span class="fc" id="L86">  }</span>
+
+  @Override
+  protected IQ generateExecutableQuery(IQ iq) throws OntopReformulationException {
+<span class="fc" id="L90">    logger.trace(Trace.ENTER_METHOD_1, iq);</span>
+
+<span class="fc bfc" id="L92" title="All 2 branches covered.">    if (iq.getTree() instanceof EmptyNode) {</span>
+<span class="fc" id="L93">      return iq;</span>
+    } else {
+<span class="fc" id="L95">      IQ sourceQuery = datasourceQueryGenerator.generateSourceQuery(iq, true)</span>
+<span class="fc" id="L96">          .normalizeForOptimization();</span>
+
+<span class="fc bfc" id="L98" title="All 2 branches covered.">      if (!(sourceQuery.getTree() instanceof NativeNode)) {</span>
+<span class="fc" id="L99">        throw new MMecNotFullyTranslatableToNativeQueryException(</span>
+            &quot;the post-processing step could not be eliminated&quot;);
+      }
+
+<span class="fc" id="L103">      return sourceQuery;</span>
+    }
+  }
+
+  public static class MMecNotFullyTranslatableToNativeQueryException
+      extends OntopReformulationException {
+    protected MMecNotFullyTranslatableToNativeQueryException(String message) {
+<span class="fc" id="L110">      super(&quot;Not fully translatable to a native query: &quot; + message);</span>
+<span class="fc" id="L111">    }</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

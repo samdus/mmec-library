@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/resources/logback.xml">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/resources/defaultConfiguration.properties">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/it/unibz/inf/ontop/injection/impl/MMecConfiguration.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/it/unibz/inf/ontop/injection/impl/MMecModule.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/it/unibz/inf/ontop/spec/mapping/pp/impl/MMecSqlPpMappingConverterImpl.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/it/unibz/inf/ontop/spec/mapping/transformer/impl/MMecTMappingSaturatorImpl.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/it/unibz/inf/ontop/spec/mapping/transformer/impl/MMecMappingAssertionUnion.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/it/unibz/inf/ontop/spec/mapping/parser/impl/MMecR2rmlMappingParserImpl.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/it/unibz/inf/ontop/model/term/PartialTermFactory.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/api/MMecFacadeService.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/api/MMecFacadeServiceBase.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/api/exception/DefaultOntopConfigurationNotFoundException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/api/exception/ConnectionException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/view/st/StMappedOntoRelTableView.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/view/MappedOntoRelTableView.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/repository/ProjectInfoRepository.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/repository/jooq/JooqOntoRelCatRepository.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/repository/OntoRelCatRepository.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/OntoRelTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/mapped/MappedDataPropertyTableRecord.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/mapped/MappedObjectPropertyTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/mapped/MappedClassTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/mapped/MappedObjectPropertyTableRecord.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/mapped/MappedDataPropertyTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/mapped/MappedClassTableRecord.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/MMecVocabulary.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/MappedOntoRelTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/ontorel/DataPropertyTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/ontorel/ObjectPropertyTableRecord.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/ontorel/ClassTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/ontorel/ClassTableRecord.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/ontorel/DataPropertyTableRecord.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/model/ontorel/ObjectPropertyTable.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/impl/FacadePropertiesImpl.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/impl/MappingPropertiesImpl.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/ConnectionProperties.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/builder/FacadePropertiesBuilder.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/builder/ConnectionPropertiesBuilder.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/builder/MappingPropertiesBuilder.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/FacadeProperties.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/MissingPropertyException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/FacadeType.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/properties/MappingProperties.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/MMecMappingConversion.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/MMecMappingExtension.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/pp/MMecTriplesMap.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/pp/ProvUnion.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/pp/MMecPpMappingAssertionProvenance.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/transformer/impl/MMecTermTypeMappingCaster.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/before/MMecParserTemplatesExtension.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/before/MMecParserRefSubjectMapExtension.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingParserExtension.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/after/MMecParserSubsetsExtension.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/after/MMecParserConversionExtension.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedAfterParsing.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedBeforeParsing.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/InvalidRefSubjectMapException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureWithoutSubjectMapException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SubsetHasTemplateException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/RefSubjectMapWithoutParentTriplesMapException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/ConversionWithoutInputTypeException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureComponentMismatchException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/JoinConditionWithoutParentColumnException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/LogicalTableWithoutSqlQueryNorTableNameException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/ConversionWithoutOutputTypeException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/InvalidConversionException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/JoinConditionWithoutChildColumnException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureWithoutLogicalTableException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/IllegalMappingException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureComponentMissingException.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/iq/transform/DataPropertyProjectionTransformer.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/iq/transform/IndividuationFunctionQueryTransformer.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/iq/optimizer/MMecQueryOptimizer.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/type/impl/MMecPostgreSqlDbTypeFactory.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/type/MMecIndividuationTermType.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/type/DbValueTermType.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/MMecTermFactory.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecSimpleConversionFunctionSymbol.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecIndividuationFunctionSymbol.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecValueFunctionSymbol.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecConversionFunctionSymbol.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecConversionValidationFunctionSymbol.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecSqlDbFunctionSymbolFactory.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecPostgreSqlDbFunctionSymbolFactory.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/answering/reformulation/MMecToFullNativeQueryReformulator.java">
+</file>
+<file name="/builds/prototypes/mad/relrel/mMEC/src/main/java/ca/griis/mmec/controller/ontop/OntoRelTableMappingController.java">
+</file>
+</checkstyle>

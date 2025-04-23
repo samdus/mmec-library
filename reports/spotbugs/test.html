@@ -1,0 +1,389 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="UTF-8"/>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+				color: red;
+				font-weight: bold;
+		}
+		.priority-2 {
+				color: orange;
+				font-weight: bold;
+		}
+		.priority-3 {
+				color: green;
+				font-weight: bold;
+		}
+		.priority-4 {
+				color: blue;
+				font-weight: bold;
+		}
+		</style>
+      <script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+   </head>
+   <body>
+      <h1>
+         <a href="https://spotbugs.github.io/">SpotBugs</a> Report</h1>
+      <h2>Project Information</h2>
+      <p>Project: 
+		mMec-library (spotbugsTest)</p>
+      <p>SpotBugs version: 4.8.3</p>
+      <p>Code analyzed:</p>
+      <ul>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/PreliminaryTests.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/api/MMecFacadeServiceBaseTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/controller/ontop/OntoRelTableMappingControllerTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/util/R2rmlTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/util/dbtype/PostgresContainerWrapper$1.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/util/dbtype/PostgresContainerWrapper.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/util/OntopTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/util/OptimizeTester$1.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/integration/util/OptimizeTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/model/type/DbValueTermTypeTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/model/type/MMecIndividuationTermTypeTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/model/type/impl/MMecPostgreSqlDbTypeFactoryTest$MMecPostgreSqlDbTypeFactoryTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/model/type/impl/MMecPostgreSqlDbTypeFactoryTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/model/MMecTriplesMapTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/repository/ProjectInfoRepositoryTest$InvalidProjectInfoRepository.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/repository/ProjectInfoRepositoryTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/api/MMecFacadeServiceBaseTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/api/exception/ConnectionExceptionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/api/exception/DefaultOntopConfigurationNotFoundExceptionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/api/MMecFacadeServiceBaseTest$OBDASpecificationExceptionT.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/MMecTermFactoryTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecIndividuationFunctionSymbolTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecConversionFunctionSymbolTest$MMecConversionFunctionSymbolTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecConversionFunctionSymbolTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecValueFunctionSymbolTest$MMecValueFunctionSymbolTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecSimpleConversionFunctionSymbolTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecIndividuationFunctionSymbolTest$MMecIndividuationFunctionSymbolTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecConversionValidationFunctionSymbolTest$MMecConversionValidationFunctionSymbolTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecSimpleConversionFunctionSymbolTest$MMecSimpleConversionFunctionSymbolTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecPostgreSqlDbFunctionSymbolFactoryTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecConversionValidationFunctionSymbolTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/model/term/functionsymbol/db/MMecValueFunctionSymbolTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/answering/reformulation/MMecToFullNativeQueryReformulatorTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/OntoRelTableMappingControllerTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/MappingExtendedParserTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/after/MMecParserSubsetsExtensionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/after/MMecParserConversionExtensionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/exception/SignatureComponentMismatchExceptionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/exception/IllegalMappingExceptionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/exception/InvalidConversionExceptionTest$1.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/exception/InvalidConversionExceptionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/exception/IllegalMappingExceptionTest$1.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/MappingParserExtensionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/MappingExtendedParserTest$MappingExtendedParserTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/before/MMecParserRefSubjectMapExtensionTest$MMecParserRefSubjectMapExtensionTestImpl.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/before/MMecParserRefSubjectMapExtensionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/before/MMecParserTemplatesExtensionTest$MMecParserTemplatesExtensionTestImpl.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/parser/extension/before/MMecParserTemplatesExtensionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/transformer/impl/MMecTermTypeMappingCasterTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/MMecMappingExtensionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/pp/ProvUnionTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/pp/MMecPpMappingAssertionProvenanceTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/spec/mapping/pp/MMecTriplesMapTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/iq/optimizer/MMecQueryOptimizerTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/iq/transform/DataPropertyProjectionTransformerTest$DataPropertyProjectionTransformerTester.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/iq/transform/DataPropertyProjectionTransformerTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/controller/ontop/iq/transform/IndividuationFunctionQueryTransformerTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/view/st/StMappedOntoRelTableViewTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/properties/builder/ConnectionPropertiesBuilderTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/properties/builder/FacadePropertiesBuilderTest.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/properties/builder/ConnectionPropertiesBuilderTest$1.class</li>
+         <li>/builds/prototypes/mad/relrel/mMEC/build/classes/java/test/ca/griis/mmec/test/unit/properties/builder/MappingPropertiesBuilderTest.class</li>
+      </ul>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Metrics</h2>
+      <p>6291 lines of code analyzed,
+	in 62 classes, 
+	in 26 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right"/>
+            <td align="right">0.00</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right">10</td>
+            <td align="right">1.59</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>10</b>
+            </td>
+            <td align="right">
+               <b>1.59</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Contents</h2>
+      <ul>
+         <li>
+            <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+         </li>
+         <li>
+            <a href="#Details">Details</a>
+         </li>
+      </ul>
+      <h1>Summary</h1>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+            </td>
+            <td align="right">10</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>10</b>
+            </td>
+         </tr>
+      </table>
+      <h1>Warnings</h1>
+      <p>Click on a warning row to see full context information.</p>
+      <h2>
+         <a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e269');">
+            <td>
+               <span class="priority-2">CT</span>
+            </td>
+            <td>Exception thrown in class ca.griis.mmec.test.integration.util.OntopTester at new ca.griis.mmec.test.integration.util.OntopTester(PostgresContainerWrapper, String, File, File) will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e269" style="display: none;">
+                  <a href="#CT_CONSTRUCTOR_THROW">Bug type CT_CONSTRUCTOR_THROW (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.integration.util.OntopTester<br/>In method new ca.griis.mmec.test.integration.util.OntopTester(PostgresContainerWrapper, String, File, File)<br/>At OntopTester.java:[line 83]<br/>At OntopTester.java:[line 83]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e283');">
+            <td>
+               <span class="priority-2">CT</span>
+            </td>
+            <td>Exception thrown in class ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper at new ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper() will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e283" style="display: none;">
+                  <a href="#CT_CONSTRUCTOR_THROW">Bug type CT_CONSTRUCTOR_THROW (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper<br/>In method new ca.griis.mmec.test.integration.util.dbtype.PostgresContainerWrapper()<br/>At PostgresContainerWrapper.java:[line 92]<br/>At PostgresContainerWrapper.java:[line 92]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e252');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.integration.PreliminaryTests.loadContainer()</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e252" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.integration.PreliminaryTests<br/>In method ca.griis.mmec.test.integration.PreliminaryTests.loadContainer()<br/>Called method String.format(String, Object[])<br/>Format string "Info du container:\n%s"<br/>At PreliminaryTests.java:[line 97]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e297');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testUsesUsingWhenJoinWithSameColumnName()</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e297" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest<br/>In method ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testUsesUsingWhenJoinWithSameColumnName()<br/>Called method String.format(String, Object[])<br/>Format string "SELECT *\nFROM (SELECT * FROM %s) AS child\nJOIN (SELECT * FROM %s) AS parent\n  USING (%s)"<br/>At MMecParserRefSubjectMapExtensionTest.java:[line 1271]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e314');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testUsesUsingWhenJoinWithSameColumnNameMultiple()</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e314" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest<br/>In method ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testUsesUsingWhenJoinWithSameColumnNameMultiple()<br/>Called method String.format(String, Object[])<br/>Format string "SELECT *\nFROM (SELECT * FROM %s) AS child\nJOIN (SELECT * FROM %s) AS parent\n  USING (%s, %s, %s)"<br/>At MMecParserRefSubjectMapExtensionTest.java:[line 1365]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e331');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithMultipleJoinConditions()</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e331" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest<br/>In method ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithMultipleJoinConditions()<br/>Called method String.format(String, Object[])<br/>Format string "SELECT *\nFROM (SELECT * FROM %s) AS child\nJOIN (SELECT * FROM %s) AS parent\n  ON child.%s = parent.%s\n    AND child.%s = parent.%s\n    AND child.%s = parent.%s"<br/>At MMecParserRefSubjectMapExtensionTest.java:[line 798]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e348');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentQueryAndChildQuery()</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e348" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest<br/>In method ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentQueryAndChildQuery()<br/>Called method String.format(String, Object[])<br/>Format string "SELECT *\nFROM (%s) AS child\nJOIN (%s) AS parent\n  ON child.%s = parent.%s"<br/>At MMecParserRefSubjectMapExtensionTest.java:[line 606]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e365');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentQueryAndChildTable()</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e365" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest<br/>In method ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentQueryAndChildTable()<br/>Called method String.format(String, Object[])<br/>Format string "SELECT *\nFROM (SELECT * FROM %s) AS child\nJOIN (%s) AS parent\n  ON child.%s = parent.%s"<br/>At MMecParserRefSubjectMapExtensionTest.java:[line 700]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e382');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentTableAndChildQuery()</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e382" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest<br/>In method ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentTableAndChildQuery()<br/>Called method String.format(String, Object[])<br/>Format string "SELECT *\nFROM (%s) AS child\nJOIN (SELECT * FROM %s) AS parent\n  ON child.%s = parent.%s"<br/>At MMecParserRefSubjectMapExtensionTest.java:[line 417]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e399');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentTableAndChildTable()</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e399" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest<br/>In method ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.testWithParentTableAndChildTable()<br/>Called method String.format(String, Object[])<br/>Format string "SELECT *\nFROM (SELECT * FROM %s) AS child\nJOIN (SELECT * FROM %s) AS parent\n  ON child.%s = parent.%s"<br/>At MMecParserRefSubjectMapExtensionTest.java:[line 512]</p>
+            </td>
+         </tr>
+      </table>
+      <h1>
+         <a name="Details">Details</a>
+      </h1>
+      <h2>
+         <a name="CT_CONSTRUCTOR_THROW">CT_CONSTRUCTOR_THROW: Be wary of letting constructors throw exceptions.</a>
+      </h2>
+      
+            <p>Classes that throw exceptions in their constructors are vulnerable to Finalizer attacks</p>
+
+            <p>A finalizer attack can be prevented, by declaring the class final, using an empty finalizer declared as final, or by a clever use of a private constructor.</p>
+
+            <p>See <a href="https://wiki.sei.cmu.edu/confluence/display/java/OBJ11-J.+Be+wary+of+letting+constructors+throw+exceptions"><code>SEI CERT Rule OBJ-11</code></a>
+            for more information.
+            </p>
+            
+    <h2>
+         <a name="VA_FORMAT_STRING_USES_NEWLINE">VA_FORMAT_STRING_USES_NEWLINE: Format string should use %n rather than \n</a>
+      </h2>
+
+<p>
+This format string includes a newline character (\n). In format strings, it is generally
+ preferable to use %n, which will produce the platform-specific line separator.
+</p>
+
+     </body>
+</html>

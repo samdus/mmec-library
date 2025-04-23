@@ -1,8 +1,8 @@
 /**
  * @file
- * @copyright @@GRIIS_COPYRIGHT@@
- * @licence @@GRIIS_LICENCE@@
- * @version @@GRIIS_VERSION@@
+ * @copyright Samuel Dussault ; GRIIS / Université de Sherbrooke
+ * @licence https://www.forge.gouv.qc.ca/licence/liliq-r/
+ * @version 1.2.0
  * @brief @~french Implémentation du constructeur pour la configuration d'une façade d'arrimage.
  * @brief @~english Implementation of the constructor for the mapping facade configuration.
  */

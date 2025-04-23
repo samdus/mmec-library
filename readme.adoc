@@ -1,27 +1,129 @@
 // Settings
 :idprefix:
 :idseparator: -
-:component-name: mMEC
+:component-name: mMec-library
 //la valeur de component-name représente la valeur de l'attribut title assigné dans le fichier
 //antora.yml
 = {component-name}
 
-[#summary]
+[#sommaire]
 == Sommaire
-Modèle permettant de définir une mise en correspondance.
+L’intégration de sources de données pose des défis majeurs en raison des multiples formes d’hétérogénéité qui les caractérisent. Pour y répondre, la médiation constitue une approche pertinente, notamment dans le contexte des Systèmes de Santé Apprenants, où la centralisation est souvent impraticable. Cette thèse propose un procédé systématique d’intégration de sources hétérogènes à une plateforme de médiation dont le modèle est construit à partir d'ontologies.
 
+La contribution principale est la définition d’un procédé d’arrimage structuré autour d’une étape clé : l’individuation des particuliers. L’analyse des méthodes existantes a révélé des défis non résolus, notamment la préservation de la sémantique et la répétabilité, auxquels le procédé proposé entend répondre. Celui-ci est défini à l’aide de la méthode formelle Event-B, qui assure sa rigueur et sa vérifiabilité. Une extension de R2RML, nommée mMEC, a été développée pour formaliser les correspondances entre les structures des sources et le modèle commun dérivé d’une ontologie. Un outil (mmec-cli) a également été conçu pour automatiser l’opérationnalisation de l’arrimage, indépendamment du système de gestion de bases de données utilisé. L’approche a été validée avec plusieurs bases de données médicales, démontrant sa capacité à préserver l’intégrité sémantique et à faciliter l’exploitation des données dans des contextes de recherche rétrospective et de pratique réflexive.
+
+Bien que motivée par les besoins du secteur de la santé, la méthode développée propose un cadre générique pour l’intégration sémantique de sources de données hétérogènes, ouvrant la voie à des applications dans d’autres domaines où l’exploitation harmonisée de données distribuées est essentielle.
+
+:toc:
+
+[#dependances]
+== Dépendances
+Le projet est développé avec Java 17. Le tableau suivant présente les dépendances du projet.
+
+[cols="1,1,1,1", options="header"]
+|===
+| Nom | Version | Licence | Lien
+| Ontop | 5.3.0 | Apache 2.0 | https://ontop-vkg.org/
+| Pilote PostgreSQL | 42.7.4 | BSD 2-Clause | https://jdbc.postgresql.org/
+| JOOQ | 3.19.11 | Apache 2.0 | https://github.com/jOOQ/jOOQ/tree/main
+| String Template | 4.3.4 | BSD 3-Clause | https://www.stringtemplate.org/
+| RDF4J | 4.3.10 | BSD 3-Clause | https://rdf4j.org/
+| GRIIS Logger Library | 1.0.3 | Source ouverte - À venir | À venir
+| Client JOOQ pour OntoRelCat | 1.0.0 | Source ouverte - À venir  | À venir
+|===
+
+[#construction]
 == Construction
-=== Dépendance à Ontop
-Le projet a été construit avec la version 5.2.0 de Ontop, mais celle-ci n'était pas encore finalisée au moment du
-développement. La dépendance a été ajoutée au nexus du griis, mais il est possible qu'elle ne soit plus disponible au
-moment de la construction. Si ce n'est pas le cas, simplement exécuter `./mvnw install` à la racine
-https://github.com/samdus/ontop/tree/version5[du fork du projet ontop]. Pour que le projet puisse être construit par le
-CI du GRIIS, il est nécessaire de déployer le projet sur le nexus du GRIIS. Pour ce faire, modifier `snapshotRepository`
-dans le fichier `pom.xml` pour qu'il pointe vers le nexus du GRIIS. Ensuite, exécuter les commandes :
-- `./mvnw clean package -DskipTests`
-- `./mvnw deploy`
+Le projet est construit avec Gradle.
 
-Certaines classes Ontop ont dû être adaptées directement. Ces classes ont été copiées depuis le projet Ontop et modifiées
-pour répondre aux besoins du projet mMEC. Ces classes sont situées sous `src/main/java/it/unibz/inf/ontop`. Il sera
-nécessaire de vérifier manuellement si ces fichiers doivent être mis à jour lors de la mise à jour de la dépendance à
-Ontop.
+[source, gradle]
+----
+./gradlew construction
+----
+
+[#utilisation]
+== Utilisation
+
+Pour inclure {component-name} dans un autre projet, il faut ajouter la dépendance dans le fichier build.gradle de ce projet, puis rafraichir le projet Gradle.
+
+La *{page-component-title}* peut être déclarée en utilisant `ca.griis:mMec-library:1.2.0`.
+
+[source, gradle]
+----
+dependencies {
+  implementation "ca.griis:mMec-library:1.2.0"
+}
+----
+
+Pour développer directement sur la {component-name}, il faut importer le
+projet Gradle dans un environnement de développement intégré Java tel qu'Eclipse ou IntelliJ IDEA.
+Pour plus de renseignements, consulter la section «{nbsp}<<Construction>>{nbsp}».
+
+[#resultats-analyse-code]
+== Résultat des analyses du code source
+Plusieurs analyses du code source ont été réalisées pour évaluer la qualité du code, la couverture des tests et la détection de bugs. Les résultats sont présentés dans le tableau ci-dessous.
+
+[cols="1,1,1,1", options="header"]
+|===
+| Outil | Type | Résultat | Liens
+
+| link:https://pitest.org/[PIT (Pitest)]
+| Couverture de code (avec mutation)
+| Lignes: 100% +
+Mutations: 100% +
+Force: 100%
+| link:reports/pitest/index.html[Rapport PiTest]
+
+| link:https://www.eclemma.org/jacoco/[JaCoCo]
+| Couverture de code
+| Instructions: 93% +
+Branches: 80% +
+| link:reports/jacoco/test/html/index.html[Rapport Jacoco]
+
+| link:https://spotbugs.github.io/[SpotBugs]
+| Analyse statique (Détection de bugs)
+| Aucun bug détecté
+| link:reports/spotbugs/main.html[Rapport Spotbugs]
+
+| link:https://pmd.github.io/[PMD]
+| Analyse statique (Qualité du code)
+| Aucun bug détecté
+| link:reports/pmd/main.html[Rapport PMD]
+
+| link:https://checkstyle.sourceforge.io/[Checkstyle]
+| Analyse statique (Style de code)
+| Aucune erreur de style détectée
+| link:reports/checkstyle/main.html[Rapport Checkstyle]
+
+|===
+
+[#dependance-ontop]
+== Dépendance à Ontop
+Le projet a été construit avec la version 5.3.0 de Ontop.
+
+Cependant, certaines classes d'Ontop ont dû être adaptées directement. Ces classes ont été copiées depuis le projet Ontop et modifiées pour répondre aux besoins du projet mMEC. Ces classes sont situées sous `src/main/java/it/unibz/inf/ontop`. Il sera nécessaire de vérifier manuellement si ces fichiers doivent être mis à jour lors de la mise à jour de la dépendance à Ontop.
+
+[#licence]
+== Copyright et licences
+
+=== Copyright
+
+Copyright 2018-{localyear}, https://www.linkedin.com/in/samueldussault/[Samuel Dussault]
+
+Copyright 2018-{localyear}, https://www.usherbrooke.ca/informatique/nous-joindre/personnel/corps-professoral/professeurs/luc-lavoie[Luc Lavoie]
+
+Copyright 2018-{localyear}, https://www.usherbrooke.ca/recherche/fr/specialistes/details/jean-francois.ethier[Jean-François Ethier]
+
+Copyright 2018-{localyear}, https://www.usherbrooke.ca/informatique/nous-joindre/personnel/corps-professoral/professeurs/christina-khnaisser[Christina Khnaisser]
+
+Copyright 2018-{localyear}, https://griis.ca/[GRIIS]
+
+GRIIS (Groupe de recherche interdisciplinaire en informatique de la santé) +
+Faculté des sciences et Faculté de médecine et sciences de la santé +
+Université de Sherbrooke (Québec) J1K 2R1 +
+
+CANADA
+
+=== Licences
+Le code de ce projet est sous licence link:LiLiQ-R11.txt[LILIQ-R]. Click here for the
+link:LILIQ-R11EN.txt[English version].

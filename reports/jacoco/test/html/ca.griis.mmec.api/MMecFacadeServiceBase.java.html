@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecFacadeServiceBase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.api</a> &gt; <span class="el_source">MMecFacadeServiceBase.java</span></div><h1>MMecFacadeServiceBase.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe MMecFacadeServiceBase.
+ * @brief @~english MMecFacadeServiceBase class implementation.
+ */
+
+package ca.griis.mmec.api;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.OntoRelTableMappingController;
+import ca.griis.mmec.model.mapped.MappedClassTable;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
+import ca.griis.mmec.model.ontorel.ClassTable;
+import ca.griis.mmec.model.ontorel.DataPropertyTable;
+import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
+import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.repository.OntoRelCatRepository;
+import ca.griis.mmec.repository.ProjectInfoRepository;
+import ca.griis.mmec.view.MappedOntoRelTableView;
+import it.unibz.inf.ontop.answering.OntopQueryEngine;
+import it.unibz.inf.ontop.answering.connection.OntopConnection;
+import it.unibz.inf.ontop.exception.OBDASpecificationException;
+import it.unibz.inf.ontop.exception.OntopConnectionException;
+import it.unibz.inf.ontop.exception.OntopReformulationException;
+import it.unibz.inf.ontop.injection.impl.MMecConfiguration;
+import java.io.IOException;
+
+<span class="fc" id="L38">public class MMecFacadeServiceBase implements MMecFacadeService {</span>
+<span class="fc" id="L39">  private static final GriisLogger logger = GriisLoggerFactory.getLogger(</span>
+      MMecFacadeServiceBase.class);
+
+  @Override
+  public String createFacade(MMecConfiguration configuration)
+      throws OntopConnectionException, OBDASpecificationException, OntopReformulationException {
+<span class="fc" id="L45">    logger.trace(Trace.ENTER_METHOD_1, configuration);</span>
+
+<span class="fc" id="L47">    MappedOntoRelTableView mappedOntoRelTableView = configuration.getInjector().getInstance(</span>
+        MappedOntoRelTableView.class);
+<span class="fc" id="L49">    OntoRelTableMappingController ontoRelTableMappingController =</span>
+<span class="fc" id="L50">        configuration.getInjector().getInstance(</span>
+            OntoRelTableMappingController.class);
+<span class="fc" id="L52">    OntoRelCatRepository ontoRelCatRepository = configuration.getInjector().getInstance(</span>
+        OntoRelCatRepository.class);
+<span class="fc" id="L54">    ProjectInfoRepository projectInfoRepository = configuration.getInjector().getInstance(</span>
+        ProjectInfoRepository.class);
+
+<span class="fc" id="L57">    logMMecVersion(projectInfoRepository);</span>
+
+<span class="fc" id="L59">    try (OntopQueryEngine ontopQueryEngine = configuration.loadQueryEngine()) {</span>
+<span class="fc" id="L60">      try (OntopConnection connection = ontopQueryEngine.getConnection()) {</span>
+<span class="fc" id="L61">        return getAllDefinitions(configuration.getMappingProperties(), ontoRelCatRepository,</span>
+            ontoRelTableMappingController, connection, mappedOntoRelTableView);
+      }
+    }
+  }
+
+  private static void logMMecVersion(ProjectInfoRepository projectInfoRepository) {
+    try {
+<span class="fc" id="L69">      projectInfoRepository.loadInfoRepository();</span>
+<span class="fc" id="L70">    } catch (IOException e) {</span>
+<span class="fc" id="L71">      logger.error(&quot;Error loading project info repository&quot;, e);</span>
+<span class="fc" id="L72">    }</span>
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    if (projectInfoRepository.getVersion().isPresent()) {</span>
+<span class="fc" id="L75">      logger.info(&quot;Creating facade using mMec version {}&quot;,</span>
+<span class="fc" id="L76">          projectInfoRepository.getVersion().get());</span>
+    } else {
+<span class="fc" id="L78">      logger.info(&quot;Creating facade with an unknown version of mMec&quot;);</span>
+    }
+<span class="fc" id="L80">  }</span>
+
+  private static String getAllDefinitions(MappingProperties mappingProperties,
+      OntoRelCatRepository ontoRelCatRepository,
+      OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
+      MappedOntoRelTableView mappedOntoRelTableView)
+      throws OntopReformulationException, OntopConnectionException {
+<span class="fc" id="L87">    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,</span>
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
+<span class="fc" id="L89">    StringBuilder builder = new StringBuilder();</span>
+
+<span class="fc" id="L91">    getClassesDefinition(mappingProperties, ontoRelCatRepository, ontoRelTableMappingController,</span>
+        connection, mappedOntoRelTableView, builder);
+
+<span class="fc" id="L94">    getObjectPropertiesDefinition(mappingProperties, ontoRelCatRepository,</span>
+        ontoRelTableMappingController, connection,
+        mappedOntoRelTableView, builder);
+
+<span class="fc" id="L98">    getDataPropertiesDefinition(mappingProperties, ontoRelCatRepository,</span>
+        ontoRelTableMappingController, connection,
+        mappedOntoRelTableView, builder);
+
+<span class="fc" id="L102">    return builder.toString();</span>
+  }
+
+  private static void getClassesDefinition(MappingProperties mappingProperties,
+      OntoRelCatRepository ontoRelCatRepository,
+      OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
+      MappedOntoRelTableView mappedOntoRelTableView, StringBuilder builder)
+      throws OntopReformulationException, OntopConnectionException {
+<span class="fc" id="L110">    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,</span>
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
+
+<span class="fc" id="L113">    builder.append(&quot;-- ========================================================\n&quot;);</span>
+<span class="fc" id="L114">    builder.append(&quot;-- Classes\n&quot;);</span>
+<span class="fc" id="L115">    builder.append(&quot;-- ========================================================\n&quot;);</span>
+
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    for (ClassTable classTable : ontoRelCatRepository.getClassTables(</span>
+<span class="fc" id="L118">        mappingProperties.getOntoRelId())) {</span>
+<span class="fc" id="L119">      MappedClassTable mappedClassTable = ontoRelTableMappingController.map(connection, classTable);</span>
+<span class="fc" id="L120">      builder.append(mappedOntoRelTableView.getExpression(mappedClassTable));</span>
+<span class="fc" id="L121">      builder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L122">    }</span>
+<span class="fc" id="L123">  }</span>
+
+  private static void getObjectPropertiesDefinition(MappingProperties mappingProperties,
+      OntoRelCatRepository ontoRelCatRepository,
+      OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
+      MappedOntoRelTableView mappedOntoRelTableView, StringBuilder builder)
+      throws OntopReformulationException, OntopConnectionException {
+<span class="fc" id="L130">    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,</span>
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
+<span class="fc" id="L132">    builder.append(&quot;-- ========================================================\n&quot;);</span>
+<span class="fc" id="L133">    builder.append(&quot;-- ObjectProperties\n&quot;);</span>
+<span class="fc" id="L134">    builder.append(&quot;-- ========================================================\n&quot;);</span>
+
+<span class="fc bfc" id="L136" title="All 2 branches covered.">    for (ObjectPropertyTable objectPropertyTable : ontoRelCatRepository.getObjectPropertyTables(</span>
+<span class="fc" id="L137">        mappingProperties.getOntoRelId())) {</span>
+<span class="fc" id="L138">      MappedObjectPropertyTable mappedObjectPropertyTable =</span>
+<span class="fc" id="L139">          ontoRelTableMappingController.map(connection, objectPropertyTable);</span>
+<span class="fc" id="L140">      builder.append(mappedOntoRelTableView.getExpression(mappedObjectPropertyTable));</span>
+<span class="fc" id="L141">      builder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L142">    }</span>
+
+<span class="fc" id="L144">    logger.trace(Trace.EXIT_METHOD_0);</span>
+<span class="fc" id="L145">  }</span>
+
+  private static void getDataPropertiesDefinition(MappingProperties mappingProperties,
+      OntoRelCatRepository ontoRelCatRepository,
+      OntoRelTableMappingController ontoRelTableMappingController, OntopConnection connection,
+      MappedOntoRelTableView mappedOntoRelTableView, StringBuilder builder)
+      throws OntopReformulationException, OntopConnectionException {
+<span class="fc" id="L152">    logger.trace(Trace.ENTER_METHOD_5, mappingProperties, ontoRelCatRepository,</span>
+        ontoRelTableMappingController, connection, mappedOntoRelTableView);
+
+<span class="fc" id="L155">    builder.append(&quot;-- ========================================================\n&quot;);</span>
+<span class="fc" id="L156">    builder.append(&quot;-- DataProperties\n&quot;);</span>
+<span class="fc" id="L157">    builder.append(&quot;-- ========================================================\n&quot;);</span>
+
+<span class="fc bfc" id="L159" title="All 2 branches covered.">    for (DataPropertyTable dataPropertyTable : ontoRelCatRepository.getDataPropertyTables(</span>
+<span class="fc" id="L160">        mappingProperties.getOntoRelId())) {</span>
+<span class="fc" id="L161">      MappedDataPropertyTable mappedDataPropertyTable =</span>
+<span class="fc" id="L162">          ontoRelTableMappingController.map(connection, dataPropertyTable);</span>
+<span class="fc" id="L163">      builder.append(mappedOntoRelTableView.getExpression(mappedDataPropertyTable));</span>
+<span class="fc" id="L164">      builder.append(&quot;\n&quot;);</span>
+<span class="fc" id="L165">    }</span>
+
+<span class="fc" id="L167">    logger.trace(Trace.EXIT_METHOD_0);</span>
+<span class="fc" id="L168">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

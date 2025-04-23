@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecTermFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.model.term</a> &gt; <span class="el_source">MMecTermFactory.java</span></div><h1>MMecTermFactory.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ * @copyright @@GRIIS_COPYRIGHT@@
+ * @licence @@GRIIS_LICENCE@@
+ * @version @@GRIIS_VERSION@@
+ * @brief @~french Implémentation de la classe MMecTermFactoryImpl.
+ * @brief @~english MMecTermFactoryImpl class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.model.term;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.model.term.functionsymbol.db.MMecSqlDbFunctionSymbolFactory;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
+import com.google.common.collect.ImmutableList;
+import com.google.inject.Inject;
+import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.NonGroundFunctionalTerm;
+import it.unibz.inf.ontop.model.term.PartialTermFactory;
+import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
+import it.unibz.inf.ontop.model.term.impl.TermFactoryImpl;
+import it.unibz.inf.ontop.model.type.DBTermType;
+import it.unibz.inf.ontop.model.type.TermType;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Factory pour les termes de mMec
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-08-27 [SD] - Séparer le defaultTermFactory dans un PartialTermFactory&lt;br&gt;
+ *      2024-03-06 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class MMecTermFactory extends PartialTermFactory {
+<span class="fc" id="L56">  private static final GriisLogger logger =</span>
+<span class="fc" id="L57">      GriisLoggerFactory.getLogger(MMecTermFactory.class);</span>
+
+  @Inject
+  public MMecTermFactory(TermFactoryImpl defaultTermFactory) {
+<span class="fc" id="L61">    super(defaultTermFactory);</span>
+<span class="fc" id="L62">  }</span>
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param argTypes «Parameter description»
+   * @param terms «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Crée un terme fonctionnel pour la signature de la fonction d'individuation.
+   * @param argTypes Types des arguments de la fonction
+   * @param terms Arguments de la fonction
+   * @return Terme fonctionnel pour la signature de la fonction d'individuation
+   */
+  public NonGroundFunctionalTerm getMMecSignatureFunction(
+      ImmutableList&lt;TermType&gt; argTypes,
+      ImmutableList&lt;? extends ImmutableTerm&gt; terms) {
+<span class="fc" id="L78">    return defaultTermFactory.getNonGroundFunctionalTerm(</span>
+<span class="fc" id="L79">        getMMecDbFunctionSymbolFactory().createMMecIndividuationFunctionSymbol(argTypes),</span>
+<span class="fc" id="L80">        terms.toArray(new ImmutableTerm[0]));</span>
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param inputType «Parameter description»
+   * @param targetType «Parameter description»
+   * @param term «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Crée un terme fonctionnel pour la conversion simple de type.
+   * @param inputType Type de la variable à convertir
+   * @param targetType Type de destination
+   * @param term Variable à convertir
+   * @return Terme fonctionnel pour la conversion simple de type
+   */
+  public NonGroundFunctionalTerm getMMecSimpleCastFunctionalTerm(DBTermType inputType,
+      DBTermType targetType, ImmutableTerm term) {
+<span class="fc" id="L98">    logger.trace(Trace.ENTER_METHOD_3, inputType, targetType, term);</span>
+<span class="fc" id="L99">    return defaultTermFactory.getNonGroundFunctionalTerm(</span>
+<span class="fc" id="L100">        getMMecDbFunctionSymbolFactory().createMMecSimpleConversionFunctionSymbol(inputType,</span>
+            targetType),
+        term);
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param variable «Parameter description»
+   * @param conversion «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Crée un terme fonctionnel pour la fonction de conversion de type.
+   * @param variable Variable à convertir
+   * @param conversion Conversion de type
+   * @return Terme fonctionnel pour la fonction de conversion de type
+   */
+  public NonGroundFunctionalTerm getMMecConversionFunction(ImmutableTerm variable,
+      MMecMappingConversion conversion) {
+<span class="fc" id="L118">    logger.trace(Trace.ENTER_METHOD_2, variable, conversion);</span>
+<span class="fc" id="L119">    return defaultTermFactory.getNonGroundFunctionalTerm(</span>
+<span class="fc" id="L120">        conversion.getConversionFunction().orElseThrow(),</span>
+        variable);
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param variable «Parameter description»
+   * @param conversion «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Crée un terme fonctionnel pour la fonction de validation de conversion de type.
+   * @param variable Variable à convertir
+   * @param conversion La conversion de type à effectuer
+   * @return Terme fonctionnel pour la fonction de validation de conversion de type
+   */
+  public NonGroundFunctionalTerm getMMecConversionValidationFunction(ImmutableTerm variable,
+      MMecMappingConversion conversion) {
+<span class="fc" id="L137">    logger.trace(Trace.ENTER_METHOD_2, variable, conversion);</span>
+<span class="fc" id="L138">    return defaultTermFactory.getNonGroundFunctionalTerm(</span>
+<span class="fc" id="L139">        conversion.getValidationFunction().orElseThrow(),</span>
+        variable);
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param variable «Parameter description»
+   * @param variableType «Parameter description»
+   * @param rdfTermTypeConstant «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Crée un terme fonctionnel pour la fonction englobant une valeur
+   * @param variable Variable à englober
+   * @param variableType Type de la variable
+   * @param rdfTermTypeConstant Type RDF de la variable
+   * @return Terme fonctionnel pour la fonction englobant une valeur
+   */
+  public NonGroundFunctionalTerm getMMecValueFunction(ImmutableTerm variable,
+      DBTermType variableType, RDFTermTypeConstant rdfTermTypeConstant) {
+<span class="fc" id="L158">    logger.trace(Trace.ENTER_METHOD_3, variable, variableType, rdfTermTypeConstant);</span>
+<span class="fc" id="L159">    return defaultTermFactory.getNonGroundFunctionalTerm(</span>
+<span class="fc" id="L160">        getMMecDbFunctionSymbolFactory().createMMecValueFunctionSymbol(variableType,</span>
+            rdfTermTypeConstant),
+        variable, rdfTermTypeConstant);
+  }
+
+  private MMecSqlDbFunctionSymbolFactory getMMecDbFunctionSymbolFactory() {
+<span class="fc" id="L166">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L167">    return (MMecSqlDbFunctionSymbolFactory) defaultTermFactory.getDBFunctionSymbolFactory();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

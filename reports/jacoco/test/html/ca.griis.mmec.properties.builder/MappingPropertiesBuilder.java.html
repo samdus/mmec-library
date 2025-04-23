@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MappingPropertiesBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.properties.builder</a> &gt; <span class="el_source">MappingPropertiesBuilder.java</span></div><h1>MappingPropertiesBuilder.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe MappingConfigurationBuilder
+ * @brief @~english MappingConfigurationBuilder implementation
+ */
+
+package ca.griis.mmec.properties.builder;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
+import ca.griis.mmec.properties.impl.MappingPropertiesImpl;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Constructeur d'objet contenant les configurations de l'arrimage en tant que tel.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2023-09-01 [SD] - Implémentation initiale.
+ *
+ * @par Tâches
+ *      S.O.
+ */
+<span class="fc" id="L50">public class MappingPropertiesBuilder {</span>
+<span class="fc" id="L51">  private static final GriisLogger logger =</span>
+<span class="fc" id="L52">      GriisLoggerFactory.getLogger(MappingPropertiesBuilder.class);</span>
+
+  private String ontoRelId;
+  private String mappingSchema;
+  private String r2rmlMappingFilePath;
+  private String ontologyFilePath;
+
+  /**
+   * @brief @~english «Description of the function»
+   * @return «Return description»
+   *
+   * @brief @~french Construit l'instance de configuration de l'arrimage
+   * @par Details
+   *      S.O.
+   * @return La configuration d'arrimage à partir des paramètres spécifiés.
+   */
+  public MappingProperties build() throws MissingPropertyException {
+<span class="fc" id="L69">    logger.trace(Trace.ENTER_METHOD_0);</span>
+
+<span class="fc bfc" id="L71" title="All 2 branches covered.">    if (ontoRelId == null) {</span>
+<span class="fc" id="L72">      throw new MissingPropertyException(&quot;ontoRelId&quot;, &quot;OntoRel identifier in the OntoRelCat&quot;);</span>
+    }
+
+<span class="fc bfc" id="L75" title="All 2 branches covered.">    if (mappingSchema == null) {</span>
+<span class="fc" id="L76">      throw new MissingPropertyException(&quot;mappingSchema&quot;, &quot;mapping schema&quot;);</span>
+    }
+
+<span class="fc bfc" id="L79" title="All 2 branches covered.">    if (r2rmlMappingFilePath == null) {</span>
+<span class="fc" id="L80">      throw new MissingPropertyException(&quot;r2rmlMappingFilePath&quot;, &quot;R2RML mapping file path&quot;);</span>
+    }
+
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    if (ontologyFilePath == null) {</span>
+<span class="fc" id="L84">      throw new MissingPropertyException(&quot;ontologyFilePath&quot;, &quot;ontology file path&quot;);</span>
+    }
+
+<span class="fc" id="L87">    return new MappingPropertiesImpl(ontoRelId, mappingSchema, r2rmlMappingFilePath,</span>
+        ontologyFilePath);
+  }
+
+  public MappingPropertiesBuilder withOntoRelId(String ontoRelId) {
+<span class="fc" id="L92">    logger.trace(Trace.ENTER_METHOD_1, ontoRelId);</span>
+<span class="fc" id="L93">    this.ontoRelId = ontoRelId;</span>
+<span class="fc" id="L94">    return this;</span>
+  }
+
+  public MappingPropertiesBuilder withMappingSchema(String mappingSchema) {
+<span class="fc" id="L98">    logger.trace(Trace.ENTER_METHOD_1, mappingSchema);</span>
+<span class="fc" id="L99">    this.mappingSchema = mappingSchema;</span>
+<span class="fc" id="L100">    return this;</span>
+  }
+
+  public MappingPropertiesBuilder withR2rmlMappingFilePath(String r2rmlMappingFilePath) {
+<span class="fc" id="L104">    logger.trace(Trace.ENTER_METHOD_1, r2rmlMappingFilePath);</span>
+<span class="fc" id="L105">    this.r2rmlMappingFilePath = r2rmlMappingFilePath;</span>
+<span class="fc" id="L106">    return this;</span>
+  }
+
+  public MappingPropertiesBuilder withOntologyFilePath(String ontologyFilePath) {
+<span class="fc" id="L110">    logger.trace(Trace.ENTER_METHOD_1, ontologyFilePath);</span>
+<span class="fc" id="L111">    this.ontologyFilePath = ontologyFilePath;</span>
+<span class="fc" id="L112">    return this;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

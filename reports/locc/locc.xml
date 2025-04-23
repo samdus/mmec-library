@@ -1,0 +1,290 @@
+<?xml version="1.0" standalone="yes"?>
+<locc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.cthing.com/schemas/locc-1.xsd locc-1.xsd" formatVersion="1" date="2025-03-17T17:11:39Z" projectName="mMec-library" projectVersion="1.2.0-SNAPSHOT" xmlns="http://www.cthing.com/locc">
+    <languages numLanguages="4" totalLines="10341" codeLines="5404" commentLines="3871" blankLines="1066">
+        <language name="Java" displayName="Java" description="Java programming language" website="https://en.wikipedia.org/wiki/Java_(programming_language)" totalLines="10218" codeLines="5314" commentLines="3852" blankLines="1052"/>
+        <language name="JavaProperties" displayName="Java Properties" description="Java properties file" website="https://en.wikipedia.org/wiki/.properties" totalLines="59" codeLines="36" commentLines="19" blankLines="4"/>
+        <language name="Text" displayName="Plain Text" description="Plain text file" totalLines="53" codeLines="44" commentLines="0" blankLines="9"/>
+        <language name="Xml" displayName="XML" description="Extensible Markup Language" website="https://www.w3.org/XML/" totalLines="11" codeLines="10" commentLines="0" blankLines="1"/>
+    </languages>
+    <files numFiles="99" numUnrecognized="9" totalLines="10341" codeLines="5404" commentLines="3871" blankLines="1066">
+        <file pathname="src/main/java/ca/griis/mmec/api/MMecFacadeService.java" numLanguages="1" totalLines="97" codeLines="13" commentLines="81" blankLines="3">
+            <language name="Java" totalLines="97" codeLines="13" commentLines="81" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/api/MMecFacadeServiceBase.java" numLanguages="1" totalLines="169" codeLines="133" commentLines="12" blankLines="24">
+            <language name="Java" totalLines="169" codeLines="133" commentLines="12" blankLines="24"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/api/exception/ConnectionException.java" numLanguages="1" totalLines="48" codeLines="6" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="48" codeLines="6" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/api/exception/DefaultOntopConfigurationNotFoundException.java" numLanguages="1" totalLines="47" codeLines="6" commentLines="39" blankLines="2">
+            <language name="Java" totalLines="47" codeLines="6" commentLines="39" blankLines="2"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/OntoRelTableMappingController.java" numLanguages="1" totalLines="217" codeLines="154" commentLines="40" blankLines="23">
+            <language name="Java" totalLines="217" codeLines="154" commentLines="40" blankLines="23"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/answering/reformulation/MMecToFullNativeQueryReformulator.java" numLanguages="1" totalLines="113" codeLines="64" commentLines="40" blankLines="9">
+            <language name="Java" totalLines="113" codeLines="64" commentLines="40" blankLines="9"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/iq/optimizer/MMecQueryOptimizer.java" numLanguages="1" totalLines="82" codeLines="36" commentLines="39" blankLines="7">
+            <language name="Java" totalLines="82" codeLines="36" commentLines="39" blankLines="7"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/iq/transform/DataPropertyProjectionTransformer.java" numLanguages="1" totalLines="197" codeLines="140" commentLines="43" blankLines="14">
+            <language name="Java" totalLines="197" codeLines="140" commentLines="43" blankLines="14"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/iq/transform/IndividuationFunctionQueryTransformer.java" numLanguages="1" totalLines="133" codeLines="84" commentLines="40" blankLines="9">
+            <language name="Java" totalLines="133" codeLines="84" commentLines="40" blankLines="9"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/MMecTermFactory.java" numLanguages="1" totalLines="169" codeLines="64" commentLines="95" blankLines="10">
+            <language name="Java" totalLines="169" codeLines="64" commentLines="95" blankLines="10"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecConversionFunctionSymbol.java" numLanguages="1" totalLines="139" codeLines="87" commentLines="36" blankLines="16">
+            <language name="Java" totalLines="139" codeLines="87" commentLines="36" blankLines="16"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecConversionValidationFunctionSymbol.java" numLanguages="1" totalLines="133" codeLines="72" commentLines="49" blankLines="12">
+            <language name="Java" totalLines="133" codeLines="72" commentLines="49" blankLines="12"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecIndividuationFunctionSymbol.java" numLanguages="1" totalLines="176" codeLines="112" commentLines="47" blankLines="17">
+            <language name="Java" totalLines="176" codeLines="112" commentLines="47" blankLines="17"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecPostgreSqlDbFunctionSymbolFactory.java" numLanguages="1" totalLines="109" codeLines="63" commentLines="36" blankLines="10">
+            <language name="Java" totalLines="109" codeLines="63" commentLines="36" blankLines="10"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecSimpleConversionFunctionSymbol.java" numLanguages="1" totalLines="137" codeLines="85" commentLines="38" blankLines="14">
+            <language name="Java" totalLines="137" codeLines="85" commentLines="38" blankLines="14"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecSqlDbFunctionSymbolFactory.java" numLanguages="1" totalLines="49" codeLines="20" commentLines="22" blankLines="7">
+            <language name="Java" totalLines="49" codeLines="20" commentLines="22" blankLines="7"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/term/functionsymbol/db/MMecValueFunctionSymbol.java" numLanguages="1" totalLines="144" codeLines="84" commentLines="46" blankLines="14">
+            <language name="Java" totalLines="144" codeLines="84" commentLines="46" blankLines="14"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/type/DbValueTermType.java" numLanguages="1" totalLines="174" codeLines="113" commentLines="37" blankLines="24">
+            <language name="Java" totalLines="174" codeLines="113" commentLines="37" blankLines="24"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/type/MMecIndividuationTermType.java" numLanguages="1" totalLines="139" codeLines="87" commentLines="35" blankLines="17">
+            <language name="Java" totalLines="139" codeLines="87" commentLines="35" blankLines="17"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/model/type/impl/MMecPostgreSqlDbTypeFactory.java" numLanguages="1" totalLines="83" codeLines="38" commentLines="36" blankLines="9">
+            <language name="Java" totalLines="83" codeLines="38" commentLines="36" blankLines="9"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/MMecMappingConversion.java" numLanguages="1" totalLines="81" codeLines="31" commentLines="42" blankLines="8">
+            <language name="Java" totalLines="81" codeLines="31" commentLines="42" blankLines="8"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/MMecMappingExtension.java" numLanguages="1" totalLines="72" codeLines="27" commentLines="39" blankLines="6">
+            <language name="Java" totalLines="72" codeLines="27" commentLines="39" blankLines="6"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedAfterParsing.java" numLanguages="1" totalLines="59" codeLines="14" commentLines="40" blankLines="5">
+            <language name="Java" totalLines="59" codeLines="14" commentLines="40" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedBeforeParsing.java" numLanguages="1" totalLines="65" codeLines="10" commentLines="49" blankLines="6">
+            <language name="Java" totalLines="65" codeLines="10" commentLines="49" blankLines="6"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser.java" numLanguages="1" totalLines="159" codeLines="59" commentLines="91" blankLines="9">
+            <language name="Java" totalLines="159" codeLines="59" commentLines="91" blankLines="9"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingParserExtension.java" numLanguages="1" totalLines="139" codeLines="59" commentLines="68" blankLines="12">
+            <language name="Java" totalLines="139" codeLines="59" commentLines="68" blankLines="12"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/after/MMecParserConversionExtension.java" numLanguages="1" totalLines="137" codeLines="79" commentLines="49" blankLines="9">
+            <language name="Java" totalLines="137" codeLines="79" commentLines="49" blankLines="9"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/after/MMecParserSubsetsExtension.java" numLanguages="1" totalLines="123" codeLines="62" commentLines="54" blankLines="7">
+            <language name="Java" totalLines="123" codeLines="62" commentLines="54" blankLines="7"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/before/MMecParserRefSubjectMapExtension.java" numLanguages="1" totalLines="255" codeLines="135" commentLines="104" blankLines="16">
+            <language name="Java" totalLines="255" codeLines="135" commentLines="104" blankLines="16"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/before/MMecParserTemplatesExtension.java" numLanguages="1" totalLines="330" codeLines="145" commentLines="164" blankLines="21">
+            <language name="Java" totalLines="330" codeLines="145" commentLines="164" blankLines="21"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/ConversionWithoutInputTypeException.java" numLanguages="1" totalLines="50" codeLines="8" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="50" codeLines="8" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/ConversionWithoutOutputTypeException.java" numLanguages="1" totalLines="50" codeLines="8" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="50" codeLines="8" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/IllegalMappingException.java" numLanguages="1" totalLines="76" codeLines="15" commentLines="55" blankLines="6">
+            <language name="Java" totalLines="76" codeLines="15" commentLines="55" blankLines="6"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/InvalidConversionException.java" numLanguages="1" totalLines="57" codeLines="13" commentLines="39" blankLines="5">
+            <language name="Java" totalLines="57" codeLines="13" commentLines="39" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/InvalidRefSubjectMapException.java" numLanguages="1" totalLines="50" codeLines="7" commentLines="40" blankLines="3">
+            <language name="Java" totalLines="50" codeLines="7" commentLines="40" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/JoinConditionWithoutChildColumnException.java" numLanguages="1" totalLines="49" codeLines="7" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="49" codeLines="7" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/JoinConditionWithoutParentColumnException.java" numLanguages="1" totalLines="49" codeLines="7" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="49" codeLines="7" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/LogicalTableWithoutSqlQueryNorTableNameException.java" numLanguages="1" totalLines="49" codeLines="7" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="49" codeLines="7" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/RefSubjectMapWithoutParentTriplesMapException.java" numLanguages="1" totalLines="49" codeLines="7" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="49" codeLines="7" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureComponentMismatchException.java" numLanguages="1" totalLines="60" codeLines="15" commentLines="40" blankLines="5">
+            <language name="Java" totalLines="60" codeLines="15" commentLines="40" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureComponentMissingException.java" numLanguages="1" totalLines="49" codeLines="7" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="49" codeLines="7" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureWithoutLogicalTableException.java" numLanguages="1" totalLines="49" codeLines="7" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="49" codeLines="7" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SignatureWithoutSubjectMapException.java" numLanguages="1" totalLines="48" codeLines="7" commentLines="38" blankLines="3">
+            <language name="Java" totalLines="48" codeLines="7" commentLines="38" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/exception/SubsetHasTemplateException.java" numLanguages="1" totalLines="50" codeLines="7" commentLines="40" blankLines="3">
+            <language name="Java" totalLines="50" codeLines="7" commentLines="40" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/pp/MMecPpMappingAssertionProvenance.java" numLanguages="1" totalLines="73" codeLines="26" commentLines="39" blankLines="8">
+            <language name="Java" totalLines="73" codeLines="26" commentLines="39" blankLines="8"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/pp/MMecTriplesMap.java" numLanguages="1" totalLines="93" codeLines="24" commentLines="61" blankLines="8">
+            <language name="Java" totalLines="93" codeLines="24" commentLines="61" blankLines="8"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/pp/ProvUnion.java" numLanguages="1" totalLines="124" codeLines="70" commentLines="39" blankLines="15">
+            <language name="Java" totalLines="124" codeLines="70" commentLines="39" blankLines="15"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/controller/ontop/spec/mapping/transformer/impl/MMecTermTypeMappingCaster.java" numLanguages="1" totalLines="59" codeLines="15" commentLines="40" blankLines="4">
+            <language name="Java" totalLines="59" codeLines="15" commentLines="40" blankLines="4"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/MMecVocabulary.java" numLanguages="1" totalLines="75" codeLines="27" commentLines="43" blankLines="5">
+            <language name="Java" totalLines="75" codeLines="27" commentLines="43" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/MappedOntoRelTable.java" numLanguages="1" totalLines="49" codeLines="6" commentLines="39" blankLines="4">
+            <language name="Java" totalLines="49" codeLines="6" commentLines="39" blankLines="4"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/OntoRelTable.java" numLanguages="1" totalLines="47" codeLines="5" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="47" codeLines="5" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/mapped/MappedClassTable.java" numLanguages="1" totalLines="48" codeLines="6" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="48" codeLines="6" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/mapped/MappedClassTableRecord.java" numLanguages="1" totalLines="62" codeLines="20" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="62" codeLines="20" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/mapped/MappedDataPropertyTable.java" numLanguages="1" totalLines="50" codeLines="7" commentLines="39" blankLines="4">
+            <language name="Java" totalLines="50" codeLines="7" commentLines="39" blankLines="4"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/mapped/MappedDataPropertyTableRecord.java" numLanguages="1" totalLines="72" codeLines="30" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="72" codeLines="30" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/mapped/MappedObjectPropertyTable.java" numLanguages="1" totalLines="50" codeLines="7" commentLines="39" blankLines="4">
+            <language name="Java" totalLines="50" codeLines="7" commentLines="39" blankLines="4"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/mapped/MappedObjectPropertyTableRecord.java" numLanguages="1" totalLines="72" codeLines="30" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="72" codeLines="30" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/ontorel/ClassTable.java" numLanguages="1" totalLines="51" codeLines="7" commentLines="39" blankLines="5">
+            <language name="Java" totalLines="51" codeLines="7" commentLines="39" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/ontorel/ClassTableRecord.java" numLanguages="1" totalLines="51" codeLines="9" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="51" codeLines="9" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/ontorel/DataPropertyTable.java" numLanguages="1" totalLines="59" codeLines="11" commentLines="39" blankLines="9">
+            <language name="Java" totalLines="59" codeLines="11" commentLines="39" blankLines="9"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/ontorel/DataPropertyTableRecord.java" numLanguages="1" totalLines="55" codeLines="13" commentLines="39" blankLines="3">
+            <language name="Java" totalLines="55" codeLines="13" commentLines="39" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/ontorel/ObjectPropertyTable.java" numLanguages="1" totalLines="59" codeLines="11" commentLines="39" blankLines="9">
+            <language name="Java" totalLines="59" codeLines="11" commentLines="39" blankLines="9"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/model/ontorel/ObjectPropertyTableRecord.java" numLanguages="1" totalLines="54" codeLines="13" commentLines="39" blankLines="2">
+            <language name="Java" totalLines="54" codeLines="13" commentLines="39" blankLines="2"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/ConnectionProperties.java" numLanguages="1" totalLines="156" codeLines="50" commentLines="90" blankLines="16">
+            <language name="Java" totalLines="156" codeLines="50" commentLines="90" blankLines="16"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/FacadeProperties.java" numLanguages="1" totalLines="52" codeLines="5" commentLines="44" blankLines="3">
+            <language name="Java" totalLines="52" codeLines="5" commentLines="44" blankLines="3"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/FacadeType.java" numLanguages="1" totalLines="78" codeLines="18" commentLines="54" blankLines="6">
+            <language name="Java" totalLines="78" codeLines="18" commentLines="54" blankLines="6"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/MappingProperties.java" numLanguages="1" totalLines="51" codeLines="7" commentLines="39" blankLines="5">
+            <language name="Java" totalLines="51" codeLines="7" commentLines="39" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/MissingPropertyException.java" numLanguages="1" totalLines="47" codeLines="6" commentLines="39" blankLines="2">
+            <language name="Java" totalLines="47" codeLines="6" commentLines="39" blankLines="2"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/builder/ConnectionPropertiesBuilder.java" numLanguages="1" totalLines="206" codeLines="100" commentLines="83" blankLines="23">
+            <language name="Java" totalLines="206" codeLines="100" commentLines="83" blankLines="23"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/builder/FacadePropertiesBuilder.java" numLanguages="1" totalLines="114" codeLines="31" commentLines="73" blankLines="10">
+            <language name="Java" totalLines="114" codeLines="31" commentLines="73" blankLines="10"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/builder/MappingPropertiesBuilder.java" numLanguages="1" totalLines="114" codeLines="52" commentLines="48" blankLines="14">
+            <language name="Java" totalLines="114" codeLines="52" commentLines="48" blankLines="14"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/impl/FacadePropertiesImpl.java" numLanguages="1" totalLines="54" codeLines="13" commentLines="35" blankLines="6">
+            <language name="Java" totalLines="54" codeLines="13" commentLines="35" blankLines="6"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/properties/impl/MappingPropertiesImpl.java" numLanguages="1" totalLines="74" codeLines="31" commentLines="35" blankLines="8">
+            <language name="Java" totalLines="74" codeLines="31" commentLines="35" blankLines="8"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/repository/OntoRelCatRepository.java" numLanguages="1" totalLines="18" codeLines="13" commentLines="0" blankLines="5">
+            <language name="Java" totalLines="18" codeLines="13" commentLines="0" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/repository/ProjectInfoRepository.java" numLanguages="1" totalLines="115" codeLines="65" commentLines="39" blankLines="11">
+            <language name="Java" totalLines="115" codeLines="65" commentLines="39" blankLines="11"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/repository/jooq/JooqOntoRelCatRepository.java" numLanguages="1" totalLines="110" codeLines="72" commentLines="27" blankLines="11">
+            <language name="Java" totalLines="110" codeLines="72" commentLines="27" blankLines="11"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/view/MappedOntoRelTableView.java" numLanguages="1" totalLines="53" codeLines="9" commentLines="39" blankLines="5">
+            <language name="Java" totalLines="53" codeLines="9" commentLines="39" blankLines="5"/>
+        </file>
+        <file pathname="src/main/java/ca/griis/mmec/view/st/StMappedOntoRelTableView.java" numLanguages="1" totalLines="145" codeLines="86" commentLines="39" blankLines="20">
+            <language name="Java" totalLines="145" codeLines="86" commentLines="39" blankLines="20"/>
+        </file>
+        <file pathname="src/main/java/it/unibz/inf/ontop/injection/impl/MMecConfiguration.java" numLanguages="1" totalLines="140" codeLines="86" commentLines="35" blankLines="19">
+            <language name="Java" totalLines="140" codeLines="86" commentLines="35" blankLines="19"/>
+        </file>
+        <file pathname="src/main/java/it/unibz/inf/ontop/injection/impl/MMecModule.java" numLanguages="1" totalLines="72" codeLines="29" commentLines="35" blankLines="8">
+            <language name="Java" totalLines="72" codeLines="29" commentLines="35" blankLines="8"/>
+        </file>
+        <file pathname="src/main/java/it/unibz/inf/ontop/model/term/PartialTermFactory.java" numLanguages="1" totalLines="1266" codeLines="1007" commentLines="39" blankLines="220">
+            <language name="Java" totalLines="1266" codeLines="1007" commentLines="39" blankLines="220"/>
+        </file>
+        <file pathname="src/main/java/it/unibz/inf/ontop/spec/mapping/parser/impl/MMecR2rmlMappingParserImpl.java" numLanguages="1" totalLines="146" codeLines="112" commentLines="18" blankLines="16">
+            <language name="Java" totalLines="146" codeLines="112" commentLines="18" blankLines="16"/>
+        </file>
+        <file pathname="src/main/java/it/unibz/inf/ontop/spec/mapping/pp/impl/MMecSqlPpMappingConverterImpl.java" numLanguages="1" totalLines="209" codeLines="159" commentLines="22" blankLines="28">
+            <language name="Java" totalLines="209" codeLines="159" commentLines="22" blankLines="28"/>
+        </file>
+        <file pathname="src/main/java/it/unibz/inf/ontop/spec/mapping/transformer/impl/MMecMappingAssertionUnion.java" numLanguages="1" totalLines="670" codeLines="508" commentLines="77" blankLines="85">
+            <language name="Java" totalLines="670" codeLines="508" commentLines="77" blankLines="85"/>
+        </file>
+        <file pathname="src/main/java/it/unibz/inf/ontop/spec/mapping/transformer/impl/MMecTMappingSaturatorImpl.java" numLanguages="1" totalLines="415" codeLines="314" commentLines="60" blankLines="41">
+            <language name="Java" totalLines="415" codeLines="314" commentLines="60" blankLines="41"/>
+        </file>
+        <file pathname="src/main/resources/META-INF/artifact.txt" numLanguages="1" totalLines="21" codeLines="21" commentLines="0" blankLines="0">
+            <language name="Text" totalLines="21" codeLines="21" commentLines="0" blankLines="0"/>
+        </file>
+        <file pathname="src/main/resources/META-INF/machine.txt" numLanguages="1" totalLines="27" codeLines="18" commentLines="0" blankLines="9">
+            <language name="Text" totalLines="27" codeLines="18" commentLines="0" blankLines="9"/>
+        </file>
+        <file pathname="src/main/resources/META-INF/project.txt" numLanguages="1" totalLines="5" codeLines="5" commentLines="0" blankLines="0">
+            <language name="Text" totalLines="5" codeLines="5" commentLines="0" blankLines="0"/>
+        </file>
+        <file pathname="src/main/resources/cert/mMec-library-dev.crt" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/resources/cert/mMec-library-dev.csr" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/resources/cert/mMec-library-dev.key" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/resources/cert/mMec-library-dev.p12" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/resources/cert/mMec-library-dev.pub" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/resources/defaultConfiguration.properties" numLanguages="1" totalLines="59" codeLines="36" commentLines="19" blankLines="4">
+            <language name="JavaProperties" totalLines="59" codeLines="36" commentLines="19" blankLines="4"/>
+        </file>
+        <file pathname="src/main/resources/logback.xml" numLanguages="1" totalLines="11" codeLines="10" commentLines="0" blankLines="1">
+            <language name="Xml" totalLines="11" codeLines="10" commentLines="0" blankLines="1"/>
+        </file>
+        <file pathname="src/main/resources/mmec.ttl" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/resources/templates/postgres/insert.stg" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/resources/templates/postgres/views.stg" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+        <file pathname="src/main/sql/.gitkeep" unrecognized="true" numLanguages="0" totalLines="0" codeLines="0" commentLines="0" blankLines="0"/>
+    </files>
+</locc>

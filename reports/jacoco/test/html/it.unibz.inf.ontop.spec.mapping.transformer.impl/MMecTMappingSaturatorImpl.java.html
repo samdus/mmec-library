@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecTMappingSaturatorImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">it.unibz.inf.ontop.spec.mapping.transformer.impl</a> &gt; <span class="el_source">MMecTMappingSaturatorImpl.java</span></div><h1>MMecTMappingSaturatorImpl.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Copie de l'implémentation de
+ * it.unibz.inf.ontop.spec.mapping.transformer.impl.MMecTMappingSaturatorImpl.
+ * @brief @~english Copy of the implementation of
+ * it.unibz.inf.ontop.spec.mapping.transformer.impl.MMecTMappingSaturatorImpl.
+ */
+
+package it.unibz.inf.ontop.spec.mapping.transformer.impl;
+
+/*
+ * #%L
+ * ontop-reformulation-core
+ * %%
+ * Copyright (C) 2009 - 2014 Free University of Bozen-Bolzano
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ *
+ * NOTE:
+ * This is a copy of it.unibz.inf.ontop.spec.mapping.transformer.impl.TMappingSaturatorImpl
+ * that has been modified to use MMecMappingAssertionUnion instead of MappingAssertionUnion.
+ */
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Maps;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import it.unibz.inf.ontop.constraints.impl.ExtensionalDataNodeListContainmentCheck;
+import it.unibz.inf.ontop.exception.MinorOntopInternalBugException;
+import it.unibz.inf.ontop.injection.CoreSingletons;
+import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
+import it.unibz.inf.ontop.iq.IQ;
+import it.unibz.inf.ontop.iq.IQTree;
+import it.unibz.inf.ontop.iq.UnaryIQTree;
+import it.unibz.inf.ontop.iq.node.ConstructionNode;
+import it.unibz.inf.ontop.iq.tools.UnionBasedQueryMerger;
+import it.unibz.inf.ontop.model.atom.DistinctVariableOnlyDataAtom;
+import it.unibz.inf.ontop.model.atom.RDFAtomPredicate;
+import it.unibz.inf.ontop.model.term.IRIConstant;
+import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.TermFactory;
+import it.unibz.inf.ontop.model.term.Variable;
+import it.unibz.inf.ontop.model.vocabulary.RDF;
+import it.unibz.inf.ontop.spec.mapping.MappingAssertion;
+import it.unibz.inf.ontop.spec.mapping.MappingAssertionIndex;
+import it.unibz.inf.ontop.spec.mapping.TMappingExclusionConfig;
+import it.unibz.inf.ontop.spec.mapping.transformer.MappingCQCOptimizer;
+import it.unibz.inf.ontop.spec.mapping.transformer.MappingSaturator;
+import it.unibz.inf.ontop.spec.ontology.ClassExpression;
+import it.unibz.inf.ontop.spec.ontology.ClassifiedTBox;
+import it.unibz.inf.ontop.spec.ontology.DataPropertyExpression;
+import it.unibz.inf.ontop.spec.ontology.DataSomeValuesFrom;
+import it.unibz.inf.ontop.spec.ontology.Equivalences;
+import it.unibz.inf.ontop.spec.ontology.EquivalencesDAG;
+import it.unibz.inf.ontop.spec.ontology.OClass;
+import it.unibz.inf.ontop.spec.ontology.ObjectPropertyExpression;
+import it.unibz.inf.ontop.spec.ontology.ObjectSomeValuesFrom;
+import it.unibz.inf.ontop.substitution.InjectiveSubstitution;
+import it.unibz.inf.ontop.substitution.Substitution;
+import it.unibz.inf.ontop.substitution.SubstitutionFactory;
+import it.unibz.inf.ontop.utils.ImmutableCollectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.stream.Stream;
+import org.apache.commons.lang3.tuple.Pair;
+
+@Singleton
+public class MMecTMappingSaturatorImpl implements MappingSaturator {
+
+<span class="fc" id="L98">  private static final GriisLogger logger =</span>
+<span class="fc" id="L99">      GriisLoggerFactory.getLogger(MMecMappingExtension.class);</span>
+
+  // TODO: the implementation of EXCLUDE ignores equivalent classes / properties
+
+  private final TMappingExclusionConfig exclusionConfig;
+  private final TermFactory termFactory;
+  private final MappingCQCOptimizer mappingCqcOptimizer;
+  private final UnionBasedQueryMerger queryMerger;
+  private final CoreSingletons coreSingletons;
+  private final IntermediateQueryFactory iqFactory;
+  private final SubstitutionFactory substitutionFactory;
+
+  @Inject
+  private MMecTMappingSaturatorImpl(TMappingExclusionConfig exclusionConfig,
+      MappingCQCOptimizer mappingCqcOptimizer,
+      UnionBasedQueryMerger queryMerger,
+<span class="fc" id="L115">      CoreSingletons coreSingletons) {</span>
+<span class="fc" id="L116">    this.exclusionConfig = exclusionConfig;</span>
+<span class="fc" id="L117">    this.termFactory = coreSingletons.getTermFactory();</span>
+<span class="fc" id="L118">    this.mappingCqcOptimizer = mappingCqcOptimizer;</span>
+<span class="fc" id="L119">    this.queryMerger = queryMerger;</span>
+<span class="fc" id="L120">    this.coreSingletons = coreSingletons;</span>
+<span class="fc" id="L121">    this.substitutionFactory = coreSingletons.getSubstitutionFactory();</span>
+<span class="fc" id="L122">    this.iqFactory = coreSingletons.getIQFactory();</span>
+<span class="fc" id="L123">  }</span>
+
+  @Override
+  public ImmutableList&lt;MappingAssertion&gt; saturate(ImmutableList&lt;MappingAssertion&gt; mapping,
+      ClassifiedTBox reasoner) {
+<span class="fc" id="L128">    logger.trace(Trace.ENTER_METHOD_2, mapping, reasoner);</span>
+
+<span class="fc" id="L130">    ExtensionalDataNodeListContainmentCheck cqc = new ExtensionalDataNodeListContainmentCheck(</span>
+<span class="fc" id="L131">        coreSingletons.getHomomorphismFactory(), coreSingletons.getCoreUtilsFactory());</span>
+
+    // index mapping assertions by the predicate type
+    // same IRI can be a class name and a property name
+    // but the same IRI cannot be an object and a data or annotation property name at the same time
+    // see https://www.w3.org/TR/owl2-new-features/#F12:_Punning
+
+<span class="fc" id="L138">    ImmutableMultimap&lt;MappingAssertionIndex, MappingAssertion&gt; original = mapping.stream()</span>
+<span class="fc" id="L139">        .map(m -&gt; optimize(cqc, m))</span>
+<span class="fc" id="L140">        .collect(ImmutableCollectors.toMultimap(MappingAssertion::getIndex, m -&gt; m));</span>
+
+<span class="fc" id="L142">    ImmutableMap&lt;MappingAssertionIndex, MappingAssertion&gt; saturated = original.keySet().stream()</span>
+<span class="fc" id="L143">        .map(MappingAssertionIndex::getPredicate)</span>
+<span class="fc" id="L144">        .distinct()</span>
+<span class="fc" id="L145">        .map(MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformerProvider::new)</span>
+<span class="fc" id="L146">        .flatMap(provider -&gt; Stream.concat(Stream.concat(</span>
+<span class="fc" id="L147">            reasoner.objectPropertiesDAG().stream()</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">                .filter(node -&gt; !node.getRepresentative().isInverse()</span>
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">                    &amp;&amp; !exclusionConfig.contains(node.getRepresentative()))</span>
+<span class="fc" id="L150">                .flatMap(node -&gt; saturate(node.getRepresentative(),</span>
+<span class="fc" id="L151">                    getSubsumees(reasoner.objectPropertiesDAG(), node), original,</span>
+<span class="fc" id="L152">                    provider::getTransformer,</span>
+<span class="fc" id="L153">                    cqc).stream()</span>
+<span class="fc" id="L154">                        .flatMap(ma -&gt; node.getMembers().stream()</span>
+<span class="fc" id="L155">                            .filter(</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">                                d -&gt; !d.isInverse()</span>
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">                                    || d.getInverse() != node.getRepresentative())</span>
+<span class="fc" id="L158">                            .map(d -&gt; Maps.immutableEntry(</span>
+<span class="fc" id="L159">                                provider.getTransformer(node.getRepresentative(), d),</span>
+                                ma)))),
+
+<span class="fc" id="L162">            reasoner.dataPropertiesDAG().stream()</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">                .filter(node -&gt; !exclusionConfig.contains(node.getRepresentative()))</span>
+<span class="fc" id="L164">                .flatMap(node -&gt; saturate(node.getRepresentative(),</span>
+<span class="fc" id="L165">                    getSubsumees(reasoner.dataPropertiesDAG(), node), original,</span>
+<span class="fc" id="L166">                    provider::getTransformer, cqc).stream()</span>
+<span class="fc" id="L167">                        .flatMap(ma -&gt; node.getMembers().stream()</span>
+<span class="fc" id="L168">                            .map(d -&gt; Maps.immutableEntry(</span>
+<span class="fc" id="L169">                                provider.getTransformer(node.getRepresentative(), d), ma))))),</span>
+
+<span class="fc" id="L171">            reasoner.classesDAG().stream()</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">                .filter(node -&gt; node.getRepresentative() instanceof OClass</span>
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">                    &amp;&amp; !exclusionConfig.contains((OClass) node.getRepresentative()))</span>
+<span class="fc" id="L174">                .flatMap(node -&gt; saturate(node.getRepresentative(),</span>
+<span class="fc" id="L175">                    getSubsumees(reasoner.classesDAG(), node), original, provider::getTransformer,</span>
+<span class="fc" id="L176">                    cqc).stream()</span>
+<span class="fc" id="L177">                        .flatMap(ma -&gt; node.getMembers().stream()</span>
+<span class="fc" id="L178">                            .filter(d -&gt; d instanceof OClass)</span>
+<span class="fc" id="L179">                            .map(d -&gt; Maps.immutableEntry(</span>
+<span class="fc" id="L180">                                provider.getTransformer(node.getRepresentative(), d), ma))))))</span>
+
+<span class="fc" id="L182">        .map(e -&gt; Maps.immutableEntry(</span>
+<span class="fc" id="L183">            e.getKey().getToIndex(), e.getKey().updateConstructionNodeIri(e.getValue())))</span>
+<span class="fc" id="L184">        .collect(ImmutableCollectors.toMap());</span>
+
+<span class="fc" id="L186">    return Stream.concat(</span>
+<span class="fc" id="L187">        saturated.values().stream(),</span>
+<span class="fc" id="L188">        original.asMap().entrySet().stream()</span>
+<span class="pc bpc" id="L189" title="1 of 2 branches missed.">            .filter(e -&gt; !saturated.containsKey(e.getKey()))</span>
+<span class="pc" id="L190">            .map(e -&gt; e.getValue().stream()</span>
+<span class="nc" id="L191">                .collect(</span>
+<span class="nc" id="L192">                    MMecMappingAssertionUnion.toMappingAssertion(</span>
+                        cqc, coreSingletons, queryMerger)))
+<span class="fc" id="L194">            .map(Optional::orElseThrow))</span>
+<span class="fc" id="L195">        .collect(ImmutableCollectors.toList());</span>
+  }
+
+  private &lt;T&gt; Optional&lt;MappingAssertion&gt; saturate(T representative, Stream&lt;T&gt; subsumees,
+      ImmutableMultimap&lt;MappingAssertionIndex, MappingAssertion&gt; original,
+      BiFunction&lt;T, T, MappingAssertionConstructionNodeTransformer&gt; transformerProvider,
+      ExtensionalDataNodeListContainmentCheck cqc) {
+<span class="fc" id="L202">    logger.trace(Trace.ENTER_METHOD_5, representative, subsumees, original, transformerProvider,</span>
+        cqc);
+<span class="fc" id="L204">    return subsumees</span>
+<span class="fc" id="L205">        .map(s -&gt; transformerProvider.apply(s, representative))</span>
+<span class="fc" id="L206">        .flatMap(u -&gt; original.get(u.getFromIndex()).stream()</span>
+<span class="fc" id="L207">            .map(u::updateConstructionNodeIri)</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">            .map(m -&gt; u.needOptimization() ? optimize(cqc, m) : m))</span>
+<span class="fc" id="L209">        .collect(MMecMappingAssertionUnion.toMappingAssertion(cqc, coreSingletons, queryMerger));</span>
+  }
+
+  private MappingAssertion optimize(ExtensionalDataNodeListContainmentCheck cqc,
+      MappingAssertion m) {
+<span class="fc" id="L214">    logger.trace(Trace.ENTER_METHOD_2, cqc, m);</span>
+<span class="fc" id="L215">    IQ optimizedIQ = m.getQuery().normalizeForOptimization();</span>
+<span class="fc" id="L216">    IQ cqcOptimizedIQ = mappingCqcOptimizer.optimize(cqc, optimizedIQ);</span>
+<span class="fc" id="L217">    return m.copyOf(cqcOptimizedIQ);</span>
+  }
+
+  private static &lt;T&gt; Stream&lt;T&gt; getSubsumees(EquivalencesDAG&lt;T&gt; dag, Equivalences&lt;T&gt; node) {
+<span class="fc" id="L221">    logger.trace(Trace.ENTER_METHOD_2, dag, node);</span>
+<span class="fc" id="L222">    return dag.getSub(node).stream()</span>
+<span class="fc" id="L223">        .flatMap(n -&gt; n.getMembers().stream());</span>
+  }
+
+  private class MappingAssertionConstructionNodeTransformer {
+    private final MappingAssertionIndex fromIndex;
+    private final MappingAssertionIndex toIndex;
+    private final Function&lt;ImmutableList&lt;ImmutableTerm&gt;, ImmutableList&lt;ImmutableTerm&gt;&gt; transformer;
+    private final boolean needOptimization;
+
+    MappingAssertionConstructionNodeTransformer(MappingAssertionIndex fromIndex,
+        MappingAssertionIndex toIndex,
+        Function&lt;ImmutableList&lt;ImmutableTerm&gt;, ImmutableList&lt;ImmutableTerm&gt;&gt; termTransformer,
+<span class="fc" id="L235">        boolean needOptimization) {</span>
+<span class="fc" id="L236">      this.fromIndex = fromIndex;</span>
+<span class="fc" id="L237">      this.toIndex = toIndex;</span>
+<span class="fc" id="L238">      this.transformer = termTransformer;</span>
+<span class="fc" id="L239">      this.needOptimization = needOptimization;</span>
+<span class="fc" id="L240">    }</span>
+
+    MappingAssertionIndex getFromIndex() {
+<span class="fc" id="L243">      return fromIndex;</span>
+    }
+
+    MappingAssertionIndex getToIndex() {
+<span class="fc" id="L247">      return toIndex;</span>
+    }
+
+    boolean needOptimization() {
+<span class="fc" id="L251">      return needOptimization;</span>
+    }
+
+    MappingAssertion updateConstructionNodeIri(MappingAssertion assertion) {
+<span class="fc" id="L255">      logger.trace(Trace.ENTER_METHOD_1, assertion);</span>
+<span class="fc" id="L256">      IQ query = assertion.getQuery();</span>
+<span class="fc" id="L257">      ConstructionNode constructionNode = (ConstructionNode) query.getTree().getRootNode();</span>
+<span class="fc" id="L258">      DistinctVariableOnlyDataAtom projectionAtom = query.getProjectionAtom();</span>
+<span class="fc" id="L259">      ImmutableList&lt;Variable&gt; variables = projectionAtom.getArguments();</span>
+<span class="fc" id="L260">      ImmutableList&lt;ImmutableTerm&gt; args = constructionNode.getSubstitution().apply(variables);</span>
+<span class="fc" id="L261">      Substitution&lt;ImmutableTerm&gt; updatedSubstitution = substitutionFactory.getSubstitution(</span>
+<span class="fc" id="L262">          variables, transformer.apply(args));</span>
+<span class="fc" id="L263">      Pair&lt;IQTree, Substitution&lt;ImmutableTerm&gt;&gt; circularSubstitutionRenamed =</span>
+<span class="fc" id="L264">          renameCircularSubstitution(updatedSubstitution, query);</span>
+
+<span class="fc" id="L266">      IQTree updatedChild = circularSubstitutionRenamed.getLeft();</span>
+<span class="fc" id="L267">      Substitution&lt;ImmutableTerm&gt; substitutionWithoutSwap = circularSubstitutionRenamed.getRight();</span>
+
+<span class="fc" id="L269">      ConstructionNode updatedConstructionNode = iqFactory.createConstructionNode(</span>
+<span class="fc" id="L270">          constructionNode.getVariables(), substitutionWithoutSwap);</span>
+
+<span class="fc" id="L272">      IQ updatedQuery = iqFactory.createIQ(projectionAtom,</span>
+<span class="fc" id="L273">          iqFactory.createUnaryIQTree(updatedConstructionNode,</span>
+              updatedChild));
+
+<span class="fc" id="L276">      return assertion.copyOf(updatedQuery);</span>
+    }
+
+    /**
+     *
+     * @brief @~english «Description of the method»
+     * @param updatedSubstitution «Parameter description»
+     * @param query «Parameter description»
+     * @return «Return description»
+     *
+     * @brief @~french Lors de la mise à jour du ConstructionNode, il est fréquent
+     *        d'induire des substitutions circulaires. Cette méthode
+     *        permet de renommer les variables du sous-arbre de sorte qu'aucune valeur
+     *        définie par le ConstructionNode n'aient le même nom.
+     * @param updatedSubstitution l'instance de Substitution découlant d'une mise à jour d'IRI
+     * @param query la requête sous-jaçente
+     * @return La nouvelle substitution et la requête
+     *
+     * @par Tâches
+     *      S.O.
+     */
+    private Pair&lt;IQTree, Substitution&lt;ImmutableTerm&gt;&gt; renameCircularSubstitution(
+        Substitution&lt;ImmutableTerm&gt; updatedSubstitution, IQ query) {
+<span class="fc" id="L299">      logger.trace(Trace.ENTER_METHOD_2, updatedSubstitution, query);</span>
+<span class="fc" id="L300">      ImmutableMap&lt;Variable, Variable&gt; circularSubstitution = updatedSubstitution.stream()</span>
+<span class="fc" id="L301">          .filter(sub -&gt; sub.getValue() instanceof Variable)</span>
+<span class="fc" id="L302">          .filter(sub -&gt; updatedSubstitution.isDefining((Variable) sub.getValue()))</span>
+<span class="fc" id="L303">          .map(sub -&gt; Maps.immutableEntry(sub.getKey(), (Variable) sub.getValue()))</span>
+<span class="fc" id="L304">          .collect(ImmutableCollectors.toMap());</span>
+<span class="fc" id="L305">      List&lt;Variable&gt; newVariables = new ArrayList&lt;&gt;(updatedSubstitution.stream()</span>
+<span class="fc bfc" id="L306" title="All 2 branches covered.">          .filter(v -&gt; !circularSubstitution.containsKey(v.getKey()))</span>
+<span class="fc" id="L307">          .map(Map.Entry::getKey)</span>
+<span class="fc" id="L308">          .toList());</span>
+<span class="fc" id="L309">      List&lt;ImmutableTerm&gt; newValues = new ArrayList&lt;&gt;(updatedSubstitution.stream()</span>
+<span class="fc bfc" id="L310" title="All 2 branches covered.">          .filter(v -&gt; !circularSubstitution.containsKey(v.getKey()))</span>
+<span class="fc" id="L311">          .map(Map.Entry::getValue)</span>
+<span class="fc" id="L312">          .toList());</span>
+<span class="fc" id="L313">      IQTree childTree = ((UnaryIQTree) query.getTree()).getChild();</span>
+
+<span class="fc bfc" id="L315" title="All 2 branches covered.">      for (Variable circularVariable : circularSubstitution.keySet()) {</span>
+<span class="fc" id="L316">        Variable toReplace = circularSubstitution.get(circularVariable);</span>
+<span class="fc" id="L317">        Variable freshVariable = query.getVariableGenerator().generateNewVariableFromVar(</span>
+            toReplace);
+<span class="fc" id="L319">        InjectiveSubstitution&lt;Variable&gt; renaming = substitutionFactory</span>
+<span class="fc" id="L320">            .getSubstitution(toReplace, freshVariable)</span>
+<span class="fc" id="L321">            .injective();</span>
+<span class="fc" id="L322">        childTree = childTree.applyFreshRenaming(renaming);</span>
+<span class="fc" id="L323">        newVariables.add(circularVariable);</span>
+<span class="fc" id="L324">        newValues.add(freshVariable);</span>
+<span class="fc" id="L325">      }</span>
+
+<span class="fc" id="L327">      return Pair.of(childTree, substitutionFactory.getSubstitution(</span>
+<span class="fc" id="L328">          ImmutableList.copyOf(newVariables),</span>
+<span class="fc" id="L329">          ImmutableList.copyOf(newValues)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L334">      return fromIndex + &quot; -&gt; &quot; + toIndex;</span>
+    }
+  }
+
+
+  private class MappingAssertionConstructionNodeTransformerProvider {
+    private final RDFAtomPredicate rdfAtomPredicate;
+    private final IRIConstant rdfType;
+
+<span class="fc" id="L343">    MappingAssertionConstructionNodeTransformerProvider(RDFAtomPredicate rdfAtomPredicate) {</span>
+<span class="fc" id="L344">      this.rdfAtomPredicate = rdfAtomPredicate;</span>
+<span class="fc" id="L345">      this.rdfType = termFactory.getConstantIRI(RDF.TYPE);</span>
+<span class="fc" id="L346">    }</span>
+
+    MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer getTransformer(
+        ClassExpression from, ClassExpression to) {
+<span class="fc" id="L350">      logger.trace(Trace.ENTER_METHOD_2, from, to);</span>
+<span class="pc bpc" id="L351" title="1 of 2 branches missed.">      if (!(to instanceof OClass toClass)) {</span>
+<span class="nc" id="L352">        throw new MinorOntopInternalBugException(</span>
+            &quot;Cannot get a transformer to a property restriction: &quot; + from + &quot; &quot; + to);
+      }
+
+<span class="fc" id="L356">      IRIConstant newIri = termFactory.getConstantIRI(toClass.getIRI());</span>
+<span class="fc bfc" id="L357" title="All 2 branches covered.">      if (from instanceof OClass oc) {</span>
+<span class="fc" id="L358">        return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(</span>
+<span class="fc" id="L359">            MappingAssertionIndex.ofClass(rdfAtomPredicate, oc.getIRI()),</span>
+<span class="fc" id="L360">            MappingAssertionIndex.ofClass(rdfAtomPredicate, toClass.getIRI()),</span>
+<span class="fc" id="L361">            args -&gt; rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args), rdfType,</span>
+                newIri),
+            false);
+<span class="fc bfc" id="L364" title="All 2 branches covered.">      } else if (from instanceof ObjectSomeValuesFrom) {</span>
+<span class="fc" id="L365">        ObjectPropertyExpression ope = ((ObjectSomeValuesFrom) from).getProperty();</span>
+<span class="fc" id="L366">        return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(</span>
+<span class="fc" id="L367">            MappingAssertionIndex.ofProperty(rdfAtomPredicate, ope.getIRI()),</span>
+<span class="fc" id="L368">            MappingAssertionIndex.ofClass(rdfAtomPredicate, toClass.getIRI()),</span>
+<span class="fc bfc" id="L369" title="All 2 branches covered.">            ope.isInverse()</span>
+<span class="fc" id="L370">                ? args -&gt; rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getObject(args),</span>
+                    rdfType, newIri)
+<span class="fc" id="L372">                : args -&gt; rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args),</span>
+                    rdfType, newIri),
+            true);
+<span class="pc bpc" id="L375" title="1 of 2 branches missed.">      } else if (from instanceof DataSomeValuesFrom) {</span>
+<span class="fc" id="L376">        DataPropertyExpression dpe = ((DataSomeValuesFrom) from).getProperty();</span>
+<span class="fc" id="L377">        return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(</span>
+<span class="fc" id="L378">            MappingAssertionIndex.ofProperty(rdfAtomPredicate, dpe.getIRI()),</span>
+<span class="fc" id="L379">            MappingAssertionIndex.ofClass(rdfAtomPredicate, toClass.getIRI()),</span>
+<span class="fc" id="L380">            args -&gt; rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args), rdfType,</span>
+                newIri),
+            true);
+      } else {
+<span class="nc" id="L384">        throw new MinorOntopInternalBugException(&quot;Unexpected type&quot; + from);</span>
+      }
+    }
+
+    MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer getTransformer(
+        ObjectPropertyExpression from, ObjectPropertyExpression to) {
+<span class="fc" id="L390">      logger.trace(Trace.ENTER_METHOD_2, from, to);</span>
+<span class="fc" id="L391">      IRIConstant newIri = termFactory.getConstantIRI(to.getIRI());</span>
+<span class="fc" id="L392">      return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(</span>
+<span class="fc" id="L393">          MappingAssertionIndex.ofProperty(rdfAtomPredicate, from.getIRI()),</span>
+<span class="fc" id="L394">          MappingAssertionIndex.ofProperty(rdfAtomPredicate, to.getIRI()),</span>
+<span class="fc bfc" id="L395" title="All 2 branches covered.">          from.isInverse() != to.isInverse()</span>
+<span class="fc" id="L396">              ? args -&gt; rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getObject(args), newIri,</span>
+<span class="fc" id="L397">                  rdfAtomPredicate.getSubject(args))</span>
+<span class="fc" id="L398">              : args -&gt; rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args), newIri,</span>
+<span class="fc" id="L399">                  rdfAtomPredicate.getObject(args)),</span>
+          false);
+    }
+
+    MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer getTransformer(
+        DataPropertyExpression from, DataPropertyExpression to) {
+<span class="fc" id="L405">      logger.trace(Trace.ENTER_METHOD_2, from, to);</span>
+<span class="fc" id="L406">      IRIConstant newIri = termFactory.getConstantIRI(to.getIRI());</span>
+<span class="fc" id="L407">      return new MMecTMappingSaturatorImpl.MappingAssertionConstructionNodeTransformer(</span>
+<span class="fc" id="L408">          MappingAssertionIndex.ofProperty(rdfAtomPredicate, from.getIRI()),</span>
+<span class="fc" id="L409">          MappingAssertionIndex.ofProperty(rdfAtomPredicate, to.getIRI()),</span>
+<span class="fc" id="L410">          args -&gt; rdfAtomPredicate.updateSPO(args, rdfAtomPredicate.getSubject(args), newIri,</span>
+<span class="fc" id="L411">              rdfAtomPredicate.getObject(args)),</span>
+          false);
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

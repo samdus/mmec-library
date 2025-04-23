@@ -1,0 +1,3 @@
+ca.griis:slf4j-ext-griis
+ca.griis:ontorelcat-jooqclient-library
+ca.griis:logger-library

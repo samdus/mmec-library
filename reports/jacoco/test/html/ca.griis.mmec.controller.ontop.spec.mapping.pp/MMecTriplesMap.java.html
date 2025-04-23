@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecTriplesMap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.spec.mapping.pp</a> &gt; <span class="el_source">MMecTriplesMap.java</span></div><h1>MMecTriplesMap.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de l'objet MMecTriplesMap.
+ * @brief @~english MMecTriplesMap object implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.spec.mapping.pp;
+
+import it.unibz.inf.ontop.spec.mapping.TargetAtom;
+import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
+import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
+import it.unibz.inf.ontop.spec.mapping.pp.impl.R2RMLSQLPPtriplesMap;
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Classe servant à étendre le modèle interne de TripleMap
+ *        avec les fonctions R2RML étendues.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2023-09-06 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class MMecTriplesMap extends R2RMLSQLPPtriplesMap {
+<span class="fc" id="L53">  private final List&lt;MMecTriplesMap&gt; subSetList = new ArrayList&lt;&gt;();</span>
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param sqlppTriplesMap «Parameter description»
+   *
+   * @brief @~french Constructeur par défaut.
+   * @param sqlppTriplesMap Le SQLPPTriplesMap à étendre.
+   */
+  public MMecTriplesMap(SQLPPTriplesMap sqlppTriplesMap) {
+<span class="fc" id="L63">    super(sqlppTriplesMap.getId(), sqlppTriplesMap.getSourceQuery(),</span>
+<span class="fc" id="L64">        sqlppTriplesMap.getTargetAtoms());</span>
+<span class="fc" id="L65">  }</span>
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   *
+   * @brief @~french Obtenir la liste des sous-ensembles de l'expression d'arrimage.
+   * @return La liste des sous-ensembles de l'expression d'arrimage.
+   */
+  public List&lt;MMecTriplesMap&gt; getSubsetList() {
+<span class="fc" id="L75">    return subSetList;</span>
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param subset «Parameter description»
+   *
+   * @brief @~french Ajouter une expression d'arrimage sous-ensemble à l'expression d'arrimage.
+   * @param subset L'expression d'arrimage à ajouter comme sous-ensemble.
+   */
+  public void addSubset(MMecTriplesMap subset) {
+<span class="fc" id="L86">    subSetList.add(subset);</span>
+<span class="fc" id="L87">  }</span>
+
+  @Override
+  public PPMappingAssertionProvenance getMappingAssertionProvenance(TargetAtom targetAtom) {
+<span class="fc" id="L91">    return new MMecPpMappingAssertionProvenance(targetAtom, this);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

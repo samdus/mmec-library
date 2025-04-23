@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConnectionProperties.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.properties</a> &gt; <span class="el_source">ConnectionProperties.java</span></div><h1>ConnectionProperties.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de l'objet de configuration de la connexion à la base de données.
+ * @brief @~english Implementation of the database connection configuration object.
+ */
+
+package ca.griis.mmec.properties;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Hashtable;
+import java.util.Properties;
+import java.util.stream.Stream;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Objet contenant les configurations de connexion à la source de données.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2023-09-01 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+<span class="fc" id="L52">public abstract class ConnectionProperties {</span>
+<span class="fc" id="L53">  private static final GriisLogger logger =</span>
+<span class="fc" id="L54">      GriisLoggerFactory.getLogger(ConnectionProperties.class);</span>
+  public static final String defaultOntopConfigurationFile = &quot;defaultConfiguration.properties&quot;;
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   *
+   * @brief @~french Récupérer le nom du pilote de la base de données.
+   * @return Le nom du pilote de la base de données.
+   */
+  public abstract String getDriverName();
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   *
+   * @brief @~french Récupérer le nom de la base de données.
+   * @return Le nom de la base de données.
+   */
+  public abstract String getDatabaseName();
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   *
+   * @brief @~french Récupérer l'URL de connexion à la base de données.
+   * @return Le nom de la base de données.
+   */
+  public abstract String getJdbcUrl();
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   *
+   * @brief @~french Récupérer le nom d'utilisateur de la base de données.
+   * @return Le nom d'utilisateur de la base de données.
+   */
+  public abstract String getUsername();
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   *
+   * @brief @~french Récupérer le mot de passe de la base de données.
+   * @return Le mot de passe de la base de données.
+   */
+  public abstract String getPassword();
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   *
+   * @brief @~french Récupérer le nom du fichier de configuration d'Ontop.
+   * @return Le nom du fichier de configuration d'Ontop.
+   */
+  protected String getOntopConfigurationFile() {
+<span class="fc" id="L110">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L111">    return defaultOntopConfigurationFile;</span>
+  }
+
+  /**
+   * @brief @~english «Description of the method»
+   * @return «Return description»
+   * @throws IOException «Exception description»
+   *
+   * @brief @~french Récupérer les propriétés dans un format compréhensible pour Ontop
+   * @return un Object Properties contenant les propriétés de connexion à la base de données.
+   * @throws IOException si le fichier de configuration par défaut n'est pas trouvé.
+   */
+  public Properties getPropertiesForOntop() throws IOException {
+<span class="fc" id="L124">    logger.trace(Trace.ENTER_METHOD_0);</span>
+
+<span class="fc" id="L126">    Properties properties = new Properties();</span>
+<span class="fc" id="L127">    properties.setProperty(&quot;jdbc.driver&quot;, getDriverName());</span>
+<span class="fc" id="L128">    properties.setProperty(&quot;jdbc.name&quot;, getDatabaseName());</span>
+<span class="fc" id="L129">    properties.setProperty(&quot;jdbc.url&quot;, getJdbcUrl());</span>
+<span class="fc" id="L130">    properties.setProperty(&quot;jdbc.user&quot;, getUsername());</span>
+<span class="fc" id="L131">    properties.setProperty(&quot;jdbc.password&quot;, getPassword());</span>
+
+<span class="fc" id="L133">    return mergeProperties(getOntopConfigurationProperties(), properties);</span>
+  }
+
+  private Properties mergeProperties(Properties... properties) {
+<span class="fc" id="L137">    logger.trace(Trace.ENTER_METHOD_1, (Object[]) properties);</span>
+<span class="fc" id="L138">    return Stream.of(properties)</span>
+<span class="fc" id="L139">        .collect(Properties::new, Hashtable::putAll, Hashtable::putAll);</span>
+  }
+
+  private Properties getOntopConfigurationProperties() throws IOException {
+<span class="fc" id="L143">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L144">    Properties prop = new Properties();</span>
+
+<span class="fc" id="L146">    try (InputStream propStream = this.getClass().getClassLoader()</span>
+<span class="fc" id="L147">        .getResourceAsStream(getOntopConfigurationFile())) {</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">      if (propStream == null) {</span>
+<span class="fc" id="L149">        throw new IOException(&quot;Cannot find file &quot; + getOntopConfigurationFile());</span>
+      }
+
+<span class="fc" id="L152">      prop.load(propStream);</span>
+<span class="fc" id="L153">      return prop;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

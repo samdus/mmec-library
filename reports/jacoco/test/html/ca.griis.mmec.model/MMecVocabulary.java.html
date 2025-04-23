@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecVocabulary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.model</a> &gt; <span class="el_source">MMecVocabulary.java</span></div><h1>MMecVocabulary.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe MMecVocabulary.
+ * @brief @~english MMecVocabulary class implementation.
+ */
+
+package ca.griis.mmec.model;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french «Brève description de la composante (classe, interface, ...)»
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-03-21 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      TODO 2024-04-11 [SD] - Cette classe gagnerait à être un enum
+ *      Prendre exemple sur org.semanticweb.owlapi.vocab.DublinCoreVocabulary
+ */
+<span class="nc" id="L44">public class MMecVocabulary {</span>
+  public static final String NS_MMEC = &quot;http://www.griis.ca/ns/mmec#&quot;;
+
+  // Headers
+  public static final String C_MAPPING_HEADER = NS_MMEC + &quot;MappingHeader&quot;;
+  public static final String C_ONTOREL = NS_MMEC + &quot;OntoRel&quot;;
+  public static final String C_DATA_SOURCE = NS_MMEC + &quot;DataSource&quot;;
+  public static final String P_MAPPING_ONTOREL = NS_MMEC + &quot;ontorel&quot;;
+  public static final String P_MAPPING_SOURCE = NS_MMEC + &quot;source&quot;;
+
+  // Signatures
+  public static final String C_SIGNATURE_SUPERSET = NS_MMEC + &quot;SignatureSuperset&quot;;
+  public static final String C_REF_SUBJECT_MAP = NS_MMEC + &quot;RefSubjectMap&quot;;
+  public static final String P_SIGNATURE_COMPONENT = NS_MMEC + &quot;signatureComponent&quot;;
+  public static final String P_SIGNATURE_SUBSETS = NS_MMEC + &quot;subsets&quot;;
+  public static final String P_REF_SUBJECT_MAP = NS_MMEC + &quot;refSubjectMap&quot;;
+
+  // Type conversions
+  public static final String C_CONVERSION = NS_MMEC + &quot;Conversion&quot;;
+  public static final String C_SQL_FUNCTION = NS_MMEC + &quot;SQLFunction&quot;;
+  public static final String C_SQL_TYPE = NS_MMEC + &quot;SQLType&quot;;
+  public static final String P_CONVERSION_INPUT_TYPE =
+      NS_MMEC + &quot;conversionInputType&quot;;
+  public static final String P_CONVERSION_OUTPUT_TYPE =
+      NS_MMEC + &quot;conversionOutputType&quot;;
+  public static final String P_CONVERSION_FUNCTION =
+      NS_MMEC + &quot;conversionFunction&quot;;
+  public static final String P_CONVERSION_VERIFICATION_FUNCTION =
+      NS_MMEC + &quot;verificationFunction&quot;;
+  public static final String P_SQL_QUALIFIED_IDENTIFIER =
+      NS_MMEC + &quot;qualifiedIdentifier&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

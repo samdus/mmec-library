@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OntoRelTableMappingController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop</a> &gt; <span class="el_source">OntoRelTableMappingController.java</span></div><h1>OntoRelTableMappingController.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe OntoRelTableMappingController.
+ * @brief @~english OntoRelTableMappingController class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.model.mapped.MappedClassTable;
+import ca.griis.mmec.model.mapped.MappedClassTableRecord;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTableRecord;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTableRecord;
+import ca.griis.mmec.model.ontorel.ClassTable;
+import ca.griis.mmec.model.ontorel.DataPropertyTable;
+import ca.griis.mmec.model.ontorel.ObjectPropertyTable;
+import ca.griis.mmec.properties.MappingProperties;
+import com.google.common.collect.ImmutableMultimap;
+import it.unibz.inf.ontop.answering.connection.OntopConnection;
+import it.unibz.inf.ontop.answering.connection.OntopStatement;
+import it.unibz.inf.ontop.exception.OntopConnectionException;
+import it.unibz.inf.ontop.exception.OntopReformulationException;
+import it.unibz.inf.ontop.iq.IQ;
+import it.unibz.inf.ontop.iq.node.NativeNode;
+import it.unibz.inf.ontop.query.RDF4JQueryFactory;
+import it.unibz.inf.ontop.query.RDF4JSelectQuery;
+import java.util.Optional;
+import javax.inject.Inject;
+import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
+import org.eclipse.rdf4j.query.algebra.Compare;
+import org.eclipse.rdf4j.query.algebra.Datatype;
+import org.eclipse.rdf4j.query.algebra.Filter;
+import org.eclipse.rdf4j.query.algebra.Join;
+import org.eclipse.rdf4j.query.algebra.Projection;
+import org.eclipse.rdf4j.query.algebra.ProjectionElem;
+import org.eclipse.rdf4j.query.algebra.ProjectionElemList;
+import org.eclipse.rdf4j.query.algebra.QueryRoot;
+import org.eclipse.rdf4j.query.algebra.StatementPattern;
+import org.eclipse.rdf4j.query.algebra.ValueConstant;
+import org.eclipse.rdf4j.query.algebra.Var;
+import org.eclipse.rdf4j.query.impl.MapBindingSet;
+import org.eclipse.rdf4j.query.parser.ParsedTupleQuery;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Classe permettant de transformer les tables OntoRel en tables mappées à l'aide
+ *        de requêtes à Ontop.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-04-12 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class OntoRelTableMappingController {
+<span class="fc" id="L84">  private static final GriisLogger logger = GriisLoggerFactory.getLogger(</span>
+      OntoRelTableMappingController.class);
+
+  private final RDF4JQueryFactory factrdf4JQueryFactory;
+  private final SimpleValueFactory valueFactory;
+  private final String schema;
+
+  @Inject
+  public OntoRelTableMappingController(MappingProperties mappingProperties,
+<span class="fc" id="L93">      RDF4JQueryFactory factrdf4JQueryFactory) {</span>
+<span class="fc" id="L94">    this.factrdf4JQueryFactory = factrdf4JQueryFactory;</span>
+<span class="fc" id="L95">    this.valueFactory = SimpleValueFactory.getInstance();</span>
+<span class="fc" id="L96">    this.schema = mappingProperties.getMappingSchema();</span>
+<span class="fc" id="L97">  }</span>
+
+  public MappedClassTable map(OntopConnection connection, ClassTable classTable)
+      throws OntopReformulationException, OntopConnectionException {
+<span class="fc" id="L101">    logger.trace(Trace.ENTER_METHOD_2, connection, classTable);</span>
+<span class="fc" id="L102">    try (OntopStatement statement = connection.createStatement()) {</span>
+<span class="fc" id="L103">      String classColumnName = classTable.ontorelColumnId();</span>
+<span class="fc" id="L104">      StatementPattern classStatement = new StatementPattern(new Var(classColumnName),</span>
+          new Var(&quot;rdf_type_uri&quot;,
+<span class="fc" id="L106">              valueFactory.createIRI(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&quot;), true,</span>
+              true),
+          new Var(&quot;uid_uri&quot;,
+<span class="fc" id="L109">              valueFactory.createIRI(classTable.iri()), true, true));</span>
+
+<span class="fc" id="L111">      Optional&lt;String&gt; mappingExpression = getNativeQuery(statement, new QueryRoot(classStatement));</span>
+<span class="fc" id="L112">      return new MappedClassTableRecord(classTable, schema, mappingExpression, classColumnName);</span>
+    }
+  }
+
+  public MappedDataPropertyTable map(OntopConnection connection,
+      DataPropertyTable dataPropertyTable)
+      throws OntopReformulationException, OntopConnectionException {
+<span class="fc" id="L119">    logger.trace(Trace.ENTER_METHOD_2, connection, dataPropertyTable);</span>
+
+<span class="fc" id="L121">    String dpSubjectColumnName = dataPropertyTable.ontorelSubjectColumnId();</span>
+<span class="fc" id="L122">    String dpValColumnName = dataPropertyTable.ontorelValueColumnId();</span>
+<span class="fc" id="L123">    try (OntopStatement statement = connection.createStatement()) {</span>
+<span class="fc" id="L124">      StatementPattern subStatement = new StatementPattern(new Var(dpSubjectColumnName),</span>
+          new Var(&quot;rdf_type_uri&quot;,
+<span class="fc" id="L126">              valueFactory.createIRI(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&quot;), true,</span>
+              true),
+          new Var(&quot;sub_uri&quot;,
+<span class="fc" id="L129">              valueFactory.createIRI(dataPropertyTable.iriSubject()), true, true));</span>
+
+<span class="fc" id="L131">      StatementPattern relStatement = new StatementPattern(new Var(dpSubjectColumnName),</span>
+          new Var(&quot;dp_uri&quot;,
+<span class="fc" id="L133">              valueFactory.createIRI(dataPropertyTable.iriPredicate()), true, true),</span>
+          new Var(dpValColumnName));
+
+<span class="fc" id="L136">      Join relJoin = new Join(subStatement, relStatement);</span>
+<span class="fc" id="L137">      Compare compare = new Compare(</span>
+          new Datatype(new Var(dpValColumnName)),
+<span class="fc" id="L139">          new ValueConstant(valueFactory.createIRI(dataPropertyTable.iriValue())));</span>
+<span class="fc" id="L140">      Filter filter = new Filter(relJoin, compare);</span>
+
+<span class="fc" id="L142">      Projection projection = new Projection(filter,</span>
+          new ProjectionElemList(new ProjectionElem(dpSubjectColumnName),
+              new ProjectionElem(dpValColumnName)));
+
+<span class="fc" id="L146">      Optional&lt;String&gt; mappingExpression = getNativeQuery(statement, new QueryRoot(projection));</span>
+<span class="fc" id="L147">      return new MappedDataPropertyTableRecord(dataPropertyTable, schema, mappingExpression,</span>
+          dpSubjectColumnName, dpValColumnName);
+    }
+  }
+
+  public MappedObjectPropertyTable map(OntopConnection connection,
+      ObjectPropertyTable objectPropertyTable)
+      throws OntopReformulationException, OntopConnectionException {
+<span class="fc" id="L155">    logger.trace(Trace.ENTER_METHOD_2, connection, objectPropertyTable);</span>
+
+<span class="fc" id="L157">    String opSubjectColumnName = objectPropertyTable.ontorelSubjectColumnId();</span>
+<span class="fc" id="L158">    String opObjectColumnName = objectPropertyTable.ontorelObjectColumnId();</span>
+<span class="fc" id="L159">    try (OntopStatement statement = connection.createStatement()) {</span>
+<span class="fc" id="L160">      StatementPattern subStatement = new StatementPattern(new Var(opSubjectColumnName),</span>
+          new Var(&quot;rdf_type_uri&quot;,
+<span class="fc" id="L162">              valueFactory.createIRI(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&quot;), true,</span>
+              true),
+          new Var(&quot;sub_uri&quot;,
+<span class="fc" id="L165">              valueFactory.createIRI(objectPropertyTable.iriSubject()), true, true));</span>
+
+<span class="fc" id="L167">      StatementPattern objStatement = new StatementPattern(new Var(opObjectColumnName),</span>
+          new Var(&quot;rdf_type_uri&quot;,
+<span class="fc" id="L169">              valueFactory.createIRI(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&quot;), true,</span>
+              true),
+          new Var(&quot;obj_uri&quot;,
+<span class="fc" id="L172">              valueFactory.createIRI(objectPropertyTable.iriObject()), true, true));</span>
+
+<span class="fc" id="L174">      StatementPattern relStatement = new StatementPattern(new Var(opSubjectColumnName),</span>
+          new Var(&quot;op_uri&quot;,
+<span class="fc" id="L176">              valueFactory.createIRI(objectPropertyTable.iriPredicate()), true, true),</span>
+          new Var(opObjectColumnName));
+
+<span class="fc" id="L179">      Join subAndObjJoin = new Join(subStatement, objStatement);</span>
+<span class="fc" id="L180">      Join relJoin = new Join(subAndObjJoin, relStatement);</span>
+
+<span class="fc" id="L182">      Projection projection = new Projection(relJoin,</span>
+          new ProjectionElemList(new ProjectionElem(opSubjectColumnName),
+              new ProjectionElem(opObjectColumnName)));
+
+<span class="fc" id="L186">      Optional&lt;String&gt; mappingExpression = getNativeQuery(statement, new QueryRoot(projection));</span>
+<span class="fc" id="L187">      return new MappedObjectPropertyTableRecord(objectPropertyTable, schema, mappingExpression,</span>
+          opSubjectColumnName, opObjectColumnName);
+    }
+  }
+
+  private Optional&lt;String&gt; getNativeQuery(OntopStatement statement,
+      QueryRoot queryRoot)
+      throws OntopReformulationException {
+<span class="fc" id="L195">    logger.trace(Trace.ENTER_METHOD_2, statement, queryRoot);</span>
+
+    try {
+<span class="fc" id="L198">      RDF4JSelectQuery rdf4JSelectQuery = factrdf4JQueryFactory.createSelectQuery(</span>
+<span class="fc" id="L199">          queryRoot.toString(),</span>
+          new ParsedTupleQuery(queryRoot), new MapBindingSet());
+<span class="fc" id="L201">      IQ executableQuery = statement.getExecutableQuery(rdf4JSelectQuery,</span>
+<span class="fc" id="L202">          ImmutableMultimap.of());</span>
+
+<span class="fc" id="L204">      return Optional.of(executableQuery.getTree())</span>
+<span class="fc" id="L205">          .filter(tree -&gt; tree instanceof NativeNode)</span>
+<span class="fc" id="L206">          .map(tree -&gt; (NativeNode) tree)</span>
+<span class="fc" id="L207">          .map(NativeNode::getNativeQueryString)</span>
+<span class="fc" id="L208">          .map(String::trim);</span>
+<span class="fc" id="L209">    } catch (OntopReformulationException e) {</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">      if (!e.getMessage().contains(&quot;IQ: EMPTY&quot;)) {</span>
+<span class="fc" id="L211">        throw e;</span>
+      } else {
+<span class="fc" id="L213">        return Optional.empty();</span>
+      }
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjectInfoRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.repository</a> &gt; <span class="el_source">ProjectInfoRepository.java</span></div><h1>ProjectInfoRepository.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe LibraryVersionRepository.
+ * @brief @~english LibraryVersionRepository class implementation.
+ */
+
+package ca.griis.mmec.repository;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Classe pour obtenir la version courante de la librairie.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-08-13 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class ProjectInfoRepository {
+<span class="fc" id="L57">  private static final GriisLogger logger = GriisLoggerFactory.getLogger(</span>
+      ProjectInfoRepository.class);
+  private static final String defaultProjectInfoResourcePath = &quot;/META-INF/project.txt&quot;;
+  private final String projectInfoResourcePath;
+<span class="fc" id="L61">  private final Map&lt;String, String&gt; properties = new HashMap&lt;&gt;();</span>
+
+  public ProjectInfoRepository() {
+<span class="fc" id="L64">    this(defaultProjectInfoResourcePath);</span>
+<span class="fc" id="L65">  }</span>
+
+<span class="fc" id="L67">  protected ProjectInfoRepository(String projectInfoResourcePath) {</span>
+<span class="fc" id="L68">    logger.trace(Trace.ENTER_METHOD_1, projectInfoResourcePath);</span>
+<span class="fc" id="L69">    this.projectInfoResourcePath = projectInfoResourcePath;</span>
+<span class="fc" id="L70">  }</span>
+
+  public void loadInfoRepository() throws IOException {
+<span class="fc" id="L73">    try (InputStream inputStream = ProjectInfoRepository.class.getResourceAsStream(</span>
+        projectInfoResourcePath)) {
+<span class="fc bfc" id="L75" title="All 2 branches covered.">      if (Objects.isNull(inputStream)) {</span>
+<span class="fc" id="L76">        throw new IOException(&quot;The project.txt file is not found.&quot;);</span>
+      }
+<span class="fc" id="L78">      try (BufferedReader reader = new BufferedReader(</span>
+          new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+        String line;
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L82">          String[] keyValue = line.split(&quot; : &quot;);</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">          if (keyValue.length == 2) {</span>
+<span class="fc" id="L84">            properties.put(keyValue[0].trim(), keyValue[1].trim());</span>
+          }
+<span class="fc" id="L86">        }</span>
+      }
+    }
+<span class="fc" id="L89">  }</span>
+
+  public Optional&lt;String&gt; getApplicationMain() {
+<span class="fc" id="L92">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L93">    return Optional.ofNullable(properties.get(&quot;APPLICATION_MAIN&quot;));</span>
+  }
+
+  public Optional&lt;String&gt; getGroup() {
+<span class="fc" id="L97">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L98">    return Optional.ofNullable(properties.get(&quot;GROUP_PROJECT&quot;));</span>
+  }
+
+  public Optional&lt;String&gt; getName() {
+<span class="fc" id="L102">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L103">    return Optional.ofNullable(properties.get(&quot;NAME_PROJECT&quot;));</span>
+  }
+
+  public Optional&lt;String&gt; getProduct() {
+<span class="fc" id="L107">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L108">    return Optional.ofNullable(properties.get(&quot;PRODUCT&quot;));</span>
+  }
+
+  public Optional&lt;String&gt; getVersion() {
+<span class="fc" id="L112">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L113">    return Optional.ofNullable(properties.get(&quot;VERSION_PROJECT&quot;));</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

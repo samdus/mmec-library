@@ -1,0 +1,1267 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartialTermFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">it.unibz.inf.ontop.model.term</a> &gt; <span class="el_source">PartialTermFactory.java</span></div><h1>PartialTermFactory.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe PartialTermFactory.
+ * @brief @~english PartialTermFactory class implementation.
+ */
+
+package it.unibz.inf.ontop.model.term;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.inject.Inject;
+import it.unibz.inf.ontop.iq.node.VariableNullability;
+import it.unibz.inf.ontop.iq.tools.TypeConstantDictionary;
+import it.unibz.inf.ontop.model.template.Template;
+import it.unibz.inf.ontop.model.term.functionsymbol.BooleanFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.FunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.InequalityLabel;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBFunctionSymbolFactory;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.IRIStringTemplateFunctionSymbol;
+import it.unibz.inf.ontop.model.term.impl.TermFactoryImpl;
+import it.unibz.inf.ontop.model.type.DBTermType;
+import it.unibz.inf.ontop.model.type.RDFDatatype;
+import it.unibz.inf.ontop.model.type.RDFTermType;
+import it.unibz.inf.ontop.model.type.TypeFactory;
+import it.unibz.inf.ontop.substitution.Substitution;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Stream;
+import org.apache.commons.rdf.api.IRI;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Indirection de la classe TermFactoryImpl dont le constructeur est privé.
+ * @par Détails'
+ *      Comme le constructeur est privé, il était impossible d'hériter de la classe comme il faut
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-08-27 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public abstract class PartialTermFactory implements TermFactory {
+  protected final TermFactory defaultTermFactory;
+
+  @Inject
+<span class="fc" id="L73">  public PartialTermFactory(TermFactoryImpl defaultTermFactory) {</span>
+<span class="fc" id="L74">    this.defaultTermFactory = defaultTermFactory;</span>
+<span class="fc" id="L75">  }</span>
+
+  @Override
+  public ImmutableExpression getImmutableExpression(BooleanFunctionSymbol functor,
+      ImmutableTerm... arguments) {
+<span class="fc" id="L80">    return defaultTermFactory.getImmutableExpression(functor, arguments);</span>
+  }
+
+  @Override
+  public ImmutableExpression getImmutableExpression(BooleanFunctionSymbol functor,
+      ImmutableList&lt;? extends ImmutableTerm&gt; arguments) {
+<span class="fc" id="L86">    return defaultTermFactory.getImmutableExpression(functor, arguments);</span>
+  }
+
+  @Override
+  public ImmutableExpression getConjunction(
+      ImmutableList&lt;ImmutableExpression&gt; nonEmptyExpressionList) {
+<span class="fc" id="L92">    return defaultTermFactory.getConjunction(nonEmptyExpressionList);</span>
+  }
+
+  @Override
+  public ImmutableExpression getConjunction(ImmutableExpression expression,
+      ImmutableExpression... otherExpressions) {
+<span class="fc" id="L98">    return defaultTermFactory.getConjunction(expression, otherExpressions);</span>
+  }
+
+  @Override
+  public Optional&lt;ImmutableExpression&gt; getConjunction(
+      Stream&lt;ImmutableExpression&gt; expressionStream) {
+<span class="fc" id="L104">    return defaultTermFactory.getConjunction(expressionStream);</span>
+  }
+
+  @Override
+  public Optional&lt;ImmutableExpression&gt; getConjunction(
+      Optional&lt;ImmutableExpression&gt; optionalExpression,
+      Stream&lt;ImmutableExpression&gt; expressionStream) {
+<span class="fc" id="L111">    return defaultTermFactory.getConjunction(optionalExpression, expressionStream);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDisjunction(
+      ImmutableList&lt;ImmutableExpression&gt; nonEmptyExpressionList) {
+<span class="fc" id="L117">    return defaultTermFactory.getDisjunction(nonEmptyExpressionList);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDisjunction(ImmutableExpression expression,
+      ImmutableExpression... otherExpressions) {
+<span class="fc" id="L123">    return defaultTermFactory.getDisjunction(expression, otherExpressions);</span>
+  }
+
+  @Override
+  public Optional&lt;ImmutableExpression&gt; getDisjunction(Stream&lt;ImmutableExpression&gt; expressions) {
+<span class="fc" id="L128">    return defaultTermFactory.getDisjunction(expressions);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBNot(ImmutableExpression expression) {
+<span class="fc" id="L133">    return defaultTermFactory.getDBNot(expression);</span>
+  }
+
+  @Override
+  public ImmutableExpression getFalseOrNullFunctionalTerm(
+      ImmutableList&lt;ImmutableExpression&gt; arguments) {
+<span class="fc" id="L139">    return defaultTermFactory.getFalseOrNullFunctionalTerm(arguments);</span>
+  }
+
+  @Override
+  public ImmutableExpression getTrueOrNullFunctionalTerm(
+      ImmutableList&lt;ImmutableExpression&gt; arguments) {
+<span class="fc" id="L145">    return defaultTermFactory.getTrueOrNullFunctionalTerm(arguments);</span>
+  }
+
+  @Override
+  public ImmutableExpression getIsAExpression(ImmutableTerm termTypeTerm, RDFTermType baseType) {
+<span class="fc" id="L150">    return defaultTermFactory.getIsAExpression(termTypeTerm, baseType);</span>
+  }
+
+  @Override
+  public ImmutableExpression getAreCompatibleRDFStringExpression(ImmutableTerm typeTerm1,
+      ImmutableTerm typeTerm2) {
+<span class="fc" id="L156">    return defaultTermFactory.getAreCompatibleRDFStringExpression(typeTerm1, typeTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression.Evaluation getEvaluation(ImmutableExpression expression) {
+<span class="fc" id="L161">    return defaultTermFactory.getEvaluation(expression);</span>
+  }
+
+  @Override
+  public ImmutableExpression.Evaluation getPositiveEvaluation() {
+<span class="fc" id="L166">    return defaultTermFactory.getPositiveEvaluation();</span>
+  }
+
+  @Override
+  public ImmutableExpression.Evaluation getNegativeEvaluation() {
+<span class="fc" id="L171">    return defaultTermFactory.getNegativeEvaluation();</span>
+  }
+
+  @Override
+  public ImmutableExpression.Evaluation getNullEvaluation() {
+<span class="fc" id="L176">    return defaultTermFactory.getNullEvaluation();</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm.FunctionalTermDecomposition getFunctionalTermDecomposition(
+      ImmutableTerm liftableTerm) {
+<span class="fc" id="L182">    return defaultTermFactory.getFunctionalTermDecomposition(liftableTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm.FunctionalTermDecomposition getFunctionalTermDecomposition(
+      ImmutableTerm liftableTerm, Substitution&lt;ImmutableFunctionalTerm&gt; subTermSubstitution) {
+<span class="fc" id="L188">    return defaultTermFactory.getFunctionalTermDecomposition(liftableTerm, subTermSubstitution);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getImmutableFunctionalTerm(FunctionSymbol functor,
+      ImmutableList&lt;? extends ImmutableTerm&gt; terms) {
+<span class="fc" id="L194">    return defaultTermFactory.getImmutableFunctionalTerm(functor, terms);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getImmutableFunctionalTerm(FunctionSymbol functor,
+      ImmutableTerm... terms) {
+<span class="fc" id="L200">    return defaultTermFactory.getImmutableFunctionalTerm(functor, terms);</span>
+  }
+
+  @Override
+  public NonGroundFunctionalTerm getNonGroundFunctionalTerm(FunctionSymbol functor,
+      ImmutableTerm... terms) {
+<span class="fc" id="L206">    return defaultTermFactory.getNonGroundFunctionalTerm(functor, terms);</span>
+  }
+
+  @Override
+  public NonGroundFunctionalTerm getNonGroundFunctionalTerm(FunctionSymbol functor,
+      ImmutableList&lt;ImmutableTerm&gt; terms) {
+<span class="fc" id="L212">    return defaultTermFactory.getNonGroundFunctionalTerm(functor, terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getNotYetTypedEquality(ImmutableTerm t1, ImmutableTerm t2) {
+<span class="fc" id="L217">    return defaultTermFactory.getNotYetTypedEquality(t1, t2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getLexicalNonStrictEquality(ImmutableTerm lexicalTerm1,
+      ImmutableTerm typeTerm1, ImmutableTerm lexicalTerm2, ImmutableTerm typeTerm2) {
+<span class="fc" id="L223">    return defaultTermFactory.getLexicalNonStrictEquality(lexicalTerm1, typeTerm1, lexicalTerm2,</span>
+        typeTerm2);
+  }
+
+  @Override
+  public ImmutableExpression getLexicalInequality(InequalityLabel inequalityLabel,
+      ImmutableTerm lexicalTerm1, ImmutableTerm typeTerm1, ImmutableTerm lexicalTerm2,
+      ImmutableTerm typeTerm2) {
+<span class="fc" id="L231">    return defaultTermFactory.getLexicalInequality(inequalityLabel, lexicalTerm1, typeTerm1,</span>
+        lexicalTerm2, typeTerm2);
+  }
+
+  @Override
+  public ImmutableExpression getDBNonStrictNumericEquality(ImmutableTerm dbNumericTerm1,
+      ImmutableTerm dbNumericTerm2) {
+<span class="fc" id="L238">    return defaultTermFactory.getDBNonStrictNumericEquality(dbNumericTerm1, dbNumericTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBNonStrictStringEquality(ImmutableTerm dbStringTerm1,
+      ImmutableTerm dbStringTerm2) {
+<span class="fc" id="L244">    return defaultTermFactory.getDBNonStrictStringEquality(dbStringTerm1, dbStringTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBNonStrictDatetimeEquality(ImmutableTerm dbDatetimeTerm1,
+      ImmutableTerm dbDatetimeTerm2) {
+<span class="fc" id="L250">    return defaultTermFactory.getDBNonStrictDatetimeEquality(dbDatetimeTerm1, dbDatetimeTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBNonStrictDateEquality(ImmutableTerm dbTerm1,
+      ImmutableTerm dbTerm2) {
+<span class="fc" id="L256">    return defaultTermFactory.getDBNonStrictDateEquality(dbTerm1, dbTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBNonStrictDefaultEquality(ImmutableTerm dbTerm1,
+      ImmutableTerm dbTerm2) {
+<span class="fc" id="L262">    return defaultTermFactory.getDBNonStrictDefaultEquality(dbTerm1, dbTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBNumericInequality(InequalityLabel inequalityLabel,
+      ImmutableTerm dbNumericTerm1, ImmutableTerm dbNumericTerm2) {
+<span class="fc" id="L268">    return defaultTermFactory.getDBNumericInequality(inequalityLabel, dbNumericTerm1,</span>
+        dbNumericTerm2);
+  }
+
+  @Override
+  public ImmutableExpression getDBBooleanInequality(InequalityLabel inequalityLabel,
+      ImmutableTerm dbBooleanTerm1, ImmutableTerm dbBooleanTerm2) {
+<span class="fc" id="L275">    return defaultTermFactory.getDBBooleanInequality(inequalityLabel, dbBooleanTerm1,</span>
+        dbBooleanTerm2);
+  }
+
+  @Override
+  public ImmutableExpression getDBStringInequality(InequalityLabel inequalityLabel,
+      ImmutableTerm dbStringTerm1, ImmutableTerm dbStringTerm2) {
+<span class="fc" id="L282">    return defaultTermFactory.getDBStringInequality(inequalityLabel, dbStringTerm1, dbStringTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBDatetimeInequality(InequalityLabel inequalityLabel,
+      ImmutableTerm dbDatetimeTerm1, ImmutableTerm dbDatetimeTerm2) {
+<span class="fc" id="L288">    return defaultTermFactory.getDBDatetimeInequality(inequalityLabel, dbDatetimeTerm1,</span>
+        dbDatetimeTerm2);
+  }
+
+  @Override
+  public ImmutableExpression getDBDateInequality(InequalityLabel inequalityLabel,
+      ImmutableTerm dbDateTerm1, ImmutableTerm dbDateTerm2) {
+<span class="fc" id="L295">    return defaultTermFactory.getDBDateInequality(inequalityLabel, dbDateTerm1, dbDateTerm2);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBDefaultInequality(InequalityLabel inequalityLabel,
+      ImmutableTerm dbTerm1, ImmutableTerm dbTerm2) {
+<span class="fc" id="L301">    return defaultTermFactory.getDBDefaultInequality(inequalityLabel, dbTerm1, dbTerm2);</span>
+  }
+
+  @Override
+  public IRIConstant getConstantIRI(IRI iri) {
+<span class="fc" id="L306">    return defaultTermFactory.getConstantIRI(iri);</span>
+  }
+
+  @Override
+  public IRIConstant getConstantIRI(String iri) {
+<span class="fc" id="L311">    return defaultTermFactory.getConstantIRI(iri);</span>
+  }
+
+  @Override
+  public BNode getConstantBNode(String name) {
+<span class="fc" id="L316">    return defaultTermFactory.getConstantBNode(name);</span>
+  }
+
+  @Override
+  public DBConstant getDBBooleanConstant(boolean value) {
+<span class="fc" id="L321">    return defaultTermFactory.getDBBooleanConstant(value);</span>
+  }
+
+  @Override
+  public DBConstant getXsdBooleanLexicalConstant(boolean value) {
+<span class="fc" id="L326">    return defaultTermFactory.getXsdBooleanLexicalConstant(value);</span>
+  }
+
+  @Override
+  public Constant getNullConstant() {
+<span class="fc" id="L331">    return defaultTermFactory.getNullConstant();</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getTypedNull(DBTermType termType) {
+<span class="fc" id="L336">    return defaultTermFactory.getTypedNull(termType);</span>
+  }
+
+  @Override
+  public DBConstant getDBIntegerConstant(int value) {
+<span class="fc" id="L341">    return defaultTermFactory.getDBIntegerConstant(value);</span>
+  }
+
+  @Override
+  public Optional&lt;DBConstant&gt; getDoubleNaN() {
+<span class="fc" id="L346">    return defaultTermFactory.getDoubleNaN();</span>
+  }
+
+  @Override
+  public DBConstant getProvenanceSpecialConstant() {
+<span class="fc" id="L351">    return defaultTermFactory.getProvenanceSpecialConstant();</span>
+  }
+
+  @Override
+  public RDFLiteralConstant getRDFLiteralConstant(String value, RDFDatatype type) {
+<span class="fc" id="L356">    return defaultTermFactory.getRDFLiteralConstant(value, type);</span>
+  }
+
+  @Override
+  public RDFLiteralConstant getRDFLiteralConstant(String value, IRI type) {
+<span class="fc" id="L361">    return defaultTermFactory.getRDFLiteralConstant(value, type);</span>
+  }
+
+  @Override
+  public RDFLiteralConstant getRDFLiteralConstant(String value, String language) {
+<span class="fc" id="L366">    return defaultTermFactory.getRDFLiteralConstant(value, language);</span>
+  }
+
+  @Override
+  public RDFConstant getRDFConstant(String lexicalValue, RDFTermType termType) {
+<span class="fc" id="L371">    return defaultTermFactory.getRDFConstant(lexicalValue, termType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getRDFLiteralFunctionalTerm(ImmutableTerm lexicalTerm,
+      String language) {
+<span class="fc" id="L377">    return defaultTermFactory.getRDFLiteralFunctionalTerm(lexicalTerm, language);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getRDFLiteralFunctionalTerm(ImmutableTerm lexicalTerm,
+      RDFDatatype type) {
+<span class="fc" id="L383">    return defaultTermFactory.getRDFLiteralFunctionalTerm(lexicalTerm, type);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getRDFLiteralFunctionalTerm(ImmutableTerm lexicalTerm,
+      IRI datatypeIri) {
+<span class="fc" id="L389">    return defaultTermFactory.getRDFLiteralFunctionalTerm(lexicalTerm, datatypeIri);</span>
+  }
+
+  @Override
+  public DBConstant getDBConstant(String value, DBTermType termType) {
+<span class="fc" id="L394">    return defaultTermFactory.getDBConstant(value, termType);</span>
+  }
+
+  @Override
+  public DBConstant getDBStringConstant(String value) {
+<span class="fc" id="L399">    return defaultTermFactory.getDBStringConstant(value);</span>
+  }
+
+  @Override
+  public Variable getVariable(String name) {
+<span class="fc" id="L404">    return defaultTermFactory.getVariable(name);</span>
+  }
+
+  @Override
+  public RDFTermTypeConstant getRDFTermTypeConstant(RDFTermType type) {
+<span class="fc" id="L409">    return defaultTermFactory.getRDFTermTypeConstant(type);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getRDFTermTypeFunctionalTerm(ImmutableTerm term,
+      TypeConstantDictionary dictionary, ImmutableSet&lt;RDFTermTypeConstant&gt; possibleConstants,
+      boolean isSimplifiable) {
+<span class="fc" id="L416">    return defaultTermFactory.getRDFTermTypeFunctionalTerm(term, dictionary, possibleConstants,</span>
+        isSimplifiable);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getRDFFunctionalTerm(ImmutableTerm lexicalTerm,
+      ImmutableTerm typeTerm) {
+<span class="fc" id="L423">    return defaultTermFactory.getRDFFunctionalTerm(lexicalTerm, typeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getIRIFunctionalTerm(ImmutableTerm term) {
+<span class="fc" id="L428">    return defaultTermFactory.getIRIFunctionalTerm(term);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getIRIFunctionalTerm(ImmutableList&lt;Template.Component&gt; iriTemplate,
+      ImmutableList&lt;? extends ImmutableTerm&gt; arguments) {
+<span class="fc" id="L434">    return defaultTermFactory.getIRIFunctionalTerm(iriTemplate, arguments);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getIRIFunctionalTerm(
+      IRIStringTemplateFunctionSymbol templateSymbol, ImmutableList&lt;DBConstant&gt; arguments) {
+<span class="fc" id="L440">    return defaultTermFactory.getIRIFunctionalTerm(templateSymbol, arguments);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getBnodeFunctionalTerm(ImmutableTerm term) {
+<span class="fc" id="L445">    return defaultTermFactory.getBnodeFunctionalTerm(term);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getBnodeFunctionalTerm(
+      ImmutableList&lt;Template.Component&gt; bnodeTemplate,
+      ImmutableList&lt;? extends ImmutableTerm&gt; arguments) {
+<span class="fc" id="L452">    return defaultTermFactory.getBnodeFunctionalTerm(bnodeTemplate, arguments);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCastFunctionalTerm(DBTermType targetType,
+      ImmutableTerm term) {
+<span class="fc" id="L458">    return defaultTermFactory.getDBCastFunctionalTerm(targetType, term);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCastFunctionalTerm(DBTermType inputType,
+      DBTermType targetType, ImmutableTerm term) {
+<span class="fc" id="L464">    return defaultTermFactory.getDBCastFunctionalTerm(inputType, targetType, term);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBIntIndex(ImmutableTerm idTerm,
+      ImmutableTerm... possibleValues) {
+<span class="fc" id="L470">    return defaultTermFactory.getDBIntIndex(idTerm, possibleValues);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBIntIndex(ImmutableTerm idTerm,
+      ImmutableList&lt;ImmutableTerm&gt; possibleValues) {
+<span class="fc" id="L476">    return defaultTermFactory.getDBIntIndex(idTerm, possibleValues);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getConversion2RDFLexical(DBTermType inputType, ImmutableTerm term,
+      RDFTermType rdfTermType) {
+<span class="fc" id="L482">    return defaultTermFactory.getConversion2RDFLexical(inputType, term, rdfTermType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getConversion2RDFLexical(ImmutableTerm term,
+      RDFTermType rdfTermType) {
+<span class="fc" id="L488">    return defaultTermFactory.getConversion2RDFLexical(term, rdfTermType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getConversionFromRDFLexical2DB(DBTermType targetDbType,
+      ImmutableTerm dbTerm, RDFTermType rdfType) {
+<span class="fc" id="L494">    return defaultTermFactory.getConversionFromRDFLexical2DB(targetDbType, dbTerm, rdfType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getConversionFromRDFLexical2DB(DBTermType targetDbType,
+      ImmutableTerm dbTerm) {
+<span class="fc" id="L500">    return defaultTermFactory.getConversionFromRDFLexical2DB(targetDbType, dbTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getConversionFromRDFLexical2DB(ImmutableTerm dbTerm,
+      RDFTermType rdfType) {
+<span class="fc" id="L506">    return defaultTermFactory.getConversionFromRDFLexical2DB(dbTerm, rdfType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getPartiallyDefinedConversionToString(Variable variable) {
+<span class="fc" id="L511">    return defaultTermFactory.getPartiallyDefinedConversionToString(variable);</span>
+  }
+
+  @Override
+  public ImmutableExpression getRDF2DBBooleanFunctionalTerm(ImmutableTerm xsdBooleanTerm) {
+<span class="fc" id="L516">    return defaultTermFactory.getRDF2DBBooleanFunctionalTerm(xsdBooleanTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getIfElseNull(ImmutableExpression condition, ImmutableTerm term) {
+<span class="fc" id="L521">    return defaultTermFactory.getIfElseNull(condition, term);</span>
+  }
+
+  @Override
+  public ImmutableExpression getBooleanIfElseNull(ImmutableExpression condition,
+      ImmutableExpression thenExpression) {
+<span class="fc" id="L527">    return defaultTermFactory.getBooleanIfElseNull(condition, thenExpression);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getIfThenElse(ImmutableExpression condition,
+      ImmutableTerm thenTerm, ImmutableTerm elseTerm) {
+<span class="fc" id="L533">    return defaultTermFactory.getIfThenElse(condition, thenTerm, elseTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCase(
+      Stream&lt;? extends Map.Entry&lt;ImmutableExpression, ? extends ImmutableTerm&gt;&gt; whenPairs,
+      ImmutableTerm defaultTerm, boolean doOrderingMatter) {
+<span class="fc" id="L540">    return defaultTermFactory.getDBCase(whenPairs, defaultTerm, doOrderingMatter);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCaseElseNull(
+      Stream&lt;? extends Map.Entry&lt;ImmutableExpression, ? extends ImmutableTerm&gt;&gt; whenPairs,
+      boolean doOrderingMatter) {
+<span class="fc" id="L547">    return defaultTermFactory.getDBCaseElseNull(whenPairs, doOrderingMatter);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBBooleanCase(
+      Stream&lt;Map.Entry&lt;ImmutableExpression, ImmutableExpression&gt;&gt; whenPairs,
+      ImmutableExpression defaultValue, boolean doOrderingMatter) {
+<span class="fc" id="L554">    return defaultTermFactory.getDBBooleanCase(whenPairs, defaultValue, doOrderingMatter);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCoalesce(ImmutableTerm term1, ImmutableTerm term2,
+      ImmutableTerm... terms) {
+<span class="fc" id="L560">    return defaultTermFactory.getDBCoalesce(term1, term2, terms);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCoalesce(ImmutableList&lt;ImmutableTerm&gt; terms) {
+<span class="fc" id="L565">    return defaultTermFactory.getDBCoalesce(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBBooleanCoalesce(ImmutableList&lt;ImmutableTerm&gt; terms) {
+<span class="fc" id="L570">    return defaultTermFactory.getDBBooleanCoalesce(terms);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBReplace(ImmutableTerm arg, ImmutableTerm pattern,
+      ImmutableTerm replacement) {
+<span class="fc" id="L576">    return defaultTermFactory.getDBReplace(arg, pattern, replacement);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBRegexpReplace(ImmutableTerm arg, ImmutableTerm pattern,
+      ImmutableTerm replacement) {
+<span class="fc" id="L582">    return defaultTermFactory.getDBRegexpReplace(arg, pattern, replacement);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBRegexpReplace(ImmutableTerm arg, ImmutableTerm pattern,
+      ImmutableTerm replacement, ImmutableTerm flags) {
+<span class="fc" id="L588">    return defaultTermFactory.getDBRegexpReplace(arg, pattern, replacement, flags);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBStartsWith(ImmutableList&lt;ImmutableTerm&gt; terms) {
+<span class="fc" id="L593">    return defaultTermFactory.getDBStartsWith(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBEndsWith(ImmutableList&lt;? extends ImmutableTerm&gt; terms) {
+<span class="fc" id="L598">    return defaultTermFactory.getDBEndsWith(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBContains(ImmutableList&lt;? extends ImmutableTerm&gt; terms) {
+<span class="fc" id="L603">    return defaultTermFactory.getDBContains(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBRegexpMatches(ImmutableList&lt;ImmutableTerm&gt; terms) {
+<span class="fc" id="L608">    return defaultTermFactory.getDBRegexpMatches(terms);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getR2RMLIRISafeEncodeFunctionalTerm(ImmutableTerm term) {
+<span class="fc" id="L613">    return defaultTermFactory.getR2RMLIRISafeEncodeFunctionalTerm(term);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBEncodeForURI(ImmutableTerm term) {
+<span class="fc" id="L618">    return defaultTermFactory.getDBEncodeForURI(term);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getNullRejectingDBConcatFunctionalTerm(
+      ImmutableList&lt;? extends ImmutableTerm&gt; terms) {
+<span class="fc" id="L624">    return defaultTermFactory.getNullRejectingDBConcatFunctionalTerm(terms);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getCommonDenominatorFunctionalTerm(
+      ImmutableList&lt;ImmutableTerm&gt; typeTerms) {
+<span class="fc" id="L630">    return defaultTermFactory.getCommonDenominatorFunctionalTerm(typeTerms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getStrictEquality(ImmutableSet&lt;ImmutableTerm&gt; terms) {
+<span class="fc" id="L635">    return defaultTermFactory.getStrictEquality(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getStrictEquality(ImmutableList&lt;? extends ImmutableTerm&gt; terms) {
+<span class="fc" id="L640">    return defaultTermFactory.getStrictEquality(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getStrictEquality(ImmutableTerm term1, ImmutableTerm term2,
+      ImmutableTerm... otherTerms) {
+<span class="fc" id="L646">    return defaultTermFactory.getStrictEquality(term1, term2, otherTerms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBIsStringEmpty(ImmutableTerm stringTerm) {
+<span class="fc" id="L651">    return defaultTermFactory.getDBIsStringEmpty(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableExpression getStrictNEquality(ImmutableSet&lt;ImmutableTerm&gt; terms) {
+<span class="fc" id="L656">    return defaultTermFactory.getStrictNEquality(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getStrictNEquality(ImmutableList&lt;? extends ImmutableTerm&gt; terms) {
+<span class="fc" id="L661">    return defaultTermFactory.getStrictNEquality(terms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getStrictNEquality(ImmutableTerm term1, ImmutableTerm term2,
+      ImmutableTerm... otherTerms) {
+<span class="fc" id="L667">    return defaultTermFactory.getStrictNEquality(term1, term2, otherTerms);</span>
+  }
+
+  @Override
+  public ImmutableExpression getIsTrue(NonFunctionalTerm dbBooleanTerm) {
+<span class="fc" id="L672">    return defaultTermFactory.getIsTrue(dbBooleanTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSubString2(ImmutableTerm stringTerm, ImmutableTerm from) {
+<span class="fc" id="L677">    return defaultTermFactory.getDBSubString2(stringTerm, from);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSubString3(ImmutableTerm stringTerm, ImmutableTerm from,
+      ImmutableTerm to) {
+<span class="fc" id="L683">    return defaultTermFactory.getDBSubString3(stringTerm, from, to);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBRight(ImmutableTerm stringTerm, ImmutableTerm lengthTerm) {
+<span class="fc" id="L688">    return defaultTermFactory.getDBRight(stringTerm, lengthTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBUpper(ImmutableTerm stringTerm) {
+<span class="fc" id="L693">    return defaultTermFactory.getDBUpper(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBLower(ImmutableTerm stringTerm) {
+<span class="fc" id="L698">    return defaultTermFactory.getDBLower(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getLangTypeFunctionalTerm(ImmutableTerm rdfTypeTerm) {
+<span class="fc" id="L703">    return defaultTermFactory.getLangTypeFunctionalTerm(rdfTypeTerm);</span>
+  }
+
+  @Override
+  public ImmutableExpression getLexicalLangMatches(ImmutableTerm langTagTerm,
+      ImmutableTerm langRangeTerm) {
+<span class="fc" id="L709">    return defaultTermFactory.getLexicalLangMatches(langTagTerm, langRangeTerm);</span>
+  }
+
+  @Override
+  public TypeFactory getTypeFactory() {
+<span class="fc" id="L714">    return defaultTermFactory.getTypeFactory();</span>
+  }
+
+  @Override
+  public VariableNullability createDummyVariableNullability(
+      ImmutableFunctionalTerm functionalTerm) {
+<span class="fc" id="L720">    return defaultTermFactory.createDummyVariableNullability(functionalTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getRDFDatatypeStringFunctionalTerm(ImmutableTerm rdfTypeTerm) {
+<span class="fc" id="L725">    return defaultTermFactory.getRDFDatatypeStringFunctionalTerm(rdfTypeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBUUID(UUID uuid) {
+<span class="fc" id="L730">    return defaultTermFactory.getDBUUID(uuid);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBStrBefore(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L735">    return defaultTermFactory.getDBStrBefore(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBStrAfter(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L740">    return defaultTermFactory.getDBStrAfter(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCharLength(ImmutableTerm stringTerm) {
+<span class="fc" id="L745">    return defaultTermFactory.getDBCharLength(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBIsNull(ImmutableTerm immutableTerm) {
+<span class="fc" id="L750">    return defaultTermFactory.getDBIsNull(immutableTerm);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBIsNotNull(ImmutableTerm immutableTerm) {
+<span class="fc" id="L755">    return defaultTermFactory.getDBIsNotNull(immutableTerm);</span>
+  }
+
+  @Override
+  public Optional&lt;ImmutableExpression&gt; getDBIsNotNull(
+      Stream&lt;? extends ImmutableTerm&gt; immutableTerms) {
+<span class="fc" id="L761">    return defaultTermFactory.getDBIsNotNull(immutableTerms);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMd5(ImmutableTerm stringTerm) {
+<span class="fc" id="L766">    return defaultTermFactory.getDBMd5(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSha1(ImmutableTerm stringTerm) {
+<span class="fc" id="L771">    return defaultTermFactory.getDBSha1(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSha256(ImmutableTerm stringTerm) {
+<span class="fc" id="L776">    return defaultTermFactory.getDBSha256(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSha384(ImmutableTerm stringTerm) {
+<span class="fc" id="L781">    return defaultTermFactory.getDBSha384(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSha512(ImmutableTerm stringTerm) {
+<span class="fc" id="L786">    return defaultTermFactory.getDBSha512(stringTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getCommonPropagatedOrSubstitutedNumericType(
+      ImmutableTerm rdfTypeTerm1, ImmutableTerm rdfTypeTerm2) {
+<span class="fc" id="L792">    return defaultTermFactory.getCommonPropagatedOrSubstitutedNumericType(rdfTypeTerm1,</span>
+        rdfTypeTerm2);
+  }
+
+  @Override
+  public DBFunctionSymbolFactory getDBFunctionSymbolFactory() {
+<span class="fc" id="L798">    return defaultTermFactory.getDBFunctionSymbolFactory();</span>
+  }
+
+  @Override
+  public &lt;T extends ImmutableTerm&gt; Substitution&lt;T&gt; getSubstitution(ImmutableMap&lt;Variable, T&gt; map) {
+<span class="fc" id="L803">    return defaultTermFactory.getSubstitution(map);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getBinaryNumericLexicalFunctionalTerm(
+      String dbNumericOperationName, ImmutableTerm lexicalTerm1, ImmutableTerm lexicalTerm2,
+      ImmutableTerm rdfTypeTerm) {
+<span class="fc" id="L810">    return defaultTermFactory.getBinaryNumericLexicalFunctionalTerm(dbNumericOperationName,</span>
+        lexicalTerm1, lexicalTerm2, rdfTypeTerm);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBBinaryNumericFunctionalTerm(String dbNumericOperationName,
+      DBTermType dbNumericType, ImmutableTerm dbTerm1, ImmutableTerm dbTerm2) {
+<span class="fc" id="L817">    return defaultTermFactory.getDBBinaryNumericFunctionalTerm(dbNumericOperationName,</span>
+        dbNumericType,
+        dbTerm1, dbTerm2);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBBinaryNumericFunctionalTerm(String dbNumericOperationName,
+      DBTermType argumentType1, DBTermType argumentType2, ImmutableTerm dbTerm1,
+      ImmutableTerm dbTerm2) {
+<span class="fc" id="L826">    return defaultTermFactory.getDBBinaryNumericFunctionalTerm(dbNumericOperationName,</span>
+        argumentType1,
+        argumentType2, dbTerm1, dbTerm2);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getUnaryLatelyTypedFunctionalTerm(ImmutableTerm lexicalTerm,
+      ImmutableTerm inputRdfTypeTerm, DBTermType targetType,
+      Function&lt;DBTermType, Optional&lt;DBFunctionSymbol&gt;&gt; dbFunctionSymbolFct) {
+<span class="fc" id="L835">    return defaultTermFactory.getUnaryLatelyTypedFunctionalTerm(lexicalTerm, inputRdfTypeTerm,</span>
+        targetType, dbFunctionSymbolFct);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getUnaryLexicalFunctionalTerm(ImmutableTerm lexicalTerm,
+      ImmutableTerm rdfDatatypeTerm,
+      Function&lt;DBTermType, Optional&lt;DBFunctionSymbol&gt;&gt; dbFunctionSymbolFct) {
+<span class="fc" id="L843">    return defaultTermFactory.getUnaryLexicalFunctionalTerm(lexicalTerm, rdfDatatypeTerm,</span>
+        dbFunctionSymbolFct);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getBinaryLatelyTypedFunctionalTerm(ImmutableTerm lexicalTerm0,
+      ImmutableTerm lexicalTerm1, ImmutableTerm inputRdfTypeTerm0, ImmutableTerm inputRdfTypeTerm1,
+      DBTermType targetType, Function&lt;DBTermType, Optional&lt;DBFunctionSymbol&gt;&gt; dbFunctionSymbolFct) {
+<span class="fc" id="L851">    return defaultTermFactory.getBinaryLatelyTypedFunctionalTerm(lexicalTerm0, lexicalTerm1,</span>
+        inputRdfTypeTerm0, inputRdfTypeTerm1, targetType, dbFunctionSymbolFct);
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getSPARQLNonStrictEquality(ImmutableTerm rdfTerm1,
+      ImmutableTerm rdfTerm2) {
+<span class="fc" id="L858">    return defaultTermFactory.getSPARQLNonStrictEquality(rdfTerm1, rdfTerm2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getSPARQLEffectiveBooleanValue(ImmutableTerm rdfTerm) {
+<span class="fc" id="L863">    return defaultTermFactory.getSPARQLEffectiveBooleanValue(rdfTerm);</span>
+  }
+
+  @Override
+  public ImmutableExpression getLexicalEffectiveBooleanValue(ImmutableTerm lexicalTerm,
+      ImmutableTerm rdfDatatypeTerm) {
+<span class="fc" id="L869">    return defaultTermFactory.getLexicalEffectiveBooleanValue(lexicalTerm, rdfDatatypeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBRand(UUID uuid) {
+<span class="fc" id="L874">    return defaultTermFactory.getDBRand(uuid);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBYearFromDatetime(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L879">    return defaultTermFactory.getDBYearFromDatetime(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMonthFromDatetime(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L884">    return defaultTermFactory.getDBMonthFromDatetime(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBDayFromDatetime(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L889">    return defaultTermFactory.getDBDayFromDatetime(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBHours(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L894">    return defaultTermFactory.getDBHours(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMinutes(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L899">    return defaultTermFactory.getDBMinutes(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSeconds(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L904">    return defaultTermFactory.getDBSeconds(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBTz(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L909">    return defaultTermFactory.getDBTz(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBNow() {
+<span class="fc" id="L914">    return defaultTermFactory.getDBNow();</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBRowUniqueStr() {
+<span class="fc" id="L919">    return defaultTermFactory.getDBRowUniqueStr();</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBRowNumber() {
+<span class="fc" id="L924">    return defaultTermFactory.getDBRowNumber();</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBIriStringResolution(IRI baseIri, ImmutableTerm argLexical) {
+<span class="fc" id="L929">    return defaultTermFactory.getDBIriStringResolution(baseIri, argLexical);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCount(boolean isDistinct) {
+<span class="fc" id="L934">    return defaultTermFactory.getDBCount(isDistinct);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCount(ImmutableTerm subTerm, boolean isDistinct) {
+<span class="fc" id="L939">    return defaultTermFactory.getDBCount(subTerm, isDistinct);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSum(ImmutableTerm subTerm, DBTermType dbType,
+      boolean isDistinct) {
+<span class="fc" id="L945">    return defaultTermFactory.getDBSum(subTerm, dbType, isDistinct);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBAvg(ImmutableTerm subTerm, DBTermType dbType,
+      boolean isDistinct) {
+<span class="fc" id="L951">    return defaultTermFactory.getDBAvg(subTerm, dbType, isDistinct);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBStdev(ImmutableTerm subTerm, DBTermType dbType, boolean isPop,
+      boolean isDistinct) {
+<span class="fc" id="L957">    return defaultTermFactory.getDBStdev(subTerm, dbType, isPop, isDistinct);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBVariance(ImmutableTerm subTerm, DBTermType dbType,
+      boolean isPop, boolean isDistinct) {
+<span class="fc" id="L963">    return defaultTermFactory.getDBVariance(subTerm, dbType, isPop, isDistinct);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMin(ImmutableTerm subTerm, DBTermType dbType) {
+<span class="fc" id="L968">    return defaultTermFactory.getDBMin(subTerm, dbType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMax(ImmutableTerm subTerm, DBTermType dbType) {
+<span class="fc" id="L973">    return defaultTermFactory.getDBMax(subTerm, dbType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSample(ImmutableTerm subTerm, DBTermType dbType) {
+<span class="fc" id="L978">    return defaultTermFactory.getDBSample(subTerm, dbType);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBGroupConcat(ImmutableTerm subTerm, String separator,
+      boolean isDistinct) {
+<span class="fc" id="L984">    return defaultTermFactory.getDBGroupConcat(subTerm, separator, isDistinct);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTWithin(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L989">    return defaultTermFactory.getDBSTWithin(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTContains(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L994">    return defaultTermFactory.getDBSTContains(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTCrosses(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L999">    return defaultTermFactory.getDBSTCrosses(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTDisjoint(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1004">    return defaultTermFactory.getDBSTDisjoint(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTEquals(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1009">    return defaultTermFactory.getDBSTEquals(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTIntersects(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1014">    return defaultTermFactory.getDBSTIntersects(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTOverlaps(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1019">    return defaultTermFactory.getDBSTOverlaps(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTTouches(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1024">    return defaultTermFactory.getDBSTTouches(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTCoveredBy(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1029">    return defaultTermFactory.getDBSTCoveredBy(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTCovers(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1034">    return defaultTermFactory.getDBSTCovers(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTContainsProperly(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1039">    return defaultTermFactory.getDBSTContainsProperly(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTSTransform(ImmutableTerm arg1, ImmutableTerm srid) {
+<span class="fc" id="L1044">    return defaultTermFactory.getDBSTSTransform(arg1, srid);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTSetSRID(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1049">    return defaultTermFactory.getDBSTSetSRID(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTGeomFromText(ImmutableTerm arg1) {
+<span class="fc" id="L1054">    return defaultTermFactory.getDBSTGeomFromText(arg1);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTMakePoint(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1059">    return defaultTermFactory.getDBSTMakePoint(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTFlipCoordinates(ImmutableTerm arg1) {
+<span class="fc" id="L1064">    return defaultTermFactory.getDBSTFlipCoordinates(arg1);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTDistanceSphere(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1069">    return defaultTermFactory.getDBSTDistanceSphere(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTDistanceSpheroid(ImmutableTerm arg1, ImmutableTerm arg2,
+      ImmutableTerm arg3) {
+<span class="fc" id="L1075">    return defaultTermFactory.getDBSTDistanceSpheroid(arg1, arg2, arg3);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSTDistance(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1080">    return defaultTermFactory.getDBSTDistance(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBIntersection(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1085">    return defaultTermFactory.getDBIntersection(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBBoundary(ImmutableTerm arg1) {
+<span class="fc" id="L1090">    return defaultTermFactory.getDBBoundary(arg1);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBConvexHull(ImmutableTerm arg1) {
+<span class="fc" id="L1095">    return defaultTermFactory.getDBConvexHull(arg1);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBDifference(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1100">    return defaultTermFactory.getDBDifference(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBEnvelope(ImmutableTerm arg1) {
+<span class="fc" id="L1105">    return defaultTermFactory.getDBEnvelope(arg1);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBSymDifference(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1110">    return defaultTermFactory.getDBSymDifference(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBUnion(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1115">    return defaultTermFactory.getDBUnion(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBRelate(ImmutableTerm arg1, ImmutableTerm arg2, ImmutableTerm arg3) {
+<span class="fc" id="L1120">    return defaultTermFactory.getDBRelate(arg1, arg2, arg3);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBRelateMatrix(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1125">    return defaultTermFactory.getDBRelateMatrix(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBGetSRID(ImmutableTerm arg1) {
+<span class="fc" id="L1130">    return defaultTermFactory.getDBGetSRID(arg1);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBAsText(ImmutableTerm arg1) {
+<span class="fc" id="L1135">    return defaultTermFactory.getDBAsText(arg1);</span>
+  }
+
+  @Override
+  public ImmutableTerm getDBBuffer(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1140">    return defaultTermFactory.getDBBuffer(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBWeeksBetweenFromDateTime(ImmutableTerm arg1,
+      ImmutableTerm arg2) {
+<span class="fc" id="L1146">    return defaultTermFactory.getDBWeeksBetweenFromDateTime(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBWeeksBetweenFromDate(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1151">    return defaultTermFactory.getDBWeeksBetweenFromDate(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBDaysBetweenFromDateTime(ImmutableTerm arg1,
+      ImmutableTerm arg2) {
+<span class="fc" id="L1157">    return defaultTermFactory.getDBDaysBetweenFromDateTime(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBDaysBetweenFromDate(ImmutableTerm arg1, ImmutableTerm arg2) {
+<span class="fc" id="L1162">    return defaultTermFactory.getDBDaysBetweenFromDate(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBHoursBetweenFromDateTime(ImmutableTerm arg1,
+      ImmutableTerm arg2) {
+<span class="fc" id="L1168">    return defaultTermFactory.getDBHoursBetweenFromDateTime(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMinutesBetweenFromDateTime(ImmutableTerm arg1,
+      ImmutableTerm arg2) {
+<span class="fc" id="L1174">    return defaultTermFactory.getDBMinutesBetweenFromDateTime(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBSecondsBetweenFromDateTime(ImmutableTerm arg1,
+      ImmutableTerm arg2) {
+<span class="fc" id="L1180">    return defaultTermFactory.getDBSecondsBetweenFromDateTime(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMillisBetweenFromDateTime(ImmutableTerm arg1,
+      ImmutableTerm arg2) {
+<span class="fc" id="L1186">    return defaultTermFactory.getDBMillisBetweenFromDateTime(arg1, arg2);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBJsonElement(ImmutableTerm arg, ImmutableList&lt;String&gt; path) {
+<span class="fc" id="L1191">    return defaultTermFactory.getDBJsonElement(arg, path);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBJsonElementAsText(ImmutableTerm arg,
+      ImmutableList&lt;String&gt; path) {
+<span class="fc" id="L1197">    return defaultTermFactory.getDBJsonElementAsText(arg, path);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBJsonIsBoolean(DBTermType dbType, ImmutableTerm arg) {
+<span class="fc" id="L1202">    return defaultTermFactory.getDBJsonIsBoolean(dbType, arg);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBJsonIsNumber(DBTermType dbType, ImmutableTerm arg) {
+<span class="fc" id="L1207">    return defaultTermFactory.getDBJsonIsNumber(dbType, arg);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBJsonIsScalar(DBTermType dbType, ImmutableTerm arg) {
+<span class="fc" id="L1212">    return defaultTermFactory.getDBJsonIsScalar(dbType, arg);</span>
+  }
+
+  @Override
+  public ImmutableExpression getDBIsArray(DBTermType dbType, ImmutableTerm arg) {
+<span class="fc" id="L1217">    return defaultTermFactory.getDBIsArray(dbType, arg);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBWeek(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L1222">    return defaultTermFactory.getDBWeek(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBQuarter(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L1227">    return defaultTermFactory.getDBQuarter(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBDecade(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L1232">    return defaultTermFactory.getDBDecade(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBCentury(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L1237">    return defaultTermFactory.getDBCentury(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMillennium(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L1242">    return defaultTermFactory.getDBMillennium(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMilliseconds(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L1247">    return defaultTermFactory.getDBMilliseconds(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBMicroseconds(ImmutableTerm dbDatetimeTerm) {
+<span class="fc" id="L1252">    return defaultTermFactory.getDBMicroseconds(dbDatetimeTerm);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getDBDateTrunc(ImmutableTerm dbDatetimeTerm,
+      ImmutableTerm datePartTerm, String datePart) {
+<span class="fc" id="L1258">    return defaultTermFactory.getDBDateTrunc(dbDatetimeTerm, datePartTerm, datePart);</span>
+  }
+
+  @Override
+  public ImmutableFunctionalTerm getIdentityFunctionalTerm(ImmutableTerm immutableTerm) {
+<span class="fc" id="L1263">    return defaultTermFactory.getIdentityFunctionalTerm(immutableTerm);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

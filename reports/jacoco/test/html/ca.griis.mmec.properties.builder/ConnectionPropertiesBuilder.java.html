@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConnectionPropertiesBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.properties.builder</a> &gt; <span class="el_source">ConnectionPropertiesBuilder.java</span></div><h1>ConnectionPropertiesBuilder.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation du constructeur pour la configuration de connexion.
+ * @brief @~english Implementation of the constructor for the connection configuration.
+ */
+
+package ca.griis.mmec.properties.builder;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.properties.ConnectionProperties;
+import ca.griis.mmec.properties.MissingPropertyException;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Objet contenant les informations de connexion à la source de données
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2023-09-01 [SD] - Implémentation initiale.
+ *
+ * @par Tâches
+ *      S.O.
+ */
+<span class="fc" id="L49">public class ConnectionPropertiesBuilder {</span>
+<span class="fc" id="L50">  private static final GriisLogger logger =</span>
+<span class="fc" id="L51">      GriisLoggerFactory.getLogger(ConnectionPropertiesBuilder.class);</span>
+
+  private String driverName;
+  private String databaseName;
+  private String jdbcUrl;
+  private String username;
+  private String password;
+
+  /**
+   * @brief @~english «Description of the function»
+   * @return «Return description»
+   *
+   * @brief @~french Spécifie le nom du pilote JDBC.
+   * @return Le constructeur de configuration de connexion en cours de configuration.
+   */
+  public ConnectionPropertiesBuilder withDriverName(String driverName) {
+<span class="fc" id="L67">    logger.trace(Trace.ENTER_METHOD_1, driverName);</span>
+<span class="fc" id="L68">    this.driverName = driverName;</span>
+<span class="fc" id="L69">    return this;</span>
+  }
+
+  /**
+   * @brief @~english «Description of the function»
+   * @return «Return description»
+   *
+   * @brief @~french Spécifie le nom de la base de données.
+   * @return Le constructeur de configuration de connexion en cours de configuration.
+   */
+  public ConnectionPropertiesBuilder withDatabaseName(String databaseName) {
+<span class="fc" id="L80">    logger.trace(Trace.ENTER_METHOD_1, databaseName);</span>
+<span class="fc" id="L81">    this.databaseName = databaseName;</span>
+<span class="fc" id="L82">    return this;</span>
+  }
+
+
+  /**
+   * @brief @~english «Description of the function»
+   * @return «Return description»
+   *
+   * @brief @~french Spécifie l'url de la base de données.
+   * @return Le constructeur de configuration de connexion en cours de configuration.
+   */
+  public ConnectionPropertiesBuilder withJdbcUrl(String jdbcUrl) {
+<span class="fc" id="L94">    logger.trace(Trace.ENTER_METHOD_1, jdbcUrl);</span>
+<span class="fc" id="L95">    this.jdbcUrl = jdbcUrl;</span>
+<span class="fc" id="L96">    return this;</span>
+  }
+
+  /**
+   * @brief @~english «Description of the function»
+   * @return «Return description»
+   *
+   * @brief @~french Spécifie le nom d'utilisateur de la base de données.
+   * @return Le constructeur de configuration de connexion en cours de configuration.
+   */
+  public ConnectionPropertiesBuilder withUsername(String username) {
+<span class="fc" id="L107">    logger.trace(Trace.ENTER_METHOD_1, username);</span>
+<span class="fc" id="L108">    this.username = username;</span>
+<span class="fc" id="L109">    return this;</span>
+  }
+
+  /**
+   * @brief @~english «Description of the function»
+   * @return «Return description»
+   *
+   * @brief @~french Spécifie le mot de passe de la base de données.
+   * @return Le constructeur de configuration de connexion en cours de configuration.
+   */
+  public ConnectionPropertiesBuilder withPassword(String password) {
+<span class="fc" id="L120">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L121">    this.password = password;</span>
+<span class="fc" id="L122">    return this;</span>
+  }
+
+  /**
+   * @brief @~english «Description of the function»
+   * @return «Return description»
+   *
+   * @brief @~french Construit la configuration de connexion.
+   * @par Details
+   *      S.O.
+   * @return La configuration de connexion à partir des paramètres spécifiés.
+   */
+  public ConnectionProperties build() throws MissingPropertyException {
+<span class="fc" id="L135">    logger.trace(Trace.ENTER_METHOD_0);</span>
+
+<span class="fc" id="L137">    checkIfDriverNameIsMissing();</span>
+<span class="fc" id="L138">    checkIfDatabaseNameIsMissing();</span>
+<span class="fc" id="L139">    checkIfJdbcUrlIsMissing();</span>
+<span class="fc" id="L140">    checkIfUsernameIsMissing();</span>
+<span class="fc" id="L141">    checkIfPasswordIsMissing();</span>
+
+<span class="fc" id="L143">    return new ConnectionProperties() {</span>
+      @Override
+      public String getDriverName() {
+<span class="fc" id="L146">        return driverName;</span>
+      }
+
+      @Override
+      public String getDatabaseName() {
+<span class="fc" id="L151">        return databaseName;</span>
+      }
+
+      @Override
+      public String getJdbcUrl() {
+<span class="fc" id="L156">        return jdbcUrl;</span>
+      }
+
+      @Override
+      public String getUsername() {
+<span class="fc" id="L161">        return username;</span>
+      }
+
+      @Override
+      public String getPassword() {
+<span class="fc" id="L166">        return password;</span>
+      }
+    };
+  }
+
+  private void checkIfPasswordIsMissing() throws MissingPropertyException {
+<span class="fc" id="L172">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">    if (password == null) {</span>
+<span class="fc" id="L174">      throw new MissingPropertyException(&quot;password&quot;, &quot;password&quot;);</span>
+    }
+<span class="fc" id="L176">  }</span>
+
+  private void checkIfUsernameIsMissing() throws MissingPropertyException {
+<span class="fc" id="L179">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">    if (username == null) {</span>
+<span class="fc" id="L181">      throw new MissingPropertyException(&quot;username&quot;, &quot;username&quot;);</span>
+    }
+<span class="fc" id="L183">  }</span>
+
+  private void checkIfJdbcUrlIsMissing() throws MissingPropertyException {
+<span class="fc" id="L186">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">    if (jdbcUrl == null) {</span>
+<span class="fc" id="L188">      throw new MissingPropertyException(&quot;jdbcUrl&quot;, &quot;connexion URL&quot;);</span>
+    }
+<span class="fc" id="L190">  }</span>
+
+  private void checkIfDatabaseNameIsMissing() throws MissingPropertyException {
+<span class="fc" id="L193">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">    if (databaseName == null) {</span>
+<span class="fc" id="L195">      throw new MissingPropertyException(&quot;databaseName&quot;, &quot;database name&quot;);</span>
+    }
+<span class="fc" id="L197">  }</span>
+
+  private void checkIfDriverNameIsMissing() throws MissingPropertyException {
+<span class="fc" id="L200">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">    if (driverName == null) {</span>
+<span class="fc" id="L202">      throw new MissingPropertyException(&quot;driverName&quot;, &quot;JDBC driver name&quot;);</span>
+    }
+<span class="fc" id="L204">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

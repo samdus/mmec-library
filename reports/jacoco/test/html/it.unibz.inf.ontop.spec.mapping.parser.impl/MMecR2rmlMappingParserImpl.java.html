@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecR2rmlMappingParserImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">it.unibz.inf.ontop.spec.mapping.parser.impl</a> &gt; <span class="el_source">MMecR2rmlMappingParserImpl.java</span></div><h1>MMecR2rmlMappingParserImpl.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Copie de l'implémentation de
+ *  * it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser.
+ * @brief @~english Copy of the implementation of
+ *  * it.unibz.inf.ontop.spec.mapping.parser.impl.R2RMLMappingParser including an extension.
+ */
+
+package it.unibz.inf.ontop.spec.mapping.parser.impl;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingParserExtension;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.inject.Inject;
+import eu.optique.r2rml.api.binding.rdf4j.RDF4JR2RMLMappingManager;
+import eu.optique.r2rml.api.model.TriplesMap;
+import eu.optique.r2rml.api.model.impl.InvalidR2RMLMappingException;
+import it.unibz.inf.ontop.exception.InvalidMappingException;
+import it.unibz.inf.ontop.exception.MappingIOException;
+import it.unibz.inf.ontop.injection.SpecificationFactory;
+import it.unibz.inf.ontop.spec.mapping.PrefixManager;
+import it.unibz.inf.ontop.spec.mapping.parser.SQLMappingParser;
+import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMapping;
+import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
+import it.unibz.inf.ontop.utils.ImmutableCollectors;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.net.URL;
+import java.util.Collection;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.rdf4j.RDF4J;
+import org.eclipse.rdf4j.model.Namespace;
+import org.eclipse.rdf4j.model.impl.LinkedHashModel;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFHandlerException;
+import org.eclipse.rdf4j.rio.RDFParseException;
+import org.eclipse.rdf4j.rio.RDFParser;
+import org.eclipse.rdf4j.rio.Rio;
+import org.eclipse.rdf4j.rio.helpers.StatementCollector;
+
+/**
+ * High-level class that implements the MappingParser interface for R2RML.
+ */
+public class MMecR2rmlMappingParserImpl implements SQLMappingParser {
+<span class="fc" id="L58">  private static final GriisLogger logger =</span>
+<span class="fc" id="L59">      GriisLoggerFactory.getLogger(MMecR2rmlMappingParserImpl.class);</span>
+  private final SpecificationFactory specificationFactory;
+  private final R2RMLToSQLPPTriplesMapConverter transformer;
+  private final RDF4JR2RMLMappingManager manager;
+  private final MappingParserExtension mappingParserExtension;
+
+
+  @Inject
+  public MMecR2rmlMappingParserImpl(SpecificationFactory specificationFactory,
+      R2RMLToSQLPPTriplesMapConverter transformer,
+<span class="fc" id="L69">      MappingParserExtension mappingParserExtension) {</span>
+<span class="fc" id="L70">    this.specificationFactory = specificationFactory;</span>
+<span class="fc" id="L71">    this.transformer = transformer;</span>
+<span class="fc" id="L72">    this.manager = RDF4JR2RMLMappingManager.getInstance();</span>
+<span class="fc" id="L73">    this.mappingParserExtension = mappingParserExtension;</span>
+<span class="fc" id="L74">  }</span>
+
+  @Override
+  public SQLPPMapping parse(File mappingFile) throws InvalidMappingException, MappingIOException {
+<span class="nc" id="L78">    logger.trace(Trace.ENTER_METHOD_1, mappingFile);</span>
+
+<span class="nc" id="L80">    LinkedHashModel rdf4jGraph = new LinkedHashModel();</span>
+<span class="nc" id="L81">    RDFParser parser = Rio.createParser(RDFFormat.TURTLE);</span>
+<span class="nc" id="L82">    StatementCollector collector = new StatementCollector(rdf4jGraph);</span>
+<span class="nc" id="L83">    parser.setRDFHandler(collector);</span>
+<span class="nc" id="L84">    try (InputStream in = new FileInputStream(mappingFile)) {</span>
+<span class="nc" id="L85">      URL documentUrl = new URL(&quot;file://&quot; + mappingFile);</span>
+<span class="nc" id="L86">      parser.parse(in, documentUrl.toString());</span>
+<span class="nc" id="L87">      return parse(new RDF4J().asGraph(rdf4jGraph), extractPrefixes(rdf4jGraph));</span>
+<span class="nc" id="L88">    } catch (IOException e) {</span>
+<span class="nc" id="L89">      throw new MappingIOException(e);</span>
+<span class="nc" id="L90">    } catch (RDFParseException | RDFHandlerException e) {</span>
+<span class="nc" id="L91">      throw new InvalidMappingException(e.getMessage());</span>
+    }
+  }
+
+  @Override
+  public SQLPPMapping parse(Reader reader) throws InvalidMappingException, MappingIOException {
+<span class="fc" id="L97">    logger.trace(Trace.ENTER_METHOD_1, reader);</span>
+
+<span class="fc" id="L99">    LinkedHashModel rdf4jGraph = new LinkedHashModel();</span>
+<span class="fc" id="L100">    RDFParser parser = Rio.createParser(RDFFormat.TURTLE);</span>
+<span class="fc" id="L101">    StatementCollector collector = new StatementCollector(rdf4jGraph);</span>
+<span class="fc" id="L102">    parser.setRDFHandler(collector);</span>
+<span class="fc" id="L103">    try (Reader r = reader) {</span>
+      // TODO: get the base IRI in a proper way
+<span class="fc" id="L105">      parser.parse(r, &quot;http://example.org/baseIRI/&quot;);</span>
+<span class="fc" id="L106">      return parse(new RDF4J().asGraph(rdf4jGraph), extractPrefixes(rdf4jGraph));</span>
+<span class="nc" id="L107">    } catch (IOException e) {</span>
+<span class="nc" id="L108">      throw new MappingIOException(e);</span>
+<span class="nc" id="L109">    } catch (RDFParseException | RDFHandlerException e) {</span>
+<span class="nc" id="L110">      throw new InvalidMappingException(e.getMessage());</span>
+    }
+  }
+
+  @Override
+  public SQLPPMapping parse(Graph mappingGraph) throws InvalidMappingException {
+<span class="nc" id="L116">    logger.trace(Trace.ENTER_METHOD_1, mappingGraph);</span>
+<span class="nc" id="L117">    return parse(mappingGraph, ImmutableMap.of());</span>
+  }
+
+  protected SQLPPMapping parse(Graph mappingGraph, ImmutableMap&lt;String, String&gt; prefixes)
+      throws InvalidMappingException {
+<span class="fc" id="L122">    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);</span>
+    try {
+<span class="fc" id="L124">      mappingParserExtension.updateMappingGraphBeforeParse(mappingGraph, prefixes);</span>
+
+<span class="fc" id="L126">      Collection&lt;TriplesMap&gt; tripleMaps = manager.importMappings(mappingGraph);</span>
+
+<span class="fc" id="L128">      ImmutableList&lt;SQLPPTriplesMap&gt; sourceMappings = transformer.convert(tripleMaps);</span>
+
+<span class="fc" id="L130">      PrefixManager prefixManager = specificationFactory.createPrefixManager(prefixes);</span>
+
+<span class="fc" id="L132">      return mappingParserExtension.getExtendedMapping(mappingGraph, tripleMaps, sourceMappings,</span>
+          prefixManager);
+<span class="nc" id="L134">    } catch (InvalidR2RMLMappingException e) {</span>
+<span class="nc" id="L135">      throw new InvalidMappingException(e.getMessage());</span>
+    }
+  }
+
+  private ImmutableMap&lt;String, String&gt; extractPrefixes(LinkedHashModel rdf4jGraph) {
+<span class="fc" id="L140">    logger.trace(Trace.ENTER_METHOD_1, rdf4jGraph);</span>
+<span class="fc" id="L141">    return rdf4jGraph.getNamespaces().stream()</span>
+<span class="fc" id="L142">        .collect(ImmutableCollectors.toMap(</span>
+<span class="fc" id="L143">            namespace -&gt; namespace.getPrefix() + &quot;:&quot;,</span>
+            Namespace::getName));
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecMappingConversion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.spec.mapping</a> &gt; <span class="el_source">MMecMappingConversion.java</span></div><h1>MMecMappingConversion.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe MMecMappingConversion.
+ * @brief @~english MMecMappingConversion class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.spec.mapping;
+
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBBooleanFunctionSymbol;
+import it.unibz.inf.ontop.model.term.functionsymbol.db.DBTypeConversionFunctionSymbol;
+import it.unibz.inf.ontop.model.type.DBTermType;
+import java.util.Optional;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Description des différentes conversions configurées dans l'arrimage
+ * @par Détails
+ *      Si une conversion est configurée dans l'arrimage, ça veut dire qu'il est possible de
+ *      convertir le type de donnée d'entrée vers le type de donnée de sortie. Une conversion
+ *      peut définir une fonction de conversion spécifique et une fonction de validation pour
+ *      s'assurer que la conversion est possible.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-03-05 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class MMecMappingConversion {
+  private final DBTermType inputType;
+  private final DBTermType outputType;
+  private final Optional&lt;DBTypeConversionFunctionSymbol&gt; conversionFunction;
+  private final Optional&lt;DBBooleanFunctionSymbol&gt; validationFunction;
+
+  public MMecMappingConversion(DBTermType inputType, DBTermType outputType,
+      Optional&lt;DBTypeConversionFunctionSymbol&gt; conversionFunction,
+<span class="fc" id="L59">      Optional&lt;DBBooleanFunctionSymbol&gt; validationFunction) {</span>
+<span class="fc" id="L60">    this.inputType = inputType;</span>
+<span class="fc" id="L61">    this.outputType = outputType;</span>
+<span class="fc" id="L62">    this.conversionFunction = conversionFunction;</span>
+<span class="fc" id="L63">    this.validationFunction = validationFunction;</span>
+<span class="fc" id="L64">  }</span>
+
+  public DBTermType getInputType() {
+<span class="fc" id="L67">    return inputType;</span>
+  }
+
+  public DBTermType getOutputType() {
+<span class="fc" id="L71">    return outputType;</span>
+  }
+
+  public Optional&lt;DBTypeConversionFunctionSymbol&gt; getConversionFunction() {
+<span class="fc" id="L75">    return conversionFunction;</span>
+  }
+
+  public Optional&lt;DBBooleanFunctionSymbol&gt; getValidationFunction() {
+<span class="fc" id="L79">    return validationFunction;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

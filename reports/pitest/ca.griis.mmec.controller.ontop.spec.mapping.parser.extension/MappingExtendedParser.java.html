@@ -1,0 +1,2569 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>MappingExtendedParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @file</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @copyright @@GRIIS_COPYRIGHT@@</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @licence @@GRIIS_LICENCE@@</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @version @@GRIIS_VERSION@@</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @brief @~french Impl&#233;mentation de la classe MappingExtendedParser.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @brief @~english MappingExtendedParser class implementation.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import ca.griis.logger.GriisLogger;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import ca.griis.logger.GriisLoggerFactory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import ca.griis.logger.statuscode.Trace;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import ca.griis.mmec.model.MMecVocabulary;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Optional;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.rdf.api.BlankNodeOrIRI;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.rdf.api.Graph;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.rdf.api.IRI;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.rdf.api.Literal;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.rdf.api.Triple;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.rdf.rdf4j.RDF4J;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @brief @~english &#171;Brief component description (class, interface, ...)&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Details</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      &#171;Detailed description of the component (optional)&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Model</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      &#171;Model (Abstract, automation, etc.) (optional)&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Conception</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      &#171;Conception description (criteria and constraints) (optional)&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Limits</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      &#171;Limits description (optional)&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @brief @~french Classe abstraite servant de base pour les extensions de parser.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par D&#233;tails</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      S.O.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Mod&#232;le</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      S.O.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Conception</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      S.O.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Limites</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      S.O.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par Historique</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      2024-04-10 [SD] - Impl&#233;mentation initiale&#60;br&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @par T&#226;ches</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      S.O.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public abstract class MappingExtendedParser {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  private static final GriisLogger logger =</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      GriisLoggerFactory.getLogger(MappingExtendedParser.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  protected static final String nsTypeIri = &#34;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  protected final RDF4J rdf;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  protected MappingExtendedParser(RDF4J rdf) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    this.rdf = rdf;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~english &#171;Description of the method&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return &#171;Return description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~french Obtenir l&#39;identifiant qualifi&#233; de l&#39;objet d&#39;un triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph Le graphe duquel extraire le triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject Le sujet du triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate Le pr&#233;dicat du triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return L&#39;identifiant qualifi&#233; de l&#39;objet du triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  protected Optional&#60;String&#62; getObjectsQualifiedIdentifier(Graph mappingGraph,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      BlankNodeOrIRI subject,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      IRI predicate) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_84'/>
+84
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_84'>1</a>
+<span>
+1. getObjectsQualifiedIdentifier : replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getObjectsQualifiedIdentifier &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return getObject(mappingGraph, subject, predicate)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_85'/>
+85
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_85'>1</a>
+<span>
+1. lambda$getObjectsQualifiedIdentifier$0 : replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObjectsQualifiedIdentifier$0 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .flatMap(type -&#62; getLiteral(mappingGraph, type,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            rdf.createIRI(MMecVocabulary.P_SQL_QUALIFIED_IDENTIFIER)));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~english &#171;Description of the method&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return &#171;Return description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~french Obtenir l&#39;objet BlankNodeOrIRI d&#39;un triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph Le graphe duquel extraire le triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject Le sujet du triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate Le pr&#233;dicat du triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return L&#39;objet du triplet, s&#39;il s&#39;agit d&#39;un BlankNodeOrIRI</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  protected Optional&#60;BlankNodeOrIRI&#62; getObject(Graph mappingGraph, BlankNodeOrIRI subject,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      IRI predicate) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_105'/>
+105
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_105'>1</a>
+<span>
+1. getObject : replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getObject &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return mappingGraph.stream(subject, predicate, null)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .map(Triple::getObject)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_107'/>
+107
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_107'>2</a>
+<span>
+1. lambda$getObject$1 : replaced boolean return with false for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObject$1 &rarr; KILLED<br/>
+2. lambda$getObject$1 : replaced boolean return with true for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObject$1 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .filter(term -&#62; term instanceof BlankNodeOrIRI)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_108'/>
+108
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_108'>1</a>
+<span>
+1. lambda$getObject$2 : replaced return value with null for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObject$2 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .map(term -&#62; (BlankNodeOrIRI) term)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .findFirst();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~english &#171;Description of the method&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return &#171;Return description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_118'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_119'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~french Obtenir la forme lexicale de la valeur litt&#233;rale d&#39;un triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph Le graphe duquel extraire le triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject Le sujet du triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate Le pr&#233;dicat du triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return La forme lexicale de la valeur litt&#233;rale d&#39;un triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  protected Optional&#60;String&#62; getLiteral(Graph mappingGraph, BlankNodeOrIRI subject,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_126'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      IRI predicate) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_128'/>
+128
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_128'>1</a>
+<span>
+1. getLiteral : replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getLiteral &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return mappingGraph.stream(subject, predicate, null)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .map(Triple::getObject)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_130'/>
+130
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_130'>2</a>
+<span>
+1. lambda$getLiteral$3 : replaced boolean return with false for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getLiteral$3 &rarr; KILLED<br/>
+2. lambda$getLiteral$3 : replaced boolean return with true for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getLiteral$3 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .filter(term -&#62; term instanceof Literal)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_131'/>
+131
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_131'>1</a>
+<span>
+1. lambda$getLiteral$4 : replaced return value with null for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getLiteral$4 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .map(term -&#62; (Literal) term)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_132'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .map(Literal::getLexicalForm)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_133'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .findFirst();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_135'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_136'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_137'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~english &#171;Description of the method&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_138'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_139'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_140'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate &#171;Parameter description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_141'/>
+141
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_141'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return &#171;Return description&#187;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_142'/>
+142
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_142'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_143'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @brief @~french Obtenir la forme lexicale de la valeur litt&#233;rale de tous les triplets.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_144'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param mappingGraph Le graphe duquel extraire le triplet.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_145'/>
+145
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_145'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param subject Le sujet des triplets.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_146'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param predicate Le pr&#233;dicat des triplets.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_147'/>
+147
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_147'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @return Une liste de la forme lexicale de la valeur litt&#233;rale des triplets.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_148'/>
+148
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_148'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_149'/>
+149
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_149'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  protected List&#60;String&#62; getAllLiterals(Graph mappingGraph, BlankNodeOrIRI subject,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_150'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      IRI predicate) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_151'/>
+151
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_151'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    logger.trace(Trace.ENTER_METHOD_3, mappingGraph, subject, predicate);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_152'/>
+152
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_152'>1</a>
+<span>
+1. getAllLiterals : replaced return value with Collections.emptyList for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getAllLiterals &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return mappingGraph.stream(subject, predicate, null)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_153'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .map(Triple::getObject)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_154'/>
+154
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_154'>2</a>
+<span>
+1. lambda$getAllLiterals$5 : replaced boolean return with true for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getAllLiterals$5 &rarr; KILLED<br/>
+2. lambda$getAllLiterals$5 : replaced boolean return with false for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getAllLiterals$5 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .filter(term -&#62; term instanceof Literal)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_155'/>
+155
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_155'>1</a>
+<span>
+1. lambda$getAllLiterals$6 : replaced return value with null for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getAllLiterals$6 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .map(term -&#62; (Literal) term)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_156'/>
+156
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_156'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .map(Literal::getLexicalForm)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_157'/>
+157
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_157'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        .toList();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_158'/>
+158
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_158'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@45aca496_159'/>
+159
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_159'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_84'>84</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_84'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getObjectsQualifiedIdentifier<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:testGetObjectsQualifiedIdentifierOkTest()]</span></span> replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getObjectsQualifiedIdentifier &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_85'>85</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_85'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$getObjectsQualifiedIdentifier$0<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:testGetObjectsQualifiedIdentifierOkTest()]</span></span> replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObjectsQualifiedIdentifier$0 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_105'>105</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_105'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getObject<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getObjectOkTest()]</span></span> replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getObject &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_107'>107</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_107'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$getObject$1<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getObjectOkTest()]</span></span> replaced boolean return with false for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObject$1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$getObject$1<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getObjectNotBlankNodeOrIRITest()]</span></span> replaced boolean return with true for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObject$1 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_108'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$getObject$2<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getObjectOkTest()]</span></span> replaced return value with null for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getObject$2 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_128'>128</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_128'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getLiteral<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getLiteralOkTest()]</span></span> replaced return value with Optional.empty for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getLiteral &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_130'>130</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_130'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$getLiteral$3<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getLiteralOkTest()]</span></span> replaced boolean return with false for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getLiteral$3 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$getLiteral$3<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getLiteralNotLiteralTest()]</span></span> replaced boolean return with true for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getLiteral$3 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_131'>131</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_131'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$getLiteral$4<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getLiteralOkTest()]</span></span> replaced return value with null for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getLiteral$4 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_152'>152</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_152'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getAllLiterals<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getAllLiteralsOkTest()]</span></span> replaced return value with Collections.emptyList for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::getAllLiterals &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_154'>154</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_154'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$getAllLiterals$5<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getAllLiteralsOkTest()]</span></span> replaced boolean return with true for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getAllLiterals$5 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$getAllLiterals$5<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getAllLiteralsOkTest()]</span></span> replaced boolean return with false for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getAllLiterals$5 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@45aca496_155'>155</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@45aca496_155'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$getAllLiterals$6<br/><b>Killed by : </b>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getAllLiteralsOkTest()]</span></span> replaced return value with null for ca/griis/mmec/controller/ontop/spec/mapping/parser/extension/MappingExtendedParser::lambda$getAllLiterals$6 &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getObjectNotBlankNodeOrIRITest()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getObjectOkTest()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testSignatureWithoutSubjectMapException()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testParentSignatureWithoutLogicalTableException()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateThrowsWhenDefinedWithoutSignatureComponents()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testChildSignatureWithoutLogicalTableException()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest]/[method:parseMissingOutputTypeShouldThrowTest()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testParentLogicalTableWithoutSqlQueryNorTableNameException()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateTestPreserveTemplateWhenDefinedWithoutMMec()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testJoinConditionWithoutParentColumnException()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testChildIsDefinedAsParentSubset()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateWithoutSupersetUsesSignatureIriAsSignatureScope()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest]/[method:parseWithoutConversionFunctionWithoutValidationFunctionTest()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testChildLogicalTableWithoutSqlQueryNorTableNameException()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateWorksWithBlankNode()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateThrowsWhenTheNumberOfSignatureComponentsIsNotEqualWithSupersets()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateWorksWithSingleAttributeSignatureComponent()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testAddParentSubsets()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest]/[method:parseWithoutConversionFunctionWithValidationFunctionTest()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateUsesSupersetIRIAsSignatureScope()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateWorksWithMultipleAttributeSignatureComponent()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:testIgnoreWhenAsAlreadyMMecasTemplateSource()] (4 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest]/[method:parseWithConversionFunctionWithValidationFunctionTest()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:testAddsMMecAsTemplateSource()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithInvalidJoinConditionsAndChildTable()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithoutJoinConditionsAndChildTable()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateReplaceExistingTemplatesWhenDefinedUsingExtensionComponent()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testJoinConditionWithoutChildColumnException()] (7 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateGeneratesCompatibleSignatureWithSignatureSuperSets()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithoutJoinConditionsAndChildQuery()] (4 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithParentQueryAndChildQuery()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithParentQueryAndChildTable()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testUsesUsingWhenJoinWithSameColumnName()] (3 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testUsesUsingWhenJoinWithSameColumnNameMultiple()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithParentTableAndChildTable()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithParentTableAndChildQuery()] (4 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testWithMultipleJoinConditions()] (3 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplateThrowsWhenDefinedWithoutMMEcButHasSuperset()] (24 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest]/[method:parseWithConversionFunctionWithoutValidationFunctionTest()] (331 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:testGetObjectsQualifiedIdentifierOkTest()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getAllLiteralsNotFoundTest()] (3 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getAllLiteralsOkTest()] (2 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getLiteralOkTest()] (6 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:testGetObjectsQualifiedIdentifierNotFoundTest()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.after.MMecParserConversionExtensionTest]/[method:parseMissingInputTypeShouldThrowTest()] (1 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserTemplatesExtensionTest]/[method:generateTemplatesWithoutSubjectMapThrowsTest()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.before.MMecParserRefSubjectMapExtensionTest]/[method:testRefSubjectMapWithoutParentTriplesMapException()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getObjectNotFoundTest()] (62 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getLiteralNotLiteralTest()] (0 ms)</li><li>ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest.[engine:junit-jupiter]/[class:ca.griis.mmec.test.unit.controller.ontop.spec.mapping.parser.extension.MappingExtendedParserTest]/[method:getLiteralNotFoundTest()] (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.16.1
+
+</body>
+</html>

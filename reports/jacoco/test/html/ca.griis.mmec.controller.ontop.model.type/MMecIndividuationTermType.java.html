@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecIndividuationTermType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.model.type</a> &gt; <span class="el_source">MMecIndividuationTermType.java</span></div><h1>MMecIndividuationTermType.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ * @copyright @@GRIIS_COPYRIGHT@@
+ * @licence @@GRIIS_LICENCE@@
+ * @version @@GRIIS_VERSION@@
+ * @brief @~french Implémentation de la classe MMecIndividuationTermType.
+ * @brief @~english MMecIndividuationTermType class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.model.type;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import it.unibz.inf.ontop.model.type.DBTermType;
+import it.unibz.inf.ontop.model.type.ObjectRDFType;
+import it.unibz.inf.ontop.model.type.RDFDatatype;
+import it.unibz.inf.ontop.model.type.TermTypeAncestry;
+import it.unibz.inf.ontop.model.type.impl.RDFTermTypeImpl;
+import java.util.Optional;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Type pour le terme d'individuation.
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-03-01 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class MMecIndividuationTermType extends RDFTermTypeImpl implements ObjectRDFType,
+    DBTermType {
+<span class="fc" id="L51">  private static final GriisLogger logger =</span>
+<span class="fc" id="L52">      GriisLoggerFactory.getLogger(MMecIndividuationTermType.class);</span>
+  private final DBTermType individuationType;
+
+  public MMecIndividuationTermType(TermTypeAncestry parentAncestry,
+      DBTermType individuationType) {
+<span class="fc" id="L57">    super(&quot;ID&quot;, parentAncestry, factory -&gt; individuationType);</span>
+<span class="fc" id="L58">    this.individuationType = individuationType;</span>
+<span class="fc" id="L59">  }</span>
+
+  @Override
+  public boolean isBlankNode() {
+<span class="fc" id="L63">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L64">    return false;</span>
+  }
+
+  @Override
+  public String getName() {
+<span class="fc" id="L69">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L70">    return individuationType.getName();</span>
+  }
+
+  @Override
+  public String getCastName() {
+<span class="fc" id="L75">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L76">    return individuationType.getCastName();</span>
+  }
+
+  @Override
+  public Category getCategory() {
+<span class="fc" id="L81">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L82">    return individuationType.getCategory();</span>
+  }
+
+  @Override
+  public Optional&lt;RDFDatatype&gt; getNaturalRDFDatatype() {
+<span class="fc" id="L87">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L88">    return individuationType.getNaturalRDFDatatype();</span>
+  }
+
+  @Override
+  public boolean isNeedingIRISafeEncoding() {
+<span class="fc" id="L93">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L94">    return individuationType.isNeedingIRISafeEncoding();</span>
+  }
+
+  @Override
+  public boolean areEqualitiesStrict() {
+<span class="fc" id="L99">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L100">    return individuationType.areEqualitiesStrict();</span>
+  }
+
+  @Override
+  public Optional&lt;Boolean&gt; areEqualitiesStrict(DBTermType otherType) {
+<span class="fc" id="L105">    logger.trace(Trace.ENTER_METHOD_1, otherType);</span>
+<span class="fc" id="L106">    return individuationType.areEqualitiesStrict(otherType);</span>
+  }
+
+  @Override
+  public boolean areEqualitiesBetweenTwoDBAttributesStrict() {
+<span class="fc" id="L111">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L112">    return individuationType.areEqualitiesBetweenTwoDBAttributesStrict();</span>
+  }
+
+  @Override
+  public Optional&lt;Boolean&gt; isValidLexicalValue(String lexicalValue) {
+<span class="fc" id="L117">    logger.trace(Trace.ENTER_METHOD_1, lexicalValue);</span>
+<span class="fc" id="L118">    return individuationType.isValidLexicalValue(lexicalValue);</span>
+  }
+
+  @Override
+  public boolean isPreventDistinctRecommended() {
+<span class="fc" id="L123">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L124">    return individuationType.isPreventDistinctRecommended();</span>
+  }
+
+  @Override
+  public final boolean equals(Object other) {
+<span class="fc" id="L129">    logger.trace(Trace.ENTER_METHOD_1, other);</span>
+<span class="fc" id="L130">    return other instanceof MMecIndividuationTermType otherTerm</span>
+<span class="fc bfc" id="L131" title="All 4 branches covered.">        &amp;&amp; this.getName().equals(otherTerm.getName());</span>
+  }
+
+  @Override
+  public final int hashCode() {
+<span class="fc" id="L136">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L137">    return this.getName().hashCode();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

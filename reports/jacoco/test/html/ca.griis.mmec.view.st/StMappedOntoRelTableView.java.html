@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StMappedOntoRelTableView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.view.st</a> &gt; <span class="el_source">StMappedOntoRelTableView.java</span></div><h1>StMappedOntoRelTableView.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe StView.
+ * @brief @~english StView class implementation.
+ */
+
+package ca.griis.mmec.view.st;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.model.MappedOntoRelTable;
+import ca.griis.mmec.model.mapped.MappedClassTable;
+import ca.griis.mmec.model.mapped.MappedDataPropertyTable;
+import ca.griis.mmec.model.mapped.MappedObjectPropertyTable;
+import ca.griis.mmec.properties.FacadeProperties;
+import ca.griis.mmec.view.MappedOntoRelTableView;
+import com.google.inject.Inject;
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroup;
+import org.stringtemplate.v4.STGroupFile;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french MappedOntoRelTableView basées sur StringTemplate
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-04-12 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class StMappedOntoRelTableView implements MappedOntoRelTableView {
+<span class="fc" id="L58">  private static final GriisLogger logger =</span>
+<span class="fc" id="L59">      GriisLoggerFactory.getLogger(StMappedOntoRelTableView.class);</span>
+
+  public static final String classTemplateName = &quot;class&quot;;
+  private static final String emptyClassTemplateName = &quot;class_empty&quot;;
+  public static final String opTemplateName = &quot;object_property&quot;;
+  public static final String emptyOpTemplateName = &quot;object_property_empty&quot;;
+  public static final String dpTemplateName = &quot;data_property&quot;;
+  public static final String emptyDpTemplateName = &quot;data_property_empty&quot;;
+
+  STGroup group;
+
+  @Inject
+<span class="fc" id="L71">  public StMappedOntoRelTableView(FacadeProperties facadeProperties) {</span>
+<span class="fc" id="L72">    this.group = new STGroupFile(facadeProperties.getFacadeStgUrl());</span>
+<span class="fc" id="L73">  }</span>
+
+  @Override
+  public String getExpression(MappedClassTable mappedClassTable) {
+<span class="fc" id="L77">    logger.trace(Trace.ENTER_METHOD_1, mappedClassTable);</span>
+
+<span class="fc" id="L79">    ST st = initialiseStWithQueryIfPresent(mappedClassTable, classTemplateName,</span>
+        emptyClassTemplateName);
+
+<span class="fc" id="L82">    st.add(&quot;comment&quot;, mappedClassTable.label());</span>
+<span class="fc" id="L83">    st.add(&quot;schema_id&quot;, mappedClassTable.schema());</span>
+<span class="fc" id="L84">    st.add(&quot;ontorel_table_id&quot;, mappedClassTable.tableName());</span>
+<span class="fc" id="L85">    st.add(&quot;mmec_query_column_id&quot;, mappedClassTable.mmecQueryColumnId());</span>
+<span class="fc" id="L86">    st.add(&quot;ontorel_column_id&quot;, mappedClassTable.ontorelColumnId());</span>
+<span class="fc" id="L87">    st.add(&quot;ontorel_column_type&quot;, mappedClassTable.ontorelColumnType());</span>
+
+<span class="fc" id="L89">    return st.render();</span>
+  }
+
+  @Override
+  public String getExpression(MappedObjectPropertyTable mappedObjectPropertyTable) {
+<span class="fc" id="L94">    logger.trace(Trace.ENTER_METHOD_1, mappedObjectPropertyTable);</span>
+
+<span class="fc" id="L96">    ST st = initialiseStWithQueryIfPresent(mappedObjectPropertyTable, opTemplateName,</span>
+        emptyOpTemplateName);
+
+<span class="fc" id="L99">    st.add(&quot;comment&quot;, mappedObjectPropertyTable.label());</span>
+<span class="fc" id="L100">    st.add(&quot;schema_id&quot;, mappedObjectPropertyTable.schema());</span>
+<span class="fc" id="L101">    st.add(&quot;ontorel_table_id&quot;, mappedObjectPropertyTable.tableName());</span>
+<span class="fc" id="L102">    st.add(&quot;mmec_query_column_id_subject&quot;, mappedObjectPropertyTable.mmecQuerySubjectColumnId());</span>
+<span class="fc" id="L103">    st.add(&quot;mmec_query_column_id_object&quot;, mappedObjectPropertyTable.mmecQueryObjectColumnId());</span>
+<span class="fc" id="L104">    st.add(&quot;ontorel_column_id_subject&quot;, mappedObjectPropertyTable.ontorelSubjectColumnId());</span>
+<span class="fc" id="L105">    st.add(&quot;ontorel_column_type_subject&quot;, mappedObjectPropertyTable.ontorelSubjectColumnType());</span>
+<span class="fc" id="L106">    st.add(&quot;ontorel_column_id_object&quot;, mappedObjectPropertyTable.ontorelObjectColumnId());</span>
+<span class="fc" id="L107">    st.add(&quot;ontorel_column_type_object&quot;, mappedObjectPropertyTable.ontorelObjectColumnType());</span>
+
+<span class="fc" id="L109">    return st.render();</span>
+  }
+
+  @Override
+  public String getExpression(MappedDataPropertyTable mappedDataPropertyTable) {
+<span class="fc" id="L114">    logger.trace(Trace.ENTER_METHOD_1, mappedDataPropertyTable);</span>
+
+<span class="fc" id="L116">    ST st = initialiseStWithQueryIfPresent(mappedDataPropertyTable, dpTemplateName,</span>
+        emptyDpTemplateName);
+
+<span class="fc" id="L119">    st.add(&quot;comment&quot;, mappedDataPropertyTable.label());</span>
+<span class="fc" id="L120">    st.add(&quot;schema_id&quot;, mappedDataPropertyTable.schema());</span>
+<span class="fc" id="L121">    st.add(&quot;ontorel_table_id&quot;, mappedDataPropertyTable.tableName());</span>
+<span class="fc" id="L122">    st.add(&quot;mmec_query_column_id_subject&quot;, mappedDataPropertyTable.mmecQuerySubjectColumnId());</span>
+<span class="fc" id="L123">    st.add(&quot;mmec_query_column_id_value&quot;, mappedDataPropertyTable.mmecQueryValueColumnId());</span>
+<span class="fc" id="L124">    st.add(&quot;ontorel_column_id_subject&quot;, mappedDataPropertyTable.ontorelSubjectColumnId());</span>
+<span class="fc" id="L125">    st.add(&quot;ontorel_column_type_subject&quot;, mappedDataPropertyTable.ontorelSubjectColumnType());</span>
+<span class="fc" id="L126">    st.add(&quot;ontorel_column_id_value&quot;, mappedDataPropertyTable.ontorelValueColumnId());</span>
+<span class="fc" id="L127">    st.add(&quot;ontorel_column_type_value&quot;, mappedDataPropertyTable.ontorelValueColumnType());</span>
+
+<span class="fc" id="L129">    return st.render();</span>
+  }
+
+  private ST initialiseStWithQueryIfPresent(MappedOntoRelTable mappedOntoRelTable, String template,
+      String emptyTemplate) {
+<span class="fc" id="L134">    logger.trace(Trace.ENTER_METHOD_2, mappedOntoRelTable, template);</span>
+
+    ST st;
+<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (mappedOntoRelTable.mmecQuery().isPresent()) {</span>
+<span class="fc" id="L138">      st = group.getInstanceOf(template);</span>
+<span class="fc" id="L139">      st.add(&quot;query&quot;, mappedOntoRelTable.mmecQuery().get());</span>
+    } else {
+<span class="fc" id="L141">      st = group.getInstanceOf(emptyTemplate);</span>
+    }
+<span class="fc" id="L143">    return st;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

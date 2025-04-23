@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecSqlPpMappingConverterImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">it.unibz.inf.ontop.spec.mapping.pp.impl</a> &gt; <span class="el_source">MMecSqlPpMappingConverterImpl.java</span></div><h1>MMecSqlPpMappingConverterImpl.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Copie de l'implémentation de
+ *  it.unibz.inf.ontop.spec.mapping.pp.impl.SQLPPMappingConverterImpl.
+ * @brief @~english Copy of the implementation of
+ *  it.unibz.inf.ontop.spec.mapping.pp.impl.SQLPPMappingConverterImpl.
+ */
+
+package it.unibz.inf.ontop.spec.mapping.pp.impl;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.iq.optimizer.MMecQueryOptimizer;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.inject.Inject;
+import it.unibz.inf.ontop.dbschema.MetadataLookup;
+import it.unibz.inf.ontop.dbschema.QuotedID;
+import it.unibz.inf.ontop.dbschema.QuotedIDFactory;
+import it.unibz.inf.ontop.dbschema.impl.RawQuotedIDFactory;
+import it.unibz.inf.ontop.exception.InvalidMappingSourceQueriesException;
+import it.unibz.inf.ontop.exception.InvalidQueryException;
+import it.unibz.inf.ontop.exception.MetadataExtractionException;
+import it.unibz.inf.ontop.injection.CoreSingletons;
+import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
+import it.unibz.inf.ontop.injection.OntopOBDASettings;
+import it.unibz.inf.ontop.iq.IQTree;
+import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.NonVariableTerm;
+import it.unibz.inf.ontop.model.term.Variable;
+import it.unibz.inf.ontop.spec.mapping.MappingAssertion;
+import it.unibz.inf.ontop.spec.mapping.TargetAtom;
+import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
+import it.unibz.inf.ontop.spec.mapping.pp.SQLPPMappingConverter;
+import it.unibz.inf.ontop.spec.mapping.pp.SQLPPTriplesMap;
+import it.unibz.inf.ontop.spec.sqlparser.RAExpression;
+import it.unibz.inf.ontop.spec.sqlparser.SQLQueryParser;
+import it.unibz.inf.ontop.substitution.Substitution;
+import it.unibz.inf.ontop.substitution.SubstitutionFactory;
+import it.unibz.inf.ontop.utils.ImmutableCollectors;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+
+/**
+ * SQLPPMapping -&gt; MappingAssertion
+ */
+public class MMecSqlPpMappingConverterImpl implements SQLPPMappingConverter {
+<span class="fc" id="L59">  private static final GriisLogger logger =</span>
+<span class="fc" id="L60">      GriisLoggerFactory.getLogger(MMecSqlPpMappingConverterImpl.class);</span>
+
+  private final IntermediateQueryFactory iqFactory;
+  private final SubstitutionFactory substitutionFactory;
+  private final SQLQueryParser sqlQueryParser;
+
+  private final boolean ignoreInvalidMappingEntries;
+  private final MMecQueryOptimizer mmecOptimizer;
+
+  @Inject
+  public MMecSqlPpMappingConverterImpl(CoreSingletons coreSingletons,
+<span class="fc" id="L71">      SQLQueryParser sqlQueryParser, MMecQueryOptimizer mmecOptimizer) {</span>
+<span class="fc" id="L72">    this.iqFactory = coreSingletons.getIQFactory();</span>
+<span class="fc" id="L73">    this.substitutionFactory = coreSingletons.getSubstitutionFactory();</span>
+<span class="fc" id="L74">    this.sqlQueryParser = sqlQueryParser;</span>
+
+<span class="fc" id="L76">    ignoreInvalidMappingEntries =</span>
+<span class="fc" id="L77">        ((OntopOBDASettings) coreSingletons.getSettings()).ignoreInvalidMappingEntries();</span>
+<span class="fc" id="L78">    this.mmecOptimizer = mmecOptimizer;</span>
+<span class="fc" id="L79">  }</span>
+
+  private static &lt;T&gt; Function&lt;Variable, Optional&lt;T&gt;&gt; placeholderLookup(
+      SQLPPTriplesMap mappingAssertion, QuotedIDFactory idFactory,
+      ImmutableMap&lt;QuotedID, T&gt; lookup) {
+<span class="fc" id="L84">    logger.trace(Trace.ENTER_METHOD_3, mappingAssertion, idFactory, lookup);</span>
+
+<span class="fc" id="L86">    Function&lt;Variable, Optional&lt;T&gt;&gt; standard =</span>
+<span class="fc" id="L87">        v -&gt; Optional.ofNullable(lookup.get(idFactory.createAttributeID(v.getName().trim())));</span>
+
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">    if (mappingAssertion instanceof OntopNativeSQLPPTriplesMap) {</span>
+<span class="nc" id="L90">      QuotedIDFactory rawIdFactory = new RawQuotedIDFactory(idFactory);</span>
+<span class="nc" id="L91">      return v -&gt; Optional.ofNullable(</span>
+<span class="nc" id="L92">          standard.apply(v).orElse(lookup.get(rawIdFactory.createAttributeID(v.getName().trim()))));</span>
+    } else {
+<span class="fc" id="L94">      return standard;</span>
+    }
+  }
+
+  @Override
+  public ImmutableList&lt;MappingAssertion&gt; convert(ImmutableList&lt;SQLPPTriplesMap&gt; mapping,
+      MetadataLookup metadataLookup)
+      throws InvalidMappingSourceQueriesException, MetadataExtractionException {
+<span class="fc" id="L102">    logger.trace(Trace.ENTER_METHOD_2, mapping, metadataLookup);</span>
+<span class="fc" id="L103">    ImmutableList.Builder&lt;MappingAssertion&gt; builder = ImmutableList.builder();</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">    for (SQLPPTriplesMap assertion : mapping) {</span>
+      RAExpression re;
+      IQTree tree;
+      Function&lt;Variable, Optional&lt;ImmutableTerm&gt;&gt; lookup;
+
+      try {
+<span class="fc" id="L110">        re = getRaExpression(assertion, metadataLookup);</span>
+<span class="fc" id="L111">        tree = sqlQueryParser.convert(re);</span>
+
+<span class="fc" id="L113">        lookup = placeholderLookup(assertion, metadataLookup.getQuotedIDFactory(),</span>
+<span class="fc" id="L114">            re.getUnqualifiedAttributes());</span>
+<span class="nc" id="L115">      } catch (InvalidMappingSourceQueriesException | MetadataExtractionException</span>
+          | RuntimeException e) {
+        /*
+         * NB: runtime exceptions are also caught due to some JDBC drivers throwing them instead of
+         * SQLException-s
+         */
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (!ignoreInvalidMappingEntries) {</span>
+<span class="nc" id="L122">          throw e;</span>
+        }
+<span class="nc" id="L124">        logger.warn(&quot;Mapping entry {} was ignored due to an issue: {}&quot;, assertion.getId(),</span>
+<span class="nc" id="L125">            e.getMessage());</span>
+<span class="nc" id="L126">        continue;</span>
+<span class="fc" id="L127">      }</span>
+
+<span class="fc bfc" id="L129" title="All 2 branches covered.">      for (TargetAtom target : assertion.getTargetAtoms()) {</span>
+        try {
+<span class="fc" id="L131">          PPMappingAssertionProvenance provenance = assertion.getMappingAssertionProvenance(target);</span>
+<span class="fc" id="L132">          builder.add(convert(target, lookup, provenance, tree));</span>
+<span class="nc" id="L133">        } catch (InvalidMappingSourceQueriesException e) {</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">          if (!ignoreInvalidMappingEntries) {</span>
+<span class="nc" id="L135">            throw e;</span>
+          }
+<span class="nc" id="L137">          logger.warn(&quot;Target atom {} was ignored due to an issue: {}&quot;, target, e.getMessage());</span>
+<span class="fc" id="L138">        }</span>
+<span class="fc" id="L139">      }</span>
+<span class="fc" id="L140">    }</span>
+
+<span class="fc" id="L142">    ImmutableList&lt;MappingAssertion&gt; result = builder.build();</span>
+<span class="fc" id="L143">    logger.debug(&quot;Original mapping size: {}&quot;, result.size());</span>
+<span class="fc" id="L144">    return result;</span>
+  }
+
+  private MappingAssertion convert(TargetAtom target,
+      Function&lt;Variable, Optional&lt;ImmutableTerm&gt;&gt; lookup, PPMappingAssertionProvenance provenance,
+      IQTree tree) throws InvalidMappingSourceQueriesException {
+<span class="fc" id="L150">    logger.trace(Trace.ENTER_METHOD_4, target, lookup, provenance, tree);</span>
+<span class="fc" id="L151">    Substitution&lt;ImmutableTerm&gt; targetSubstitution = target.getSubstitution();</span>
+
+<span class="fc" id="L153">    ImmutableMap&lt;Variable, Optional&lt;ImmutableTerm&gt;&gt; targetPreMap =</span>
+<span class="fc" id="L154">        targetSubstitution.apply(target.getProjectionAtom().getArguments()).stream()</span>
+<span class="fc" id="L155">            .flatMap(ImmutableTerm::getVariableStream).distinct()</span>
+<span class="fc" id="L156">            .collect(ImmutableCollectors.toMap(v -&gt; v, lookup));</span>
+
+<span class="fc" id="L158">    ImmutableList&lt;String&gt; missingPlaceholders =</span>
+<span class="fc" id="L159">        targetPreMap.entrySet().stream().filter(e -&gt; e.getValue().isEmpty()).map(Map.Entry::getKey)</span>
+<span class="fc" id="L160">            .map(Variable::getName).collect(ImmutableCollectors.toList());</span>
+
+<span class="pc bpc" id="L162" title="1 of 2 branches missed.">    if (!missingPlaceholders.isEmpty()) {</span>
+<span class="nc" id="L163">      throw new InvalidMappingSourceQueriesException(missingPlaceholders.stream().collect(</span>
+<span class="nc" id="L164">          Collectors.joining(&quot;, &quot;, &quot;The placeholder(s) &quot;,</span>
+              &quot; in the target do(es) not occur in source query of the mapping assertion\n[&quot;
+<span class="nc" id="L166">                  + provenance.getProvenanceInfo() + &quot;]&quot;)));</span>
+    }
+
+    // noinspection OptionalGetWithoutIsPresent
+<span class="fc" id="L170">    Substitution&lt;ImmutableTerm&gt; substitution = targetPreMap.entrySet().stream().collect(</span>
+<span class="fc" id="L171">        substitutionFactory.toSubstitutionSkippingIdentityEntries(Map.Entry::getKey,</span>
+<span class="fc" id="L172">            e -&gt; e.getValue().get()));</span>
+
+<span class="fc" id="L174">    Substitution&lt;Variable&gt; targetRenamingPart = substitution.restrictRangeTo(Variable.class);</span>
+<span class="fc" id="L175">    Substitution&lt;ImmutableTerm&gt; spoSubstitution =</span>
+<span class="fc" id="L176">        targetSubstitution.transform(targetRenamingPart::applyToTerm);</span>
+
+<span class="fc" id="L178">    Substitution&lt;? extends ImmutableTerm&gt; selectSubstitution =</span>
+<span class="fc" id="L179">        substitution.restrictRangeTo(NonVariableTerm.class);</span>
+
+<span class="fc" id="L181">    IQTree selectTree = iqFactory.createUnaryIQTree(</span>
+<span class="fc" id="L182">        iqFactory.createConstructionNode(spoSubstitution.getRangeVariables(), selectSubstitution),</span>
+        tree);
+
+<span class="fc" id="L185">    IQTree mappingTree = iqFactory.createUnaryIQTree(</span>
+<span class="fc" id="L186">        iqFactory.createConstructionNode(target.getProjectionAtom().getVariables(),</span>
+            spoSubstitution),
+        selectTree);
+
+<span class="fc" id="L190">    mappingTree = mmecOptimizer.optimize(mappingTree);</span>
+
+<span class="fc" id="L192">    return new MappingAssertion(iqFactory.createIQ(target.getProjectionAtom(), mappingTree),</span>
+        provenance);
+  }
+
+  public RAExpression getRaExpression(SQLPPTriplesMap mappingAssertion,
+      MetadataLookup metadataLookup)
+      throws InvalidMappingSourceQueriesException, MetadataExtractionException {
+<span class="fc" id="L199">    logger.trace(Trace.ENTER_METHOD_2, mappingAssertion, metadataLookup);</span>
+<span class="fc" id="L200">    String sourceQuery = mappingAssertion.getSourceQuery().getSQL();</span>
+    try {
+<span class="fc" id="L202">      return sqlQueryParser.getRAExpression(sourceQuery, metadataLookup);</span>
+<span class="nc" id="L203">    } catch (InvalidQueryException e) {</span>
+<span class="nc" id="L204">      throw new InvalidMappingSourceQueriesException(</span>
+<span class="nc" id="L205">          &quot;Error: &quot; + e.getMessage() + &quot; \nProblem location: source query of triplesMap \n[&quot;</span>
+<span class="nc" id="L206">              + mappingAssertion.getTriplesMapProvenance().getProvenanceInfo() + &quot;]&quot;);</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

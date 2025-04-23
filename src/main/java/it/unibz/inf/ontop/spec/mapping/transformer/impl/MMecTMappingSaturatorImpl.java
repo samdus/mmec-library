@@ -1,11 +1,11 @@
 /**
  * @file
  *
- * @copyright @@GRIIS_COPYRIGHT@@
+ * @copyright Samuel Dussault ; GRIIS / Université de Sherbrooke
  *
- * @licence @@GRIIS_LICENCE@@
+ * @licence https://www.forge.gouv.qc.ca/licence/liliq-r/
  *
- * @version @@GRIIS_VERSION@@
+ * @version 1.2.0
  *
  * @brief @~french Copie de l'implémentation de
  * it.unibz.inf.ontop.spec.mapping.transformer.impl.MMecTMappingSaturatorImpl.

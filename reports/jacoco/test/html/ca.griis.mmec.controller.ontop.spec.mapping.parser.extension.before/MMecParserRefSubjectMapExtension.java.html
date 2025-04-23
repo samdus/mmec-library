@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecParserRefSubjectMapExtension.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before</a> &gt; <span class="el_source">MMecParserRefSubjectMapExtension.java</span></div><h1>MMecParserRefSubjectMapExtension.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ *
+ * @copyright @@GRIIS_COPYRIGHT@@
+ *
+ * @licence @@GRIIS_LICENCE@@
+ *
+ * @version @@GRIIS_VERSION@@
+ *
+ * @brief @~french Implémentation de la classe MMecParserRefSubjectMapExtension.
+ * @brief @~english MMecParserRefSubjectMapExtension class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.before;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.MappingExtendedBeforeParsing;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.InvalidRefSubjectMapException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.JoinConditionWithoutChildColumnException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.JoinConditionWithoutParentColumnException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.LogicalTableWithoutSqlQueryNorTableNameException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.RefSubjectMapWithoutParentTriplesMapException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureWithoutLogicalTableException;
+import ca.griis.mmec.controller.ontop.spec.mapping.parser.extension.exception.SignatureWithoutSubjectMapException;
+import ca.griis.mmec.model.MMecVocabulary;
+import com.google.common.collect.ImmutableMap;
+import com.google.inject.Inject;
+import eu.optique.r2rml.api.model.R2RMLVocabulary;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.Triple;
+import org.apache.commons.rdf.rdf4j.RDF4J;
+import org.apache.commons.rdf.rdf4j.RDF4JBlankNode;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Extension de l'arrimage qui permet de traiter les RefSubjectMap
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-04-10 [SD] - Extraction de la classe depuis MappingParserExtension&lt;br&gt;
+ *      2024-04-03 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class MMecParserRefSubjectMapExtension extends MappingExtendedBeforeParsing {
+<span class="fc" id="L70">  private static final GriisLogger logger =</span>
+<span class="fc" id="L71">      GriisLoggerFactory.getLogger(MMecParserRefSubjectMapExtension.class);</span>
+
+  @Inject
+  public MMecParserRefSubjectMapExtension(RDF4J rdf) {
+<span class="fc" id="L75">    super(rdf);</span>
+<span class="fc" id="L76">  }</span>
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param prefixes «Parameter description»
+   *
+   * @brief @~french Traite les RefSubjectMap en modifiant le logicalTable en incluant la requête
+   *        du parent, en copiant les attributs du subjectMap du parent et en ajoutant les
+   *        éventuels mmec:subsets du parent.
+   * @par Details
+   *      Pour chaque triplet &lt;child, mmec:refSubjectMap, childRefSubjectMap&gt; dans le graphe :
+   *      __Obtenir le triplet &lt;childRefSubjectMap, rr:parentTriplesMap, parentTriplesMap&gt;
+   *      __Obtenir le triplet &lt;parentTriplesMap, rr:subjectMap, parentSubjectMap&gt;
+   *      __Obtenir le triplet &lt;parentTriplesMap, mmec:subsets, parentSubsets&gt;
+   *      __Obtenir le triplet &lt;parentTriplesMap, rr:logicalTable, parentLogicalTable&gt;
+   *      __Obtenir le triplet &lt;parentLogicalTable, rr:sqlQuery, parentSqlQuery&gt;
+   *      __Obtenir le triplet &lt;parentLogicalTable, rr:tableName, parentTable&gt;
+   *      __Obtenir le triplet &lt;child, rr:logicalTable, childLogicalTable&gt;
+   *      __Obtenir le triplet &lt;childLogicalTable, rr:sqlQuery, childSqlQuery&gt;
+   *      __Obtenir le triplet &lt;childLogicalTable, rr:tableName, childTable&gt;
+   *      __Obtenir les triplets &lt;childRefSubjectMap, rr:joinCondition, {joinConditions}&gt;
+   *      __
+   *      __Si la valeur parentSqlQuery n'existe pas :
+   *      ____parentSqlQuery = &quot;SELECT * FROM &quot; + parentTable
+   *      __
+   *      __Si la valeur childSqlQuery n'existe pas :
+   *      ____childSqlQuery = &quot;SELECT * FROM &quot; + childTable
+   *      __
+   *      __Si joinConditions est vide :
+   *      ____query = &quot;SELECT * FROM (&quot; + childSqlQuery + &quot;) AS tmp&quot;
+   *      __Sinon :
+   *      ____Pour chaque condition dans joinConditions :
+   *      ______Obtenir le triplet &lt;condition, rr:child, childColumn&gt;
+   *      ______Obtenir le triplet &lt;condition, rr:parent, parentColumn&gt;
+   *      ______Ajout à joinConditionString, séparé par un &quot;AND&quot; : childColumn + &quot; = &quot; +
+   *      parentColumn
+   *      ________Sauf si tous les couples (childColumn, parentColumn) sont identiques, alors
+   *      ________utiliser &quot;USING&quot; au lieu de &quot;ON&quot;
+   *      ____query = &quot;SELECT *
+   *      _____________FROM (&quot; + childSqlQuery + &quot;) AS child
+   *      _____________JOIN (&quot; + parentSqlQuery + &quot;) AS parent
+   *      _______________&quot; + joinConditionString
+   *      __
+   *      __retirer le triplet &lt;child, rr:logicalTable, childLogicalTable&gt;
+   *      __ajouter un triplet &lt;child, rr:logicalTable, newLogicalTable&gt;
+   *      __ajouter un triplet &lt;newLogicalTable, rdf:type, rr:R2RMLView&gt;
+   *      __ajouter un triplet &lt;newLogicalTable, rr:sqlQuery, query&gt;
+   *      __ajouter un triplet &lt;child, rr:subjectMap, parentSubjectMap&gt;
+   *      __ajouter un triplet &lt;child, mmec:subsets, parentTriplesMap&gt;
+   *      __Si parentSubsets existe :
+   *      ____ajouter un triplet &lt;child, mmec:subsets, parentSubsets&gt;
+   * @param mappingGraph Graph d'arrimage.
+   * @param prefixes Préfixes de l'arrimage.
+   */
+  @Override
+  public void updateGraph(Graph mappingGraph, ImmutableMap&lt;String, String&gt; prefixes) {
+<span class="fc" id="L133">    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, prefixes);</span>
+
+<span class="fc bfc" id="L135" title="All 2 branches covered.">    for (Triple currentTriple : mappingGraph.stream(null,</span>
+<span class="fc" id="L136">        rdf.createIRI(MMecVocabulary.P_REF_SUBJECT_MAP), null).toList()) {</span>
+<span class="fc" id="L137">      BlankNodeOrIRI subject = currentTriple.getSubject();</span>
+<span class="fc" id="L138">      BlankNodeOrIRI object = Optional.of(currentTriple.getObject())</span>
+<span class="fc" id="L139">          .filter(o -&gt; o instanceof BlankNodeOrIRI)</span>
+<span class="fc" id="L140">          .map(o -&gt; (BlankNodeOrIRI) o)</span>
+<span class="fc" id="L141">          .orElseThrow(() -&gt; new InvalidRefSubjectMapException(subject));</span>
+<span class="fc" id="L142">      processRefSubjectMap(mappingGraph, subject, object);</span>
+<span class="fc" id="L143">    }</span>
+
+<span class="fc" id="L145">    logger.trace(Trace.EXIT_METHOD_0);</span>
+<span class="fc" id="L146">  }</span>
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param mappingGraph «Parameter description»
+   * @param child «Parameter description»
+   * @param childRefSubjectMap «Parameter description»
+   *
+   * @brief @~french Traitement d'un seul RefSubjectMap.
+   * @param mappingGraph Graph d'arrimage.
+   * @param child Référence du sujet enfant.
+   * @param childRefSubjectMap Référence du sujet enfant.
+   */
+  protected void processRefSubjectMap(Graph mappingGraph, BlankNodeOrIRI child,
+      BlankNodeOrIRI childRefSubjectMap) {
+<span class="fc" id="L161">    logger.trace(Trace.ENTER_METHOD_2, mappingGraph, child);</span>
+
+<span class="fc" id="L163">    final BlankNodeOrIRI parentTriplesMap = getObject(mappingGraph, childRefSubjectMap,</span>
+<span class="fc" id="L164">        rdf.createIRI(R2RMLVocabulary.PROP_PARENT_TRIPLES_MAP))</span>
+<span class="fc" id="L165">            .orElseThrow(() -&gt; new RefSubjectMapWithoutParentTriplesMapException(child));</span>
+<span class="fc" id="L166">    final BlankNodeOrIRI parentSubjectMap = getObject(mappingGraph, parentTriplesMap,</span>
+<span class="fc" id="L167">        rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP))</span>
+<span class="fc" id="L168">            .orElseThrow(() -&gt; new SignatureWithoutSubjectMapException(parentTriplesMap));</span>
+<span class="fc" id="L169">    final Optional&lt;BlankNodeOrIRI&gt; parentSubsets = getObject(mappingGraph, parentTriplesMap,</span>
+<span class="fc" id="L170">        rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS));</span>
+<span class="fc" id="L171">    final BlankNodeOrIRI parentLogicalTable = getObject(mappingGraph, parentTriplesMap,</span>
+<span class="fc" id="L172">        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE))</span>
+<span class="fc" id="L173">            .orElseThrow(() -&gt; new SignatureWithoutLogicalTableException(parentTriplesMap));</span>
+<span class="fc" id="L174">    final Optional&lt;String&gt; maybeParentSqlQuery = getLiteral(mappingGraph, parentLogicalTable,</span>
+<span class="fc" id="L175">        rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY));</span>
+<span class="fc" id="L176">    final Optional&lt;String&gt; parentTable = getLiteral(mappingGraph, parentLogicalTable,</span>
+<span class="fc" id="L177">        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME));</span>
+<span class="fc" id="L178">    final BlankNodeOrIRI childLogicalTable = getObject(mappingGraph, child,</span>
+<span class="fc" id="L179">        rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE))</span>
+<span class="fc" id="L180">            .orElseThrow(() -&gt; new SignatureWithoutLogicalTableException(child));</span>
+<span class="fc" id="L181">    final Optional&lt;String&gt; maybeChildSqlQuery = getLiteral(mappingGraph, childLogicalTable,</span>
+<span class="fc" id="L182">        rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY));</span>
+<span class="fc" id="L183">    final Optional&lt;String&gt; childTable = getLiteral(mappingGraph, childLogicalTable,</span>
+<span class="fc" id="L184">        rdf.createIRI(R2RMLVocabulary.PROP_TABLE_NAME));</span>
+<span class="fc" id="L185">    final List&lt;BlankNodeOrIRI&gt; joinConditions = mappingGraph.stream(childRefSubjectMap,</span>
+<span class="fc" id="L186">        rdf.createIRI(R2RMLVocabulary.PROP_JOIN_CONDITION), null)</span>
+<span class="fc" id="L187">        .map(Triple::getObject)</span>
+<span class="fc" id="L188">        .filter(o -&gt; o instanceof BlankNodeOrIRI)</span>
+<span class="fc" id="L189">        .map(o -&gt; (BlankNodeOrIRI) o)</span>
+<span class="fc" id="L190">        .toList();</span>
+
+<span class="fc" id="L192">    final String parentSqlQuery = maybeParentSqlQuery</span>
+<span class="fc" id="L193">        .orElseGet(() -&gt; &quot;SELECT * FROM &quot;</span>
+            + parentTable
+<span class="fc" id="L195">                .map(String::trim)</span>
+<span class="fc" id="L196">                .orElseThrow(</span>
+<span class="fc" id="L197">                    () -&gt; new LogicalTableWithoutSqlQueryNorTableNameException(</span>
+                        parentLogicalTable)));
+<span class="fc" id="L199">    final String childSqlQuery = maybeChildSqlQuery.orElseGet(() -&gt; &quot;SELECT * FROM &quot;</span>
+        + childTable
+<span class="fc" id="L201">            .map(String::trim)</span>
+<span class="fc" id="L202">            .orElseThrow(</span>
+<span class="fc" id="L203">                () -&gt; new LogicalTableWithoutSqlQueryNorTableNameException(childLogicalTable)));</span>
+
+    final String query;
+<span class="fc bfc" id="L206" title="All 2 branches covered.">    if (joinConditions.isEmpty()) {</span>
+<span class="fc" id="L207">      query = &quot;SELECT * FROM (&quot; + childSqlQuery + &quot;) AS tmp&quot;;</span>
+    } else {
+<span class="fc" id="L209">      List&lt;Pair&lt;String, String&gt;&gt; joins = joinConditions.stream()</span>
+<span class="fc" id="L210">          .map(condition -&gt; {</span>
+<span class="fc" id="L211">            String childColumn = getLiteral(mappingGraph, condition,</span>
+<span class="fc" id="L212">                rdf.createIRI(R2RMLVocabulary.PROP_CHILD))</span>
+<span class="fc" id="L213">                    .orElseThrow(() -&gt; new JoinConditionWithoutChildColumnException(condition));</span>
+<span class="fc" id="L214">            String parentColumn = getLiteral(mappingGraph, condition,</span>
+<span class="fc" id="L215">                rdf.createIRI(R2RMLVocabulary.PROP_PARENT))</span>
+<span class="fc" id="L216">                    .orElseThrow(() -&gt; new JoinConditionWithoutParentColumnException(condition));</span>
+<span class="fc" id="L217">            return Pair.of(childColumn.trim(), parentColumn.trim());</span>
+<span class="fc" id="L218">          }).toList();</span>
+
+      String joinConditionString;
+<span class="fc bfc" id="L221" title="All 2 branches covered.">      if (joins.stream().allMatch(pair -&gt; pair.getLeft().equals(pair.getRight()))) {</span>
+<span class="fc" id="L222">        joinConditionString = String.format(&quot;USING (%s)&quot;,</span>
+<span class="fc" id="L223">            joins.stream().map(Pair::getLeft).collect(Collectors.joining(&quot;, &quot;)));</span>
+      } else {
+<span class="fc" id="L225">        joinConditionString = String.format(&quot;ON %s&quot;,</span>
+<span class="fc" id="L226">            joins.stream()</span>
+<span class="fc" id="L227">                .map(pair -&gt; String.format(&quot;child.%s = parent.%s&quot;, pair.getLeft(), pair.getRight()))</span>
+<span class="fc" id="L228">                .collect(Collectors.joining(&quot;\n    AND &quot;)));</span>
+      }
+
+<span class="fc" id="L231">      query = &quot;SELECT *\n&quot;</span>
+          + &quot;FROM (&quot; + childSqlQuery + &quot;) AS child\n&quot;
+          + &quot;JOIN (&quot; + parentSqlQuery + &quot;) AS parent\n&quot;
+          + &quot;  &quot; + joinConditionString;
+    }
+
+<span class="fc" id="L237">    RDF4JBlankNode newLogicalTable = rdf.createBlankNode();</span>
+<span class="fc" id="L238">    mappingGraph.remove(child, rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE),</span>
+        childLogicalTable);
+<span class="fc" id="L240">    mappingGraph.add(child, rdf.createIRI(R2RMLVocabulary.PROP_LOGICAL_TABLE), newLogicalTable);</span>
+<span class="fc" id="L241">    mappingGraph.add(newLogicalTable, rdf.createIRI(nsTypeIri),</span>
+<span class="fc" id="L242">        rdf.createIRI(R2RMLVocabulary.TYPE_R2RML_VIEW));</span>
+<span class="fc" id="L243">    mappingGraph.add(newLogicalTable, rdf.createIRI(R2RMLVocabulary.PROP_SQL_QUERY),</span>
+<span class="fc" id="L244">        rdf.createLiteral(query));</span>
+<span class="fc" id="L245">    mappingGraph.add(child, rdf.createIRI(R2RMLVocabulary.PROP_SUBJECT_MAP), parentSubjectMap);</span>
+<span class="fc" id="L246">    mappingGraph.add(child, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS), parentTriplesMap);</span>
+
+<span class="fc bfc" id="L248" title="All 2 branches covered.">    if (parentSubsets.isPresent()) {</span>
+<span class="fc" id="L249">      mappingGraph.add(child, rdf.createIRI(MMecVocabulary.P_SIGNATURE_SUBSETS),</span>
+<span class="fc" id="L250">          parentSubsets.get());</span>
+    }
+
+<span class="fc" id="L253">    logger.trace(Trace.EXIT_METHOD_0);</span>
+<span class="fc" id="L254">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataPropertyProjectionTransformer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.iq.transform</a> &gt; <span class="el_source">DataPropertyProjectionTransformer.java</span></div><h1>DataPropertyProjectionTransformer.java</h1><pre class="source lang-java linenums">package ca.griis.mmec.controller.ontop.iq.transform;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.model.term.MMecTermFactory;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingConversion;
+import ca.griis.mmec.controller.ontop.spec.mapping.MMecMappingExtension;
+import ca.griis.mmec.properties.MappingProperties;
+import ca.griis.mmec.repository.OntoRelCatRepository;
+import com.google.common.collect.ImmutableMap;
+import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
+import it.unibz.inf.ontop.iq.IQTree;
+import it.unibz.inf.ontop.iq.node.ConstructionNode;
+import it.unibz.inf.ontop.iq.transform.impl.DefaultRecursiveIQTreeVisitingTransformer;
+import it.unibz.inf.ontop.iq.type.impl.BasicSingleTermTypeExtractor;
+import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.NonGroundFunctionalTerm;
+import it.unibz.inf.ontop.model.term.RDFTermTypeConstant;
+import it.unibz.inf.ontop.model.term.TermFactory;
+import it.unibz.inf.ontop.model.term.Variable;
+import it.unibz.inf.ontop.model.term.functionsymbol.RDFTermFunctionSymbol;
+import it.unibz.inf.ontop.model.type.DBTermType;
+import it.unibz.inf.ontop.model.type.impl.SimpleRDFDatatype;
+import it.unibz.inf.ontop.substitution.Substitution;
+import it.unibz.inf.ontop.substitution.impl.SubstitutionImpl;
+import java.util.HashMap;
+import java.util.Map;
+import javax.inject.Inject;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Transformateur pour les projections de propriétés de données
+ * @par Détails
+ *      Permet de transformer les projections de requêtes de propriétés de données pour
+ *      retourner la valeur SQL du modèle commun plutôt que sa représentation RDF.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      Parmi les substitutions de la requête, on cherche les substitutions de propriétés de données
+ *      Pour chaque substitution de propriété de données, on détermine le type de la variable à
+ *      substituer et le type de destination dans la configuration du modèle commun.
+ *      &lt;br&gt;
+ *      Si le type de la variable et le type de destination ont le même nom, on remplace la
+ *      substitution par un simple renommage de la variable.
+ *      &lt;br&gt;
+ *      Si une fonction de conversion existe dans cet arrimage pour convertir une variable du type
+ *      de la variable vers le type de destination, on remplace la substitution par l'appel de cette
+ *      fonction. Si cette conversion définie une fonction de validation, l'appel à celle-ci est
+ *      ajouté à la requête.
+ *      &lt;br&gt;
+ *      Si aucune des conditions précédentes n'est remplie, on lève une exception. La conversion
+ *      aurait dû avoir été spécifié lors de l'arrimage.
+ *
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-02-02 [SD] - Implémentation initiale&lt;br&gt;
+ *      2024-03-05 [SD] - Correction de la gestion des conversions de type&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class DataPropertyProjectionTransformer
+    extends DefaultRecursiveIQTreeVisitingTransformer {
+<span class="fc" id="L76">  private static final GriisLogger logger =</span>
+<span class="fc" id="L77">      GriisLoggerFactory.getLogger(DataPropertyProjectionTransformer.class);</span>
+  private final MMecTermFactory termFactory;
+  private final BasicSingleTermTypeExtractor typeExtractor;
+  private final OntoRelCatRepository ontoRelCatRepository;
+  private final MappingProperties mappingProperties;
+  private final MMecMappingExtension mappingExtension;
+
+  @Inject
+  public DataPropertyProjectionTransformer(
+      MMecMappingExtension mappingExtension,
+      IntermediateQueryFactory iqFactory,
+      TermFactory termFactory,
+      BasicSingleTermTypeExtractor typeExtractor,
+      OntoRelCatRepository ontoRelCatRepository,
+      MappingProperties mappingProperties) {
+<span class="fc" id="L92">    super(iqFactory);</span>
+
+<span class="fc" id="L94">    this.mappingExtension = mappingExtension;</span>
+<span class="fc" id="L95">    this.termFactory = (MMecTermFactory) termFactory;</span>
+<span class="fc" id="L96">    this.typeExtractor = typeExtractor;</span>
+<span class="fc" id="L97">    this.ontoRelCatRepository = ontoRelCatRepository;</span>
+<span class="fc" id="L98">    this.mappingProperties = mappingProperties;</span>
+<span class="fc" id="L99">  }</span>
+
+  @Override
+  public IQTree transformConstruction(IQTree tree, ConstructionNode constructionNode,
+      IQTree child) {
+<span class="fc" id="L104">    logger.trace(Trace.ENTER_METHOD_3, tree, constructionNode, child);</span>
+
+<span class="fc bfc" id="L106" title="All 2 branches covered.">    if (!constructionNode.getSubstitution().isEmpty()) {</span>
+<span class="fc" id="L107">      Map&lt;Variable, ImmutableTerm&gt; newSubstitutionMap = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">      for (Map.Entry&lt;Variable, ImmutableTerm&gt; substitutionEntry : constructionNode.getSubstitution()</span>
+<span class="fc" id="L109">          .stream().toList()) {</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (substitutionEntry.getValue() instanceof NonGroundFunctionalTerm term</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            &amp;&amp; term.getFunctionSymbol() instanceof RDFTermFunctionSymbol</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">            &amp;&amp; term.getTerm(1) instanceof RDFTermTypeConstant rdfTermTypeConstant</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            &amp;&amp; rdfTermTypeConstant.getRDFTermType() instanceof SimpleRDFDatatype rdfDatatype) {</span>
+
+<span class="fc" id="L115">          DBTermType targetType = getTargetSqlType(tree, rdfDatatype);</span>
+<span class="fc" id="L116">          Variable variable = term.getVariables().stream().findFirst().orElseThrow(</span>
+<span class="fc" id="L117">              () -&gt; new DataPropertyProjectionTransformerException(tree,</span>
+                  &quot;Cannot get the variable from the data property's substitution.&quot;));
+<span class="fc" id="L119">          DBTermType variableType = typeExtractor.extractSingleTermType(variable, child)</span>
+<span class="fc" id="L120">              .filter(termType -&gt; termType instanceof DBTermType)</span>
+<span class="fc" id="L121">              .map(termType -&gt; (DBTermType) termType)</span>
+<span class="fc" id="L122">              .orElseThrow(() -&gt; new DataPropertyProjectionTransformerException(tree,</span>
+                  &quot;Cannot get the type of the data property's substitution variable.&quot;));
+
+<span class="fc" id="L125">          child = calculateAndAddConversion(newSubstitutionMap, substitutionEntry.getKey(),</span>
+              rdfTermTypeConstant, targetType, variable, variableType, child, tree);
+<span class="fc" id="L127">        } else {</span>
+<span class="fc" id="L128">          newSubstitutionMap.put(substitutionEntry.getKey(), substitutionEntry.getValue());</span>
+        }
+<span class="fc" id="L130">      }</span>
+<span class="fc" id="L131">      Substitution&lt;ImmutableTerm&gt; substitution = new SubstitutionImpl&lt;&gt;(</span>
+<span class="fc" id="L132">          ImmutableMap.copyOf(newSubstitutionMap), termFactory, true);</span>
+<span class="fc" id="L133">      constructionNode = iqFactory.createConstructionNode(</span>
+<span class="fc" id="L134">          constructionNode.getVariables(), substitution);</span>
+    }
+
+<span class="fc" id="L137">    return transformUnaryNode(tree, constructionNode, child);</span>
+  }
+
+  protected IQTree calculateAndAddConversion(Map&lt;Variable, ImmutableTerm&gt; newSubstitutionMap,
+      Variable substituedVariable, RDFTermTypeConstant rdfTermTypeConstant, DBTermType targetType,
+      Variable variable, DBTermType variableType, IQTree child, IQTree tree) {
+<span class="fc" id="L143">    logger.trace(Trace.ENTER_METHOD_7, substituedVariable, rdfTermTypeConstant,</span>
+        targetType, variable, variableType, child, tree);
+    ImmutableTerm valueTerm;
+<span class="fc bfc" id="L146" title="All 4 branches covered.">    if (targetType.getName().contains(&quot;\&quot;&quot;) &amp;&amp; targetType.getName().equals(</span>
+<span class="fc" id="L147">        variableType.getName())</span>
+<span class="fc bfc" id="L148" title="All 4 branches covered.">        || !targetType.getName().contains(&quot;\&quot;&quot;) &amp;&amp; targetType.getName().compareToIgnoreCase(</span>
+<span class="fc" id="L149">            variableType.getName()) == 0) {</span>
+<span class="fc" id="L150">      valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,</span>
+          variable);
+    } else {
+<span class="fc" id="L153">      MMecMappingConversion conversion = mappingExtension</span>
+<span class="fc" id="L154">          .getMappingConversion(variableType, targetType)</span>
+<span class="fc" id="L155">          .orElseThrow(() -&gt; new DataPropertyProjectionTransformerException(tree,</span>
+<span class="fc" id="L156">              String.format(</span>
+                  &quot;No conversion found for the variable type %s to the target type %s.&quot;,
+<span class="fc" id="L158">                  variableType.getName(), targetType.getName())));</span>
+
+<span class="fc bfc" id="L160" title="All 2 branches covered.">      if (conversion.getConversionFunction().isPresent()) {</span>
+<span class="fc" id="L161">        valueTerm = termFactory.getMMecConversionFunction(variable, conversion);</span>
+      } else {
+<span class="fc" id="L163">        valueTerm = termFactory.getMMecSimpleCastFunctionalTerm(variableType, targetType,</span>
+            variable);
+      }
+
+<span class="fc bfc" id="L167" title="All 2 branches covered.">      if (conversion.getValidationFunction().isPresent()) {</span>
+<span class="fc" id="L168">        child = iqFactory.createUnaryIQTree(</span>
+<span class="fc" id="L169">            iqFactory.createFilterNode(termFactory.getStrictEquality(</span>
+<span class="fc" id="L170">                termFactory.getMMecConversionValidationFunction(variable, conversion),</span>
+<span class="fc" id="L171">                termFactory.getDBBooleanConstant(true))),</span>
+            child);
+      }
+    }
+<span class="fc" id="L175">    newSubstitutionMap.put(substituedVariable,</span>
+<span class="fc" id="L176">        termFactory.getMMecValueFunction(valueTerm, targetType,</span>
+            rdfTermTypeConstant));
+<span class="fc" id="L178">    return child;</span>
+  }
+
+  protected DBTermType getTargetSqlType(IQTree iqTree, SimpleRDFDatatype rdfDatatype) {
+<span class="fc" id="L182">    logger.trace(Trace.ENTER_METHOD_2, iqTree, rdfDatatype);</span>
+<span class="fc" id="L183">    return ontoRelCatRepository.getSqlType(mappingProperties.getOntoRelId(),</span>
+<span class="fc" id="L184">        rdfDatatype.getIRI().getIRIString())</span>
+<span class="fc" id="L185">        .orElseThrow(() -&gt; new DataPropertyProjectionTransformerException(iqTree,</span>
+<span class="fc" id="L186">            String.format(&quot;Cannot retrieve RDFDatatype &lt;%s&gt; from the OntoRelCat.&quot;,</span>
+<span class="fc" id="L187">                rdfDatatype.getIRI().getIRIString())));</span>
+  }
+
+  public static class DataPropertyProjectionTransformerException extends RuntimeException {
+    public DataPropertyProjectionTransformerException(IQTree iqTree, String reason) {
+<span class="fc" id="L192">      super(String.format(&quot;Impossible to transform the DataProperty from the following tree. {%n&quot;</span>
+          + &quot;Cause: \&quot;%s\&quot;;%n&quot;
+<span class="fc" id="L194">          + &quot;IQTree:%n%s%n}&quot;, reason, iqTree.toString()));</span>
+<span class="fc" id="L195">    }</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

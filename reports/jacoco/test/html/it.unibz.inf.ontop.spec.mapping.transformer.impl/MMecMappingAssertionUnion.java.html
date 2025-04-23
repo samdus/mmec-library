@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MMecMappingAssertionUnion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">it.unibz.inf.ontop.spec.mapping.transformer.impl</a> &gt; <span class="el_source">MMecMappingAssertionUnion.java</span></div><h1>MMecMappingAssertionUnion.java</h1><pre class="source lang-java linenums">package it.unibz.inf.ontop.spec.mapping.transformer.impl;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.MMecPpMappingAssertionProvenance;
+import ca.griis.mmec.controller.ontop.spec.mapping.pp.ProvUnion;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import it.unibz.inf.ontop.constraints.Homomorphism;
+import it.unibz.inf.ontop.constraints.HomomorphismFactory;
+import it.unibz.inf.ontop.constraints.impl.ExtensionalDataNodeHomomorphismIteratorImpl;
+import it.unibz.inf.ontop.constraints.impl.ExtensionalDataNodeListContainmentCheck;
+import it.unibz.inf.ontop.exception.MinorOntopInternalBugException;
+import it.unibz.inf.ontop.injection.CoreSingletons;
+import it.unibz.inf.ontop.injection.IntermediateQueryFactory;
+import it.unibz.inf.ontop.iq.IQ;
+import it.unibz.inf.ontop.iq.IQTree;
+import it.unibz.inf.ontop.iq.UnaryIQTree;
+import it.unibz.inf.ontop.iq.node.ConstructionNode;
+import it.unibz.inf.ontop.iq.node.ExtensionalDataNode;
+import it.unibz.inf.ontop.iq.node.FilterNode;
+import it.unibz.inf.ontop.iq.node.InnerJoinNode;
+import it.unibz.inf.ontop.iq.node.QueryNode;
+import it.unibz.inf.ontop.iq.node.TrueNode;
+import it.unibz.inf.ontop.iq.node.ValuesNode;
+import it.unibz.inf.ontop.iq.tools.UnionBasedQueryMerger;
+import it.unibz.inf.ontop.model.atom.DistinctVariableOnlyDataAtom;
+import it.unibz.inf.ontop.model.atom.RDFAtomPredicate;
+import it.unibz.inf.ontop.model.term.Constant;
+import it.unibz.inf.ontop.model.term.IRIConstant;
+import it.unibz.inf.ontop.model.term.ImmutableExpression;
+import it.unibz.inf.ontop.model.term.ImmutableTerm;
+import it.unibz.inf.ontop.model.term.TermFactory;
+import it.unibz.inf.ontop.model.term.Variable;
+import it.unibz.inf.ontop.model.term.VariableOrGroundTerm;
+import it.unibz.inf.ontop.model.vocabulary.RDF;
+import it.unibz.inf.ontop.spec.mapping.MappingAssertion;
+import it.unibz.inf.ontop.spec.mapping.pp.PPMappingAssertionProvenance;
+import it.unibz.inf.ontop.substitution.Substitution;
+import it.unibz.inf.ontop.utils.ImmutableCollectors;
+import it.unibz.inf.ontop.utils.VariableGenerator;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ *
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Copie de la classe
+ *        it.unibz.inf.ontop.spec.mapping.transformer.impl.MappingAssertionUnion pour l'extension
+ *        MMec.
+ * @par Détails
+ *      Permet de conserver la provenance des règles de mapping, de sorte à pouvoir utiliser des
+ *      attributs d'arrimage spécifiques à MMec comme le subset.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-03-04 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class MMecMappingAssertionUnion {
+
+<span class="fc" id="L97">  private static final GriisLogger logger =</span>
+<span class="fc" id="L98">      GriisLoggerFactory.getLogger(MMecMappingAssertionUnion.class);</span>
+<span class="fc" id="L99">  private static final Logger log = LoggerFactory.getLogger(MMecMappingAssertionUnion.class);</span>
+
+
+  public static class MMecMappingAssertionUnionCollector implements
+      Collector&lt;MappingAssertion, MMecMappingAssertionUnion, Optional&lt;MappingAssertion&gt;&gt; {
+    private final ExtensionalDataNodeListContainmentCheck cqc;
+    private final CoreSingletons coreSingletons;
+    private final UnionBasedQueryMerger queryMerger;
+
+    public MMecMappingAssertionUnionCollector(ExtensionalDataNodeListContainmentCheck cqc,
+        CoreSingletons coreSingletons,
+<span class="fc" id="L110">        UnionBasedQueryMerger queryMerger) {</span>
+<span class="fc" id="L111">      this.cqc = cqc;</span>
+<span class="fc" id="L112">      this.coreSingletons = coreSingletons;</span>
+<span class="fc" id="L113">      this.queryMerger = queryMerger;</span>
+<span class="fc" id="L114">    }</span>
+
+    @Override
+    public Supplier&lt;MMecMappingAssertionUnion&gt; supplier() {
+<span class="fc" id="L118">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L119">      return () -&gt; new MMecMappingAssertionUnion(cqc, coreSingletons, queryMerger);</span>
+    }
+
+    @Override
+    public BiConsumer&lt;MMecMappingAssertionUnion, MappingAssertion&gt; accumulator() {
+<span class="fc" id="L124">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L125">      return MMecMappingAssertionUnion::add;</span>
+    }
+
+    @Override
+    public BinaryOperator&lt;MMecMappingAssertionUnion&gt; combiner() {
+<span class="fc" id="L130">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L131">      return (union1, union2) -&gt; {</span>
+<span class="nc" id="L132">        throw new MinorOntopInternalBugException(&quot;no merge&quot;);</span>
+      };
+    }
+
+    @Override
+    public Function&lt;MMecMappingAssertionUnion, Optional&lt;MappingAssertion&gt;&gt; finisher() {
+<span class="fc" id="L138">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L139">      return MMecMappingAssertionUnion::build;</span>
+    }
+
+    @Override
+    public Set&lt;Characteristics&gt; characteristics() {
+<span class="fc" id="L144">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L145">      return Set.of(Collector.Characteristics.UNORDERED);</span>
+    }
+  }
+
+  public static MMecMappingAssertionUnionCollector toMappingAssertion(
+      ExtensionalDataNodeListContainmentCheck cqc, CoreSingletons coreSingletons,
+      UnionBasedQueryMerger queryMerger) {
+<span class="fc" id="L152">    logger.trace(Trace.ENTER_METHOD_3, cqc, coreSingletons, queryMerger);</span>
+<span class="fc" id="L153">    return new MMecMappingAssertionUnionCollector(cqc, coreSingletons, queryMerger);</span>
+  }
+
+<span class="fc" id="L156">  private final List&lt;ConjunctiveIQ&gt; conjunctiveIqs = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L157">  private final List&lt;IQ&gt; otherIqs = new ArrayList&lt;&gt;();</span>
+  private final ExtensionalDataNodeListContainmentCheck cqc;
+  private final TermFactory termFactory;
+  private final IntermediateQueryFactory iqFactory;
+  private final HomomorphismFactory homomorphismFactory;
+  private final CoreSingletons coreSingletons;
+  private final UnionBasedQueryMerger queryMerger;
+
+  public MMecMappingAssertionUnion(ExtensionalDataNodeListContainmentCheck cqc,
+<span class="fc" id="L166">      CoreSingletons coreSingletons, UnionBasedQueryMerger queryMerger) {</span>
+<span class="fc" id="L167">    this.cqc = cqc;</span>
+<span class="fc" id="L168">    this.termFactory = coreSingletons.getTermFactory();</span>
+<span class="fc" id="L169">    this.iqFactory = coreSingletons.getIQFactory();</span>
+<span class="fc" id="L170">    this.homomorphismFactory = coreSingletons.getHomomorphismFactory();</span>
+<span class="fc" id="L171">    this.coreSingletons = coreSingletons;</span>
+<span class="fc" id="L172">    this.queryMerger = queryMerger;</span>
+<span class="fc" id="L173">  }</span>
+
+  public MMecMappingAssertionUnion add(MappingAssertion assertion) {
+<span class="fc" id="L176">    logger.trace(Trace.ENTER_METHOD_1, assertion);</span>
+<span class="fc" id="L177">    Optional&lt;ConjunctiveIQ&gt; cq = extractConjunctiveIQ(assertion);</span>
+<span class="pc" id="L178">    cq.ifPresentOrElse(this::mergeMappingsWithCqc, () -&gt; otherIqs.add(assertion.getQuery()));</span>
+<span class="fc" id="L179">    return this;</span>
+  }
+
+  private class ConjunctiveIQ {
+    private final DistinctVariableOnlyDataAtom projectionAtom;
+    private final Substitution&lt;ImmutableTerm&gt; substitution;
+    private final ImmutableList&lt;ExtensionalDataNode&gt; extensionalDataNodes;
+    private final Optional&lt;ValuesNode&gt; valuesNode;
+    private final DisjunctionOfConjunctions filter;
+
+    private final MMecPpMappingAssertionProvenance provenance;
+
+    ConjunctiveIQ(DistinctVariableOnlyDataAtom projectionAtom, ConstructionNode constructionNode,
+        ImmutableList&lt;ExtensionalDataNode&gt; extensionalDataNodes, Optional&lt;ValuesNode&gt; valuesNode,
+<span class="fc" id="L193">        DisjunctionOfConjunctions filter, PPMappingAssertionProvenance provenance) {</span>
+<span class="fc" id="L194">      logger.trace(Trace.ENTER_METHOD_6, projectionAtom, constructionNode, extensionalDataNodes,</span>
+          valuesNode, filter, provenance);
+<span class="fc" id="L196">      this.provenance = (MMecPpMappingAssertionProvenance) provenance;</span>
+
+<span class="fc" id="L198">      VariableGenerator variableGenerator =</span>
+<span class="fc" id="L199">          coreSingletons.getCoreUtilsFactory().createVariableGenerator(</span>
+<span class="fc" id="L200">              Stream.concat(constructionNode.getVariables().stream(), Stream.concat(</span>
+<span class="fc" id="L201">                  extensionalDataNodes.stream().flatMap(n -&gt; n.getVariables().stream()),</span>
+<span class="pc" id="L202">                  valuesNode.stream().flatMap(n -&gt; n.getVariables().stream())))</span>
+<span class="fc" id="L203">                  .collect(ImmutableCollectors.toSet()));</span>
+
+<span class="fc" id="L205">      this.projectionAtom = projectionAtom;</span>
+
+      // replaces constant IRI in the object position of properties with a ValueNode
+<span class="fc" id="L208">      RDFAtomPredicate rdfAtomPredicate = (RDFAtomPredicate) projectionAtom.getPredicate();</span>
+<span class="fc" id="L209">      ImmutableList&lt;ImmutableTerm&gt; args = constructionNode.getSubstitution().apply(</span>
+<span class="fc" id="L210">          projectionAtom.getArguments());</span>
+
+<span class="fc" id="L212">      ImmutableMap&lt;IRIConstant, Variable&gt; map = Stream.of(</span>
+<span class="fc" id="L213">          Optional.of(rdfAtomPredicate.getSubject(args)), rdfAtomPredicate.getPropertyIRI(args)</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">              .filter(i -&gt; !i.equals(RDF.TYPE)).map(i -&gt; rdfAtomPredicate.getObject(args)),</span>
+<span class="fc" id="L215">          rdfAtomPredicate.getGraph(args)).flatMap(Optional::stream).filter(</span>
+<span class="fc" id="L216">              c -&gt; c instanceof IRIConstant)</span>
+<span class="pc" id="L217">          .map(c -&gt; (IRIConstant) c).distinct().collect(</span>
+<span class="pc" id="L218">              ImmutableCollectors.toMap(c -&gt; c, c -&gt; variableGenerator.generateNewVariable()));</span>
+
+<span class="fc" id="L220">      this.substitution = constructionNode.getSubstitution().transform(t -&gt; Optional.ofNullable(</span>
+<span class="fc" id="L221">          map.get(t)).&lt;ImmutableTerm&gt;map(termFactory::getIRIFunctionalTerm).orElse(t));</span>
+
+<span class="fc" id="L223">      ImmutableMap&lt;Variable, Constant&gt; constantSubstitutionEntries =</span>
+<span class="fc" id="L224">          map.entrySet().stream().collect(ImmutableCollectors.toMap(Map.Entry::getValue,</span>
+<span class="nc" id="L225">              e -&gt; termFactory.getDBStringConstant(e.getKey().getIRI().getIRIString())));</span>
+
+      // replaces constants in extensional data nodes with a ValueNode
+<span class="fc" id="L228">      ImmutableMap&lt;Integer, ImmutableMap&lt;Integer, Variable&gt;&gt; variableMap = IntStream.range(0,</span>
+<span class="fc" id="L229">          extensionalDataNodes.size()).boxed().collect(</span>
+<span class="fc" id="L230">              ImmutableCollectors.toMap(i -&gt; i, i -&gt; extensionalDataNodes.get(i).getArgumentMap()</span>
+<span class="fc" id="L231">                  .entrySet().stream().filter(e -&gt; e.getValue() instanceof Constant).collect(</span>
+<span class="fc" id="L232">                      ImmutableCollectors.toMap(Map.Entry::getKey,</span>
+<span class="nc" id="L233">                          e -&gt; variableGenerator.generateNewVariable()))));</span>
+
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">      this.extensionalDataNodes = variableMap.isEmpty() ? extensionalDataNodes</span>
+<span class="fc" id="L236">          : IntStream.range(0,</span>
+<span class="fc" id="L237">              extensionalDataNodes.size()).mapToObj(</span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">                  i -&gt; variableMap.get(i).isEmpty()</span>
+<span class="fc" id="L239">                      ? extensionalDataNodes.get(i)</span>
+<span class="nc" id="L240">                      : iqFactory.createExtensionalDataNode(</span>
+<span class="nc" id="L241">                          extensionalDataNodes.get(i).getRelationDefinition(),</span>
+<span class="nc" id="L242">                          extensionalDataNodes.get(i).getArgumentMap().entrySet().stream().collect(</span>
+<span class="nc" id="L243">                              ImmutableCollectors.toMap(Map.Entry::getKey,</span>
+<span class="nc" id="L244">                                  e -&gt; Optional.&lt;VariableOrGroundTerm&gt;ofNullable(</span>
+<span class="nc" id="L245">                                      variableMap.get(i).get(e.getKey())).orElseGet(e::getValue)))))</span>
+<span class="fc" id="L246">              .collect(</span>
+<span class="fc" id="L247">                  ImmutableCollectors.toList());</span>
+
+<span class="fc" id="L249">      Optional&lt;ImmutableMap&lt;Variable, Constant&gt;&gt; constantsMap = Optional.of(</span>
+<span class="fc" id="L250">          Stream.concat(constantSubstitutionEntries.entrySet().stream(),</span>
+<span class="fc" id="L251">              variableMap.entrySet().stream().flatMap(me -&gt; me.getValue().entrySet().stream()</span>
+<span class="pc" id="L252">                  .map(e -&gt; Maps.immutableEntry(e.getValue(),</span>
+<span class="nc" id="L253">                      (Constant) extensionalDataNodes.get(me.getKey())</span>
+<span class="nc" id="L254">                          .getArgumentMap().get(e.getKey())))))</span>
+<span class="fc" id="L255">              .collect(ImmutableCollectors.toMap()))</span>
+<span class="pc bpc" id="L256" title="1 of 2 branches missed.">          .filter(cm -&gt; !cm.isEmpty());</span>
+
+<span class="pc" id="L258">      this.valuesNode = valuesNode.map(v -&gt; constantsMap.map(cm -&gt; iqFactory.createValuesNode(</span>
+<span class="nc" id="L259">          Sets.union(v.getVariables(), cm.keySet()).immutableCopy(), v.getValueMaps().stream().map(</span>
+<span class="nc" id="L260">              m -&gt; Stream.concat(m.entrySet().stream(), cm.entrySet().stream())</span>
+<span class="nc" id="L261">                  .collect(ImmutableCollectors.toMap()))</span>
+<span class="nc" id="L262">              .collect(ImmutableCollectors.toList())))</span>
+<span class="pc" id="L263">          .orElse(v)).or(() -&gt; constantsMap.map(</span>
+<span class="nc" id="L264">              cm -&gt; iqFactory.createValuesNode(cm.keySet(), ImmutableList.of(cm))));</span>
+
+<span class="fc" id="L266">      this.filter = filter;</span>
+<span class="fc" id="L267">    }</span>
+
+    ConjunctiveIQ(ConjunctiveIQ other, DisjunctionOfConjunctions filter,
+<span class="fc" id="L270">        Optional&lt;ValuesNode&gt; valuesNode, MMecPpMappingAssertionProvenance provenance) {</span>
+<span class="fc" id="L271">      logger.trace(Trace.ENTER_METHOD_4, other, filter, valuesNode, provenance);</span>
+<span class="fc" id="L272">      this.projectionAtom = other.projectionAtom;</span>
+<span class="fc" id="L273">      this.substitution = other.substitution;</span>
+<span class="fc" id="L274">      this.extensionalDataNodes = other.extensionalDataNodes;</span>
+
+<span class="fc" id="L276">      this.filter = filter;</span>
+<span class="fc" id="L277">      this.valuesNode = valuesNode;</span>
+<span class="fc" id="L278">      this.provenance = provenance;</span>
+<span class="fc" id="L279">    }</span>
+
+    public MMecPpMappingAssertionProvenance getProvenance() {
+<span class="fc" id="L282">      return provenance;</span>
+    }
+
+    IQ asIQ() {
+<span class="fc" id="L286">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L287">      return iqFactory.createIQ(projectionAtom,</span>
+<span class="fc" id="L288">          iqFactory.createUnaryIQTree(iqFactory.createDistinctNode(), iqFactory.createUnaryIQTree(</span>
+<span class="fc" id="L289">              iqFactory.createConstructionNode(projectionAtom.getVariables(), substitution),</span>
+<span class="fc" id="L290">              getTree())));</span>
+    }
+
+    IQTree getTree() {
+<span class="fc" id="L294">      logger.trace(Trace.ENTER_METHOD_0);</span>
+      // assumes that filter is a possibly empty list of non-empty lists
+<span class="fc" id="L296">      Optional&lt;ImmutableExpression&gt; mergedConditions = translate(filter);</span>
+
+<span class="pc bpc" id="L298" title="3 of 4 branches missed.">      if (extensionalDataNodes.isEmpty() &amp;&amp; valuesNode.isEmpty()) {</span>
+<span class="nc" id="L299">        return iqFactory.createTrueNode();</span>
+<span class="pc bpc" id="L300" title="1 of 4 branches missed.">      } else if (valuesNode.isEmpty() &amp;&amp; extensionalDataNodes.size() == 1) {</span>
+<span class="fc" id="L301">        return mergedConditions.&lt;IQTree&gt;map(</span>
+<span class="fc" id="L302">            c -&gt; iqFactory.createUnaryIQTree(iqFactory.createFilterNode(c),</span>
+<span class="fc" id="L303">                extensionalDataNodes.get(0)))</span>
+<span class="fc" id="L304">            .orElseGet(() -&gt; extensionalDataNodes.get(0));</span>
+<span class="pc bpc" id="L305" title="3 of 4 branches missed.">      } else if (valuesNode.isPresent() &amp;&amp; extensionalDataNodes.isEmpty()) {</span>
+<span class="nc" id="L306">        return mergedConditions.&lt;IQTree&gt;map(</span>
+<span class="nc" id="L307">            c -&gt; iqFactory.createUnaryIQTree(iqFactory.createFilterNode(c), valuesNode.get()))</span>
+<span class="nc" id="L308">            .orElseGet(valuesNode::get);</span>
+      } else {
+<span class="fc" id="L310">        return iqFactory.createNaryIQTree(iqFactory.createInnerJoinNode(mergedConditions),</span>
+<span class="fc" id="L311">            Stream.concat(extensionalDataNodes.stream(), valuesNode.stream())</span>
+<span class="fc" id="L312">                .collect(ImmutableCollectors.toList()));</span>
+      }
+    }
+
+    Optional&lt;ImmutableExpression&gt; translate(DisjunctionOfConjunctions filter) {
+<span class="fc" id="L317">      logger.trace(Trace.ENTER_METHOD_1, filter);</span>
+<span class="fc bfc" id="L318" title="All 3 branches covered.">      switch (filter.getNumberOfConjunctions()) {</span>
+        case 0:
+<span class="fc" id="L320">          return Optional.empty();</span>
+        case 1:
+<span class="fc" id="L322">          return termFactory.getDisjunction(</span>
+<span class="fc" id="L323">              filter.stream().map(e -&gt; termFactory.getConjunction(ImmutableList.copyOf(e))));</span>
+        default:
+<span class="fc" id="L325">          ImmutableSet&lt;ImmutableExpression&gt; sharedAtoms = filter.stream().findFirst().map(</span>
+<span class="fc" id="L326">              e -&gt; e.stream().filter(c -&gt; filter.stream().allMatch(e2 -&gt; e2.contains(c)))</span>
+<span class="fc" id="L327">                  .collect(ImmutableCollectors.toSet()))</span>
+<span class="fc" id="L328">              .get();</span>
+
+<span class="fc" id="L330">          return termFactory.getConjunction(Stream.concat(sharedAtoms.stream(),</span>
+<span class="fc" id="L331">              termFactory.getDisjunction(filter.stream().map(e -&gt; termFactory.getConjunction(</span>
+<span class="fc" id="L332">                  ImmutableList.copyOf(Sets.difference(e, sharedAtoms))))).stream()));</span>
+      }
+    }
+
+    public ImmutableList&lt;ImmutableTerm&gt; getHeadTerms() {
+<span class="fc" id="L337">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L338">      return substitution.applyToTerms(projectionAtom.getArguments());</span>
+    }
+
+    public Substitution&lt;ImmutableTerm&gt; getSubstitution() {
+<span class="nc" id="L342">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="nc" id="L343">      return substitution;</span>
+    }
+
+    public ImmutableList&lt;ExtensionalDataNode&gt; getDatabaseAtoms() {
+<span class="fc" id="L347">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L348">      return extensionalDataNodes;</span>
+    }
+
+    public Optional&lt;ValuesNode&gt; getValuesNode() {
+<span class="fc" id="L352">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L353">      return valuesNode;</span>
+    }
+
+    public DisjunctionOfConjunctions getConditions() {
+<span class="fc" id="L357">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L358">      return filter;</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L363">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="nc" id="L364">      return Objects.hash(substitution, extensionalDataNodes, valuesNode, filter);</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc" id="L369">      logger.trace(Trace.ENTER_METHOD_1, o);</span>
+<span class="pc bpc" id="L370" title="1 of 2 branches missed.">      if (o instanceof ConjunctiveIQ other) {</span>
+<span class="pc bpc" id="L371" title="1 of 4 branches missed.">        return projectionAtom.equals(other.projectionAtom) &amp;&amp; substitution.equals(</span>
+<span class="fc bfc" id="L372" title="All 2 branches covered.">            other.substitution) &amp;&amp; extensionalDataNodes.equals(other.extensionalDataNodes)</span>
+<span class="pc bpc" id="L373" title="1 of 4 branches missed.">            &amp;&amp; valuesNode.equals(other.valuesNode) &amp;&amp; filter.equals(other.filter);</span>
+      }
+<span class="nc" id="L375">      return false;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L380">      logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="nc" id="L381">      return projectionAtom.getPredicate() + &quot;(&quot; + getHeadTerms() + &quot;) &lt;- &quot; + extensionalDataNodes</span>
+          + &quot; FILTER &quot; + filter + &quot; &quot; + valuesNode;
+    }
+
+  }
+
+  private Optional&lt;ConjunctiveIQ&gt; extractConjunctiveIQ(MappingAssertion assertion) {
+<span class="fc" id="L388">    DistinctVariableOnlyDataAtom projectionAtom = assertion.getProjectionAtom();</span>
+<span class="fc" id="L389">    ConstructionNode constructionNode =</span>
+<span class="fc" id="L390">        (ConstructionNode) assertion.getQuery().getTree().getRootNode();</span>
+<span class="fc" id="L391">    IQTree topTree = assertion.getTopChild();</span>
+<span class="pc bpc" id="L392" title="1 of 2 branches missed.">    if (topTree instanceof TrueNode) {</span>
+<span class="nc" id="L393">      return Optional.of(</span>
+<span class="nc" id="L394">          new ConjunctiveIQ(projectionAtom, constructionNode, ImmutableList.of(), Optional.empty(),</span>
+<span class="nc" id="L395">              DisjunctionOfConjunctions.getTrue(), assertion.getProvenance()));</span>
+    }
+<span class="fc bfc" id="L397" title="All 2 branches covered.">    if (topTree instanceof ExtensionalDataNode) {</span>
+<span class="fc" id="L398">      return Optional.of(new ConjunctiveIQ(projectionAtom, constructionNode,</span>
+<span class="fc" id="L399">          ImmutableList.of((ExtensionalDataNode) topTree), Optional.empty(),</span>
+<span class="fc" id="L400">          DisjunctionOfConjunctions.getTrue(), assertion.getProvenance()));</span>
+    }
+<span class="pc bpc" id="L402" title="1 of 2 branches missed.">    if (topTree instanceof ValuesNode) {</span>
+<span class="nc" id="L403">      return Optional.of(new ConjunctiveIQ(projectionAtom, constructionNode, ImmutableList.of(),</span>
+<span class="nc" id="L404">          Optional.of((ValuesNode) topTree), DisjunctionOfConjunctions.getTrue(),</span>
+<span class="nc" id="L405">          assertion.getProvenance()));</span>
+    }
+
+<span class="fc" id="L408">    QueryNode topNode = topTree.getRootNode();</span>
+<span class="fc bfc" id="L409" title="All 2 branches covered.">    if (topNode instanceof FilterNode) {</span>
+<span class="fc" id="L410">      ImmutableExpression filter = ((FilterNode) topNode).getFilterCondition();</span>
+<span class="fc" id="L411">      IQTree childTree = ((UnaryIQTree) topTree).getChild();</span>
+<span class="pc bpc" id="L412" title="1 of 2 branches missed.">      if (childTree instanceof ExtensionalDataNode) {</span>
+<span class="fc" id="L413">        return Optional.of(new ConjunctiveIQ(projectionAtom, constructionNode,</span>
+<span class="fc" id="L414">            ImmutableList.of((ExtensionalDataNode) childTree), Optional.empty(),</span>
+<span class="fc" id="L415">            DisjunctionOfConjunctions.of(filter), assertion.getProvenance()));</span>
+      }
+<span class="nc bnc" id="L417" title="All 2 branches missed.">      if (childTree instanceof ValuesNode) {</span>
+<span class="nc" id="L418">        return Optional.of(new ConjunctiveIQ(projectionAtom, constructionNode, ImmutableList.of(),</span>
+<span class="nc" id="L419">            Optional.of((ValuesNode) childTree), DisjunctionOfConjunctions.of(filter),</span>
+<span class="nc" id="L420">            assertion.getProvenance()));</span>
+      }
+    }
+
+<span class="pc bpc" id="L424" title="1 of 2 branches missed.">    if (topNode instanceof InnerJoinNode) {</span>
+<span class="fc" id="L425">      ImmutableList&lt;IQTree&gt; childrenTrees = topTree.getChildren();</span>
+<span class="fc" id="L426">      ImmutableList&lt;ExtensionalDataNode&gt; extensionalDataNodes = childrenTrees.stream().filter(</span>
+<span class="fc" id="L427">          n -&gt; n instanceof ExtensionalDataNode).map(n -&gt; (ExtensionalDataNode) n).collect(</span>
+<span class="fc" id="L428">              ImmutableCollectors.toList());</span>
+
+<span class="fc" id="L430">      ImmutableList&lt;ValuesNode&gt; valuesNodes = childrenTrees.stream().filter(</span>
+<span class="pc" id="L431">          n -&gt; n instanceof ValuesNode).map(n -&gt; (ValuesNode) n).collect(</span>
+<span class="fc" id="L432">              ImmutableCollectors.toList());</span>
+
+<span class="pc bpc" id="L434" title="1 of 2 branches missed.">      if (extensionalDataNodes.size() + valuesNodes.size() == childrenTrees.size()</span>
+<span class="pc bpc" id="L435" title="1 of 2 branches missed.">          &amp;&amp; valuesNodes.size() &lt;= 1) {</span>
+<span class="fc" id="L436">        DisjunctionOfConjunctions filter =</span>
+<span class="fc" id="L437">            ((InnerJoinNode) topNode).getOptionalFilterCondition().map(</span>
+<span class="fc" id="L438">                DisjunctionOfConjunctions::of).orElseGet(DisjunctionOfConjunctions::getTrue);</span>
+
+<span class="fc" id="L440">        return Optional.of(new ConjunctiveIQ(projectionAtom, constructionNode, extensionalDataNodes,</span>
+<span class="fc" id="L441">            valuesNodes.stream().findFirst(), filter, assertion.getProvenance()));</span>
+      }
+    }
+
+<span class="nc" id="L445">    return Optional.empty();</span>
+  }
+
+  public Optional&lt;MappingAssertion&gt; build() {
+<span class="fc" id="L449">    Optional&lt;IQ&gt; query = queryMerger.mergeDefinitions(</span>
+<span class="fc" id="L450">        Stream.concat(conjunctiveIqs.stream().map(ConjunctiveIQ::asIQ), otherIqs.stream())</span>
+<span class="fc" id="L451">            .collect(ImmutableCollectors.toList()))</span>
+<span class="fc" id="L452">        .map(IQ::normalizeForOptimization);</span>
+
+    // if (query.toString().contains(&quot;UNION&quot;))
+    // System.out.println(&quot;MAU-UNION: &quot; + query);
+<span class="fc" id="L456">    PPMappingAssertionProvenance provenance = conjunctiveIqs.stream().map(</span>
+<span class="fc" id="L457">        ConjunctiveIQ::getProvenance).collect(ProvUnion.getPpMappingAssertionProvenanceCollector())</span>
+<span class="fc" id="L458">        .orElse(null);</span>
+<span class="fc" id="L459">    return query.map(q -&gt; new MappingAssertion(q, provenance));</span>
+  }
+
+
+
+  /***
+   * This is an optimization mechanism that allows T-mappings to reduce
+   * the number of mapping assertions. The unfolding will then produce fewer queries.
+   * &lt;br&gt;
+   * The method
+   * (1) removes a mapping assertion from rules if it is subsumed by the given assertion
+   * &lt;br&gt;
+   * (2) does not add the assertion if it is subsumed by one of the rules
+   * &lt;br&gt;
+   * (3) merges the given assertion into an existing assertion if their database atoms
+   * are homomorphically equivalent
+   * &lt;br&gt;
+   * (4) removes any assertion that is a subset of the given assertion
+   * &lt;br&gt;
+   * For example, if we are given
+   * S(x,z) :- R(x,y,z), y = 2
+   * and rules contains
+   * S(x,z) :- R(x,y,z), y &gt; 7
+   * then this method will modify the existing assertion into
+   * S(x,z) :- R(x,y,z), OR(y &gt; 7, y = 2)
+   */
+  private void mergeMappingsWithCqc(ConjunctiveIQ newCiq) {
+
+    // System.out.println(&quot;PROCESSING: &quot; + newCiq);
+
+<span class="fc bfc" id="L489" title="All 2 branches covered.">    if (conjunctiveIqs.contains(newCiq)) {</span>
+<span class="fc" id="L490">      return;</span>
+    }
+
+<span class="fc" id="L493">    Iterator&lt;ConjunctiveIQ&gt; iterator = conjunctiveIqs.iterator();</span>
+<span class="fc bfc" id="L494" title="All 2 branches covered.">    while (iterator.hasNext()) {</span>
+
+<span class="fc" id="L496">      ConjunctiveIQ currentCiq = iterator.next();</span>
+
+<span class="fc" id="L498">      boolean currentCiqContainsNewCiqButIsLonger = false;</span>
+
+<span class="fc" id="L500">      Optional&lt;Homomorphism&gt; fromCurrentCiq = getHomomorphismIterator(currentCiq, newCiq).filter(</span>
+<span class="fc" id="L501">          Iterator::hasNext).map(Iterator::next);</span>
+<span class="fc" id="L502">      Optional&lt;DisjunctionOfConjunctions&gt; currentCiqConditionsImage = fromCurrentCiq.map(</span>
+<span class="fc" id="L503">          h -&gt; applyHomomorphism(h, currentCiq.getConditions()));</span>
+<span class="fc bfc" id="L504" title="All 4 branches covered.">      if (fromCurrentCiq.isPresent() &amp;&amp; contains(currentCiqConditionsImage.get(),</span>
+<span class="fc" id="L505">          newCiq.getConditions())</span>
+<span class="pc bpc" id="L506" title="1 of 2 branches missed.">          &amp;&amp; contains(fromCurrentCiq.get(), currentCiq.getValuesNode(),</span>
+<span class="fc" id="L507">              newCiq.getValuesNode())) {</span>
+<span class="fc bfc" id="L508" title="All 2 branches covered.">        if (newCiq.getDatabaseAtoms().size() &gt;= currentCiq.getDatabaseAtoms().size()) {</span>
+<span class="fc" id="L509">          return;</span>
+        }
+<span class="fc" id="L511">        currentCiqContainsNewCiqButIsLonger = true;</span>
+      }
+
+<span class="fc" id="L514">      Optional&lt;Homomorphism&gt; fromNewCiq = getHomomorphismIterator(newCiq, currentCiq).filter(</span>
+<span class="fc" id="L515">          Iterator::hasNext).map(Iterator::next);</span>
+<span class="fc" id="L516">      Optional&lt;DisjunctionOfConjunctions&gt; newCiqConditionsImage = fromNewCiq.map(</span>
+<span class="fc" id="L517">          h -&gt; applyHomomorphism(h, newCiq.getConditions()));</span>
+
+<span class="fc bfc" id="L519" title="All 4 branches covered.">      if (fromNewCiq.isPresent() &amp;&amp; contains(newCiqConditionsImage.get(),</span>
+<span class="fc" id="L520">          currentCiq.getConditions())</span>
+<span class="pc bpc" id="L521" title="1 of 2 branches missed.">          &amp;&amp; contains(fromNewCiq.get(), newCiq.getValuesNode(),</span>
+<span class="fc" id="L522">              currentCiq.getValuesNode())) {</span>
+<span class="fc" id="L523">        iterator.remove();</span>
+<span class="fc" id="L524">        continue;</span>
+      }
+
+<span class="fc bfc" id="L527" title="All 2 branches covered.">      if (currentCiqContainsNewCiqButIsLonger) {</span>
+<span class="fc" id="L528">        return;</span>
+      }
+
+<span class="fc bfc" id="L531" title="All 4 branches covered.">      if (fromCurrentCiq.isPresent() &amp;&amp; fromNewCiq.isPresent()) {</span>
+<span class="pc bpc" id="L532" title="3 of 4 branches missed.">        if (currentCiq.getConditions().isTrue() &amp;&amp; newCiq.getConditions().isTrue()</span>
+<span class="pc bpc" id="L533" title="1 of 2 branches missed.">            || newCiqConditionsImage.get().equals(currentCiq.getConditions())) {</span>
+<span class="nc" id="L534">          ValuesNode currentCiqValuesNode = currentCiq.getValuesNode().get();</span>
+<span class="nc" id="L535">          Optional&lt;ValuesNode&gt; optionalNewCiqValuesNodeImage = applyHomomorphism(fromNewCiq.get(),</span>
+<span class="nc" id="L536">              newCiq.getValuesNode().get());</span>
+<span class="nc bnc" id="L537" title="All 2 branches missed.">          if (optionalNewCiqValuesNodeImage.isPresent()) {</span>
+<span class="nc" id="L538">            ValuesNode newCiqValuesNodeImage = optionalNewCiqValuesNodeImage.get();</span>
+<span class="nc bnc" id="L539" title="All 2 branches missed.">            if (newCiqValuesNodeImage.getVariables().equals(currentCiqValuesNode.getVariables())) {</span>
+<span class="nc" id="L540">              iterator.remove();</span>
+<span class="nc" id="L541">              conjunctiveIqs.add(new ConjunctiveIQ(currentCiq, currentCiq.getConditions(),</span>
+<span class="nc" id="L542">                  Optional.of(</span>
+<span class="nc" id="L543">                      iqFactory.createValuesNode(currentCiqValuesNode.getVariables(), Stream.concat(</span>
+<span class="nc" id="L544">                          newCiqValuesNodeImage.getValueMaps().stream(),</span>
+<span class="nc" id="L545">                          currentCiqValuesNode.getValueMaps().stream()).distinct()</span>
+<span class="nc" id="L546">                          .collect(ImmutableCollectors.toList()))),</span>
+                  currentCiq.provenance));
+              // System.out.println(&quot;MAU-MERGE-VALUES: &quot; + currentCiq + &quot; AND &quot; + newCiq);
+<span class="nc" id="L549">              return;</span>
+            }
+          }
+        }
+        // We found an equivalence, we will try to merge the *non-empty* conditions of newCiq into
+        // currentCiq
+<span class="fc" id="L555">        ImmutableSet&lt;Variable&gt; currentCiqDatabaseAtomVariables =</span>
+<span class="fc" id="L556">            currentCiq.getDatabaseAtoms().stream().flatMap(a -&gt; a.getVariables().stream()).collect(</span>
+<span class="fc" id="L557">                ImmutableCollectors.toSet());</span>
+
+<span class="fc" id="L559">        DisjunctionOfConjunctions newCiqCombinedConditionsImage = DisjunctionOfConjunctions.getAND(</span>
+<span class="fc" id="L560">            newCiqConditionsImage.get(),</span>
+<span class="fc" id="L561">            applyHomomorphism(fromNewCiq.get(), translate(newCiq.getValuesNode())));</span>
+
+<span class="pc bpc" id="L563" title="1 of 2 branches missed.">        if (currentCiqDatabaseAtomVariables.containsAll(</span>
+<span class="fc" id="L564">            newCiqCombinedConditionsImage.getVariables())) {</span>
+<span class="fc" id="L565">          iterator.remove();</span>
+<span class="fc" id="L566">          conjunctiveIqs.add(new ConjunctiveIQ(currentCiq, DisjunctionOfConjunctions.getOR(</span>
+<span class="fc" id="L567">              DisjunctionOfConjunctions.getAND(currentCiq.getConditions(),</span>
+<span class="fc" id="L568">                  translate(currentCiq.getValuesNode())),</span>
+              newCiqCombinedConditionsImage),
+<span class="fc" id="L570">              Optional.empty(), currentCiq.provenance));</span>
+          // System.out.println(&quot;MAU-MERGE-CONDITION: &quot; + currentCiq + &quot; AND &quot; + newCiq);
+<span class="fc" id="L572">          return;</span>
+        }
+        // one reason for non-merge is R(x,_), x = 1 and R(_,x), x = 2 (see
+        // TMappingConstantPositionsTest)
+        // second reason for non-merge is variables in ValueNode that do not occur in data atoms
+        // (but occur in the ConstructionNode instead)
+        // System.out.println(&quot;MAU-CANT-MERGE-45: &quot; + currentCiq + &quot; AND &quot; + newCiq + &quot; &quot; +
+        // currentCiqDatabaseAtomVariables + &quot; &quot; + newCiqCombinedConditionsImage.getVariables());
+      }
+
+<span class="fc bfc" id="L582" title="All 2 branches covered.">      if (isSubsetOfAlreadyPresentRule(conjunctiveIqs, newCiq)) {</span>
+<span class="fc" id="L583">        return;</span>
+      }
+
+<span class="fc" id="L586">      Iterators.removeIf(iterator,</span>
+<span class="fc" id="L587">          potentialSubSet -&gt; newCiq.getProvenance().getMmecTriplesMap().getSubsetList()</span>
+<span class="fc" id="L588">              .contains(potentialSubSet.getProvenance().getMmecTriplesMap()));</span>
+<span class="fc" id="L589">    }</span>
+<span class="fc" id="L590">    conjunctiveIqs.add(newCiq);</span>
+<span class="fc" id="L591">  }</span>
+
+  /**
+   * @brief @~english «Description of the method»
+   * @param newCiq «Parameter description»
+   * @return «Return description»
+   *
+   * @brief @~french Vérifie si la nouvelle règle est un sous-ensemble d'une règle déjà présente
+   * @param newCiq La nouvelle règle à vérifier
+   * @return Vrai si la nouvelle règle est un sous-ensemble d'une règle déjà présente
+   */
+  private boolean isSubsetOfAlreadyPresentRule(List&lt;ConjunctiveIQ&gt; conjunctiveIQs,
+      ConjunctiveIQ newCiq) {
+<span class="fc" id="L604">    return conjunctiveIQs.stream().anyMatch(</span>
+<span class="fc" id="L605">        potentialSuperSet -&gt; potentialSuperSet.getProvenance().getMmecTriplesMap().getSubsetList()</span>
+<span class="fc" id="L606">            .contains(newCiq.getProvenance().getMmecTriplesMap()));</span>
+  }
+
+  private DisjunctionOfConjunctions translate(Optional&lt;ValuesNode&gt; valuesNode) {
+<span class="pc bpc" id="L610" title="1 of 2 branches missed.">    if (valuesNode.isEmpty()) {</span>
+<span class="fc" id="L611">      return DisjunctionOfConjunctions.getTrue();</span>
+    }
+
+<span class="nc" id="L614">    return DisjunctionOfConjunctions.of(termFactory.getDisjunction(</span>
+<span class="nc" id="L615">        valuesNode.get().getValueMaps().stream().map(m -&gt; termFactory.getConjunction(</span>
+<span class="nc" id="L616">            m.entrySet().stream().map(e -&gt; termFactory.getStrictEquality(e.getKey(), e.getValue()))</span>
+<span class="nc" id="L617">                .collect(ImmutableCollectors.toList())))</span>
+<span class="nc" id="L618">            .collect(ImmutableCollectors.toList())));</span>
+  }
+
+  private Optional&lt;Iterator&lt;Homomorphism&gt;&gt; getHomomorphismIterator(ConjunctiveIQ from,
+      ConjunctiveIQ to) {
+<span class="fc" id="L623">    Homomorphism.Builder builder = homomorphismFactory.getHomomorphismBuilder();</span>
+<span class="fc bfc" id="L624" title="All 2 branches covered.">    if (!builder.extend(from.getHeadTerms(), to.getHeadTerms()).isValid()) {</span>
+<span class="fc" id="L625">      return Optional.empty();</span>
+    }
+
+<span class="fc" id="L628">    Homomorphism h = builder.build();</span>
+<span class="fc" id="L629">    return Optional.of(new ExtensionalDataNodeHomomorphismIteratorImpl(h, from.getDatabaseAtoms(),</span>
+<span class="fc" id="L630">        cqc.chase(to.getDatabaseAtoms())));</span>
+  }
+
+  private DisjunctionOfConjunctions applyHomomorphism(Homomorphism h, DisjunctionOfConjunctions f) {
+<span class="fc" id="L634">    return f.stream().map(d -&gt; d.stream().map(atom -&gt; h.applyToBooleanExpression(atom, termFactory))</span>
+<span class="fc" id="L635">        .collect(ImmutableCollectors.toSet())).collect(</span>
+<span class="fc" id="L636">            DisjunctionOfConjunctions.toDisjunctionOfConjunctions());</span>
+  }
+
+  private Optional&lt;ValuesNode&gt; applyHomomorphism(Homomorphism h, ValuesNode n) {
+<span class="nc" id="L640">    ImmutableSet&lt;Variable&gt; newVariables = n.getVariables().stream().map(h::apply).map(</span>
+<span class="nc" id="L641">        v -&gt; (Variable) v).collect(ImmutableCollectors.toSet());</span>
+
+<span class="nc bnc" id="L643" title="All 2 branches missed.">    if (newVariables.size() &lt; n.getVariables().size()) {</span>
+<span class="nc" id="L644">      return Optional.empty();</span>
+    }
+
+<span class="nc" id="L647">    return Optional.of(iqFactory.createValuesNode(newVariables, n.getValueMaps().stream().map(</span>
+<span class="nc" id="L648">        m -&gt; m.entrySet().stream().collect(</span>
+<span class="nc" id="L649">            ImmutableCollectors.toMap(e -&gt; (Variable) h.apply(e.getKey()), Map.Entry::getValue)))</span>
+<span class="nc" id="L650">        .collect(ImmutableCollectors.toList())));</span>
+  }
+
+  private boolean contains(DisjunctionOfConjunctions f1, DisjunctionOfConjunctions f2) {
+<span class="fc bfc" id="L654" title="All 6 branches covered.">    return f1.isTrue() || !f2.isTrue() &amp;&amp; f2.stream().allMatch(</span>
+<span class="fc" id="L655">        c -&gt; f1.stream().anyMatch(c::containsAll));</span>
+  }
+
+  private boolean contains(Homomorphism h, Optional&lt;ValuesNode&gt; v1, Optional&lt;ValuesNode&gt; v2) {
+<span class="pc bpc" id="L659" title="1 of 2 branches missed.">    if (v1.isEmpty()) {</span>
+<span class="fc" id="L660">      return true;</span>
+    }
+
+<span class="nc" id="L663">    Optional&lt;ValuesNode&gt; v1Image = applyHomomorphism(h, v1.get());</span>
+<span class="nc bnc" id="L664" title="All 4 branches missed.">    return v1Image.filter(valuesNode -&gt; v2.isPresent() &amp;&amp; v2.get().getValueMaps().stream().allMatch(</span>
+<span class="nc" id="L665">        c -&gt; valuesNode.getValueMaps().stream()</span>
+<span class="nc" id="L666">            .anyMatch(m -&gt; c.entrySet().containsAll(m.entrySet()))))</span>
+<span class="nc" id="L667">        .isPresent();</span>
+
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

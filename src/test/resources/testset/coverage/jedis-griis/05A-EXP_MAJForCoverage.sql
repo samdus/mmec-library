@@ -285,11 +285,11 @@ Contributeurs :
   (CK) Samuel.Dussault@USherbrooke.ca
 
 Adresse, droits d’auteur et copyright :
- @copyright @@GRIIS_COPYRIGHT@@
+ @copyright Samuel Dussault ; GRIIS / Université de Sherbrooke
 
- @licence @@GRIIS_LICENCE@@
+ @licence https://www.forge.gouv.qc.ca/licence/liliq-r/
 
- @version @@GRIIS_VERSION@@
+ @version 1.2.0
 
 Tâches projetées :
 

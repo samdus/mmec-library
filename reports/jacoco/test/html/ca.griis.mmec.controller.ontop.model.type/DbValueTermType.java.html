@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DbValueTermType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mMec-library</a> &gt; <a href="index.source.html" class="el_package">ca.griis.mmec.controller.ontop.model.type</a> &gt; <span class="el_source">DbValueTermType.java</span></div><h1>DbValueTermType.java</h1><pre class="source lang-java linenums">/**
+ * @file
+ * @copyright @@GRIIS_COPYRIGHT@@
+ * @licence @@GRIIS_LICENCE@@
+ * @version @@GRIIS_VERSION@@
+ * @brief @~french Implémentation de la classe DBValueTermType.
+ * @brief @~english DBValueTermType class implementation.
+ */
+
+package ca.griis.mmec.controller.ontop.model.type;
+
+import ca.griis.logger.GriisLogger;
+import ca.griis.logger.GriisLoggerFactory;
+import ca.griis.logger.statuscode.Trace;
+import it.unibz.inf.ontop.model.type.DBTermType;
+import it.unibz.inf.ontop.model.type.DBTypeFactory;
+import it.unibz.inf.ontop.model.type.LanguageTag;
+import it.unibz.inf.ontop.model.type.RDFDatatype;
+import it.unibz.inf.ontop.model.type.TermType;
+import it.unibz.inf.ontop.model.type.TermTypeAncestry;
+import java.util.Optional;
+import org.apache.commons.rdf.api.IRI;
+
+/**
+ * @brief @~english «Brief component description (class, interface, ...)»
+ * @par Details
+ *      «Detailed description of the component (optional)»
+ * @par Model
+ *      «Model (Abstract, automation, etc.) (optional)»
+ * @par Conception
+ *      «Conception description (criteria and constraints) (optional)»
+ * @par Limits
+ *      «Limits description (optional)»
+ *
+ * @brief @~french Type de terme à la fois RDF et DB
+ * @par Détails
+ *      S.O.
+ * @par Modèle
+ *      S.O.
+ * @par Conception
+ *      S.O.
+ * @par Limites
+ *      S.O.
+ *
+ * @par Historique
+ *      2024-03-01 [SD] - Implémentation initiale&lt;br&gt;
+ *
+ * @par Tâches
+ *      S.O.
+ */
+public class DbValueTermType implements DBTermType, RDFDatatype {
+<span class="fc" id="L52">  private static final GriisLogger logger =</span>
+<span class="fc" id="L53">      GriisLoggerFactory.getLogger(DbValueTermType.class);</span>
+  private final RDFDatatype innerRdfTermType;
+  private final DBTermType innerDbTermType;
+
+<span class="fc" id="L57">  public DbValueTermType(RDFDatatype innerRdfTermType, DBTermType innerDbTermType) {</span>
+<span class="fc" id="L58">    this.innerRdfTermType = innerRdfTermType;</span>
+<span class="fc" id="L59">    this.innerDbTermType = innerDbTermType;</span>
+<span class="fc" id="L60">  }</span>
+
+  // Overloaded methods with a custom behavior
+
+  @Override
+  public boolean isAbstract() {
+<span class="fc" id="L66">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L67">    return false;</span>
+  }
+
+  @Override
+  public DBTermType getClosestDBType(DBTypeFactory dbTypeFactory)
+      throws UnsupportedOperationException {
+<span class="fc" id="L73">    logger.trace(Trace.ENTER_METHOD_1, dbTypeFactory);</span>
+<span class="fc" id="L74">    return innerDbTermType;</span>
+  }
+
+  @Override
+  public Optional&lt;RDFDatatype&gt; getNaturalRDFDatatype() {
+<span class="fc" id="L79">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L80">    return Optional.of(innerRdfTermType);</span>
+  }
+
+  // Delegated methods
+
+  @Override
+  public String getName() {
+<span class="fc" id="L87">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L88">    return innerDbTermType.getName();</span>
+  }
+
+  @Override
+  public String getCastName() {
+<span class="fc" id="L93">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L94">    return innerDbTermType.getCastName();</span>
+  }
+
+  @Override
+  public Category getCategory() {
+<span class="fc" id="L99">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L100">    return innerDbTermType.getCategory();</span>
+  }
+
+  @Override
+  public boolean isNeedingIRISafeEncoding() {
+<span class="fc" id="L105">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L106">    return innerDbTermType.isNeedingIRISafeEncoding();</span>
+  }
+
+  @Override
+  public boolean areEqualitiesStrict() {
+<span class="fc" id="L111">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L112">    return innerDbTermType.areEqualitiesStrict();</span>
+  }
+
+  @Override
+  public Optional&lt;Boolean&gt; areEqualitiesStrict(DBTermType otherType) {
+<span class="fc" id="L117">    logger.trace(Trace.ENTER_METHOD_1, otherType);</span>
+<span class="fc" id="L118">    return innerDbTermType.areEqualitiesStrict(otherType);</span>
+  }
+
+  @Override
+  public boolean areEqualitiesBetweenTwoDBAttributesStrict() {
+<span class="fc" id="L123">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L124">    return innerDbTermType.areEqualitiesBetweenTwoDBAttributesStrict();</span>
+  }
+
+  @Override
+  public Optional&lt;Boolean&gt; isValidLexicalValue(String lexicalValue) {
+<span class="fc" id="L129">    logger.trace(Trace.ENTER_METHOD_1, lexicalValue);</span>
+<span class="fc" id="L130">    return innerDbTermType.isValidLexicalValue(lexicalValue);</span>
+  }
+
+  @Override
+  public boolean isPreventDistinctRecommended() {
+<span class="fc" id="L135">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L136">    return innerDbTermType.isPreventDistinctRecommended();</span>
+  }
+
+  @Override
+  public TermType getCommonDenominator(TermType otherTermType) {
+<span class="fc" id="L141">    logger.trace(Trace.ENTER_METHOD_1, otherTermType);</span>
+<span class="fc" id="L142">    return innerRdfTermType.getCommonDenominator(otherTermType);</span>
+  }
+
+  @Override
+  public TermTypeAncestry getAncestry() {
+<span class="fc" id="L147">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L148">    return innerRdfTermType.getAncestry();</span>
+  }
+
+  @Override
+  public Optional&lt;LanguageTag&gt; getLanguageTag() {
+<span class="fc" id="L153">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L154">    return innerRdfTermType.getLanguageTag();</span>
+  }
+
+  @Override
+  public boolean isA(TermType otherTermType) {
+<span class="fc" id="L159">    logger.trace(Trace.ENTER_METHOD_1, otherTermType);</span>
+<span class="fc" id="L160">    return innerRdfTermType.isA(otherTermType);</span>
+  }
+
+  @Override
+  public boolean isA(IRI baseDatatypeIri) {
+<span class="fc" id="L165">    logger.trace(Trace.ENTER_METHOD_1, baseDatatypeIri);</span>
+<span class="fc" id="L166">    return innerRdfTermType.isA(baseDatatypeIri);</span>
+  }
+
+  @Override
+  public IRI getIRI() {
+<span class="fc" id="L171">    logger.trace(Trace.ENTER_METHOD_0);</span>
+<span class="fc" id="L172">    return innerRdfTermType.getIRI();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

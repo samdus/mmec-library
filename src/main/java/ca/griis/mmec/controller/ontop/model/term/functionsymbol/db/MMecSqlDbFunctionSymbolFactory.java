@@ -1,8 +1,8 @@
 /**
  * @file
- * @copyright @@GRIIS_COPYRIGHT@@
- * @licence @@GRIIS_LICENCE@@
- * @version @@GRIIS_VERSION@@
+ * @copyright Samuel Dussault ; GRIIS / Université de Sherbrooke
+ * @licence https://www.forge.gouv.qc.ca/licence/liliq-r/
+ * @version 1.2.0
  * @brief @~french Implémentation de l'interface MMecSQLDBFunctionSymbolFactory.
  * @brief @~english MMecSQLDBFunctionSymbolFactory interface implementation.
  */
