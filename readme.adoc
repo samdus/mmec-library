@@ -46,7 +46,7 @@ Le projet est construit avec Gradle.
 
 Pour inclure {component-name} dans un autre projet, il faut ajouter la dépendance dans le fichier build.gradle de ce projet, puis rafraichir le projet Gradle.
 
-La *{page-component-title}* peut être déclarée en utilisant `ca.griis:mMec-library:1.2.0`.
+La *{component-name}* peut être déclarée en utilisant `ca.griis:mMec-library:1.2.0`.
 
 [source, gradle]
 ----
@@ -96,6 +96,46 @@ Branches: 80% +
 | link:reports/checkstyle/main.html[Rapport Checkstyle]
 
 |===
+
+[#execution-modele]
+== Visualisation du modèle d'individuation Event-B
+Le modèle de l'algorithme d'individuation a été conçu à l'aide d'Event-B. Les sources, disponibles dans le répertoire `src/main/b-sharp/IndividuationAlgorithm`, peuvent être ouvertes à l’aide de l’environnement de développement https://wp.software.imdea.org/cbc/rodin-installation-and-tips/[Rodin]. Il est nécessaire d'installer les plugins suivants pour le bon fonctionnement du modèle:
+
+. Atelier B provers
+. SMT Solvers
+
+De plus, le logiciel https://prob.hhu.de/w/index.php?title=ProB2_JavaFX_UI[ProB 2 UI] peut être utilisé pour visualiser les exemples d'arrimage qui sont disponibles sous: `src/main/b-sharp/IndividuationAlgorithmAnimation`. Voici les étapes à suivre pour lancer une simulation:
+
+. Ouvrir le menu "Rodin Platform" > "Settings"
+. Naviguer vers "ProB" > "ProB Standalone"
+. Renseigner le champs "location", avec le chemin de l'installation de ProB2UI.
+.. Sous MacOS, il s'agit de /Applications/ProB 2 UI.app/Contents/app/prob2-ui-1.2.1-mac-x86_64.jar
+. Ouvrir la machine 4-AnimationMachine
+. Sélectionner le contexte d'animation désiré sous "SEES"
+. Faire un clic droit sur  4-AnimationMachine
+. Sélectionner "ProB Standalone..." > "Ouvrir dans ProB Standalone"
+. Si tout est installé correctement, ProB2Ui devrait s'ouvrir et la machine devrait s'exécuter. L'initialisation peut prendre quelques minutes
+. Il est possible de charger les traces qui sont disponibles dans le répertoire `doc/animation_proB` du présent projet
+.. S'assurer de sélectionner la trace correspondant au contexte sélectionné
+
+Une explication de la visualisation ProB des différents cas d'individuation sont disponibles dans le répertoire `doc/animation_proB/visualisation`.
+
+[#execution-tests]
+== Exécution des tests
+Les tests peuvent être exécutés en utilisant la commande Gradle suivante:
+[source, gradle]
+----
+./gradlew test
+----
+
+Les tests d'intégration sont dépendants de l'image Docker `archive.griis.usherbrooke.ca:5004/ontorelcat-ldm:1.0.0-dev`. Pour l'installer :
+
+. Récupérer l'image Docker ontorelcat-ldm.tar.gz à partir de la https://github.com/samdus/mmec-library/releases/download/1.2.0/ontorelcat-ldm.tar.gz[dernière version du projet].
+. Charger l'image avec la commande suivante :
+[source, shell]
+----
+docker load < ontorelcat-ldm.tar.gz
+----
 
 [#dependance-ontop]
 == Dépendance à Ontop

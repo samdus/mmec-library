@@ -1,0 +1,3 @@
+= Visualisation de l'algorithme d'individuation
+
+Il est prévu de déposer des démonstrations de l'algorithme d'individuation dans le présent répertoire avant le 2025-05-10. L'objectif est de permettre la visualisation sans avoir à installer les environnements de développement Rodin et ProB 2 UI, comme décrit sur la link:../../../readme.adoc#execution-modele[page principale du projet].
