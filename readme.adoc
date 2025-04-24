@@ -118,7 +118,7 @@ De plus, le logiciel https://prob.hhu.de/w/index.php?title=ProB2_JavaFX_UI[ProB 
 . Il est possible de charger les traces qui sont disponibles dans le répertoire `doc/animation_proB` du présent projet
 .. S'assurer de sélectionner la trace correspondant au contexte sélectionné
 
-Une explication de la visualisation ProB des différents cas d'individuation sont disponibles dans le répertoire `doc/animation_proB/visualisation`.
+Une explication de la visualisation ProB des différents cas d'individuation sont disponibles dans le répertoire link:doc/animation_proB/visualisation[doc/animation_proB/visualisation].
 
 [#execution-tests]
 == Exécution des tests
