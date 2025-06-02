@@ -1,3 +1,3 @@
 = Visualisation de l'algorithme d'individuation
 
-Le link:./Présentation.pdf[document PDF ci-joint] permet la visualisation d'un cas d'arrimage sans avoir à installer les environnements de développement Rodin et ProB 2 UI, comme décrit sur la link:../../../readme.adoc#execution-modele[page principale du projet].
+Le link:./visualisation.pdf[document PDF ci-joint] permet la visualisation d'un cas d'arrimage sans avoir à installer les environnements de développement Rodin et ProB 2 UI, comme décrit sur la link:../../../readme.adoc#execution-modele[page principale du projet].
