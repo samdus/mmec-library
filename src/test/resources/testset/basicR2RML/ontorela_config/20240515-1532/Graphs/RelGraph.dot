@@ -1,3 +1,37 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1856dbc499ef1018903d5de8aff35fdb29f9ef04a504eb1a73ea8f9e5b0af5c3
-size 1855
+digraph G {
+  splines=polyline;
+  rankdir=LR;
+  "T7f4f794200" [ label="T7f4f794200::Thing::
+Thing" shape="box" ];
+  "T4f2a1f1000" [ label="T4f2a1f1000::tst3::
+tst3" shape="box" ];
+  "T29732e8200" [ label="T29732e8200::tst::
+tst" shape="box" ];
+  "T305df03900" [ label="T305df03900::ONTORELA_C0006X::
+tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3" shape="box" ];
+  "T305deffb00" [ label="T305deffb00::ONTORELA_C0004X::
+tst1 C0004Xtst3 | rel | tst2" shape="box" ];
+  "T4f2a1f0000" [ label="T4f2a1f0000::tst2::
+tst2" shape="box" ];
+  "T4f2a1ef000" [ label="T4f2a1ef000::tst1::
+tst1" shape="box" ];
+  "T75162af000" [ label="T75162af000::tst_has_value_string::
+tst has_value" penwidth="4" shape="tab" ];
+  "T7f06a14e00" [ label="T7f06a14e00::ONTORELA_C0004X_rel_ONTORELA_C0006X::
+tst1 C0004Xtst3 | rel | tst2 rel tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3" shape="box" ];
+  "T3801380400" [ label="T3801380400::tst1_rel_ONTORELA_C0004X::
+tst1 rel tst1 C0004Xtst3 | rel | tst2" shape="box" ];
+  "T4f2a1f1000" -> "T29732e8200" [ label="\"fk0_T4f2a1f1000\"" ];
+  "T4f2a1f1000" -> "T305df03900" [ label="\"fk1_T4f2a1f1000\"" ];
+  "T29732e8200" -> "T7f4f794200" [ label="\"fk0_T29732e8200\"" ];
+  "T305deffb00" -> "T7f4f794200" [ label="\"fk0_T305deffb00\"" ];
+  "T305df03900" -> "T7f4f794200" [ label="\"fk0_T305df03900\"" ];
+  "T4f2a1f0000" -> "T305df03900" [ label="\"fk0_T4f2a1f0000\"" ];
+  "T4f2a1f0000" -> "T29732e8200" [ label="\"fk1_T4f2a1f0000\"" ];
+  "T4f2a1ef000" -> "T29732e8200" [ label="\"fk0_T4f2a1ef000\"" ];
+  "T75162af000" -> "T29732e8200" [ label="\"fk0_T75162af000\"" ];
+  "T7f06a14e00" -> "T305df03900" [ label="\"fk1_T7f06a14e00\"" ];
+  "T7f06a14e00" -> "T305deffb00" [ label="\"fk0_T7f06a14e00\"" ];
+  "T3801380400" -> "T4f2a1ef000" [ label="\"fk0_T3801380400\"" ];
+  "T3801380400" -> "T305deffb00" [ label="\"fk1_T3801380400\"" ];
+}

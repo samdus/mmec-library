@@ -1,3 +1,272 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:71f276b90212e60a0bb2a9648417672ca5a8a7948ae42561199d4c9e3390bc13
-size 13530
+digraph G {
+  splines=polyline;
+  rankdir=LR;
+  "OMRSE_00000204" [ label="\"OMRSE_00000204\"@
+social identity information content entity" shape="ellipse" ];
+  "Thing" [ label="\"Thing\"@
+Thing" shape="ellipse" ];
+  "OMRSE_00000209" [ label="\"OMRSE_00000209\"@
+gender identity information content entity" shape="ellipse" ];
+  "BFO_0000003" [ label="\"BFO_0000003\"@
+occurrent" shape="ellipse" ];
+  "BFO_0000004" [ label="\"BFO_0000004\"@
+independent continuant" shape="ellipse" ];
+  "OBI_0000011" [ label="\"OBI_0000011\"@
+planned process" shape="ellipse" ];
+  "NOYO_0000013" [ label="\"NOYO_0000013\"@
+statement" shape="ellipse" ];
+  "NOYO_0000012" [ label="\"NOYO_0000012\"@
+informational entity" shape="ellipse" ];
+  "IAO_0000577" [ label="\"IAO_0000577\"@
+centrally registered identifier symbol" shape="ellipse" ];
+  "OMRSE_00000210" [ label="\"OMRSE_00000210\"@
+female gender identity information content entity" shape="ellipse" ];
+  "OMRSE_00000211" [ label="\"OMRSE_00000211\"@
+male gender identity information content entity" shape="ellipse" ];
+  "OMRSE_00000212" [ label="\"OMRSE_00000212\"@
+non-binary identity information content entity" shape="ellipse" ];
+  "VO_0004896" [ label="\"VO_0004896\"@
+intersex biological sex datum" shape="ellipse" ];
+  "VO_0004895" [ label="\"VO_0004895\"@
+female biological sex datum" shape="ellipse" ];
+  "IAO_0000009" [ label="\"IAO_0000009\"@
+datum label" shape="ellipse" ];
+  "IAO_0000003" [ label="\"IAO_0000003\"@
+measurement unit label" shape="ellipse" ];
+  "HBW_0000006" [ label="\"HBW_0000006\"@
+medical record identifier" shape="ellipse" ];
+  "HBW_0000007" [ label="\"HBW_0000007\"@
+patient" shape="ellipse" ];
+  "BFO_0000040" [ label="\"BFO_0000040\"@
+material" shape="ellipse" ];
+  "HBW_0000008" [ label="\"HBW_0000008\"@
+health care provider" shape="ellipse" ];
+  "IOIO_0000012" [ label="\"IOIO_0000012\"@
+human biological sex or gender identity information content entity" shape="ellipse" ];
+  "BFO_0000001" [ label="\"BFO_0000001\"@
+entity" shape="ellipse" ];
+  "BFO_0000002" [ label="\"BFO_0000002\"@
+continuant" shape="ellipse" ];
+  "HBW_0000002" [ label="\"HBW_0000002\"@
+RAMQ vulnerability code" shape="ellipse" ];
+  "HBW_0000003" [ label="\"HBW_0000003\"@
+weight unit" shape="ellipse" ];
+  "HBW_0000004" [ label="\"HBW_0000004\"@
+health care record" shape="ellipse" ];
+  "VO_0000613" [ label="\"VO_0000613\"@
+male biological sex datum" shape="ellipse" ];
+  "HBW_0000009" [ label="\"HBW_0000009\"@
+body weight" shape="ellipse" ];
+  "NCBITaxon_9606" [ label="\"NCBITaxon_9606\"@
+Homo sapiens" shape="ellipse" ];
+  "HBW_0000010" [ label="\"HBW_0000010\"@
+health care provider role" shape="ellipse" ];
+  "VO_0001194" [ label="\"VO_0001194\"@
+biological sex datum" shape="ellipse" ];
+  "HBW_0000011" [ label="\"HBW_0000011\"@
+patient role" shape="ellipse" ];
+  "BFO_0000031" [ label="\"BFO_0000031\"@
+gdc" shape="ellipse" ];
+  "IAO_0020000" [ label="\"IAO_0020000\"@
+identifier" shape="ellipse" ];
+  "HBW_0000012" [ label="\"HBW_0000012\"@
+physiological evaluation" shape="ellipse" ];
+  "IAO_0000032" [ label="\"IAO_0000032\"@
+scalar measurement datum" shape="ellipse" ];
+  "HBW_0000013" [ label="\"HBW_0000013\"@
+physiological evaluation from health care provider" shape="ellipse" ];
+  "HBW_0000014" [ label="\"HBW_0000014\"@
+obesity" shape="ellipse" ];
+  "IAO_0000310" [ label="\"IAO_0000310\"@
+document" shape="ellipse" ];
+  "IAO_0000030" [ label="\"IAO_0000030\"@
+information content entity" shape="ellipse" ];
+  "OGMS_0000031" [ label="\"OGMS_0000031\"@
+disease" shape="ellipse" ];
+  "BFO_0000016" [ label="\"BFO_0000016\"@
+disposition" shape="ellipse" ];
+  "BFO_0000017" [ label="\"BFO_0000017\"@
+realizable" shape="ellipse" ];
+  "IAO_0020017" [ label="\"IAO_0020017\"@
+family name" shape="ellipse" ];
+  "BFO_0000015" [ label="\"BFO_0000015\"@
+process" shape="ellipse" ];
+  "HBW_0000022" [ label="\"HBW_0000022\"@
+human name" shape="ellipse" ];
+  "BFO_0000019" [ label="\"BFO_0000019\"@
+quality" shape="ellipse" ];
+  "IAO_0000109" [ label="\"IAO_0000109\"@
+measurement datum" shape="ellipse" ];
+  "BFO_0000020" [ label="\"BFO_0000020\"@
+sdc" shape="ellipse" ];
+  "HBW_0000028" [ label="\"HBW_0000028\"@
+human biological sex or gender identity statement" shape="ellipse" ];
+  "HBW_0000029" [ label="\"HBW_0000029\"@
+RAMQ vulnerability code statement" shape="ellipse" ];
+  "IAO_0000027" [ label="\"IAO_0000027\"@
+data item" shape="ellipse" ];
+  "IAO_0000028" [ label="\"IAO_0000028\"@
+symbol" shape="ellipse" ];
+  "BFO_0000023" [ label="\"BFO_0000023\"@
+role" shape="ellipse" ];
+  "HBW_0000023" [ label="\"HBW_0000023\"@
+male biological sex or gender identity information content entity" shape="ellipse" ];
+  "HBW_0000024" [ label="\"HBW_0000024\"@
+intersex biological sex or non-binary gender identity information content entity" shape="ellipse" ];
+  "HBW_0000025" [ label="\"HBW_0000025\"@
+female biological sex or gender identity information content entity" shape="ellipse" ];
+  "HBW_0000026" [ label="\"HBW_0000026\"@
+HBW_0000026" shape="ellipse" ];
+  "IAO_0020015" [ label="\"IAO_0020015\"@
+personal name" shape="ellipse" ];
+  "OBI_0100026" [ label="\"OBI_0100026\"@
+organism" shape="ellipse" ];
+  "ONTORELA_C4d0c3f45" [ label="\"ONTORELA_C4d0c3f45\"@
+health care record
+ and (is about some patient)" shape="ellipse" ];
+  "ONTORELA_C61c354fb" [ label="\"ONTORELA_C61c354fb\"@
+data item
+ and (is about some 
+    ((disposition or quality)
+     and (inheres in some organism)))" shape="ellipse" ];
+  "ONTORELA_C2986e108" [ label="\"ONTORELA_C2986e108\"@
+(disposition or quality)
+ and (inheres in some organism)" shape="ellipse" ];
+  "ONTORELA_C1edc1ccd" [ label="\"ONTORELA_C1edc1ccd\"@
+disposition or quality" shape="ellipse" ];
+  "decimal" [ label="\"decimal\"@
+Decimal" shape="box" ];
+  "string" [ label="\"string\"@
+String" shape="box" ];
+  "NCBITaxon_9606" -> "OBI_0100026" [ label="\"isa\"" style="solid" ];
+  "BFO_0000016" -> "BFO_0000017" [ label="\"isa\"" style="solid" ];
+  "OMRSE_00000204" -> "IAO_0000030" [ label="\"isa\"" style="solid" ];
+  "HBW_0000029" -> "NOYO_0000013" [ label="\"isa\"" style="solid" ];
+  "OMRSE_00000212" -> "OMRSE_00000209" [ label="\"isa\"" style="solid" ];
+  "BFO_0000020" -> "BFO_0000002" [ label="\"isa\"" style="solid" ];
+  "HBW_0000028" -> "NOYO_0000013" [ label="\"isa\"" style="solid" ];
+  "HBW_0000011" -> "BFO_0000023" [ label="\"isa\"" style="solid" ];
+  "OBI_0100026" -> "BFO_0000040" [ label="\"isa\"" style="solid" ];
+  "IAO_0000028" -> "IAO_0000030" [ label="\"isa\"" style="solid" ];
+  "IAO_0000032" -> "IAO_0000109" [ label="\"isa\"" style="solid" ];
+  "BFO_0000015" -> "BFO_0000003" [ label="\"isa\"" style="solid" ];
+  "BFO_0000023" -> "BFO_0000017" [ label="\"isa\"" style="solid" ];
+  "IAO_0000009" -> "IAO_0000030" [ label="\"isa\"" style="solid" ];
+  "HBW_0000002" -> "IAO_0000027" [ label="\"isa\"" style="solid" ];
+  "OMRSE_00000211" -> "OMRSE_00000209" [ label="\"isa\"" style="solid" ];
+  "VO_0004895" -> "VO_0001194" [ label="\"isa\"" style="solid" ];
+  "HBW_0000025" -> "IOIO_0000012" [ label="\"isa\"" style="solid" ];
+  "BFO_0000001" -> "Thing" [ label="\"isa\"" style="solid" ];
+  "IAO_0020017" -> "IAO_0020000" [ label="\"isa\"" style="solid" ];
+  "NOYO_0000013" -> "NOYO_0000012" [ label="\"isa\"" style="solid" ];
+  "IAO_0020015" -> "IAO_0020000" [ label="\"isa\"" style="solid" ];
+  "OMRSE_00000209" -> "OMRSE_00000204" [ label="\"isa\"" style="solid" ];
+  "IAO_0000310" -> "IAO_0000030" [ label="\"isa\"" style="solid" ];
+  "HBW_0000023" -> "IOIO_0000012" [ label="\"isa\"" style="solid" ];
+  "HBW_0000010" -> "BFO_0000023" [ label="\"isa\"" style="solid" ];
+  "IAO_0000109" -> "IAO_0000027" [ label="\"isa\"" style="solid" ];
+  "HBW_0000013" -> "HBW_0000012" [ label="\"isa\"" style="solid" ];
+  "IAO_0000030" -> "BFO_0000031" [ label="\"isa\"" style="solid" ];
+  "IAO_0000003" -> "IAO_0000009" [ label="\"isa\"" style="solid" ];
+  "IAO_0020000" -> "IAO_0000030" [ label="\"isa\"" style="solid" ];
+  "BFO_0000004" -> "BFO_0000002" [ label="\"isa\"" style="solid" ];
+  "IAO_0000027" -> "IAO_0000030" [ label="\"isa\"" style="solid" ];
+  "HBW_0000012" -> "OBI_0000011" [ label="\"isa\"" style="solid" ];
+  "HBW_0000022" -> "IAO_0020000" [ label="\"isa\"" style="solid" ];
+  "VO_0000613" -> "VO_0001194" [ label="\"isa\"" style="solid" ];
+  "IOIO_0000012" -> "IAO_0000030" [ label="\"isa\"" style="solid" ];
+  "BFO_0000031" -> "BFO_0000002" [ label="\"isa\"" style="solid" ];
+  "HBW_0000006" -> "IAO_0000577" [ label="\"isa\"" style="solid" ];
+  "BFO_0000019" -> "BFO_0000020" [ label="\"isa\"" style="solid" ];
+  "HBW_0000004" -> "IAO_0000310" [ label="\"isa\"" style="solid" ];
+  "NOYO_0000012" -> "BFO_0000031" [ label="\"isa\"" style="solid" ];
+  "BFO_0000003" -> "BFO_0000001" [ label="\"isa\"" style="solid" ];
+  "OBI_0000011" -> "BFO_0000015" [ label="\"isa\"" style="solid" ];
+  "HBW_0000003" -> "IAO_0000003" [ label="\"isa\"" style="solid" ];
+  "IAO_0000577" -> "IAO_0000028" [ label="\"isa\"" style="solid" ];
+  "BFO_0000002" -> "BFO_0000001" [ label="\"isa\"" style="solid" ];
+  "BFO_0000040" -> "BFO_0000004" [ label="\"isa\"" style="solid" ];
+  "VO_0004896" -> "VO_0001194" [ label="\"isa\"" style="solid" ];
+  "HBW_0000024" -> "IOIO_0000012" [ label="\"isa\"" style="solid" ];
+  "OGMS_0000031" -> "BFO_0000016" [ label="\"isa\"" style="solid" ];
+  "OMRSE_00000210" -> "OMRSE_00000209" [ label="\"isa\"" style="solid" ];
+  "BFO_0000017" -> "BFO_0000020" [ label="\"isa\"" style="solid" ];
+  "HBW_0000026" -> "IAO_0000032" [ label="\"isa\"" style="solid" ];
+  "HBW_0000014" -> "OGMS_0000031" [ label="\"isa\"" style="solid" ];
+  "VO_0001194" -> "IAO_0000109" [ label="\"isa\"" style="solid" ];
+  "HBW_0000009" -> "BFO_0000019" [ label="\"isa\"" style="solid" ];
+  "ONTORELA_C4d0c3f45" -> "HBW_0000004" [ label="\"isa\"" style="solid" ];
+  "ONTORELA_C61c354fb" -> "IAO_0000027" [ label="\"isa\"" style="solid" ];
+  "ONTORELA_C2986e108" -> "ONTORELA_C1edc1ccd" [ label="\"isa\"" style="solid" ];
+  "BFO_0000016" -> "ONTORELA_C1edc1ccd" [ label="\"isa\"" style="solid" ];
+  "BFO_0000019" -> "ONTORELA_C1edc1ccd" [ label="\"isa\"" style="solid" ];
+  "OMRSE_00000209" -> "IOIO_0000012" [ label="\"isa\"" style="solid" ];
+  "VO_0001194" -> "IOIO_0000012" [ label="\"isa\"" style="solid" ];
+  "HBW_0000013" -> "HBW_0000012" [ label="\"isa\"" style="solid" ];
+  "HBW_0000007" -> "OBI_0100026" [ label="\"isa\"" style="solid" ];
+  "HBW_0000008" -> "NCBITaxon_9606" [ label="\"isa\"" style="solid" ];
+  "IAO_0000109" -> "IAO_0000003" [ label="[1..1]
+\"IAO_0000039@has measurement unit label\"" style="solid" ];
+  "IAO_0000030" -> "BFO_0000001" [ label="[1..*]
+\"IAO_0000136@is about\"" style="solid" ];
+  "IAO_0000030" -> "BFO_0000001" [ label="[1..*]
+\"IAO_0000219@denotes\"" style="solid" ];
+  "BFO_0000003" -> "BFO_0000002" [ label="[1..*]
+\"RO_0000057@has participant\"" style="solid" ];
+  "BFO_0000004" -> "BFO_0000023" [ label="[1..*]
+\"RO_0000087@has role\"" style="solid" ];
+  "HBW_0000022" -> "IAO_0020015" [ label="[1..*]
+\"BFO_0000051@has_part\"" style="solid" ];
+  "HBW_0000004" -> "OBI_0100026" [ label="[1..*]
+\"IAO_0000136@is about\"" style="solid" ];
+  "HBW_0000028" -> "HBW_0000006" [ label="[1..1]
+\"BFO_0000051@has_part\"" style="solid" ];
+  "HBW_0000006" -> "ONTORELA_C4d0c3f45" [ label="[1..1]
+\"IAO_0000219@denotes\"" style="solid" ];
+  "ONTORELA_C4d0c3f45" -> "HBW_0000007" [ label="[1..*]
+\"IAO_0000136@is about\"" style="solid" ];
+  "IAO_0000032" -> "IAO_0000003" [ label="[1..*]
+\"IAO_0000039@has measurement unit label\"" style="solid" ];
+  "HBW_0000029" -> "HBW_0000002" [ label="[1..1]
+\"BFO_0000051@has_part\"" style="solid" ];
+  "IAO_0020000" -> "BFO_0000001" [ label="[1..*]
+\"IAO_0000219@denotes\"" style="solid" ];
+  "HBW_0000029" -> "HBW_0000006" [ label="[1..1]
+\"BFO_0000051@has_part\"" style="solid" ];
+  "HBW_0000022" -> "IAO_0020017" [ label="[1..*]
+\"BFO_0000051@has_part\"" style="solid" ];
+  "HBW_0000022" -> "NCBITaxon_9606" [ label="[1..*]
+\"IAO_0000219@denotes\"" style="solid" ];
+  "HBW_0000012" -> "NCBITaxon_9606" [ label="[1..1]
+\"PHYSIO_0000089@has evaluant\"" style="solid" ];
+  "HBW_0000026" -> "HBW_0000003" [ label="[1..*]
+\"IAO_0000039@has measurement unit label\"" style="solid" ];
+  "HBW_0000012" -> "ONTORELA_C61c354fb" [ label="[1..*]
+\"OBI_0000299@has_specified_output\"" style="solid" ];
+  "ONTORELA_C61c354fb" -> "ONTORELA_C2986e108" [ label="[1..*]
+\"IAO_0000136@is about\"" style="solid" ];
+  "ONTORELA_C2986e108" -> "OBI_0100026" [ label="[1..*]
+\"RO_0000052@inheres in\"" style="solid" ];
+  "HBW_0000028" -> "IOIO_0000012" [ label="[1..1]
+\"BFO_0000051@has_part\"" style="solid" ];
+  "HBW_0000013" -> "HBW_0000008" [ label="[1..1]
+\"PHYSIO_0000089@has evaluant\"" style="dotted" ];
+  "HBW_0000007" -> "HBW_0000011" [ label="[1..*]
+\"RO_0000087@has role\"" style="dotted" ];
+  "HBW_0000008" -> "HBW_0000010" [ label="[1..*]
+\"RO_0000087@has role\"" style="dotted" ];
+  "IAO_0000032" -> "decimal" [ label="[1..1]
+\"IAO_0000004@has measurement value\"" style="solid" ];
+  "IAO_0020015" -> "string" [ label="[1..1]
+\"PHYSIO_0000100@has value\"" style="solid" ];
+  "HBW_0000026" -> "decimal" [ label="[1..*]
+\"IAO_0000004@has measurement value\"" style="solid" ];
+  "IAO_0000577" -> "string" [ label="[1..1]
+\"PHYSIO_0000100@has value\"" style="solid" ];
+  "IAO_0000003" -> "string" [ label="[1..1]
+\"PHYSIO_0000100@has value\"" style="solid" ];
+  "IAO_0020017" -> "string" [ label="[1..1]
+\"PHYSIO_0000100@has value\"" style="solid" ];
+  "HBW_0000002" -> "string" [ label="[1..1]
+\"PHYSIO_0000100@has value\"" style="solid" ];
+}

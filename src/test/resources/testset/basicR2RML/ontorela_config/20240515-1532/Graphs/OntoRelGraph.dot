@@ -1,3 +1,37 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5d60fc3e89a28543919eaba76e5d06e625163b29c8ca208c54ff2edeaabae00e
-size 1838
+digraph G {
+  splines=polyline;
+  rankdir=LR;
+  "T7f4f794200" [ label="\"Thing::T7f4f794200::
+Thing\"" shape="box" ];
+  "T4f2a1f1000" [ label="\"tst3::T4f2a1f1000::
+tst3\"" shape="box" ];
+  "T29732e8200" [ label="\"tst::T29732e8200::
+tst\"" shape="box" ];
+  "T305deffb00" [ label="\"ONTORELA_C0004X::T305deffb00::
+tst1 C0004Xtst3 | rel | tst2\"" shape="box" ];
+  "T305df03900" [ label="\"ONTORELA_C0006X::T305df03900::
+tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3\"" shape="box" ];
+  "T4f2a1f0000" [ label="\"tst2::T4f2a1f0000::
+tst2\"" shape="box" ];
+  "T4f2a1ef000" [ label="\"tst1::T4f2a1ef000::
+tst1\"" shape="box" ];
+  "T75162af000" [ label="\"T75162af000::
+tst has_value\"" shape="doubleoctagon" ];
+  "T7f06a14e00" [ label="\"T7f06a14e00::
+tst1 C0004Xtst3 | rel | tst2 rel tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3\"" shape="Mdiamond" ];
+  "T3801380400" [ label="\"T3801380400::
+tst1 rel tst1 C0004Xtst3 | rel | tst2\"" shape="Mdiamond" ];
+  "T29732e8200" -> "T7f4f794200" [ label="\"isa:T7f4f794200_uid" ];
+  "T305deffb00" -> "T7f4f794200" [ label="\"isa:T7f4f794200_uid" ];
+  "T305df03900" -> "T7f4f794200" [ label="\"isa:T7f4f794200_uid" ];
+  "T4f2a1f0000" -> "T305df03900" [ label="\"isa:T305df03900_uid" ];
+  "T4f2a1f1000" -> "T29732e8200" [ label="\"isa:T29732e8200_uid" ];
+  "T4f2a1ef000" -> "T29732e8200" [ label="\"isa:T29732e8200_uid" ];
+  "T4f2a1f0000" -> "T29732e8200" [ label="\"isa:T29732e8200_uid" ];
+  "T4f2a1f1000" -> "T305df03900" [ label="\"isa:T305df03900_uid" ];
+  "T29732e8200" -> "T75162af000" [ label="\"dp:T29732e8200_uid" ];
+  "T305deffb00" -> "T7f06a14e00" [ label="\"op:T305deffb00_uid" ];
+  "T7f06a14e00" -> "T305df03900" [ label="\"op:T305df03900_uid" ];
+  "T4f2a1ef000" -> "T3801380400" [ label="\"op:T4f2a1ef000_uid" ];
+  "T3801380400" -> "T305deffb00" [ label="\"op:T305deffb00_uid" ];
+}

@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:56115a35426c019d5359c6199ee5a1e66a65a199549c52fa6e5048fac66941ea
-size 1060
+digraph G {
+  splines=polyline;
+  rankdir=LR;
+  "ONTORELA_C0004X" [ label="\"ONTORELA_C0004X\"@
+tst1 C0004Xtst3 | rel | tst2" shape="ellipse" ];
+  "ONTORELA_C0006X" [ label="\"ONTORELA_C0006X\"@
+tst1 C0004Xtst3 | rel | tst2 unionOf tst2 | tst3" shape="ellipse" ];
+  "tst3" [ label="\"tst3\"@
+tst3" shape="ellipse" ];
+  "tst2" [ label="\"tst2\"@
+tst2" shape="ellipse" ];
+  "tst1" [ label="\"tst1\"@
+tst1" shape="ellipse" ];
+  "tst" [ label="\"tst\"@
+tst" shape="ellipse" ];
+  "string" [ label="\"string\"@
+string" shape="box" ];
+  "tst2" -> "ONTORELA_C0006X" [ label="\"isa\"" style="solid" ];
+  "tst3" -> "tst" [ label="\"isa\"" style="solid" ];
+  "tst1" -> "tst" [ label="\"isa\"" style="solid" ];
+  "tst2" -> "tst" [ label="\"isa\"" style="solid" ];
+  "tst3" -> "ONTORELA_C0006X" [ label="\"isa\"" style="solid" ];
+  "ONTORELA_C0004X" -> "ONTORELA_C0006X" [ label="[1..*]
+\"rel@rel\"" style="solid" ];
+  "tst1" -> "ONTORELA_C0004X" [ label="[1..*]
+\"rel@rel\"" style="solid" ];
+  "tst" -> "string" [ label="[1..1]
+\"has_value@has_value\"" style="solid" ];
+}
